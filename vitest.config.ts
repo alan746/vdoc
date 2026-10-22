@@ -1,7 +1,9 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  resolve: { alias: { '@': new URL('.', import.meta.url).pathname } },
+  // fileURLToPath decodes the URL; .pathname would percent-encode non-ASCII directories.
+  resolve: { alias: { '@': fileURLToPath(new URL('.', import.meta.url)) } },
   test: {
     environment: 'jsdom',
     include: ['tests/**/*.test.ts'],

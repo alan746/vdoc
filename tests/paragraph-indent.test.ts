@@ -53,6 +53,6 @@ it.each(['bulletList','orderedList'])('keeps %s level indentation separate from 
  const input:JSONContent={type:'doc',content:[{type,content:[{type:'listItem',content:[p('Outer'),{type,content:[{type:'listItem',content:[p('Nested')]}]}]}]}]};
  const buffer=await bytes(await exportWord(input,'List indent'));const zip=await JSZip.loadAsync(buffer),xml=await zip.file('word/document.xml')!.async('string');
  expect(xml).toContain('w:left="908"');expect(xml).toContain('w:left="1268"');
- const result=await importWord(buffer),values:any[]=[];const visit=(n:JSONContent)=>{if(n.type==='paragraph')values.push(paragraphIndent(n.attrs!));n.content?.forEach(visit);};visit(result.content);
+ const result=await importWord(buffer),values:ReturnType<typeof paragraphIndent>[]=[];const visit=(n:JSONContent)=>{if(n.type==='paragraph')values.push(paragraphIndent(n.attrs!));n.content?.forEach(visit);};visit(result.content);
  expect(values.length).toBeGreaterThanOrEqual(2);for(const value of values.slice(0,2)){expect(value.indentStart).toBeCloseTo(12.5,1);expect(value.firstLineIndent).toBe(-24);}
 });

@@ -98,6 +98,7 @@ export function LibraryHome({ onOpen, recoveryError }: { onOpen: (document: Save
   const heading = normalized ? 'Search results' : scope === 'files' ? breadcrumbs.at(-1)?.title || 'Your documents' : scope === 'recent' ? 'Recent documents' : scope === 'starred' ? 'Starred' : 'Trash';
   const libraryMessage = error || (action ? '' : actionError) || recoveryError;
   return <div className="library-shell">
+    {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- the brand link intentionally reloads to a clean library state */}
     <aside className="library-sidebar"><a className="library-brand" href="/" aria-label="VDoc home">vdoc<span>.</span></a><span className="library-eyebrow">PERSONAL WORKSPACE</span>
       <button className="library-create" title="New document" onClick={createDocument} disabled={busy || loading || Boolean(error)}><Plus size={18} />New document</button>
       <nav aria-label="Library navigation">{([['files', Folder, 'All files'], ['recent', Clock3, 'Recent'], ['starred', Star, 'Starred'], ['trash', Trash2, 'Trash']] as const).map(([key, Icon, label]) => <button key={key} title={label} aria-current={scope === key ? 'page' : undefined} onClick={() => navigate(key)}><Icon size={18} />{label}{key === 'files' && <span>{items.filter(item => item.kind === 'document' && !item.trashedAt).length}</span>}</button>)}</nav>

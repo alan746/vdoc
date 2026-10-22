@@ -1,8 +1,8 @@
+import type { Attrs } from '@tiptap/pm/model';
 import { selectedParagraphs } from './paragraph-selection';
 import type { Editor } from '@tiptap/core';
 import type { Operation } from '../../domain/entities/operation';
 
-type Attrs = Record<string, any>;
 export const indentKeys = ['indentStart','indentEnd','firstLineIndent'] as const;
 export type IndentValues = Record<typeof indentKeys[number], number | null>;
 export function paragraphIndent(attrs: Attrs) {

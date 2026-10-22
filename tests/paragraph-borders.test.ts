@@ -49,7 +49,7 @@ it('targets only a disjoint table column and preserves RTL physical edge meaning
   editor.commands.setContent('<table><tr><td><p dir="rtl">א</p></td><td><p>B</p></td></tr><tr><td><p dir="rtl">ع</p></td><td><p>D</p></td></tr></table>');
   const map=TableMap.get(editor.state.doc.firstChild!);editor.view.dispatch(editor.state.tr.setSelection(CellSelection.create(editor.state.doc,1+map.map[0],1+map.map[2])));
   apply({left:true});const values:unknown[]=[];editor.state.doc.firstChild!.descendants(n=>{if(n.type.name==='paragraph')values.push(n.attrs.paragraphBorders);});
-  expect(values.map(Boolean)).toEqual([true,false,true,false]);expect((values[0] as any).left).toBeDefined();
+  expect(values.map(Boolean)).toEqual([true,false,true,false]);expect((values[0] as { left?: unknown }).left).toBeDefined();
 });
 it('preserves asymmetric edge settings in HTML, backups and preview without expanding outside the paragraph',()=>{
   editor.commands.setContent('<p style="border-left:2px dashed #aabbcc;padding-left:12px;border-bottom:1px dotted #112233;padding-bottom:8px">中文 العربية</p>');

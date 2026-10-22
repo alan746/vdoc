@@ -54,7 +54,7 @@ it('reads and applies paragraph layout across every selected cell, with mixed va
   expect(selectedIndent(editor).indentStart).toBeNull(); expect(selectedPagination(editor).keepLinesTogether).toBe('mixed');
   const before = editor.getJSON();
   engine.execute({ operations: [{ type: 'paragraph.style', spaceBefore: 20, keepLinesTogether: true, lineHeight: '2' }, { type: 'paragraph.indent', direction: 'in' }] });
-  const result: Record<string, any> = {}; editor.state.doc.descendants(n => { if (['paragraph', 'heading'].includes(n.type.name)) result[n.textContent] = n.attrs; });
+  const result: Record<string, Record<string, unknown>> = {}; editor.state.doc.descendants(n => { if (['paragraph', 'heading'].includes(n.type.name)) result[n.textContent] = n.attrs; });
   expect(result.A).toMatchObject({ indentStart: 36, spaceBefore: 20, keepLinesTogether: true, lineHeight: '2' });
   expect(result.C).toMatchObject({ indentStart: 48, spaceBefore: 20, keepLinesTogether: true, lineHeight: '2' });
   expect(result.B).toMatchObject({ indentStart: null, spaceBefore: null, keepLinesTogether: false });

@@ -12,7 +12,28 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Archived acceptance evidence (old source snapshots, captured scripts).
+    // Already excluded from vitest and tsconfig; it is not live code.
+    "tests/fixtures/**",
   ]),
+  {
+    files: ["**/*.{js,jsx,mjs,ts,tsx,mts,cts}"],
+    rules: {
+      // A leading underscore marks an intentionally unused binding (callback parameters, destructured omissions).
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_" }],
+      // React Compiler readiness rules. The compiler is not enabled, and the editor relies on the
+      // "latest ref" pattern for IME/autosave safety; keep these visible as warnings until the UI
+      // refactor (Q-cell2/vdoc#1) migrates those components.
+      "react-hooks/refs": "warn",
+      "react-hooks/set-state-in-effect": "warn",
+      "react-hooks/globals": "warn",
+    },
+  },
+  {
+    // CommonJS QA scripts legitimately use require().
+    files: ["**/*.cjs"],
+    rules: { "@typescript-eslint/no-require-imports": "off" },
+  },
   {
     files: ["components/ui/**/*.{ts,tsx}", "hooks/use-mobile.ts"],
     rules: {

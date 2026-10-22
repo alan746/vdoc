@@ -40,7 +40,6 @@ it('supports six heading levels, indentation and spacing in one transaction', ()
   expect(editor.state.doc.firstChild!.attrs).toMatchObject({level:6,indent:2,spaceBefore:12,spaceAfter:18,lineHeight:'1.15'});
 });
 it('creates an interactive checklist, preserves check state and undoes conversion', () => {
-  const before = editor.getJSON();
   expect(engine.execute({operations:[{type:'list.toggle',kind:'task'}]}).ok).toBe(true);
   expect(editor.getHTML()).toContain('data-type="taskList"');
   editor.commands.updateAttributes('taskItem',{checked:true});

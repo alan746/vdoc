@@ -6,8 +6,8 @@ import { ParagraphBordersDialog } from './paragraph-borders-dialog';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { EditorContent, useEditor } from '@tiptap/react';
 import type { JSONContent } from '@tiptap/core';
-import { ArrowDownToLine, Check, ChevronDown, ChevronRight, CloudOff, FileText, History, Link2, ListTree, Minus, PanelLeftClose, Plus, Printer, Redo2, RemoveFormatting, Table2, Undo2, X, Quote, Keyboard, CheckCheck } from 'lucide-react';
-import { DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
+import { ArrowDownToLine, Check, ChevronRight, CloudOff, FileText, History, Link2, ListTree, Minus, PanelLeftClose, Redo2, RemoveFormatting, Table2, Undo2, X, Quote, Keyboard, CheckCheck } from 'lucide-react';
+import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { DialogFocusReturnProvider, Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Toaster, toast } from 'sonner';
@@ -41,7 +41,7 @@ import { useDocumentNavigation } from './use-document-navigation';
 import { useDocumentAutosave } from './use-document-autosave';
 import { useWordExport, WordExportFeedback } from './word-export';
 import { documentNavigation } from '@/lib/usecases/document-navigation';
-import { InsertTableDialog, EditorToolbar, ColorPicker, Menu, type Run } from './toolbar';
+import { InsertTableDialog, EditorToolbar, Menu, type Run } from './toolbar';
 
 declare global { interface Window { vdoc?: { execute: DocumentEngine['execute']; snapshot: DocumentEngine['snapshot']; undo: () => OperationResult; redo: () => OperationResult }; } }
 

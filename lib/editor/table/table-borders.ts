@@ -1,4 +1,4 @@
-import type { Node } from '@tiptap/pm/model';
+import type { Attrs, Node } from '@tiptap/pm/model';
 import { TableMap, type Rect } from '@tiptap/pm/tables';
 
 export const borderSides = ['top', 'right', 'bottom', 'left'] as const;
@@ -7,7 +7,7 @@ export type Border = { color: string; width: number; style: 'solid' | 'dashed' |
 export type BorderScope = 'all' | 'outer' | 'inner' | BorderSide;
 export type CellBorders = Partial<Record<BorderSide, Border>>;
 
-export function cellBorder(attrs: Record<string, any>, side: BorderSide): Border {
+export function cellBorder(attrs: Attrs, side: BorderSide): Border {
   return { color: attrs.borderColor || '#DCE3ED', width: attrs.borderWidth ?? 1, style: attrs.borderStyle || 'solid', ...attrs.borders?.[side] };
 }
 
@@ -33,7 +33,7 @@ export function parseCellBorders(el: HTMLElement): CellBorders | null {
   return Object.keys(result).length ? result : null;
 }
 
-export function renderCellBorders(attrs: Record<string, any>) {
+export function renderCellBorders(attrs: Attrs) {
   if (!attrs.borders) return {};
   return { style: borderSides.map(side => {
     const border = cellBorder(attrs, side);

@@ -1,3 +1,4 @@
+import type { Attrs } from '@tiptap/pm/model';
 import type { Editor } from '@tiptap/core';
 import { colorToHex } from '../../domain/text/color';
 import { selectedParagraphs } from './paragraph-selection';
@@ -27,7 +28,7 @@ export function paragraphBorderChanges(before:BorderValues,after:BorderValues):P
   return Object.keys(operation).length>1?operation:null;
 }
 /** Only geometrically compatible siblings can share a continuous border. */
-export function paragraphBorderGroupKey(attrs:Record<string,any>):string|null {
+export function paragraphBorderGroupKey(attrs:Attrs):string|null {
   const parsed=paragraphBordersSchema.safeParse(attrs.paragraphBorders);
   if(!attrs.paragraphBorderJoin||!parsed.success||!Object.keys(parsed.data).length)return null;
   const borders=paragraphBorderEdges.map(side=>{const b=parsed.data[side];return b?[b.width,b.style,b.color.toUpperCase(),b.padding]:null;});

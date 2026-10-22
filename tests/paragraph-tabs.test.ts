@@ -27,7 +27,7 @@ it('inserts a real tab with the keyboard, keeps marks and reverses it in one und
   expect(editor.getText()).toContain('\t'); engine.history('undo'); expect(editor.getJSON()).toEqual(before);
 });
 it('does not insert a tab during IME composition', () => {
-  const before = editor.getJSON(); (editor.view as any).input.composing = true; key('Tab'); (editor.view as any).input.composing = false;
+  const before = editor.getJSON(); const view = editor.view as unknown as { input: { composing: boolean } }; view.input.composing = true; key('Tab'); view.input.composing = false;
   expect(editor.getJSON()).toEqual(before);
 });
 it('preserves table Tab / Shift+Tab navigation and inserts a tab through the operation in a cell', () => {

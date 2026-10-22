@@ -1,3 +1,4 @@
+import type { Attrs } from '@tiptap/pm/model';
 import type { Editor } from '@tiptap/core';
 import { selectedParagraphs } from './paragraph-selection';
 import { paragraphIndent } from './paragraph-indent';
@@ -24,7 +25,7 @@ export function selectedTabInterval(editor: Editor): number | null {
   const values = selectedParagraphs(editor.state.doc, editor.state.selection).map(({ node }) => node.attrs.tabInterval ?? DEFAULT_TAB_INTERVAL);
   return values.every(v => v === values[0]) ? values[0] ?? DEFAULT_TAB_INTERVAL : null;
 }
-export function wordTabPositions(attrs: Record<string, any>, listStart = 0) {
+export function wordTabPositions(attrs: Attrs, listStart = 0) {
   const interval = validTabInterval(attrs.tabInterval) ? attrs.tabInterval : DEFAULT_TAB_INTERVAL;
   const indent = paragraphIndent(attrs), origin = listStart + indent.indentStart + Math.max(0, -indent.firstLineIndent);
   // Native Word tabs are measured from the writing margin; CSS starts at the
