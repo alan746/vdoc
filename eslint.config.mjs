@@ -53,6 +53,13 @@ const eslintConfig = defineConfig([
     },
   },
   {
+    // UI reaches storage only through the repositories in lib/composition (Q-cell2/vdoc#2).
+    files: ["components/**/*.{ts,tsx}", "app/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": ["error", { patterns: [{ group: ["**/infrastructure/persistence/**", "@/lib/infrastructure/persistence/**"], message: "Use the repositories from @/lib/composition/repositories." }] }],
+    },
+  },
+  {
     files: ["lib/usecases/**/*.ts"],
     rules: {
       "no-restricted-imports": ["error", { patterns: [{ group: ["**/infrastructure/**", "**/composition/**", "@/lib/infrastructure/**", "@/lib/composition/**"], message: "Use cases depend on ports; wire implementations in lib/composition." }] }],

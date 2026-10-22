@@ -11,8 +11,8 @@ import { useDocumentNavigation } from './use-document-navigation';
 import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-navigation';
 import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
-import { listLibrary, type LibraryItem } from '@/lib/infrastructure/persistence/library-store';
-import { activateDocument, selectDocument, saveDocument, type LibraryEntry, type SavedDocument } from '@/lib/infrastructure/persistence/document-store';
+import { documents as documentRepository, library as libraryRepository } from '@/lib/composition/repositories';
+import type { LibraryEntry, LibraryItem, SavedDocument } from '@/lib/domain/entities/document';
 
 function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>) {
   const names: string[] = [], visited = new Set([document.id]);
@@ -45,7 +45,7 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
   const ensureWritable = () => { assertAutosaveActive(current.current.blocked); };
   const preserve = async () => {
     ensureWritable();
-    await saveDocument(current.current.title.trim() || 'Untitled document', editor.getJSON(), documentId);
+    await documentRepository.save(current.current.title.trim() || 'Untitled document', editor.getJSON(), documentId);
     // A conflict may arrive while the final save is still pending.
     ensureWritable();
   };
@@ -55,7 +55,7 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
     await preserve(); if (!mounted.current || editor.isDestroyed) return;
     // Read existing documents after the final save, including reopening this
     // document. Only newly created/imported content uses the writing path.
-    const next = typeof document === 'string' ? await selectDocument(document) : await activateDocument(document);
+    const next = typeof document === 'string' ? await documentRepository.select(document) : await documentRepository.activate(document);
     if (!mounted.current) return;
     ensureWritable();
     setOpen(false); onOpen(next); onLoaded?.();
@@ -67,7 +67,7 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
     protectInput();
     await preserve(); if (!mounted.current) return;
     protectInput();
-    const library = await listLibrary(); if (!mounted.current) return;
+    const library = await libraryRepository.list(); if (!mounted.current) return;
     // Reading may be slow while the editor remains usable. A late dialog's
     // autofocus must not interrupt a candidate started during either await.
     protectInput();

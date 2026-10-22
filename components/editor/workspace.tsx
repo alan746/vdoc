@@ -20,7 +20,6 @@ import { initialContent } from '@/lib/editor/sample';
 import { exportLocalDocument } from './local-export';
 import { PrintPreview, type PrintSnapshot } from './print-preview';
 import { VersionHistory } from './version-history';
-import { readSavedDocument, type SavedDocument } from '@/lib/infrastructure/persistence/document-store';
 import { ImageDialog, PageDialog, ParagraphDialog } from './document-dialogs';
 import { TableHandles } from './table-handles';
 import { ParagraphRuler } from './paragraph-ruler';
@@ -42,6 +41,8 @@ import { useDocumentAutosave } from './use-document-autosave';
 import { useWordExport, WordExportFeedback } from './word-export';
 import { documentNavigation } from '@/lib/usecases/document-navigation';
 import { InsertTableDialog, EditorToolbar, Menu, type Run } from './toolbar';
+import { documents } from '@/lib/composition/repositories';
+import type { SavedDocument } from '@/lib/domain/entities/document';
 
 declare global { interface Window { vdoc?: { execute: DocumentEngine['execute']; snapshot: DocumentEngine['snapshot']; undo: () => OperationResult; redo: () => OperationResult }; } }
 
@@ -225,7 +226,7 @@ export default function VdocWorkspace() {
     let live = true;
     const hash = window.location.hash;
     const requestedId = new URLSearchParams(hash.slice(1)).get('document');
-    void readSavedDocument(requestedId ?? undefined).then(value => {
+    void documents.readActive(requestedId ?? undefined).then(value => {
       if (!live) return;
       setLoaded(value);
       if (requestedId && value.data?.id === requestedId && window.location.hash === hash) setHome(false);

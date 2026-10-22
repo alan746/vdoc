@@ -66,10 +66,10 @@ File：文档库、导入、导出、打印。Edit：查找替换和撤销。Ins
 - `components/editor/`：工作台、工具栏、文档与属性对话框、查找／表格面板、版本历史。
 - `lib/` 按分层组织，依赖只向内：`composition → (editor, infrastructure) → usecases → domain`，由 ESLint `no-restricted-imports` 强制：
   - `domain/`：`entities/`（文档、库条目、版本、导入结果、操作契约）、`rules/`（列表、段落边框、制表位、文本格式等纯规则与备份校验规则链）、`text/`（Unicode、语言、颜色、字号）。不依赖任何外层。
-  - `usecases/`：`engine.ts` 操作事务、`autosave.ts`、`import-file.ts`、`document-navigation.ts`、`browser-tools.ts`（可选 WebMCP；`window.vdoc` 为本地开发接口）。通过 `ports.ts` 中的 `DocumentWriter`、`FileImporter` 访问存储与文件格式。
+  - `usecases/`：`engine.ts` 操作事务、`autosave.ts`、`import-file.ts`、`document-navigation.ts`、`browser-tools.ts`（可选 WebMCP；`window.vdoc` 为本地开发接口）。通过 `ports.ts` 中的 `DocumentRepository`、`LibraryRepository`、`VersionRepository`、`FileImporter` 访问存储与文件格式。
   - `editor/`：Tiptap/ProseMirror 适配层；`commands/` 为按操作族划分的命令注册表与目标解析，另有 `format/`、`list/`、`paragraph/`、`table/`、`search/`。
   - `infrastructure/`：`persistence/`（IndexedDB 连接、文档、版本、库）、`importers/`（Word、文本、备份导入策略）、`word/`、`export/`、`preview/`、`pdf/`、`browser/`。
-  - `composition/`：组装根，把基础设施实现注入用例（`startAutosave`、`readDocumentImport`）。
+  - `composition/`：组装根，把基础设施实现注入用例与 UI（`repositories.ts` 中的 `documents`、`library`、`versions`，以及 `startAutosave`、`readDocumentImport`）。更换存储后端只需改这里的绑定，新实现需通过 `tests/persistence-contract.test.ts`。
   - `shared/`：跨层通用工具。
 - `tests/`、`docs/`：测试、验收与规划。
 

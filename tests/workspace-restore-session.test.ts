@@ -17,6 +17,8 @@ vi.mock('../lib/infrastructure/persistence/document-store', () => ({
   STORAGE_KEY: 'vdoc.document.v1',
   readSavedDocument: async () => ({ data: fixture.initial }),
   saveDocument: fixture.save,
+}));
+vi.mock('../lib/infrastructure/persistence/version-store', () => ({
   listVersions: async () => [{ key: 'checkpoint', label: 'Earlier checkpoint', createdAt: fixture.initial.savedAt }],
   restoreVersion: fixture.restore,
 }));
