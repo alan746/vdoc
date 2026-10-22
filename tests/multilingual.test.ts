@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { findMatches } from '../lib/editor/search';
-import { parseDocument } from '../lib/editor/storage';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { findMatches } from '../lib/editor/search/search';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 import { languageSamples, unicodeSamples } from './multilingual-fixtures';
 let editor:Editor, engine:DocumentEngine;
 beforeEach(async()=>{editor=new Editor({extensions:createExtensions(),content:'<p></p>'});await new Promise(r=>setTimeout(r,0));engine=new DocumentEngine(editor);});
@@ -39,7 +39,7 @@ it('rejects an explicit range that would split an emoji surrogate pair',()=>{
 });
 
 it('counts grapheme clusters, and segments words in scripts without spaces',async()=>{
-  const {graphemeCount,textStatistics,documentStatistics}=await import('../lib/editor/unicode');
+  const {graphemeCount,textStatistics,documentStatistics}=await import('../lib/domain/text/unicode');
   expect(graphemeCount('👨‍👩‍👧‍👦👍🏽🇨🇦é')).toBe(4);
   expect(graphemeCount('한')).toBe(1);
   expect(textStatistics('🇨 🇦').characters).toBe(2);
@@ -57,7 +57,7 @@ it('applies explicit RTL direction through the operation layer and preserves it 
 });
 
 it.each(languageSamples)('persists %s language metadata without changing multilingual text and undoes it',async(locale,text)=>{
-  const {exportHTML}=await import('../lib/editor/html-export');
+  const {exportHTML}=await import('../lib/infrastructure/export/html-export');
   editor.commands.setContent({type:'doc',content:[{type:'paragraph',content:[{type:'text',text}]}]});
   const before=editor.getJSON();
   expect(engine.execute({operations:[{type:'document.language',language:locale}]}).ok).toBe(true);
@@ -75,7 +75,7 @@ it('canonicalizes regional language tags and rejects malformed tags atomically',
   expect(()=>parseDocument(JSON.stringify({version:1,title:'bad',content:{...before,attrs:{...before.attrs,language:'not_a_tag'}}}))).toThrow('language');
 });
 it('normalizes imported RGB and short hex palette values without dropping transparency',async()=>{
-  const {colorToHex}=await import('../lib/editor/color');
+  const {colorToHex}=await import('../lib/domain/text/color');
   expect(colorToHex('rgb(255, 240, 173)')).toBe('#FFF0AD');
   expect(colorToHex('rgba(34,47,67,1)')).toBe('#222F43');
   expect(colorToHex('#abc')).toBe('#AABBCC');

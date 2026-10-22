@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { previewSource } from '../lib/editor/paged-preview';
-import { previewPageBreakMismatch } from '../lib/editor/preview-page-breaks';
+import { previewSource } from '../lib/infrastructure/preview/paged-preview';
+import { previewPageBreakMismatch } from '../lib/infrastructure/preview/preview-page-breaks';
 const parse = (html: string) => { const root = document.createElement('div'); root.innerHTML = html; return root; };
 const page = (html: string) => `<div class="pagedjs_page">${html}</div>`;
 const source = () => parse(previewSource('Break QA', '<p>Before 中文</p><div class="page-break"><span>Page break</span></div><h2>After العربية</h2>', { type: 'doc' }).html);

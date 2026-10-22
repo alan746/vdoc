@@ -1,8 +1,8 @@
 'use client';
-import { effectiveFormatActive } from '@/lib/editor/format-overrides';
+import { effectiveFormatActive } from '@/lib/editor/format/format-overrides';
 import { useInputComposition } from './use-input-composition';
 
-import {absoluteFontPixels} from '@/lib/editor/font-size';
+import {absoluteFontPixels} from '@/lib/domain/text/font-size';
 import { useEffect, useRef, useState } from 'react';
 import { restoreEditorFocusAfterMenu } from '@/lib/editor/menu-focus';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
@@ -12,11 +12,11 @@ import { Copy, ClipboardPaste, AlignLeft, AlignCenter, AlignRight, AlignJustify,
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import type { DocumentEngine } from '@/lib/editor/engine';
-import { selectedCellListType } from '@/lib/editor/cell-lists';
-import { listStyleContext } from '@/lib/editor/list-style';
-import { colorToHex } from '@/lib/editor/color';
-import type { Operation } from '@/lib/editor/operations';
+import type { DocumentEngine } from '@/lib/usecases/engine';
+import { selectedCellListType } from '@/lib/editor/list/cell-lists';
+import { listStyleContext } from '@/lib/editor/list/list-style';
+import { colorToHex } from '@/lib/domain/text/color';
+import type { Operation } from '@/lib/domain/entities/operation';
 
 export type Run = (operation: Operation | Operation[], label?: string) => void;
 const palette = ['#222F43', '#68778D', '#FFFFFF', '#E65656', '#E99132', '#F0C34A', '#48A881', '#4485D1', '#7965BD', '#D06898'];

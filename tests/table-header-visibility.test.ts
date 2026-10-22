@@ -1,7 +1,7 @@
 import { Editor } from '@tiptap/core';
 import { afterEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import { tableRowVisualRect } from '../lib/editor/table-headers';
+import { tableRowVisualRect } from '../lib/editor/table/table-headers';
 
 let editor: Editor | undefined;
 afterEach(() => { editor?.destroy(); editor = undefined; document.body.replaceChildren(); vi.restoreAllMocks(); });

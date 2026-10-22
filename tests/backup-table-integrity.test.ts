@@ -5,7 +5,7 @@ import { beforeEach, expect, it, vi } from 'vitest';
 import { getSchema, type JSONContent } from '@tiptap/core';
 import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
-import { parseDocument } from '../lib/editor/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 
 const schema = getSchema(createExtensions());
 const cell = (text: string, attrs = {}): JSONContent => ({ type: 'tableCell', attrs, content: [{ type: 'paragraph', content: [{ type: 'text', text, marks: [{ type: 'bold' }] }] }] });
@@ -49,7 +49,7 @@ it.each(['tests/fixtures/safari-preview/source.vdoc.json', 'tests/fixtures/local
   expect(parseDocument(raw).content).toEqual(schema.nodeFromJSON(source.content).toJSON());
 });
 it('rejects a damaged saved version without changing the current document or pruning checkpoints', async () => {
-  const store = await import('../lib/editor/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store');
   const original = await store.activateDocument({ ...parseDocument(JSON.stringify(document(table(row(cell('Current 中文')))))), id: 'keep-table' });
   const first = await store.saveVersion(original, 'First');
   for (let i = 1; i < 40; i++) await store.saveVersion(original, `Version ${i}`);
@@ -62,7 +62,7 @@ it('rejects a damaged saved version without changing the current document or pru
   expect((await store.listDocuments())[0].title).toBe(original.title);
 });
 it('keeps corrupt stored table data intact and leaves the active document unchanged on a failed link open', async () => {
-  const store = await import('../lib/editor/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store');
   const original = await store.activateDocument({ ...parseDocument(JSON.stringify(document(table(row(cell('Current')))))), id: 'keep-current' });
   const corrupt = { ...document(missing()), id: 'corrupt-table' };
   await store.archiveDocument(corrupt);

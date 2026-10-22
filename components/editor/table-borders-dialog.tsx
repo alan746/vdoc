@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 import { selectedRect } from '@tiptap/pm/tables';
 import { toast } from 'sonner';
-import type { DocumentEngine } from '@/lib/editor/engine';
-import { cellBorder, tableBorderChanges, type BorderScope } from '@/lib/editor/table-borders';
-import { colorToHex } from '@/lib/editor/color';
+import type { DocumentEngine } from '@/lib/usecases/engine';
+import { cellBorder, tableBorderChanges, type BorderScope } from '@/lib/editor/table/table-borders';
+import { colorToHex } from '@/lib/domain/text/color';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 export function TableBordersDialog({ engine, open, close }: { engine: DocumentEngine; open: boolean; close: () => void }) {

@@ -3,8 +3,8 @@ import { act, createElement } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { revealSearchMatch } from '../lib/editor/search-scroll';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { revealSearchMatch } from '../lib/editor/search/search-scroll';
 import { FindPanel } from '../components/editor/editing-panels';
 
 let editor: Editor, engine: DocumentEngine, canvas: HTMLDivElement, root: Root;

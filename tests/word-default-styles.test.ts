@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import JSZip from 'jszip';
-import { exportWord } from '../lib/editor/word';
+import { exportWord } from '../lib/infrastructure/word/word';
 
 it('exports the editor default font and heading styles instead of Office blue theme headings', async () => {
   const blob = await exportWord({ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Body 中文' }] },

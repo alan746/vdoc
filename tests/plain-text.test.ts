@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { getSchema, type JSONContent } from '@tiptap/core';
 import { expect, it } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import { exportPlainText } from '../lib/editor/plain-text';
+import { exportPlainText } from '../lib/infrastructure/export/plain-text';
 import { languageSamples, unicodeSamples } from './multilingual-fixtures';
 
 const schema = getSchema(createExtensions());

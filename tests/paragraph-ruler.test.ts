@@ -1,13 +1,13 @@
-import { selectedParagraphs } from '../lib/editor/paragraph-selection';
+import { selectedParagraphs } from '../lib/editor/paragraph/paragraph-selection';
 import { beforeEach, afterEach, it, expect } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { CellSelection, TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { paragraphIndent } from '../lib/editor/paragraph-indent';
-import { selectedIndent } from '../lib/editor/paragraph-indent';
-import { selectedPagination } from '../lib/editor/paragraph-pagination';
-import { rulerDeltaBounds, rulerPointerDelta } from '../lib/editor/paragraph-ruler';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { paragraphIndent } from '../lib/editor/paragraph/paragraph-indent';
+import { selectedIndent } from '../lib/editor/paragraph/paragraph-indent';
+import { selectedPagination } from '../lib/editor/paragraph/paragraph-pagination';
+import { rulerDeltaBounds, rulerPointerDelta } from '../lib/editor/paragraph/paragraph-ruler';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => {
   editor = new Editor({ extensions: createExtensions(), content: '<p data-indent-start="12.5" data-first-line-indent="24">English 中文</p><p dir="rtl" data-indent-start="37.5" data-first-line-indent="-36">العربية עברית</p>' });

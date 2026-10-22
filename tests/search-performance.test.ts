@@ -1,8 +1,8 @@
 import { Editor } from '@tiptap/core';
 import { afterEach, expect, it } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import { findMatches } from '../lib/editor/search';
-import { DocumentEngine } from '../lib/editor/engine';
+import { findMatches } from '../lib/editor/search/search';
+import { DocumentEngine } from '../lib/usecases/engine';
 let editor: Editor | undefined, engine: DocumentEngine | undefined;
 afterEach(() => { engine?.destroy(); editor?.destroy(); engine = undefined; editor = undefined; });
 it('keeps long-document search coordinates accurate through local edits, replacement and undo', async () => {

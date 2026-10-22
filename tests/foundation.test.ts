@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { activateDocument, archiveDocument, listDocuments, openArchivedDocument, parseDocument, readSavedDocument, saveDocument, STORAGE_KEY } from '../lib/editor/storage';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { activateDocument, archiveDocument, listDocuments, openArchivedDocument, parseDocument, readSavedDocument, saveDocument, STORAGE_KEY } from '../lib/infrastructure/persistence/storage';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => {
   editor = new Editor({ extensions: createExtensions(), content: '<p>First paragraph</p><p>Second paragraph</p><p>Third paragraph</p>' });

@@ -5,16 +5,16 @@ import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import type { SavedDocument } from '../lib/editor/storage';
-import type { startAutosave } from '../lib/editor/autosave';
+import type { SavedDocument } from '../lib/infrastructure/persistence/storage';
+import type { startAutosave } from '../lib/composition/autosave';
 
 const messages = vi.hoisted(() => ({ error: vi.fn(), info: vi.fn() }));
 vi.mock('sonner', () => ({ toast: messages }));
-let store: typeof import('../lib/editor/document-store');
-let library: typeof import('../lib/editor/library-store');
-let autosave: typeof import('../lib/editor/autosave');
+let store: typeof import('../lib/infrastructure/persistence/document-store');
+let library: typeof import('../lib/infrastructure/persistence/library-store');
+let autosave: typeof import('../lib/composition/autosave');
 let LocalDocuments: typeof import('../components/editor/local-documents').LocalDocuments;
-let navigation: typeof import('../lib/editor/document-navigation').documentNavigation;
+let navigation: typeof import('../lib/usecases/document-navigation').documentNavigation;
 let editor: Editor, controller: ReturnType<typeof startAutosave>, root: Root, mount: HTMLDivElement;
 let initial: SavedDocument, activeId: string, generation: number;
 const report = vi.fn();
@@ -36,9 +36,9 @@ function Harness() {
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); vi.resetModules(); localStorage.clear(); globalThis.indexedDB = new IDBFactory();
   messages.error.mockReset(); messages.info.mockReset(); report.mockReset();
-  store = await import('../lib/editor/document-store'); library = await import('../lib/editor/library-store');
-  autosave = await import('../lib/editor/autosave'); LocalDocuments = (await import('../components/editor/local-documents')).LocalDocuments;
-  navigation = (await import('../lib/editor/document-navigation')).documentNavigation;
+  store = await import('../lib/infrastructure/persistence/document-store'); library = await import('../lib/infrastructure/persistence/library-store');
+  autosave = await import('../lib/composition/autosave'); LocalDocuments = (await import('../components/editor/local-documents')).LocalDocuments;
+  navigation = (await import('../lib/usecases/document-navigation')).documentNavigation;
   const source = new Editor({ extensions: createExtensions(), content: '<h2>Original 中文</h2><p>日本語 العربية café 👩‍💻</p><ol start="7"><li>Keep numbering</li></ol><table><tr><td rowspan="2"><p>Merged</p></td><td><p>A</p></td></tr><tr><td><p>B</p></td></tr></table>' });
   await new Promise(resolve => setTimeout(resolve, 0));
   initial = await store.activateDocument({ version: 1, id: 'import-storage-original', title: 'Original 中文', content: source.getJSON(), savedAt: new Date().toISOString() }); source.destroy();

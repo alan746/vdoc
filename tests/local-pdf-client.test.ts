@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { captureLocalPdf, requestLocalPdf, requestLocalPdfToken } from '../lib/editor/local-pdf';
+import { captureLocalPdf, requestLocalPdf, requestLocalPdfToken } from '../lib/infrastructure/pdf/local-pdf';
 
 const details = { title: 'QA', pages: 1, pageSize: 'a4' as const, orientation: 'portrait' as const };
 afterEach(() => { vi.unstubAllGlobals(); document.body.replaceChildren(); });

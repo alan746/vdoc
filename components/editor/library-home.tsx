@@ -2,12 +2,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { FileText, Folder, FolderPlus, Plus, Search, Star, Trash2, LayoutGrid, List, MoreHorizontal, ArrowUpRight, Upload, ChevronRight, HardDrive, Clock3, X } from 'lucide-react';
 import { toast } from 'sonner';
-import { actionErrorMessage } from '@/lib/editor/error-message';
+import { actionErrorMessage } from '@/lib/shared/error-message';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { selectDocument, type SavedDocument } from '@/lib/editor/document-store';
-import { createLibraryDocument, createFolder, listLibrary, updateLibraryItem, copyLibraryDocument, deleteTrashedDocument, type LibraryItem } from '@/lib/editor/library-store';
-import { readDocumentImport } from '@/lib/editor/import-file';
+import { selectDocument, type SavedDocument } from '@/lib/infrastructure/persistence/document-store';
+import { createLibraryDocument, createFolder, listLibrary, updateLibraryItem, copyLibraryDocument, deleteTrashedDocument, type LibraryItem } from '@/lib/infrastructure/persistence/library-store';
+import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
 
 type Scope = 'files' | 'recent' | 'starred' | 'trash';

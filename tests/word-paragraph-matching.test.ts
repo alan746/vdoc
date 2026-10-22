@@ -1,6 +1,6 @@
 import {expect,it,vi} from 'vitest';
 import type {JSONContent} from '@tiptap/core';
-import {exportWord,importWord} from '../lib/editor/word';
+import {exportWord,importWord} from '../lib/infrastructure/word/word';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 const p=(text?:string,attrs?:Record<string,unknown>):JSONContent=>({type:'paragraph',attrs,...(text?{content:[{type:'text',text}]}:{})});
 const cell=(content:JSONContent[],rowspan=1):JSONContent=>({type:'tableCell',attrs:{rowspan,colspan:1},content});

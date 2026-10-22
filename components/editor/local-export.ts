@@ -1,9 +1,9 @@
 import type { Editor } from '@tiptap/core';
 import { toast } from 'sonner';
-import { downloadFile } from '@/lib/editor/storage';
-import { exportHTML } from '@/lib/editor/html-export';
-import { exportPlainText } from '@/lib/editor/plain-text';
-import { exportFilename } from '@/lib/editor/export-filename';
+import { downloadFile } from '@/lib/infrastructure/browser/download';
+import { exportHTML } from '@/lib/infrastructure/export/html-export';
+import { exportPlainText } from '@/lib/infrastructure/export/plain-text';
+import { exportFilename } from '@/lib/infrastructure/export/export-filename';
 
 export function exportLocalDocument(editor: Editor, title: string, format: 'json' | 'html' | 'txt') {
   try {

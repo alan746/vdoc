@@ -7,15 +7,15 @@ import VdocWorkspace from '../components/editor/workspace';
 // Keep the real library, import handler, workspace navigation, and Sonner renderer.
 // A loading editor ensures notices also survive the gap before Tiptap is ready.
 vi.mock('@tiptap/react', () => ({ useEditor: () => null, EditorContent: () => null }));
-vi.mock('../lib/editor/document-store', () => ({
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({
   readSavedDocument: async () => ({ data: null }),
   activateDocument: async (value: unknown) => value,
 }));
-vi.mock('../lib/editor/library-store', () => ({
+vi.mock('../lib/infrastructure/persistence/library-store', () => ({
   listLibrary: async () => [],
   createLibraryDocument: async (value: Record<string, unknown>) => ({ ...value, id: crypto.randomUUID() }),
 }));
-vi.mock('../lib/editor/word', () => ({ importWord: async () => ({
+vi.mock('../lib/infrastructure/word/word', () => ({ importWord: async () => ({
   content: { type: 'doc', content: [{ type: 'paragraph' }] },
   warnings: ['Custom tab positions need review. 中文 العربية'],
 }) }));

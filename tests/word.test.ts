@@ -2,10 +2,10 @@ import { writeFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { generateJSON, type JSONContent } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { exportWord } from '../lib/editor/word';
+import { exportWord } from '../lib/infrastructure/word/word';
 import JSZip from 'jszip';
-import { restoreWordFormatting } from '../lib/editor/word-import-formatting';
-import { exportHTML } from '../lib/editor/html-export';
+import { restoreWordFormatting } from '../lib/infrastructure/word/word-import-formatting';
+import { exportHTML } from '../lib/infrastructure/export/html-export';
 const bytes = (blob: Blob) => new Promise<ArrayBuffer>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result as ArrayBuffer);reader.onerror=reject;reader.readAsArrayBuffer(blob);});
 it('exports absolute CSS font units at the correct Word size and restores equivalent pixels',async()=>{
  const sizes=['12pt','1pc','0.25in','0.635cm','6.35mm','101.6q','24px'];

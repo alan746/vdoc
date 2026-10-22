@@ -14,7 +14,7 @@ const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
   const destination = `${out}/browser.json`;
   try { await fs.access(destination); throw Error('Refuse overwrite browser evidence'); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
-  const source = await fs.readFile('lib/editor/preview-images.ts', 'utf8');
+  const source = await fs.readFile('lib/infrastructure/preview/preview-images.ts', 'utf8');
   const bundle = transformSync(source, { loader: 'ts', format: 'iife', globalName: 'ImageWait' }).code;
   const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
   const results = [], requests = [];

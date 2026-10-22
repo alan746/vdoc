@@ -1,9 +1,9 @@
 import {afterEach,beforeEach,expect,it} from 'vitest';
 import {Editor,type JSONContent} from '@tiptap/core';
 import {NodeSelection} from '@tiptap/pm/state';
-import {parseDocument} from '../lib/editor/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/storage';
 import {createExtensions} from '../lib/editor/extensions';
-import {DocumentEngine} from '../lib/editor/engine';
+import {DocumentEngine} from '../lib/usecases/engine';
 let editor:Editor,engine:DocumentEngine;
 const item=(t:string)=>`<li><p>${t}</p></li>`;
 beforeEach(async()=>{editor=new Editor({extensions:createExtensions(),content:'<ol start="4" type="I" data-number-prefix="(" data-number-suffix=")">'+item('First')+'<li><p><strong>中文 second</strong></p><p>Extra paragraph</p><ul data-bullet-text="★">'+item('Nested')+'</ul></li>'+item('Last')+'</ol>'});await new Promise(r=>setTimeout(r,0));engine=new DocumentEngine(editor);});

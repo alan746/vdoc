@@ -5,15 +5,15 @@ import { createRoot, type Root } from 'react-dom/client';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import type { SavedDocument } from '../lib/editor/storage';
-import type { startAutosave } from '../lib/editor/autosave';
+import type { SavedDocument } from '../lib/infrastructure/persistence/storage';
+import type { startAutosave } from '../lib/composition/autosave';
 
 const messages = vi.hoisted(() => ({ error: vi.fn(), success: vi.fn() }));
 vi.mock('sonner', () => ({ toast: messages }));
-let store: typeof import('../lib/editor/document-store');
-let autosave: typeof import('../lib/editor/autosave');
+let store: typeof import('../lib/infrastructure/persistence/document-store');
+let autosave: typeof import('../lib/composition/autosave');
 let VersionHistory: typeof import('../components/editor/version-history').VersionHistory;
-let navigation: typeof import('../lib/editor/document-navigation').documentNavigation;
+let navigation: typeof import('../lib/usecases/document-navigation').documentNavigation;
 let editor: Editor, controller: ReturnType<typeof startAutosave>, root: Root, mount: HTMLDivElement;
 let initial: SavedDocument, generation: number;
 const report = vi.fn();
@@ -45,9 +45,9 @@ function Harness() {
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); vi.resetModules(); localStorage.clear(); globalThis.indexedDB = new IDBFactory();
   messages.error.mockReset(); messages.success.mockReset(); report.mockReset();
-  store = await import('../lib/editor/document-store'); autosave = await import('../lib/editor/autosave');
+  store = await import('../lib/infrastructure/persistence/document-store'); autosave = await import('../lib/composition/autosave');
   VersionHistory = (await import('../components/editor/version-history')).VersionHistory;
-  navigation = (await import('../lib/editor/document-navigation')).documentNavigation;
+  navigation = (await import('../lib/usecases/document-navigation')).documentNavigation;
   initial = await store.activateDocument({ version: 1, id: 'version-storage', title: 'Version 中文', content: mixed, savedAt: new Date().toISOString() });
   mount = document.createElement('div'); document.body.appendChild(mount); root = createRoot(mount);
   await act(async () => root.render(createElement(Harness)));

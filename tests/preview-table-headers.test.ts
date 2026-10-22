@@ -1,8 +1,8 @@
 import { expect,it } from 'vitest';
-import { previewTableHeaderMismatch, previewTableRowMismatch } from '../lib/editor/preview-table-headers';
-import { previewSource, repeatTableHeaders, previewTextMatches } from '../lib/editor/paged-preview';
-import { finishPreviewParagraphBorders } from '../lib/editor/preview-paragraph-borders';
-import { paragraphBorderGroupKey } from '../lib/editor/paragraph-borders';
+import { previewTableHeaderMismatch, previewTableRowMismatch } from '../lib/infrastructure/preview/preview-table-headers';
+import { previewSource, repeatTableHeaders, previewTextMatches } from '../lib/infrastructure/preview/paged-preview';
+import { finishPreviewParagraphBorders } from '../lib/infrastructure/preview/preview-paragraph-borders';
+import { paragraphBorderGroupKey } from '../lib/editor/paragraph/paragraph-borders';
 const parse=(html:string)=>{const root=document.createElement('div');root.innerHTML=html;return root;};
 const header='<thead><tr><th rowspan="2"><p style="border:2px solid #225588;padding:4px" data-paragraph-border-join="true">A 中文</p><p style="border:2px solid #225588;padding:4px" data-paragraph-border-join="true">العربية</p></th><th colspan="2"><p>B 日本語</p></th></tr><tr><th><p>C ไทย</p></th><th><p>D עברית</p></th></tr></thead>';
 // Source HTML here uses paragraph metadata as the production editor does.

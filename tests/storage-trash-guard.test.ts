@@ -1,12 +1,12 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { beforeEach, expect, it, vi } from 'vitest';
-import { parseDocument } from '../lib/editor/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 async function fixture() {
-  const store = await import('../lib/editor/document-store');
-  const library = await import('../lib/editor/library-store');
+  const store = await import('../lib/infrastructure/persistence/document-store');
+  const library = await import('../lib/infrastructure/persistence/library-store');
   const original = await store.activateDocument(parseDocument(JSON.stringify({ version: 1, id: 'trash-guard', title: 'Preserved 中文', savedAt: '2026-10-10T00:00:00.000Z',
     content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Original العربية' }] }] } }))); 
   const version = await store.saveVersion(original, 'Keep checkpoint');
@@ -61,7 +61,7 @@ it('keeps a rejected editor draft and its unload guard, then saves it after rest
   const { store, library, original } = await fixture();
   const { Editor } = await import('@tiptap/core');
   const { createExtensions } = await import('../lib/editor/extensions');
-  const { startAutosave } = await import('../lib/editor/autosave');
+  const { startAutosave } = await import('../lib/composition/autosave');
   const editor = new Editor({ extensions: createExtensions(), content: original.content });
   const report = vi.fn();
   const controller = startAutosave(editor, original.id, { getTitle: () => original.title, blocked: { current: false }, report });

@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 import type { Editor } from '@tiptap/core';
-import type { DocumentEngine } from '@/lib/editor/engine';
+import type { DocumentEngine } from '@/lib/usecases/engine';
 import { CellSelection } from '@tiptap/pm/tables';
-import { MAX_LIST_START, canRestartNumbering, validListStart, cellRestartOverflows } from '@/lib/editor/list-numbering';
+import { MAX_LIST_START, canRestartNumbering, validListStart, cellRestartOverflows } from '@/lib/editor/list/list-numbering';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 

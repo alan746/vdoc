@@ -5,7 +5,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
 async function fixture() {
-  const store = await import('../lib/editor/document-store'), library = await import('../lib/editor/library-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), library = await import('../lib/infrastructure/persistence/library-store');
   const root = await library.createFolder('Root 中文', null), child = await library.createFolder('Child العربية', root);
   const document = await store.archiveDocument({ version: 1, id: 'nested-document', title: '日本語 document', savedAt: '2026-10-05T12:00:00.000Z', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: '中文 العربية 👩‍💻', marks: [{ type: 'bold' }] }] }] } });
   await library.updateLibraryItem(document.id, { parentId: child, starred: true });

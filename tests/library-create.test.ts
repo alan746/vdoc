@@ -1,13 +1,13 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { parseDocument, type SavedDocument } from '../lib/editor/storage';
+import { parseDocument, type SavedDocument } from '../lib/infrastructure/persistence/storage';
 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
 const imported: SavedDocument = { version: 1, id: 'current', title: 'Imported 中文', savedAt: '2026-10-05T12:00:00.000Z', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'العربية 👩‍💻 日本語', marks: [{ type: 'bold' }, { type: 'highlight', attrs: { color: '#FEF08A' } }] }] }] } };
 async function fixture() {
-  const store = await import('../lib/editor/document-store'), library = await import('../lib/editor/library-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), library = await import('../lib/infrastructure/persistence/library-store');
   const current = await store.activateDocument({ ...parseDocument(JSON.stringify(imported)), title: 'Current', id: 'current' });
   const folder = await library.createFolder('Folder', null);
   const db = await store.openDatabase();

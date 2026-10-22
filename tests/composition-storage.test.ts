@@ -7,13 +7,13 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
 import { useInputComposition } from '../components/editor/use-input-composition';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '../components/ui/dialog';
-import type { startAutosave } from '../lib/editor/autosave';
+import type { startAutosave } from '../lib/composition/autosave';
 
 let root: Root, mount: HTMLDivElement, editor: Editor, unmounted: boolean;
 let controller: ReturnType<typeof startAutosave>;
-let store: typeof import('../lib/editor/document-store');
-let autosave: typeof import('../lib/editor/autosave');
-let navigation: ReturnType<typeof import('../lib/editor/document-navigation').documentNavigation>;
+let store: typeof import('../lib/infrastructure/persistence/document-store');
+let autosave: typeof import('../lib/composition/autosave');
+let navigation: ReturnType<typeof import('../lib/usecases/document-navigation').documentNavigation>;
 const report = vi.fn();
 let currentTitle: string;
 function Harness() {
@@ -44,10 +44,10 @@ function Harness() {
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); report.mockReset(); unmounted = false;
   localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules();
-  store = await import('../lib/editor/document-store'); autosave = await import('../lib/editor/autosave');
+  store = await import('../lib/infrastructure/persistence/document-store'); autosave = await import('../lib/composition/autosave');
   editor = new Editor({ extensions: createExtensions(), content: '<p>Keep 中文 العربية 日本語 café 👩‍💻</p>' });
   await new Promise(resolve => setTimeout(resolve, 0));
-  navigation = (await import('../lib/editor/document-navigation')).documentNavigation(editor);
+  navigation = (await import('../lib/usecases/document-navigation')).documentNavigation(editor);
   await store.activateDocument({ version: 1, id: 'composition-storage', title: 'Baseline', content: editor.getJSON(), savedAt: new Date().toISOString() });
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'performance'] });
   mount = document.createElement('div'); document.body.appendChild(mount); root = createRoot(mount);
@@ -126,7 +126,7 @@ it('backs up the final candidate draft after a storage abort, then retries the n
   const { exportLocalDocument } = await import('../components/editor/local-export');
   expect(exportLocalDocument(editor, currentTitle, 'json')).toBe(true);
   const raw = await new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result as string); reader.onerror = reject; reader.readAsText(blob!); });
-  const backup = (await import('../lib/editor/storage')).parseDocument(raw);
+  const backup = (await import('../lib/infrastructure/persistence/storage')).parseDocument(raw);
   expect(backup.title).toBe(currentTitle); expect(backup.content).toEqual(draft);
   const leaving = new Event('beforeunload', { cancelable: true }); window.dispatchEvent(leaving); expect(leaving.defaultPrevented).toBe(true);
   await vi.waitFor(() => expect(report.mock.lastCall![0]).toBe('Save failed. Download a backup.'));

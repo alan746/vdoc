@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { actionErrorMessage } from '../lib/editor/error-message';
+import { actionErrorMessage } from '../lib/shared/error-message';
 
 it.each([new DOMException('', 'QuotaExceededError'),{name:'QuotaExceededError',message:''},Object.assign(new Error(''),{name:'QuotaExceededError'})])('explains native and cross-realm quota errors even without a message',error=>{
   expect(actionErrorMessage(error,'Failed.')).toBe('Local storage is full. Download a backup of any unsaved changes, free some space, then try again.');

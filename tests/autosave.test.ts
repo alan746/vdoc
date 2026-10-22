@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { startAutosave } from '../lib/editor/autosave';
-import { documentNavigation } from '../lib/editor/document-navigation';
+import { startAutosave } from '../lib/composition/autosave';
+import { documentNavigation } from '../lib/usecases/document-navigation';
 const calls = vi.hoisted(() => ({ save: vi.fn() }));
-vi.mock('../lib/editor/document-store', () => ({ saveDocument: calls.save, STORAGE_KEY: 'vdoc.document.v1' }));
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({ saveDocument: calls.save, STORAGE_KEY: 'vdoc.document.v1' }));
 let editor: Editor, controller: ReturnType<typeof startAutosave>, title: string;
 let blocked: { current: boolean }, report: ReturnType<typeof vi.fn>;
 let writes: { resolve: () => void; reject: (error: Error) => void }[];

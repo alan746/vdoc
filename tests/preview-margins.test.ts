@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { previewMarginOverflow, previewOverflowPage } from '../lib/editor/preview-layout';
-import { previewSource } from '../lib/editor/paged-preview';
+import { previewMarginOverflow, previewOverflowPage } from '../lib/infrastructure/preview/preview-layout';
+import { previewSource } from '../lib/infrastructure/preview/paged-preview';
 afterEach(() => vi.restoreAllMocks());
 const rect = (x: number, y: number, width: number, height: number) => new DOMRect(x, y, width, height);
 function fixture(slot = 'top-center', page = 1) {

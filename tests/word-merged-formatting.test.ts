@@ -1,10 +1,10 @@
 import { expect, it, vi } from 'vitest';
 import type { JSONContent } from '@tiptap/core';
 import JSZip from 'jszip';
-import { exportWord, importWord } from '../lib/editor/word';
-import { parseDocument } from '../lib/editor/storage';
-import { cellBorder } from '../lib/editor/table-borders';
-import { colorToHex } from '../lib/editor/color';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { cellBorder } from '../lib/editor/table/table-borders';
+import { colorToHex } from '../lib/domain/text/color';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 const bytes = (blob: Blob) => new Promise<ArrayBuffer>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result as ArrayBuffer); reader.onerror = reject; reader.readAsArrayBuffer(blob); });
 const p = (text: string): JSONContent => ({ type: 'paragraph', content: [{ type: 'text', text }] });

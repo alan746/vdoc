@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { preparePrintTables } from '../lib/editor/print-tables';
-import { previewSource, previewTextMatches, repeatTableHeaders } from '../lib/editor/paged-preview';
+import { preparePrintTables } from '../lib/infrastructure/preview/print-tables';
+import { previewSource, previewTextMatches, repeatTableHeaders } from '../lib/infrastructure/preview/paged-preview';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 const parse=(html:string)=>{const el=document.createElement('div');el.innerHTML=html;return el;};

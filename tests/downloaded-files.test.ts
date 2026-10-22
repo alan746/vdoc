@@ -2,9 +2,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { expect, it, vi } from 'vitest';
 import { getSchema, type JSONContent } from '@tiptap/core';
-import { readDocumentImport } from '../lib/editor/import-file';
+import { readDocumentImport } from '../lib/composition/import-file';
 import { createExtensions } from '../lib/editor/extensions';
-import { exportPlainText } from '../lib/editor/plain-text';
+import { exportPlainText } from '../lib/infrastructure/export/plain-text';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 
 // Immutable bytes downloaded through the real UI; no conversion is used to build

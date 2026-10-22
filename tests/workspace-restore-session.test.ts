@@ -2,7 +2,7 @@ import { act, createElement } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import VdocWorkspace from '../components/editor/workspace';
-import type { DocumentEngine } from '../lib/editor/engine';
+import type { DocumentEngine } from '../lib/usecases/engine';
 
 const fixture = vi.hoisted(() => {
   const content = (text: string) => ({ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text }] }] });
@@ -13,14 +13,14 @@ const fixture = vi.hoisted(() => {
     save: vi.fn(), restore: vi.fn(), engines: [] as DocumentEngine[],
   };
 });
-vi.mock('../lib/editor/document-store', () => ({
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({
   STORAGE_KEY: 'vdoc.document.v1',
   readSavedDocument: async () => ({ data: fixture.initial }),
   saveDocument: fixture.save,
   listVersions: async () => [{ key: 'checkpoint', label: 'Earlier checkpoint', createdAt: fixture.initial.savedAt }],
   restoreVersion: fixture.restore,
 }));
-vi.mock('../lib/editor/browser-tools', () => ({ registerDocumentTools: (engine: DocumentEngine) => { fixture.engines.push(engine); return () => {}; } }));
+vi.mock('../lib/usecases/browser-tools', () => ({ registerDocumentTools: (engine: DocumentEngine) => { fixture.engines.push(engine); return () => {}; } }));
 let root: Root, mount: HTMLDivElement;
 const activeEngine = () => fixture.engines.at(-1)!;
 const title = () => mount.querySelector<HTMLInputElement>('[aria-label="Document title"]')!.value;

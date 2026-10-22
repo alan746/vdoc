@@ -1,10 +1,10 @@
 import {readFileSync} from 'node:fs';
 import {afterAll,beforeAll,expect,it,vi} from 'vitest';
 import {Editor,type JSONContent} from '@tiptap/core';
-import {colorToHex} from '../lib/editor/color';
+import {colorToHex} from '../lib/domain/text/color';
 import {createExtensions} from '../lib/editor/extensions';
-import {readDocumentImport} from '../lib/editor/import-file';
-import {effectiveFormatActive} from '../lib/editor/format-overrides';
+import {readDocumentImport} from '../lib/composition/import-file';
+import {effectiveFormatActive} from '../lib/editor/format/format-overrides';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 const path=(ext:string)=>`tests/fixtures/core-batch-20261006/downloaded.${ext}`;
 const backup=JSON.parse(readFileSync(path('vdoc.json'),'utf8'));

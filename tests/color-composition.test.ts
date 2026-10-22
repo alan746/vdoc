@@ -3,7 +3,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
+import { DocumentEngine } from '../lib/usecases/engine';
 import { ColorPicker } from '../components/editor/toolbar';
 
 let root: Root, editor: Editor, engine: DocumentEngine, mount: HTMLDivElement;

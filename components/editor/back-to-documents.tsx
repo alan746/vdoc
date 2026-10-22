@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { FileText } from 'lucide-react';
 import { toast } from 'sonner';
-import { actionErrorMessage } from '@/lib/editor/error-message';
+import { actionErrorMessage } from '@/lib/shared/error-message';
 import { useDocumentNavigation } from './use-document-navigation';
-import { saveDocument } from '@/lib/editor/document-store';
-import { assertAutosaveActive, type SaveBlock } from '@/lib/editor/document-navigation';
+import { saveDocument } from '@/lib/infrastructure/persistence/document-store';
+import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-navigation';
 
 export function BackToDocuments({ editor, title, documentId, blocked, onHome }: {
   editor: Editor; title: string; documentId: string; blocked: SaveBlock; onHome: () => void;

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { waitForPreviewImages } from '../lib/editor/preview-images';
+import { waitForPreviewImages } from '../lib/infrastructure/preview/preview-images';
 let root: HTMLDivElement, controller: AbortController;
 beforeEach(() => { root = document.createElement('div'); controller = new AbortController(); vi.useFakeTimers(); });
 afterEach(() => { vi.clearAllTimers(); vi.useRealTimers(); vi.restoreAllMocks(); });

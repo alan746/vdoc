@@ -1,7 +1,7 @@
 import { expect, it, vi } from 'vitest';
-import { finalizePreviewFlow } from '../lib/editor/preview-final-flow';
-import { previewOverflowDetails } from '../lib/editor/preview-layout';
-import { previewTextMatches } from '../lib/editor/paged-preview';
+import { finalizePreviewFlow } from '../lib/infrastructure/preview/preview-final-flow';
+import { previewOverflowDetails } from '../lib/infrastructure/preview/preview-layout';
+import { previewTextMatches } from '../lib/infrastructure/preview/paged-preview';
 const parse=(html:string)=>{const root=document.createElement('div');root.innerHTML=html;return root;};
 const body='<table data-preview-table="0"><tbody><tr><td rowspan="2"><p data-preview-block="0">中文 العربية</p></td><td><p data-preview-block="1">A</p></td></tr><tr><td><p data-preview-block="2">B</p></td></tr></tbody></table>';
 it('removes measuring columns only from final page content and preserves the complete table DOM',()=>{

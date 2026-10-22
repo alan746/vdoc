@@ -1,9 +1,9 @@
 import { expect, it } from 'vitest';
-import { readDocumentImport } from '../lib/editor/import-file';
+import { readDocumentImport } from '../lib/composition/import-file';
 import { languageSamples, unicodeSamples } from './multilingual-fixtures';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { exportPlainText } from '../lib/editor/plain-text';
+import { exportPlainText } from '../lib/infrastructure/export/plain-text';
 
 type Encoding = 'utf8' | 'utf8-bom' | 'utf16le' | 'utf16be';
 function bytes(text: string, encoding: Encoding): Uint8Array<ArrayBuffer> {

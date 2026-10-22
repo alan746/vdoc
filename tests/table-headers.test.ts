@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { completePinnedBoundary, pinnedHeaderOffset, pinnedRowCount } from '../lib/editor/table-headers';
-import { parseDocument } from '../lib/editor/storage';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { completePinnedBoundary, pinnedHeaderOffset, pinnedRowCount } from '../lib/editor/table/table-headers';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 import { TableMap } from '@tiptap/pm/tables';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async()=>{

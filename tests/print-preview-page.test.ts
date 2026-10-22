@@ -4,10 +4,10 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import PrintPreviewPage from '../app/print-preview/page';
 
 const calls = vi.hoisted(() => ({ images: vi.fn(), paginate: vi.fn(), stop: vi.fn(), destroy: vi.fn(), margin: vi.fn(), overflow: vi.fn() }));
-vi.mock('../lib/editor/preview-images', () => ({ waitForPreviewImages: calls.images }));
+vi.mock('../lib/infrastructure/preview/preview-images', () => ({ waitForPreviewImages: calls.images }));
 // Real source serialization/content validation; layout itself is covered by its
 // geometry tests and browser acceptance, not simulated by this lifecycle suite.
-vi.mock('../lib/editor/preview-layout', async importOriginal => ({ ...await importOriginal<object>(), previewOverflowDetails: calls.overflow, previewMarginOverflow: calls.margin }));
+vi.mock('../lib/infrastructure/preview/preview-layout', async importOriginal => ({ ...await importOriginal<object>(), previewOverflowDetails: calls.overflow, previewMarginOverflow: calls.margin }));
 vi.mock('pagedjs', () => ({ Previewer: class {
   polisher = { styleEl: document.createElement('style'), destroy: calls.destroy };
   chunker = { stop: calls.stop, hooks: { renderNode: { register: vi.fn() }, beforePageLayout: { register: vi.fn() } } };

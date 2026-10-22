@@ -6,7 +6,7 @@ export default defineConfig({
   root, cacheDir: 'tmp/quota-workspace-vite',
   resolve: { alias: { '@': root } },
   plugins: [{ name:'isolated-native-quota-factory', enforce:'pre', transform(code,id) {
-    if (id.split('?')[0] !== root+'lib/editor/document-store.ts') return;
+    if (id.split('?')[0] !== root+'lib/infrastructure/persistence/document-store.ts') return;
     // Compile-time dependency selection only. All IndexedDB requests,
     // transactions, quota errors, and product save logic remain native/real.
     const transaction="db.transaction(stores, 'readwrite', { durability: 'strict' })";

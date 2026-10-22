@@ -2,12 +2,12 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import JSZip from 'jszip';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { type ParagraphBorderOperation } from '../lib/editor/paragraph-borders';
-import { parseDocument } from '../lib/editor/storage';
-import { exportWord, importWord } from '../lib/editor/word';
-import { exportHTML } from '../lib/editor/html-export';
-import { previewSource } from '../lib/editor/paged-preview';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { type ParagraphBorderOperation } from '../lib/editor/paragraph/paragraph-borders';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
+import { exportHTML } from '../lib/infrastructure/export/html-export';
+import { previewSource } from '../lib/infrastructure/preview/paged-preview';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => {

@@ -1,7 +1,7 @@
 import { expect, it, vi } from 'vitest';
 import type { JSONContent } from '@tiptap/core';
-import { exportWord, importWord } from '../lib/editor/word';
-import { parseDocument } from '../lib/editor/storage';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 import * as d from 'docx';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 const bytes=(blob:Blob)=>new Promise<ArrayBuffer>((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result as ArrayBuffer);r.onerror=reject;r.readAsArrayBuffer(blob);});

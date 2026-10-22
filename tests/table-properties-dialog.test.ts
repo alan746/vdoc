@@ -4,7 +4,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { CellSelection, TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
+import { DocumentEngine } from '../lib/usecases/engine';
 import { TableTools } from '../components/editor/editing-panels';
 
 let editor: Editor, engine: DocumentEngine, root: Root, mount: HTMLDivElement;

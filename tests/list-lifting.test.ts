@@ -1,12 +1,12 @@
 import {afterEach,beforeEach,expect,it,vi} from 'vitest';
 import {Editor} from '@tiptap/core';
 import {CellSelection,TableMap} from '@tiptap/pm/tables';
-import {indentCommandType} from '../lib/editor/list-editing';
-import {parseDocument} from '../lib/editor/storage';
-import {exportWord,importWord} from '../lib/editor/word';
+import {indentCommandType} from '../lib/editor/list/list-editing';
+import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {exportWord,importWord} from '../lib/infrastructure/word/word';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 import {createExtensions} from '../lib/editor/extensions';
-import {DocumentEngine} from '../lib/editor/engine';
+import {DocumentEngine} from '../lib/usecases/engine';
 let editor:Editor,engine:DocumentEngine;
 const item=(t:string)=>`<li><p>${t}</p></li>`;
 beforeEach(async()=>{editor=new Editor({extensions:createExtensions(),content:'<ol><li><p>Parent</p><ol start="4" type="I" data-number-prefix="(" data-number-suffix=")">'+item('First')+item('中文')+item('Last')+'</ol></li>'+item('End')+'</ol>'});await new Promise(r=>setTimeout(r,0));engine=new DocumentEngine(editor);});

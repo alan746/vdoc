@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { parseDocument } from '../lib/editor/storage';
-import { exportWord, importWord } from '../lib/editor/word';
-import { previewSource } from '../lib/editor/paged-preview';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
+import { previewSource } from '../lib/infrastructure/preview/paged-preview';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
-import { DocumentEngine } from '../lib/editor/engine';
+import { DocumentEngine } from '../lib/usecases/engine';
 
 let editor: Editor, engine: DocumentEngine;
 const item = (text: string) => `<li><p>${text}</p></li>`;

@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { parseDocument } from '../lib/editor/storage';
-import { exportHTML } from '../lib/editor/html-export';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { exportHTML } from '../lib/infrastructure/export/html-export';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async()=>{
  editor=new Editor({extensions:createExtensions(),content:'<table data-pinned-rows="1"><tr><th>Header</th><th>اللغة</th></tr><tr style="height:60px"><td rowspan="2">日本語</td><td>עברית</td></tr><tr><td>हिन्दी</td></tr><tr><td>Last</td><td>End</td></tr></table>'});

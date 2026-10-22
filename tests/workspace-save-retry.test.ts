@@ -3,7 +3,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { documentNavigation } from '../lib/editor/document-navigation';
+import { documentNavigation } from '../lib/usecases/document-navigation';
 import VdocWorkspace from '../components/editor/workspace';
 
 const calls = vi.hoisted(() => ({ save: vi.fn() }));
@@ -11,8 +11,8 @@ let editor: Editor, root: Root, mount: HTMLDivElement;
 let writes: { resolve: () => void; reject: (error: Error) => void }[];
 const content = { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Keep 中文 العربية' }] }] };
 vi.mock('@tiptap/react', () => ({ useEditor: () => editor, EditorContent: () => null }));
-vi.mock('../lib/editor/browser-tools', () => ({ registerDocumentTools: () => () => {} }));
-vi.mock('../lib/editor/document-store', () => ({
+vi.mock('../lib/usecases/browser-tools', () => ({ registerDocumentTools: () => () => {} }));
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({
   STORAGE_KEY: 'vdoc.document.v1', saveDocument: calls.save,
   readSavedDocument: async () => ({ data: { version: 1, id: 'retry-qa', title: 'Retry QA', savedAt: '2026-10-05T12:00:00.000Z', content } }),
 }));

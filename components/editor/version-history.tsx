@@ -2,11 +2,11 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { toast } from 'sonner';
-import { actionErrorMessage } from '@/lib/editor/error-message';
+import { actionErrorMessage } from '@/lib/shared/error-message';
 import { useDocumentNavigation } from './use-document-navigation';
-import { assertAutosaveActive, type SaveBlock } from '@/lib/editor/document-navigation';
+import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-navigation';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { listVersions, saveVersion, restoreVersion, saveDocument, type DocumentVersion, type SavedDocument } from '@/lib/editor/document-store';
+import { listVersions, saveVersion, restoreVersion, saveDocument, type DocumentVersion, type SavedDocument } from '@/lib/infrastructure/persistence/document-store';
 
 export function VersionHistory({ editor, title, documentId, onOpen, blocked = false }: { editor: Editor; title: string; documentId: string; onOpen: (doc: SavedDocument) => void; blocked?: SaveBlock }) {
   const [open, setOpen] = useState(false), [versions, setVersions] = useState<DocumentVersion[]>([]), [label, setLabel] = useState('');

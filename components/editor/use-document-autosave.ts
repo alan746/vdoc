@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useEffect, useRef } from 'react';
 import type { Editor } from '@tiptap/core';
-import { startAutosave, type InputComposition } from '@/lib/editor/autosave';
+import { startAutosave, type InputComposition } from '@/lib/composition/autosave';
 
 export function useDocumentAutosave(editor: Editor | null, documentId: string, title: string,
   blocked: { current: boolean }, report: (status: string, warning?: string) => void, composition?: InputComposition) {

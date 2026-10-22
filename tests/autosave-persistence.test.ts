@@ -5,7 +5,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 const forceClose = forceCloseDatabase as unknown as (database: IDBDatabase) => void;
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import type { startAutosave } from '../lib/editor/autosave';
+import type { startAutosave } from '../lib/composition/autosave';
 
 let editor: Editor, controller: ReturnType<typeof startAutosave> | undefined;
 beforeEach(async () => {
@@ -16,8 +16,8 @@ beforeEach(async () => {
 afterEach(() => { controller?.dispose(); controller = undefined; editor.destroy(); vi.clearAllTimers(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 it('persists the deadline snapshot through real storage transactions while typing never pauses', async () => {
-  const store = await import('../lib/editor/document-store');
-  const { startAutosave } = await import('../lib/editor/autosave');
+  const store = await import('../lib/infrastructure/persistence/document-store');
+  const { startAutosave } = await import('../lib/composition/autosave');
   const original = await store.activateDocument({ version: 1, id: 'continuous', title: 'Original', content: editor.getJSON(), savedAt: new Date().toISOString() });
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'performance'] });
   let saved!: () => void;
@@ -32,8 +32,8 @@ it('persists the deadline snapshot through real storage transactions while typin
 });
 
 it('cannot overwrite the active document if it changes before the typing deadline commits', async () => {
-  const store = await import('../lib/editor/document-store');
-  const { startAutosave } = await import('../lib/editor/autosave');
+  const store = await import('../lib/infrastructure/persistence/document-store');
+  const { startAutosave } = await import('../lib/composition/autosave');
   const original = await store.activateDocument({ version: 1, id: 'old-document', title: 'Original', content: editor.getJSON(), savedAt: new Date().toISOString() });
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'performance'] });
   let fail!: (message: string | undefined) => void;
@@ -49,8 +49,8 @@ it('cannot overwrite the active document if it changes before the typing deadlin
 });
 
 it('keeps a failed draft and saves it on retry after the storage connection closes', async () => {
-  const store = await import('../lib/editor/document-store');
-  const { startAutosave } = await import('../lib/editor/autosave');
+  const store = await import('../lib/infrastructure/persistence/document-store');
+  const { startAutosave } = await import('../lib/composition/autosave');
   const original = await store.activateDocument({ version: 1, id: 'reconnect-draft', title: 'Original', content: editor.getJSON(), savedAt: new Date().toISOString() });
   const db = await store.openDatabase();
   const closed = new Promise<void>(resolve => db.addEventListener('close', () => resolve(), { once: true }));
@@ -74,9 +74,9 @@ it('keeps a failed draft and saves it on retry after the storage connection clos
 });
 
 it('guards and resaves an undone draft after a separate navigation save changes the stored snapshot', async () => {
-  const store = await import('../lib/editor/document-store');
-  const { startAutosave } = await import('../lib/editor/autosave');
-  const { documentNavigation } = await import('../lib/editor/document-navigation');
+  const store = await import('../lib/infrastructure/persistence/document-store');
+  const { startAutosave } = await import('../lib/composition/autosave');
+  const { documentNavigation } = await import('../lib/usecases/document-navigation');
   const original = await store.activateDocument({ version: 1, id: 'manual-save-handoff', title: 'Original', content: editor.getJSON(), savedAt: new Date().toISOString() });
   const report = vi.fn();
   controller = startAutosave(editor, original.id, { getTitle: () => original.title, blocked: { current: false }, report });
@@ -96,10 +96,10 @@ it('guards and resaves an undone draft after a separate navigation save changes 
 });
 
 it.each(['synchronous quota error', 'asynchronous summary failure'])('backs up the latest failed draft, keeps leave protection, retries and restores the backup after %s', async failureKind => {
-  const store = await import('../lib/editor/document-store');
-  const { startAutosave } = await import('../lib/editor/autosave');
+  const store = await import('../lib/infrastructure/persistence/document-store');
+  const { startAutosave } = await import('../lib/composition/autosave');
   const { exportLocalDocument } = await import('../components/editor/local-export');
-  const { parseDocument } = await import('../lib/editor/storage');
+  const { parseDocument } = await import('../lib/infrastructure/persistence/storage');
   const original = await store.activateDocument({ version: 1, id: 'backup-recovery', title: 'Original', content: editor.getJSON(), savedAt: new Date().toISOString() });
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'performance'] });
   let title = original.title, settle: (() => void) | undefined;

@@ -1,6 +1,6 @@
 import { expect, it, vi } from 'vitest';
-import { fitPreviewTables, previewOverflowPage, previewPageWidth } from '../lib/editor/preview-layout';
-import { previewSource, previewTextMatches, repeatTableHeaders, segmentPreviewText } from '../lib/editor/paged-preview';
+import { fitPreviewTables, previewOverflowPage, previewPageWidth } from '../lib/infrastructure/preview/preview-layout';
+import { previewSource, previewTextMatches, repeatTableHeaders, segmentPreviewText } from '../lib/infrastructure/preview/paged-preview';
 const parse = (html: string) => { const root = document.createElement('div'); root.innerHTML = html; return root; };
 const rect = (x: number, y: number, width: number, height: number) => new DOMRect(x,y,width,height);
 const table = (widths: number[]) => `<table dir="rtl" style="width:${widths.reduce((a,b)=>a+b,0)}px"><colgroup>${widths.map(w=>`<col style="width:${w}px;min-width:40px">`).join('')}</colgroup><tbody><tr>${widths.map((_,i)=>`<td><p data-block-id="p${i}">Column ${i} العربية</p></td>`).join('')}</tr></tbody></table>`;
@@ -101,14 +101,14 @@ it.each([
   ['top',rect(20,-9.2,80,40),10],
   ['bottom',rect(20,790,80,40),30],
 ] as const)('reports the %s edge and excess size without copying document text', async (edge, box, pixels) => {
-  const { previewOverflowDetails } = await import('../lib/editor/preview-layout');
+  const { previewOverflowDetails } = await import('../lib/infrastructure/preview/preview-layout');
   const root=parse('<div class="pagedjs_area"><img alt="Private image label"></div>');
   vi.spyOn(root.firstElementChild!,'getBoundingClientRect').mockReturnValue(rect(0,0,600,800));
   vi.spyOn(root.querySelector('img')!,'getBoundingClientRect').mockReturnValue(box);
   expect(previewOverflowDetails(root)).toEqual({page:1,kind:'image',edge,pixels});
 });
 it('distinguishes unavailable layout from a genuinely oversized object', async () => {
-  const { previewOverflowDetails, previewOverflowMessage } = await import('../lib/editor/preview-layout');
+  const { previewOverflowDetails, previewOverflowMessage } = await import('../lib/infrastructure/preview/preview-layout');
   const root=parse('<div class="pagedjs_area"></div>');
   const issue=previewOverflowDetails(root)!;
   expect(issue).toEqual({page:1,kind:'page area',edge:'size',pixels:0});

@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { CellSelection } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { readSavedDocument, saveDocument, STORAGE_KEY } from '../lib/editor/storage';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { readSavedDocument, saveDocument, STORAGE_KEY } from '../lib/infrastructure/persistence/storage';
 
 let editor: Editor;
 let engine: DocumentEngine;

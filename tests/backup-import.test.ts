@@ -1,8 +1,8 @@
 import 'fake-indexeddb/auto';
 import {IDBFactory} from 'fake-indexeddb';
 import {beforeEach,expect,it,vi} from 'vitest';
-import {parseDocument} from '../lib/editor/storage';
-import {importDocumentFile} from '../lib/editor/import-file';
+import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {importDocumentFile} from '../lib/composition/import-file';
 
 beforeEach(()=>{localStorage.clear();globalThis.indexedDB=new IDBFactory();vi.resetModules();});
 const backup=(text='Keep 中文 العربية')=>({version:1,title:'Local backup',savedAt:'2026-10-02T12:00:00.000Z',content:{type:'doc',content:[{type:'paragraph',content:[{type:'text',text}]}]}});
@@ -25,7 +25,7 @@ it('preserves a legitimate replacement symbol, Unicode and formatting in a valid
  const raw=JSON.stringify(value);expect(await importDocumentFile(file(raw))).toEqual(parseDocument(raw));
 });
 it('reimports a native backup larger than the old limit with embedded images and exact stored content',async()=>{
- const store=await import('../lib/editor/document-store');
+ const store=await import('../lib/infrastructure/persistence/document-store');
  const document=backup();const image={type:'image',attrs:{src:'data:image/png;base64,'+'A'.repeat(1_400_000),alt:'Backup image'}};
  const normalized=parseDocument(JSON.stringify({...document,content:{type:'doc',content:[...document.content.content,...Array.from({length:15},()=>image)]}}));
  const saved=await store.activateDocument({...normalized,id:'large-backup'});
@@ -42,7 +42,7 @@ it('uses the same native-backup policy for UTF-8 bytes and JavaScript character 
  expect((await importDocumentFile(upload)).content.content![0].content![0].text).toBe('中'.repeat(6_700_000));
 });
 it('rejects a damaged large backup before changing the active document or local library',async()=>{
- const store=await import('../lib/editor/document-store');const current=await store.activateDocument({...parseDocument(JSON.stringify(backup())),id:'keep-original'});
+ const store=await import('../lib/infrastructure/persistence/document-store');const current=await store.activateDocument({...parseDocument(JSON.stringify(backup())),id:'keep-original'});
  const raw=JSON.stringify({...backup(),padding:' '.repeat(20_000_001),content:{type:'doc',content:[{type:'image',attrs:{src:'https://invalid.test/image.png'}}]}});
  await expect(importDocumentFile(file(raw))).rejects.toThrow('Images must be embedded');
  expect((await store.readSavedDocument()).data).toEqual(current);expect((await store.listDocuments()).map(d=>d.id)).toEqual([current.id]);

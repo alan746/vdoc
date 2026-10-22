@@ -10,8 +10,8 @@ const navigationCalls=vi.hoisted(()=>({save:vi.fn(),activate:vi.fn(),error:vi.fn
 const content={type:'doc',content:[{type:'paragraph',content:[{type:'text',text:'Original 中文'}]}]};
 vi.mock('@tiptap/react',()=>({useEditor:()=>editor,EditorContent:()=>null}));
 vi.mock('../components/editor/use-document-autosave',()=>({useDocumentAutosave:()=>()=>{}}));
-vi.mock('../lib/editor/browser-tools',()=>({registerDocumentTools:()=>()=>{}}));
-vi.mock('../lib/editor/document-store',()=>({readSavedDocument:async()=>({data:{id:'ime-qa',title:'输入测试',savedAt:1,content}}),saveDocument:navigationCalls.save,activateDocument:navigationCalls.activate}));
+vi.mock('../lib/usecases/browser-tools',()=>({registerDocumentTools:()=>()=>{}}));
+vi.mock('../lib/infrastructure/persistence/document-store',()=>({readSavedDocument:async()=>({data:{id:'ime-qa',title:'输入测试',savedAt:1,content}}),saveDocument:navigationCalls.save,activateDocument:navigationCalls.activate}));
 vi.mock('../components/editor/library-home',()=>({LibraryHome:()=>createElement('div',{'data-testid':'library-home'},'Documents')}));
 vi.mock('sonner',()=>({Toaster:()=>null,toast:{error:navigationCalls.error}}));
 vi.mock('../components/editor/print-preview',()=>({PrintPreview:()=>createElement('div',{'data-testid':'print-preview'},'Print preview')}));

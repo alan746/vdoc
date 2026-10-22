@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { installPreviewPrintStyle } from '../lib/editor/preview-print';
+import { installPreviewPrintStyle } from '../lib/infrastructure/preview/preview-print';
 
 it.each([
   ['a4','portrait',210,297],['a4','landscape',297,210],

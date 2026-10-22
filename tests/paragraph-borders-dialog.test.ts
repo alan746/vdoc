@@ -3,7 +3,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
+import { DocumentEngine } from '../lib/usecases/engine';
 import { ParagraphBordersDialog } from '../components/editor/paragraph-borders-dialog';
 let editor: Editor, engine: DocumentEngine, root: Root, host: HTMLDivElement, close: ReturnType<typeof vi.fn>;
 beforeEach(async()=>{

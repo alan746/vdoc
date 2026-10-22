@@ -2,11 +2,11 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { JSDOM } from 'jsdom';
-import { installPreviewPrintStyle } from '../lib/editor/preview-print.ts';
+import { installPreviewPrintStyle } from '../lib/infrastructure/preview/preview-print.ts';
 
 const destination = new URL('../tests/fixtures/safari-print-scale/', import.meta.url);
 await mkdir(destination, { recursive: true });
-const source = await readFile(new URL('../lib/editor/preview-print.ts', import.meta.url));
+const source = await readFile(new URL('../lib/infrastructure/preview/preview-print.ts', import.meta.url));
 const sourceHash = createHash('sha256').update(source).digest('hex');
 const outputs = [];
 for (const [name, fixed] of [['full-sheet', true], ['intrinsic-height-control', false]]) {

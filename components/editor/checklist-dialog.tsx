@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
-import type { DocumentEngine } from '@/lib/editor/engine';
-import { checklistTargets } from '@/lib/editor/checklist';
+import type { DocumentEngine } from '@/lib/usecases/engine';
+import { checklistTargets } from '@/lib/editor/list/checklist';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 

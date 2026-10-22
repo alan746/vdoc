@@ -5,7 +5,7 @@ const content = { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
 async function fixture(count = 1) {
-  const store = await import('../lib/editor/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store');
   const original = await store.activateDocument({ version: 1, id: 'restore-current', title: 'Original', content, savedAt: new Date().toISOString() });
   const first = await store.saveVersion(original, 'First draft');
   for (let i = 1; i < count; i++) await store.saveVersion({ ...original, title: `Draft ${i}` }, `Draft ${i}`);

@@ -3,7 +3,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { useLocalPdf } from '../components/editor/use-local-pdf';
 const calls = vi.hoisted(() => ({ request: vi.fn() }));
-vi.mock('../lib/editor/local-pdf', async original => ({ ...await original<typeof import('../lib/editor/local-pdf')>(), requestLocalPdf: calls.request }));
+vi.mock('../lib/infrastructure/pdf/local-pdf', async original => ({ ...await original<typeof import('../lib/infrastructure/pdf/local-pdf')>(), requestLocalPdf: calls.request }));
 let mount: HTMLDivElement, root: Root, frame: HTMLIFrameElement, api: ReturnType<typeof useLocalPdf>;
 let tab: { document: { title: string; body: { textContent: string } }; opener: unknown; location: { replace: ReturnType<typeof vi.fn> }; closed: boolean; close: ReturnType<typeof vi.fn> };
 const error = vi.fn();

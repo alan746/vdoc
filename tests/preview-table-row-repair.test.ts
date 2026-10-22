@@ -1,6 +1,6 @@
 import { expect,it,vi } from 'vitest';
-import { repairPreviewTableRows,startPreviewRowsOnNewPage } from '../lib/editor/preview-table-row-repair';
-import { previewTableRowMismatch } from '../lib/editor/preview-table-headers';
+import { repairPreviewTableRows,startPreviewRowsOnNewPage } from '../lib/infrastructure/preview/preview-table-row-repair';
+import { previewTableRowMismatch } from '../lib/infrastructure/preview/preview-table-headers';
 const parse=(html:string)=>{const root=document.createElement('div');root.innerHTML=html;return root;};
 const rect=(height=200)=>new DOMRect(0,0,200,height);
 function fixture(){

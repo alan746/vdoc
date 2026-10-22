@@ -1,6 +1,6 @@
 'use client';
 import { toast } from 'sonner';
-import type { DocumentImport } from '@/lib/editor/import-file';
+import type { DocumentImport } from '@/lib/composition/import-file';
 
 // Both entry points report only after the imported document has opened successfully.
 export function notifyDocumentImport(result: DocumentImport) {

@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { canonicalLanguage, documentLanguages } from '@/lib/editor/language';
-import type { DocumentEngine } from '@/lib/editor/engine';
+import { canonicalLanguage, documentLanguages } from '@/lib/domain/text/language';
+import type { DocumentEngine } from '@/lib/usecases/engine';
 export function LanguageDialog({open, close, engine}: {open: boolean; close: () => void; engine: DocumentEngine}) {
   const [language, setLanguage] = useState('und');
   useEffect(() => { if(open) setLanguage(engine.editor.state.doc.attrs.language || 'und'); }, [open, engine]);

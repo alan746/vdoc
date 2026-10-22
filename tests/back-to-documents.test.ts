@@ -6,7 +6,7 @@ import { createExtensions } from '../lib/editor/extensions';
 import { BackToDocuments } from '../components/editor/back-to-documents';
 
 const calls = vi.hoisted(() => ({ save: vi.fn(), error: vi.fn() }));
-vi.mock('../lib/editor/document-store', () => ({ saveDocument: calls.save }));
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({ saveDocument: calls.save }));
 vi.mock('sonner', () => ({ toast: { error: calls.error } }));
 let editor: Editor, root: Root, mount: HTMLDivElement, onHome: ReturnType<typeof vi.fn>;
 let writes: { resolve: () => void; reject: (error: Error) => void }[];

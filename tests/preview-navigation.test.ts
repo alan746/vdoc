@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { trackPreviewPage } from '../lib/editor/preview-navigation';
+import { trackPreviewPage } from '../lib/infrastructure/preview/preview-navigation';
 
 let root: HTMLDivElement, offset: number, report: ReturnType<typeof vi.fn>, stop: () => void;
 const pending = new Map<number, FrameRequestCallback>();

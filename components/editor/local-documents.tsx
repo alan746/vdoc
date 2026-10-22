@@ -3,16 +3,16 @@ import { useEffect, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { FolderOpen, FilePlus2, Upload, ArrowDownToLine, Printer } from 'lucide-react';
 import { toast } from 'sonner';
-import { actionErrorMessage } from '@/lib/editor/error-message';
+import { actionErrorMessage } from '@/lib/shared/error-message';
 import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Menu } from './toolbar';
 import { useDocumentNavigation } from './use-document-navigation';
-import { assertAutosaveActive, type SaveBlock } from '@/lib/editor/document-navigation';
-import { readDocumentImport } from '@/lib/editor/import-file';
+import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-navigation';
+import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
-import { listLibrary, type LibraryItem } from '@/lib/editor/library-store';
-import { activateDocument, selectDocument, saveDocument, type LibraryEntry, type SavedDocument } from '@/lib/editor/document-store';
+import { listLibrary, type LibraryItem } from '@/lib/infrastructure/persistence/library-store';
+import { activateDocument, selectDocument, saveDocument, type LibraryEntry, type SavedDocument } from '@/lib/infrastructure/persistence/document-store';
 
 function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>) {
   const names: string[] = [], visited = new Set([document.id]);

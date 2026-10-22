@@ -5,10 +5,10 @@ import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 import { VersionHistory } from '../components/editor/version-history';
 import { BackToDocuments } from '../components/editor/back-to-documents';
-import { documentNavigation } from '../lib/editor/document-navigation';
+import { documentNavigation } from '../lib/usecases/document-navigation';
 
 const calls = vi.hoisted(() => ({ list: vi.fn(), save: vi.fn(), restore: vi.fn(), checkpoint: vi.fn(), error: vi.fn() }));
-vi.mock('../lib/editor/document-store', () => ({ listVersions: calls.list, saveDocument: calls.save, restoreVersion: calls.restore, saveVersion: calls.checkpoint }));
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({ listVersions: calls.list, saveDocument: calls.save, restoreVersion: calls.restore, saveVersion: calls.checkpoint }));
 vi.mock('sonner', () => ({ toast: { error: calls.error, success: vi.fn() } }));
 let editor: Editor, root: Root, mount: HTMLDivElement, onOpen: ReturnType<typeof vi.fn>, onHome: ReturnType<typeof vi.fn>;
 const saved = { version: 1, id: 'current', title: 'Current', content: { type: 'doc', content: [{ type: 'paragraph' }] }, savedAt: '2026-10-02T00:00:00.000Z' };

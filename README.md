@@ -64,11 +64,13 @@ File：文档库、导入、导出、打印。Edit：查找替换和撤销。Ins
 ## 代码结构
 
 - `components/editor/`：工作台、工具栏、文档与属性对话框、查找／表格面板、版本历史。
-- `lib/editor/operations.ts`、`engine.ts`：操作契约与事务。
-- `extensions.ts`、`features.ts`、`table-split.ts`、`search.ts`：文档节点、输入行为与编辑算法。
-- `document-store.ts`：IndexedDB 文档与版本；`storage.ts`：备份校验、下载、旧格式兼容。
-- `word.ts`、`word-import-formatting.ts`、`html-export.ts`：本地格式转换。
-- `browser-tools.ts`：可选 WebMCP；`window.vdoc` 为本地开发接口。
+- `lib/` 按分层组织，依赖只向内：`composition → (editor, infrastructure) → usecases → domain`，由 ESLint `no-restricted-imports` 强制：
+  - `domain/`：`entities/`（文档、库条目、版本、导入结果、操作契约）、`rules/`（列表、段落边框、制表位、文本格式等纯规则与备份校验规则链）、`text/`（Unicode、语言、颜色、字号）。不依赖任何外层。
+  - `usecases/`：`engine.ts` 操作事务、`autosave.ts`、`import-file.ts`、`document-navigation.ts`、`browser-tools.ts`（可选 WebMCP；`window.vdoc` 为本地开发接口）。通过 `ports.ts` 中的 `DocumentWriter`、`FileImporter` 访问存储与文件格式。
+  - `editor/`：Tiptap/ProseMirror 适配层；`commands/` 为按操作族划分的命令注册表与目标解析，另有 `format/`、`list/`、`paragraph/`、`table/`、`search/`。
+  - `infrastructure/`：`persistence/`（IndexedDB 连接、文档、版本、库）、`importers/`（Word、文本、备份导入策略）、`word/`、`export/`、`preview/`、`pdf/`、`browser/`。
+  - `composition/`：组装根，把基础设施实现注入用例（`startAutosave`、`readDocumentImport`）。
+  - `shared/`：跨层通用工具。
 - `tests/`、`docs/`：测试、验收与规划。
 
 格式与结构命令共享操作层；原生输入、输入法、粘贴、选区移动与拖动由 ProseMirror 处理，共享同一文档状态与撤销历史。浏览器工具只控制受约束操作，不发送文档给模型服务。

@@ -7,7 +7,7 @@ import { createExtensions } from '../lib/editor/extensions';
 import { useWordExport, WordExportFeedback } from '../components/editor/word-export';
 
 const calls = vi.hoisted(() => ({ convert: vi.fn(), error: vi.fn(), success: vi.fn() }));
-vi.mock('../lib/editor/word', () => ({ exportWord: calls.convert }));
+vi.mock('../lib/infrastructure/word/word', () => ({ exportWord: calls.convert }));
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 vi.mock('sonner', () => ({ toast: { error: calls.error, success: calls.success } }));
 let editor: Editor, mount: HTMLDivElement, root: Root, state: ReturnType<typeof useWordExport>;
@@ -139,7 +139,7 @@ const blobBytes = (blob: Blob) => new Promise<ArrayBuffer>((resolve, reject) => 
 });
 const contentText = (node: JSONContent): string => node.text ?? (node.content ?? []).map(contentText).join('');
 const walk = (node: JSONContent): JSONContent[] => [node, ...(node.content ?? []).flatMap(walk)];
-async function realWord() { return vi.importActual<typeof import('../lib/editor/word')>('../lib/editor/word'); }
+async function realWord() { return vi.importActual<typeof import('../lib/infrastructure/word/word')>('../lib/infrastructure/word/word'); }
 async function inspectWord(blob: Blob) {
   const bytes = await blobBytes(blob), real = await realWord(), imported = await real.importWord(bytes);
   const zip = await JSZip.loadAsync(bytes), core = new DOMParser().parseFromString(await zip.file('docProps/core.xml')!.async('string'), 'application/xml');

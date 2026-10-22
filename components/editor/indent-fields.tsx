@@ -1,5 +1,5 @@
 'use client';
-import type { IndentValues } from '@/lib/editor/paragraph-indent';
+import type { IndentValues } from '@/lib/editor/paragraph/paragraph-indent';
 
 export function IndentFields({value,change}:{value:IndentValues;change:(next:IndentValues)=>void}) {
   const mode=value.firstLineIndent===null?'mixed':value.firstLineIndent>0?'first':value.firstLineIndent<0?'hanging':'none';

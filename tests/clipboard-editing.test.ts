@@ -5,7 +5,7 @@ import { CellSelection, TableMap } from '@tiptap/pm/tables';
 import { closeHistory } from '@tiptap/pm/history';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import { documentNavigation } from '../lib/editor/document-navigation';
+import { documentNavigation } from '../lib/usecases/document-navigation';
 
 let editor: Editor, host: HTMLDivElement;
 beforeEach(async () => {
@@ -99,8 +99,8 @@ it('rejects paste during a committed document switch and resumes only after the 
 
 it('persists pasted table content and its undo through the autosave transaction path', async () => {
   globalThis.indexedDB = new IDBFactory(); localStorage.clear(); vi.resetModules();
-  const store = await import('../lib/editor/document-store');
-  const { startAutosave } = await import('../lib/editor/autosave');
+  const store = await import('../lib/infrastructure/persistence/document-store');
+  const { startAutosave } = await import('../lib/composition/autosave');
   const original = await store.activateDocument({ version: 1, id: 'clipboard-save', title: 'Clipboard QA', content: editor.getJSON(), savedAt: new Date().toISOString() });
   const report = vi.fn();
   const autosave = startAutosave(editor, original.id, { getTitle: () => original.title, blocked: { current: false }, report });

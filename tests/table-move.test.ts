@@ -2,8 +2,8 @@ import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { reorderedTable } from '../lib/editor/table-move';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { reorderedTable } from '../lib/editor/table/table-move';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => {
   editor = new Editor({ extensions: createExtensions(), content: '<table data-pinned-rows="0"><tr style="height:55px"><th colwidth="100">标题 العربية</th><td colwidth="150">日本語</td><td colwidth="200">한국어</td></tr><tr style="height:90px"><td colwidth="100">हिन्दी</td><td colwidth="150">Français</td><td colwidth="200">Deutsch</td></tr><tr style="height:120px"><td colwidth="100">ไทย</td><td colwidth="150">עברית</td><td colwidth="200">Ελληνικά</td></tr></table>' });

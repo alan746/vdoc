@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { createTableAutoScroll, edgeScrollSpeed } from '../lib/editor/table-auto-scroll';
+import { createTableAutoScroll, edgeScrollSpeed } from '../lib/editor/table/table-auto-scroll';
 let canvas: HTMLElement, wrapper: HTMLElement, table: HTMLElement;
 let callbacks: Map<number, FrameRequestCallback>, nextId: number;
 const frames = { request: (fn: FrameRequestCallback) => { const id = ++nextId; callbacks.set(id, fn); return id; }, cancel: (id: number) => { callbacks.delete(id); } };

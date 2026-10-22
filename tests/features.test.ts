@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { findMatches } from '../lib/editor/search';
-import { parseDocument, saveDocument } from '../lib/editor/storage';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { findMatches } from '../lib/editor/search/search';
+import { parseDocument, saveDocument } from '../lib/infrastructure/persistence/storage';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => { editor = new Editor({ extensions: createExtensions(), content: '<p>Apple <strong>ap</strong>ple pineapple APPLE</p><p>中文文字</p>' }); await new Promise(r=>setTimeout(r,0)); engine = new DocumentEngine(editor); });
 afterEach(() => { engine.destroy(); editor.destroy(); localStorage.clear(); });

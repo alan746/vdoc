@@ -1,6 +1,6 @@
 import { beforeAll, expect, it, vi } from 'vitest';
-import { readDocumentImport } from '../lib/editor/import-file';
-import { exportWord } from '../lib/editor/word';
+import { readDocumentImport } from '../lib/composition/import-file';
+import { exportWord } from '../lib/infrastructure/word/word';
 
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 const text = 'Keep 中文 العربية 日本語';

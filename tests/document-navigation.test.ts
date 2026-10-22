@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { documentNavigation } from '../lib/editor/document-navigation';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { documentNavigation } from '../lib/usecases/document-navigation';
 
 let editor: Editor;
 beforeEach(async () => {

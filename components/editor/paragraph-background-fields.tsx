@@ -1,5 +1,5 @@
 'use client';
-import type { ParagraphBackground } from '@/lib/editor/paragraph-background';
+import type { ParagraphBackground } from '@/lib/editor/paragraph/paragraph-background';
 
 export function ParagraphBackgroundFields({value, change, mixed}: {value: ParagraphBackground; change: (value: ParagraphBackground) => void; mixed: boolean}) {
   const mode = value === 'mixed' ? 'mixed' : value !== null ? 'color' : 'none';

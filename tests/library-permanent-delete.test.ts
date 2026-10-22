@@ -5,7 +5,7 @@ const content = { type:'doc', content:[{type:'paragraph',content:[{type:'text',t
 beforeEach(()=>{localStorage.clear();globalThis.indexedDB=new IDBFactory();vi.resetModules();});
 afterEach(()=>vi.restoreAllMocks());
 async function setup() {
- const store=await import('../lib/editor/document-store'),lib=await import('../lib/editor/library-store');
+ const store=await import('../lib/infrastructure/persistence/document-store'),lib=await import('../lib/infrastructure/persistence/library-store');
  const a=await lib.createLibraryDocument({version:1,title:'Discard',content,savedAt:''},null);
  const va=await store.saveVersion(a,'Discard checkpoint');
  const b=await lib.createLibraryDocument({version:1,title:'Keep',content,savedAt:''},null);
@@ -13,7 +13,7 @@ async function setup() {
  const trash=await lib.updateLibraryItem(a.id,{trash:true});
  return {store,lib,a,b,va,vb,expected:{trashedAt:trash.trashedAt!,trashGroup:trash.trashGroup}};
 }
-async function all(store:typeof import('../lib/editor/document-store')) {
+async function all(store:typeof import('../lib/infrastructure/persistence/document-store')) {
  const db=await store.openDatabase(),names=Array.from(db.objectStoreNames),tx=db.transaction(names);
  return Object.fromEntries(await Promise.all(names.map(async name=>[name,await store.requestResult(tx.objectStore(name).getAll())])));
 }

@@ -39,9 +39,9 @@ const snapshot = {
 };
 fs.writeFileSync(`${out}/source-manifest.json`, JSON.stringify(snapshot, null, 2) + '\n');
 const mappingSpec = [
-  ['正文', 'components/editor/workspace.tsx', 'compositionCapture', 'lib/editor/autosave.ts', 'const composing'],
-  ['列表', 'lib/editor/list-editing.ts', 'editor.view.composing', 'lib/editor/autosave.ts', 'const composing'],
-  ['表格', 'lib/editor/table-resize.ts', 'view.composing', 'lib/editor/engine.ts', 'COMPOSING'],
+  ['正文', 'components/editor/workspace.tsx', 'compositionCapture', 'lib/usecases/autosave.ts', 'const composing'],
+  ['列表', 'lib/editor/list/list-editing.ts', 'editor.view.composing', 'lib/usecases/autosave.ts', 'const composing'],
+  ['表格', 'lib/editor/table/table-resize.ts', 'view.composing', 'lib/usecases/engine.ts', 'COMPOSING'],
   ['文档标题', 'components/editor/workspace.tsx', 'aria-label="Document title"', 'components/editor/use-input-composition.ts', 'onCompositionStartCapture'],
   ['查找替换', 'components/editor/editing-panels.tsx', 'composition.isComposing', 'components/editor/editing-panels.tsx', 'Replace with'],
   ['页眉', 'components/editor/document-dialogs.tsx', 'Header<input', 'components/ui/dialog.tsx', 'onSubmitCapture={event'],

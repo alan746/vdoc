@@ -1,5 +1,5 @@
 import { expect,it } from 'vitest';
-import { compactPreviewTables } from '../lib/editor/preview-table-compaction';
+import { compactPreviewTables } from '../lib/infrastructure/preview/preview-table-compaction';
 const parse=(html:string)=>{const root=document.createElement('div');root.innerHTML=html;return root;};
 const head='<thead><tr><th><p data-preview-block="h">Header</p></th></tr></thead>';
 function fixture(){

@@ -1,11 +1,11 @@
 'use client';
-import { selectedParagraphs } from '@/lib/editor/paragraph-selection';
+import { selectedParagraphs } from '@/lib/editor/paragraph/paragraph-selection';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { toast } from 'sonner';
-import type { DocumentEngine } from '@/lib/editor/engine';
-import { paragraphIndent } from '@/lib/editor/paragraph-indent';
-import { adjustRulerIndent, rulerDeltaBounds, rulerPointerDelta, rulerPositions, type RulerHandle, type RulerIndent } from '@/lib/editor/paragraph-ruler';
+import type { DocumentEngine } from '@/lib/usecases/engine';
+import { paragraphIndent } from '@/lib/editor/paragraph/paragraph-indent';
+import { adjustRulerIndent, rulerDeltaBounds, rulerPointerDelta, rulerPositions, type RulerHandle, type RulerIndent } from '@/lib/editor/paragraph/paragraph-ruler';
 
 type Paragraph = { value: RulerIndent; left: number; width: number; rtl: boolean };
 type Layout = { paragraphs: Paragraph[]; scale: number };

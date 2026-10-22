@@ -1,9 +1,9 @@
 import {afterEach,beforeEach,expect,it,vi} from 'vitest';
 import {Editor} from '@tiptap/core';
 import {createExtensions} from '../lib/editor/extensions';
-import {DocumentEngine} from '../lib/editor/engine';
-import {parseDocument} from '../lib/editor/storage';
-import {exportWord,importWord} from '../lib/editor/word';
+import {DocumentEngine} from '../lib/usecases/engine';
+import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {exportWord,importWord} from '../lib/infrastructure/word/word';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 let editor:Editor,engine:DocumentEngine;
 const item=(text:string)=>`<li><p>${text}</p></li>`;

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import type { Node } from '@tiptap/pm/model';
 import { toast } from 'sonner';
-import { exportFilename } from '@/lib/editor/export-filename';
+import { exportFilename } from '@/lib/infrastructure/export/export-filename';
 
 type Download = { url: string; name: string; staticChecklist: boolean; changedSinceStart: boolean };
 
@@ -38,7 +38,7 @@ export function useWordExport(editor: Editor | null, title: string) {
     snapshot.descendants(node => { if (node.type.name === 'taskList') staticChecklist = true; });
     const current = () => mounted.current && !editor.isDestroyed && generation.current === job;
     try {
-      const { exportWord } = await import('@/lib/editor/word');
+      const { exportWord } = await import('@/lib/infrastructure/word/word');
       if (!current()) return;
       const blob = await exportWord(content, snapshotTitle);
       if (!current()) return;

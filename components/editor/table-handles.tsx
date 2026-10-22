@@ -6,12 +6,12 @@ import type { Node as PMNode } from '@tiptap/pm/model';
 import { TableMap } from '@tiptap/pm/tables';
 import { GripVertical, GripHorizontal, Pin, ArrowDownAZ, ArrowUpAZ } from 'lucide-react';
 import { toast } from 'sonner';
-import type { DocumentEngine } from '@/lib/editor/engine';
-import type { Operation } from '@/lib/editor/operations';
-import { completePinnedBoundary, tableRowVisualRect } from '@/lib/editor/table-headers';
-import { createTableAutoScroll } from '@/lib/editor/table-auto-scroll';
-import { columnDelta } from '@/lib/editor/table-direction';
-import { reorderedTable } from '@/lib/editor/table-move';
+import type { DocumentEngine } from '@/lib/usecases/engine';
+import type { Operation } from '@/lib/domain/entities/operation';
+import { completePinnedBoundary, tableRowVisualRect } from '@/lib/editor/table/table-headers';
+import { createTableAutoScroll } from '@/lib/editor/table/table-auto-scroll';
+import { columnDelta } from '@/lib/editor/table/table-direction';
+import { reorderedTable } from '@/lib/editor/table/table-move';
 
 type Hover = { table: PMNode; element: HTMLTableElement; row: number; col: number; doc: PMNode; revision: number; x: number; y: number; cx: number; cy: number; showColumn: boolean };
 type Drop = { axis: 'row' | 'column'; x: number; y: number; length: number; valid: boolean; label: string };

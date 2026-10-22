@@ -3,7 +3,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { readDocumentImport } from '../lib/editor/import-file';
+import { readDocumentImport } from '../lib/composition/import-file';
 import VdocWorkspace from '../components/editor/workspace';
 
 const calls = vi.hoisted(() => ({ save: vi.fn(), success: vi.fn(), error: vi.fn() }));
@@ -12,9 +12,9 @@ let createUrl: ReturnType<typeof vi.fn>, revokeUrl: ReturnType<typeof vi.fn>;
 const originalCreate = URL.createObjectURL, originalRevoke = URL.revokeObjectURL;
 const content = { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Stored body 中文' }] }] };
 vi.mock('@tiptap/react', () => ({ useEditor: () => editor, EditorContent: () => null }));
-vi.mock('../lib/editor/browser-tools', () => ({ registerDocumentTools: () => () => {} }));
+vi.mock('../lib/usecases/browser-tools', () => ({ registerDocumentTools: () => () => {} }));
 vi.mock('sonner', () => ({ toast: { success: calls.success, error: calls.error }, Toaster: () => null }));
-vi.mock('../lib/editor/document-store', () => ({
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({
   STORAGE_KEY: 'vdoc.document.v1', saveDocument: calls.save,
   readSavedDocument: async () => ({ data: { version: 1, id: 'recovery-backup', title: 'Recovery draft', savedAt: '2026-10-06T12:00:00.000Z', content } }),
 }));

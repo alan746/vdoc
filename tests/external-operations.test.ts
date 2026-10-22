@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { registerDocumentTools } from '../lib/editor/browser-tools';
-import { documentNavigation } from '../lib/editor/document-navigation';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { registerDocumentTools } from '../lib/usecases/browser-tools';
+import { documentNavigation } from '../lib/usecases/document-navigation';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => {
   editor = new Editor({ extensions: createExtensions(), content: '<p>中文 العربية</p><table data-pinned-rows="0"><tr><td>20</td><td>日本語</td></tr><tr><td>3</td><td>हिन्दी</td></tr></table>' });

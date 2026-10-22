@@ -44,8 +44,8 @@ def main():
     assert prefix.startswith('data:image/') and prefix.endswith(';base64')
     image_bytes = base64.b64decode(encoded, validate=True)
     mime = prefix[5:].split(';')[0]
-    source = (ROOT / 'lib/editor/preview-images.ts').read_text()
-    compile_js = "const fs=require('node:fs'),e=require('esbuild');process.stdout.write(e.transformSync(fs.readFileSync('lib/editor/preview-images.ts','utf8'),{loader:'ts',format:'iife',globalName:'ImageWait'}).code);"
+    source = (ROOT / 'lib/infrastructure/preview/preview-images.ts').read_text()
+    compile_js = "const fs=require('node:fs'),e=require('esbuild');process.stdout.write(e.transformSync(fs.readFileSync('lib/infrastructure/preview/preview-images.ts','utf8'),{loader:'ts',format:'iife',globalName:'ImageWait'}).code);"
     bundle = subprocess.run(['node', '-e', compile_js], cwd=ROOT, check=True, capture_output=True, text=True).stdout
     (output / 'wait-helper.js').write_text(bundle)
     route = '/' + uuid.uuid4().hex

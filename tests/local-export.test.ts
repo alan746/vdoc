@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { downloadBlob } from '../lib/editor/storage';
+import { downloadBlob } from '../lib/infrastructure/browser/download';
 import { exportLocalDocument } from '../components/editor/local-export';
 
 const notices = vi.hoisted(() => ({ success: vi.fn(), error: vi.fn() }));
@@ -112,7 +112,7 @@ it('keeps the full long title inside a backup even when its download name is sho
     const reader = new FileReader(); reader.onload = () => resolve(reader.result as string); reader.onerror = reject;
     reader.readAsText(createUrl.mock.calls[0][0]);
   });
-  const { parseDocument } = await import('../lib/editor/storage');
+  const { parseDocument } = await import('../lib/infrastructure/persistence/storage');
   const restored = parseDocument(payload);
   expect(restored.title).toBe(title); expect(restored.content).toEqual(before);
 });

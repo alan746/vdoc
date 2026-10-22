@@ -3,12 +3,12 @@ import { IDBFactory } from 'fake-indexeddb';
 import { act, createElement } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import type { SavedDocument } from '../lib/editor/storage';
+import type { SavedDocument } from '../lib/infrastructure/persistence/storage';
 
 const notices = vi.hoisted(() => ({ success: vi.fn(), error: vi.fn() }));
 vi.mock('sonner', () => ({ toast: notices }));
-let store: typeof import('../lib/editor/document-store');
-let library: typeof import('../lib/editor/library-store');
+let store: typeof import('../lib/infrastructure/persistence/document-store');
+let library: typeof import('../lib/infrastructure/persistence/library-store');
 let LibraryHome: typeof import('../components/editor/library-home').LibraryHome;
 let root: Root, mount: HTMLDivElement, onOpen: ReturnType<typeof vi.fn>;
 let parent: string, child: string, destination: string, original: SavedDocument;
@@ -17,7 +17,7 @@ const body = { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'te
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); vi.resetModules(); localStorage.clear(); sessionStorage.clear(); globalThis.indexedDB = new IDBFactory();
   notices.success.mockReset(); notices.error.mockReset(); onOpen = vi.fn();
-  store = await import('../lib/editor/document-store'); library = await import('../lib/editor/library-store');
+  store = await import('../lib/infrastructure/persistence/document-store'); library = await import('../lib/infrastructure/persistence/library-store');
   LibraryHome = (await import('../components/editor/library-home')).LibraryHome;
   parent = await library.createFolder('Projects 中文', null); child = await library.createFolder('Café folder', parent);
   destination = await library.createFolder('Destination 日本語', null);

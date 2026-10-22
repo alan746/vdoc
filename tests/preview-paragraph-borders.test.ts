@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
-import { preparePreviewParagraphBorders, finishPreviewParagraphBorders } from '../lib/editor/preview-paragraph-borders';
-import { paragraphBordersAttribute } from '../lib/editor/paragraph-borders';
-import { prepareParagraphBorderGroups } from '../lib/editor/paragraph-border-groups';
-import { previewTextMatches } from '../lib/editor/paged-preview';
+import { preparePreviewParagraphBorders, finishPreviewParagraphBorders } from '../lib/infrastructure/preview/preview-paragraph-borders';
+import { paragraphBordersAttribute } from '../lib/editor/paragraph/paragraph-borders';
+import { prepareParagraphBorderGroups } from '../lib/editor/paragraph/paragraph-border-groups';
+import { previewTextMatches } from '../lib/infrastructure/preview/paged-preview';
 const edge = { color:'#663399',width:3,style:'solid',padding:6 };
 function paragraph(id:string, patch:Record<string,unknown>={}) {
   const p=document.createElement('p');p.textContent=`${id} 中文 العربية`;

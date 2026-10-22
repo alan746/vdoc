@@ -1,17 +1,17 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { previewSource, previewTextMatches, repeatTableHeaders } from '@/lib/editor/paged-preview';
-import { compactPreviewTables } from '@/lib/editor/preview-table-compaction';
+import { previewSource, previewTextMatches, repeatTableHeaders } from '@/lib/infrastructure/preview/paged-preview';
+import { compactPreviewTables } from '@/lib/infrastructure/preview/preview-table-compaction';
 import type { Previewer } from 'pagedjs';
-import { previewOverflowDetails, previewOverflowMessage, previewMarginOverflow } from '@/lib/editor/preview-layout';
-import { waitForPreviewImages } from '@/lib/editor/preview-images';
-import { trackPreviewPage } from '@/lib/editor/preview-navigation';
-import { finishPreviewParagraphBorders } from '@/lib/editor/preview-paragraph-borders';
-import { previewTableHeaderMismatch, previewTableRowMismatch } from '@/lib/editor/preview-table-headers';
-import { repairPreviewTableRows, startPreviewRowsOnNewPage } from '@/lib/editor/preview-table-row-repair';
-import { previewPageBreakMismatch } from '@/lib/editor/preview-page-breaks';
-import { finalizePreviewFlow } from '@/lib/editor/preview-final-flow';
-import { installPreviewPrintStyle } from '@/lib/editor/preview-print';
+import { previewOverflowDetails, previewOverflowMessage, previewMarginOverflow } from '@/lib/infrastructure/preview/preview-layout';
+import { waitForPreviewImages } from '@/lib/infrastructure/preview/preview-images';
+import { trackPreviewPage } from '@/lib/infrastructure/preview/preview-navigation';
+import { finishPreviewParagraphBorders } from '@/lib/infrastructure/preview/preview-paragraph-borders';
+import { previewTableHeaderMismatch, previewTableRowMismatch } from '@/lib/infrastructure/preview/preview-table-headers';
+import { repairPreviewTableRows, startPreviewRowsOnNewPage } from '@/lib/infrastructure/preview/preview-table-row-repair';
+import { previewPageBreakMismatch } from '@/lib/infrastructure/preview/preview-page-breaks';
+import { finalizePreviewFlow } from '@/lib/infrastructure/preview/preview-final-flow';
+import { installPreviewPrintStyle } from '@/lib/infrastructure/preview/preview-print';
 import { isCompositionKey } from '@/lib/editor/keyboard-composition';
 
 export default function PrintPreviewPage() {

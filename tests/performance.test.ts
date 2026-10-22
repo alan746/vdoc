@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { parseDocument, saveDocument } from '../lib/editor/storage';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { parseDocument, saveDocument } from '../lib/infrastructure/persistence/storage';
 it('edits, formats, undoes and round-trips a 2500-paragraph document without loss', async () => {
   const content = { type: 'doc', content: Array.from({ length: 2500 }, (_, i) => ({ type: 'paragraph', attrs: { blockId: `load_${i}` }, content: [{ type: 'text', text: `Paragraph ${i}: ${'A realistic long document with editable text. '.repeat(5)}` }] })) };
   const start = performance.now();

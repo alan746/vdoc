@@ -23,6 +23,20 @@ const eslintConfig = defineConfig([
       "react-hooks/set-state-in-effect": "off",
     },
   },
+  // Layer boundaries in lib/: domain <- usecases <- (editor, infrastructure) <- composition.
+  // Use cases reach storage and file formats only through ports in lib/usecases/ports.ts.
+  {
+    files: ["lib/domain/**/*.ts"],
+    rules: {
+      "no-restricted-imports": ["error", { patterns: [{ group: ["**/editor/**", "**/infrastructure/**", "**/usecases/**", "**/composition/**", "@/lib/editor/**", "@/lib/infrastructure/**", "@/lib/usecases/**", "@/lib/composition/**"], message: "lib/domain must not depend on outer layers." }] }],
+    },
+  },
+  {
+    files: ["lib/usecases/**/*.ts"],
+    rules: {
+      "no-restricted-imports": ["error", { patterns: [{ group: ["**/infrastructure/**", "**/composition/**", "@/lib/infrastructure/**", "@/lib/composition/**"], message: "Use cases depend on ports; wire implementations in lib/composition." }] }],
+    },
+  },
 ]);
 
 export default eslintConfig;

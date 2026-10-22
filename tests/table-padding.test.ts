@@ -1,9 +1,9 @@
 import { expect, it, vi } from 'vitest';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { parseDocument } from '../lib/editor/storage';
-import { fitPreviewTables } from '../lib/editor/preview-layout';
-import { exportWord, importWord } from '../lib/editor/word';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { fitPreviewTables } from '../lib/infrastructure/preview/preview-layout';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 const bytes = (blob: Blob) => new Promise<ArrayBuffer>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result as ArrayBuffer); reader.onerror = reject; reader.readAsArrayBuffer(blob); });
 it.each([0, 0.4, 2.4, 10.8])('preserves %s px padding on headers and cells through HTML, backup and Word', async padding => {

@@ -1,7 +1,7 @@
 'use client';
 import { useSyncExternalStore } from 'react';
 import type { Editor } from '@tiptap/core';
-import { documentNavigation } from '@/lib/editor/document-navigation';
+import { documentNavigation } from '@/lib/usecases/document-navigation';
 
 const subscribeIdle = () => () => {};
 const idle = () => 'idle' as const;

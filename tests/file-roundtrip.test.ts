@@ -1,10 +1,10 @@
 import { writeFileSync } from 'node:fs';
 import { expect, it, vi } from 'vitest';
-import { exportWord, importWord } from '../lib/editor/word';
-import { parseDocument } from '../lib/editor/storage';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 import type { JSONContent } from '@tiptap/core';
-import { cellBorder, borderSides } from '../lib/editor/table-borders';
-import { colorToHex } from '../lib/editor/color';
+import { cellBorder, borderSides } from '../lib/editor/table/table-borders';
+import { colorToHex } from '../lib/domain/text/color';
 import { languageSamples } from './multilingual-fixtures';
 // Use the actual browser build: production receives ArrayBuffer rather than Node Buffer.
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));

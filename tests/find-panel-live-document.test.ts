@@ -3,9 +3,9 @@ import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
+import { DocumentEngine } from '../lib/usecases/engine';
 import { FindPanel } from '../components/editor/editing-panels';
-import * as searchScroll from '../lib/editor/search-scroll';
+import * as searchScroll from '../lib/editor/search/search-scroll';
 
 let editor: Editor, engine: DocumentEngine, root: Root;
 const field = (label: string) => document.querySelector<HTMLInputElement>(`input[aria-label="${label}"]`)!;

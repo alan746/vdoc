@@ -1,16 +1,16 @@
 'use client';
-import { selectedParagraphBackground, type ParagraphBackground } from '@/lib/editor/paragraph-background';
+import { selectedParagraphBackground, type ParagraphBackground } from '@/lib/editor/paragraph/paragraph-background';
 import { ParagraphBackgroundFields } from './paragraph-background-fields';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
-import type { DocumentEngine } from '@/lib/editor/engine';
+import type { DocumentEngine } from '@/lib/usecases/engine';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { toast } from 'sonner';
-import { paragraphPropertyOperation, type ParagraphProperties } from '@/lib/editor/paragraph-properties';
-import { selectedPagination, paginationOperation, paginationKeys, type PaginationValues } from '@/lib/editor/paragraph-pagination';
-import { selectedIndent, indentOperation, type IndentValues } from '@/lib/editor/paragraph-indent';
-import { selectedParagraphs } from '@/lib/editor/paragraph-selection';
-import { selectedTabInterval } from '@/lib/editor/paragraph-tabs';
+import { paragraphPropertyOperation, type ParagraphProperties } from '@/lib/editor/paragraph/paragraph-properties';
+import { selectedPagination, paginationOperation, paginationKeys, type PaginationValues } from '@/lib/editor/paragraph/paragraph-pagination';
+import { selectedIndent, indentOperation, type IndentValues } from '@/lib/editor/paragraph/paragraph-indent';
+import { selectedParagraphs } from '@/lib/editor/paragraph/paragraph-selection';
+import { selectedTabInterval } from '@/lib/editor/paragraph/paragraph-tabs';
 import { IndentFields } from './indent-fields';
 
 export function ImageDialog({ open, close, editor, engine }: { open: boolean; close: () => void; editor: Editor; engine: DocumentEngine }) {

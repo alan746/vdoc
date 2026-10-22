@@ -5,7 +5,7 @@ import VdocWorkspace from '../components/editor/workspace';
 
 const { readSavedDocument, useEditor } = vi.hoisted(() => ({ readSavedDocument: vi.fn(), useEditor: vi.fn((_options: unknown) => null) }));
 vi.mock('@tiptap/react', () => ({ useEditor, EditorContent: () => null }));
-vi.mock('../lib/editor/document-store', () => ({ readSavedDocument }));
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({ readSavedDocument }));
 vi.mock('../components/editor/library-home', () => ({ LibraryHome: ({ recoveryError }: { recoveryError?: string }) =>
   createElement('div', { 'data-testid': 'library' }, recoveryError ? createElement('p', { role: 'alert' }, recoveryError) : 'Library') }));
 const linked = { version: 1, id: 'linked-中文', title: 'Linked document', savedAt: '2026-10-05T12:00:00.000Z',

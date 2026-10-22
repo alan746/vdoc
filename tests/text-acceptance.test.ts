@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { paragraphPropertyOperation } from '../lib/editor/paragraph-properties';
-import { findMatches } from '../lib/editor/search';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { paragraphPropertyOperation } from '../lib/editor/paragraph/paragraph-properties';
+import { findMatches } from '../lib/editor/search/search';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async()=>{editor=new Editor({extensions:createExtensions(),content:'<p>Start</p>'});await new Promise(r=>setTimeout(r,0));engine=new DocumentEngine(editor);});
 afterEach(()=>{engine.destroy();editor.destroy();});

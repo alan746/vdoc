@@ -2,11 +2,11 @@ import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { beforeEach, expect, it, vi } from 'vitest';
 import JSZip from 'jszip';
-import { parseDocument } from '../lib/editor/storage';
-import { exportHTML } from '../lib/editor/html-export';
-import { previewSource } from '../lib/editor/paged-preview';
-import { previewPageWidth } from '../lib/editor/preview-layout';
-import { exportWord, importWord } from '../lib/editor/word';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { exportHTML } from '../lib/infrastructure/export/html-export';
+import { previewSource } from '../lib/infrastructure/preview/paged-preview';
+import { previewPageWidth } from '../lib/infrastructure/preview/preview-layout';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
 // Exercise the browser build used by the app, which accepts ArrayBuffer input.
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 
@@ -43,7 +43,7 @@ it.each([
   expect(imported.content.attrs).toMatchObject(attrs); expect(doc).toEqual(original);
 });
 it('rejects opening a stored document with invalid page settings and keeps its raw data and previous selection', async () => {
-  const store = await import('../lib/editor/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store');
   const current = await store.activateDocument({ ...parseDocument(JSON.stringify(backup())), id: 'healthy-layout' });
   const damaged = { ...current, id: 'bad-layout', content: backup({ pageSize: 'a3' }).content };
   await store.archiveDocument(damaged);
@@ -53,7 +53,7 @@ it('rejects opening a stored document with invalid page settings and keeps its r
   expect(await store.requestResult(db.transaction('documents').objectStore('documents').get(damaged.id))).toEqual(damaged);
 });
 it('rejects restoring a version with invalid margins without changing current work or checkpoint history', async () => {
-  const store = await import('../lib/editor/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store');
   const current = await store.activateDocument(parseDocument(JSON.stringify(backup())));
   const version = await store.saveVersion(current, 'Before edits');
   const db = await store.openDatabase(), tx = db.transaction('versions', 'readwrite'), done = store.transactionDone(tx);

@@ -7,7 +7,7 @@ import { useInputComposition } from '../components/editor/use-input-composition'
 import { useDocumentAutosave } from '../components/editor/use-document-autosave';
 
 const calls = vi.hoisted(() => ({ save: vi.fn() }));
-vi.mock('../lib/editor/document-store', () => ({ saveDocument: calls.save, STORAGE_KEY: 'vdoc.document.v1' }));
+vi.mock('../lib/infrastructure/persistence/document-store', () => ({ saveDocument: calls.save, STORAGE_KEY: 'vdoc.document.v1' }));
 let editor: Editor, root: Root, mount: HTMLDivElement;
 function TemporaryField() {
   const [visible, setVisible] = useState(true);

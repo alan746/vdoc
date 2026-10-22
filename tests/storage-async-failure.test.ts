@@ -1,13 +1,13 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { parseDocument } from '../lib/editor/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
 
 async function fixture() {
-  const store = await import('../lib/editor/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store');
   const original = await store.activateDocument(parseDocument(JSON.stringify({ version: 1, id: 'async-failure', title: 'Before', savedAt: '2026-10-06T00:00:00.000Z',
     content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Keep 中文 العربية 👩‍💻' }] }] } })));
   await store.readSavedDocument();
@@ -31,7 +31,7 @@ function failSummaryAsynchronously() {
 
 it.each(['archive', 'activate', 'save', 'rename', 'restore'] as const)('waits for rollback and preserves the asynchronous error during %s, then permits retry', async action => {
   const { store, original } = await fixture();
-  const library = await import('../lib/editor/library-store');
+  const library = await import('../lib/infrastructure/persistence/library-store');
   const oldVersion = await store.saveVersion({ ...original, title: 'Earlier version' }, 'Earlier');
   const beforeItems = await library.listLibrary(), beforeVersions = await store.listVersions(original.id);
   const run = () => action === 'archive' ? store.archiveDocument({ ...original, title: 'Changed' })
@@ -64,7 +64,7 @@ it('does not report failure when a request error is handled and the transaction 
 
 it('requests durable commits across document, history and library mutations', async () => {
   const { store, original } = await fixture();
-  const library = await import('../lib/editor/library-store');
+  const library = await import('../lib/infrastructure/persistence/library-store');
   const db = await store.openDatabase(), transaction = db.transaction.bind(db);
   const writes: IDBTransaction[] = [];
   vi.spyOn(db, 'transaction').mockImplementation((stores, mode, options) => {

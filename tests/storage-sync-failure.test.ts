@@ -1,12 +1,12 @@
 import 'fake-indexeddb/auto';
 import {IDBFactory} from 'fake-indexeddb';
 import {afterEach,beforeEach,expect,it,vi} from 'vitest';
-import {parseDocument} from '../lib/editor/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/storage';
 
 beforeEach(()=>{localStorage.clear();globalThis.indexedDB=new IDBFactory();vi.resetModules();});
 afterEach(()=>vi.restoreAllMocks());
 async function fixture(){
- const store=await import('../lib/editor/document-store');
+ const store=await import('../lib/infrastructure/persistence/document-store');
  const original=await store.activateDocument({...parseDocument(JSON.stringify({version:1,title:'Before',content:{type:'doc',content:[{type:'paragraph',content:[{type:'text',text:'Committed 中文 👩‍💻'}]}]}})),id:'sync-failure-qa'});
  await store.readSavedDocument();
  return {store,original};
@@ -48,7 +48,7 @@ it('rolls back the new version and keeps all 40 old versions if retention prunin
 });
 it('keeps the complete failed draft available for backup and retries it without losing committed data',async()=>{
  const {Editor}=await import('@tiptap/core');const {createExtensions}=await import('../lib/editor/extensions');
- const {startAutosave}=await import('../lib/editor/autosave');const {store,original}=await fixture();
+ const {startAutosave}=await import('../lib/composition/autosave');const {store,original}=await fixture();
  const editor=new Editor({extensions:createExtensions(),content:original.content});await new Promise(r=>setTimeout(r,0));
  const report=vi.fn();const controller=startAutosave(editor,original.id,{getTitle:()=> 'Latest draft',blocked:{current:false},report});
  try {

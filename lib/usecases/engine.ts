@@ -1,0 +1,136 @@
+import { listSelectionBoundaryError } from '../editor/list/list-conversion';
+import { documentNavigation } from './document-navigation';
+import type { Editor } from '@tiptap/core';
+import type { SelectionBookmark } from '@tiptap/pm/state';
+import { Mark } from '@tiptap/pm/model';
+import { closeHistory, undoDepth, redoDepth } from '@tiptap/pm/history';
+import { externalRequestSchema, requestSchema, operationLabel, type OperationRecord, type OperationResult } from '../domain/entities/operation';
+import { applyOperation } from '../editor/commands/registry';
+import { resolveTargetSelection } from '../editor/commands/target-selection';
+import { documentSnapshot } from '../editor/document-snapshot';
+
+/** Single synchronous writer for programmatic edits. Native typing remains in ProseMirror. */
+export class DocumentEngine {
+  readonly sessionId = crypto.randomUUID();
+  private disposed = false;
+  revision = 0;
+  records: OperationRecord[] = [];
+  private bookmark: SelectionBookmark | null = null;
+  private results = new Map<string, { signature: string; result: OperationResult }>();
+  private listeners = new Set<() => void>();
+  private clearBookmarkOnInput = () => { this.bookmark = null; };
+  private handleTransaction: (event: { transaction: import('@tiptap/pm/state').Transaction }) => void;
+
+  constructor(readonly editor: Editor) {
+    this.handleTransaction = ({ transaction }) => {
+      if (transaction.docChanged) this.revision++;
+      if (this.bookmark) this.bookmark = this.bookmark.map(transaction.mapping);
+      for (const listener of this.listeners) listener();
+    };
+    editor.on('transaction', this.handleTransaction);
+    editor.view.dom.addEventListener('pointerdown', this.clearBookmarkOnInput);
+    editor.view.dom.addEventListener('keydown', this.clearBookmarkOnInput);
+  }
+  subscribe(listener: () => void) { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; }
+  destroy() {
+    this.disposed = true;
+    this.editor.off('transaction', this.handleTransaction);
+    this.editor.view.dom.removeEventListener('pointerdown', this.clearBookmarkOnInput);
+    this.editor.view.dom.removeEventListener('keydown', this.clearBookmarkOnInput);
+    this.listeners.clear();
+  }
+  captureSelection() { this.bookmark = this.editor.state.selection.getBookmark(); }
+  clearSelectionBookmark() { this.bookmark = null; }
+  get canUndo() { return undoDepth(this.editor.state) > 0; }
+  get canRedo() { return redoDepth(this.editor.state) > 0; }
+
+  executeExternal(input: unknown): OperationResult {
+    const parsed = externalRequestSchema.safeParse(input);
+    if (!parsed.success) return { ok: false, id: crypto.randomUUID(), revision: this.revision, code: 'INVALID', error: parsed.error.issues[0]?.message || 'Read the document and supply session, revision, and an explicit target.' };
+    return this.execute(parsed.data);
+  }
+
+  execute(input: unknown): OperationResult {
+    const parsed = requestSchema.safeParse(input);
+    const id = parsed.success ? parsed.data.id ?? crypto.randomUUID() : crypto.randomUUID();
+    const fail = (code: OperationResult['code'], error: string): OperationResult => ({ ok: false, id, revision: this.revision, code, error });
+    if (!parsed.success) return fail('INVALID', parsed.error.issues[0]?.message ?? 'Invalid operation parameters.');
+    const request = parsed.data;
+    if (this.disposed || this.editor.isDestroyed || !this.editor.isEditable) return fail('UNAVAILABLE', 'The document is not editable.');
+    if (request.expectedSessionId !== undefined && request.expectedSessionId !== this.sessionId) return fail('STALE', 'The editing session has changed. Read the document again.');
+    const signature = JSON.stringify(request);
+    const prior = this.results.get(id);
+    if (prior) return prior.signature === signature ? prior.result : fail('DUPLICATE', 'An operation ID cannot be reused for a different request.');
+    if (this.editor.isDestroyed || !this.editor.isEditable) return fail('UNAVAILABLE', 'The document is not editable.');
+    // Workspace fields (title, find, dialog inputs) compose outside ProseMirror.
+    // Share their registered guards with navigation so programmatic edits cannot
+    // bypass the protection just because the document body is not composing.
+    if (documentNavigation(this.editor).isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
+    if (request.expectedRevision !== undefined && request.expectedRevision !== this.revision) return fail('STALE', 'The document has changed. Read the target again.');
+    if (request.target.kind === 'range' && request.expectedRevision === undefined) return fail('STALE', 'An explicit range requires a document revision.');
+    if (request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
+
+    let selection = this.editor.state.selection;
+    try {
+      if (request.target.kind === 'selection' && request.source === 'toolbar' && this.bookmark) selection = this.bookmark.resolve(this.editor.state.doc);
+      const resolved = resolveTargetSelection(request.target, this.editor.state.doc, selection);
+      if ('error' in resolved) return fail('TARGET', resolved.error);
+      selection = resolved;
+    } catch { return fail('TARGET', 'The target could not be located. Select it again.'); }
+
+    const beforeRevision = this.revision;
+    const beforeMarks = selection.empty
+      ? (selection.eq(this.editor.state.selection) ? this.editor.state.storedMarks : null) ?? selection.$from.marks()
+      : [];
+    let error = '';
+    const ok = this.editor.chain().command(props => {
+      const { tr } = props;
+      closeHistory(tr);
+      // Re-setting an unchanged cursor clears the user's active typing marks.
+      if (!tr.selection.eq(selection)) tr.setSelection(selection);
+      tr.setMeta('vdoc', { id, source: request.source });
+      try {
+        for (const operation of request.operations) {
+          if (!applyOperation(operation, props)) { error = (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
+        }
+        tr.doc.check();
+      } catch { error = 'The operation could not be completed. The document is unchanged.'; }
+      if (error) tr.setMeta('preventDispatch', true);
+      return !error;
+    }).run();
+    if (!ok || error) return fail('UNAVAILABLE', error || 'The operation was not completed.');
+
+    // Separate this command from subsequent native typing / commands.
+    this.editor.view.dispatch(closeHistory(this.editor.state.tr));
+    this.bookmark = null;
+    if (request.source !== 'api') this.editor.view.focus();
+    const afterSelection = this.editor.state.selection;
+    const afterMarks = afterSelection.empty ? this.editor.state.storedMarks ?? afterSelection.$from.marks() : [];
+    if (this.revision !== beforeRevision || !Mark.sameSet(beforeMarks, afterMarks))
+      this.record(id, request.label ?? request.operations.map(operationLabel).join(' · '), request.source, request.operations.length);
+    const result = { ok: true, id, revision: this.revision };
+    this.results.set(id, { signature, result });
+    if (this.results.size > 200) this.results.delete(this.results.keys().next().value!);
+    return result;
+  }
+
+  history(action: 'undo' | 'redo', source = 'toolbar'): OperationResult {
+    const id = crypto.randomUUID();
+    if (this.disposed || this.editor.isDestroyed || !this.editor.isEditable) return { ok: false, id, revision: this.revision, code: 'UNAVAILABLE', error: 'The document is not editable.' };
+    if (documentNavigation(this.editor).isComposing()) return { ok: false, id, revision: this.revision, code: 'COMPOSING', error: 'Finish the current text composition first.' };
+    this.bookmark = null;
+    const ok = this.editor.commands[action]();
+    if (ok) {
+      this.editor.view.dispatch(closeHistory(this.editor.state.tr));
+      if (source !== 'api') this.editor.view.focus();
+      this.record(id, action === 'undo' ? 'Undo' : 'Redo', source, 1);
+    }
+    return { ok, id, revision: this.revision, ...(ok ? {} : { code: 'UNAVAILABLE' as const, error: 'There is nothing to undo or redo.' }) };
+  }
+
+  snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision); }
+  private record(id: string, label: string, source: string, count: number) {
+    this.records = [{ id, label, source, time: Date.now(), revision: this.revision, count }, ...this.records].slice(0, 60);
+    for (const listener of this.listeners) listener();
+  }
+}

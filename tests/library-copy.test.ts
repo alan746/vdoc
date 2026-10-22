@@ -1,12 +1,12 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { parseDocument } from '../lib/editor/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
 async function fixture() {
-  const store = await import('../lib/editor/document-store'), library = await import('../lib/editor/library-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), library = await import('../lib/infrastructure/persistence/library-store');
   const folder = await library.createFolder('Projects 中文', null);
   const original = await store.activateDocument({ ...parseDocument(JSON.stringify({ version: 1, title: 'Source العربية', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: '中文 👩‍💻 עברית', marks: [{ type: 'bold' }, { type: 'highlight', attrs: { color: '#FEF08A' } }] }] }] } })), id: 'copy-source' });
   await library.updateLibraryItem(original.id, { parentId: folder, starred: true });

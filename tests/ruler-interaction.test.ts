@@ -3,7 +3,7 @@ import { createElement, act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
+import { DocumentEngine } from '../lib/usecases/engine';
 import { ParagraphRuler } from '../components/editor/paragraph-ruler';
 let editor: Editor, engine: DocumentEngine, root: Root, scale: number;
 let frames: Map<number, FrameRequestCallback>, nextFrame: number;

@@ -3,9 +3,9 @@ import { Editor, type JSONContent } from '@tiptap/core';
 import * as d from 'docx';
 import JSZip from 'jszip';
 import { createExtensions } from '../lib/editor/extensions';
-import { DocumentEngine } from '../lib/editor/engine';
-import { parseDocument } from '../lib/editor/storage';
-import { exportWord, importWord } from '../lib/editor/word';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { exportWord, importWord } from '../lib/infrastructure/word/word';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 const editors: Editor[] = [];
 function open(content: JSONContent | string) {
