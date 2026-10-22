@@ -1,0 +1,34 @@
+{
+  "version": "1.28.2",
+  "mupdfVersion": "1.28.2",
+  "source": "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+  "css": "body { font-family: sans-serif; font-size: 20pt; direction: ltr; } p { margin: 0 0 16pt; }",
+  "filled": [
+    36.0,
+    36.0,
+    564.0,
+    140.0
+  ],
+  "fonts": [
+    [
+      3,
+      "otf",
+      "Type0",
+      "Noto Serif Devanagari Regular",
+      "F0",
+      "Identity-H",
+      0
+    ],
+    [
+      9,
+      "cid",
+      "Type0",
+      "Nimbus Sans Regular",
+      "F1",
+      "Identity-H",
+      0
+    ]
+  ],
+  "nativeText": "हə ďदी हɥ͆ दी भाषा मȶ दĚतावेज़ ल\nɛ खना।\nȞ नə या नमĚते श\nɛ Zा Z ŕ\nɛ य Śाùथना।\n",
+  "sha256": "d9602dd973ee4c2114001f4f60313b018fc2fdc554b5884d9c65d35f304d4b0b"
+}

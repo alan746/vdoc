@@ -1,0 +1,15 @@
+AssertionError [ERR_ASSERTION]: Rapid collapse + Enter must preserve existing text
++ actual - expected
+
++ 'First'
+- 'FirstSecond'
+        ^
+
+    at /Users/ph.qian/Desktop/Vdoc/tmp/combined-workflow/rapid-selection.cjs:4:1272 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'First',
+  expected: 'FirstSecond',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

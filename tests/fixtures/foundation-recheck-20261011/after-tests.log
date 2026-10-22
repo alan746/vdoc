@@ -1,0 +1,90 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ❯ tests/print-preview-page.test.ts (49 tests | 2 failed) 244ms
+   ✓ requires source images and final page images before enabling printing 28ms
+   ✓ does not paginate or print if the source contains a failed image 4ms
+   ✓ finishes paragraph border caps before reporting a printable preview 19ms
+   ✓ does not accept a complete layout whose rendered images fail to load 4ms
+   ✓ blocks printing when a repeated table header loses content even though body text matches 9ms
+   ✓ blocks printing when a tall row defers top-aligned sibling cell content 22ms
+   ✓ retries once with a new-page row marker, releases the first layout and reports only the successful result 10ms
+   ✓ repairs a fitting delayed sibling before declaring the real page flow printable 14ms
+   ✓ aborts pending image work on unmount and suppresses late errors 2ms
+   ✓ stops pagination on close and ignores a late completed layout 2ms
+   ✓ releases failed pagination work immediately, before the parent removes the frame 2ms
+   ✓ releases failed final-image work immediately, before the parent removes the frame 2ms
+   ✓ releases failed content-loss work immediately, before the parent removes the frame 3ms
+   ✓ releases failed overflow work immediately, before the parent removes the frame 3ms
+   ✓ releases both retry attempts when the second layout fails without double-cleaning on close 2ms
+   ✓ ignores wrong-origin and wrong-session print requests 2ms
+   ✓ blocks printing when Header does not fit its page margin 2ms
+   ✓ blocks printing when Footer does not fit its page margin 2ms
+   ✓ blocks printing when Page number does not fit its page margin 2ms
+   ✓ makes both long columns start together while preserving their complete continuation streams 15ms
+   ✓ rejects content loss in the final compacted pagination instead of using its smaller page count 11ms
+   × stops and ignores a compacted reflow that completes after the preview is closed 12ms
+     → expected "spy" to be called 2 times, but got 3 times
+   ✓ blocks printing when the paginator ignores a manual page break despite preserving all text 4ms
+   ✓ reports the overflowing object and edge while continuing to block printing 2ms
+   ✓ ends temporary column layout before inspecting final page geometry and allowing print 2ms
+   ✓ repaginates a 5px bottom overflow with 7px reserved space and checks the new pages before printing 4ms
+   ✓ retries a small bottom overflow only once and refuses print if it persists 3ms
+   ✓ does not retry unrelated overflow: 'right' 5 px 2ms
+   ✓ does not retry unrelated overflow: 'bottom' 9 px 2ms
+   ✓ does not retry unrelated overflow: 'right' 1794 px 2ms
+   ✓ rejects text lost during bottom-reserve repagination 2ms
+   ✓ waits for retry images and refuses printing when they fail 2ms
+   × ignores a bottom-reserve retry finishing after the preview is closed 2ms
+     → expected "spy" to be called 2 times, but got 3 times
+   ✓ installs native sheet rules after successful pagination and removes them on close 2ms
+   ✓ does not install printable sheet rules when preview validation fails 3ms
+   ✓ retains a validated preview and retries after a native print exception from message 2ms
+   ✓ retains a validated preview and retries after a native print exception from keyboard 2ms
+   ✓ does not invoke native printing repeatedly or during composition inside the preview 2ms
+   ✓ refuses printing when table-cell text survives pagination but its explicit line break disappears 3ms
+   ✓ refuses printing when a rule crosses its neighboring text block 3ms
+   ✓ refuses printing when a image crosses its neighboring text block 2ms
+   ✓ blocks native printing if only a repeated header loses its br 6ms
+   ✓ blocks native printing if only a repeated header loses its hr 4ms
+   ✓ rejects a changed body colspan even when text, IDs and object order survive pagination 3ms
+   ✓ blocks printing if a shortened rowspan silently moves later content into the first column 3ms
+   ✓ answers a late parent connection without starting pagination until the snapshot arrives 1ms
+   ✓ acknowledges a received snapshot before resource waits and never starts it twice 2ms
+   ✓ reclaims resources created after closing a pending layout (resolve) 2ms
+   ✓ reclaims resources created after closing a pending layout (reject) 2ms
+ ✓ tests/print-preview-controls.test.ts (22 tests) 385ms
+ ✓ tests/preview-images.test.ts (16 tests) 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/print-preview-page.test.ts > stops and ignores a compacted reflow that completes after the preview is closed
+AssertionError: expected "spy" to be called 2 times, but got 3 times
+ ❯ tests/print-preview-page.test.ts:220:89
+    218|   await act(async()=>window.dispatchEvent(new MessageEvent('message',{…
+    219|   expect(calls.paginate).toHaveBeenCalledTimes(2);act(()=>root.unmount…
+    220|   await act(async()=>pending.resolve());expect(status()).toEqual([]);e…
+       |                                                                                         ^
+    221| });
+    222| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/print-preview-page.test.ts > ignores a bottom-reserve retry finishing after the preview is closed
+AssertionError: expected "spy" to be called 2 times, but got 3 times
+ ❯ tests/print-preview-page.test.ts:301:51
+    299|   await message('vdoc-preview-render');expect(calls.paginate).toHaveBe…
+    300|   act(()=>root.unmount());await act(async()=>pending.resolve());
+    301|   expect(status()).toEqual([]);expect(calls.stop).toHaveBeenCalledTime…
+       |                                                   ^
+    302| });
+    303| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 85 passed (87)
+   Start at  17:06:05
+   Duration  1.77s (transform 129ms, setup 21ms, collect 328ms, tests 644ms, environment 460ms, prepare 83ms)
+

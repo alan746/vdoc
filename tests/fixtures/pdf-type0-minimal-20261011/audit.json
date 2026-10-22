@@ -1,0 +1,404 @@
+{
+  "at": "2026-10-11T21:00:18.085613+00:00",
+  "applicationSha256": "0f63bebda54eef27f2beaf8bb2a476988d02ff966557f1e18d37887c70b26141",
+  "productChanged": false,
+  "pdfCount": 7,
+  "scope": "Embedded TrueType negative controls and isolated Typst browser feasibility. No accepted production PDF route.",
+  "type0": {
+    "pdfs": 4,
+    "glyphSource": "Actual embedded NotoSansHebrew TTF with explicit CIDToGIDMap/ToUnicode, bytes and CID entries checked",
+    "variants": {
+      "source-visual": {
+        "chromeFull": true,
+        "pdfjsFull": false,
+        "chromeWords": "11/11"
+      },
+      "source-logical": {
+        "chromeFull": false,
+        "pdfjsFull": false,
+        "chromeWords": "4/11"
+      },
+      "page-visual": {
+        "chromeFull": false,
+        "pdfjsFull": true,
+        "chromeWords": "11/11"
+      },
+      "source-annotated": {
+        "chromeFull": false,
+        "pdfjsFull": false,
+        "chromeWords": "4/11"
+      }
+    },
+    "raster": "Four pages pixel-identical at 900px; representative reviewed",
+    "arabic": "Minimal one-glyph-per-cluster guard rejected Noto Arabic letter decomposition before generation; not counted as accepted Arabic support.",
+    "tests": "6 artifact regressions passed"
+  },
+  "typst": {
+    "version": "0.7.0",
+    "licenseAsDeclared": "Apache-2.0",
+    "publicTarball": "https://registry.npmjs.org/@myriaddreamin/typst-ts-web-compiler/-/typst-ts-web-compiler-0.7.0.tgz",
+    "integrity": "registry SHA512 verified",
+    "runtime": "Real browser WASM, dummy filesystem, own QA text, three local fonts, no external requests while compiling",
+    "pdfs": 3,
+    "chromeFull": "0/3",
+    "pdfjsFull": "0/3",
+    "wordTests": "Not expanded after full-text failures",
+    "rendered": 3,
+    "visualReview": "Arabic render reviewed, renders retained; not a typography parity signoff",
+    "initialFailure": "Missing WASM import hook retained; configured local hook then compiled successfully",
+    "diagnosticsLimit": "Compiler warnings and loaded-font API were not separately retained; output Type0 fonts and embedded font streams verified; not a general engine verdict",
+    "tests": "4 artifact regressions passed",
+    "productionInstalled": false
+  },
+  "sources": [
+    {
+      "url": "https://mupdf.readthedocs.io/en/1.28.5/reference/javascript/types/Story.html",
+      "finding": "Story API marked only mutool run; not assumed available in browser WASM."
+    },
+    {
+      "url": "https://github.com/Myriad-Dreamin/typst.ts",
+      "finding": "Browser compiler exists; actual package tested locally instead of assuming output compatibility."
+    }
+  ],
+  "notRun": [
+    "Native Safari print",
+    "System IME candidate UI",
+    "Multi-page styled-document adapter",
+    "Fine-grained pointer/search/download coverage for rejected routes"
+  ],
+  "next": "Keep PDF compatibility open. Stop enumerating stream permutations; proceed with independent remaining native IME evidence, preserve all negative PDF controls.",
+  "files": [
+    {
+      "file": "output/pdf/type0-minimal-20261011/hebrew-page-visual.pdf",
+      "sha256": "9d7d17c4677c2de46e59c7c24c03bc50eeeea62bf7684f8469664ab19658cb4c"
+    },
+    {
+      "file": "output/pdf/type0-minimal-20261011/hebrew-source-annotated.pdf",
+      "sha256": "57ccd21d8aec74d5b3a983c28f620668aa0a7a78791d5006da33bad3b6adf20e"
+    },
+    {
+      "file": "output/pdf/type0-minimal-20261011/hebrew-source-logical.pdf",
+      "sha256": "50ecfc24c0b9fbac9fc381c4912b8212f064d345f5df97d0abf335b2b91a1227"
+    },
+    {
+      "file": "output/pdf/type0-minimal-20261011/hebrew-source-visual.pdf",
+      "sha256": "f071fa48b88d94384cfb15cc4a770156e915e823c6d37e5e82a611fdcfb12df5"
+    },
+    {
+      "file": "output/pdf/typst-browser-20261011/arabic.pdf",
+      "sha256": "435e08a09c2d336c6f74287cf14a9a4cdfaf7c17cc577cbf84d60ed7ed0e2129"
+    },
+    {
+      "file": "output/pdf/typst-browser-20261011/hebrew.pdf",
+      "sha256": "b2578879fe33b5bbd90eb820736c402fc4fab744028091e5e72261eb083f49a7"
+    },
+    {
+      "file": "output/pdf/typst-browser-20261011/hindi.pdf",
+      "sha256": "dbbc85d58fb7ab3ab56576da9f9eecad20003b447d9472e9587c12ab6b5e737f"
+    },
+    {
+      "file": "tests/fixtures/browser-pdf-20261011/fonts/NotoSansArabic-static.ttf",
+      "sha256": "4e51b6ab4196bb083b5dd473e1e6f68f4c82877375f346ecba396f9271142d6c"
+    },
+    {
+      "file": "tests/fixtures/browser-pdf-20261011/fonts/NotoSansDevanagari-static.ttf",
+      "sha256": "8c91b67bf7fdbf3136d05b42711d4d8d61e28f56de4bc5453cf631ef619b4645"
+    },
+    {
+      "file": "tests/fixtures/browser-pdf-20261011/fonts/NotoSansHebrew-static.ttf",
+      "sha256": "4bc68ea4ccec58a6df25ff9f5dc02d36f1bd25b0e2b4122d201f4073c547e189"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/arabic-cluster-guard.json",
+      "sha256": "a677a1228d54483548fc88c7588b51d498a273291d1bec690c23cb48ca108c6f"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/arabic-source.png",
+      "sha256": "b1b9c16b4e7c751d4061a795bc0bd99c517e1377038f3410c6ef929f4bcfed02"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/check-type0-annotated-chrome.cjs.snapshot",
+      "sha256": "1e1c5a389b735b571b3ec501409349ec0d292c0e7d1f11cbf10fa241907e6045"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/check-type0-annotated-pdfjs.cjs.snapshot",
+      "sha256": "8c8a37fe052fdc820301ba7275021da60a84d10c5bebaaefbb404c45c19ab307"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/check-type0-chrome.cjs.snapshot",
+      "sha256": "62521da037cdde76f06ba0426a1bedc35857981bdf644d51c86e8017eae94a7f"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/check-type0-pdfjs.cjs.snapshot",
+      "sha256": "b8215926757b6c94e799e5b38d17ca7bc1530c3afeee094e85235bfe869e6bb7"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/check-typst-chrome.cjs.snapshot",
+      "sha256": "a204a4c122fdfb0cc79084bbc2610f07b9f61c9d7ec58f314f89c624172930e2"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/check-typst-pdfjs.cjs.snapshot",
+      "sha256": "e22261389a303d0193b1324f0d9b50e224115704c8414a8d200e4ebb89eb029d"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/chrome-annotated.json",
+      "sha256": "f600afcbf98b72e73362f7d9f2e14f9fa475706fad5e5e43e749af1a368c9101"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/chrome-hebrew-page-visual.png",
+      "sha256": "c86b49855db3669ce8d53114a8296a571812b396a5b38af744e634762b1a5efb"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/chrome-hebrew-source-annotated.png",
+      "sha256": "88bd80d9eaf395f046f51771aa0b7291c204bb15e3ab70d338c410c844c1e607"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/chrome-hebrew-source-logical.png",
+      "sha256": "f9c77e43f853b5305603b276f5b9c02d6dd2d2969fe85d27f811d472d0c8d481"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/chrome-hebrew-source-visual.png",
+      "sha256": "1a27868bf20bc3ec7e765eb4e0325037e64f32ca26a816d52953a61eaf27898a"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/chrome.json",
+      "sha256": "73703dc115cfee99208a668220f4ef7f0ec5a1772665460d11e91d1c047d8312"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/generated-annotated.json",
+      "sha256": "1b6c7e599ed01e89808c918b2dfe5d966e2c660ec344ff80df52df1b7a1c0ad5"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/generated.json",
+      "sha256": "c1b9cd641e99f01a5a2f2eb9dd63355b12a2027f2602cfe6e39364b5ecb21a8d"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-annotated-source.png",
+      "sha256": "32d8f1c4687b150290484b42422805d3803a829e93bc5af5e274cb34211c77a9"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-page-visual-render.png",
+      "sha256": "8947ae55a731d196c0e1038a347b603f2ff3f05de7783a58df736d2f6c693676"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-page-visual.json",
+      "sha256": "ab267313a3dc4c5ca33506e116e63414953636f62ffe74d40513b79af676208c"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-annotated-render.png",
+      "sha256": "8947ae55a731d196c0e1038a347b603f2ff3f05de7783a58df736d2f6c693676"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-annotated.json",
+      "sha256": "aec790faf19520a60bcfa96424c7d6196d3d1aa818833b85e2bdc46993480828"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-logical-render.png",
+      "sha256": "8947ae55a731d196c0e1038a347b603f2ff3f05de7783a58df736d2f6c693676"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-logical.json",
+      "sha256": "a7c09a9adf6a79cc91bb15e435076a0c55fe4e5ff7df63958a0b399b2aa35a8a"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual-render.png",
+      "sha256": "8947ae55a731d196c0e1038a347b603f2ff3f05de7783a58df736d2f6c693676"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual.json",
+      "sha256": "a957b346a925c1e9d2f79a0b9846fbb38f0f7bb305d4884c2c7599c7534c9cca"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source.png",
+      "sha256": "32d8f1c4687b150290484b42422805d3803a829e93bc5af5e274cb34211c77a9"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/inspection.json",
+      "sha256": "e1f75f63c855fc2f2967d531eb7cbd0548d27f3dd083f886452c52547372c0c7"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-annotated.json",
+      "sha256": "eb96456057298cc7d5a276c3f6a484a7aadd56ba60ba809daebe0ddcaf08d403"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-hebrew-page-visual.png",
+      "sha256": "7879cebf2f12bbc8e64e8377a76fe5dc40edf2b97a2077867ba82729c478c3f4"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-hebrew-source-annotated.png",
+      "sha256": "7879cebf2f12bbc8e64e8377a76fe5dc40edf2b97a2077867ba82729c478c3f4"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-hebrew-source-logical.png",
+      "sha256": "7879cebf2f12bbc8e64e8377a76fe5dc40edf2b97a2077867ba82729c478c3f4"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-hebrew-source-visual.png",
+      "sha256": "7879cebf2f12bbc8e64e8377a76fe5dc40edf2b97a2077867ba82729c478c3f4"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs.json",
+      "sha256": "ea3a8e24b6d5a34dec40fa41fd6a97a97bca66ee0b209af7554836e01e3c2272"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/regression.log",
+      "sha256": "8f5599afe84ba82339a2f01754ee4e597186db489f4a89ba45a50f7333e3234c"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/render-comparison.json",
+      "sha256": "ca386ef4d98112ae5e9588903c1e78fa25ba7adb9f8ce58cc13a1ddb9f3bdf91"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/render-runtime-note.json",
+      "sha256": "133033b2baf4d3aa7d099c6078d8ab662ad47a586b38b5e558ee1cf41ea12bb1"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/test-type0-minimal.py.snapshot",
+      "sha256": "2be26de1086cc9e18e7d37a062c5390a14ffea9f580744412501765f271904d6"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/test-typst-probe.py.snapshot",
+      "sha256": "6147d0aaf0c3d7ae1589001afa769a826e2d6fb88be0812193d26049fe3e06c7"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/type0-annotated.cjs.snapshot",
+      "sha256": "1420d6a86cf6739c5b70b0d0f792e22ffce8f566da00966a3d692e02d1cee3d2"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/type0-minimal-browser.js.snapshot",
+      "sha256": "9c3b32c9366215ac802394f1044e158e6984017b6b59ee55c61fbd790bd70fe8"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/type0-minimal.cjs.snapshot",
+      "sha256": "5ffd3e03210dc73bfee7539b69f166145651094b9aaf12a2464578fe90614db4"
+    },
+    {
+      "file": "tests/fixtures/pdf-type0-minimal-20261011/typst-browser-probe.cjs.snapshot",
+      "sha256": "6e17588cb6befc9599fc1df3abd4bb828eda0b55f87b0421c9240937fcd7e246"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/arabic-render.png",
+      "sha256": "5893885c8f2aaa4ae70a2cf3ff47d0e3d0a3b775debe037c03225dfca5d0d8a5"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/arabic.json",
+      "sha256": "279456aa9d23c9b4c2477dc57609e2fffb535c181f092b439ecbe6822e29e4b4"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/arabic.typ",
+      "sha256": "da164f716f4bbc6201fadc3956db2559c7bfb08f5229ff8fac787385c371c7d7"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/chrome-arabic.png",
+      "sha256": "7ff4aeb5695377013bceb9ee7fb35a72eff77930ea95b9e77cea0551bdd7bb39"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/chrome-hebrew.png",
+      "sha256": "323fea2f016077cb11e568ee6f76c9f7fbf1be08b0d55339a6e1dacbd8604391"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/chrome-hindi.png",
+      "sha256": "43f3c662f1b0e600853849663f0a822eea0fe3fb73128519ba67445201a39fa5"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/chrome.json",
+      "sha256": "1e7ae8e4dd16cfecb710a0e54491afb122201b2a8d15351dd37b7c5f85c69b59"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/generation-first.json",
+      "sha256": "7c3c82388646b8f3f6f26ae66bed7067d4441b80f4bcb3ae0f4ee0b1373663d6"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/generation.json",
+      "sha256": "7d4a1261182860201efe2c9094e46be2196a6ee9d10bfefa883f62328dd345e9"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/hebrew-render.png",
+      "sha256": "f9672209f795accf6d11bb7c2009ad7a2a8b17bbba582fb9f5b2c9453b48bf15"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/hebrew.json",
+      "sha256": "c247df354c897876cbae8ad899116332bb6d07613f2301f214e9bdb74236c5d3"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/hebrew.typ",
+      "sha256": "4c1cb891a665ed9fc6d967e3a1223d513271ab96b541e73b19f3bc6d92f4acb7"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/hindi-render.png",
+      "sha256": "c8750c911af2761da7edf3498be1fe4e997aa6e361239e6263e6803f8aedd29e"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/hindi.json",
+      "sha256": "afac09f2f7cd440a5cd618b5201e0b03a8775b245cd7ee8bf3ed1f3d1fe66981"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/hindi.typ",
+      "sha256": "261ce99b1b60261d8ae941cb9aa15485ffda9be44d4da99813e5c45fd46e2394"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/inspection.json",
+      "sha256": "695eb981494f4085716e374a6273c4c7f8fc3c3fcc7623f3e6258c771b415001"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/pdfjs-arabic.png",
+      "sha256": "6b2649493ce450736a7a213ec9ad995f6916a57181d4ce360e32a6bc64b61f50"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/pdfjs-hebrew.png",
+      "sha256": "4342c671faaa1a52aaa7a3f9978862676054bfaabe2311ed7d10e4f1d6a72ed6"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/pdfjs-hindi.png",
+      "sha256": "e1428fa68585dee89adb6f1aef430c9b27d452cc5363e3aeea26fdb3411a1cd2"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/pdfjs.json",
+      "sha256": "17f3eb16f69b499da9589c337cf8733142a0501239dc2d80920c2b998c185f19"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/regression.log",
+      "sha256": "95dc659634b54294b327a90b971f1faf992f9915fdc77343ce40998278f5e2c0"
+    },
+    {
+      "file": "tests/fixtures/typst-browser-20261011/runner-first.cjs",
+      "sha256": "b4e5ac069aa028fca598d8c2ae92488fd9f4e20220372f3d6f4f08b91371a7df"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package/README.md",
+      "sha256": "3295a2993866adcb249cbe33f0cf737d9ef534212f4750bbfbeac712fb78ec11"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package/package.json",
+      "sha256": "e3fd9ca69968a67f7fe16b6e588eaec3e86fff2826f70553a6fb8889b262da18"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package/pkg/typst_ts_web_compiler.d.ts",
+      "sha256": "3ab44c13ea19bdb8347e537bebcbba26260af3a925c49659f2f987acfb887970"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package/pkg/typst_ts_web_compiler.mjs",
+      "sha256": "96735c6da3dd220255ba368e34c695227fc67e0b4104e7a8e039dd9bc2fc5312"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package/pkg/typst_ts_web_compiler_bg.wasm",
+      "sha256": "1fc968438a672366dfec39c96c842c26ed29caff4eb1bcaab19a6c60867de5fd"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package/pkg/typst_ts_web_compiler_bg.wasm.d.ts",
+      "sha256": "708d6892b2b82cfc9f71919c5f4f419f115a2fd2e6c7fba791c8ef20dd53b961"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package/pkg/wasm-pack-shim.mjs",
+      "sha256": "0023261749a0ad3276dc7718d163d9967d9e5cf8b882a4ea60173e5cd8cac921"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package-metadata.json",
+      "sha256": "47544ab2e8d3d367478835d02ebdb217994dc428bdcfcdf697769d7a4355b427"
+    },
+    {
+      "file": "tmp/typst-qa-20261011/package.tgz",
+      "sha256": "07aa4e9a92632eba4898df1e09c9b91456e3c0c6e0ac8d44375979f2375e4cca"
+    }
+  ]
+}

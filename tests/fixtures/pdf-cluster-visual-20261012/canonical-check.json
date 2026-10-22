@@ -1,0 +1,77 @@
+{
+  "unicodeStandard": "https://www.unicode.org/reports/tr15/tr15-58.html",
+  "scope": "Canonical-equivalence diagnostic only. Original exact mismatches remain recorded; no NFKC, letters removed, word reordering or internal-space deletion. G3 remains open.",
+  "controls": [
+    {
+      "name": "canonical accent",
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "combining order",
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "lost mark",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "mark on another letter",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "word order",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "internal space inserted",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "space deleted",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "different Yeh",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "compatibility radical",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "compatibility width",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "letter missing",
+      "expected": false,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "label": "arabic-marked",
+      "chromeExact": false,
+      "chromeCanonical": true,
+      "pdfjsExact": true,
+      "pdfjsCanonical": true
+    },
+    {
+      "label": "hebrew-marked",
+      "chromeExact": false,
+      "chromeCanonical": true,
+      "pdfjsExact": true,
+      "pdfjsCanonical": true
+    }
+  ]
+}

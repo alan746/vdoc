@@ -1,0 +1,11 @@
+test_embedded_direct_and_native_scales (__main__.ActualPdfRegression.test_embedded_direct_and_native_scales) ... ok
+test_five_pages_without_hindi_or_cjk_are_rejected (__main__.ActualPdfRegression.test_five_pages_without_hindi_or_cjk_are_rejected) ... ok
+test_five_visible_pages_with_missing_cjk_are_rejected (__main__.ActualPdfRegression.test_five_visible_pages_with_missing_cjk_are_rejected) ... ok
+test_inventory_alone_does_not_prove_hindi_order (__main__.ActualPdfRegression.test_inventory_alone_does_not_prove_hindi_order) ... ok
+test_original_native_baseline_is_not_a_multilingual_pass (__main__.ActualPdfRegression.test_original_native_baseline_is_not_a_multilingual_pass) ... ok
+test_original_scale_regression_still_rejected (__main__.ActualPdfRegression.test_original_scale_regression_still_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.577s
+
+OK

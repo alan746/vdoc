@@ -1,0 +1,30 @@
+environment {"version":"154.0.8037.98","url":"http://127.0.0.1:4176/tools/quota-workspace/index.html?qaBucket=vdoc-qa-11d754ae-4f6c-453a-a065-b93e1a1210c9","profile":"new ephemeral Chrome profile; no personal profile or existing window attached"}
+baseline-persisted {"id":"9e0383a1-7d7b-4ffb-9c15-9f88fdc70bf1"}
+initial-clean-restore {"url":"http://127.0.0.1:4176/tools/quota-workspace/index.html?qaBucket=vdoc-qa-95a44e22-a5a5-4d0e-ac2d-a59316ef5348#document=6995c82e-28da-45aa-a7d5-3795d7329675","fullContentEqual":true}
+native-bucket-filled {"bucket":"vdoc-qa-11d754ae-4f6c-453a-a065-b93e1a1210c9","bytes":8261632}
+native-save-error-proved {"name":"QuotaExceededError","oldContentEqual":true,"newTitleInActualBackup":true}
+no-unprompted-write-loop {"observationsMs":1400,"transactions":13}
+failed-navigation-keeps-editor {}
+new-failure-visible {"persistentError":"Local storage is full. Download a backup of any unsaved changes, free some space, then try again.","documents":2}
+copy-failure-visible {"persistentError":"Local storage is full. Download a backup of any unsaved changes, free some space, then try again.","documents":2}
+import-failure-visible {"persistentError":"Local storage is full. Download a backup of any unsaved changes, free some space, then try again.","documents":2}
+failed-actions-entire-database-unchanged {}
+retry-counts-control-intact {}
+actual-reload-title-content-equal {}
+clean-restored-subsequent-edit-reloads {}
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForEvent: Timeout 30000ms exceeded while waiting for event "download"
+=========================== logs ===========================
+waiting for event "download"
+============================================================
+    at download (/Users/ph.qian/Desktop/Vdoc/tmp/quota-browser/acceptance.cjs:8:55)
+    at report (/Users/ph.qian/Desktop/Vdoc/tmp/quota-browser/acceptance.cjs:13:36)
+    at /Users/ph.qian/Desktop/Vdoc/tmp/quota-browser/acceptance.cjs:32:7 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

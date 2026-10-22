@@ -1,0 +1,3530 @@
+{
+  "at": "2026-10-11T20:57:42.211Z",
+  "browser": "154.0.8037.98",
+  "scope": "Official PDF.js PDFPageView canvas/text layer; DOM Range full selection read through Selection.toString, no clipboard or Ctrl-C event. Separate from PDFium plugin and raw getTextContent concatenation. Not an arbitrary third-party viewer or assistive-technology signoff.",
+  "requests": [
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/images/loading-icon.gif",
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/images/loading-icon.gif"
+  ],
+  "results": [
+    {
+      "label": "hebrew",
+      "mode": "typst-wasm",
+      "file": "output/pdf/typst-browser-20261011/hebrew.pdf",
+      "pdfSha256": "b2578879fe33b5bbd90eb820736c402fc4fab744028091e5e72261eb083f49a7",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשָׁלוֹם עוֹלָם 123",
+      "selectedText": "QA embedded font 123\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nםָל לֹוום עֹוולָל ש\"123",
+      "textContent": "QA embedded font 123מסמך בדיקת עולם שלוםטבלה כתיבה עבריתםָל לֹוום עֹוולָל ש\"123",
+      "rawText": "QA embedded font 123\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nםָל לֹוום עֹוולָל ש\"123",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 77.046875,
+            "width": 237.7679443359375,
+            "height": 22
+          }
+        },
+        {
+          "text": "מסמך בדיקת עולם שלום",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "מסמך",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "מסמך",
+          "dir": "rtl",
+          "rect": {
+            "x": 525.71875,
+            "y": 141.171875,
+            "width": 54.70330810546875,
+            "height": 22
+          }
+        },
+        {
+          "text": " בדיקת",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 580.34375,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "בדיקת",
+          "dir": "rtl",
+          "rect": {
+            "x": 586.3125,
+            "y": 141.171875,
+            "width": 59.603759765625,
+            "height": 22
+          }
+        },
+        {
+          "text": " עולם",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 645.9375,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "עולם",
+          "dir": "rtl",
+          "rect": {
+            "x": 651.890625,
+            "y": 141.171875,
+            "width": 46.21142578125,
+            "height": 22
+          }
+        },
+        {
+          "text": " שלום",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 698.015625,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלום",
+          "dir": "rtl",
+          "rect": {
+            "x": 703.96875,
+            "y": 141.171875,
+            "width": 49.0064697265625,
+            "height": 22
+          }
+        },
+        {
+          "text": "טבלה כתיבה עברית",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "טבלה",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "טבלה",
+          "dir": "rtl",
+          "rect": {
+            "x": 574.078125,
+            "y": 183.28125,
+            "width": 51.81561279296875,
+            "height": 22
+          }
+        },
+        {
+          "text": " כתיבה",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 625.84375,
+            "y": 183.28125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "כתיבה",
+          "dir": "rtl",
+          "rect": {
+            "x": 631.796875,
+            "y": 183.28125,
+            "width": 57.55291748046875,
+            "height": 22
+          }
+        },
+        {
+          "text": " עברית",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 689.359375,
+            "y": 183.28125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "עברית",
+          "dir": "rtl",
+          "rect": {
+            "x": 695.328125,
+            "y": 183.28125,
+            "width": 57.7078857421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "םָל לֹוום עֹוולָל ש\"",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ם",
+          "dir": "rtl",
+          "rect": {
+            "x": 651.890625,
+            "y": 225.40625,
+            "width": 15.421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ָל ל",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ָל",
+          "dir": "rtl",
+          "rect": {
+            "x": 669.203125,
+            "y": 225.40625,
+            "width": 11.734375,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 666.890625,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ל",
+          "dir": "rtl",
+          "rect": {
+            "x": 666.890625,
+            "y": 225.40625,
+            "width": 11.734375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ֹוו",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ֹו",
+          "dir": "rtl",
+          "rect": {
+            "x": 680.390625,
+            "y": 225.40625,
+            "width": 7.046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ו",
+          "dir": "rtl",
+          "rect": {
+            "x": 678.40625,
+            "y": 225.40625,
+            "width": 7.046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ם ע",
+          "dir": "rtl",
+          "rect": {
+            "x": 685,
+            "y": 225.40625,
+            "width": 34.0435791015625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ֹוו",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ֹו",
+          "dir": "rtl",
+          "rect": {
+            "x": 720.890625,
+            "y": 225.40625,
+            "width": 7.046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ו",
+          "dir": "rtl",
+          "rect": {
+            "x": 718.828125,
+            "y": 225.40625,
+            "width": 7.046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ל",
+          "dir": "rtl",
+          "rect": {
+            "x": 725.40625,
+            "y": 225.40625,
+            "width": 11.734375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ָל ש\"",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ָל",
+          "dir": "rtl",
+          "rect": {
+            "x": 741.921875,
+            "y": 225.40625,
+            "width": 11.734375,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 736.921875,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ש\"",
+          "dir": "rtl",
+          "rect": {
+            "x": 748.75,
+            "y": 225.40625,
+            "width": 16.066650390625,
+            "height": 22
+          }
+        },
+        {
+          "text": "123",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "123",
+          "dir": "ltr",
+          "rect": {
+            "x": 607.90625,
+            "y": 225.40625,
+            "width": 38.0291748046875,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": false,
+      "rawMatchCollapsed": false,
+      "screenshot": "tests/fixtures/typst-browser-20261011/pdfjs-hebrew.png",
+      "errors": []
+    },
+    {
+      "label": "arabic",
+      "mode": "typst-wasm",
+      "file": "output/pdf/typst-browser-20261011/arabic.pdf",
+      "pdfSha256": "435e08a09c2d336c6f74287cf14a9a4cdfaf7c17cc577cbf84d60ed7ed0e2129",
+      "source": "QA embedded font 123\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ 123",
+      "selectedText": "QA embedded font 123\nة\nلةيمي جج ة ةييجالعرب ة ة غعالل\nكميعلي السلام العالمجب اجبجمرٌة \nة\nةَللييِم مَل ججُة  ة ةَلَّي ييِم جبَلرَلعْل لاُة  ة ةَل غعُةَّيلال123",
+      "textContent": "QA embedded font 123ةلةيمي جج ة ةييجالعرب ة ة غعاللكميعلي السلام العالمجب اجبجمرٌة ةةَللييِم مَل ججُة  ة ةَلَّي ييِم جبَلرَلعْل لاُة  ة ةَل غعُةَّيلال123",
+      "rawText": "QA embedded font 123\nة\nلةيمي جج ة ةييجالعرب ة ة غعالل\nكميعلي السلام العالمجب اجبجمرٌة \nة\nةَللييِم مَل ججُة  ة ةَلَّي ييِم جبَلرَلعْل لاُة  ة ةَل غعُةَّيلال123",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 77.046875,
+            "width": 238.77459716796875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 597.578125,
+            "y": 139.828125,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": "لة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "لة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "لة",
+          "dir": "rtl",
+          "rect": {
+            "x": 595.359375,
+            "y": 141.171875,
+            "width": 17.29962158203125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 613.546875,
+            "y": 141.28125,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "مي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "مي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "مي",
+          "dir": "rtl",
+          "rect": {
+            "x": 612.671875,
+            "y": 141.171875,
+            "width": 20.928466796875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 633.625,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 638.078125,
+            "y": 141.171875,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 633.625,
+            "y": 141.171875,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 646.5625,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 654.515625,
+            "y": 139.828125,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 646.5625,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 652.28125,
+            "y": 141.171875,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 663.796875,
+            "y": 141.28125,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 663,
+            "y": 141.171875,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 671.8125,
+            "y": 141.28125,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "العرب",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "العرب",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "العرب",
+          "dir": "rtl",
+          "rect": {
+            "x": 671.1875,
+            "y": 141.171875,
+            "width": 36.38848876953125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 707.546875,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 715.484375,
+            "y": 139.828125,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 707.546875,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 713.265625,
+            "y": 141.171875,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": " غ",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 723.984375,
+            "y": 141.171875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "غ",
+          "dir": "rtl",
+          "rect": {
+            "x": 728.359375,
+            "y": 142.296875,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "عالل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "rtl",
+          "rect": {
+            "x": 723.984375,
+            "y": 141.171875,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "الل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "الل",
+          "dir": "rtl",
+          "rect": {
+            "x": 735.421875,
+            "y": 141.171875,
+            "width": 17.560546875,
+            "height": 22
+          }
+        },
+        {
+          "text": "كم",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "كم",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "كم",
+          "dir": "rtl",
+          "rect": {
+            "x": 532.625,
+            "y": 183.28125,
+            "width": 23.5535888671875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 557.09375,
+            "y": 183.40625,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "علي السلام العالم",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "علي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "علي",
+          "dir": "rtl",
+          "rect": {
+            "x": 556.21875,
+            "y": 183.28125,
+            "width": 25.879638671875,
+            "height": 22
+          }
+        },
+        {
+          "text": " السلام",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 582.09375,
+            "y": 183.28125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "السلام",
+          "dir": "rtl",
+          "rect": {
+            "x": 587.8125,
+            "y": 183.28125,
+            "width": 53.485107421875,
+            "height": 22
+          }
+        },
+        {
+          "text": " العالم",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 641.25,
+            "y": 183.28125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "العالم",
+          "dir": "rtl",
+          "rect": {
+            "x": 646.96875,
+            "y": 183.28125,
+            "width": 48.08404541015625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 695.71875,
+            "y": 183.40625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ب ا",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ب",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ب",
+          "dir": "rtl",
+          "rect": {
+            "x": 695.078125,
+            "y": 183.28125,
+            "width": 14.078125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ا",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 700.953125,
+            "y": 183.28125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ا",
+          "dir": "rtl",
+          "rect": {
+            "x": 706.671875,
+            "y": 183.28125,
+            "width": 6.4375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 715.171875,
+            "y": 183.40625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "بجمر",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ب",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ب",
+          "dir": "rtl",
+          "rect": {
+            "x": 713.109375,
+            "y": 183.28125,
+            "width": 14.078125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 720.65625,
+            "y": 183.28125,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "مر",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "مر",
+          "dir": "rtl",
+          "rect": {
+            "x": 732.71875,
+            "y": 183.28125,
+            "width": 20.27532958984375,
+            "height": 22
+          }
+        },
+        {
+          "text": "",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ٌة ",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ٌة ",
+          "dir": "rtl",
+          "rect": {
+            "x": 596.546875,
+            "y": 219.453125,
+            "width": 13.828125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 597.578125,
+            "y": 223.9375,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 595.359375,
+            "y": 225.40625,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "rtl",
+          "rect": {
+            "x": 605.671875,
+            "y": 219.78125,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ل",
+          "dir": "rtl",
+          "rect": {
+            "x": 606.078125,
+            "y": 225.40625,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 613.546875,
+            "y": 225.515625,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 612.671875,
+            "y": 225.40625,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ِم",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ِم",
+          "dir": "rtl",
+          "rect": {
+            "x": 624.015625,
+            "y": 225.84375,
+            "width": 8.953125,
+            "height": 22
+          }
+        },
+        {
+          "text": " م",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " م",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 620.84375,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "م",
+          "dir": "rtl",
+          "rect": {
+            "x": 620.84375,
+            "y": 225.40625,
+            "width": 8.953125,
+            "height": 22
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "rtl",
+          "rect": {
+            "x": 633.703125,
+            "y": 227.765625,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 633.625,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 638.078125,
+            "y": 225.40625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 633.625,
+            "y": 225.40625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ُة ",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ُة ",
+          "dir": "rtl",
+          "rect": {
+            "x": 653.71875,
+            "y": 219.453125,
+            "width": 13.828125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 646.5625,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 654.515625,
+            "y": 223.9375,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 646.5625,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 652.28125,
+            "y": 225.40625,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "rtl",
+          "rect": {
+            "x": 663.328125,
+            "y": 224.84375,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "َّي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َّي",
+          "dir": "rtl",
+          "rect": {
+            "x": 663.484375,
+            "y": 229.328125,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": " ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 663,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 663.796875,
+            "y": 225.515625,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ي",
+          "dir": "rtl",
+          "rect": {
+            "x": 663,
+            "y": 225.40625,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ِم",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ِم",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ِم",
+          "dir": "rtl",
+          "rect": {
+            "x": 670.390625,
+            "y": 229.671875,
+            "width": 8.953125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ج",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 671.1875,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ج",
+          "dir": "rtl",
+          "rect": {
+            "x": 671.8125,
+            "y": 225.515625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ب",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ب",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ب",
+          "dir": "rtl",
+          "rect": {
+            "x": 671.1875,
+            "y": 225.40625,
+            "width": 14.078125,
+            "height": 22
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "rtl",
+          "rect": {
+            "x": 676.421875,
+            "y": 227.765625,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ر",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ر",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ر",
+          "dir": "rtl",
+          "rect": {
+            "x": 676.421875,
+            "y": 225.40625,
+            "width": 8.984375,
+            "height": 22
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "rtl",
+          "rect": {
+            "x": 687.625,
+            "y": 226.40625,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "rtl",
+          "rect": {
+            "x": 685.15625,
+            "y": 225.40625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ْل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ْل",
+          "dir": "rtl",
+          "rect": {
+            "x": 696.671875,
+            "y": 219.78125,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": " لا",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 696.59375,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ل",
+          "dir": "rtl",
+          "rect": {
+            "x": 696.59375,
+            "y": 225.40625,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ا",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ا",
+          "dir": "rtl",
+          "rect": {
+            "x": 702.3125,
+            "y": 225.40625,
+            "width": 6.4375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ُة ",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ُة ",
+          "dir": "rtl",
+          "rect": {
+            "x": 714.6875,
+            "y": 219.453125,
+            "width": 13.828125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 707.546875,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 715.484375,
+            "y": 223.9375,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 707.546875,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ة",
+          "dir": "rtl",
+          "rect": {
+            "x": 713.265625,
+            "y": 225.40625,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َل",
+          "dir": "rtl",
+          "rect": {
+            "x": 726.203125,
+            "y": 222.03125,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": " غ",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " غ",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 723.984375,
+            "y": 225.40625,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "غ",
+          "dir": "rtl",
+          "rect": {
+            "x": 728.359375,
+            "y": 226.515625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ع",
+          "dir": "rtl",
+          "rect": {
+            "x": 723.984375,
+            "y": 225.40625,
+            "width": 12.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ُة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ُة",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ُة",
+          "dir": "rtl",
+          "rect": {
+            "x": 734.390625,
+            "y": 215.40625,
+            "width": 7.71875,
+            "height": 22
+          }
+        },
+        {
+          "text": "َّي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َّي",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "َّي",
+          "dir": "rtl",
+          "rect": {
+            "x": 734.859375,
+            "y": 219.78125,
+            "width": 14.09375,
+            "height": 22
+          }
+        },
+        {
+          "text": "لال",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ل",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ل",
+          "dir": "rtl",
+          "rect": {
+            "x": 735.421875,
+            "y": 225.40625,
+            "width": 10.453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ال",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ال",
+          "dir": "rtl",
+          "rect": {
+            "x": 742.015625,
+            "y": 225.40625,
+            "width": 10.957763671875,
+            "height": 22
+          }
+        },
+        {
+          "text": "123",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "123",
+          "dir": "ltr",
+          "rect": {
+            "x": 551.921875,
+            "y": 225.40625,
+            "width": 37.76507568359375,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": false,
+      "rawMatchCollapsed": false,
+      "screenshot": "tests/fixtures/typst-browser-20261011/pdfjs-arabic.png",
+      "errors": []
+    },
+    {
+      "label": "hindi",
+      "mode": "typst-wasm",
+      "file": "output/pdf/typst-browser-20261011/hindi.pdf",
+      "pdfSha256": "dbbc85d58fb7ab3ab56576da9f9eecad20003b447d9472e9587c12ab6b5e737f",
+      "source": "QA embedded font 123\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nहिन्दी भाषा 123",
+      "selectedText": "QA embedded font 123\nहि\u0010न् दी\u0013 हिं \u0010\u0015 दी\u0013 भा\u0017षा\u0017 में \u001a दीस् ता\u0017वे\u001eज़ लि!खना\u0017।दु\nनिनाया\u0017 नामेंस् ता\u001e लि(क्षा\u0017 क्षा नि*या प्रा \u0017र्थ - ना\u0017।\nहि\u0010न् दी\u0013 भा\u0017षा\u0017 123",
+      "textContent": "QA embedded font 123हि\u0010न् दी\u0013 हिं \u0010\u0015 दी\u0013 भा\u0017षा\u0017 में \u001a दीस् ता\u0017वे\u001eज़ लि!खना\u0017।दुनिनाया\u0017 नामेंस् ता\u001e लि(क्षा\u0017 क्षा नि*या प्रा \u0017र्थ - ना\u0017।हि\u0010न् दी\u0013 भा\u0017षा\u0017 123",
+      "rawText": "QA embedded font 123\nहि\u0010न् दी\u0013 हिं \u0010\u0015 दी\u0013 भा\u0017षा\u0017 में \u001a दीस् ता\u0017वे\u001eज़ लि!खना\u0017।दु\nनिनाया\u0017 नामेंस् ता\u001e लि(क्षा\u0017 क्षा नि*या प्रा \u0017र्थ - ना\u0017।\nहि\u0010न् दी\u0013 भा\u0017षा\u0017 123",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 76.265625,
+            "width": 241.66864013671875,
+            "height": 22
+          }
+        },
+        {
+          "text": "हि\u0010न् दी\u0013 हिं \u0010\u0015 दी\u0013 भा\u0017षा\u0017 में \u001a दीस् ता\u0017वे\u001eज़ लि!खना\u0017।",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "हि\u0010",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "हि\u0010",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 138.359375,
+            "width": 17.38995361328125,
+            "height": 22
+          }
+        },
+        {
+          "text": "न्",
+          "dir": "ltr",
+          "rect": {
+            "x": 96.40625,
+            "y": 138.359375,
+            "width": 11.296875,
+            "height": 22
+          }
+        },
+        {
+          "text": " दी\u0013",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 96.40625,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "दी\u0013",
+          "dir": "ltr",
+          "rect": {
+            "x": 103.15625,
+            "y": 138.359375,
+            "width": 17.384033203125,
+            "height": 22
+          }
+        },
+        {
+          "text": " हिं \u0010\u0015",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " हिं",
+          "dir": "ltr",
+          "rect": {
+            "x": 126.265625,
+            "y": 138.359375,
+            "width": 23.28125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 120.546875,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "\u0010\u0015",
+          "dir": "ltr",
+          "rect": {
+            "x": 126.265625,
+            "y": 138.359375,
+            "width": 11.685409545898438,
+            "height": 22
+          }
+        },
+        {
+          "text": " दी\u0013",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 137.9375,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "दी\u0013",
+          "dir": "ltr",
+          "rect": {
+            "x": 143.65625,
+            "y": 138.359375,
+            "width": 17.384033203125,
+            "height": 22
+          }
+        },
+        {
+          "text": " भा\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 161.03125,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "भा\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 166.75,
+            "y": 138.359375,
+            "width": 21.175247192382812,
+            "height": 22
+          }
+        },
+        {
+          "text": "षा\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "षा\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 187.875,
+            "y": 138.359375,
+            "width": 18.418182373046875,
+            "height": 22
+          }
+        },
+        {
+          "text": " में \u001a",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " में",
+          "dir": "ltr",
+          "rect": {
+            "x": 212.015625,
+            "y": 138.359375,
+            "width": 18.859375,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 206.296875,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "\u001a",
+          "dir": "ltr",
+          "rect": {
+            "x": 212.015625,
+            "y": 138.359375,
+            "width": 7.328125,
+            "height": 22
+          }
+        },
+        {
+          "text": " दी",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 206.296875,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "दी",
+          "dir": "ltr",
+          "rect": {
+            "x": 230.90625,
+            "y": 138.359375,
+            "width": 11.684417724609375,
+            "height": 22
+          }
+        },
+        {
+          "text": "स्",
+          "dir": "ltr",
+          "rect": {
+            "x": 242.578125,
+            "y": 138.359375,
+            "width": 14.96875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ता\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 242.578125,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ता\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 251.15625,
+            "y": 138.359375,
+            "width": 18.24810791015625,
+            "height": 22
+          }
+        },
+        {
+          "text": "वे\u001e",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "वे\u001e",
+          "dir": "ltr",
+          "rect": {
+            "x": 269.421875,
+            "y": 138.359375,
+            "width": 19.390625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ज़",
+          "dir": "ltr",
+          "rect": {
+            "x": 281.640625,
+            "y": 138.359375,
+            "width": 16.3125,
+            "height": 22
+          }
+        },
+        {
+          "text": " लि!",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 269.421875,
+            "y": 138.359375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "लि!",
+          "dir": "ltr",
+          "rect": {
+            "x": 303.640625,
+            "y": 138.359375,
+            "width": 20.536102294921875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ख",
+          "dir": "ltr",
+          "rect": {
+            "x": 324.28125,
+            "y": 138.359375,
+            "width": 17.4375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ना\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "ना\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 342.3125,
+            "y": 138.359375,
+            "width": 17.913116455078125,
+            "height": 22
+          }
+        },
+        {
+          "text": "।",
+          "dir": "ltr",
+          "rect": {
+            "x": 360.171875,
+            "y": 138.359375,
+            "width": 10.5,
+            "height": 22
+          }
+        },
+        {
+          "text": "दुनिनाया\u0017 नामेंस् ता\u001e लि(क्षा\u0017 क्षा नि*या प्रा \u0017र्थ - ना\u0017।",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "दु",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 178.453125,
+            "width": 11.515625,
+            "height": 22
+          }
+        },
+        {
+          "text": "निना",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "निना",
+          "dir": "ltr",
+          "rect": {
+            "x": 90.6875,
+            "y": 178.453125,
+            "width": 17.913055419921875,
+            "height": 22
+          }
+        },
+        {
+          "text": "या\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "या\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 108.5625,
+            "y": 178.453125,
+            "width": 18.461036682128906,
+            "height": 22
+          }
+        },
+        {
+          "text": " ना",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 127.0625,
+            "y": 178.453125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ना",
+          "dir": "ltr",
+          "rect": {
+            "x": 132.765625,
+            "y": 178.453125,
+            "width": 12.21343994140625,
+            "height": 22
+          }
+        },
+        {
+          "text": "में",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "में",
+          "dir": "ltr",
+          "rect": {
+            "x": 145,
+            "y": 178.453125,
+            "width": 12.75,
+            "height": 22
+          }
+        },
+        {
+          "text": "स्",
+          "dir": "ltr",
+          "rect": {
+            "x": 158.09375,
+            "y": 178.453125,
+            "width": 14.96875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ता\u001e",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 145,
+            "y": 178.453125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ता\u001e",
+          "dir": "ltr",
+          "rect": {
+            "x": 166.671875,
+            "y": 178.453125,
+            "width": 12.54693603515625,
+            "height": 22
+          }
+        },
+        {
+          "text": " लि(",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 179.21875,
+            "y": 178.453125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "लि(",
+          "dir": "ltr",
+          "rect": {
+            "x": 184.9375,
+            "y": 178.453125,
+            "width": 20.8731689453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "क्षा\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "क्षा",
+          "dir": "ltr",
+          "rect": {
+            "x": 205.578125,
+            "y": 178.453125,
+            "width": 22.484375,
+            "height": 22
+          }
+        },
+        {
+          "text": "\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 205.578125,
+            "y": 178.453125,
+            "width": 7.328125,
+            "height": 22
+          }
+        },
+        {
+          "text": " क्षा",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " क्षा",
+          "dir": "ltr",
+          "rect": {
+            "x": 232.8125,
+            "y": 178.453125,
+            "width": 28.609375,
+            "height": 22
+          }
+        },
+        {
+          "text": " नि*",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 211.296875,
+            "y": 178.453125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "नि*",
+          "dir": "ltr",
+          "rect": {
+            "x": 248.53125,
+            "y": 178.453125,
+            "width": 17.6383056640625,
+            "height": 22
+          }
+        },
+        {
+          "text": "या",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "या",
+          "dir": "ltr",
+          "rect": {
+            "x": 266.40625,
+            "y": 178.453125,
+            "width": 12.761474609375,
+            "height": 22
+          }
+        },
+        {
+          "text": " प्रा \u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " प्रा",
+          "dir": "ltr",
+          "rect": {
+            "x": 284.90625,
+            "y": 178.453125,
+            "width": 24.953125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 279.1875,
+            "y": 178.453125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 284.90625,
+            "y": 178.453125,
+            "width": 7.328125,
+            "height": 22
+          }
+        },
+        {
+          "text": "र्थ -",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "र्थ",
+          "dir": "ltr",
+          "rect": {
+            "x": 303.078125,
+            "y": 178.453125,
+            "width": 14.203125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 290.625,
+            "y": 178.453125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "-",
+          "dir": "ltr",
+          "rect": {
+            "x": 303.078125,
+            "y": 178.453125,
+            "width": 7.328125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ना\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 290.625,
+            "y": 178.453125,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "ना\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 317.140625,
+            "y": 178.453125,
+            "width": 17.913116455078125,
+            "height": 22
+          }
+        },
+        {
+          "text": "।",
+          "dir": "ltr",
+          "rect": {
+            "x": 335.078125,
+            "y": 178.453125,
+            "width": 10.5,
+            "height": 22
+          }
+        },
+        {
+          "text": "हि\u0010न् दी\u0013 भा\u0017षा\u0017 123",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "हि\u0010",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "हि\u0010",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 218.546875,
+            "width": 17.38995361328125,
+            "height": 22
+          }
+        },
+        {
+          "text": "न्",
+          "dir": "ltr",
+          "rect": {
+            "x": 96.40625,
+            "y": 218.546875,
+            "width": 11.296875,
+            "height": 22
+          }
+        },
+        {
+          "text": " दी\u0013",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 96.40625,
+            "y": 218.546875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "दी\u0013",
+          "dir": "ltr",
+          "rect": {
+            "x": 103.15625,
+            "y": 218.546875,
+            "width": 17.384033203125,
+            "height": 22
+          }
+        },
+        {
+          "text": " भा\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 120.546875,
+            "y": 218.546875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "भा\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 126.265625,
+            "y": 218.546875,
+            "width": 21.175247192382812,
+            "height": 22
+          }
+        },
+        {
+          "text": "षा\u0017",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "षा\u0017",
+          "dir": "ltr",
+          "rect": {
+            "x": 147.46875,
+            "y": 218.546875,
+            "width": 18.418182373046875,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 165.875,
+            "y": 218.546875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "123",
+          "dir": "ltr",
+          "rect": {
+            "x": 171.59375,
+            "y": 218.546875,
+            "width": 42.17939758300781,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": false,
+      "rawMatchCollapsed": false,
+      "screenshot": "tests/fixtures/typst-browser-20261011/pdfjs-hindi.png",
+      "errors": []
+    }
+  ]
+}

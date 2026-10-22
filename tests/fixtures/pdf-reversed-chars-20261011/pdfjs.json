@@ -1,0 +1,205 @@
+{
+  "at": "2026-10-11T23:14:04.314Z",
+  "browser": "154.0.8037.98",
+  "scope": "Official PDF.js PDFPageView canvas/text layer; DOM Range full selection read through Selection.toString, no clipboard or Ctrl-C event. Separate from PDFium plugin and raw getTextContent concatenation. Not an arbitrary third-party viewer or assistive-technology signoff.",
+  "requests": [
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs"
+  ],
+  "results": [
+    {
+      "label": "hebrew-source-reversed",
+      "mode": "source-reversed",
+      "file": "output/pdf/reversed-chars-20261011/hebrew-source-reversed.pdf",
+      "pdfSha256": "2363e8958c6a2139a690e60c4057d4f692d9bb64116e8e7e250ac0054ffe8f1e",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "selectedText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+      "textContent": "QA embedded font 123שלוםעולםבדיקתמסמךעבריתכתיבהטבלה",
+      "rawText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 109.390625,
+            "width": 237.83172607421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלוםעולםבדיקתמסמך",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "שלום",
+          "dir": "rtl",
+          "rect": {
+            "x": 703.96875,
+            "y": 171.390625,
+            "width": 49.0064697265625,
+            "height": 22
+          }
+        },
+        {
+          "text": "עולם",
+          "dir": "rtl",
+          "rect": {
+            "x": 651.8125,
+            "y": 171.390625,
+            "width": 46.21142578125,
+            "height": 22
+          }
+        },
+        {
+          "text": "בדיקת",
+          "dir": "rtl",
+          "rect": {
+            "x": 586.3125,
+            "y": 171.390625,
+            "width": 59.603759765625,
+            "height": 22
+          }
+        },
+        {
+          "text": "מסמך",
+          "dir": "rtl",
+          "rect": {
+            "x": 525.640625,
+            "y": 171.390625,
+            "width": 54.70330810546875,
+            "height": 22
+          }
+        },
+        {
+          "text": "עבריתכתיבהטבלה",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "עברית",
+          "dir": "rtl",
+          "rect": {
+            "x": 695.234375,
+            "y": 233.375,
+            "width": 57.7078857421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "כתיבה",
+          "dir": "rtl",
+          "rect": {
+            "x": 631.71875,
+            "y": 233.375,
+            "width": 57.55291748046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "טבלה",
+          "dir": "rtl",
+          "rect": {
+            "x": 574,
+            "y": 233.375,
+            "width": 51.81561279296875,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": false,
+      "rawMatchCollapsed": false,
+      "screenshot": "tests/fixtures/pdf-reversed-chars-20261011/pdfjs-hebrew-source-reversed.png",
+      "errors": []
+    },
+    {
+      "label": "hebrew-page-reversed",
+      "mode": "page-reversed",
+      "file": "output/pdf/reversed-chars-20261011/hebrew-page-reversed.pdf",
+      "pdfSha256": "865e74b78dce8b1d65016bb17d239fe7c1324ac9f4111e162e36990f1d2a6333",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "selectedText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "textContent": "QA embedded font 123שלום עולם בדיקת מסמךעברית כתיבה טבלה",
+      "rawText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 109.390625,
+            "width": 237.83172607421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלום עולם בדיקת מסמך",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "שלום עולם בדיקת מסמך",
+          "dir": "rtl",
+          "rect": {
+            "x": 525.640625,
+            "y": 171.390625,
+            "width": 227.37091064453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "עברית כתיבה טבלה",
+          "dir": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "text": "עברית כתיבה טבלה",
+          "dir": "rtl",
+          "rect": {
+            "x": 574,
+            "y": 233.375,
+            "width": 178.99005126953125,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": true,
+      "rawMatchCollapsed": true,
+      "screenshot": "tests/fixtures/pdf-reversed-chars-20261011/pdfjs-hebrew-page-reversed.png",
+      "errors": []
+    }
+  ]
+}

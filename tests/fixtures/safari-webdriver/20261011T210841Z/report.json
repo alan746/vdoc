@@ -1,0 +1,380 @@
+{
+  "at": "20261011T210841Z",
+  "state": "passed-in-stated-scope",
+  "applicationSha256": "d4d031f5f51cec43eeb87ad40ae5dddb2745ee878a86fb9f30cbab0562dfccdf",
+  "fixtureSha256": "a1c397e5a22a5446c06aae46f84c1d48db1e6f2af7148f6651a8e3e5e8a4245b",
+  "checks": [
+    {
+      "name": "import-content",
+      "passed": true
+    },
+    {
+      "name": "search-100",
+      "passed": true,
+      "geometry": {
+        "match": {
+          "x": 528,
+          "height": 21,
+          "bottom": 530,
+          "y": 509,
+          "width": 187.7406005859375,
+          "left": 528,
+          "top": 509,
+          "right": 715.7406005859375
+        },
+        "status": "1 of 1",
+        "canvas": {
+          "x": 232,
+          "height": 636,
+          "bottom": 837,
+          "y": 201,
+          "width": 1238,
+          "left": 232,
+          "top": 201,
+          "right": 1470
+        },
+        "text": "FINAL PAGE CHECK"
+      }
+    },
+    {
+      "name": "search-125",
+      "passed": true,
+      "geometry": {
+        "match": {
+          "x": 447,
+          "height": 27,
+          "bottom": 533.25,
+          "y": 506.25,
+          "width": 234.67578125,
+          "left": 447,
+          "top": 506.25,
+          "right": 681.67578125
+        },
+        "status": "1 of 1",
+        "canvas": {
+          "x": 232,
+          "height": 636,
+          "bottom": 837,
+          "y": 201,
+          "width": 1238,
+          "left": 232,
+          "top": 201,
+          "right": 1470
+        },
+        "text": "FINAL PAGE CHECK"
+      }
+    },
+    {
+      "name": "search-100",
+      "passed": true,
+      "geometry": {
+        "match": {
+          "x": 528,
+          "height": 21,
+          "bottom": 519,
+          "y": 498,
+          "width": 187.7406005859375,
+          "left": 528,
+          "top": 498,
+          "right": 715.7406005859375
+        },
+        "status": "1 of 1",
+        "canvas": {
+          "x": 232,
+          "height": 636,
+          "bottom": 837,
+          "y": 201,
+          "width": 1238,
+          "left": 232,
+          "top": 201,
+          "right": 1470
+        },
+        "text": "FINAL PAGE CHECK"
+      }
+    },
+    {
+      "name": "last-page-navigation",
+      "passed": true,
+      "last": {
+        "top": 0.0625,
+        "text": "FINAL PAGE CHECK 中文\nThis heading must start on a new page. End of acceptance sample.\n\n"
+      }
+    },
+    {
+      "name": "preview-1",
+      "passed": true,
+      "status": "5 pages · A4 · portrait",
+      "pages": [
+        {
+          "images": [
+            {
+              "width": 300,
+              "complete": true
+            }
+          ],
+          "text": "VDoc core system acceptance\nIME test area: 中文输入测试.\n\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中文\nDetails العربية\nGROUP 01 — rows 01–02 中文 日本語\n\t\nROW 01 — English 中文 العربية\nCheck complete text and cell borders.\nROW 02 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中文 日本語\nROW 03 — English 中文 العربية\nCheck complete text and cell borders.\nROW 04 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中文 日本語\nROW 05 — English 中文 العربية\nCheck complete text and cell borders.\nROW 06 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中文 日本語\nROW 07 — English 中文 العربية\nCheck complete text and cell borders.\nROW 08 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 1"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 05 — rows 09–10 中文 日本語\nROW 09 — English 中文 العربية\nCheck complete text and cell borders.\nROW 10 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中文 日本語\nROW 11 — English 中文 العربية\nCheck complete text and cell borders.\nROW 12 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中文 日本語\nROW 13 — English 中文 العربية\nCheck complete text and cell borders.\nROW 14 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中文 日本語\nROW 15 — English 中文 العربية\nCheck complete text and cell borders.\nROW 16 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中文 日本語\nROW 17 — English 中文 العربية\nCheck complete text and cell borders.\nROW 18 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中文 日本語\nROW 19 — English 中文 العربية\nCheck complete text and cell borders.\nROW 20 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 2"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 11 — rows 21–22 中文 日本語\nROW 21 — English 中文 العربية\nCheck complete text and cell borders.\nROW 22 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中文 日本語\nROW 23 — English 中文 العربية\nCheck complete text and cell borders.\nROW 24 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中文 日本語\nROW 25 — English 中文 العربية\nCheck complete text and cell borders.\nROW 26 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中文 日本語\nROW 27 — English 中文 العربية\nCheck complete text and cell borders.\nROW 28 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中文 日本語\nROW 29 — English 中文 العربية\nCheck complete text and cell borders.\nROW 30 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中文 日本語\nROW 31 — English 中文 العربية\nCheck complete text and cell borders.\nROW 32 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 3"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 17 — rows 33–34 中文 日本語\nROW 33 — English 中文 العربية\nCheck complete text and cell borders.\nROW 34 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中文 日本語\nROW 35 — English 中文 العربية\nCheck complete text and cell borders.\nROW 36 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.\n\n",
+          "label": "Page 4"
+        },
+        {
+          "images": [],
+          "text": "FINAL PAGE CHECK 中文\nThis heading must start on a new page. End of acceptance sample.\n\n",
+          "label": "Page 5"
+        }
+      ],
+      "rowCounts": {
+        "01": 1,
+        "02": 1,
+        "03": 1,
+        "04": 1,
+        "05": 1,
+        "06": 1,
+        "07": 1,
+        "08": 1,
+        "09": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "15": 1,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 1,
+        "20": 1,
+        "21": 1,
+        "22": 1,
+        "23": 1,
+        "24": 1,
+        "25": 1,
+        "26": 1,
+        "27": 1,
+        "28": 1,
+        "29": 1,
+        "30": 1,
+        "31": 1,
+        "32": 1,
+        "33": 1,
+        "34": 1,
+        "35": 1,
+        "36": 1
+      },
+      "elapsedSeconds": 1.135
+    },
+    {
+      "name": "last-page-navigation",
+      "passed": true,
+      "last": {
+        "top": 0.0625,
+        "text": "FINAL PAGE CHECK 中文\nThis heading must start on a new page. End of acceptance sample.\n\n"
+      }
+    },
+    {
+      "name": "preview-2",
+      "passed": true,
+      "status": "5 pages · A4 · portrait",
+      "pages": [
+        {
+          "images": [
+            {
+              "width": 300,
+              "complete": true
+            }
+          ],
+          "text": "VDoc core system acceptance\nIME test area: 中文输入测试.\n\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中文\nDetails العربية\nGROUP 01 — rows 01–02 中文 日本語\n\t\nROW 01 — English 中文 العربية\nCheck complete text and cell borders.\nROW 02 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中文 日本語\nROW 03 — English 中文 العربية\nCheck complete text and cell borders.\nROW 04 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中文 日本語\nROW 05 — English 中文 العربية\nCheck complete text and cell borders.\nROW 06 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中文 日本語\nROW 07 — English 中文 العربية\nCheck complete text and cell borders.\nROW 08 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 1"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 05 — rows 09–10 中文 日本語\nROW 09 — English 中文 العربية\nCheck complete text and cell borders.\nROW 10 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中文 日本語\nROW 11 — English 中文 العربية\nCheck complete text and cell borders.\nROW 12 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中文 日本語\nROW 13 — English 中文 العربية\nCheck complete text and cell borders.\nROW 14 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中文 日本語\nROW 15 — English 中文 العربية\nCheck complete text and cell borders.\nROW 16 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中文 日本語\nROW 17 — English 中文 العربية\nCheck complete text and cell borders.\nROW 18 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中文 日本語\nROW 19 — English 中文 العربية\nCheck complete text and cell borders.\nROW 20 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 2"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 11 — rows 21–22 中文 日本語\nROW 21 — English 中文 العربية\nCheck complete text and cell borders.\nROW 22 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中文 日本語\nROW 23 — English 中文 العربية\nCheck complete text and cell borders.\nROW 24 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中文 日本語\nROW 25 — English 中文 العربية\nCheck complete text and cell borders.\nROW 26 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中文 日本語\nROW 27 — English 中文 العربية\nCheck complete text and cell borders.\nROW 28 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中文 日本語\nROW 29 — English 中文 العربية\nCheck complete text and cell borders.\nROW 30 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中文 日本語\nROW 31 — English 中文 العربية\nCheck complete text and cell borders.\nROW 32 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 3"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 17 — rows 33–34 中文 日本語\nROW 33 — English 中文 العربية\nCheck complete text and cell borders.\nROW 34 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中文 日本語\nROW 35 — English 中文 العربية\nCheck complete text and cell borders.\nROW 36 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.\n\n",
+          "label": "Page 4"
+        },
+        {
+          "images": [],
+          "text": "FINAL PAGE CHECK 中文\nThis heading must start on a new page. End of acceptance sample.\n\n",
+          "label": "Page 5"
+        }
+      ],
+      "rowCounts": {
+        "01": 1,
+        "02": 1,
+        "03": 1,
+        "04": 1,
+        "05": 1,
+        "06": 1,
+        "07": 1,
+        "08": 1,
+        "09": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "15": 1,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 1,
+        "20": 1,
+        "21": 1,
+        "22": 1,
+        "23": 1,
+        "24": 1,
+        "25": 1,
+        "26": 1,
+        "27": 1,
+        "28": 1,
+        "29": 1,
+        "30": 1,
+        "31": 1,
+        "32": 1,
+        "33": 1,
+        "34": 1,
+        "35": 1,
+        "36": 1
+      },
+      "elapsedSeconds": 0.881
+    },
+    {
+      "name": "last-page-navigation",
+      "passed": true,
+      "last": {
+        "top": 0.0625,
+        "text": "FINAL PAGE CHECK 中文\nThis heading must start on a new page. End of acceptance sample.\n\n"
+      }
+    },
+    {
+      "name": "preview-3",
+      "passed": true,
+      "status": "5 pages · A4 · portrait",
+      "pages": [
+        {
+          "images": [
+            {
+              "width": 300,
+              "complete": true
+            }
+          ],
+          "text": "VDoc core system acceptance\nIME test area: 中文输入测试.\n\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中文\nDetails العربية\nGROUP 01 — rows 01–02 中文 日本語\n\t\nROW 01 — English 中文 العربية\nCheck complete text and cell borders.\nROW 02 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中文 日本語\nROW 03 — English 中文 العربية\nCheck complete text and cell borders.\nROW 04 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中文 日本語\nROW 05 — English 中文 العربية\nCheck complete text and cell borders.\nROW 06 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中文 日本語\nROW 07 — English 中文 العربية\nCheck complete text and cell borders.\nROW 08 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 1"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 05 — rows 09–10 中文 日本語\nROW 09 — English 中文 العربية\nCheck complete text and cell borders.\nROW 10 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中文 日本語\nROW 11 — English 中文 العربية\nCheck complete text and cell borders.\nROW 12 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中文 日本語\nROW 13 — English 中文 العربية\nCheck complete text and cell borders.\nROW 14 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中文 日本語\nROW 15 — English 中文 العربية\nCheck complete text and cell borders.\nROW 16 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中文 日本語\nROW 17 — English 中文 العربية\nCheck complete text and cell borders.\nROW 18 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中文 日本語\nROW 19 — English 中文 العربية\nCheck complete text and cell borders.\nROW 20 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 2"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 11 — rows 21–22 中文 日本語\nROW 21 — English 中文 العربية\nCheck complete text and cell borders.\nROW 22 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中文 日本語\nROW 23 — English 中文 العربية\nCheck complete text and cell borders.\nROW 24 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中文 日本語\nROW 25 — English 中文 العربية\nCheck complete text and cell borders.\nROW 26 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中文 日本語\nROW 27 — English 中文 العربية\nCheck complete text and cell borders.\nROW 28 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中文 日本語\nROW 29 — English 中文 العربية\nCheck complete text and cell borders.\nROW 30 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中文 日本語\nROW 31 — English 中文 العربية\nCheck complete text and cell borders.\nROW 32 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\n",
+          "label": "Page 3"
+        },
+        {
+          "images": [],
+          "text": "Group 中文\nDetails العربية\nGROUP 17 — rows 33–34 中文 日本語\nROW 33 — English 中文 العربية\nCheck complete text and cell borders.\nROW 34 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中文 日本語\nROW 35 — English 中文 العربية\nCheck complete text and cell borders.\nROW 36 — 日本語 हिन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.\n\n",
+          "label": "Page 4"
+        },
+        {
+          "images": [],
+          "text": "FINAL PAGE CHECK 中文\nThis heading must start on a new page. End of acceptance sample.\n\n",
+          "label": "Page 5"
+        }
+      ],
+      "rowCounts": {
+        "01": 1,
+        "02": 1,
+        "03": 1,
+        "04": 1,
+        "05": 1,
+        "06": 1,
+        "07": 1,
+        "08": 1,
+        "09": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "15": 1,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 1,
+        "20": 1,
+        "21": 1,
+        "22": 1,
+        "23": 1,
+        "24": 1,
+        "25": 1,
+        "26": 1,
+        "27": 1,
+        "28": 1,
+        "29": 1,
+        "30": 1,
+        "31": 1,
+        "32": 1,
+        "33": 1,
+        "34": 1,
+        "35": 1,
+        "36": 1
+      },
+      "elapsedSeconds": 0.816
+    },
+    {
+      "name": "refresh-full-json",
+      "passed": true
+    }
+  ],
+  "scope": "Fresh isolated Safari browser; preview and saved JSON only",
+  "exclusions": [
+    "System IME candidate UI",
+    "Native Safari print dialog and PDF scales",
+    "Historical project-plan source pairing"
+  ],
+  "capabilities": {
+    "safari:platformVersion": "26.6.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "26.6.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "25G83",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "documentURL": "http://localhost:5173/#document=e604aada-2917-4e04-82bb-293620aad517",
+  "ownSessionClosed": true
+}

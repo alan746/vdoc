@@ -1,0 +1,125 @@
+{
+  "textAndFontComparison": [
+    {
+      "file": "output/pdf/safari-fixed-pdf-20261011/prototype-b.pdf",
+      "pages": 5,
+      "logicalHindiWords": 0,
+      "hindiCodepoints": 36,
+      "cjkCodepointsAfterNFKC": 206,
+      "nullCodepoints": 36,
+      "fontResourceSubtypes": {
+        "/Type0": 18,
+        "/Type3": 54
+      }
+    },
+    {
+      "file": "output/pdf/safari-native-20261011/prototype-native-100.pdf",
+      "pages": 5,
+      "logicalHindiWords": 0,
+      "hindiCodepoints": 0,
+      "cjkCodepointsAfterNFKC": 0,
+      "nullCodepoints": 0,
+      "fontResourceSubtypes": {
+        "/Type0": 18
+      }
+    },
+    {
+      "file": "output/pdf/pdf-unicode-20261011/global-order-b.pdf",
+      "pages": 5,
+      "logicalHindiWords": 18,
+      "hindiCodepoints": 108,
+      "cjkCodepointsAfterNFKC": 206,
+      "nullCodepoints": 0,
+      "fontResourceSubtypes": {
+        "/Type0": 18,
+        "/Type3": 54
+      }
+    },
+    {
+      "file": "output/pdf/safari-native-20261011/global-native-100.pdf",
+      "pages": 5,
+      "logicalHindiWords": 0,
+      "hindiCodepoints": 0,
+      "cjkCodepointsAfterNFKC": 0,
+      "nullCodepoints": 0,
+      "fontResourceSubtypes": {
+        "/Type0": 18
+      }
+    }
+  ],
+  "rasterComparison": [
+    {
+      "variant": "repaired-b",
+      "pagesPixelIdentical": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "variant": "normalized-b",
+      "pagesPixelIdentical": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "variant": "normalized-clusters-b",
+      "pagesPixelIdentical": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "variant": "incremental-b",
+      "pagesPixelIdentical": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "variant": "global-order-b",
+      "pagesPixelIdentical": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "pdfjsChecks": [
+    {
+      "file": "repaired-b.pdf",
+      "all18HindiInLogicalOrder": false,
+      "nullCount": 0
+    },
+    {
+      "file": "normalized-b.pdf",
+      "all18HindiInLogicalOrder": true,
+      "nullCount": 0
+    },
+    {
+      "file": "global-order-b.pdf",
+      "all18HindiInLogicalOrder": true,
+      "nullCount": 0
+    },
+    {
+      "file": "incremental-b.pdf",
+      "all18HindiInLogicalOrder": true,
+      "nullCount": 0
+    }
+  ],
+  "conclusion": "Unmodified Chrome PDF already loses CJK/Devanagari extraction when reprinted by Safari. Global mapping repair fixes direct-PDF extraction and logical order while retaining every rendered pixel; it does not repair Safari reprint text preservation. Type3 fonts are present in the source; causality is a next investigation, not established solely by these counts."
+}

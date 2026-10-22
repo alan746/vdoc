@@ -1,0 +1,70 @@
+{
+  "props": [
+    "constructor",
+    "init",
+    "isActive",
+    "setPlugin_",
+    "createUid_",
+    "getEventTarget",
+    "viewportChanged",
+    "setAnnotationMode",
+    "getAnnotationBrush",
+    "setAnnotationBrush",
+    "getAllTextAnnotations",
+    "editTextAnnotation",
+    "finishTextAnnotation",
+    "redo",
+    "undo",
+    "beforeZoom",
+    "afterZoom",
+    "postMessage_",
+    "postMessageWithReply_",
+    "rotateClockwise",
+    "rotateCounterclockwise",
+    "setDisplayAnnotations",
+    "setTwoUpView",
+    "print",
+    "selectAll",
+    "highlightTextFragments",
+    "getSelectedText",
+    "requestThumbnail",
+    "resetPrintPreviewMode",
+    "setBackgroundColor",
+    "loadPreviewPage",
+    "getPageBoundingBox",
+    "getPasswordComplete",
+    "getNamedDestination",
+    "focus",
+    "setPresentationMode",
+    "save",
+    "getSaveDataBlock",
+    "getSuggestedFileName",
+    "releaseSaveInBlockBuffers",
+    "saveAttachment",
+    "bindMessageHandler",
+    "handlePluginMessage_",
+    "saveData_",
+    "saveDataBlock_",
+    "setPluginForTesting"
+  ],
+  "selectAll": "selectAll(){this.postMessage_({type:\"selectAll\"})}",
+  "getSelectedText": "getSelectedText(){return this.postMessageWithReply_({type:\"getSelectedText\"})}",
+  "state": [
+    [
+      "initialLoadComplete_",
+      true
+    ],
+    [
+      "loaded_",
+      "object"
+    ],
+    [
+      "loadState_",
+      "success"
+    ],
+    [
+      "showBeforeUnloadDialog_",
+      false
+    ]
+  ]
+}

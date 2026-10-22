@@ -1,0 +1,77 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>VDoc isolated quota capability probe</title>
+<style>body{font:16px system-ui;max-width:800px;margin:50px auto;padding:20px}button{padding:12px;margin-right:12px}pre{white-space:pre-wrap;background:#f2f4f5;padding:20px}</style>
+<h1>VDoc isolated quota capability probe</h1>
+<p>This developer-only page uses a named Storage Bucket. It never opens the normal VDoc database. The fill check stops on the first browser rejection or after at most 32 MiB, in 1 MiB transactions.</p>
+<button id="check">Check bounded bucket support</button>
+<label>Existing probe bucket <input id="bucket-name" aria-label="Existing probe bucket"></label>
+<button id="resume">Open existing probe bucket</button>
+<button id="fill" disabled>Test bounded IndexedDB writes</button>
+<pre id="result" role="status">Not checked.</pre>
+<script>
+const result = document.querySelector('#result');
+let activeBucket, activeReport;
+const show = () => { result.textContent = JSON.stringify(activeReport, null, 2); };
+async function openProbe(name) {
+  if (!/^vdoc-qa-[0-9a-f-]{36}$/.test(name)) throw new Error('Only an explicitly named VDoc QA bucket can be opened.');
+  activeBucket = await navigator.storageBuckets.open(name, { quota: 8*1024*1024 });
+  activeReport = { checkedAt:new Date().toISOString(), supported:true, requestedQuota:8*1024*1024, origin:location.origin, bucketName:name, estimate:await activeBucket.estimate(), fillBytesWritten:0 };
+  activeReport.boundedQuotaReported = activeReport.estimate.quota > 0 && activeReport.estimate.quota <= activeReport.requestedQuota;
+  document.querySelector('#fill').disabled = !activeReport.boundedQuotaReported;
+  document.querySelector('#bucket-name').value = name;
+  show();
+}
+document.querySelector('#resume').onclick = async () => {
+  try { await openProbe(document.querySelector('#bucket-name').value); }
+  catch(error) { result.textContent = error.message; }
+};
+document.querySelector('#check').onclick = async event => {
+  event.target.disabled = true;
+  const report = { checkedAt: new Date().toISOString(), supported: 'storageBuckets' in navigator, requestedQuota: 8*1024*1024, origin: location.origin, fillBytesWritten: 0 };
+  try {
+    if (report.supported) {
+      report.bucketName = 'vdoc-qa-' + crypto.randomUUID();
+      const bucket = await navigator.storageBuckets.open(report.bucketName, { quota: report.requestedQuota });
+      report.estimate = await bucket.estimate();
+      report.indexedDBAvailable = !!bucket.indexedDB;
+      report.boundedQuotaReported = report.estimate.quota > 0 && report.estimate.quota <= report.requestedQuota;
+    }
+  } catch (error) { report.error = {name:error.name,message:error.message}; }
+  result.textContent = JSON.stringify(report, null, 2);
+};
+document.querySelector('#fill').onclick = async event => {
+  event.target.disabled = true;
+  if (!activeReport?.boundedQuotaReported || !activeBucket) return;
+  let db;
+  try {
+    db = await new Promise((resolve,reject) => {
+      const request = activeBucket.indexedDB.open('vdoc-quota-probe', 1);
+      request.onupgradeneeded = () => request.result.createObjectStore('filler');
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    const prefix = crypto.randomUUID();
+    activeReport.runId = prefix; activeReport.batches = [];
+    for (let index = 0; index < 32; index++) {
+      const bytes = new Uint8Array(1024*1024);
+      for (let start = 0; start < bytes.length; start += 65536) crypto.getRandomValues(bytes.subarray(start,start+65536));
+      try {
+        await new Promise((resolve,reject) => {
+          const tx = db.transaction('filler','readwrite',{durability:'strict'});
+          tx.oncomplete = resolve; tx.onabort = () => reject(tx.error || new Error('Aborted'));
+          tx.objectStore('filler').put(bytes, prefix+'-'+index);
+        });
+        activeReport.fillBytesWritten += bytes.length;
+        activeReport.batches.push({index, estimate:await activeBucket.estimate()}); show();
+      } catch(error) {
+        activeReport.rejection = {index,name:error.name,message:error.message};
+        break;
+      }
+    }
+    activeReport.finalEstimate = await activeBucket.estimate();
+    activeReport.stopped = activeReport.rejection ? 'first browser rejection' : '32 MiB budget';
+  } catch(error) { activeReport.error = {name:error.name,message:error.message}; }
+  finally { db?.close(); show(); }
+};
+</script>

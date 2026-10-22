@@ -1,0 +1,890 @@
+{
+  "bucketName": "vdoc-qa-e3790158-b33a-4710-b1cb-d07de42339c5",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+  "filledBytes": 7827456,
+  "keys": [],
+  "events": [
+    {
+      "at": "2026-10-10T23:52:39.431Z",
+      "event": {
+        "bucketName": "vdoc-qa-e3790158-b33a-4710-b1cb-d07de42339c5",
+        "storedDocumentId": "7d0024cb-6feb-411b-9c6b-c0758d4a21a4",
+        "savedAt": "2026-10-10T23:52:38.942Z",
+        "title": "QA disposable only",
+        "estimate": {
+          "quota": 8388608,
+          "usage": 274432,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.674Z",
+      "event": {
+        "key": "vdoc-qa-4c7e98f0-aae2-415a-b421-116201b7f1b6",
+        "size": 1048576,
+        "filledBytes": 1048576,
+        "before": {
+          "quota": 8388608,
+          "usage": 548864,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 1597440,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.676Z",
+      "event": {
+        "key": "vdoc-qa-cd4a94f9-ef05-470f-b281-0530d2e72877",
+        "size": 1048576,
+        "filledBytes": 2097152,
+        "before": {
+          "quota": 8388608,
+          "usage": 1597440,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 2646016,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.677Z",
+      "event": {
+        "key": "vdoc-qa-2059f397-6874-46af-9f3c-74b4bef3f1ad",
+        "size": 1048576,
+        "filledBytes": 3145728,
+        "before": {
+          "quota": 8388608,
+          "usage": 2646016,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 3694592,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.679Z",
+      "event": {
+        "key": "vdoc-qa-1f66c72f-2284-4807-ba6a-e68a1af0c504",
+        "size": 1048576,
+        "filledBytes": 4194304,
+        "before": {
+          "quota": 8388608,
+          "usage": 3694592,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 4751360,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.680Z",
+      "event": {
+        "key": "vdoc-qa-538ab2db-4691-425d-a14e-ae640eb5f640",
+        "size": 1048576,
+        "filledBytes": 5242880,
+        "before": {
+          "quota": 8388608,
+          "usage": 4751360,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 5799936,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.682Z",
+      "event": {
+        "key": "vdoc-qa-a277e7b1-b9c2-4cd0-acbb-c4c4d65ed296",
+        "size": 1048576,
+        "filledBytes": 6291456,
+        "before": {
+          "quota": 8388608,
+          "usage": 5799936,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 6848512,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.683Z",
+      "event": {
+        "key": "vdoc-qa-1b01ef46-50a8-4992-8d8c-6b30add19edb",
+        "size": 1048576,
+        "filledBytes": 7340032,
+        "before": {
+          "quota": 8388608,
+          "usage": 6848512,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 7901184,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.684Z",
+      "event": {
+        "key": "vdoc-qa-c1d98841-a0ef-4395-a2d6-7389d71c8530",
+        "size": 32768,
+        "filledBytes": 7372800,
+        "before": {
+          "quota": 8388608,
+          "usage": 7901184,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 7933952,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.684Z",
+      "event": {
+        "key": "vdoc-qa-10a3700c-05e7-4823-bfb3-675f6746f63d",
+        "size": 32768,
+        "filledBytes": 7405568,
+        "before": {
+          "quota": 8388608,
+          "usage": 7933952,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 7966720,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.684Z",
+      "event": {
+        "key": "vdoc-qa-6188fbc2-bb9b-4654-b87a-81f358041867",
+        "size": 32768,
+        "filledBytes": 7438336,
+        "before": {
+          "quota": 8388608,
+          "usage": 7966720,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 7999488,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.685Z",
+      "event": {
+        "key": "vdoc-qa-1caede22-9aba-4429-b1fc-d82438aa5cc4",
+        "size": 32768,
+        "filledBytes": 7471104,
+        "before": {
+          "quota": 8388608,
+          "usage": 7999488,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8032256,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.685Z",
+      "event": {
+        "key": "vdoc-qa-35accd5b-4bc2-4cf2-b20f-847473713411",
+        "size": 32768,
+        "filledBytes": 7503872,
+        "before": {
+          "quota": 8388608,
+          "usage": 8032256,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8065024,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.685Z",
+      "event": {
+        "key": "vdoc-qa-45da4497-6676-4948-a366-9b263a8c89c1",
+        "size": 32768,
+        "filledBytes": 7536640,
+        "before": {
+          "quota": 8388608,
+          "usage": 8065024,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8101888,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.686Z",
+      "event": {
+        "key": "vdoc-qa-dd0b7063-559f-432c-a4c2-1037b87b9aec",
+        "size": 32768,
+        "filledBytes": 7569408,
+        "before": {
+          "quota": 8388608,
+          "usage": 8101888,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8134656,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.686Z",
+      "event": {
+        "key": "vdoc-qa-feda154b-a799-4caa-aafd-088369831cd6",
+        "size": 32768,
+        "filledBytes": 7602176,
+        "before": {
+          "quota": 8388608,
+          "usage": 8134656,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8167424,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.686Z",
+      "event": {
+        "key": "vdoc-qa-289af080-a22b-4f1a-84c6-0e3f62eebf72",
+        "size": 32768,
+        "filledBytes": 7634944,
+        "before": {
+          "quota": 8388608,
+          "usage": 8167424,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8200192,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.686Z",
+      "event": {
+        "key": "vdoc-qa-a7ccacc4-90a5-4a0e-9324-583b46c80d16",
+        "size": 32768,
+        "filledBytes": 7667712,
+        "before": {
+          "quota": 8388608,
+          "usage": 8200192,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8232960,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.687Z",
+      "event": {
+        "key": "vdoc-qa-bc370125-4f4e-4b8d-9551-c7df07ca06d9",
+        "size": 32768,
+        "filledBytes": 7700480,
+        "before": {
+          "quota": 8388608,
+          "usage": 8232960,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8265728,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.687Z",
+      "event": {
+        "key": "vdoc-qa-26245a71-7cc1-48ff-8d5e-b7c4a79e4356",
+        "size": 32768,
+        "filledBytes": 7733248,
+        "before": {
+          "quota": 8388608,
+          "usage": 8265728,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8298496,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.687Z",
+      "event": {
+        "key": "vdoc-qa-76907215-a0d5-42bf-a608-2f2dfb283672",
+        "size": 32768,
+        "filledBytes": 7766016,
+        "before": {
+          "quota": 8388608,
+          "usage": 8298496,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8331264,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.688Z",
+      "event": {
+        "key": "vdoc-qa-996faab8-0a43-4688-84c6-310b6bdc6cba",
+        "size": 4096,
+        "filledBytes": 7770112,
+        "before": {
+          "quota": 8388608,
+          "usage": 8331264,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8339456,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.688Z",
+      "event": {
+        "key": "vdoc-qa-40d168be-2ed8-46c3-8331-89140f150e67",
+        "size": 4096,
+        "filledBytes": 7774208,
+        "before": {
+          "quota": 8388608,
+          "usage": 8339456,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8343552,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.688Z",
+      "event": {
+        "key": "vdoc-qa-f4bf4679-6d76-4063-994a-795e8abd6d64",
+        "size": 4096,
+        "filledBytes": 7778304,
+        "before": {
+          "quota": 8388608,
+          "usage": 8343552,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8347648,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.688Z",
+      "event": {
+        "key": "vdoc-qa-4c3c1682-d02d-4b2f-9faa-92842602c459",
+        "size": 4096,
+        "filledBytes": 7782400,
+        "before": {
+          "quota": 8388608,
+          "usage": 8347648,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8351744,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.689Z",
+      "event": {
+        "key": "vdoc-qa-0d4d5882-0391-4e00-997c-30614eb97199",
+        "size": 4096,
+        "filledBytes": 7786496,
+        "before": {
+          "quota": 8388608,
+          "usage": 8351744,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8355840,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.689Z",
+      "event": {
+        "key": "vdoc-qa-0d012874-49d4-4676-a62d-42afbdf1313a",
+        "size": 4096,
+        "filledBytes": 7790592,
+        "before": {
+          "quota": 8388608,
+          "usage": 8355840,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8359936,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.689Z",
+      "event": {
+        "key": "vdoc-qa-bd8df1cd-e384-4f20-a319-ec9fc4a76d6f",
+        "size": 4096,
+        "filledBytes": 7794688,
+        "before": {
+          "quota": 8388608,
+          "usage": 8359936,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8364032,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.689Z",
+      "event": {
+        "key": "vdoc-qa-6b48c366-58e3-4399-83e4-6bda7b4b4aed",
+        "size": 4096,
+        "filledBytes": 7798784,
+        "before": {
+          "quota": 8388608,
+          "usage": 8364032,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8368128,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.690Z",
+      "event": {
+        "key": "vdoc-qa-98eaafbf-3fc3-4708-a064-efdcbe556f8c",
+        "size": 4096,
+        "filledBytes": 7802880,
+        "before": {
+          "quota": 8388608,
+          "usage": 8368128,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8376320,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.690Z",
+      "event": {
+        "key": "vdoc-qa-b6ccf9f9-1972-4885-a3e7-6b6d24f24f06",
+        "size": 4096,
+        "filledBytes": 7806976,
+        "before": {
+          "quota": 8388608,
+          "usage": 8376320,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8380416,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.690Z",
+      "event": {
+        "key": "vdoc-qa-c33a06a5-f87f-4a67-af82-dd1512577e4b",
+        "size": 4096,
+        "filledBytes": 7811072,
+        "before": {
+          "quota": 8388608,
+          "usage": 8380416,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8384512,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.691Z",
+      "event": {
+        "key": "vdoc-qa-107675ac-5da6-4615-8501-0ac6b709c610",
+        "size": 4096,
+        "filledBytes": 7815168,
+        "before": {
+          "quota": 8388608,
+          "usage": 8384512,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8388608,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.691Z",
+      "event": {
+        "key": "vdoc-qa-91452554-ae49-4d6d-abcf-8a9c73741bdb",
+        "size": 4096,
+        "filledBytes": 7819264,
+        "before": {
+          "quota": 8388608,
+          "usage": 8388608,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8392704,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.691Z",
+      "event": {
+        "key": "vdoc-qa-3be71715-f6f6-4b00-9e5e-19ecfc0e51a5",
+        "size": 4096,
+        "filledBytes": 7823360,
+        "before": {
+          "quota": 8388608,
+          "usage": 8392704,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8396800,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.691Z",
+      "event": {
+        "key": "vdoc-qa-607b8b94-26a0-4e89-949d-89c3e0b4a663",
+        "size": 4096,
+        "filledBytes": 7827456,
+        "before": {
+          "quota": 8388608,
+          "usage": 8396800,
+          "usageDetails": {}
+        },
+        "after": {
+          "quota": 8388608,
+          "usage": 8400896,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:41.692Z",
+      "event": {
+        "key": "vdoc-qa-f480037d-52d4-4772-a36d-27b76d01b37b",
+        "size": 4096,
+        "before": {
+          "quota": 8388608,
+          "usage": 8400896,
+          "usageDetails": {}
+        },
+        "rejected": "QuotaExceededError",
+        "message": ""
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:45.585Z",
+      "event": {
+        "bucketName": "vdoc-qa-e3790158-b33a-4710-b1cb-d07de42339c5",
+        "storedDocumentId": "520425f4-b203-4382-b0e9-c005e51e7f35",
+        "savedAt": "2026-10-10T23:52:45.155Z",
+        "title": "Untitled document",
+        "estimate": {
+          "quota": 8388608,
+          "usage": 7999488,
+          "usageDetails": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:45.641Z",
+      "event": {
+        "bucketName": "vdoc-qa-e3790158-b33a-4710-b1cb-d07de42339c5",
+        "released": true,
+        "releasedKeys": [
+          "vdoc-qa-4c7e98f0-aae2-415a-b421-116201b7f1b6",
+          "vdoc-qa-cd4a94f9-ef05-470f-b281-0530d2e72877",
+          "vdoc-qa-2059f397-6874-46af-9f3c-74b4bef3f1ad",
+          "vdoc-qa-1f66c72f-2284-4807-ba6a-e68a1af0c504",
+          "vdoc-qa-538ab2db-4691-425d-a14e-ae640eb5f640",
+          "vdoc-qa-a277e7b1-b9c2-4cd0-acbb-c4c4d65ed296",
+          "vdoc-qa-1b01ef46-50a8-4992-8d8c-6b30add19edb",
+          "vdoc-qa-c1d98841-a0ef-4395-a2d6-7389d71c8530",
+          "vdoc-qa-10a3700c-05e7-4823-bfb3-675f6746f63d",
+          "vdoc-qa-6188fbc2-bb9b-4654-b87a-81f358041867",
+          "vdoc-qa-1caede22-9aba-4429-b1fc-d82438aa5cc4",
+          "vdoc-qa-35accd5b-4bc2-4cf2-b20f-847473713411",
+          "vdoc-qa-45da4497-6676-4948-a366-9b263a8c89c1",
+          "vdoc-qa-dd0b7063-559f-432c-a4c2-1037b87b9aec",
+          "vdoc-qa-feda154b-a799-4caa-aafd-088369831cd6",
+          "vdoc-qa-289af080-a22b-4f1a-84c6-0e3f62eebf72",
+          "vdoc-qa-a7ccacc4-90a5-4a0e-9324-583b46c80d16",
+          "vdoc-qa-bc370125-4f4e-4b8d-9551-c7df07ca06d9",
+          "vdoc-qa-26245a71-7cc1-48ff-8d5e-b7c4a79e4356",
+          "vdoc-qa-76907215-a0d5-42bf-a608-2f2dfb283672",
+          "vdoc-qa-996faab8-0a43-4688-84c6-310b6bdc6cba",
+          "vdoc-qa-40d168be-2ed8-46c3-8331-89140f150e67",
+          "vdoc-qa-f4bf4679-6d76-4063-994a-795e8abd6d64",
+          "vdoc-qa-4c3c1682-d02d-4b2f-9faa-92842602c459",
+          "vdoc-qa-0d4d5882-0391-4e00-997c-30614eb97199",
+          "vdoc-qa-0d012874-49d4-4676-a62d-42afbdf1313a",
+          "vdoc-qa-bd8df1cd-e384-4f20-a319-ec9fc4a76d6f",
+          "vdoc-qa-6b48c366-58e3-4399-83e4-6bda7b4b4aed",
+          "vdoc-qa-98eaafbf-3fc3-4708-a064-efdcbe556f8c",
+          "vdoc-qa-b6ccf9f9-1972-4885-a3e7-6b6d24f24f06",
+          "vdoc-qa-c33a06a5-f87f-4a67-af82-dd1512577e4b",
+          "vdoc-qa-107675ac-5da6-4615-8501-0ac6b709c610",
+          "vdoc-qa-91452554-ae49-4d6d-abcf-8a9c73741bdb",
+          "vdoc-qa-3be71715-f6f6-4b00-9e5e-19ecfc0e51a5",
+          "vdoc-qa-607b8b94-26a0-4e89-949d-89c3e0b4a663"
+        ],
+        "remainingKeys": [],
+        "estimate": {
+          "quota": 8388608,
+          "usage": 147456,
+          "usageDetails": {}
+        }
+      }
+    }
+  ],
+  "nativeTransactions": [
+    {
+      "at": "2026-10-10T23:52:38.430Z",
+      "stores": [
+        "documents",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:38.471Z",
+      "stores": [
+        "documents",
+        "folders",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:38.942Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:39.883Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:39.886Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "versions"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:40.263Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:40.597Z",
+      "stores": [
+        "documents",
+        "folders",
+        "libraryMetadata",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:40.637Z",
+      "stores": [
+        "documents",
+        "folders",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:41.098Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:41.548Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:41.778Z",
+      "stores": [
+        "documents",
+        "folders",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "abort",
+      "error": {
+        "name": "QuotaExceededError",
+        "message": ""
+      }
+    },
+    {
+      "at": "2026-10-10T23:52:43.408Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries",
+        "versions"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:43.845Z",
+      "stores": [
+        "documents",
+        "folders",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:44.316Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    },
+    {
+      "at": "2026-10-10T23:52:45.154Z",
+      "stores": [
+        "documents",
+        "libraryMetadata",
+        "settings",
+        "summaries"
+      ],
+      "state": "complete"
+    }
+  ],
+  "report": "{\n  \"bucketName\": \"vdoc-qa-e3790158-b33a-4710-b1cb-d07de42339c5\",\n  \"released\": true,\n  \"releasedKeys\": [\n    \"vdoc-qa-4c7e98f0-aae2-415a-b421-116201b7f1b6\",\n    \"vdoc-qa-cd4a94f9-ef05-470f-b281-0530d2e72877\",\n    \"vdoc-qa-2059f397-6874-46af-9f3c-74b4bef3f1ad\",\n    \"vdoc-qa-1f66c72f-2284-4807-ba6a-e68a1af0c504\",\n    \"vdoc-qa-538ab2db-4691-425d-a14e-ae640eb5f640\",\n    \"vdoc-qa-a277e7b1-b9c2-4cd0-acbb-c4c4d65ed296\",\n    \"vdoc-qa-1b01ef46-50a8-4992-8d8c-6b30add19edb\",\n    \"vdoc-qa-c1d98841-a0ef-4395-a2d6-7389d71c8530\",\n    \"vdoc-qa-10a3700c-05e7-4823-bfb3-675f6746f63d\",\n    \"vdoc-qa-6188fbc2-bb9b-4654-b87a-81f358041867\",\n    \"vdoc-qa-1caede22-9aba-4429-b1fc-d82438aa5cc4\",\n    \"vdoc-qa-35accd5b-4bc2-4cf2-b20f-847473713411\",\n    \"vdoc-qa-45da4497-6676-4948-a366-9b263a8c89c1\",\n    \"vdoc-qa-dd0b7063-559f-432c-a4c2-1037b87b9aec\",\n    \"vdoc-qa-feda154b-a799-4caa-aafd-088369831cd6\",\n    \"vdoc-qa-289af080-a22b-4f1a-84c6-0e3f62eebf72\",\n    \"vdoc-qa-a7ccacc4-90a5-4a0e-9324-583b46c80d16\",\n    \"vdoc-qa-bc370125-4f4e-4b8d-9551-c7df07ca06d9\",\n    \"vdoc-qa-26245a71-7cc1-48ff-8d5e-b7c4a79e4356\",\n    \"vdoc-qa-76907215-a0d5-42bf-a608-2f2dfb283672\",\n    \"vdoc-qa-996faab8-0a43-4688-84c6-310b6bdc6cba\",\n    \"vdoc-qa-40d168be-2ed8-46c3-8331-89140f150e67\",\n    \"vdoc-qa-f4bf4679-6d76-4063-994a-795e8abd6d64\",\n    \"vdoc-qa-4c3c1682-d02d-4b2f-9faa-92842602c459\",\n    \"vdoc-qa-0d4d5882-0391-4e00-997c-30614eb97199\",\n    \"vdoc-qa-0d012874-49d4-4676-a62d-42afbdf1313a\",\n    \"vdoc-qa-bd8df1cd-e384-4f20-a319-ec9fc4a76d6f\",\n    \"vdoc-qa-6b48c366-58e3-4399-83e4-6bda7b4b4aed\",\n    \"vdoc-qa-98eaafbf-3fc3-4708-a064-efdcbe556f8c\",\n    \"vdoc-qa-b6ccf9f9-1972-4885-a3e7-6b6d24f24f06\",\n    \"vdoc-qa-c33a06a5-f87f-4a67-af82-dd1512577e4b\",\n    \"vdoc-qa-107675ac-5da6-4615-8501-0ac6b709c610\",\n    \"vdoc-qa-91452554-ae49-4d6d-abcf-8a9c73741bdb\",\n    \"vdoc-qa-3be71715-f6f6-4b00-9e5e-19ecfc0e51a5\",\n    \"vdoc-qa-607b8b94-26a0-4e89-949d-89c3e0b4a663\"\n  ],\n  \"remainingKeys\": [],\n  \"estimate\": {\n    \"quota\": 8388608,\n    \"usage\": 147456,\n    \"usageDetails\": {}\n  }\n}"
+}

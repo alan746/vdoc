@@ -1,0 +1,23 @@
+{
+  "scope": "Real Paged.js deferred beforePreview on the actual React component; controlled close while pending, no native print or IME",
+  "browser": "154.0.8037.98",
+  "checks": [
+    {
+      "reject": false,
+      "styles": 0,
+      "styleConnected": false,
+      "hostChildren": 0,
+      "statuses": [],
+      "stopped": true
+    },
+    {
+      "reject": true,
+      "styles": 0,
+      "styleConnected": false,
+      "hostChildren": 0,
+      "statuses": [],
+      "stopped": true
+    }
+  ],
+  "passed": true
+}

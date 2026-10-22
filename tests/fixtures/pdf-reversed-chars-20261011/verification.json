@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "order": "source",
+      "pixelsEqualToBaseline": true,
+      "drawingOperatorsSerializationUnchanged": true,
+      "chromeFullMatch": true,
+      "pdfjsFullMatch": false,
+      "chromeWordsPassed": 11,
+      "accepted": false
+    },
+    {
+      "order": "page",
+      "pixelsEqualToBaseline": true,
+      "drawingOperatorsSerializationUnchanged": true,
+      "chromeFullMatch": false,
+      "pdfjsFullMatch": true,
+      "chromeWordsPassed": 11,
+      "accepted": false
+    }
+  ],
+  "conclusion": "Neither standard marked-content control satisfies both readers. No product change or acceptance promotion. Numeric serialization check corrected; both initial assertion failures retained."
+}

@@ -1,0 +1,6 @@
+{
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "407:431: execution error: Microsoft Word got an error: AppleEvent timed out. (-1712)\n",
+  "pdfExists": false
+}

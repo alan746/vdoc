@@ -1,0 +1,5 @@
+{
+  "reason": "The default 5-second test groups 40 independent DOCX export/import transactions, so a timeout does not identify which language failed.",
+  "change": "Parameterize the same language dataset; preserve both metadata and exact-text assertions for every language; keep the default timeout for each case.",
+  "exclusions": "Does not diagnose the other transient timeouts, certify bulk export performance, or resolve native PDF/IME gates."
+}

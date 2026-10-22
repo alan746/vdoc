@@ -1,0 +1,71 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ❯ tests/external-operations.test.ts (16 tests | 3 failed) 255ms
+   ✓ publishes a distinct session even when two editors have equal revisions 52ms
+   ✓ requires expectedSessionId at the external boundary 16ms
+   ✓ requires expectedRevision at the external boundary 12ms
+   ✓ requires target at the external boundary 11ms
+   ✓ forbids an implicit changing selection and source impersonation at the external boundary 11ms
+   ✓ rejects a delayed edit after native typing, even when its cell still exists 15ms
+   ✓ uses the stable cell after row movement only after reading a fresh revision 21ms
+   ✓ does not retarget a deleted cell to the cell occupying its former coordinate 11ms
+   ✓ returns the original result for an identical retry without applying twice 12ms
+   ✓ refuses cached or new requests and history commands after the session closes 9ms
+   ✓ describes merged cells once with logical spans and resolves cells in nested tables without mixing them 16ms
+   ✓ rolls back a failed external batch including earlier valid operations 10ms
+   × rejects an external edit while a workspace field is composing and permits the same request after it finishes 16ms
+     → expected undefined to be 'COMPOSING' // Object.is equality
+   × preserves history when undo arrives during composition outside the document body 12ms
+     → expected undefined to be 'COMPOSING' // Object.is equality
+   × preserves history when redo arrives during composition outside the document body 13ms
+     → expected undefined to be 'COMPOSING' // Object.is equality
+   ✓ registers the guarded schema and aborts the tools with the editor lifecycle 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/external-operations.test.ts > rejects an external edit while a workspace field is composing and permits the same request after it finishes
+AssertionError: expected undefined to be 'COMPOSING' // Object.is equality
+
+- Expected: 
+"COMPOSING"
+
++ Received: 
+undefined
+
+ ❯ tests/external-operations.test.ts:74:48
+     72|     const before = engine.snapshot(), canUndo = engine.canUndo;
+     73|     expect(editor.view.composing).toBe(false);
+     74|     expect(engine.executeExternal(input).code).toBe('COMPOSING');
+       |                                                ^
+     75|     expect(engine.snapshot()).toEqual(before); expect(engine.canUndo).…
+     76|     composing = false;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/external-operations.test.ts > preserves history when undo arrives during composition outside the document body
+ FAIL  tests/external-operations.test.ts > preserves history when redo arrives during composition outside the document body
+AssertionError: expected undefined to be 'COMPOSING' // Object.is equality
+
+- Expected: 
+"COMPOSING"
+
++ Received: 
+undefined
+
+ ❯ tests/external-operations.test.ts:91:48
+     89|   try {
+     90|     expect(editor.view.composing).toBe(false);
+     91|     expect(engine.history(action, 'api').code).toBe('COMPOSING');
+       |                                                ^
+     92|     expect(engine.snapshot()).toEqual(before);
+     93|     expect(engine.canUndo).toBe(canUndo); expect(engine.canRedo).toBe(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 13 passed (16)
+   Start at  21:30:02
+   Duration  928ms (transform 143ms, setup 11ms, collect 246ms, tests 255ms, environment 278ms, prepare 38ms)
+

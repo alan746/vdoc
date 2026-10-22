@@ -1,0 +1,2352 @@
+{
+  "version": 1,
+  "title": "QA final native acceptance",
+  "content": {
+    "type": "doc",
+    "attrs": {
+      "language": "und",
+      "pageSize": "a4",
+      "orientation": "portrait",
+      "pageMargin": 20,
+      "pageColor": "#FFFFFF",
+      "header": "VDoc system acceptance 中文",
+      "footer": "Local document acceptance",
+      "pageNumbers": true
+    },
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Final native acceptance"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "正文输入区："
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "列表输入区："
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Keep this list item unchanged."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "attrs": {
+          "columnDirection": "ltr",
+          "alignment": "left",
+          "pinnedRows": 1
+        },
+        "content": [
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Group 中文"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Details العربية"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 01 — rows 01–02 中文 日本語"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "image",
+                    "attrs": {
+                      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAIAAADrOSKFAAAB7UlEQVR4nO3VsQnCUBRA0URsXcABHMTaMRzLMawdxPQp0toHNxAV5BaeU3/4jweXN07LOgCdTfg3IELouYQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCbPvR6+P5/rNJeOV2OXy3oP11Z7OJ+fR486VLCDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcTGaVnrGeCvuYQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQwtJ5FTQyzh+CKnQAAAABJRU5ErkJggg==",
+                      "alt": "图片 العربية",
+                      "title": null,
+                      "width": 300,
+                      "height": 150
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "表格输入区："
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 02 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 02 — rows 03–04 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 03 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 04 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 03 — rows 05–06 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 05 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 06 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 04 — rows 07–08 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 07 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 08 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 05 — rows 09–10 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 09 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 10 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 06 — rows 11–12 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 11 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 12 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 07 — rows 13–14 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 13 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 14 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 08 — rows 15–16 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 15 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 16 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 09 — rows 17–18 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 17 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 18 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 10 — rows 19–20 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 19 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 20 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 11 — rows 21–22 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 21 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 22 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 12 — rows 23–24 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 23 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 24 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 13 — rows 25–26 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 25 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 26 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 14 — rows 27–28 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 27 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 28 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 15 — rows 29–30 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 29 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 30 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 16 — rows 31–32 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 31 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 32 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 17 — rows 33–34 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 33 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 34 — 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 2,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GROUP 18 — rows 35–36 中文 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ROW 35 — English 中文 العربية"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Check complete text and cell borders."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "VDOC_SEARCH_TARGET_36 日本語 हिन्दी עברית"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Verify this row appears exactly once."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "TABLE END — all 36 body rows must appear once."
+          }
+        ]
+      },
+      {
+        "type": "pageBreak"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FINAL PAGE CHECK 中文"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "This heading must start on a new page. End of acceptance sample."
+          }
+        ]
+      }
+    ]
+  },
+  "savedAt": "2026-10-05T00:00:00.000Z"
+}

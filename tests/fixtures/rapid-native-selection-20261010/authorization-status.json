@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-11T01:01:28.805078+00:00",
+  "goal": {
+    "existing": "VDoc foundation through actual AI entry",
+    "toolState": "blocked",
+    "createAttempt": "rejected: unfinished goal already exists",
+    "resumeControl": "User/system only; do not mark existing goal complete to recreate it",
+    "documentedCommand": "/goal resume",
+    "reference": "https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex"
+  },
+  "safari": {
+    "isolatedSessionProbe": "failed: Allow remote automation disabled",
+    "enableAttempt": "automatic approval rejected safaridriver --enable because it persistently expands automation access and latest wording was not sufficiently specific",
+    "configurationChanged": false,
+    "explicitApprovalQuestion": "pending; no retry or indirect workaround without the response"
+  },
+  "independentWork": "Rapid native keyboard selection/Enter defect reproduced and being fixed; no Safari or system-IME pass claimed"
+}

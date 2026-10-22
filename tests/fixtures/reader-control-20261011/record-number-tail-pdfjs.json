@@ -1,0 +1,3096 @@
+[
+  {
+    "name": "arabic-unicode-ordered-record-number-tail-marked",
+    "pdfSha256": "372a3ae72b4a14b9190063f1d6fc6ca0c6654960f69b9b756f79fb3617cecc43",
+    "matchCollapsed": false,
+    "pages": 1,
+    "text": "Browser PDF — Arabic words\nُّاللَغُةْالَعَرِبَّيُةَجِمَيلٌة\nَمْرَحًباِبْالَعَالِم123\nْالَعَرِبَّيُةَّالتْعِلُيمْالِكَتَابُة\nTable cell العربية\nDifferent context التعليم",
+    "source": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+    "exactIgnoringWhitespace": false,
+    "missingWholeWords": [
+      "اللُّغَةُ",
+      "الْعَرَبِيَّةُ",
+      "جَمِيلَةٌ",
+      "مَرْحَبًا",
+      "بِالْعَالَمِ",
+      "التَّعْلِيمُ",
+      "الْكِتَابَةُ"
+    ],
+    "items": [
+      {
+        "str": "Browser PDF — Arabic words",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          762
+        ],
+        "width": 224.25262499999994,
+        "height": 16.5
+      },
+      {
+        "str": "ُّالل",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          537.3264375,
+          715.5
+        ],
+        "width": 13.167,
+        "height": 16.5
+      },
+      {
+        "str": "َغ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          528.7299375,
+          715.5
+        ],
+        "width": 8.5965,
+        "height": 16.5
+      },
+      {
+        "str": "ُة",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          520.7109375,
+          715.5
+        ],
+        "width": 8.019,
+        "height": 16.5
+      },
+      {
+        "str": "ْال",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          508.185,
+          715.5
+        ],
+        "width": 8.217,
+        "height": 16.5
+      },
+      {
+        "str": "َع",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          499.5885000000001,
+          715.5
+        ],
+        "width": 8.5965,
+        "height": 16.5
+      },
+      {
+        "str": "َر",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          493.5495000000001,
+          715.5
+        ],
+        "width": 6.039000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ِب",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          489.11100000000005,
+          715.5
+        ],
+        "width": 4.4385,
+        "height": 16.5
+      },
+      {
+        "str": "َّي",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          482.9565,
+          715.5
+        ],
+        "width": 6.1545000000000005,
+        "height": 16.5
+      },
+      {
+        "str": "ُة",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          474.93749999999994,
+          715.5
+        ],
+        "width": 8.019,
+        "height": 16.5
+      },
+      {
+        "str": "َج",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          460.9065937499999,
+          715.5
+        ],
+        "width": 9.7185,
+        "height": 16.5
+      },
+      {
+        "str": "ِم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          451.36959375,
+          715.5
+        ],
+        "width": 9.537,
+        "height": 16.5
+      },
+      {
+        "str": "َيل",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          440.2650937499999,
+          715.5
+        ],
+        "width": 11.104500000000002,
+        "height": 16.5
+      },
+      {
+        "str": "ٌة",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          432.24609374999983,
+          715.5
+        ],
+        "width": 8.019,
+        "height": 16.5
+      },
+      {
+        "str": "َم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          541.83084375,
+          669
+        ],
+        "width": 8.6625,
+        "height": 16.5
+      },
+      {
+        "str": "ْر",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          535.95684375,
+          669
+        ],
+        "width": 5.8740000000000006,
+        "height": 16.5
+      },
+      {
+        "str": "َح",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          526.23834375,
+          669
+        ],
+        "width": 9.7185,
+        "height": 16.5
+      },
+      {
+        "str": "ًب",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          520.57884375,
+          669
+        ],
+        "width": 5.6595,
+        "height": 16.5
+      },
+      {
+        "str": "ا",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          515.77734375,
+          669
+        ],
+        "width": 4.8015,
+        "height": 16.5
+      },
+      {
+        "str": "ِب",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          507.0290625,
+          669
+        ],
+        "width": 4.4385,
+        "height": 16.5
+      },
+      {
+        "str": "ْال",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          497.9375624999999,
+          669
+        ],
+        "width": 9.0915,
+        "height": 16.5
+      },
+      {
+        "str": "َع",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          489.34106249999985,
+          669
+        ],
+        "width": 8.5965,
+        "height": 16.5
+      },
+      {
+        "str": "َال",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          480.2495624999999,
+          669
+        ],
+        "width": 9.0915,
+        "height": 16.5
+      },
+      {
+        "str": "ِم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          470.9765624999999,
+          669
+        ],
+        "width": 9.273,
+        "height": 16.5
+      },
+      {
+        "str": "123",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          438.3515624999999,
+          669
+        ],
+        "width": 28.314,
+        "height": 16.5
+      },
+      {
+        "str": "ْال",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          542.2748437500001,
+          622.5
+        ],
+        "width": 8.217,
+        "height": 16.5
+      },
+      {
+        "str": "َع",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          533.6783437500001,
+          622.5
+        ],
+        "width": 8.5965,
+        "height": 16.5
+      },
+      {
+        "str": "َر",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          527.6393437500001,
+          622.5
+        ],
+        "width": 6.039000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ِب",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          523.2008437500001,
+          622.5
+        ],
+        "width": 4.4385,
+        "height": 16.5
+      },
+      {
+        "str": "َّي",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          517.04634375,
+          622.5
+        ],
+        "width": 6.1545000000000005,
+        "height": 16.5
+      },
+      {
+        "str": "ُة",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          509.02734374999994,
+          622.5
+        ],
+        "width": 8.019,
+        "height": 16.5
+      },
+      {
+        "str": "َّالت",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          490.3529062499998,
+          622.5
+        ],
+        "width": 14.371500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ْع",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          481.7564062499998,
+          622.5
+        ],
+        "width": 8.5965,
+        "height": 16.5
+      },
+      {
+        "str": "ِل",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          476.8064062499999,
+          622.5
+        ],
+        "width": 4.95,
+        "height": 16.5
+      },
+      {
+        "str": "ُيم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          461.37890624999983,
+          622.5
+        ],
+        "width": 15.4275,
+        "height": 16.5
+      },
+      {
+        "str": "ْال",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          448.8540937499998,
+          622.5
+        ],
+        "width": 8.217,
+        "height": 16.5
+      },
+      {
+        "str": "ِك",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          440.4720937499998,
+          622.5
+        ],
+        "width": 8.382,
+        "height": 16.5
+      },
+      {
+        "str": "َت",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          434.31759374999973,
+          622.5
+        ],
+        "width": 6.1545000000000005,
+        "height": 16.5
+      },
+      {
+        "str": "َاب",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          425.0775937499997,
+          622.5
+        ],
+        "width": 9.24,
+        "height": 16.5
+      },
+      {
+        "str": "ُة",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          417.0585937499996,
+          622.5
+        ],
+        "width": 8.019,
+        "height": 16.5
+      },
+      {
+        "str": "Table cell",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          555.75
+        ],
+        "width": 70.86890625000002,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          125.61890625000002,
+          555.75
+        ],
+        "width": 285.87328125,
+        "height": 0
+      },
+      {
+        "str": "العربية",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.4921875,
+          555.75
+        ],
+        "width": 41.4645,
+        "height": 16.5
+      },
+      {
+        "str": "Different context",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          504
+        ],
+        "width": 130.92403125,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.67403124999998,
+          504
+        ],
+        "width": 225.81815625000002,
+        "height": 0
+      },
+      {
+        "str": "التعليم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.4921875,
+          504
+        ],
+        "width": 43.3455,
+        "height": 16.5
+      }
+    ]
+  },
+  {
+    "name": "arabic-unicode-ordered-record-number-tail-numbers",
+    "pdfSha256": "bc8f133314bdf7efad44517a7332d0c64183fa9a742d4d8585674748d805d56c",
+    "matchCollapsed": false,
+    "pages": 1,
+    "text": "Browser PDF — Arabic numbers\nمرحبا0123456789\nالعدد9876543210العربية\nالعربية١٢٣٤٥٦٧٨٩٠\nTable cell العربية\nDifferent context التعليم",
+    "source": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell\tالعربية\nDifferent context\tالتعليم",
+    "exactIgnoringWhitespace": true,
+    "missingWholeWords": [],
+    "items": [
+      {
+        "str": "Browser PDF — Arabic numbers",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          762
+        ],
+        "width": 246.758625,
+        "height": 16.5
+      },
+      {
+        "str": "مرحبا",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          515.77734375,
+          715.5
+        ],
+        "width": 34.716,
+        "height": 16.5
+      },
+      {
+        "str": "0123456789",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          417.09375,
+          715.5
+        ],
+        "width": 94.38000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "العدد",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          517.03125,
+          669
+        ],
+        "width": 33.462,
+        "height": 16.5
+      },
+      {
+        "str": "9876543210",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          418.34765625,
+          669
+        ],
+        "width": 94.38000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "العربية",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          372.57421874999994,
+          669
+        ],
+        "width": 41.4645,
+        "height": 16.5
+      },
+      {
+        "str": "العربية",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          509.02734375,
+          622.5
+        ],
+        "width": 41.4645,
+        "height": 16.5
+      },
+      {
+        "str": "١٢٣٤٥٦٧٨٩٠",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          410.34375,
+          622.5
+        ],
+        "width": 94.38000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "Table cell",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          555.75
+        ],
+        "width": 70.86890625000002,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          125.61890625000002,
+          555.75
+        ],
+        "width": 285.87328125,
+        "height": 0
+      },
+      {
+        "str": "العربية",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.4921875,
+          555.75
+        ],
+        "width": 41.4645,
+        "height": 16.5
+      },
+      {
+        "str": "Different context",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          504
+        ],
+        "width": 130.92403125,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.67403124999998,
+          504
+        ],
+        "width": 225.81815625000002,
+        "height": 0
+      },
+      {
+        "str": "التعليم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.4921875,
+          504
+        ],
+        "width": 43.3455,
+        "height": 16.5
+      }
+    ]
+  },
+  {
+    "name": "arabic-unicode-ordered-record-number-tail",
+    "pdfSha256": "351ad2955391805af6450c8718c9bcc5237b711edb7dcd4245a7591a7eac7711",
+    "matchCollapsed": false,
+    "pages": 1,
+    "text": "Browser PDF — Arabic words\nاللغةالعربيةجميلة\nمرحبابالعالمالسلامعليكم\nالعربيةالتعليمالكتابة\nTable cell العربية\nDifferent context التعليم",
+    "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+    "exactIgnoringWhitespace": true,
+    "missingWholeWords": [],
+    "items": [
+      {
+        "str": "Browser PDF — Arabic words",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          762
+        ],
+        "width": 224.25262499999994,
+        "height": 16.5
+      },
+      {
+        "str": "اللغة",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          520.7109375,
+          715.5
+        ],
+        "width": 29.7825,
+        "height": 16.5
+      },
+      {
+        "str": "العربية",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          474.9375,
+          715.5
+        ],
+        "width": 41.4645,
+        "height": 16.5
+      },
+      {
+        "str": "جميلة",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          432.24609375,
+          715.5
+        ],
+        "width": 38.379,
+        "height": 16.5
+      },
+      {
+        "str": "مرحبا",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          515.77734375,
+          669
+        ],
+        "width": 34.716,
+        "height": 16.5
+      },
+      {
+        "str": "بالعالم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          470.9765625,
+          669
+        ],
+        "width": 40.49099999999999,
+        "height": 16.5
+      },
+      {
+        "str": "السلام",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          426.56249999999994,
+          669
+        ],
+        "width": 40.1115,
+        "height": 16.5
+      },
+      {
+        "str": "عليكم",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          385.19531249999994,
+          669
+        ],
+        "width": 37.059,
+        "height": 16.5
+      },
+      {
+        "str": "العربية",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          509.02734375,
+          622.5
+        ],
+        "width": 41.4645,
+        "height": 16.5
+      },
+      {
+        "str": "التعليم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          461.37890624999994,
+          622.5
+        ],
+        "width": 43.3455,
+        "height": 16.5
+      },
+      {
+        "str": "الكتابة",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          417.0585937499999,
+          622.5
+        ],
+        "width": 40.012499999999996,
+        "height": 16.5
+      },
+      {
+        "str": "Table cell",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          555.75
+        ],
+        "width": 70.86890625000002,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          125.61890625000002,
+          555.75
+        ],
+        "width": 285.87328125,
+        "height": 0
+      },
+      {
+        "str": "العربية",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.4921875,
+          555.75
+        ],
+        "width": 41.4645,
+        "height": 16.5
+      },
+      {
+        "str": "Different context",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          504
+        ],
+        "width": 130.92403125,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.67403124999998,
+          504
+        ],
+        "width": 225.81815625000002,
+        "height": 0
+      },
+      {
+        "str": "التعليم",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.4921875,
+          504
+        ],
+        "width": 43.3455,
+        "height": 16.5
+      }
+    ]
+  },
+  {
+    "name": "hebrew-unicode-ordered-record-number-tail-marked",
+    "pdfSha256": "34975694be03165a29d173133ac602db80b25f649532893f14b797ee64490f83",
+    "matchCollapsed": false,
+    "pages": 1,
+    "text": "Browser PDF — Hebrew words\nָׁשֹלוםֹעוָלם\nִעְבִריתְּכִתָיבה123\nָׁשֹלוםְּבִעְבִריתֹעוָלם\nTable cell עברית\nDifferent context שלום",
+    "source": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+    "exactIgnoringWhitespace": false,
+    "missingWholeWords": [
+      "שָׁלוֹם",
+      "עוֹלָם",
+      "עִבְרִית",
+      "כְּתִיבָה",
+      "בְּעִבְרִית"
+    ],
+    "items": [
+      {
+        "str": "Browser PDF — Hebrew words",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          761.25
+        ],
+        "width": 234.02278124999998,
+        "height": 16.5
+      },
+      {
+        "str": "ָׁש",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          538.4504999999999,
+          714.75
+        ],
+        "width": 12.045,
+        "height": 16.5
+      },
+      {
+        "str": "ֹלו",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          525.036,
+          714.75
+        ],
+        "width": 13.4145,
+        "height": 16.5
+      },
+      {
+        "str": "ם",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          513.7499999999999,
+          714.75
+        ],
+        "width": 11.286000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ֹעו",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          494.53181249999983,
+          714.75
+        ],
+        "width": 14.751000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ָל",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          485.9188124999998,
+          714.75
+        ],
+        "width": 8.613,
+        "height": 16.5
+      },
+      {
+        "str": "ם",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          474.6328124999998,
+          714.75
+        ],
+        "width": 11.286000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ִע",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          540.7059375,
+          668.25
+        ],
+        "width": 9.784500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ְב",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          531.6804374999999,
+          668.25
+        ],
+        "width": 9.025500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ִר",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          523.0509374999999,
+          668.25
+        ],
+        "width": 8.6295,
+        "height": 16.5
+      },
+      {
+        "str": "ית",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          507.21093749999994,
+          668.25
+        ],
+        "width": 15.84,
+        "height": 16.5
+      },
+      {
+        "str": "ְּכ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          494.2407187499998,
+          668.25
+        ],
+        "width": 8.4975,
+        "height": 16.5
+      },
+      {
+        "str": "ִת",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          483.16921874999986,
+          668.25
+        ],
+        "width": 11.0715,
+        "height": 16.5
+      },
+      {
+        "str": "ָיב",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          469.91971874999984,
+          668.25
+        ],
+        "width": 13.249500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ה",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          459.57421874999983,
+          668.25
+        ],
+        "width": 10.345500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "123",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          426.5859374999998,
+          668.25
+        ],
+        "width": 28.512000000000004,
+        "height": 16.5
+      },
+      {
+        "str": "ָׁש",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          538.4504999999999,
+          621.75
+        ],
+        "width": 12.045,
+        "height": 16.5
+      },
+      {
+        "str": "ֹלו",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          525.036,
+          621.75
+        ],
+        "width": 13.4145,
+        "height": 16.5
+      },
+      {
+        "str": "ם",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          513.7499999999999,
+          621.75
+        ],
+        "width": 11.286000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ְּב",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          499.8419999999998,
+          621.75
+        ],
+        "width": 9.438,
+        "height": 16.5
+      },
+      {
+        "str": "ִע",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          490.0574999999998,
+          621.75
+        ],
+        "width": 9.784500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ְב",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          481.0319999999997,
+          621.75
+        ],
+        "width": 9.025500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ִר",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          472.40249999999975,
+          621.75
+        ],
+        "width": 8.6295,
+        "height": 16.5
+      },
+      {
+        "str": "ית",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          456.5624999999998,
+          621.75
+        ],
+        "width": 15.84,
+        "height": 16.5
+      },
+      {
+        "str": "ֹעו",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          437.3443124999998,
+          621.75
+        ],
+        "width": 14.751000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ָל",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          428.7313124999997,
+          621.75
+        ],
+        "width": 8.613,
+        "height": 16.5
+      },
+      {
+        "str": "ם",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          417.44531249999966,
+          621.75
+        ],
+        "width": 11.286000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "Table cell",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          555
+        ],
+        "width": 70.53215625000001,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          125.28215625000001,
+          555
+        ],
+        "width": 286.174875,
+        "height": 0
+      },
+      {
+        "str": "עברית",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.45703125,
+          555
+        ],
+        "width": 43.279500000000006,
+        "height": 16.5
+      },
+      {
+        "str": "Different context",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          503.25
+        ],
+        "width": 130.73981250000003,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.4898125,
+          503.25
+        ],
+        "width": 225.96721875,
+        "height": 0
+      },
+      {
+        "str": "שלום",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.45703125,
+          503.25
+        ],
+        "width": 36.7455,
+        "height": 16.5
+      }
+    ]
+  },
+  {
+    "name": "hebrew-unicode-ordered-record-number-tail-numbers",
+    "pdfSha256": "739a035c27fa09c529733af573145e3f753515bd1e07a0872011269c16f78af1",
+    "matchCollapsed": false,
+    "pages": 1,
+    "text": "Browser PDF — Hebrew numbers\nשלום0123456789\nמספר9876543210בעברית\nעברית1234567890\nTable cell עברית\nDifferent context שלום",
+    "source": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+    "exactIgnoringWhitespace": true,
+    "missingWholeWords": [],
+    "items": [
+      {
+        "str": "Browser PDF — Hebrew numbers",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          761.25
+        ],
+        "width": 256.26478125,
+        "height": 16.5
+      },
+      {
+        "str": "שלום",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          513.75,
+          714.75
+        ],
+        "width": 36.7455,
+        "height": 16.5
+      },
+      {
+        "str": "0123456789",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          414.2343750000001,
+          714.75
+        ],
+        "width": 95.04000000000003,
+        "height": 16.5
+      },
+      {
+        "str": "מספר",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          511.0078125,
+          668.25
+        ],
+        "width": 39.4845,
+        "height": 16.5
+      },
+      {
+        "str": "9876543210",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.4921875000001,
+          668.25
+        ],
+        "width": 95.04000000000003,
+        "height": 16.5
+      },
+      {
+        "str": "בעברית",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          354.3046875000002,
+          668.25
+        ],
+        "width": 52.71750000000001,
+        "height": 16.5
+      },
+      {
+        "str": "עברית",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          507.2109375,
+          621.75
+        ],
+        "width": 43.279500000000006,
+        "height": 16.5
+      },
+      {
+        "str": "1234567890",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          407.69531249999994,
+          621.75
+        ],
+        "width": 95.04000000000003,
+        "height": 16.5
+      },
+      {
+        "str": "Table cell",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          555
+        ],
+        "width": 70.53215625000001,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          125.28215625000001,
+          555
+        ],
+        "width": 286.174875,
+        "height": 0
+      },
+      {
+        "str": "עברית",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.45703125,
+          555
+        ],
+        "width": 43.279500000000006,
+        "height": 16.5
+      },
+      {
+        "str": "Different context",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          503.25
+        ],
+        "width": 130.73981250000003,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.4898125,
+          503.25
+        ],
+        "width": 225.96721875,
+        "height": 0
+      },
+      {
+        "str": "שלום",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.45703125,
+          503.25
+        ],
+        "width": 36.7455,
+        "height": 16.5
+      }
+    ]
+  },
+  {
+    "name": "hebrew-unicode-ordered-record-number-tail",
+    "pdfSha256": "56cfe5962480debe94f51526d81441b5a4436303600f7320d44c50f2ff4be9d6",
+    "matchCollapsed": false,
+    "pages": 1,
+    "text": "Browser PDF — Hebrew words\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה\nשלוםבעבריתעולם\nTable cell עברית\nDifferent context שלום",
+    "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+    "exactIgnoringWhitespace": true,
+    "missingWholeWords": [],
+    "items": [
+      {
+        "str": "Browser PDF — Hebrew words",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          761.25
+        ],
+        "width": 234.02278124999998,
+        "height": 16.5
+      },
+      {
+        "str": "שלום",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          513.75,
+          714.75
+        ],
+        "width": 36.7455,
+        "height": 16.5
+      },
+      {
+        "str": "עולם",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          474.6328125000001,
+          714.75
+        ],
+        "width": 34.650000000000006,
+        "height": 16.5
+      },
+      {
+        "str": "בדיקת",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          425.4609375,
+          714.75
+        ],
+        "width": 44.6985,
+        "height": 16.5
+      },
+      {
+        "str": "מסמך",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          379.9687499999999,
+          714.75
+        ],
+        "width": 41.019000000000005,
+        "height": 16.5
+      },
+      {
+        "str": "עברית",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          507.2109375,
+          668.25
+        ],
+        "width": 43.279500000000006,
+        "height": 16.5
+      },
+      {
+        "str": "כתיבה",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          459.57421874999994,
+          668.25
+        ],
+        "width": 43.164,
+        "height": 16.5
+      },
+      {
+        "str": "טבלה",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          416.24999999999994,
+          668.25
+        ],
+        "width": 38.8575,
+        "height": 16.5
+      },
+      {
+        "str": "שלום",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          513.75,
+          621.75
+        ],
+        "width": 36.7455,
+        "height": 16.5
+      },
+      {
+        "str": "בעברית",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          456.5625000000001,
+          621.75
+        ],
+        "width": 52.71750000000001,
+        "height": 16.5
+      },
+      {
+        "str": "עולם",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          417.4453125000001,
+          621.75
+        ],
+        "width": 34.650000000000006,
+        "height": 16.5
+      },
+      {
+        "str": "Table cell",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          555
+        ],
+        "width": 70.53215625000001,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          125.28215625000001,
+          555
+        ],
+        "width": 286.174875,
+        "height": 0
+      },
+      {
+        "str": "עברית",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.45703125,
+          555
+        ],
+        "width": 43.279500000000006,
+        "height": 16.5
+      },
+      {
+        "str": "Different context",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          503.25
+        ],
+        "width": 130.73981250000003,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.4898125,
+          503.25
+        ],
+        "width": 225.96721875,
+        "height": 0
+      },
+      {
+        "str": "שלום",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          411.45703125,
+          503.25
+        ],
+        "width": 36.7455,
+        "height": 16.5
+      }
+    ]
+  },
+  {
+    "name": "words-unicode-ordered-record-number-tail",
+    "pdfSha256": "9e4a26406ecde1a6373f096c0e98d80c4403419a088d13a6dbc580908d51fc03",
+    "matchCollapsed": true,
+    "pages": 1,
+    "text": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना",
+    "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+    "exactIgnoringWhitespace": true,
+    "missingWholeWords": [],
+    "items": [
+      {
+        "str": "Browser PDF — local text and vectors",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          763.5
+        ],
+        "width": 287.93296875,
+        "height": 16.5
+      },
+      {
+        "str": "",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          717
+        ],
+        "width": 0,
+        "height": 0
+      },
+      {
+        "str": "हि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          717
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": "न्",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          58.035,
+          717
+        ],
+        "width": 5.0985000000000005,
+        "height": 16.5
+      },
+      {
+        "str": "दी",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          63.1335,
+          717
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          76.1685,
+          717
+        ],
+        "width": 4.3041562500000055,
+        "height": 0
+      },
+      {
+        "str": "हिं",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          80.47265625,
+          717
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": "दी",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          93.50765625,
+          717
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          106.54265625,
+          717
+        ],
+        "width": 4.305000000000007,
+        "height": 0
+      },
+      {
+        "str": "भा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          110.84765625,
+          717
+        ],
+        "width": 15.873000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "षा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          126.72065625,
+          717
+        ],
+        "width": 13.810500000000001,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          140.53115625,
+          717
+        ],
+        "width": 4.300875000000019,
+        "height": 0
+      },
+      {
+        "str": "में",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          144.83203125000003,
+          717
+        ],
+        "width": 9.867,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          154.69903125000002,
+          717
+        ],
+        "width": 4.300968749999981,
+        "height": 0
+      },
+      {
+        "str": "द",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          159,
+          717
+        ],
+        "width": 8.7615,
+        "height": 16.5
+      },
+      {
+        "str": "स्",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          167.7615,
+          717
+        ],
+        "width": 6.4185,
+        "height": 16.5
+      },
+      {
+        "str": "ता",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          174.18,
+          717
+        ],
+        "width": 13.678500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "वे",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          187.85850000000002,
+          717
+        ],
+        "width": 9.174000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ज़",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          197.03250000000003,
+          717
+        ],
+        "width": 12.243,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          209.27550000000002,
+          717
+        ],
+        "width": 4.310437499999978,
+        "height": 0
+      },
+      {
+        "str": "लि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          213.5859375,
+          717
+        ],
+        "width": 15.460500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "ख",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          229.0464375,
+          717
+        ],
+        "width": 13.497,
+        "height": 16.5
+      },
+      {
+        "str": "ना",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          242.54343749999998,
+          717
+        ],
+        "width": 13.431000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "।",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          255.9744375,
+          717
+        ],
+        "width": 6.253500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          670.5
+        ],
+        "width": 0,
+        "height": 0
+      },
+      {
+        "str": "दु",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          670.5
+        ],
+        "width": 8.7615,
+        "height": 16.5
+      },
+      {
+        "str": "नि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          53.7615,
+          670.5
+        ],
+        "width": 13.431000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "या",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          67.1925,
+          670.5
+        ],
+        "width": 13.8435,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          81.036,
+          670.5
+        ],
+        "width": 4.311656249999999,
+        "height": 0
+      },
+      {
+        "str": "नम",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          85.34765625,
+          670.5
+        ],
+        "width": 19.024500000000003,
+        "height": 16.5
+      },
+      {
+        "str": "स्",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          104.37215625,
+          670.5
+        ],
+        "width": 6.4185,
+        "height": 16.5
+      },
+      {
+        "str": "ते",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          110.79065625,
+          670.5
+        ],
+        "width": 9.405000000000001,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          120.19565625,
+          670.5
+        ],
+        "width": 4.304343750000001,
+        "height": 0
+      },
+      {
+        "str": "शि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          124.5,
+          670.5
+        ],
+        "width": 15.493500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "क्षा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          139.9935,
+          670.5
+        ],
+        "width": 16.104,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          156.09750000000003,
+          670.5
+        ],
+        "width": 4.308750000000003,
+        "height": 0
+      },
+      {
+        "str": "क्ष",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          160.40625000000003,
+          670.5
+        ],
+        "width": 11.8305,
+        "height": 16.5
+      },
+      {
+        "str": "त्रि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          172.23675000000003,
+          670.5
+        ],
+        "width": 13.3815,
+        "height": 16.5
+      },
+      {
+        "str": "य",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.61825000000002,
+          670.5
+        ],
+        "width": 9.57,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          195.18825,
+          670.5
+        ],
+        "width": 4.311749999999989,
+        "height": 0
+      },
+      {
+        "str": "प्रा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          199.5,
+          670.5
+        ],
+        "width": 13.662,
+        "height": 16.5
+      },
+      {
+        "str": "र्थ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          213.162,
+          670.5
+        ],
+        "width": 10.5435,
+        "height": 16.5
+      },
+      {
+        "str": "ना",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          223.7055,
+          670.5
+        ],
+        "width": 13.431000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "।",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          237.1365,
+          670.5
+        ],
+        "width": 6.253500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "Repeat",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          45,
+          624
+        ],
+        "width": 54.23550000000001,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          99.2355,
+          624
+        ],
+        "width": 4.311375000000012,
+        "height": 0
+      },
+      {
+        "str": "हि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          103.54687500000001,
+          624
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": "न्",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          116.58187500000001,
+          624
+        ],
+        "width": 5.0985000000000005,
+        "height": 16.5
+      },
+      {
+        "str": "दी",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          121.68037500000001,
+          624
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          134.71537500000002,
+          624
+        ],
+        "width": 4.3041562500000055,
+        "height": 0
+      },
+      {
+        "str": "and",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          139.01953125000003,
+          624
+        ],
+        "width": 29.601000000000003,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          168.62053125000003,
+          624
+        ],
+        "width": 4.301343750000001,
+        "height": 0
+      },
+      {
+        "str": "हिं",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          172.92187500000003,
+          624
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": "दी",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.95687500000003,
+          624
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          198.99187500000002,
+          624
+        ],
+        "width": 4.304999999999978,
+        "height": 0
+      },
+      {
+        "str": "with contextual shapes.",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          203.296875,
+          624
+        ],
+        "width": 182.557875,
+        "height": 16.5
+      },
+      {
+        "str": "Table cell",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          557.25
+        ],
+        "width": 70.86890625000002,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          125.61890625000002,
+          557.25
+        ],
+        "width": 241.35375,
+        "height": 0
+      },
+      {
+        "str": "हि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          366.97265625,
+          557.25
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": "न्",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          380.00765625,
+          557.25
+        ],
+        "width": 5.0985000000000005,
+        "height": 16.5
+      },
+      {
+        "str": "दी",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          385.10615625,
+          557.25
+        ],
+        "width": 13.035,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          398.14115625000005,
+          557.25
+        ],
+        "width": 4.3041562500000055,
+        "height": 0
+      },
+      {
+        "str": "भा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          402.44531250000006,
+          557.25
+        ],
+        "width": 15.873000000000001,
+        "height": 16.5
+      },
+      {
+        "str": "षा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          418.31831250000005,
+          557.25
+        ],
+        "width": 13.810500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "",
+        "hasEOL": true,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          505.5
+        ],
+        "width": 0,
+        "height": 0
+      },
+      {
+        "str": "Different context",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          54.75,
+          505.5
+        ],
+        "width": 130.92403125,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          185.67403124999998,
+          505.5
+        ],
+        "width": 181.29862500000002,
+        "height": 0
+      },
+      {
+        "str": "शि",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          366.97265625,
+          505.5
+        ],
+        "width": 15.493500000000001,
+        "height": 16.5
+      },
+      {
+        "str": "क्षा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          382.46615625,
+          505.5
+        ],
+        "width": 16.104,
+        "height": 16.5
+      },
+      {
+        "str": " ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          398.57015624999997,
+          505.5
+        ],
+        "width": 4.308750000000032,
+        "height": 0
+      },
+      {
+        "str": "प्रा",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          402.87890625,
+          505.5
+        ],
+        "width": 13.662,
+        "height": 16.5
+      },
+      {
+        "str": "र्थ",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          416.54090625,
+          505.5
+        ],
+        "width": 10.5435,
+        "height": 16.5
+      },
+      {
+        "str": "ना",
+        "hasEOL": false,
+        "transform": [
+          16.5,
+          0,
+          0,
+          16.5,
+          427.08440625,
+          505.5
+        ],
+        "width": 13.431000000000001,
+        "height": 16.5
+      }
+    ]
+  }
+]

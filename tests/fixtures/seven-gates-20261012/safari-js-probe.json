@@ -1,0 +1,5 @@
+{
+  "windowId": 1468,
+  "error": "Command '['osascript', '-e', 'tell application \"Safari\"\\nset qaWindow to window id 1468\\nif not ((URL of current tab of qaWindow) starts with \"http://127.0.0.1:4187/\") then error \"Wrong VDoc origin\"\\nreturn do JavaScript \"JSON.stringify({title:document.title,ready:document.readyState})\" in current tab of qaWindow\\nend tell']' returned non-zero exit status 1.",
+  "closeError": "Command '['osascript', '-e', 'tell application \"Safari\"\\nset qaWindow to window id 1468\\nif not ((URL of current tab of qaWindow) starts with \"http://127.0.0.1:4187/\") then error \"Wrong origin; leave window\"\\nclose qaWindow\\nend tell']' returned non-zero exit status 1."
+}

@@ -1,0 +1,47 @@
+{
+  "input": "output/pdf/safari-fixed-pdf-20261011/prototype-b.pdf",
+  "output": "output/pdf/pdf-unicode-20261011/global-order-b.pdf",
+  "inputSha256": "dc9027ab31b56a146dc9988ed001116fc95b39c4f708a82808d4a45c8e6ea541",
+  "outputSha256": "a7cfdc5c5768661b03202da136f7ec0bf92595e015c2af7f61d6daefe62acfbd",
+  "edits": [
+    {
+      "fontObject": 56,
+      "glyphHex": "03F3",
+      "unicode": "ي",
+      "coveredOccurrences": 4
+    },
+    {
+      "fontObject": 70,
+      "glyphHex": "03F3",
+      "unicode": "ي",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 93,
+      "glyphHex": "0F",
+      "unicode": "ह",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 98,
+      "glyphHex": "53",
+      "unicode": "ि",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 103,
+      "glyphHex": "43",
+      "unicode": "न",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 98,
+      "glyphHex": "1D",
+      "unicode": "्दी",
+      "coveredOccurrences": 18
+    }
+  ],
+  "pages": 5,
+  "logicalOrder": true,
+  "scope": "ToUnicode bfchar values derived from existing ActualText. Every changed glyph occurrence must be covered and agree. Rendering operators and font glyph data unchanged. QA only."
+}

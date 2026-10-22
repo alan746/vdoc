@@ -1,0 +1,24 @@
+{
+  "scale": 101,
+  "file": "output/pdf/safari-native-20261011/flow-native-101.pdf",
+  "nativePageLabel": "All 4 Pages",
+  "sha256": "0b83f515bd18644d6f8f0d7fc6a1f25620fa5c5cced3f7effddb787e2f6f388f",
+  "bytes": 141927,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  },
+  "initialObservationBeforeWriteCompleted": {
+    "sha256": "bc218d72e1ef4e38df9d62f01aa718e6f4a2e9fc8984f8cf9bd2e62567a7ad25",
+    "bytes": 8192
+  },
+  "verifiedAfterWriteCompleted": true,
+  "captureRace": "Original harness observed the first nonempty chunk. Full PDF later parsed and hashed. Runner now requires stable size plus EOF; new wait path not rerun this turn."
+}

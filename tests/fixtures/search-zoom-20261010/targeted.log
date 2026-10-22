@@ -1,0 +1,21 @@
+
+> vdoc@0.1.0 test
+> vitest run tests/find-panel-live-document.test.ts tests/search-scroll.test.ts tests/search-performance.test.ts
+
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/search-scroll.test.ts (17 tests) 570ms
+ ✓ tests/find-panel-live-document.test.ts (49 tests) 1345ms
+stdout | tests/search-performance.test.ts > keeps long-document search coordinates accurate through local edits, replacement and undo
+SEARCH_PROFILE median=0.81ms max=2.14ms, 2500 mixed paragraphs, 12 local edits
+
+ ✓ tests/search-performance.test.ts (5 tests) 6763ms
+   ✓ keeps long-document search coordinates accurate through local edits, replacement and undo  3808ms
+   ✓ does not reuse results when the query, case option or whole-word option changes  2901ms
+
+ Test Files  3 passed (3)
+      Tests  71 passed (71)
+   Start at  18:46:40
+   Duration  7.99s (transform 330ms, setup 67ms, collect 1.80s, tests 8.68s, environment 1.30s, prepare 234ms)
+

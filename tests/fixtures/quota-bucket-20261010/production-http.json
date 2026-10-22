@@ -1,0 +1,41 @@
+{
+  "origin": "http://127.0.0.1:4177",
+  "scope": "HTTP routes and referenced entry assets only, not browser UI acceptance",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "bytes": 9493,
+      "scripts": [
+        "/_next/static/chunks/rolldown-runtime-C5USp2td.js",
+        "/_next/static/chunks/framework-DGW0pQoC.js",
+        "/_next/static/chunks/index-BFgS12Z1.js"
+      ]
+    },
+    {
+      "route": "/print-preview",
+      "status": 200,
+      "bytes": 9561,
+      "scripts": [
+        "/_next/static/chunks/rolldown-runtime-C5USp2td.js",
+        "/_next/static/chunks/framework-DGW0pQoC.js",
+        "/_next/static/chunks/index-BFgS12Z1.js"
+      ]
+    },
+    {
+      "asset": "/_next/static/chunks/rolldown-runtime-C5USp2td.js",
+      "status": 200,
+      "bytes": 1216
+    },
+    {
+      "asset": "/_next/static/chunks/framework-DGW0pQoC.js",
+      "status": 200,
+      "bytes": 190152
+    },
+    {
+      "asset": "/_next/static/chunks/index-BFgS12Z1.js",
+      "status": 200,
+      "bytes": 193207
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "parentGap": {
+    "pid": 53859,
+    "ppid": 891,
+    "threadId": 0,
+    "at": 1791766116486.6873,
+    "kind": "process-timer-gap",
+    "elapsedMs": 6544.046625003219,
+    "cpuUs": {
+      "user": 614,
+      "system": 176
+    },
+    "memory": {
+      "rss": 264634368,
+      "heapTotal": 192118784,
+      "heapUsed": 88992160,
+      "external": 11035317,
+      "arrayBuffers": 2103604
+    }
+  },
+  "workerGap": {
+    "pid": 54026,
+    "kind": "worker-timer-gap",
+    "test": "delivers real snapshot bytes, backs up the newer draft, then regenerates Word with the latest title and merged content",
+    "elapsedMs": 6545.131374999881,
+    "cpuUs": {
+      "user": 94947,
+      "system": 5065
+    },
+    "memory": {
+      "rss": 301187072,
+      "heapTotal": 208748544,
+      "heapUsed": 107263000,
+      "external": 4861604,
+      "arrayBuffers": 1021156
+    }
+  },
+  "failingTestStart": {
+    "pid": 54026,
+    "kind": "start",
+    "test": "delivers real snapshot bytes, backs up the newer draft, then regenerates Word with the latest title and merged content",
+    "at": 1791766109817.8733
+  },
+  "failingTestEnd": {
+    "pid": 54026,
+    "kind": "end",
+    "test": "delivers real snapshot bytes, backs up the newer draft, then regenerates Word with the latest title and merged content",
+    "elapsedMs": 6748.218250006437
+  },
+  "interpretation": "Independent parent and worker timers both delayed about 6.54 seconds; little CPU was consumed in either. This supports host/runner scheduling delay rather than continuous product computation. Exact OS/scheduling cause is not established.",
+  "harnessLimitations": "Two very large worker clock jumps in fake-timer suites are excluded. V1 resolved process.hrtime dynamically; v2 captures its original function. The decisive Word-export case uses no fake timers. Initial wrong config import path preserved in diagnostic-startup-failure.log.",
+  "testChange": "Default functional-test wall-clock timeout 5s to 15s. Per-operation product timeout constants and explicit performance assertions unchanged; no retries enabled. 40 language transactions parameterized with identical value assertions."
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-alef-marked.pdf",
+    "render": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-alef-marked-render.png",
+    "reference": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-actual-marked-render.png",
+    "equal": false,
+    "differenceBounds": [
+      569,
+      366,
+      606,
+      452
+    ]
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-alef.pdf",
+    "render": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-alef-render.png",
+    "reference": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-actual-render.png",
+    "equal": false,
+    "differenceBounds": [
+      91,
+      93,
+      733,
+      452
+    ]
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-safety-record-alef.pdf",
+    "render": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-safety-record-alef-render.png",
+    "reference": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-actual-render.png",
+    "equal": false,
+    "differenceBounds": [
+      91,
+      93,
+      733,
+      452
+    ]
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-alef-marked.pdf",
+    "render": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-alef-marked-render.png",
+    "reference": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-actual-marked-render.png",
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-alef.pdf",
+    "render": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-alef-render.png",
+    "reference": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-actual-render.png",
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-alef.pdf",
+    "render": "tests/fixtures/reader-control-20261011/words-unicode-ordered-record-alef-render.png",
+    "reference": "tests/fixtures/reader-control-20261011/words-unicode-ordered-record-actual-render.png",
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-safety-record-actual.pdf",
+    "render": "tests/fixtures/reader-control-20261011/words-unicode-ordered-safety-record-actual-render.png",
+    "reference": "tests/fixtures/reader-control-20261011/words-unicode-ordered-record-actual-render.png",
+    "equal": true,
+    "differenceBounds": null
+  }
+]

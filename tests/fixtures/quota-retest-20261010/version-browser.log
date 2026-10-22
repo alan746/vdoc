@@ -1,0 +1,6 @@
+native-bucket-filled {"bucket":"vdoc-qa-58d62429-5409-4120-8972-03d5774bf73d","bytes":8286208}
+native-version-store-rollback {"error":{"name":"QuotaExceededError","message":""},"allStoresUnchanged":true}
+version-ui-failure-keeps-old-checkpoint {"failurePhase":"UI current-document save refuses before checkpoint; native version-store refusal tested separately"}
+version-retry-succeeds {"count":2}
+test-bucket-removed-and-read-back {"deleted":"vdoc-qa-58d62429-5409-4120-8972-03d5774bf73d","remaining":[]}
+completed {"browser":"154.0.8037.98"}

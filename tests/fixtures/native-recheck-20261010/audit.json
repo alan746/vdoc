@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-10",
+  "environment": "macOS 26.6.2, isolated persistent WKWebView; not Safari",
+  "applicationSha256": "bbe738db9f0ab1d83e7ff0a2244cbf51691c94e02e624fecaa8ec196af452612",
+  "documentId": "bf5a4d3c-6c75-4f74-8880-5f1cf8dd0ccd",
+  "savedCrash": {
+    "pidBefore": 70351,
+    "pidAfter": 18398,
+    "killAt": "2026-10-10T19:55:30Z"
+  },
+  "inputCrash": {
+    "pidBefore": 19577,
+    "pidAfter": 19976,
+    "killAt": "2026-10-10T20:00:08Z",
+    "delayMs": 150,
+    "uncommittedCharacterPreserved": false
+  },
+  "comparisons": {
+    "after-saved-crash.vdoc.json": {
+      "version": true,
+      "title": true,
+      "content": true
+    },
+    "after-input-crash.vdoc.json": {
+      "version": true,
+      "title": true,
+      "content": true
+    }
+  },
+  "limitations": [
+    "Host SIGKILL only; does not establish exact IndexedDB transaction interruption or storage-service crash.",
+    "Not Safari native printing, OS candidate input, or genuine quota exhaustion."
+  ],
+  "files": {
+    "before.vdoc.json": "c190cb0c59863129bb207c50d71b37057b8f9b7b8f603fa2f05a6fc20d619c11",
+    "after-saved-crash.vdoc.json": "7e1d47601a4168c234bb56dfc7d0efe5edee757a054e8e981a7a952798cff627",
+    "after-input-crash.vdoc.json": "06a56957ba6482b1bc58af6cd20a5f7067d43b37bff7c6b504f998d5f2d84c85",
+    "native-input-committed.vdoc.json": "7282bfebdb7b5f489c8efbca49fb9bd2d33ff8ebc7a726586abf6afa5440f7bf",
+    "native-input-reloaded.vdoc.json": "5b838ebd25ed3ee7823591d326abe71de5d8d8ec4f8e1272c36c1187193d10d6"
+  },
+  "applicationManifestVerified": true,
+  "browserPreview": {
+    "environment": "Codex in-app browser; not Safari",
+    "importedFrom": "after-input-crash.vdoc.json",
+    "documentId": "6b7ac893-ff99-42ac-912a-97002a573d56",
+    "consecutiveRuns": [
+      {
+        "run": 1,
+        "pages": 5,
+        "printEnabled": true,
+        "lastPageHasFinalHeadingAndParagraph": true
+      },
+      {
+        "run": 2,
+        "pages": 5,
+        "printEnabled": true,
+        "lastPageHasFinalHeadingAndParagraph": true
+      },
+      {
+        "run": 3,
+        "pages": 5,
+        "printEnabled": true,
+        "lastPageHasFinalHeadingAndParagraph": true
+      }
+    ],
+    "rowCountsByPage": [
+      8,
+      12,
+      12,
+      4,
+      0
+    ],
+    "headersByPage": [
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    "tableEndPage": 4,
+    "finalHeadingPage": 5,
+    "actualPDFExported": false
+  },
+  "nativePreview": {
+    "result": "not passed",
+    "observed": "Preparing pages remained in AX; Return to editing restored editor. Own-window screenshot and AX differed. No completed native preview obtained.",
+    "hostVisibilityLog": "activate own window visible=false",
+    "restartedSessionRecheck": "After normal quit/relaunch, same document preview still Preparing pages; Print disabled; Return to editing restored Saved locally. Not passed.",
+    "followup": {
+      "at": "2026-10-10T22:49:14.905436+00:00",
+      "result": "three consecutive previews completed in isolated WKWebView",
+      "pages": [
+        5,
+        5,
+        5
+      ],
+      "printEnabled": [
+        true,
+        true,
+        true
+      ],
+      "rowCountsByPage": [
+        8,
+        12,
+        12,
+        4,
+        0
+      ],
+      "page5SelectionObserved": true,
+      "page5ScrollbarValue": 0.8939306,
+      "lastPageHeadingAndBodyVisuallyVerified": true,
+      "printedPDF": false,
+      "limitations": "Not Safari. Print button did not expose a native print dialog in this host. Native window activation preceded completion but causal diagnosis is not established; no product pagination code was changed."
+    }
+  },
+  "nativeInputProbe": {
+    "inputSource": "com.apple.inputmethod.SCIM.ITABC",
+    "method": "NSTextInputContext selected through own QA menu, then actual CUA key presses",
+    "baseline": "正文输入区：zhong",
+    "afterZhongSpace": "正文输入区：zhong中",
+    "afterZhongReturn": "正文输入区：zhong中zhong",
+    "afterCeEscape": "正文输入区：zhong中zhong",
+    "candidatePanelObserved": false,
+    "downloadRequested": "1791663267-1-QA native IME 2026-10-10.vdoc.json",
+    "downloadFinished": true,
+    "fullStructureAndPersistenceVerified": true,
+    "blocker": "Candidate panel remains unobserved. Original user-confirmed 钟 in Safari is a different document/session and is not closed by this isolated host result.",
+    "scope": "Actual isolated WebKit system conversion, Enter semantics, Escape cancellation, full structural comparison and refresh persistence verified; not Safari candidate-window acceptance.",
+    "downloadFinishedAt": "2026-10-10T21:14:18Z",
+    "reloadBackup": "native-input-reloaded.vdoc.json",
+    "reloadComparison": {
+      "version": true,
+      "title": true,
+      "content": true
+    },
+    "topLevelNodeCountBeforeAndAfter": 8,
+    "allOtherNodesUnchanged": true
+  }
+}

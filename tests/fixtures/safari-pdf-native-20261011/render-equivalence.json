@@ -1,0 +1,45 @@
+[
+  {
+    "first": "b-100",
+    "second": "b-100-repeat",
+    "pages": 5,
+    "eachPagePixelIdentical": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "first": "b-100",
+    "second": "b-search-125-last-page-100",
+    "pages": 5,
+    "eachPagePixelIdentical": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "first": "b-101",
+    "second": "b-101-repeat",
+    "pages": 12,
+    "eachPagePixelIdentical": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  }
+]

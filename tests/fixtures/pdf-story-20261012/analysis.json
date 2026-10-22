@@ -1,0 +1,72 @@
+{
+  "scope": "Three minimal Story fixtures; no claim about every MuPDF configuration",
+  "results": [
+    {
+      "fixture": "hebrew",
+      "pageCount": 1,
+      "fonts": [
+        {
+          "resource": "/F0",
+          "subtype": "/Type0",
+          "font": "/Noto Serif Hebrew Regular",
+          "unicodeMap": true,
+          "embedded": true
+        },
+        {
+          "resource": "/F1",
+          "subtype": "/Type0",
+          "font": "/Nimbus Sans Regular",
+          "unicodeMap": true,
+          "embedded": true
+        }
+      ],
+      "chromeCopyPass": false,
+      "pdfjsCopyHandlerPass": false
+    },
+    {
+      "fixture": "arabic",
+      "pageCount": 1,
+      "fonts": [
+        {
+          "resource": "/F0",
+          "subtype": "/Type0",
+          "font": "/Noto Naskh Arabic Regular",
+          "unicodeMap": true,
+          "embedded": true
+        },
+        {
+          "resource": "/F1",
+          "subtype": "/Type0",
+          "font": "/Nimbus Sans Regular",
+          "unicodeMap": true,
+          "embedded": true
+        }
+      ],
+      "chromeCopyPass": false,
+      "pdfjsCopyHandlerPass": false
+    },
+    {
+      "fixture": "hindi",
+      "pageCount": 1,
+      "fonts": [
+        {
+          "resource": "/F0",
+          "subtype": "/Type0",
+          "font": "/Noto Serif Devanagari Regular",
+          "unicodeMap": true,
+          "embedded": true
+        },
+        {
+          "resource": "/F1",
+          "subtype": "/Type0",
+          "font": "/Nimbus Sans Regular",
+          "unicodeMap": true,
+          "embedded": true
+        }
+      ],
+      "chromeCopyPass": false,
+      "pdfjsCopyHandlerPass": false
+    }
+  ],
+  "productIntegration": false
+}

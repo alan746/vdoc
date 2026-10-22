@@ -1,0 +1,140 @@
+{
+  "at": "2026-10-12T19:33:05.979Z",
+  "scope": "Official Chrome for Testing with disposable profile; stock plugin selectAll/getSelectedText, not OS clipboard. Existing PDFs unchanged.",
+  "results": [
+    {
+      "label": "words",
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "807dc1d6af0b9bbf307c118784d24c24c49395cc042c7ec459aa66ae522f83e6",
+      "expected": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+      "actual": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 222,
+        "expectedContext": "erent context शिक्षा प्रार्थना",
+        "actualContext": "erent context शिक्षा प्रार्थना"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 222,
+        "expectedContext": "erent context शिक्षा प्रार्थना",
+        "actualContext": "erent context शिक्षा प्रार्थना"
+      }
+    },
+    {
+      "label": "arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "f4d8e32dce11fc3ccd9e4eb2360a9e088d9ae42faabc9720de4b3936ade46551",
+      "expected": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic words\nجميلة العربية اللغة\nعليكم السلام بالعالم مرحبا\nالكتابة التعليم العربية\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللغة العربية جميلة مرحبا بالعالم السلام عليكم العربية التعليم الكتابة Table cell العربية Different context التعليم",
+        "actualContext": "Browser PDF — Arabic words جميلة العربية اللغة عليكم السلام بالعالم مرحبا الكتابة التعليم العربية Table cell العربية Different context التعليم"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللغة العربية جميلة مرحبا بالعالم السلام عليكم العربية التعليم الكتابة Table cell العربية Different context التعليم",
+        "actualContext": "Browser PDF — Arabic words جميلة العربية اللغة عليكم السلام بالعالم مرحبا الكتابة التعليم العربية Table cell العربية Different context التعليم"
+      }
+    },
+    {
+      "label": "hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "e4a698142b0d87164d5964c6bfa151d308443e9774f880ac3ccd443b7aa78fb0",
+      "expected": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew words\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nעולם בעברית שלום\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שלום עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words מסמך בדיקת עולם שלום טבלה כתיבה עברית עולם בעברית שלום Table cell עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שלום עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words מסמך בדיקת עולם שלום טבלה כתיבה עברית עולם בעברית שלום Table cell עברית Different context שלום"
+      }
+    },
+    {
+      "label": "arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes-marked.pdf",
+      "sha256": "5d0110a368df098e9da3ebcbf3fb9f460e6705b2525bc0c610fcf9b6a91d63fd",
+      "expected": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic words\nٌةَيلِمَج ُةَّيِبَرَعْال ُةَغُّالل\n123 ِمَالَعْالِب اًبَحْرَم\nُةَابَتِكْال ُيمِلْعَّالت ُةَّيِبَرَعْال\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ مَرْحَبًا بِالْعَالَمِ 123 الْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ Table cell العربي",
+        "actualContext": "Browser PDF — Arabic words ٌةَيلِمَج ُةَّيِبَرَعْال ُةَغُّالل 123 ِمَالَعْالِب اًبَحْرَم ُةَابَتِكْال ُيمِلْعَّالت ُةَّيِبَرَعْال Table cell العربي"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ مَرْحَبًا بِالْعَالَمِ 123 الْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ Table cell العربي",
+        "actualContext": "Browser PDF — Arabic words ٌةَيلِمَج ُةَّيِبَرَعْال ُةَغُّالل 123 ِمَالَعْالِب اًبَحْرَم ُةَابَتِكْال ُيمِلْعَّالت ُةَّيِبَرَعْال Table cell العربي"
+      }
+    },
+    {
+      "label": "hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes-marked.pdf",
+      "sha256": "b1f22b3d7ffc71d88cb4ac4726d28ff4d9f67a1ce865756b3956d22560052145",
+      "expected": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew words\nםָלֹעו םֹלוָׁש\n123 הָיבִתְּכ יתִרְבִע\nםָלֹעו יתִרְבִעְּב םֹלוָׁש\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שָׁלוֹם עוֹלָם עִבְרִית כְּתִיבָה 123 שָׁלוֹם בְּעִבְרִית עוֹלָם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words םָלֹעו םֹלוָׁש 123 הָיבִתְּכ יתִרְבִע םָלֹעו יתִרְבִעְּב םֹלוָׁש Table cell עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שָׁלוֹם עוֹלָם עִבְרִית כְּתִיבָה 123 שָׁלוֹם בְּעִבְרִית עוֹלָם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words םָלֹעו םֹלוָׁש 123 הָיבִתְּכ יתִרְבִע םָלֹעו יתִרְבִעְּב םֹלוָׁש Table cell עברית Different context שלום"
+      }
+    },
+    {
+      "label": "arabic-numbers",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes-numbers.pdf",
+      "sha256": "e8deb5f3940d902d313d4d464ece3ae0a63bcfc8d25646466ff8025647121413",
+      "expected": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic numbers\n0123456789 مرحبا\nالعربية 9876543210 العدد\n١٢٣٤٥٦٧٨٩٠ العربية\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 29,
+        "expectedContext": "Browser PDF — Arabic numbers مرحبا 0123456789 العدد 9876543210 العربية العربية ١٢٣٤٥٦٧٨٩٠ Table cell العربية Different context التعليم",
+        "actualContext": "Browser PDF — Arabic numbers 0123456789 مرحبا العربية 9876543210 العدد ١٢٣٤٥٦٧٨٩٠ العربية Table cell العربية Different context التعليم"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 29,
+        "expectedContext": "Browser PDF — Arabic numbers مرحبا 0123456789 العدد 9876543210 العربية العربية ١٢٣٤٥٦٧٨٩٠ Table cell العربية Different context التعليم",
+        "actualContext": "Browser PDF — Arabic numbers 0123456789 مرحبا العربية 9876543210 العدد ١٢٣٤٥٦٧٨٩٠ العربية Table cell العربية Different context التعليم"
+      }
+    },
+    {
+      "label": "hebrew-numbers",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes-numbers.pdf",
+      "sha256": "5c584814da97a3087df5986b001faa5cc1f7f927a35451b17f78059945261bae",
+      "expected": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew numbers\n0123456789 שלום\nבעברית 9876543210 מספר\n1234567890 עברית\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 29,
+        "expectedContext": "Browser PDF — Hebrew numbers שלום 0123456789 מספר 9876543210 בעברית עברית 1234567890 Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew numbers 0123456789 שלום בעברית 9876543210 מספר 1234567890 עברית Table cell עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 29,
+        "expectedContext": "Browser PDF — Hebrew numbers שלום 0123456789 מספר 9876543210 בעברית עברית 1234567890 Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew numbers 0123456789 שלום בעברית 9876543210 מספר 1234567890 עברית Table cell עברית Different context שלום"
+      }
+    }
+  ],
+  "version": "155.0.8059.39"
+}

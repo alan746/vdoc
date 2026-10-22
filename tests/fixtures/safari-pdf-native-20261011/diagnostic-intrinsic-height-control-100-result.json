@@ -1,0 +1,19 @@
+{
+  "scale": 100,
+  "file": "output/pdf/safari-native-20261011/diagnostic-intrinsic-height-control-100.pdf",
+  "nativePageLabel": "All 2 Pages",
+  "sha256": "3c2ef286442c019f0ec6f7efa07ee7789822f29260ab9e3179bc522156eaab17",
+  "bytes": 41120,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  },
+  "sourceCheck": "Standalone fixed HTML control; no editor snapshot applies"
+}

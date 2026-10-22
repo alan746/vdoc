@@ -1,0 +1,1391 @@
+{
+  "input": "output/pdf/safari-fixed-pdf-20261011/prototype-b.pdf",
+  "output": "output/pdf/pdf-unicode-20261011/normalized-b.pdf",
+  "pages": 5,
+  "clusters": [
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "入",
+      "previous": "⼊",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ة",
+      "previous": "ﺔ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ب",
+      "previous": "ﺑ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ع",
+      "previous": "ﻌ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "ل",
+      "previous": "ﻟ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "日",
+      "previous": "⽇",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "न्दी",
+      "previous": "\u0000ी",
+      "glyphCount": 2
+    },
+    {
+      "page": 5,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    },
+    {
+      "page": 5,
+      "actual": "文",
+      "previous": "⽂",
+      "glyphCount": 1
+    }
+  ],
+  "inputSha256": "dc9027ab31b56a146dc9988ed001116fc95b39c4f708a82808d4a45c8e6ea541",
+  "outputSha256": "8539437a8973cc24c339741c31b0a9aacb623e6d1022ae31dbb9d77d5a86da05",
+  "productionReady": false,
+  "scope": "Uses existing ActualText only. Context-specific font aliases change Unicode maps, preserving glyph data, advances, layout, and ActualText. Unsupported structures rejected."
+}

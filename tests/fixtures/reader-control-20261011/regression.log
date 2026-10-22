@@ -1,0 +1,13 @@
+test_diacritics_still_fail_and_digits_survive_in_reader (__main__.ReaderMappingEvidence.test_diacritics_still_fail_and_digits_survive_in_reader) ... ok
+test_logical_codepoints_alone_do_not_preserve_word_semantics (__main__.ReaderMappingEvidence.test_logical_codepoints_alone_do_not_preserve_word_semantics) ... ok
+test_native_print_is_a_control_not_automatic_text_approval (__main__.ReaderMappingEvidence.test_native_print_is_a_control_not_automatic_text_approval) ... ok
+test_no_whole_line_actualtext_replacement (__main__.ReaderMappingEvidence.test_no_whole_line_actualtext_replacement) ... ok
+test_observations_bind_to_exact_pdf_and_source (__main__.ReaderMappingEvidence.test_observations_bind_to_exact_pdf_and_source) ... ok
+test_pixels_and_extractor_disagreement_are_not_hidden (__main__.ReaderMappingEvidence.test_pixels_and_extractor_disagreement_are_not_hidden) ... ok
+test_same_simple_rtl_full_copy_failed_previous_visual_token_order (__main__.ReaderMappingEvidence.test_same_simple_rtl_full_copy_failed_previous_visual_token_order) ... ok
+test_three_simple_samples_copy_and_24_word_targets (__main__.ReaderMappingEvidence.test_three_simple_samples_copy_and_24_word_targets) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.054s
+
+OK

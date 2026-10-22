@@ -1,0 +1,214 @@
+
+> vdoc@0.1.0 start
+> node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0 --port 4178
+
+
+ ⛅️ wrangler 4.92.0 (update available 4.149.0)
+──────────────────────────────────────────────
+Attaching additional modules:
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────┬─────────────┐
+│ Name                                                                                                                      │ Type │ Size        │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ __vite_rsc_assets_manifest.js                                                                                             │ esm  │ 2.93 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-page-cache-DVJSNCHO.js                                                                                   │ esm  │ 5.07 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-page-cache-finalizer-FKF-n-vw.js                                                                         │ esm  │ 3.40 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-page-cache-render-DkrG44LF.js                                                                            │ esm  │ 1.87 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-page-stream-BvBY-RNF.js                                                                                  │ esm  │ 9.70 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-prerender-endpoints-C7nWMVRq.js                                                                          │ esm  │ 1.96 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-prerender-static-params-C1h_atO6.js                                                                      │ esm  │ 0.17 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-route-handler-dispatch-CiR8WG5v.js                                                                       │ esm  │ 25.49 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-segment-config-aFILWVvt.js                                                                               │ esm  │ 14.58 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/app-static-generation-DbmTuUMJ.js                                                                            │ esm  │ 0.89 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/cache-headers-CI2rACVb.js                                                                                    │ esm  │ 47.17 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/framework~index-BQnowJPq.js                                                                                  │ esm  │ 0.19 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/framework~index~layout~page~app-page-cache-render~app-page-cache~app-route-handler-dispatch-C5xeY9Q9.js      │ esm  │ 0.80 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/framework~index~layout~page~page~app-page-cache-render~app-page-cache~app-route-handler-dispatch-Dhq67gd8.js │ esm  │ 5.37 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/framework~index~page~page~app-route-handler-dispatch-BWPd9x4F.js                                             │ esm  │ 55.29 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/implicit-tags-0xyR0qx1.js                                                                                    │ esm  │ 1.63 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/isr-cache-BBFu9N1o.js                                                                                        │ esm  │ 4.81 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/navigation-runtime-DtRkZOdv.js                                                                               │ esm  │ 0.78 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/page-B8yIGyFp.js                                                                                             │ esm  │ 0.18 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/page-BEtDah_Z.js                                                                                             │ esm  │ 0.33 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/record-Crmk5sem.js                                                                                           │ esm  │ 4.85 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/rolldown-runtime-DUnMT5BP.js                                                                                 │ esm  │ 0.68 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/root-params-0DVgYa50.js                                                                                      │ esm  │ 1.21 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/rsc-Cj3Lq3S0.js                                                                                              │ esm  │ 0.71 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _next/static/text-stream-BgTyVypM.js                                                                                      │ esm  │ 18.96 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/__vite_rsc_assets_manifest.js                                                                                         │ esm  │ 2.93 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/app-prefetch-fetch-queue-CGTYyCbj.js                                                                     │ esm  │ 0.00 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/app-router-scroll-CM0cU71a.js                                                                            │ esm  │ 2.48 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/dist-B3gdw4e0.js                                                                                         │ esm  │ 395.07 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/error-boundary-UcoL4g1N.js                                                                               │ esm  │ 5.27 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/extensions-CuSvFZd6.js                                                                                   │ esm  │ 120.82 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/font-size-4U6Uowrd.js                                                                                    │ esm  │ 0.35 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/keyboard-composition-BkatUbQr.js                                                                         │ esm  │ 358.42 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/language-B4VbioQI.js                                                                                     │ esm  │ 68.87 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/layout-segment-context-D1ovCcWc.js                                                                       │ esm  │ 0.37 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/lib-DKTK7Udz.js                                                                                          │ esm  │ 120.29 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/lib-DrLUc_UI.js                                                                                          │ esm  │ 208.45 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/page-PURUjUeQ.js                                                                                         │ esm  │ 31.72 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/paragraph-line-height-DiXDgAg9.js                                                                        │ esm  │ 0.88 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/src-CP0Jeify.js                                                                                          │ esm  │ 498.05 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/static.edge-seoWiNdf.js                                                                                  │ esm  │ 0.16 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/streamed-icons-Cu-SDob7.js                                                                               │ esm  │ 0.67 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/word-blockquotes-C6T8T_Kx.js                                                                             │ esm  │ 2.66 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/word-import-formatting-Drj3VDqH.js                                                                       │ esm  │ 24.55 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/word-numbering-inheritance-DGd0w9E9.js                                                                   │ esm  │ 2.48 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/word-p4hOVaY1.js                                                                                         │ esm  │ 16.04 KiB   │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/word-paragraph-spacing-o-t_0EVW.js                                                                       │ esm  │ 2.54 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/_next/static/workspace-DFdUwQP1.js                                                                                    │ esm  │ 411.45 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/index.js                                                                                                              │ esm  │ 272.42 KiB  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ ssr/vinext-client-assets.js                                                                                               │ esm  │ 4.57 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ vinext-client-assets.js                                                                                                   │ esm  │ 4.57 KiB    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ Total (51 modules)                                                                                                        │      │ 2765.11 KiB │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────┴─────────────┘
+⎔ Starting local server...
+[wrangler:info] ✨ Parsed 1 valid header rule.
+[wrangler:info] Ready on http://127.0.0.1:4178
+[wrangler:info] GET / 200 OK (67ms)
+[wrangler:info] GET /_next/static/css/index.D6coaPwu.css 200 OK (6ms)
+[wrangler:info] GET /_next/static/chunks/workspace-CfDXsGrq.js 200 OK (11ms)
+[wrangler:info] GET /_next/static/chunks/language-D26qo9oU.js 200 OK (11ms)
+[wrangler:info] GET /_next/static/chunks/rolldown-runtime-C5USp2td.js 200 OK (13ms)
+[wrangler:info] GET /_next/static/chunks/framework-DGW0pQoC.js 200 OK (14ms)
+[wrangler:info] GET /_next/static/chunks/layout-segment-context-CXBM09Vf.js 200 OK (15ms)
+[wrangler:info] GET /_next/static/chunks/keyboard-composition-B-G0S705.js 200 OK (15ms)
+[wrangler:info] GET /_next/static/chunks/list-markers-C-7uaT4N.js 200 OK (29ms)
+[wrangler:info] GET /_next/static/chunks/font-size-bnfh8ikm.js 200 OK (21ms)
+[wrangler:info] GET /_next/static/chunks/index-B30mqBw0.js 200 OK (12ms)
+[wrangler:info] GET /_next/static/chunks/extensions-_J0yqATj.js 200 OK (21ms)
+[wrangler:info] GET /favicon.svg 200 OK (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET / 200 OK (9ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (4ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (1ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /_next/static/chunks/word-BkOYVm-T.js 200 OK (5ms)
+[wrangler:info] GET /_next/static/chunks/paragraph-line-height-cOsB6ky0.js 200 OK (7ms)
+[wrangler:info] GET /_next/static/chunks/dist-Di97ev1p.js 200 OK (3ms)
+[wrangler:info] GET /_next/static/chunks/word-import-formatting-D6obe85C.js 200 OK (2ms)
+[wrangler:info] GET /_next/static/chunks/word-paragraph-spacing-Ci1j6j5k.js 200 OK (5ms)
+[wrangler:info] GET /_next/static/chunks/jszip.min-qdbHoDSi.js 200 OK (5ms)
+[wrangler:info] GET /_next/static/chunks/word-numbering-inheritance-D2NBgR0C.js 200 OK (2ms)
+[wrangler:info] GET /_next/static/chunks/word-blockquotes-BBZ3ZoW_.js 200 OK (2ms)
+[wrangler:info] GET /_next/static/chunks/lib-DLduY6qO.js 200 OK (1ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /print-preview 200 OK (8ms)
+[wrangler:info] GET /_next/static/chunks/page-CwAiuN5a.js 200 OK (2ms)
+[wrangler:info] GET /_next/static/chunks/src-CElvi7KG.js 200 OK (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (4ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET / 200 OK (13ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (4ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (7ms)
+[wrangler:info] GET / 200 OK (10ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (4ms)
+[wrangler:info] GET / 200 OK (7ms)
+[wrangler:info] GET /_next/static/css/index.D6coaPwu.css 200 OK (4ms)
+[wrangler:info] GET /_next/static/chunks/workspace-CfDXsGrq.js 200 OK (19ms)
+[wrangler:info] GET /_next/static/chunks/language-D26qo9oU.js 200 OK (17ms)
+[wrangler:info] GET /_next/static/chunks/rolldown-runtime-C5USp2td.js 200 OK (21ms)
+[wrangler:info] GET /_next/static/chunks/framework-DGW0pQoC.js 200 OK (21ms)
+[wrangler:info] GET /_next/static/chunks/layout-segment-context-CXBM09Vf.js 200 OK (21ms)
+[wrangler:info] GET /_next/static/chunks/list-markers-C-7uaT4N.js 200 OK (43ms)
+[wrangler:info] GET /_next/static/chunks/font-size-bnfh8ikm.js 200 OK (26ms)
+[wrangler:info] GET /_next/static/chunks/index-B30mqBw0.js 200 OK (12ms)
+[wrangler:info] GET /_next/static/chunks/extensions-_J0yqATj.js 200 OK (27ms)
+[wrangler:info] GET /_next/static/chunks/keyboard-composition-B-G0S705.js 200 OK (20ms)
+[wrangler:info] GET /favicon.svg 200 OK (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (1ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET / 200 OK (15ms)
+[wrangler:info] GET /_next/static/css/index.D6coaPwu.css 200 OK (6ms)
+[wrangler:info] GET /_next/static/chunks/rolldown-runtime-C5USp2td.js 200 OK (5ms)
+[wrangler:info] GET /_next/static/chunks/language-D26qo9oU.js 200 OK (29ms)
+[wrangler:info] GET /_next/static/chunks/list-markers-C-7uaT4N.js 200 OK (23ms)
+[wrangler:info] GET /_next/static/chunks/framework-DGW0pQoC.js 200 OK (31ms)
+[wrangler:info] GET /_next/static/chunks/layout-segment-context-CXBM09Vf.js 200 OK (31ms)
+[wrangler:info] GET /_next/static/chunks/workspace-CfDXsGrq.js 200 OK (31ms)
+[wrangler:info] GET /_next/static/chunks/keyboard-composition-B-G0S705.js 200 OK (20ms)
+[wrangler:info] GET /_next/static/chunks/index-B30mqBw0.js 200 OK (10ms)
+[wrangler:info] GET /_next/static/chunks/extensions-_J0yqATj.js 200 OK (46ms)
+[wrangler:info] GET /_next/static/chunks/font-size-bnfh8ikm.js 200 OK (30ms)
+[wrangler:info] GET /favicon.svg 200 OK (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /print-preview 200 OK (5ms)
+[wrangler:info] GET /_next/static/chunks/page-CwAiuN5a.js 200 OK (2ms)
+[wrangler:info] GET /_next/static/chunks/src-CElvi7KG.js 200 OK (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /print-preview 200 OK (6ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (1ms)
+[wrangler:info] GET /print-preview 200 OK (8ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (1ms)
+[wrangler:info] GET /print-preview 200 OK (8ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (2ms)
+[wrangler:info] GET /favicon.svg 304 Not Modified (3ms)
+[wrangler:info] GET /print-preview 200 OK (6ms)

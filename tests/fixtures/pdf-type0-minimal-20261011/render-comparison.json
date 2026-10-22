@@ -1,0 +1,34 @@
+[
+  {
+    "file": "output/pdf/type0-minimal-20261011/hebrew-page-visual.pdf",
+    "render": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-page-visual-render.png",
+    "reference": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual-render.png",
+    "pixelIdentical": true,
+    "differenceBounds": null,
+    "text": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה"
+  },
+  {
+    "file": "output/pdf/type0-minimal-20261011/hebrew-source-annotated.pdf",
+    "render": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-annotated-render.png",
+    "reference": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual-render.png",
+    "pixelIdentical": true,
+    "differenceBounds": null,
+    "text": "QA embedded font 123\nמ סמך ב דיקת ע ולם שלום \nט בלה כ תיבה עברית "
+  },
+  {
+    "file": "output/pdf/type0-minimal-20261011/hebrew-source-logical.pdf",
+    "render": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-logical-render.png",
+    "reference": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual-render.png",
+    "pixelIdentical": true,
+    "differenceBounds": null,
+    "text": "QA embedded font 123\nךמסמ תקידב םלוע םולש \nהלבט הביתכ תירבע "
+  },
+  {
+    "file": "output/pdf/type0-minimal-20261011/hebrew-source-visual.pdf",
+    "render": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual-render.png",
+    "reference": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual-render.png",
+    "pixelIdentical": true,
+    "differenceBounds": null,
+    "text": "QA embedded font 123\nמסמך בדיקת עולם שלום \nטבלה כתיבה עברית "
+  }
+]

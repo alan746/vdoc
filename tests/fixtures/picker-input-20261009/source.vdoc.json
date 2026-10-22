@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "title": "QA picker input 2026-10-09",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PICKER_KEEP 中文 日本語 العربية café 👩‍💻"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Latest title and document must reopen together."
+          }
+        ]
+      }
+    ]
+  }
+}

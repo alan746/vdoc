@@ -1,0 +1,9 @@
+[
+  {
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-leading-space.pdf",
+    "render": "tests/fixtures/pdf-token-boundary-20261011/hebrew-unicode-ordered-record-leading-space-new.png",
+    "reference": "tests/fixtures/pdf-token-boundary-20261011/hebrew-unicode-ordered-record-token-boundary-baseline.png",
+    "pixelIdentical": true,
+    "differenceBounds": null
+  }
+]

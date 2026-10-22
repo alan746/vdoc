@@ -1,0 +1,7 @@
+{"label":"full-words","match":true,"hindiWholeWord":true,"errors":[]}
+{"label":"full-arabic","match":true,"hindiWholeWord":false,"errors":[]}
+{"label":"full-hebrew","match":true,"hindiWholeWord":false,"errors":[]}
+{"label":"full-arabic-marked","match":false,"hindiWholeWord":false,"errors":[]}
+{"label":"full-hebrew-marked","match":false,"hindiWholeWord":false,"errors":[]}
+{"label":"full-arabic-numbers","match":true,"hindiWholeWord":false,"errors":[]}
+{"label":"full-hebrew-numbers","match":false,"hindiWholeWord":false,"errors":[]}

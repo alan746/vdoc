@@ -1,0 +1,2828 @@
+[
+  {
+    "at": "2026-10-11T00:48:41.329Z",
+    "name": "F012-F013-created-multilingual",
+    "scope": "Browser keyboard insertion; not system IME",
+    "document": {
+      "type": "doc",
+      "attrs": {
+        "language": "und",
+        "pageSize": "a4",
+        "orientation": "portrait",
+        "pageMargin": 20,
+        "pageColor": "#FFFFFF",
+        "header": "",
+        "footer": "",
+        "pageNumbers": false
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Opening anchor English 中文 日本語."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Second paragraph TARGET phrase remains."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "RTL العربية עברית mixed text."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "List first item"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "List second item"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-10-11T00:48:41.530Z",
+    "name": "F014-F015-range-replace-undo-redo"
+  },
+  {
+    "at": "2026-10-11T00:48:42.290Z",
+    "name": "before-list-arrow",
+    "snapshot": {
+      "schemaVersion": 1,
+      "sessionId": "a48756a3-62b8-427d-acf7-ee481ffb6cb8",
+      "tables": [],
+      "revision": 14,
+      "selection": {
+        "from": 124,
+        "to": 140
+      },
+      "blocks": [
+        {
+          "id": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e",
+          "type": "paragraph",
+          "text": "Opening anchor English 中文 日本語.",
+          "from": 1,
+          "to": 31
+        },
+        {
+          "id": "b_dc61302a-be8c-42a4-9202-a2280cfb507b",
+          "type": "paragraph",
+          "text": "Second paragraph replacement remains.",
+          "from": 33,
+          "to": 70
+        },
+        {
+          "id": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6",
+          "type": "paragraph",
+          "text": "RTL العربية עברית mixed text.",
+          "from": 72,
+          "to": 101
+        },
+        {
+          "id": "b_c0a7990c-4428-437c-9bb5-f44f361323b5",
+          "type": "paragraph",
+          "text": "List first item",
+          "from": 105,
+          "to": 120
+        },
+        {
+          "id": "b_cc764405-730e-42d8-9754-bd54e3ce801c",
+          "type": "paragraph",
+          "text": "List second item",
+          "from": 124,
+          "to": 140
+        },
+        {
+          "id": "b_c108d901-edd9-4b48-8b6b-a03d21797058",
+          "type": "paragraph",
+          "text": "",
+          "from": 146,
+          "to": 146
+        }
+      ],
+      "document": {
+        "type": "doc",
+        "attrs": {
+          "language": "und",
+          "pageSize": "a4",
+          "orientation": "portrait",
+          "pageMargin": 20,
+          "pageColor": "#FFFFFF",
+          "header": "",
+          "footer": "",
+          "pageNumbers": false
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Opening anchor English 中文 日本語."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Second paragraph replacement remains."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "RTL العربية עברית mixed text."
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "attrs": {
+              "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+              "bulletText": null,
+              "bulletStyle": "disc"
+            },
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "List first item"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "bulletList",
+                    "attrs": {
+                      "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                      "bulletText": null,
+                      "bulletStyle": "disc"
+                    },
+                    "content": [
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "attrs": {
+                              "textAlign": null,
+                              "keepWithNext": null,
+                              "keepLinesTogether": false,
+                              "preventSingleLines": true,
+                              "paragraphBorderJoin": false,
+                              "paragraphBorders": null,
+                              "paragraphBackground": null,
+                              "indent": 0,
+                              "indentStart": null,
+                              "indentEnd": 0,
+                              "firstLineIndent": 0,
+                              "tabInterval": 48,
+                              "direction": "auto",
+                              "spaceBefore": null,
+                              "spaceAfter": null,
+                              "lineHeight": null,
+                              "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                            },
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "List second item"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "at": "2026-10-11T00:48:42.381Z",
+    "name": "after-list-arrow",
+    "snapshot": {
+      "schemaVersion": 1,
+      "sessionId": "a48756a3-62b8-427d-acf7-ee481ffb6cb8",
+      "tables": [],
+      "revision": 14,
+      "selection": {
+        "from": 140,
+        "to": 140
+      },
+      "blocks": [
+        {
+          "id": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e",
+          "type": "paragraph",
+          "text": "Opening anchor English 中文 日本語.",
+          "from": 1,
+          "to": 31
+        },
+        {
+          "id": "b_dc61302a-be8c-42a4-9202-a2280cfb507b",
+          "type": "paragraph",
+          "text": "Second paragraph replacement remains.",
+          "from": 33,
+          "to": 70
+        },
+        {
+          "id": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6",
+          "type": "paragraph",
+          "text": "RTL العربية עברית mixed text.",
+          "from": 72,
+          "to": 101
+        },
+        {
+          "id": "b_c0a7990c-4428-437c-9bb5-f44f361323b5",
+          "type": "paragraph",
+          "text": "List first item",
+          "from": 105,
+          "to": 120
+        },
+        {
+          "id": "b_cc764405-730e-42d8-9754-bd54e3ce801c",
+          "type": "paragraph",
+          "text": "List second item",
+          "from": 124,
+          "to": 140
+        },
+        {
+          "id": "b_c108d901-edd9-4b48-8b6b-a03d21797058",
+          "type": "paragraph",
+          "text": "",
+          "from": 146,
+          "to": 146
+        }
+      ],
+      "document": {
+        "type": "doc",
+        "attrs": {
+          "language": "und",
+          "pageSize": "a4",
+          "orientation": "portrait",
+          "pageMargin": 20,
+          "pageColor": "#FFFFFF",
+          "header": "",
+          "footer": "",
+          "pageNumbers": false
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Opening anchor English 中文 日本語."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Second paragraph replacement remains."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "RTL العربية עברית mixed text."
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "attrs": {
+              "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+              "bulletText": null,
+              "bulletStyle": "disc"
+            },
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "List first item"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "bulletList",
+                    "attrs": {
+                      "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                      "bulletText": null,
+                      "bulletStyle": "disc"
+                    },
+                    "content": [
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "attrs": {
+                              "textAlign": null,
+                              "keepWithNext": null,
+                              "keepLinesTogether": false,
+                              "preventSingleLines": true,
+                              "paragraphBorderJoin": false,
+                              "paragraphBorders": null,
+                              "paragraphBackground": null,
+                              "indent": 0,
+                              "indentStart": null,
+                              "indentEnd": 0,
+                              "firstLineIndent": 0,
+                              "tabInterval": 48,
+                              "direction": "auto",
+                              "spaceBefore": null,
+                              "spaceAfter": null,
+                              "lineHeight": null,
+                              "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                            },
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "List second item"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+            }
+          }
+        ]
+      }
+    },
+    "dom": {
+      "active": "Document body",
+      "selected": ""
+    }
+  },
+  {
+    "at": "2026-10-11T00:48:42.462Z",
+    "name": "list-enter-0",
+    "snapshot": {
+      "schemaVersion": 1,
+      "sessionId": "a48756a3-62b8-427d-acf7-ee481ffb6cb8",
+      "tables": [],
+      "revision": 15,
+      "selection": {
+        "from": 144,
+        "to": 144
+      },
+      "blocks": [
+        {
+          "id": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e",
+          "type": "paragraph",
+          "text": "Opening anchor English 中文 日本語.",
+          "from": 1,
+          "to": 31
+        },
+        {
+          "id": "b_dc61302a-be8c-42a4-9202-a2280cfb507b",
+          "type": "paragraph",
+          "text": "Second paragraph replacement remains.",
+          "from": 33,
+          "to": 70
+        },
+        {
+          "id": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6",
+          "type": "paragraph",
+          "text": "RTL العربية עברית mixed text.",
+          "from": 72,
+          "to": 101
+        },
+        {
+          "id": "b_c0a7990c-4428-437c-9bb5-f44f361323b5",
+          "type": "paragraph",
+          "text": "List first item",
+          "from": 105,
+          "to": 120
+        },
+        {
+          "id": "b_cc764405-730e-42d8-9754-bd54e3ce801c",
+          "type": "paragraph",
+          "text": "List second item",
+          "from": 124,
+          "to": 140
+        },
+        {
+          "id": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75",
+          "type": "paragraph",
+          "text": "",
+          "from": 144,
+          "to": 144
+        },
+        {
+          "id": "b_c108d901-edd9-4b48-8b6b-a03d21797058",
+          "type": "paragraph",
+          "text": "",
+          "from": 150,
+          "to": 150
+        }
+      ],
+      "document": {
+        "type": "doc",
+        "attrs": {
+          "language": "und",
+          "pageSize": "a4",
+          "orientation": "portrait",
+          "pageMargin": 20,
+          "pageColor": "#FFFFFF",
+          "header": "",
+          "footer": "",
+          "pageNumbers": false
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Opening anchor English 中文 日本語."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Second paragraph replacement remains."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "RTL العربية עברית mixed text."
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "attrs": {
+              "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+              "bulletText": null,
+              "bulletStyle": "disc"
+            },
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "List first item"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "bulletList",
+                    "attrs": {
+                      "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                      "bulletText": null,
+                      "bulletStyle": "disc"
+                    },
+                    "content": [
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "attrs": {
+                              "textAlign": null,
+                              "keepWithNext": null,
+                              "keepLinesTogether": false,
+                              "preventSingleLines": true,
+                              "paragraphBorderJoin": false,
+                              "paragraphBorders": null,
+                              "paragraphBackground": null,
+                              "indent": 0,
+                              "indentStart": null,
+                              "indentEnd": 0,
+                              "firstLineIndent": 0,
+                              "tabInterval": 48,
+                              "direction": "auto",
+                              "spaceBefore": null,
+                              "spaceAfter": null,
+                              "lineHeight": null,
+                              "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                            },
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "List second item"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "attrs": {
+                              "textAlign": null,
+                              "keepWithNext": null,
+                              "keepLinesTogether": false,
+                              "preventSingleLines": true,
+                              "paragraphBorderJoin": false,
+                              "paragraphBorders": null,
+                              "paragraphBackground": null,
+                              "indent": 0,
+                              "indentStart": null,
+                              "indentEnd": 0,
+                              "firstLineIndent": 0,
+                              "tabInterval": 48,
+                              "direction": "auto",
+                              "spaceBefore": null,
+                              "spaceAfter": null,
+                              "lineHeight": null,
+                              "blockId": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+            }
+          }
+        ]
+      }
+    },
+    "active": "<div contenteditable=\"true\" role=\"textbox\" spellcheck=\"false\" aria-label=\"Document body\" aria-multiline=\"true\" translate=\"no\" class=\"tiptap ProseMirro"
+  },
+  {
+    "at": "2026-10-11T00:48:42.537Z",
+    "name": "list-enter-1",
+    "snapshot": {
+      "schemaVersion": 1,
+      "sessionId": "a48756a3-62b8-427d-acf7-ee481ffb6cb8",
+      "tables": [],
+      "revision": 16,
+      "selection": {
+        "from": 146,
+        "to": 146
+      },
+      "blocks": [
+        {
+          "id": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e",
+          "type": "paragraph",
+          "text": "Opening anchor English 中文 日本語.",
+          "from": 1,
+          "to": 31
+        },
+        {
+          "id": "b_dc61302a-be8c-42a4-9202-a2280cfb507b",
+          "type": "paragraph",
+          "text": "Second paragraph replacement remains.",
+          "from": 33,
+          "to": 70
+        },
+        {
+          "id": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6",
+          "type": "paragraph",
+          "text": "RTL العربية עברית mixed text.",
+          "from": 72,
+          "to": 101
+        },
+        {
+          "id": "b_c0a7990c-4428-437c-9bb5-f44f361323b5",
+          "type": "paragraph",
+          "text": "List first item",
+          "from": 105,
+          "to": 120
+        },
+        {
+          "id": "b_cc764405-730e-42d8-9754-bd54e3ce801c",
+          "type": "paragraph",
+          "text": "List second item",
+          "from": 124,
+          "to": 140
+        },
+        {
+          "id": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75",
+          "type": "paragraph",
+          "text": "",
+          "from": 146,
+          "to": 146
+        },
+        {
+          "id": "b_c108d901-edd9-4b48-8b6b-a03d21797058",
+          "type": "paragraph",
+          "text": "",
+          "from": 150,
+          "to": 150
+        }
+      ],
+      "document": {
+        "type": "doc",
+        "attrs": {
+          "language": "und",
+          "pageSize": "a4",
+          "orientation": "portrait",
+          "pageMargin": 20,
+          "pageColor": "#FFFFFF",
+          "header": "",
+          "footer": "",
+          "pageNumbers": false
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Opening anchor English 中文 日本語."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Second paragraph replacement remains."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "RTL العربية עברית mixed text."
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "attrs": {
+              "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+              "bulletText": null,
+              "bulletStyle": "disc"
+            },
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "List first item"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "bulletList",
+                    "attrs": {
+                      "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                      "bulletText": null,
+                      "bulletStyle": "disc"
+                    },
+                    "content": [
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "attrs": {
+                              "textAlign": null,
+                              "keepWithNext": null,
+                              "keepLinesTogether": false,
+                              "preventSingleLines": true,
+                              "paragraphBorderJoin": false,
+                              "paragraphBorders": null,
+                              "paragraphBackground": null,
+                              "indent": 0,
+                              "indentStart": null,
+                              "indentEnd": 0,
+                              "firstLineIndent": 0,
+                              "tabInterval": 48,
+                              "direction": "auto",
+                              "spaceBefore": null,
+                              "spaceAfter": null,
+                              "lineHeight": null,
+                              "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                            },
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "List second item"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+            }
+          }
+        ]
+      }
+    },
+    "active": "<div contenteditable=\"true\" role=\"textbox\" spellcheck=\"false\" aria-label=\"Document body\" aria-multiline=\"true\" translate=\"no\" class=\"tiptap ProseMirro"
+  },
+  {
+    "at": "2026-10-11T00:48:42.608Z",
+    "name": "list-enter-2",
+    "snapshot": {
+      "schemaVersion": 1,
+      "sessionId": "a48756a3-62b8-427d-acf7-ee481ffb6cb8",
+      "tables": [],
+      "revision": 17,
+      "selection": {
+        "from": 146,
+        "to": 146
+      },
+      "blocks": [
+        {
+          "id": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e",
+          "type": "paragraph",
+          "text": "Opening anchor English 中文 日本語.",
+          "from": 1,
+          "to": 31
+        },
+        {
+          "id": "b_dc61302a-be8c-42a4-9202-a2280cfb507b",
+          "type": "paragraph",
+          "text": "Second paragraph replacement remains.",
+          "from": 33,
+          "to": 70
+        },
+        {
+          "id": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6",
+          "type": "paragraph",
+          "text": "RTL العربية עברית mixed text.",
+          "from": 72,
+          "to": 101
+        },
+        {
+          "id": "b_c0a7990c-4428-437c-9bb5-f44f361323b5",
+          "type": "paragraph",
+          "text": "List first item",
+          "from": 105,
+          "to": 120
+        },
+        {
+          "id": "b_cc764405-730e-42d8-9754-bd54e3ce801c",
+          "type": "paragraph",
+          "text": "List second item",
+          "from": 124,
+          "to": 140
+        },
+        {
+          "id": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75",
+          "type": "paragraph",
+          "text": "",
+          "from": 146,
+          "to": 146
+        },
+        {
+          "id": "b_c108d901-edd9-4b48-8b6b-a03d21797058",
+          "type": "paragraph",
+          "text": "",
+          "from": 148,
+          "to": 148
+        }
+      ],
+      "document": {
+        "type": "doc",
+        "attrs": {
+          "language": "und",
+          "pageSize": "a4",
+          "orientation": "portrait",
+          "pageMargin": 20,
+          "pageColor": "#FFFFFF",
+          "header": "",
+          "footer": "",
+          "pageNumbers": false
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Opening anchor English 中文 日本語."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Second paragraph replacement remains."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "RTL العربية עברית mixed text."
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "attrs": {
+              "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+              "bulletText": null,
+              "bulletStyle": "disc"
+            },
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "List first item"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "bulletList",
+                    "attrs": {
+                      "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                      "bulletText": null,
+                      "bulletStyle": "disc"
+                    },
+                    "content": [
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "attrs": {
+                              "textAlign": null,
+                              "keepWithNext": null,
+                              "keepLinesTogether": false,
+                              "preventSingleLines": true,
+                              "paragraphBorderJoin": false,
+                              "paragraphBorders": null,
+                              "paragraphBackground": null,
+                              "indent": 0,
+                              "indentStart": null,
+                              "indentEnd": 0,
+                              "firstLineIndent": 0,
+                              "tabInterval": 48,
+                              "direction": "auto",
+                              "spaceBefore": null,
+                              "spaceAfter": null,
+                              "lineHeight": null,
+                              "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                            },
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "List second item"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75"
+            }
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+            }
+          }
+        ]
+      }
+    },
+    "active": "<div contenteditable=\"true\" role=\"textbox\" spellcheck=\"false\" aria-label=\"Document body\" aria-multiline=\"true\" translate=\"no\" class=\"tiptap ProseMirro"
+  },
+  {
+    "at": "2026-10-11T00:48:42.668Z",
+    "name": "F016-F017-list-conversion-exit",
+    "document": {
+      "type": "doc",
+      "attrs": {
+        "language": "und",
+        "pageSize": "a4",
+        "orientation": "portrait",
+        "pageMargin": 20,
+        "pageColor": "#FFFFFF",
+        "header": "",
+        "footer": "",
+        "pageNumbers": false
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Opening anchor English 中文 日本語."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Second paragraph replacement remains."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "RTL العربية עברית mixed text."
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "attrs": {
+            "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+            "bulletText": null,
+            "bulletStyle": "disc"
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "keepWithNext": null,
+                    "keepLinesTogether": false,
+                    "preventSingleLines": true,
+                    "paragraphBorderJoin": false,
+                    "paragraphBorders": null,
+                    "paragraphBackground": null,
+                    "indent": 0,
+                    "indentStart": null,
+                    "indentEnd": 0,
+                    "firstLineIndent": 0,
+                    "tabInterval": 48,
+                    "direction": "auto",
+                    "spaceBefore": null,
+                    "spaceAfter": null,
+                    "lineHeight": null,
+                    "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "List first item"
+                    }
+                  ]
+                },
+                {
+                  "type": "bulletList",
+                  "attrs": {
+                    "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                    "bulletText": null,
+                    "bulletStyle": "disc"
+                  },
+                  "content": [
+                    {
+                      "type": "listItem",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "attrs": {
+                            "textAlign": null,
+                            "keepWithNext": null,
+                            "keepLinesTogether": false,
+                            "preventSingleLines": true,
+                            "paragraphBorderJoin": false,
+                            "paragraphBorders": null,
+                            "paragraphBackground": null,
+                            "indent": 0,
+                            "indentStart": null,
+                            "indentEnd": 0,
+                            "firstLineIndent": 0,
+                            "tabInterval": 48,
+                            "direction": "auto",
+                            "spaceBefore": null,
+                            "spaceAfter": null,
+                            "lineHeight": null,
+                            "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                          },
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "List second item"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Normal after list"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": null,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-10-11T00:48:43.558Z",
+    "name": "table-insert-selection",
+    "snapshot": {
+      "schemaVersion": 1,
+      "sessionId": "a48756a3-62b8-427d-acf7-ee481ffb6cb8",
+      "tables": [
+        {
+          "id": "b_1a244ae3-056f-4c1e-93c9-4a8a939c1140",
+          "rows": 3,
+          "columns": 3,
+          "columnDirection": "ltr",
+          "pinnedRows": 1,
+          "rowBreaks": [
+            {
+              "id": "b_a6984bfd-8088-4475-bb51-0d787656492b",
+              "row": 0,
+              "allowSplit": false
+            },
+            {
+              "id": "b_f933542e-2ba8-47cc-b5ba-065628115211",
+              "row": 1,
+              "allowSplit": false
+            },
+            {
+              "id": "b_84b211e1-e7c6-42a9-969b-d9b4221f454b",
+              "row": 2,
+              "allowSplit": false
+            }
+          ],
+          "cells": [
+            {
+              "id": "b_3d593f0a-e90e-41e8-b727-239e9daef222",
+              "rowId": "b_a6984bfd-8088-4475-bb51-0d787656492b",
+              "row": 0,
+              "column": 0,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_fba340ed-e9a7-4d1d-8eeb-a46f2ef924e1",
+              "rowId": "b_a6984bfd-8088-4475-bb51-0d787656492b",
+              "row": 0,
+              "column": 1,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_89a1bd5f-2ac5-4967-9098-16f3242b6637",
+              "rowId": "b_a6984bfd-8088-4475-bb51-0d787656492b",
+              "row": 0,
+              "column": 2,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_ed9155ad-41df-4800-8f4d-2bbb037439bb",
+              "rowId": "b_f933542e-2ba8-47cc-b5ba-065628115211",
+              "row": 1,
+              "column": 0,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_7aa860bc-ebd7-49b8-966a-f9575c8a6cd7",
+              "rowId": "b_f933542e-2ba8-47cc-b5ba-065628115211",
+              "row": 1,
+              "column": 1,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_67ec9446-93c5-4470-ad6e-45a0513bd370",
+              "rowId": "b_f933542e-2ba8-47cc-b5ba-065628115211",
+              "row": 1,
+              "column": 2,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_d061545c-4705-42c2-809b-f6f851cd5d94",
+              "rowId": "b_84b211e1-e7c6-42a9-969b-d9b4221f454b",
+              "row": 2,
+              "column": 0,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_1ab59b08-d213-411e-bfba-b79c33cb6905",
+              "rowId": "b_84b211e1-e7c6-42a9-969b-d9b4221f454b",
+              "row": 2,
+              "column": 1,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            },
+            {
+              "id": "b_427156c5-f696-443e-b5df-fb3f5321b701",
+              "rowId": "b_84b211e1-e7c6-42a9-969b-d9b4221f454b",
+              "row": 2,
+              "column": 2,
+              "rowspan": 1,
+              "colspan": 1,
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "revision": 20,
+      "selection": {
+        "from": 168,
+        "to": 168
+      },
+      "blocks": [
+        {
+          "id": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e",
+          "type": "paragraph",
+          "text": "Opening anchor English 中文 日本語.",
+          "from": 1,
+          "to": 31
+        },
+        {
+          "id": "b_dc61302a-be8c-42a4-9202-a2280cfb507b",
+          "type": "paragraph",
+          "text": "Second paragraph replacement remains.",
+          "from": 33,
+          "to": 70
+        },
+        {
+          "id": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6",
+          "type": "paragraph",
+          "text": "RTL العربية עברית mixed text.",
+          "from": 72,
+          "to": 101
+        },
+        {
+          "id": "b_c0a7990c-4428-437c-9bb5-f44f361323b5",
+          "type": "paragraph",
+          "text": "List first item",
+          "from": 105,
+          "to": 120
+        },
+        {
+          "id": "b_cc764405-730e-42d8-9754-bd54e3ce801c",
+          "type": "paragraph",
+          "text": "List second item",
+          "from": 124,
+          "to": 140
+        },
+        {
+          "id": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75",
+          "type": "paragraph",
+          "text": "Normal after list",
+          "from": 146,
+          "to": 163
+        },
+        {
+          "id": "b_1a244ae3-056f-4c1e-93c9-4a8a939c1140",
+          "type": "table",
+          "text": "",
+          "from": 165,
+          "to": 207
+        },
+        {
+          "id": "b_6cf15078-a5a6-4651-82bd-548c06787123",
+          "type": "paragraph",
+          "text": "",
+          "from": 168,
+          "to": 168
+        },
+        {
+          "id": "b_24be56d0-06fb-47b8-bd2c-52b7363892c3",
+          "type": "paragraph",
+          "text": "",
+          "from": 172,
+          "to": 172
+        },
+        {
+          "id": "b_134ae329-89ac-41dc-a655-02dc9d62851d",
+          "type": "paragraph",
+          "text": "",
+          "from": 176,
+          "to": 176
+        },
+        {
+          "id": "b_c5a87f52-2903-4392-84af-72f4bf3ccdcc",
+          "type": "paragraph",
+          "text": "",
+          "from": 182,
+          "to": 182
+        },
+        {
+          "id": "b_b05bf756-c0f8-4dcb-8eaa-cfe81a5bc4ac",
+          "type": "paragraph",
+          "text": "",
+          "from": 186,
+          "to": 186
+        },
+        {
+          "id": "b_e97a0edf-3fb0-406c-8cb1-e45ed344abb8",
+          "type": "paragraph",
+          "text": "",
+          "from": 190,
+          "to": 190
+        },
+        {
+          "id": "b_2cd19e45-e785-4428-bf4a-0c86546929e6",
+          "type": "paragraph",
+          "text": "",
+          "from": 196,
+          "to": 196
+        },
+        {
+          "id": "b_da4105fa-c87d-440c-925e-f4b4cacba877",
+          "type": "paragraph",
+          "text": "",
+          "from": 200,
+          "to": 200
+        },
+        {
+          "id": "b_1a22af68-0276-43b5-985f-16ceaf2710a4",
+          "type": "paragraph",
+          "text": "",
+          "from": 204,
+          "to": 204
+        },
+        {
+          "id": "b_c108d901-edd9-4b48-8b6b-a03d21797058",
+          "type": "paragraph",
+          "text": "",
+          "from": 209,
+          "to": 209
+        }
+      ],
+      "document": {
+        "type": "doc",
+        "attrs": {
+          "language": "und",
+          "pageSize": "a4",
+          "orientation": "portrait",
+          "pageMargin": 20,
+          "pageColor": "#FFFFFF",
+          "header": "",
+          "footer": "",
+          "pageNumbers": false
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Opening anchor English 中文 日本語."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Second paragraph replacement remains."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "RTL العربية עברית mixed text."
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "attrs": {
+              "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+              "bulletText": null,
+              "bulletStyle": "disc"
+            },
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "List first item"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "bulletList",
+                    "attrs": {
+                      "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                      "bulletText": null,
+                      "bulletStyle": "disc"
+                    },
+                    "content": [
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "attrs": {
+                              "textAlign": null,
+                              "keepWithNext": null,
+                              "keepLinesTogether": false,
+                              "preventSingleLines": true,
+                              "paragraphBorderJoin": false,
+                              "paragraphBorders": null,
+                              "paragraphBackground": null,
+                              "indent": 0,
+                              "indentStart": null,
+                              "indentEnd": 0,
+                              "firstLineIndent": 0,
+                              "tabInterval": 48,
+                              "direction": "auto",
+                              "spaceBefore": null,
+                              "spaceAfter": null,
+                              "lineHeight": null,
+                              "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                            },
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "List second item"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Normal after list"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "attrs": {
+              "blockId": "b_1a244ae3-056f-4c1e-93c9-4a8a939c1140",
+              "columnDirection": "ltr",
+              "alignment": "left",
+              "pinnedRows": null
+            },
+            "content": [
+              {
+                "type": "tableRow",
+                "attrs": {
+                  "blockId": "b_a6984bfd-8088-4475-bb51-0d787656492b",
+                  "minHeight": null,
+                  "allowSplit": false
+                },
+                "content": [
+                  {
+                    "type": "tableHeader",
+                    "attrs": {
+                      "blockId": "b_3d593f0a-e90e-41e8-b727-239e9daef222",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_6cf15078-a5a6-4651-82bd-548c06787123"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableHeader",
+                    "attrs": {
+                      "blockId": "b_fba340ed-e9a7-4d1d-8eeb-a46f2ef924e1",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_24be56d0-06fb-47b8-bd2c-52b7363892c3"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableHeader",
+                    "attrs": {
+                      "blockId": "b_89a1bd5f-2ac5-4967-9098-16f3242b6637",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_134ae329-89ac-41dc-a655-02dc9d62851d"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "attrs": {
+                  "blockId": "b_f933542e-2ba8-47cc-b5ba-065628115211",
+                  "minHeight": null,
+                  "allowSplit": false
+                },
+                "content": [
+                  {
+                    "type": "tableCell",
+                    "attrs": {
+                      "blockId": "b_ed9155ad-41df-4800-8f4d-2bbb037439bb",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_c5a87f52-2903-4392-84af-72f4bf3ccdcc"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "attrs": {
+                      "blockId": "b_7aa860bc-ebd7-49b8-966a-f9575c8a6cd7",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_b05bf756-c0f8-4dcb-8eaa-cfe81a5bc4ac"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "attrs": {
+                      "blockId": "b_67ec9446-93c5-4470-ad6e-45a0513bd370",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_e97a0edf-3fb0-406c-8cb1-e45ed344abb8"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableRow",
+                "attrs": {
+                  "blockId": "b_84b211e1-e7c6-42a9-969b-d9b4221f454b",
+                  "minHeight": null,
+                  "allowSplit": false
+                },
+                "content": [
+                  {
+                    "type": "tableCell",
+                    "attrs": {
+                      "blockId": "b_d061545c-4705-42c2-809b-f6f851cd5d94",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_2cd19e45-e785-4428-bf4a-0c86546929e6"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "attrs": {
+                      "blockId": "b_1ab59b08-d213-411e-bfba-b79c33cb6905",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_da4105fa-c87d-440c-925e-f4b4cacba877"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "attrs": {
+                      "blockId": "b_427156c5-f696-443e-b5df-fb3f5321b701",
+                      "colspan": 1,
+                      "rowspan": 1,
+                      "colwidth": null,
+                      "align": null,
+                      "backgroundColor": null,
+                      "minHeight": null,
+                      "borderColor": null,
+                      "borderStyle": "solid",
+                      "borderWidth": null,
+                      "padding": null,
+                      "borders": null,
+                      "verticalAlign": "top"
+                    },
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_1a22af68-0276-43b5-985f-16ceaf2710a4"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "attrs": {
+              "textAlign": null,
+              "keepWithNext": null,
+              "keepLinesTogether": false,
+              "preventSingleLines": true,
+              "paragraphBorderJoin": false,
+              "paragraphBorders": null,
+              "paragraphBackground": null,
+              "indent": 0,
+              "indentStart": null,
+              "indentEnd": 0,
+              "firstLineIndent": 0,
+              "tabInterval": 48,
+              "direction": "auto",
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "lineHeight": null,
+              "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+            }
+          }
+        ]
+      }
+    },
+    "active": "textbox"
+  },
+  {
+    "at": "2026-10-11T00:48:44.090Z",
+    "name": "F018-ui-table-nine-cells"
+  },
+  {
+    "at": "2026-10-11T00:48:46.566Z",
+    "name": "F019-F020-table-structure-exact-undo-redo"
+  },
+  {
+    "at": "2026-10-11T00:48:47.559Z",
+    "name": "F021-local-image-visible"
+  },
+  {
+    "at": "2026-10-11T00:48:48.613Z",
+    "name": "F022-full-backup"
+  },
+  {
+    "at": "2026-10-11T00:48:49.186Z",
+    "name": "F023-font-size-selected-range"
+  },
+  {
+    "at": "2026-10-11T00:48:49.986Z",
+    "name": "F024-independent-color-highlight-undo"
+  },
+  {
+    "at": "2026-10-11T00:48:50.183Z",
+    "name": "F025-independent-bold-italic-underline"
+  },
+  {
+    "at": "2026-10-11T00:48:51.356Z",
+    "name": "F026-paragraph-alignment"
+  },
+  {
+    "at": "2026-10-11T00:48:51.934Z",
+    "name": "F027-heading-outline"
+  },
+  {
+    "at": "2026-10-11T00:48:55.081Z",
+    "name": "F028-final-match-visible"
+  },
+  {
+    "at": "2026-10-11T00:48:55.146Z",
+    "name": "F029-three-match-navigation"
+  },
+  {
+    "at": "2026-10-11T00:48:55.295Z",
+    "name": "F030-F031-single-all-replace"
+  },
+  {
+    "at": "2026-10-11T00:48:56.931Z",
+    "name": "F032-zoom-search-visible"
+  },
+  {
+    "at": "2026-10-11T00:48:57.831Z",
+    "name": "F033-F034-close-search-edit-undo-save"
+  },
+  {
+    "at": "2026-10-11T00:48:59.896Z",
+    "name": "F035-F037-refresh-home-reopen-export"
+  },
+  {
+    "at": "2026-10-11T00:49:00.692Z",
+    "name": "F038-json-reimport-full-content"
+  },
+  {
+    "at": "2026-10-11T00:49:02.050Z",
+    "name": "F039-F040-docx-roundtrip-text-table-image"
+  },
+  {
+    "at": "2026-10-11T00:49:02.226Z",
+    "name": "production-preview-ready",
+    "scope": "Chromium production preview only, no Safari PDF claim"
+  },
+  {
+    "at": "2026-10-11T00:49:05.007Z",
+    "name": "F042-version-restore"
+  },
+  {
+    "at": "2026-10-11T00:49:07.452Z",
+    "name": "F043-legacy-import-separate-document",
+    "scope": "Minimal v1 structure from tests/backup-import.test.ts, missing IDs and page attributes normalized; existing checkpoint document untouched"
+  },
+  {
+    "at": "2026-10-11T00:49:08.010Z",
+    "name": "F044-invalid-import-preserves-whole-document",
+    "alerts": [
+      "The backup contains an invalid cell span."
+    ]
+  },
+  {
+    "at": "2026-10-11T00:49:08.011Z",
+    "name": "completed",
+    "pageErrors": [],
+    "scope": "Preparatory continuous workflow on production Chrome; final native gates remain unsigned",
+    "browser": "154.0.8037.98"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "webdriverPrint": "unknown command in previous expanded session",
+  "productPrintButton": "clicked; no DOM alert; own page became hidden",
+  "nativeShortcut": "sent only after exact own URL match; no sheet observed",
+  "nativeAX": "front-window button/static-text query returned empty after exact own URL match",
+  "actualPdfObtained": false,
+  "conclusion": "Automation-window native-print path not established; no PDF acceptance claimed"
+}

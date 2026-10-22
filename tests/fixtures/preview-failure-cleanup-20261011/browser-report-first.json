@@ -1,0 +1,6 @@
+{
+  "scope": "Real preview route with QA snapshots, real Paged.js; no native printing or import coverage",
+  "browser": "154.0.8037.98",
+  "checks": [],
+  "error": "TimeoutError: page.waitForFunction: Timeout 65000ms exceeded."
+}

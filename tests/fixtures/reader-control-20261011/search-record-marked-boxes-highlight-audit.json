@@ -1,0 +1,257 @@
+{
+  "scope": "Whole-word PDF plugin text-fragment lookup; not Cmd-F UI, editor search, or character selection. Page-only pixel comparisons exclude asynchronous reader toolbar/thumbnail loading. All five positive screenshots visually inspected. Negative criterion: zero lavender pixels and at most 1/255 per-channel difference from initial page; exact equality also recorded.",
+  "rawMethodCorrection": "Not needed: current report labels the text-fragment method correctly.",
+  "excludedInvalidComparison": "Earlier bidi-runs whole-window comparison excluded; no such comparison used in this run.",
+  "results": [
+    {
+      "label": "words",
+      "pdfSha256": "807dc1d6af0b9bbf307c118784d24c24c49395cc042c7ec459aa66ae522f83e6",
+      "query": "हिन्दी",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        365,
+        205,
+        407,
+        228
+      ],
+      "sourceWordScreenBounds": [
+        365.5957711442786,
+        205.0671641791045,
+        406.8997978855722,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        63,
+        147,
+        64,
+        148
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 640,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-words-before.png",
+          "sha256": "17b3689a68b213f9e93ce6fab0db930574dc042a90daf2d3ccf2c589a46c15f2"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-words-match.png",
+          "sha256": "abd68564d60e31c657d1deaf7000371ccba6564eecc1be91d0128d93b13ffa3a"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-words-absent.png",
+          "sha256": "3632abff1c39330acfc096893c25c961d6e1fbd4446524f48b08e956c7d082a3"
+        }
+      ]
+    },
+    {
+      "label": "arabic",
+      "pdfSha256": "f4d8e32dce11fc3ccd9e4eb2360a9e088d9ae42faabc9720de4b3936ade46551",
+      "query": "اللغة",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        196,
+        1036,
+        243
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        160,
+        692,
+        161
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 1650,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-arabic-before.png",
+          "sha256": "7122d4683633fb6a6784ff1b3b9604620e52d9c26dd0b2fd30e145327383d02c"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-arabic-match.png",
+          "sha256": "c4582d807598aa7db59498c59ab6550416893e2796980b30cdc5bde86e594001"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-arabic-absent.png",
+          "sha256": "2112f8fe597b9948cda63a413392b83aace4d9c80f49fcf7cd19abb6c57fb5ad"
+        }
+      ]
+    },
+    {
+      "label": "hebrew",
+      "pdfSha256": "e4a698142b0d87164d5964c6bfa151d308443e9774f880ac3ccd443b7aa78fb0",
+      "query": "שלום",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        210,
+        1036,
+        232
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeExactlyIdentical": true,
+      "maxNegativeChannelDelta": 0,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 821,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-hebrew-before.png",
+          "sha256": "eda93b0ecbb1f4fb202e9e0862dedf8e1085caeb150283d381d791e5d9a3f2fa"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-hebrew-match.png",
+          "sha256": "ca63dbe18eb1e63138046a304272148901fc7703f38798404e880aa1ca0cc12d"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-hebrew-absent.png",
+          "sha256": "f1b4e7b708e6befcdc5d496efc9c6eef04e59fdacd182dba54f59983fd9944f2"
+        }
+      ]
+    },
+    {
+      "label": "arabic-marked",
+      "pdfSha256": "5d0110a368df098e9da3ebcbf3fb9f460e6705b2525bc0c610fcf9b6a91d63fd",
+      "query": "اللُّغَةُ",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        196,
+        1036,
+        243
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        147,
+        713,
+        161
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 1596,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-arabic-marked-before.png",
+          "sha256": "1b3f2aa0700673d8a6649e53ff1fa2c1ff4ae8c16314dc79209b17ba89284eb3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-arabic-marked-match.png",
+          "sha256": "411b13f99e086b1af0e72e82721bcb3a6b57197e183daad513a0f0b20f5e27f7"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-arabic-marked-absent.png",
+          "sha256": "1a86729af3db8d5eb502f47e0daeb07273b0d32a623deb791d78e9722f059144"
+        }
+      ]
+    },
+    {
+      "label": "hebrew-marked",
+      "pdfSha256": "b1f22b3d7ffc71d88cb4ac4726d28ff4d9f67a1ce865756b3956d22560052145",
+      "query": "שָׁלוֹם",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        204,
+        1036,
+        234
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeExactlyIdentical": true,
+      "maxNegativeChannelDelta": 0,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 1205,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-hebrew-marked-before.png",
+          "sha256": "7d3014bc6002e6d8c1377bc8af60481d524ee6d522bd5097800e343c1ad6ab7c"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-hebrew-marked-match.png",
+          "sha256": "8c57cf614ae7cc6dac7e179db55214069fd7142eb3d63991d96aa51863033ac4"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-marked-boxes-hebrew-marked-absent.png",
+          "sha256": "2a06ff7e23b423d7c82e5b0ba82ce881d6eb35f1c89b16ce07868e6d0d5790fb"
+        }
+      ]
+    }
+  ]
+}

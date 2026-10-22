@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+    "-env:UserInstallation=file:///var/folders/1z/7tmqhmgs4z54mn9wv4njr02h0000gn/T/vdoc-lo-zd2loo2e",
+    "--headless",
+    "--norestore",
+    "--convert-to",
+    "pdf:writer_pdf_Export",
+    "--outdir",
+    "tests/fixtures/pdf-libreoffice-20261012",
+    "tests/fixtures/pdf-libreoffice-20261012/words.fodt",
+    "tests/fixtures/pdf-libreoffice-20261012/arabic.fodt",
+    "tests/fixtures/pdf-libreoffice-20261012/hebrew.fodt"
+  ],
+  "returncode": 0,
+  "stdout": "convert /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/words.fodt as a Writer document -> /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/words.pdf using filter : writer_pdf_Export\nconvert /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/arabic.fodt as a Writer document -> /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/arabic.pdf using filter : writer_pdf_Export\nconvert /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/hebrew.fodt as a Writer document -> /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/hebrew.pdf using filter : writer_pdf_Export\n",
+  "stderr": "Fontconfig warning: no <cachedir> elements found. Check configuration.\nFontconfig warning: adding <cachedir>/@.__________________________________________________OOO/var/cache/fontconfig</cachedir>\nFontconfig warning: adding <cachedir prefix=\"xdg\">fontconfig</cachedir>\n",
+  "seconds": 0.9470791249987087,
+  "files": [
+    "tests/fixtures/pdf-libreoffice-20261012/arabic.pdf",
+    "tests/fixtures/pdf-libreoffice-20261012/words.pdf",
+    "tests/fixtures/pdf-libreoffice-20261012/hebrew.pdf"
+  ]
+}

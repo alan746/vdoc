@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-10T22:30:07.742116+00:00",
+  "environment": "Existing production build served by npm run start -- --port 4174 on 127.0.0.1; Codex in-app browser",
+  "applicationSha256": "bbe738db9f0ab1d83e7ff0a2244cbf51691c94e02e624fecaa8ec196af452612",
+  "originalDocumentId": "6df152f8-dc29-4d99-bd79-4627b02346cd",
+  "reimportedDocumentId": "b8770dc0-5331-42da-b7f5-4890d0579ed7",
+  "checks": {
+    "initialLibraryEmpty": true,
+    "importedRealCrashBackup": true,
+    "uiTitleAndTextEdit": true,
+    "undoFullContentEqualsBaseline": true,
+    "redoFullContentEqualsEdited": true,
+    "reloadNewSession": true,
+    "reloadFullContentEqual": true,
+    "homeReopenFullContentEqual": true,
+    "downloadedBackupExactExpectedContent": true,
+    "reimportFullContentEqual": true,
+    "consoleWarningsAndErrors": []
+  },
+  "preview": {
+    "pages": 5,
+    "printButtonEnabled": true,
+    "rowCounts": [
+      8,
+      12,
+      12,
+      4,
+      0
+    ],
+    "lastPageContainsFinalHeadingAndParagraph": true,
+    "headerVisibleInLastPageScreenshot": true,
+    "actualPDFExported": false
+  },
+  "limitations": [
+    "Independent production preflight; does not close native Safari, OS candidate-window, real quota or final combined signoff.",
+    "Two file chooser tool calls returned after unusually long waits (2550s and 4021s); no product performance pass claimed.",
+    "ControlOrMeta+End did not move the insertion point to the end; test text was inserted at start of first heading. Actual position and all other nodes were checked."
+  ],
+  "sha256": {
+    "dist/client/_next/static/chunks/workspace-CaA9XvUS.js": "d947a47d64a2122806aba71caa0dd69ecc4172ebee34758189c6de3233d2b76d",
+    "dist/server/ssr/_next/static/workspace-BRJKV2Lo.js": "49bcd89b04bf1b54e7133b05a96678e3d77ff27a1f3c3161a807e7e50a618721",
+    "dist/server/wrangler.json": "349eb05e67080b341f4240b2a7ef026fbe89cfe4c76904d6e42215dbf3fc5966"
+  },
+  "backupSha256": "bf6ccb018195b202e668ca2869ce8a27c6249838702a492c413ff567fc8f767b"
+}

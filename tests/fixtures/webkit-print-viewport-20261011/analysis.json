@@ -1,0 +1,929 @@
+[
+  {
+    "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-100.pdf",
+    "pages": 2,
+    "text": [
+      "PAGE 1 OF 2\nSTART_1 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_1 footer",
+      "PAGE 2 OF 2\nSTART_2 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_2 footer"
+    ],
+    "events": [
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "load",
+        "print": false,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "beforeprint",
+        "print": false,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "media-change",
+        "print": true,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2246,
+          "width": 794,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1123
+          }
+        ],
+        "phase": "media-change",
+        "print": false,
+        "root": {
+          "height": 2246,
+          "width": 794,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "afterprint",
+        "print": false,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-101.pdf",
+    "pages": 6,
+    "text": [
+      "PAGE 1 OF 2\nSTART_1 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_1 footer",
+      "",
+      "PAGE 2 OF 2\nSTART_2 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_2 footer",
+      "",
+      "",
+      ""
+    ],
+    "events": [
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "load",
+        "print": false,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "beforeprint",
+        "print": false,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "media-change",
+        "print": true,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2246,
+          "width": 794,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1123
+          }
+        ],
+        "phase": "media-change",
+        "print": false,
+        "root": {
+          "height": 2246,
+          "width": 794,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1122.515625,
+            "width": 793.6875,
+            "x": 0,
+            "y": 1122.515625
+          }
+        ],
+        "phase": "afterprint",
+        "print": false,
+        "root": {
+          "height": 2245.03125,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "file": "output/pdf/webkit-print-viewport-20261011/short-100.pdf",
+    "pages": 1,
+    "text": [
+      "SHORT ONE PAGE\nEnglish 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語 END_SHORT"
+    ],
+    "events": [
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "load",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "beforeprint",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "media-change",
+        "print": true,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 743,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "media-change",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 743,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "afterprint",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "file": "output/pdf/webkit-print-viewport-20261011/short-101.pdf",
+    "pages": 2,
+    "text": [
+      "SHORT ONE PAGE\nEnglish 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語 END_SHORT",
+      "SHORT ONE PAGE\nEnglish 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語 END_SHORT"
+    ],
+    "events": [
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "load",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "beforeprint",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "media-change",
+        "print": true,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 743,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "media-change",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 743,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 80.4375,
+          "width": 900,
+          "x": 0,
+          "y": 21.4375
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [],
+        "phase": "afterprint",
+        "print": false,
+        "root": {
+          "height": 117.875,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "file": "output/pdf/webkit-print-viewport-20261011/viewport-100.pdf",
+    "pages": 2,
+    "text": [
+      "PAGE 1 OF 2\nSTART_1 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_1 footer",
+      "PAGE 2 OF 2\nSTART_2 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_2 footer"
+    ],
+    "events": [
+      {
+        "body": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1000
+          }
+        ],
+        "phase": "load",
+        "print": false,
+        "root": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1000
+          }
+        ],
+        "phase": "beforeprint",
+        "print": false,
+        "root": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1000
+          }
+        ],
+        "phase": "media-change",
+        "print": true,
+        "root": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1273
+          }
+        ],
+        "phase": "media-change",
+        "print": false,
+        "root": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1273
+          }
+        ],
+        "phase": "afterprint",
+        "print": false,
+        "root": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "file": "output/pdf/webkit-print-viewport-20261011/viewport-101.pdf",
+    "pages": 6,
+    "text": [
+      "PAGE 1 OF 2\nSTART_1 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_1 footer",
+      "",
+      "PAGE 2 OF 2\nSTART_2 English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nEND_2 footer",
+      "",
+      "",
+      ""
+    ],
+    "events": [
+      {
+        "body": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1000
+          }
+        ],
+        "phase": "load",
+        "print": false,
+        "root": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1000
+          }
+        ],
+        "phase": "beforeprint",
+        "print": false,
+        "root": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1000
+          }
+        ],
+        "phase": "media-change",
+        "print": true,
+        "root": {
+          "height": 2000,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1273
+          }
+        ],
+        "phase": "media-change",
+        "print": false,
+        "root": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "body": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        },
+        "dpr": 2,
+        "innerHeight": 1000,
+        "innerWidth": 900,
+        "pages": [
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "height": 1000,
+            "width": 900,
+            "x": 0,
+            "y": 1273
+          }
+        ],
+        "phase": "afterprint",
+        "print": false,
+        "root": {
+          "height": 2546,
+          "width": 900,
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "file": "plugin.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/main/pdf/pdf_view_web_plugin.cc?format=TEXT",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)>"
+  },
+  {
+    "file": "engine.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/main/pdf/pdfium/pdfium_engine.cc?format=TEXT",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)>"
+  },
+  {
+    "file": "cpdf_textpage.cpp",
+    "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/main/core/fpdftext/cpdf_textpage.cpp?format=TEXT",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)>"
+  },
+  {
+    "file": "chrome-DEPS",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/154.0.8037.98/DEPS?format=TEXT",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)>"
+  }
+]

@@ -1,0 +1,7 @@
+$ python3 tools/native-qa/safari_acceptance.py --check
+Traceback (most recent call last):
+  File "/Users/ph.qian/Desktop/Vdoc/tools/native-qa/safari_acceptance.py", line 276, in <module>
+    main()
+  File "/Users/ph.qian/Desktop/Vdoc/tools/native-qa/safari_acceptance.py", line 105, in main
+    raise RuntimeError('Candidate changed: ' + item['file'] + '; refresh source manifest first')
+RuntimeError: Candidate changed: lib/editor/preview-images.ts; refresh source manifest first

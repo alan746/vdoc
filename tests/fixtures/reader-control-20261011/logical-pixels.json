@@ -1,0 +1,42 @@
+[
+  {
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-logical-marked.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-marked-render.png",
+    "pixelIdentical": false,
+    "bounds": [
+      567,
+      382,
+      596,
+      452
+    ]
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-logical.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-render.png",
+    "pixelIdentical": false,
+    "bounds": [
+      567,
+      382,
+      596,
+      452
+    ]
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-logical-marked.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-marked-render.png",
+    "pixelIdentical": true,
+    "bounds": null
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-logical.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-render.png",
+    "pixelIdentical": true,
+    "bounds": null
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-logical.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/words-unicode-ordered-render.png",
+    "pixelIdentical": true,
+    "bounds": null
+  }
+]

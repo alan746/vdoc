@@ -1,0 +1,35 @@
+{
+  "state": "rejected-before-PDF-generation",
+  "word": "اللغة",
+  "reason": "NotoSansArabic-static.ttf shapes clusters 4 and 3 into zero-advance dot plus advancing base glyph; minimal one-glyph-per-cluster model cannot represent them.",
+  "attempts": 2,
+  "note": "First guard report generic, second included actual shaped records; no PDF produced.",
+  "cluster4": [
+    {
+      "gid": 288,
+      "advance": 0,
+      "offset": [
+        101,
+        65
+      ]
+    },
+    {
+      "gid": 85,
+      "advance": 486
+    }
+  ],
+  "cluster3": [
+    {
+      "gid": 283,
+      "advance": 0,
+      "offset": [
+        199,
+        -52
+      ]
+    },
+    {
+      "gid": 48,
+      "advance": 521
+    }
+  ]
+}

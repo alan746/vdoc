@@ -1,0 +1,64 @@
+{
+  "at": "2026-10-12T19:40:07.800Z",
+  "scope": "Official Chrome for Testing with disposable profile; stock plugin selectAll/getSelectedText, not OS clipboard. Existing PDFs unchanged.",
+  "results": [
+    {
+      "label": "arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-whole-cluster-page-155-marked.pdf",
+      "sha256": "eb7cc50e962f145d665709b7555ca9c158cb58cd3983e45a1e151f3e44593c1c",
+      "expected": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic words\nالُّلَغُة اْلَعَرِبَّيُة َجِميَلٌة\nَمْرَحًبا ِباْلَعاَلِم 123\nاْلَعَرِبَّيُة الَّتْعِليُم اْلِكَتاَبُة\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 29,
+        "expectedContext": "Browser PDF — Arabic words اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ مَرْحَبًا بِالْعَالَمِ 123 الْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ Table cell العربية ",
+        "actualContext": "Browser PDF — Arabic words الُّلَغُة اْلَعَرِبَّيُة َجِميَلٌة َمْرَحًبا ِباْلَعاَلِم 123 اْلَعَرِبَّيُة الَّتْعِليُم اْلِكَتاَبُة Table cell العربية "
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 29,
+        "expectedContext": "Browser PDF — Arabic words اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ مَرْحَبًا بِالْعَالَمِ 123 الْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ Table cell العربية ",
+        "actualContext": "Browser PDF — Arabic words الُّلَغُة اْلَعَرِبَّيُة َجِميَلٌة َمْرَحًبا ِباْلَعاَلِم 123 اْلَعَرِبَّيُة الَّتْعِليُم اْلِكَتاَبُة Table cell العربية "
+      }
+    },
+    {
+      "label": "hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-whole-cluster-page-155-marked.pdf",
+      "sha256": "c98ae59f5b14f6949de8ce72eb081190b9ac3888bca5f98171a6101e20e95473",
+      "expected": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew words\nָׁשלֹום עֹוָלם\nִעְבִרית ְּכִתיָבה 123\nָׁשלֹום ְּבִעְבִרית עֹוָלם\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שָׁלוֹם עוֹלָם עִבְרִית כְּתִיבָה 123 שָׁלוֹם בְּעִבְרִית עוֹלָם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words ָׁשלֹום עֹוָלם ִעְבִרית ְּכִתיָבה 123 ָׁשלֹום ְּבִעְבִרית עֹוָלם Table cell עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שָׁלוֹם עוֹלָם עִבְרִית כְּתִיבָה 123 שָׁלוֹם בְּעִבְרִית עוֹלָם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words ָׁשלֹום עֹוָלם ִעְבִרית ְּכִתיָבה 123 ָׁשלֹום ְּבִעְבִרית עֹוָלם Table cell עברית Different context שלום"
+      }
+    },
+    {
+      "label": "hebrew-numbers",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-whole-cluster-page-155-numbers.pdf",
+      "sha256": "1c39afe49426a82711f0c53aad1e43b3dc7e90962456524cf223dd7c644d3111",
+      "expected": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 124,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 124,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      }
+    }
+  ],
+  "version": "155.0.8059.39"
+}

@@ -1,0 +1,74 @@
+{
+  "scope": "Six generated PDFs plus two existing native Safari outputs; diagnosis only",
+  "outputs": [
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/short-100.pdf",
+      "sha256": "b6edf7e4efcc0c20a69c21b463ccfb524c5790556ca80f660eed0efa8fde3607",
+      "pages": 1,
+      "passedDiagnostic": true
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/short-101.pdf",
+      "sha256": "dcbd2c05bc2147327b3afb2193fa25f0a146db336f15b429e44225d3ee0166dc",
+      "pages": 2,
+      "passedDiagnostic": true
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-100.pdf",
+      "sha256": "2ac9140602b72fa072633ed6cb51a2ef24318c7c9f41926c7b4bdf4f5960eac0",
+      "pages": 2,
+      "passedDiagnostic": true
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-101.pdf",
+      "sha256": "3103de2f0fc473399daba4d752d576b28598416af56e8d1137cab16f77083cf3",
+      "pages": 6,
+      "passedDiagnostic": true
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/viewport-100.pdf",
+      "sha256": "7a4e67339419be9afcc1d7ef36fb7033f89ed60dcac76b03f1633c692c1fae98",
+      "pages": 2,
+      "passedDiagnostic": true
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/viewport-101.pdf",
+      "sha256": "d882630861a64c5f69ff8ad1de6625dc81fbb58bf55387864ee8bec18c40dcb5",
+      "pages": 6,
+      "passedDiagnostic": true
+    }
+  ],
+  "legacySafari": [
+    {
+      "file": "output/pdf/safari-native-20261011/b-101.pdf",
+      "sha256": "d329348224b5e4b6d89109db43668322eaef22a44e855f23719a088c9a246ed4",
+      "pairs": 6,
+      "rightStripWidthsPt": [
+        6.054912,
+        6.054912,
+        6.054912,
+        6.054912,
+        6.054912,
+        6.054912
+      ]
+    },
+    {
+      "file": "output/pdf/safari-native-20261011/b-101-repeat.pdf",
+      "sha256": "591e9154fd21fd811ddf82d8b798ee2878f46992473bdbdb7659e643ed184752",
+      "pairs": 6,
+      "rightStripWidthsPt": [
+        6.054912,
+        6.054912,
+        6.054912,
+        6.054912,
+        6.054912,
+        6.054912
+      ]
+    }
+  ],
+  "shortHorizontalOffsetPt": 594.4795,
+  "shortRightStripWidthPt": 6.470525,
+  "shortRightStripVisuallyBlank": true,
+  "publicScaleMetricsEqual": true,
+  "passed": true
+}

@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/menu-focus.test.ts (6 tests) 81ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  20:31:01
+   Duration  648ms (transform 101ms, setup 11ms, collect 177ms, tests 81ms, environment 254ms, prepare 36ms)
+

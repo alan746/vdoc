@@ -1,0 +1,55 @@
+{
+  "results": [
+    {
+      "field": "Header",
+      "case": "cancel",
+      "noPrematureSubmit": true,
+      "before": "VDoc system acceptance 中文",
+      "after": "VDoc system acceptance 中文"
+    },
+    {
+      "field": "Header",
+      "case": "space",
+      "noPrematureSubmit": true,
+      "before": "VDoc system acceptance 中文",
+      "after": "VDoc system acceptance 中文中"
+    },
+    {
+      "field": "Header",
+      "case": "enter",
+      "noPrematureSubmit": true,
+      "before": "VDoc system acceptance 中文中",
+      "after": "VDoc system acceptance 中文中ceshi"
+    },
+    {
+      "field": "Header",
+      "case": "backspace",
+      "noPrematureSubmit": true,
+      "before": "VDoc system acceptance 中文中ceshi",
+      "after": "VDoc system acceptance 中文中ceshi中"
+    },
+    {
+      "field": "Header",
+      "case": "commit-reload",
+      "passed": true
+    },
+    {
+      "field": "Version name",
+      "case": "cancel",
+      "noPrematureSubmit": true,
+      "before": "",
+      "after": ""
+    },
+    {
+      "field": "Version name",
+      "case": "space",
+      "noPrematureSubmit": true,
+      "before": "",
+      "after": "中"
+    },
+    {
+      "failure": "Command '['osascript', '-l', 'JavaScript', 'tmp/safari-native-bridge/keys.js', '36']' returned non-zero exit status 1."
+    }
+  ],
+  "allPassed": false
+}

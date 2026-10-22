@@ -1,0 +1,35 @@
+{
+  "at": "20261011T014908Z",
+  "state": "failed",
+  "applicationSha256": "ebafec66b2ccc105e5993878f6a76ed13137f8c99b0c8e459fa5b2a4c9b9f776",
+  "fixtureSha256": "a1c397e5a22a5446c06aae46f84c1d48db1e6f2af7148f6651a8e3e5e8a4245b",
+  "checks": [],
+  "scope": "Fresh isolated Safari browser; preview and saved JSON only",
+  "exclusions": [
+    "System IME candidate UI",
+    "Native Safari print dialog and PDF scales",
+    "Historical project-plan source pairing"
+  ],
+  "capabilities": {
+    "safari:platformVersion": "26.6.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "26.6.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "25G83",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "error": "{\"value\": {\"error\": \"javascript error\", \"message\": \"A JavaScript exception occured: Unexpected identifier 'Import'. Expected ')' to end an argument list.\", \"stacktrace\": \"\"}}",
+  "ownSessionClosed": true
+}

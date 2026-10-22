@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-12T01:27:11.507Z",
+  "browser": "154.0.8037.98",
+  "scope": "Stock Chrome plugin selectAll plus official PDF.js text-layer copy handler for each page. Synthetic ClipboardEvent with isolated in-memory DataTransfer; no system clipboard or native key press. Raw Selection.toString retained separately. Known generated margins are excluded only for a separate body comparison, with occurrence counts retained. Neither raw nor body comparison silently changes Unicode or word order.",
+  "results": [
+    {
+      "label": "hebrew-rtl-matrix",
+      "file": "output/pdf/pdf-rtl-matrix-20261012/hebrew-source-logical.pdf",
+      "pdfSha256": "56aa1cc99952d7df049416d35d1bcede6eb64e3fbb63ece306d5aa529f23f1fe",
+      "source": "שלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "chrome": {
+        "selectedText": "מסמך בדיקת עולם שלום\nטבלה כתיבה עברית",
+        "match": false,
+        "expectedLength": 37,
+        "actualLength": 37,
+        "firstDifference": 0,
+        "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "מסמך בדיקת עולם שלום טבלה כתיבה עברית",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 37,
+          "actualLength": 37,
+          "firstDifference": 0,
+          "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "מסמך בדיקת עולם שלום טבלה כתיבה עברית",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "ךמסמ תקידב םלוע םולש\nהלבט הביתכ תירבע"
+        ],
+        "copies": [
+          "ךמסמ תקידב םלוע םולש\nהלבט הביתכ תירבע"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "ךמסמ תקידב םלוע םולש\nהלבט הביתכ תירבע",
+        "copiedText": "ךמסמ תקידב םלוע םולש\nהלבט הביתכ תירבע",
+        "match": false,
+        "expectedLength": 37,
+        "actualLength": 37,
+        "firstDifference": 0,
+        "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "ךמסמ תקידב םלוע םולש הלבט הביתכ תירבע",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 37,
+          "actualLength": 37,
+          "firstDifference": 0,
+          "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "ךמסמ תקידב םלוע םולש הלבט הביתכ תירבע",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      }
+    }
+  ]
+}

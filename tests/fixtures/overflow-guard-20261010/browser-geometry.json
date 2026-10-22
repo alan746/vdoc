@@ -1,0 +1,382 @@
+{
+  "at": "2026-10-11T01:18:05.048Z",
+  "browser": "154.0.8037.98",
+  "scope": "Real DOM geometry of current product overflow guards in an isolated Chromium page; not Safari print, not pagination integration",
+  "cases": [
+    {
+      "name": "fitting-table",
+      "issue": null,
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 200,
+        "top": 20,
+        "right": 620,
+        "bottom": 220,
+        "left": 20
+      }
+    },
+    {
+      "name": "half-pixel-border",
+      "issue": null,
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 19.5,
+        "y": 20,
+        "width": 601,
+        "height": 200,
+        "top": 20,
+        "right": 620.5,
+        "bottom": 220,
+        "left": 19.5
+      }
+    },
+    {
+      "name": "actual-5px-bottom",
+      "issue": {
+        "page": 1,
+        "kind": "table",
+        "edge": "bottom",
+        "pixels": 5
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 725,
+        "width": 600,
+        "height": 100,
+        "top": 725,
+        "right": 620,
+        "bottom": 825,
+        "left": 20
+      }
+    },
+    {
+      "name": "actual-9px-bottom",
+      "issue": {
+        "page": 1,
+        "kind": "table",
+        "edge": "bottom",
+        "pixels": 9
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 729,
+        "width": 600,
+        "height": 100,
+        "top": 729,
+        "right": 620,
+        "bottom": 829,
+        "left": 20
+      }
+    },
+    {
+      "name": "actual-5px-right",
+      "issue": {
+        "page": 1,
+        "kind": "table",
+        "edge": "right",
+        "pixels": 5
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 20,
+        "width": 605,
+        "height": 100,
+        "top": 20,
+        "right": 625,
+        "bottom": 120,
+        "left": 20
+      }
+    },
+    {
+      "name": "actual-1794px-right",
+      "issue": {
+        "page": 1,
+        "kind": "table",
+        "edge": "right",
+        "pixels": 1794
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 20,
+        "width": 2394,
+        "height": 100,
+        "top": 20,
+        "right": 2414,
+        "bottom": 120,
+        "left": 20
+      }
+    },
+    {
+      "name": "image-left",
+      "issue": {
+        "page": 1,
+        "kind": "image",
+        "edge": "left",
+        "pixels": 12
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 8,
+        "y": 50,
+        "width": 100,
+        "height": 100,
+        "top": 50,
+        "right": 108,
+        "bottom": 150,
+        "left": 8
+      }
+    },
+    {
+      "name": "divider-bottom",
+      "issue": {
+        "page": 1,
+        "kind": "divider",
+        "edge": "bottom",
+        "pixels": 7
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 819,
+        "width": 600,
+        "height": 8,
+        "top": 819,
+        "right": 620,
+        "bottom": 827,
+        "left": 20
+      }
+    },
+    {
+      "name": "checkbox-right",
+      "issue": {
+        "page": 1,
+        "kind": "checkbox",
+        "edge": "right",
+        "pixels": 12
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 612,
+        "y": 30,
+        "width": 20,
+        "height": 20,
+        "top": 30,
+        "right": 632,
+        "bottom": 50,
+        "left": 612
+      }
+    },
+    {
+      "name": "paragraph-border-bottom",
+      "issue": {
+        "page": 1,
+        "kind": "paragraph border",
+        "edge": "bottom",
+        "pixels": 7
+      },
+      "area": {
+        "x": 20,
+        "y": 20,
+        "width": 600,
+        "height": 800,
+        "top": 20,
+        "right": 620,
+        "bottom": 820,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 819,
+        "width": 600,
+        "height": 8,
+        "top": 819,
+        "right": 620,
+        "bottom": 827,
+        "left": 20
+      }
+    },
+    {
+      "name": "second-page-image-bottom",
+      "issue": {
+        "page": 2,
+        "kind": "image",
+        "edge": "bottom",
+        "pixels": 10
+      },
+      "area": {
+        "x": 20,
+        "y": 820,
+        "width": 600,
+        "height": 800,
+        "top": 820,
+        "right": 620,
+        "bottom": 1620,
+        "left": 20
+      },
+      "object": {
+        "x": 20,
+        "y": 1600,
+        "width": 100,
+        "height": 30,
+        "top": 1600,
+        "right": 120,
+        "bottom": 1630,
+        "left": 20
+      }
+    },
+    {
+      "name": "painted-text-outside-fitting-paragraph",
+      "issue": {
+        "page": 1,
+        "kind": "text",
+        "edge": "right",
+        "pixels": 32
+      },
+      "elementRight": 620,
+      "areaRight": 620,
+      "textRects": [
+        {
+          "x": 615,
+          "y": 43,
+          "width": 36.453125,
+          "height": 17,
+          "top": 43,
+          "right": 651.453125,
+          "bottom": 60,
+          "left": 615
+        },
+        {
+          "x": 651.453125,
+          "y": 43,
+          "width": 34.5625,
+          "height": 17,
+          "top": 43,
+          "right": 686.015625,
+          "bottom": 60,
+          "left": 651.453125
+        },
+        {
+          "x": 686.015625,
+          "y": 43,
+          "width": 164.546875,
+          "height": 17,
+          "top": 43,
+          "right": 850.5625,
+          "bottom": 60,
+          "left": 686.015625
+        }
+      ]
+    },
+    {
+      "name": "final-flow-still-refuses-clipping",
+      "issue": {
+        "page": 1,
+        "kind": "table",
+        "edge": "bottom",
+        "pixels": 50
+      },
+      "markupUnchanged": true,
+      "columnWidth": "auto"
+    },
+    {
+      "name": "header-scroll-extent",
+      "issue": {
+        "page": 1,
+        "part": "Header"
+      }
+    }
+  ],
+  "state": "passed-in-stated-scope",
+  "sourceHashes": {
+    "lib/editor/preview-layout.ts": "6179007cf86e3ccebab1308f75870dd22a20b8242658c8f3453a11c9d5765617",
+    "lib/editor/preview-final-flow.ts": "d1eb76c499526fd614fcdd8e0fa7aaef68c65c3b6f9de71ea02bc7fc9c337213"
+  }
+}

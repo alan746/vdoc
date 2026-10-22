@@ -1,0 +1,430 @@
+{
+  "fixture": "number-cases-v1",
+  "report": {
+    "prototypeOnly": true,
+    "hitMeasurements": [
+      {
+        "word": "مرحبا",
+        "text": "ا",
+        "sourceStart": 4,
+        "box": [
+          0,
+          -727.2727272727273,
+          291.1931818181818,
+          1363.6363636363635
+        ],
+        "origin": 0
+      },
+      {
+        "word": "0123456789",
+        "text": "9",
+        "sourceStart": 9,
+        "box": [
+          -0.2727272727270247,
+          -727.2727272727273,
+          572.170454545454,
+          1363.6363636363635
+        ],
+        "origin": 5148
+      },
+      {
+        "word": "العدد",
+        "text": "ل",
+        "sourceStart": 1,
+        "box": [
+          -0.1704545454545041,
+          -727.2727272727273,
+          260.4829545454545,
+          1363.6363636363635
+        ],
+        "origin": 1530
+      },
+      {
+        "word": "العدد",
+        "text": "ا",
+        "sourceStart": 0,
+        "box": [
+          -0.22727272727274794,
+          -727.2727272727273,
+          238.40909090909076,
+          1363.6363636363635
+        ],
+        "origin": 1790
+      },
+      {
+        "word": "9876543210",
+        "text": "0",
+        "sourceStart": 9,
+        "box": [
+          -0.2727272727270247,
+          -727.2727272727273,
+          572.170454545454,
+          1363.6363636363635
+        ],
+        "origin": 5148
+      },
+      {
+        "word": "العربية",
+        "text": "ل",
+        "sourceStart": 1,
+        "box": [
+          -0.08522727272725206,
+          -727.2727272727273,
+          260.56818181818153,
+          1363.6363636363635
+        ],
+        "origin": 2015
+      },
+      {
+        "word": "العربية",
+        "text": "ا",
+        "sourceStart": 0,
+        "box": [
+          -0.1420454545454959,
+          -727.2727272727273,
+          238.49431818181802,
+          1363.6363636363635
+        ],
+        "origin": 2275
+      },
+      {
+        "word": "١٢٣٤٥٦٧٨٩٠",
+        "text": "٠",
+        "sourceStart": 9,
+        "box": [
+          -0.2727272727270247,
+          -727.2727272727273,
+          572.170454545454,
+          1363.6363636363635
+        ],
+        "origin": 5148
+      },
+      {
+        "word": "التعليم",
+        "text": "ل",
+        "sourceStart": 4,
+        "box": [
+          -0.3409090909091219,
+          -727.2727272727273,
+          300.08522727272725,
+          1363.6363636363635
+        ],
+        "origin": 935
+      },
+      {
+        "word": "التعليم",
+        "text": "ل",
+        "sourceStart": 1,
+        "box": [
+          -0.44886363636351234,
+          -727.2727272727273,
+          260.2045454545455,
+          1363.6363636363635
+        ],
+        "origin": 2129
+      },
+      {
+        "word": "التعليم",
+        "text": "ا",
+        "sourceStart": 0,
+        "box": [
+          -0.5056818181819835,
+          -727.2727272727273,
+          238.13068181818153,
+          1363.6363636363635
+        ],
+        "origin": 2389
+      }
+    ],
+    "pages": 1,
+    "tokens": 28,
+    "uniqueWords": 17,
+    "uniqueClusters": 75,
+    "measurements": [
+      {
+        "text": "Browser",
+        "domWidth": 85.140625,
+        "fontWidth": 85.14,
+        "delta": 0.0006249999999994316
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "PDF",
+        "domWidth": 40.796875,
+        "fontWidth": 40.788000000000004,
+        "delta": 0.008874999999996191
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "—",
+        "domWidth": 22,
+        "fontWidth": 22,
+        "delta": 0
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "Arabic",
+        "domWidth": 64.8125,
+        "fontWidth": 64.812,
+        "delta": 0.0005000000000023874
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "numbers",
+        "domWidth": 93.328125,
+        "fontWidth": 93.324,
+        "delta": 0.004125000000001933
+      },
+      {
+        "text": "مرحبا",
+        "domWidth": 46.296875,
+        "fontWidth": 46.288000000000004,
+        "delta": 0.008874999999996191
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "0123456789",
+        "domWidth": 125.84375,
+        "fontWidth": 125.83999999999999,
+        "delta": 0.0037500000000108002
+      },
+      {
+        "text": "العدد",
+        "domWidth": 44.625,
+        "fontWidth": 44.616,
+        "delta": 0.009000000000000341
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "9876543210",
+        "domWidth": 125.84375,
+        "fontWidth": 125.83999999999999,
+        "delta": 0.0037500000000108002
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "العربية",
+        "domWidth": 55.296875,
+        "fontWidth": 55.286,
+        "delta": 0.010874999999998636
+      },
+      {
+        "text": "العربية",
+        "domWidth": 55.296875,
+        "fontWidth": 55.286,
+        "delta": 0.010874999999998636
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "١٢٣٤٥٦٧٨٩٠",
+        "domWidth": 125.84375,
+        "fontWidth": 125.83999999999999,
+        "delta": 0.0037500000000108002
+      },
+      {
+        "text": "Table",
+        "domWidth": 54.4375,
+        "fontWidth": 54.428000000000004,
+        "delta": 0.009499999999995623
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "cell",
+        "domWidth": 34.328125,
+        "fontWidth": 34.32,
+        "delta": 0.008124999999999716
+      },
+      {
+        "text": "العربية",
+        "domWidth": 55.296875,
+        "fontWidth": 55.286,
+        "delta": 0.010874999999998636
+      },
+      {
+        "text": "Different",
+        "domWidth": 91.875,
+        "fontWidth": 91.872,
+        "delta": 0.0030000000000001137
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "context",
+        "domWidth": 76.96875,
+        "fontWidth": 76.956,
+        "delta": 0.01274999999999693
+      },
+      {
+        "text": "التعليم",
+        "domWidth": 57.796875,
+        "fontWidth": 57.794,
+        "delta": 0.0028750000000030695
+      }
+    ],
+    "scope": "Regular-weight cluster-level selection, QA single-page layout only. Codepoint records retained; local ActualText encloses each non-RTL multi-codepoint shaped cluster. Alef/lam in unmarked Arabic words and the terminal codepoint of decimal-only tokens receive independent hit boxes and separated ink. Pure decimal tokens are shaped LTR explicitly; nonterminal digits retain original glyph geometry. Marked Arabic/Hebrew words receive DOM-measured grapheme slots, except unmarked final graphemes which retain natural glyph geometry. Other codepoints retain the previous representation. QA only; independent reader and geometry acceptance required."
+  },
+  "cancelled": true,
+  "checks": [],
+  "sourceUnchanged": true,
+  "sha256": "70e888b4862839ff5f4519f9a8abdcecb091e0aeb8d8accb7d4949c149f2c1d4",
+  "sourceText": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell\tالعربية\nDifferent context\tالتعليم",
+  "targets": [
+    {
+      "line": 0,
+      "expected": "Browser",
+      "x": 102.5703125,
+      "y": 100,
+      "rect": {
+        "x": 60,
+        "y": 77,
+        "width": 85.140625,
+        "height": 46
+      }
+    },
+    {
+      "line": 0,
+      "expected": "numbers",
+      "x": 342.3515625,
+      "y": 100,
+      "rect": {
+        "x": 295.6875,
+        "y": 77,
+        "width": 93.328125,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "مرحبا",
+      "x": 710.8515625,
+      "y": 162,
+      "rect": {
+        "x": 687.703125,
+        "y": 139,
+        "width": 46.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "0123456789",
+      "x": 619.046875,
+      "y": 162,
+      "rect": {
+        "x": 556.125,
+        "y": 139,
+        "width": 125.84375,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "العدد",
+      "x": 711.6875,
+      "y": 224,
+      "rect": {
+        "x": 689.375,
+        "y": 201,
+        "width": 44.625,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "العربية",
+      "x": 524.4140625,
+      "y": 224,
+      "rect": {
+        "x": 496.765625,
+        "y": 201,
+        "width": 55.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "العربية",
+      "x": 706.3515625,
+      "y": 286,
+      "rect": {
+        "x": 678.703125,
+        "y": 263,
+        "width": 55.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "١٢٣٤٥٦٧٨٩٠",
+      "x": 610.046875,
+      "y": 286,
+      "rect": {
+        "x": 547.125,
+        "y": 263,
+        "width": 125.84375,
+        "height": 46
+      }
+    }
+  ],
+  "requests": [
+    "/",
+    "/runtime.js",
+    "/fontkit.js",
+    "/pdf.js",
+    "/prototype.js",
+    "/hb/index.mjs",
+    "/hb/harfbuzz.js",
+    "/hb/harfbuzz.wasm",
+    "/font.ttf",
+    "/font.ttf"
+  ]
+}

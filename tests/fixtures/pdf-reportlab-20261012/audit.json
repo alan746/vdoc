@@ -1,0 +1,98 @@
+{
+  "status": "rejected for integration",
+  "versions": {
+    "reportlab": "4.4.9",
+    "harfbuzz": "14.6.0",
+    "method": "Explicit shapeStr(force=True), asserts ShapedStr + glyph records before drawing; no unavailable bidi adapter or copied visual character permutation.",
+    "results": "See shaped/generation.json for complete per-line glyph records."
+  },
+  "initialControlCorrection": "drawString(shaping=True) silently used an unshaped fallback when rlbidi was absent. Full-copy pass is valid only for the unshaped control, not shaped-script acceptance. User was informed immediately after the library fallback was found.",
+  "initialWordChecks": {
+    "chrome": {
+      "exact": 24,
+      "total": 25,
+      "failures": [
+        {
+          "expected": "shapes.",
+          "x": 814.9439053890607,
+          "y": 414.68848661939205,
+          "width": 57.344,
+          "line": 3,
+          "actual": "shapes",
+          "exact": false
+        }
+      ]
+    },
+    "pdfjs": {
+      "exact": 21,
+      "total": 25,
+      "failures": [
+        {
+          "expected": "में",
+          "x": 145.488,
+          "y": 126.88999999999999,
+          "width": 9.568,
+          "line": 1,
+          "actual": " ",
+          "exact": false
+        },
+        {
+          "expected": "लिखना।",
+          "x": 235.52,
+          "y": 126.88999999999999,
+          "width": 47.168,
+          "line": 1,
+          "actual": "लिखना",
+          "exact": false
+        },
+        {
+          "expected": "प्रार्थना।",
+          "x": 249.112,
+          "y": 196.89,
+          "width": 55.632,
+          "line": 2,
+          "actual": "प्रार्थना",
+          "exact": false
+        },
+        {
+          "expected": "shapes.",
+          "x": 346.016,
+          "y": 266.89,
+          "width": 57.344,
+          "line": 3,
+          "actual": "shapes",
+          "exact": false
+        }
+      ]
+    }
+  },
+  "searchControl": "Unshaped Hindi: native Chrome text-fragment search visually highlights हिन्दी. Not Cmd-F acceptance; not evidence for the shaped output.",
+  "shapedMethod": "Call shapeStr(force=True), assert ShapedStr and per-glyph shapeData before drawing. No rlbidi-dependent adapter.",
+  "shapedResults": [
+    {
+      "script": "words",
+      "sha256": "5c3cef791e2bb00157adbd380adf2106453ed3e82a9daa6e495ecc0fec501898",
+      "chromeFullCopy": false,
+      "pdfjsFullCopy": false
+    },
+    {
+      "script": "arabic",
+      "sha256": "4977fd1144c827aa4e23f005888d430c2dbb343a0ce894bf2623efe0b8b63bae",
+      "chromeFullCopy": false,
+      "pdfjsFullCopy": false
+    },
+    {
+      "script": "hebrew",
+      "sha256": "c9cb21dc15de38efe3f8e0a4c587087589763bc4d3c07dbd5ad920e6f906a17b",
+      "chromeFullCopy": false,
+      "pdfjsFullCopy": true
+    }
+  ],
+  "reason": "Properly shaped Devanagari and Arabic leak private-use glyph codes; Hebrew word order differs in Chrome. Only Hebrew PDF.js full copy passes.",
+  "visualReview": "All three one-page explicitly shaped outputs viewed; glyph appearance alone is not semantic acceptance.",
+  "dependencyBoundary": "Only uharfbuzz0.56.3 installed into project tmp. Official rlbidi wheel401; public PyPI unavailable. No credentials requested, no auth bypass, no product dependency added.",
+  "references": [
+    "https://docs.reportlab.com/rl-arabic/",
+    "https://docs.reportlab.com/releases/notes/whats-new-44/"
+  ]
+}

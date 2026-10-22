@@ -1,0 +1,12 @@
+[
+  {
+    "label": "page-order-arabic",
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155.pdf",
+    "sourceText": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم"
+  },
+  {
+    "label": "page-order-hebrew",
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155.pdf",
+    "sourceText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום"
+  }
+]

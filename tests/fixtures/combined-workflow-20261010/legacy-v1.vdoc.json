@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "title": "QA legacy minimal backup",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Legacy preserved 中文 العربية"
+          }
+        ]
+      }
+    ]
+  }
+}

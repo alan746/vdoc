@@ -1,0 +1,12 @@
+test_abort_and_unsupported_inputs_return_no_pdf (__main__.BrowserPdfEvidence.test_abort_and_unsupported_inputs_return_no_pdf) ... ok
+test_grouped_rtl_source_words_survive_both_readers (__main__.BrowserPdfEvidence.test_grouped_rtl_source_words_survive_both_readers) ... ok
+test_one_text_object_per_cluster_is_not_reader_independent (__main__.BrowserPdfEvidence.test_one_text_object_per_cluster_is_not_reader_independent) ... ok
+test_successful_blob_download_has_exact_browser_bytes (__main__.BrowserPdfEvidence.test_successful_blob_download_has_exact_browser_bytes) ... ok
+test_vector_pages_and_bounded_measured_widths (__main__.BrowserPdfEvidence.test_vector_pages_and_bounded_measured_widths) ... ok
+test_whitespace_stripping_must_not_approve_hindi (__main__.BrowserPdfEvidence.test_whitespace_stripping_must_not_approve_hindi) ... ok
+test_word_level_rtl_is_rejected_by_independent_reader (__main__.BrowserPdfEvidence.test_word_level_rtl_is_rejected_by_independent_reader) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.026s
+
+OK

@@ -1,0 +1,381 @@
+{
+  "report": {
+    "prototypeOnly": true,
+    "hitMeasurements": [
+      {
+        "word": "العربية",
+        "text": "ل",
+        "sourceStart": 1,
+        "box": [
+          -0.08522727272725206,
+          -727.2727272727273,
+          260.56818181818153,
+          1363.6363636363635
+        ],
+        "origin": 2015
+      },
+      {
+        "word": "العربية",
+        "text": "ا",
+        "sourceStart": 0,
+        "box": [
+          -0.1420454545454959,
+          -727.2727272727273,
+          238.49431818181802,
+          1363.6363636363635
+        ],
+        "origin": 2275
+      },
+      {
+        "word": "التعليم",
+        "text": "ل",
+        "sourceStart": 4,
+        "box": [
+          -0.3409090909091219,
+          -727.2727272727273,
+          300.08522727272725,
+          1363.6363636363635
+        ],
+        "origin": 935
+      },
+      {
+        "word": "التعليم",
+        "text": "ل",
+        "sourceStart": 1,
+        "box": [
+          -0.44886363636351234,
+          -727.2727272727273,
+          260.2045454545455,
+          1363.6363636363635
+        ],
+        "origin": 2129
+      },
+      {
+        "word": "التعليم",
+        "text": "ا",
+        "sourceStart": 0,
+        "box": [
+          -0.5056818181819835,
+          -727.2727272727273,
+          238.13068181818153,
+          1363.6363636363635
+        ],
+        "origin": 2389
+      }
+    ],
+    "pages": 1,
+    "tokens": 32,
+    "uniqueWords": 20,
+    "uniqueClusters": 98,
+    "measurements": [
+      {
+        "text": "Browser",
+        "domWidth": 85.140625,
+        "fontWidth": 85.14,
+        "delta": 0.0006249999999994316
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "PDF",
+        "domWidth": 40.796875,
+        "fontWidth": 40.788000000000004,
+        "delta": 0.008874999999996191
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "—",
+        "domWidth": 22,
+        "fontWidth": 22,
+        "delta": 0
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "Arabic",
+        "domWidth": 64.8125,
+        "fontWidth": 64.812,
+        "delta": 0.0005000000000023874
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "words",
+        "domWidth": 63.328125,
+        "fontWidth": 63.316,
+        "delta": 0.012124999999997499
+      },
+      {
+        "text": "اللُّغَةُ",
+        "domWidth": 39.71875,
+        "fontWidth": 39.71,
+        "delta": 0.008749999999999147
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "الْعَرَبِيَّةُ",
+        "domWidth": 55.296875,
+        "fontWidth": 55.286,
+        "delta": 0.010874999999998636
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "جَمِيلَةٌ",
+        "domWidth": 51.1875,
+        "fontWidth": 51.172000000000004,
+        "delta": 0.01549999999999585
+      },
+      {
+        "text": "مَرْحَبًا",
+        "domWidth": 46.296875,
+        "fontWidth": 46.288000000000004,
+        "delta": 0.008874999999996191
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "بِالْعَالَمِ",
+        "domWidth": 54,
+        "fontWidth": 53.98800000000001,
+        "delta": 0.01199999999999335
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "123",
+        "domWidth": 37.765625,
+        "fontWidth": 37.752,
+        "delta": 0.013624999999997556
+      },
+      {
+        "text": "الْعَرَبِيَّةُ",
+        "domWidth": 55.296875,
+        "fontWidth": 55.286,
+        "delta": 0.010874999999998636
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "التَّعْلِيمُ",
+        "domWidth": 57.796875,
+        "fontWidth": 57.794,
+        "delta": 0.0028750000000030695
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "الْكِتَابَةُ",
+        "domWidth": 53.359375,
+        "fontWidth": 53.349999999999994,
+        "delta": 0.009375000000005684
+      },
+      {
+        "text": "Table",
+        "domWidth": 54.4375,
+        "fontWidth": 54.428000000000004,
+        "delta": 0.009499999999995623
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "cell",
+        "domWidth": 34.328125,
+        "fontWidth": 34.32,
+        "delta": 0.008124999999999716
+      },
+      {
+        "text": "العربية",
+        "domWidth": 55.296875,
+        "fontWidth": 55.286,
+        "delta": 0.010874999999998636
+      },
+      {
+        "text": "Different",
+        "domWidth": 91.875,
+        "fontWidth": 91.872,
+        "delta": 0.0030000000000001137
+      },
+      {
+        "text": " ",
+        "domWidth": 5.734375,
+        "fontWidth": 5.720000000000001,
+        "delta": 0.01437499999999936
+      },
+      {
+        "text": "context",
+        "domWidth": 76.96875,
+        "fontWidth": 76.956,
+        "delta": 0.01274999999999693
+      },
+      {
+        "text": "التعليم",
+        "domWidth": 57.796875,
+        "fontWidth": 57.794,
+        "delta": 0.0028750000000030695
+      }
+    ],
+    "scope": "Regular-weight cluster-level selection, QA single-page layout only. Codepoint records retained; local ActualText encloses each non-RTL multi-codepoint shaped cluster. Only alef/lam in unmarked Arabic words receive independent hit boxes and separated ink. Marked words and other codepoints retain the previous representation. QA only; independent reader and geometry acceptance required."
+  },
+  "cancelled": true,
+  "checks": [],
+  "sourceUnchanged": true,
+  "sha256": "63dde47ab3e987013654a19bac9ad6ee5b6ed9da477f88076e96212353d904ac",
+  "sourceText": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+  "targets": [
+    {
+      "line": 0,
+      "expected": "Browser",
+      "x": 102.5703125,
+      "y": 100,
+      "rect": {
+        "x": 60,
+        "y": 77,
+        "width": 85.140625,
+        "height": 46
+      }
+    },
+    {
+      "line": 0,
+      "expected": "words",
+      "x": 327.3515625,
+      "y": 100,
+      "rect": {
+        "x": 295.6875,
+        "y": 77,
+        "width": 63.328125,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "اللُّغَةُ",
+      "x": 714.140625,
+      "y": 162,
+      "rect": {
+        "x": 694.28125,
+        "y": 139,
+        "width": 39.71875,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "جَمِيلَةٌ",
+      "x": 601.921875,
+      "y": 162,
+      "rect": {
+        "x": 576.328125,
+        "y": 139,
+        "width": 51.1875,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "مَرْحَبًا",
+      "x": 710.8515625,
+      "y": 224,
+      "rect": {
+        "x": 687.703125,
+        "y": 201,
+        "width": 46.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "123",
+      "x": 603.3515625,
+      "y": 224,
+      "rect": {
+        "x": 584.46875,
+        "y": 201,
+        "width": 37.765625,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "الْعَرَبِيَّةُ",
+      "x": 706.3515625,
+      "y": 286,
+      "rect": {
+        "x": 678.703125,
+        "y": 263,
+        "width": 55.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "الْكِتَابَةُ",
+      "x": 582.7578125,
+      "y": 286,
+      "rect": {
+        "x": 556.078125,
+        "y": 263,
+        "width": 53.359375,
+        "height": 46
+      }
+    }
+  ],
+  "requests": [
+    "/",
+    "/runtime.js",
+    "/fontkit.js",
+    "/pdf.js",
+    "/prototype.js",
+    "/hb/index.mjs",
+    "/hb/harfbuzz.js",
+    "/hb/harfbuzz.wasm",
+    "/font.ttf",
+    "/font.ttf"
+  ]
+}

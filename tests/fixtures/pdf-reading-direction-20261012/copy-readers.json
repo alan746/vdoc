@@ -1,0 +1,145 @@
+{
+  "at": "2026-10-12T03:52:57.473Z",
+  "browser": "154.0.8037.98",
+  "scope": "Stock Chrome plugin selectAll plus official PDF.js text-layer copy handler for each page. Synthetic ClipboardEvent with isolated in-memory DataTransfer; no system clipboard or native key press. Raw Selection.toString retained separately. Known generated margins are excluded only for a separate body comparison, with occurrence counts retained. Neither raw nor body comparison silently changes Unicode or word order.",
+  "results": [
+    {
+      "label": "page-visual-r2l",
+      "file": "tests/fixtures/pdf-reading-direction-20261012/page-visual-r2l.pdf",
+      "pdfSha256": "74f782ad2b6dcccdcb2f04f191dff319fc9b0013e934b11f47aae1fb970302cc",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "chrome": {
+        "selectedText": "123 font embedded QA\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+        "match": false,
+        "expectedLength": 58,
+        "actualLength": 58,
+        "firstDifference": 0,
+        "expectedContext": "QA embedded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "123 font embedded QA שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 58,
+          "actualLength": 58,
+          "firstDifference": 0,
+          "expectedContext": "QA embedded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "123 font embedded QA שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה"
+        ],
+        "copies": [
+          "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+        "copiedText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+        "match": true,
+        "expectedLength": 58,
+        "actualLength": 58,
+        "firstDifference": 58,
+        "expectedContext": "ded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "ded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": true,
+          "expectedLength": 58,
+          "actualLength": 58,
+          "firstDifference": 58,
+          "expectedContext": "ded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "ded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      }
+    },
+    {
+      "label": "source-visual-r2l",
+      "file": "tests/fixtures/pdf-reading-direction-20261012/source-visual-r2l.pdf",
+      "pdfSha256": "33087e880ebda189acece3c12b825d414035eea57958de3faf11e931a747b004",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "chrome": {
+        "selectedText": "123 font embedded QA\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית",
+        "match": false,
+        "expectedLength": 58,
+        "actualLength": 58,
+        "firstDifference": 0,
+        "expectedContext": "QA embedded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "123 font embedded QA מסמך בדיקת עולם שלום טבלה כתיבה עברית",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 58,
+          "actualLength": 58,
+          "firstDifference": 0,
+          "expectedContext": "QA embedded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "123 font embedded QA מסמך בדיקת עולם שלום טבלה כתיבה עברית",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה"
+        ],
+        "copies": [
+          "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+        "copiedText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+        "match": false,
+        "expectedLength": 58,
+        "actualLength": 53,
+        "firstDifference": 25,
+        "expectedContext": "QA embedded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "QA embedded font 123 שלוםעולםבדיקתמסמך עבריתכתיבהטבלה",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 58,
+          "actualLength": 53,
+          "firstDifference": 25,
+          "expectedContext": "QA embedded font 123 שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "QA embedded font 123 שלוםעולםבדיקתמסמך עבריתכתיבהטבלה",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      }
+    }
+  ]
+}

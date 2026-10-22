@@ -1,0 +1,231 @@
+{
+  "fixture": "B: tests/fixtures/safari-preview/source.vdoc.json",
+  "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/pdf-prefont-20261011/b-early-verified-logical.pdf",
+  "sha256": "56dbe9af61deefc59ba9c870111f5b322bc50c9bba513495e89b08becb94ee44",
+  "requireLogicalHindi": true,
+  "passed": true,
+  "failures": [],
+  "pages": [
+    {
+      "page": 1,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true,
+        "cjkCodepointsPreserved": true,
+        "arabicCodepointsPreserved": true,
+        "hebrewCodepointsPreserved": true,
+        "logicalHindiOrder": true
+      },
+      "scriptInventory": {
+        "cjk": {
+          "actual": 50,
+          "expected": 50
+        },
+        "arabic": {
+          "actual": 35,
+          "expected": 35
+        },
+        "hebrew": {
+          "actual": 20,
+          "expected": 20
+        }
+      }
+    },
+    {
+      "page": 2,
+      "rows": [
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true,
+        "cjkCodepointsPreserved": true,
+        "arabicCodepointsPreserved": true,
+        "hebrewCodepointsPreserved": true,
+        "logicalHindiOrder": true
+      },
+      "scriptInventory": {
+        "cjk": {
+          "actual": 64,
+          "expected": 64
+        },
+        "arabic": {
+          "actual": 49,
+          "expected": 49
+        },
+        "hebrew": {
+          "actual": 30,
+          "expected": 30
+        }
+      }
+    },
+    {
+      "page": 3,
+      "rows": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true,
+        "cjkCodepointsPreserved": true,
+        "arabicCodepointsPreserved": true,
+        "hebrewCodepointsPreserved": true,
+        "logicalHindiOrder": true
+      },
+      "scriptInventory": {
+        "cjk": {
+          "actual": 64,
+          "expected": 64
+        },
+        "arabic": {
+          "actual": 49,
+          "expected": 49
+        },
+        "hebrew": {
+          "actual": 30,
+          "expected": 30
+        }
+      }
+    },
+    {
+      "page": 4,
+      "rows": [
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true,
+        "cjkCodepointsPreserved": true,
+        "arabicCodepointsPreserved": true,
+        "hebrewCodepointsPreserved": true,
+        "logicalHindiOrder": true
+      },
+      "scriptInventory": {
+        "cjk": {
+          "actual": 24,
+          "expected": 24
+        },
+        "arabic": {
+          "actual": 21,
+          "expected": 21
+        },
+        "hebrew": {
+          "actual": 10,
+          "expected": 10
+        }
+      }
+    },
+    {
+      "page": 5,
+      "rows": [],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true,
+        "cjkCodepointsPreserved": true,
+        "arabicCodepointsPreserved": true,
+        "hebrewCodepointsPreserved": true,
+        "logicalHindiOrder": true
+      },
+      "scriptInventory": {
+        "cjk": {
+          "actual": 4,
+          "expected": 4
+        },
+        "arabic": {
+          "actual": 0,
+          "expected": 0
+        },
+        "hebrew": {
+          "actual": 0,
+          "expected": 0
+        }
+      }
+    }
+  ],
+  "limits": "Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping."
+}

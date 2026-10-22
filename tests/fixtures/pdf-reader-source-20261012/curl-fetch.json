@@ -1,0 +1,26 @@
+[
+  {
+    "file": "plugin.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/main/pdf/pdf_view_web_plugin.cc?format=TEXT",
+    "exit": 0,
+    "bytes": 117836
+  },
+  {
+    "file": "engine.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/main/pdf/pdfium/pdfium_engine.cc?format=TEXT",
+    "exit": 0,
+    "bytes": 215940
+  },
+  {
+    "file": "cpdf_textpage.cpp",
+    "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/main/core/fpdftext/cpdf_textpage.cpp?format=TEXT",
+    "exit": 0,
+    "bytes": 51523
+  },
+  {
+    "file": "chrome-DEPS",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/154.0.8037.98/DEPS?format=TEXT",
+    "exit": 0,
+    "bytes": 197649
+  }
+]

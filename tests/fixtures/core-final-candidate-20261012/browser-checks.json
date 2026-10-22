@@ -1,0 +1,10 @@
+[
+  {
+    "check": "smoke",
+    "exit": 0
+  },
+  {
+    "check": "pdf-button",
+    "exit": 0
+  }
+]

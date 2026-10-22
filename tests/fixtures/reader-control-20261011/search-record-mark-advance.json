@@ -1,0 +1,182 @@
+{
+  "at": "2026-10-11T19:49:22.111Z",
+  "browser": "154.0.8037.98",
+  "method": "Actual PDF plugin text-fragment search with positive and absent controls; inspect screenshots. Not Cmd-F UI acceptance.",
+  "results": [
+    {
+      "label": "words",
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-mark-advance.pdf",
+      "sha256": "bbea5ee1284fe4238452bc61d018a0d4df51e14e5adc9f0d47ec01b456599b5c",
+      "query": "हिन्दी",
+      "target": {
+        "line": 1,
+        "expected": "हिन्दी",
+        "x": 80.78125,
+        "y": 161.5,
+        "rect": {
+          "x": 60,
+          "y": 147,
+          "width": 41.5625,
+          "height": 29
+        }
+      },
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "negativeQuery": "VDOC_ABSENT_854e1ca9",
+      "method": "Actual PDF plugin text-fragment search; screenshot highlights need independent inspection. Not Cmd-F UI acceptance."
+    },
+    {
+      "label": "arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-mark-advance.pdf",
+      "sha256": "b32dc84e5421c015497b46f58b8199f7c5ea04a6e266c0299f231c421de04848",
+      "query": "اللغة",
+      "target": {
+        "line": 1,
+        "expected": "اللغة",
+        "x": 714.140625,
+        "y": 162,
+        "rect": {
+          "x": 694.28125,
+          "y": 139,
+          "width": 39.71875,
+          "height": 46
+        }
+      },
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "negativeQuery": "VDOC_ABSENT_854e1ca9",
+      "method": "Actual PDF plugin text-fragment search; screenshot highlights need independent inspection. Not Cmd-F UI acceptance."
+    },
+    {
+      "label": "hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-mark-advance.pdf",
+      "sha256": "477a3318875c814cfb2822825147ddaafe4a1ddfa71dcbb30c8c08e747827d9a",
+      "query": "שלום",
+      "target": {
+        "line": 1,
+        "expected": "שלום",
+        "x": 709.5,
+        "y": 161.5,
+        "rect": {
+          "x": 685,
+          "y": 147,
+          "width": 49,
+          "height": 29
+        }
+      },
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "negativeQuery": "VDOC_ABSENT_854e1ca9",
+      "method": "Actual PDF plugin text-fragment search; screenshot highlights need independent inspection. Not Cmd-F UI acceptance."
+    },
+    {
+      "label": "arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-mark-advance-marked.pdf",
+      "sha256": "e09398a19a32a317305793289e182bea2c43ebf1e39d591a5fdb67dca98d1176",
+      "query": "اللُّغَةُ",
+      "target": {
+        "line": 1,
+        "expected": "اللُّغَةُ",
+        "x": 714.140625,
+        "y": 162,
+        "rect": {
+          "x": 694.28125,
+          "y": 139,
+          "width": 39.71875,
+          "height": 46
+        }
+      },
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "negativeQuery": "VDOC_ABSENT_854e1ca9",
+      "method": "Actual PDF plugin text-fragment search; screenshot highlights need independent inspection. Not Cmd-F UI acceptance."
+    },
+    {
+      "label": "hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-mark-advance-marked.pdf",
+      "sha256": "488a46e0488e812b6ad19c9130b4cf726db3e020c5292f6f698b23f6baf77d70",
+      "query": "שָׁלוֹם",
+      "target": {
+        "line": 1,
+        "expected": "שָׁלוֹם",
+        "x": 709.5,
+        "y": 161.5,
+        "rect": {
+          "x": 685,
+          "y": 147,
+          "width": 49,
+          "height": 29
+        }
+      },
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "negativeQuery": "VDOC_ABSENT_854e1ca9",
+      "method": "Actual PDF plugin text-fragment search; screenshot highlights need independent inspection. Not Cmd-F UI acceptance."
+    }
+  ]
+}

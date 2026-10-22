@@ -1,0 +1,252 @@
+{
+  "at": "2026-10-12T19:46:26.306Z",
+  "scope": "Unmodified official online demo 6.5.128. DOM Range selection and official copy handler via synthetic in-memory ClipboardEvent, not native clipboard acceptance.",
+  "assets": [
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.html",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.html",
+      "sha256": "0432cc6ab06150b13f581d955841d2895227fec0171a70920fb20adf0e208ae5"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.mjs",
+      "sha256": "cacf508f8cb3fb8a1630d45240913455821a01d5d5c148282b1483207a831936"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.css",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.css",
+      "sha256": "99b508bee7189236c18f6ee378d98ee681165e8cdf863f1283c489dac00430e6"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/build/pdf.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/demo-pdf.mjs",
+      "sha256": "d03207dedb650eabb5a60da9885559ce5a88b55fca166863ab7fa1f5e14f91d7"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/build/pdf.worker.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/demo-worker.mjs",
+      "sha256": "6cc4c112779c219502b906068cf5c0b500e206fb16ff84b84f7c44c55f26a779"
+    }
+  ],
+  "results": [
+    {
+      "label": "arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-whole-cluster-visual-155-marked.pdf",
+      "sourceText": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "sha256": "65f1c452debbfdd48113149e60d1cd7b88cf3f679f384d53b09547d1a2e2732a",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "rawSelections": [
+        "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Arabic words",
+            "width": 224.25262499999994,
+            "dir": "ltr"
+          },
+          {
+            "str": "اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ",
+            "width": 118.24734375000014,
+            "dir": "rtl"
+          },
+          {
+            "str": "مَرْحَبًا بِالْعَالَمِ 123",
+            "width": 112.14178124999994,
+            "dir": "rtl"
+          },
+          {
+            "str": "الْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ",
+            "width": 133.43325000000002,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.86890625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 285.87328125,
+            "dir": "ltr"
+          },
+          {
+            "str": "العربية",
+            "width": 41.4645,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.92403125,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.81815625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": "التعليم",
+            "width": 43.3455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell العربية\nDifferent context التعليم",
+      "exactCollapsedMatch": true,
+      "hindiWholeWord": false
+    },
+    {
+      "label": "hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-whole-cluster-visual-155-marked.pdf",
+      "sourceText": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "sha256": "02d6846ff97b753aff34d2e48030d6c0d59a1cf0fc66546358c16915d069b51a",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell עברית\nDifferent context שלום"
+      ],
+      "rawSelections": [
+        "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell עברית\nDifferent context שלום"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Hebrew words",
+            "width": 234.02278124999998,
+            "dir": "ltr"
+          },
+          {
+            "str": "שָׁלוֹם עוֹלָם",
+            "width": 75.86268749999991,
+            "dir": "rtl"
+          },
+          {
+            "str": "עִבְרִית כְּתִיבָה 123",
+            "width": 123.90449999999984,
+            "dir": "rtl"
+          },
+          {
+            "str": "שָׁלוֹם בְּעִבְרִית עוֹלָם",
+            "width": 133.0501874999999,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.53215625000001,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 286.174875,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 43.279500000000006,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.73981250000003,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.96721875,
+            "dir": "ltr"
+          },
+          {
+            "str": "שלום",
+            "width": 36.7455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell עברית\nDifferent context שלום",
+      "exactCollapsedMatch": true,
+      "hindiWholeWord": false
+    }
+  ],
+  "browser": "154.0.8037.98"
+}

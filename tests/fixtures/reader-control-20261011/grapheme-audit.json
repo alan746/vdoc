@@ -1,0 +1,383 @@
+{
+  "at": "2026-10-11T20:07:08.802509+00:00",
+  "scope": "Reject atomic source-order marked RTL grapheme encoding. QA diagnostics, not product export acceptance.",
+  "candidateFingerprint": "0a2386834f95c86adf6c8fd8fafbd0ab5b43ec6f281749da6eaaea9c85cb5ffd",
+  "counts": {
+    "newPdfs": 7,
+    "renderedPages": 7,
+    "actualChromeFullSelections": 5,
+    "actualChromeFullMatches": 3,
+    "actualChromeWordSelections": 40,
+    "actualChromeWordMatches": 31,
+    "actualPdfjsDomSelections": 7,
+    "actualPdfjsDomMatches": 1,
+    "standalonePdfiumWordIndexInspections": 6,
+    "newArtifactRegressions": 7,
+    "retainedArtifactRegressions": 11,
+    "newProductAcceptanceItems": 0
+  },
+  "decision": "Rejected. Keep record-marked-boxes QA baseline and production files unchanged. Atomic grapheme records preserve visible paths but exchange adjacent RTL letters in actual Chrome full/word selection. Stop partial/search expansion after full-copy failure.",
+  "readerFailures": [
+    {
+      "label": "arabic-marked",
+      "source": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic words\nللاُّغَةُ لاْعَرَبِيَّةُ جَمِليَةٌ\nمَرْحَبًا بِلاْعَلاَمِ 123\nلاْعَرَبِيَّةُ تلاَّعْلِميُ لاْكِتَباَةُ\nTable cell العربية\nDifferent context التعليم",
+      "words": [
+        {
+          "expected": "اللُّغَةُ",
+          "actual": "للاُّغَةُ"
+        },
+        {
+          "expected": "جَمِيلَةٌ",
+          "actual": "جَمِليَةٌ"
+        },
+        {
+          "expected": "الْعَرَبِيَّةُ",
+          "actual": "لاْعَرَبِيَّةُ"
+        },
+        {
+          "expected": "الْكِتَابَةُ",
+          "actual": "لاْكِتَباَةُ"
+        }
+      ]
+    },
+    {
+      "label": "hebrew-marked",
+      "source": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew words\nשָׁולֹם ועֹלָם\nעִבְרִתי כְּתִביָה 123\nשָׁולֹם בְּעִבְרִתי ועֹלָם\nTable cell עברית\nDifferent context שלום",
+      "words": [
+        {
+          "expected": "שָׁלוֹם",
+          "actual": "שָׁולֹם"
+        },
+        {
+          "expected": "עוֹלָם",
+          "actual": "ועֹלָם"
+        },
+        {
+          "expected": "עִבְרִית",
+          "actual": "עִבְרִתי"
+        },
+        {
+          "expected": "שָׁלוֹם",
+          "actual": "שָׁולֹם"
+        },
+        {
+          "expected": "עוֹלָם",
+          "actual": "ועֹלָם"
+        }
+      ]
+    }
+  ],
+  "indices": "Standalone PDFium153 tight/loose bounds reveal overlapping loose mark bounds. Positive advances remove those overlaps but previous Chrome154 pointer control loses a mark; geometric overlap is not proven as the sole cause. Atomic encoding does not contain either expected complete marked word, so no character offsets/hits are guessed. Engine versions are distinct; index hit probes do not substitute for real pointer/caret tests.",
+  "visual": "All seven pages rendered and contact sheet reviewed. Five pixel-identical to stable references; two marked pages have recorded local raster differences. Five base glyph-path multisets exact and matrix delta below .0001 PDF units. Visual evidence does not override semantic failure.",
+  "crossReader": "Official PDF.js actual DOM selection remains strict-match only for Hindi; six RTL samples fail. No custom reconstruction/whitespace deletion counted as success.",
+  "limitations": [
+    "No new numeric Chrome, partial-drag, search, full guard, download or native print acceptance for this rejected mode.",
+    "Seven generated files record pre-aborted cancellation and unchanged source only.",
+    "Initial unittest discovery ran zero tests because hyphenated filenames are not discoverable modules; failure log retained. Direct script execution then ran seven new and eleven prior tests successfully. Zero-test run is not counted as passing.",
+    "Production export, native reprint, historical source identity, real IME candidate windows and I/P/S/F are still open."
+  ],
+  "artifacts": [
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-marked.pdf",
+      "sha256": "2b1b3bac077e3fab3a287484a1c3a31fa28cee0aeb61a4b3bb6651c27a443471"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-numbers.pdf",
+      "sha256": "5b5057a5e13b3a083a70cd33800e62244d4369555bc55816deaccde490890c89"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme.pdf",
+      "sha256": "8bd8f90c5df4066616ec9ec517c3586a21edb0a692648cb20eb356449c8fe76a"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-mark-advance-marked.pdf",
+      "sha256": "e09398a19a32a317305793289e182bea2c43ebf1e39d591a5fdb67dca98d1176"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes-marked.pdf",
+      "sha256": "5d0110a368df098e9da3ebcbf3fb9f460e6705b2525bc0c610fcf9b6a91d63fd"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "f4d8e32dce11fc3ccd9e4eb2360a9e088d9ae42faabc9720de4b3936ade46551"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-marked.pdf",
+      "sha256": "bb1479f79218e38b951450be3ed8e4ed20d1e06357cd1cf3d786a119a3a66ff1"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-numbers.pdf",
+      "sha256": "201ed7cc9d6cac4c5dfa4999112d87891d1ed0283702e8596fa72e3432ee071d"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme.pdf",
+      "sha256": "5d461b9c158907b21c31594b0965f8d5f0b8845b86e1d7cca7bea894715d532f"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-mark-advance-marked.pdf",
+      "sha256": "488a46e0488e812b6ad19c9130b4cf726db3e020c5292f6f698b23f6baf77d70"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes-marked.pdf",
+      "sha256": "b1f22b3d7ffc71d88cb4ac4726d28ff4d9f67a1ce865756b3956d22560052145"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "e4a698142b0d87164d5964c6bfa151d308443e9774f880ac3ccd443b7aa78fb0"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-grapheme.pdf",
+      "sha256": "2054db78f96069bde3a6b9eff5131e357cd9b5bc85e9e28ca749f5a002c1dbea"
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "807dc1d6af0b9bbf307c118784d24c24c49395cc042c7ec459aa66ae522f83e6"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-browser.png",
+      "sha256": "da0c97a8e12c065eadc15cf0e54a1b2f25f4dd05edc85c8d5bc18ac61c90e95a"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-marked-browser.png",
+      "sha256": "091e121574831c7c2783ccf4f0fb2d45f162abff15712b5a7d4a58b83656d090"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-marked-report.json",
+      "sha256": "bd486fe8bd09588f8d5127848559540384ec35db2db0b4e8af787b94d321d2db"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-numbers-browser.png",
+      "sha256": "93c191345aa8b3db62849b2427c5e45f58a8d7ad6b64764b6fed6cc877bc607f"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-numbers-report.json",
+      "sha256": "51ae24caf129cb6085fc919aa3efa474ea82a63c4a2974424d49aa07223d7e93"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-report.json",
+      "sha256": "e3c84e07b5d488309088f3d36a061ea348f70215db024b18052ae6dce40ff28b"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-browser.png",
+      "sha256": "fa0d67504302e4c0c3419ef7164b822ba20aab2e03cc438007bb91a3fce6cd64"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-marked-browser.png",
+      "sha256": "751eab3242711b54a2761226e916c852f3c704b332bb68a5f1c43a16a42e7518"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-marked-report.json",
+      "sha256": "c71c500f68c4f3b26ce63b4f67bf9b96e044ba1d05963b602f8a89505503e655"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-numbers-browser.png",
+      "sha256": "b27cda79f6710d0ba7c0f4871f3ee51069bf1ec5ebc25ffc770498bb178c0591"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-numbers-report.json",
+      "sha256": "77a9a097f41e347c816d984c2cd27d7e2c5447479cfd06e1455c9ce3a59510c1"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-report.json",
+      "sha256": "5658600d4bb65fceb51f2d11a00260e44caf0fda0410edd834cf14396cf8d218"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/words-unicode-ordered-record-grapheme-browser.png",
+      "sha256": "b6ef87c87bf6461fefe58057fed10ddc15e18a778a21412b61fc71e4e7e9688e"
+    },
+    {
+      "file": "tests/fixtures/browser-unicode-20261011/words-unicode-ordered-record-grapheme-report.json",
+      "sha256": "86fcd4d07d2a23536168ea917691ff0aa03f3a51707b91d78dea6a7ff64c533f"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-grapheme-marked-render.png",
+      "sha256": "0c733b94707015d882e2b36a5b2a0540e1ca3821629f9628f37e1302ef77f21f"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-grapheme-numbers-render.png",
+      "sha256": "a27d7f1412d2bf3102ccac8fe97882605c184b999c4ad40820ac3e536640da15"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-grapheme-render.png",
+      "sha256": "6f442398eb9738faf31abf0c18b6f8b22fb1f1027f478b08634eef7732b8895d"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-marked-boxes-marked-render.png",
+      "sha256": "e298cdf0202dda640363a89d163d828e86b98827841fc6e35da7900d17596bd8"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-marked-boxes-numbers-render.png",
+      "sha256": "a27d7f1412d2bf3102ccac8fe97882605c184b999c4ad40820ac3e536640da15"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-record-marked-boxes-render.png",
+      "sha256": "6f442398eb9738faf31abf0c18b6f8b22fb1f1027f478b08634eef7732b8895d"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/boundary-controls-audit.json",
+      "sha256": "06102b664eddf65a4da2c5cc92ea46844727a762e4214ed22c92787052b99f8e"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-indices.json",
+      "sha256": "88da3f98c6d6a983a83ca39d306b244c33e41f5365bdc176b3f8465521391a16"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-regressions-final.txt",
+      "sha256": "406c27fa24520d010c7f1416f34d1839d67a08d4ccd65eea86eb03f69458608c"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-regressions.txt",
+      "sha256": "4c39805c00b8ac7037ef4a0271c645783c47c01ce3a9ac31865a573d3c4bb32c"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-renders.json",
+      "sha256": "ad4639b7080c05cf4d9cf8c5c1d56c366e2f73ed55c708654ef9007a87eaa806"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/browser-record-grapheme-prototype.js",
+      "sha256": "2452cd31f7ca1cbf174aaebb12266321a4e3770be15cac632c89084e87c416c4"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/check-partial-bidi-runs.cjs",
+      "sha256": "b7944eccdd5719644aedcf3c499b0390b3cdea311372bbbc99db3b6933e8e4ba"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/check-pdfjs-browser.cjs",
+      "sha256": "a4eb92e2b2133afe7b43be82c539c7a4480a7e0c449212b62214497102129913"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/check-reader-bidi-runs.cjs",
+      "sha256": "cc66270ee275a07cd834801481a00d4f96219d3125e98213fd7dca8128843b5e"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/check-search-bidi-runs.cjs",
+      "sha256": "a939827ef7f00e1fcecc40cb89e18a7f168628a469ee00d2b8960184fe57f55e"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/inspect-grapheme-indices.py",
+      "sha256": "ddf7b82bf181652dc5f6f93e2e7eb8588f53a6147773f3f670dc5e1ec3699468"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/inspect-ink-geometry.py",
+      "sha256": "61c64a65be885a724db5ce13617ffb8da80061c7470f03aeff08d01b1c83388b"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/run-browser-unicode.cjs",
+      "sha256": "b9a0de6958fad288cae2a3dbbc47b3e930bd8901e73ad2b440e44e47f21c322b"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/test-grapheme-indices.py",
+      "sha256": "064c1c4c424aeb65758c70c7dd120273e9b8c6a9d0d78a40e66e87c88ff547ab"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/grapheme-tools/verify-bidi-runs.mjs",
+      "sha256": "246f1c167cfe78afa09c934a43ba7ca64215207884731b0d24e008d0184753c0"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-grapheme-marked-render.png",
+      "sha256": "c30cc2bd1b125c838f864b2c15719e39380325ef27d0f85168ca5fa8637351ac"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-grapheme-numbers-render.png",
+      "sha256": "77dc9d3b3a8ee3369d9e4e321680daebebe1818a5ea20e081884cd5bbbe63c76"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-grapheme-render.png",
+      "sha256": "986de1dddbad39fa780b3267062a2702b6706bb7f344aa493aaa2179507798bb"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-marked-boxes-marked-render.png",
+      "sha256": "29b2b80e0b5d4bc8c19467f5bb60b346638fd65407486ca24b91f0760dd4e1bc"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-marked-boxes-numbers-render.png",
+      "sha256": "77dc9d3b3a8ee3369d9e4e321680daebebe1818a5ea20e081884cd5bbbe63c76"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-record-marked-boxes-render.png",
+      "sha256": "986de1dddbad39fa780b3267062a2702b6706bb7f344aa493aaa2179507798bb"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/partial-record-mark-advance-wide-standards-focused-controls.json",
+      "sha256": "dd8b9b59258cef681aee1c57f7488bf11114cad54e797d943ec6c372c9f961e9"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-grapheme.json",
+      "sha256": "29c1e1269cf91554b451e1b016c7615e73a59a9a627a1d16ca58edd1f4fd9f74"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-grapheme-arabic-marked.png",
+      "sha256": "c6bab9d10da2805fd3b95ea2d9aba74facebfc1cc0eb85202e1cbc1dcfbfeb62"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-grapheme-arabic-numbers.png",
+      "sha256": "51760ea033fa808114b89c1013ec41cd8c5905046f5f04700d21cde21e12f514"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-grapheme-arabic.png",
+      "sha256": "38b6bec58ec138adf6d3db3cbddf5fabf3275e58dc5a095e0cae837dcb2b7e8a"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-grapheme-hebrew-marked.png",
+      "sha256": "af6402261dbe5ef71ac322f9148124b17d53eac66f4640b9787042592321c24c"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-grapheme-hebrew-numbers.png",
+      "sha256": "f460f914a5a60e30b031edf81147873bba42afac35616a6465dda6685d149acb"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-grapheme-hebrew.png",
+      "sha256": "963da4da2a4a00a67eb19e898a6871177ea752529e42dd144f81bdf06288cafa"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-grapheme-words.png",
+      "sha256": "3b94271af1ff4855ea8cda8b07d6229ba34b8cda865c459de79011c377fd46d3"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/reader-record-grapheme.json",
+      "sha256": "a7c72bb87c31d43253ceee424e91284abba76445b7acced86574af6e8ef83687"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/reader-record-marked-boxes.json",
+      "sha256": "fcd0323543e6c71c2fd1664caaa105e802b762c4db98498eed804acd61d9ccc1"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/record-grapheme-ink-geometry.json",
+      "sha256": "862568e8da994ac867ad6891d444b908469c70c5f7292adbcb3c7e39f9fda603"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/review-grapheme-renders.png",
+      "sha256": "76a9914ab23597fcd08e18c651b84262b6d8222e9fdb68bb81e77721186b6c56"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/selection-record-grapheme-arabic-marked.png",
+      "sha256": "f12cc5d975ba323adf58f56ab0acefd05f831e66361047f98dd37c73ec655e07"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/selection-record-grapheme-arabic.png",
+      "sha256": "042d866ebc0f7bc69e12bccbd8aa5a4de9974738ca40c80d5a28f693186cfec5"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/selection-record-grapheme-hebrew-marked.png",
+      "sha256": "4727a84af5a689acb5ddde1748e5656155f63a46f2c29229e3121ef4903307d7"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/selection-record-grapheme-hebrew.png",
+      "sha256": "0abfbed548a904af0852f342a1b1b21d2e8c9f6615f0ce5a89f74ca002ca1235"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/selection-record-grapheme-words.png",
+      "sha256": "cb078226904d053f155eeb099689a8c5abd6ccb82ec84735d4e8352146adb7dc"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/words-unicode-ordered-record-grapheme-render.png",
+      "sha256": "c6511ed504970b4c0c17645204b75ffb9dcacb735d8d83f8f1601af38b01499e"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/words-unicode-ordered-record-marked-boxes-render.png",
+      "sha256": "c6511ed504970b4c0c17645204b75ffb9dcacb735d8d83f8f1601af38b01499e"
+    }
+  ]
+}

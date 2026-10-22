@@ -1,0 +1,5194 @@
+{
+  "at": "2026-10-11T19:53:14.710Z",
+  "browser": "154.0.8037.98",
+  "explicitFocus": true,
+  "evidenceTag": "focused-controls",
+  "method": "Mouse drag over DOM-measured grapheme ranges in actual isolated Chrome PDF viewer. Reconstructed source text and original eight word rectangles must match before probing. No clipboard.",
+  "results": [
+    {
+      "label": "words",
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-space-bounds.pdf",
+      "sha256": "db343cde2553cb1c26ae35b4769d86317dc58a841eee6cfd25e32bce0cf04dfc",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "sourceGeometry": {
+        "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+        "maxRectDelta": 0,
+        "maxTokenWidthDelta": 0,
+        "compatMode": "CSS1Compat",
+        "targets": [
+          {
+            "line": 0,
+            "expected": "Browser",
+            "rect": {
+              "x": 60,
+              "y": 85,
+              "width": 85.140625,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "expected": "vectors",
+            "rect": {
+              "x": 368.890625,
+              "y": 85,
+              "width": 75.03125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "expected": "हिन्दी",
+            "rect": {
+              "x": 60,
+              "y": 147,
+              "width": 41.5625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "expected": "लिखना।",
+            "rect": {
+              "x": 284.78125,
+              "y": 147,
+              "width": 64.859375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "expected": "दुनिया",
+            "rect": {
+              "x": 60,
+              "y": 209,
+              "width": 48.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "expected": "प्रार्थना।",
+            "rect": {
+              "x": 266,
+              "y": 209,
+              "width": 58.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "expected": "Repeat",
+            "rect": {
+              "x": 60,
+              "y": 271,
+              "width": 72.328125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "expected": "shapes.",
+            "rect": {
+              "x": 435.625,
+              "y": 271,
+              "width": 78.859375,
+              "height": 29
+            }
+          }
+        ],
+        "ranges": [
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "B",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 60,
+              "y": 85,
+              "width": 14.3125,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 74.296875,
+              "y": 85,
+              "width": 8.65625,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "o",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 82.9375,
+              "y": 85,
+              "width": 12.890625,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "w",
+            "start": 3,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 95.8125,
+              "y": 85,
+              "width": 17.296875,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "s",
+            "start": 4,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 113.09375,
+              "y": 85,
+              "width": 10.5625,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "e",
+            "start": 5,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 123.640625,
+              "y": 85,
+              "width": 12.421875,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 6,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 136.046875,
+              "y": 85,
+              "width": 9.09375,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "हिन्दी",
+            "expected": "हि",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 60,
+              "y": 147,
+              "width": 17.390625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "हिन्दी",
+            "expected": "न्दी",
+            "start": 2,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 77.375,
+              "y": 147,
+              "width": 24.1875,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "हिंदी",
+            "expected": "हिं",
+            "start": 0,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 107.296875,
+              "y": 147,
+              "width": 17.390625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "हिंदी",
+            "expected": "दी",
+            "start": 3,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 124.671875,
+              "y": 147,
+              "width": 17.390625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "भाषा",
+            "expected": "भा",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 147.796875,
+              "y": 147,
+              "width": 21.171875,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "भाषा",
+            "expected": "षा",
+            "start": 2,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 168.953125,
+              "y": 147,
+              "width": 18.421875,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "में",
+            "expected": "में",
+            "start": 0,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 193.109375,
+              "y": 147,
+              "width": 13.15625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "दस्तावेज़",
+            "expected": "द",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 212,
+              "y": 147,
+              "width": 11.6875,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "दस्तावेज़",
+            "expected": "स्ता",
+            "start": 1,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 223.671875,
+              "y": 147,
+              "width": 26.8125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "दस्तावेज़",
+            "expected": "वे",
+            "start": 5,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 250.46875,
+              "y": 147,
+              "width": 12.25,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "दस्तावेज़",
+            "expected": "ज़",
+            "start": 7,
+            "end": 9,
+            "rtl": false,
+            "rect": {
+              "x": 262.703125,
+              "y": 147,
+              "width": 16.34375,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "लिखना।",
+            "expected": "लि",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 284.78125,
+              "y": 147,
+              "width": 20.625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "लिखना।",
+            "expected": "ख",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 305.390625,
+              "y": 147,
+              "width": 18.015625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "लिखना।",
+            "expected": "ना",
+            "start": 3,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 323.390625,
+              "y": 147,
+              "width": 17.921875,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "लिखना।",
+            "expected": "।",
+            "start": 5,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 341.296875,
+              "y": 147,
+              "width": 8.34375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "दुनिया",
+            "expected": "दु",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 60,
+              "y": 209,
+              "width": 11.6875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "दुनिया",
+            "expected": "नि",
+            "start": 2,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 71.671875,
+              "y": 209,
+              "width": 17.921875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "दुनिया",
+            "expected": "या",
+            "start": 4,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 89.578125,
+              "y": 209,
+              "width": 18.484375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "नमस्ते",
+            "expected": "न",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 113.796875,
+              "y": 209,
+              "width": 12.21875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "नमस्ते",
+            "expected": "म",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 126,
+              "y": 209,
+              "width": 13.171875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "नमस्ते",
+            "expected": "स्ते",
+            "start": 2,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 139.15625,
+              "y": 209,
+              "width": 21.109375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "शिक्षा",
+            "expected": "शि",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 166,
+              "y": 209,
+              "width": 20.671875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "शिक्षा",
+            "expected": "क्षा",
+            "start": 2,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 186.65625,
+              "y": 209,
+              "width": 21.484375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "क्षत्रिय",
+            "expected": "क्ष",
+            "start": 0,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 213.875,
+              "y": 209,
+              "width": 15.78125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "क्षत्रिय",
+            "expected": "त्रि",
+            "start": 3,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 229.640625,
+              "y": 209,
+              "width": 17.859375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "क्षत्रिय",
+            "expected": "य",
+            "start": 7,
+            "end": 8,
+            "rtl": false,
+            "rect": {
+              "x": 247.484375,
+              "y": 209,
+              "width": 12.78125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "प्रार्थना।",
+            "expected": "प्रा",
+            "start": 0,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 266,
+              "y": 209,
+              "width": 18.21875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "प्रार्थना।",
+            "expected": "र्थ",
+            "start": 4,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 284.203125,
+              "y": 209,
+              "width": 14.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "प्रार्थना।",
+            "expected": "ना",
+            "start": 7,
+            "end": 9,
+            "rtl": false,
+            "rect": {
+              "x": 298.265625,
+              "y": 209,
+              "width": 17.921875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "प्रार्थना।",
+            "expected": "।",
+            "start": 9,
+            "end": 10,
+            "rtl": false,
+            "rect": {
+              "x": 316.171875,
+              "y": 209,
+              "width": 8.359375,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "हिन्दी",
+            "expected": "हि",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 138.0625,
+              "y": 271,
+              "width": 17.390625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "हिन्दी",
+            "expected": "न्दी",
+            "start": 2,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 155.4375,
+              "y": 271,
+              "width": 24.1875,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "हिंदी",
+            "expected": "हिं",
+            "start": 0,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 230.5625,
+              "y": 271,
+              "width": 17.390625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "हिंदी",
+            "expected": "दी",
+            "start": 3,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 247.9375,
+              "y": 271,
+              "width": 17.390625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "हिन्दी",
+            "expected": "हि",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 489.296875,
+              "y": 360,
+              "width": 17.390625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "हिन्दी",
+            "expected": "न्दी",
+            "start": 2,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 506.671875,
+              "y": 360,
+              "width": 24.1875,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "भाषा",
+            "expected": "भा",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 536.59375,
+              "y": 360,
+              "width": 21.171875,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "भाषा",
+            "expected": "षा",
+            "start": 2,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 557.75,
+              "y": 360,
+              "width": 18.421875,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "शिक्षा",
+            "expected": "शि",
+            "start": 0,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 489.296875,
+              "y": 429,
+              "width": 20.671875,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "शिक्षा",
+            "expected": "क्षा",
+            "start": 2,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 509.953125,
+              "y": 429,
+              "width": 21.484375,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "प्रार्थना",
+            "expected": "प्रा",
+            "start": 0,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 537.171875,
+              "y": 429,
+              "width": 18.21875,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "प्रार्थना",
+            "expected": "र्थ",
+            "start": 4,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 555.375,
+              "y": 429,
+              "width": 14.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "प्रार्थना",
+            "expected": "ना",
+            "start": 7,
+            "end": 9,
+            "rtl": false,
+            "rect": {
+              "x": 569.4375,
+              "y": 429,
+              "width": 17.921875,
+              "height": 29
+            }
+          }
+        ],
+        "fontSha256": "8c91b67bf7fdbf3136d05b42711d4d8d61e28f56de4bc5453cf631ef619b4645"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "word": "Browser",
+          "expected": "B",
+          "start": 0,
+          "end": 1,
+          "rtl": false,
+          "rect": {
+            "x": 60,
+            "y": 85,
+            "width": 14.3125,
+            "height": 29
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 366.5957711442786,
+          "to": 378.8192630597015,
+          "y": 157.86256218905476,
+          "selectedText": "B",
+          "match": true
+        }
+      ]
+    },
+    {
+      "label": "arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-space-bounds.pdf",
+      "sha256": "59ffb435532f3b2069bb68fa330713d14c940db098caecdf95f4b12c575cb055",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "sourceGeometry": {
+        "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+        "maxRectDelta": 0,
+        "maxTokenWidthDelta": 0,
+        "compatMode": "CSS1Compat",
+        "targets": [
+          {
+            "line": 0,
+            "expected": "Browser",
+            "rect": {
+              "x": 60,
+              "y": 77,
+              "width": 85.140625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "expected": "words",
+            "rect": {
+              "x": 295.6875,
+              "y": 77,
+              "width": 63.328125,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "expected": "اللغة",
+            "rect": {
+              "x": 694.28125,
+              "y": 139,
+              "width": 39.71875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "expected": "جميلة",
+            "rect": {
+              "x": 576.328125,
+              "y": 139,
+              "width": 51.1875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "expected": "مرحبا",
+            "rect": {
+              "x": 687.703125,
+              "y": 201,
+              "width": 46.296875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "expected": "عليكم",
+            "rect": {
+              "x": 513.59375,
+              "y": 201,
+              "width": 49.421875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "expected": "العربية",
+            "rect": {
+              "x": 678.703125,
+              "y": 263,
+              "width": 55.296875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "expected": "الكتابة",
+            "rect": {
+              "x": 556.078125,
+              "y": 263,
+              "width": 53.359375,
+              "height": 46
+            }
+          }
+        ],
+        "ranges": [
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "B",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 60,
+              "y": 77,
+              "width": 14.3125,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 74.296875,
+              "y": 77,
+              "width": 8.65625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "o",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 82.9375,
+              "y": 77,
+              "width": 12.890625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "w",
+            "start": 3,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 95.8125,
+              "y": 77,
+              "width": 17.296875,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "s",
+            "start": 4,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 113.09375,
+              "y": 77,
+              "width": 10.5625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "e",
+            "start": 5,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 123.640625,
+              "y": 77,
+              "width": 12.421875,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 6,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 136.046875,
+              "y": 77,
+              "width": 9.09375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللغة",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 728.75,
+              "y": 139,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللغة",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 723.03125,
+              "y": 139,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللغة",
+            "expected": "ل",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 716.421875,
+              "y": 139,
+              "width": 6.625,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللغة",
+            "expected": "غ",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 704.96875,
+              "y": 139,
+              "width": 11.46875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللغة",
+            "expected": "ة",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 694.28125,
+              "y": 139,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "العربية",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 683.296875,
+              "y": 139,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "العربية",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 677.578125,
+              "y": 139,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "العربية",
+            "expected": "ع",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 666.109375,
+              "y": 139,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "العربية",
+            "expected": "ر",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 658.0625,
+              "y": 139,
+              "width": 8.0625,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "العربية",
+            "expected": "ب",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 652.140625,
+              "y": 139,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "العربية",
+            "expected": "ي",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 643.9375,
+              "y": 139,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "العربية",
+            "expected": "ة",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 633.25,
+              "y": 139,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جميلة",
+            "expected": "ج",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 614.53125,
+              "y": 139,
+              "width": 12.984375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جميلة",
+            "expected": "م",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 601.8125,
+              "y": 139,
+              "width": 12.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جميلة",
+            "expected": "ي",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 593.609375,
+              "y": 139,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جميلة",
+            "expected": "ل",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 587.015625,
+              "y": 139,
+              "width": 6.609375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جميلة",
+            "expected": "ة",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 576.328125,
+              "y": 139,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مرحبا",
+            "expected": "م",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 722.4375,
+              "y": 201,
+              "width": 11.5625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مرحبا",
+            "expected": "ر",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 714.59375,
+              "y": 201,
+              "width": 7.859375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مرحبا",
+            "expected": "ح",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 701.640625,
+              "y": 201,
+              "width": 12.96875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مرحبا",
+            "expected": "ب",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 694.09375,
+              "y": 201,
+              "width": 7.5625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مرحبا",
+            "expected": "ا",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 687.703125,
+              "y": 201,
+              "width": 6.40625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بالعالم",
+            "expected": "ب",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 676.03125,
+              "y": 201,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بالعالم",
+            "expected": "ا",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 669.625,
+              "y": 201,
+              "width": 6.421875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بالعالم",
+            "expected": "ل",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 663.90625,
+              "y": 201,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بالعالم",
+            "expected": "ع",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 652.453125,
+              "y": 201,
+              "width": 11.46875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بالعالم",
+            "expected": "ا",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 646.046875,
+              "y": 201,
+              "width": 6.421875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بالعالم",
+            "expected": "ل",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 640.328125,
+              "y": 201,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بالعالم",
+            "expected": "م",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 627.96875,
+              "y": 201,
+              "width": 12.375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "السلام",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 616.984375,
+              "y": 201,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "السلام",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 611.265625,
+              "y": 201,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "السلام",
+            "expected": "س",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 592.5625,
+              "y": 201,
+              "width": 18.71875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "السلام",
+            "expected": "ل",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 587.734375,
+              "y": 201,
+              "width": 4.84375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "السلام",
+            "expected": "ا",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 579.390625,
+              "y": 201,
+              "width": 8.359375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "السلام",
+            "expected": "م",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 568.75,
+              "y": 201,
+              "width": 10.65625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "عليكم",
+            "expected": "ع",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 551.9375,
+              "y": 201,
+              "width": 11.078125,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "عليكم",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 545.328125,
+              "y": 201,
+              "width": 6.625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "عليكم",
+            "expected": "ي",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 537.125,
+              "y": 201,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "عليكم",
+            "expected": "ك",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 525.953125,
+              "y": 201,
+              "width": 11.1875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "عليكم",
+            "expected": "م",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 513.59375,
+              "y": 201,
+              "width": 12.375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "العربية",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 728.75,
+              "y": 263,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "العربية",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 723.03125,
+              "y": 263,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "العربية",
+            "expected": "ع",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 711.5625,
+              "y": 263,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "العربية",
+            "expected": "ر",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 703.515625,
+              "y": 263,
+              "width": 8.0625,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "العربية",
+            "expected": "ب",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 697.59375,
+              "y": 263,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "العربية",
+            "expected": "ي",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 689.390625,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "العربية",
+            "expected": "ة",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 678.703125,
+              "y": 263,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التعليم",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 667.71875,
+              "y": 263,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التعليم",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 662,
+              "y": 263,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التعليم",
+            "expected": "ت",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 653.796875,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التعليم",
+            "expected": "ع",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 642.328125,
+              "y": 263,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التعليم",
+            "expected": "ل",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 635.734375,
+              "y": 263,
+              "width": 6.609375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التعليم",
+            "expected": "ي",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 627.53125,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التعليم",
+            "expected": "م",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 615.171875,
+              "y": 263,
+              "width": 12.375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الكتابة",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 604.1875,
+              "y": 263,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الكتابة",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 598.46875,
+              "y": 263,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الكتابة",
+            "expected": "ك",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 587.28125,
+              "y": 263,
+              "width": 11.203125,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الكتابة",
+            "expected": "ت",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 579.078125,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الكتابة",
+            "expected": "ا",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 572.6875,
+              "y": 263,
+              "width": 6.40625,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الكتابة",
+            "expected": "ب",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 566.765625,
+              "y": 263,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الكتابة",
+            "expected": "ة",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 556.078125,
+              "y": 263,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 598.703125,
+              "y": 352,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 592.984375,
+              "y": 352,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ع",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 581.515625,
+              "y": 352,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ر",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 573.46875,
+              "y": 352,
+              "width": 8.0625,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ب",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 567.546875,
+              "y": 352,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ي",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 559.34375,
+              "y": 352,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ة",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 548.65625,
+              "y": 352,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 601.203125,
+              "y": 421,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 595.484375,
+              "y": 421,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ت",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 587.28125,
+              "y": 421,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ع",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 575.8125,
+              "y": 421,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ل",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 569.21875,
+              "y": 421,
+              "width": 6.609375,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ي",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 561.015625,
+              "y": 421,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "م",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 548.65625,
+              "y": 421,
+              "width": 12.375,
+              "height": 46
+            }
+          }
+        ],
+        "fontSha256": "4e51b6ab4196bb083b5dd473e1e6f68f4c82877375f346ecba396f9271142d6c"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "word": "Browser",
+          "expected": "B",
+          "start": 0,
+          "end": 1,
+          "rtl": false,
+          "rect": {
+            "x": 60,
+            "y": 77,
+            "width": 14.3125,
+            "height": 46
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 366.5957711442786,
+          "to": 378.8192630597015,
+          "y": 158.35945273631842,
+          "selectedText": "B",
+          "match": true
+        }
+      ]
+    },
+    {
+      "label": "hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-space-bounds.pdf",
+      "sha256": "e60959a87f995097174a1c020a55c47c12e56a82b47ae04e999303bed149d84c",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "sourceGeometry": {
+        "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+        "maxRectDelta": 0,
+        "maxTokenWidthDelta": 0,
+        "compatMode": "CSS1Compat",
+        "targets": [
+          {
+            "line": 0,
+            "expected": "Browser",
+            "rect": {
+              "x": 60,
+              "y": 85,
+              "width": 84.3125,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "expected": "words",
+            "rect": {
+              "x": 309.484375,
+              "y": 85,
+              "width": 62.546875,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "expected": "שלום",
+            "rect": {
+              "x": 685,
+              "y": 147,
+              "width": 49,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "expected": "מסמך",
+            "rect": {
+              "x": 506.625,
+              "y": 147,
+              "width": 54.703125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "expected": "עברית",
+            "rect": {
+              "x": 676.28125,
+              "y": 209,
+              "width": 57.71875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "expected": "טבלה",
+            "rect": {
+              "x": 555,
+              "y": 209,
+              "width": 51.8125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "expected": "שלום",
+            "rect": {
+              "x": 685,
+              "y": 271,
+              "width": 49,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "expected": "עולם",
+            "rect": {
+              "x": 556.59375,
+              "y": 271,
+              "width": 46.203125,
+              "height": 29
+            }
+          }
+        ],
+        "ranges": [
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "B",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 60,
+              "y": 85,
+              "width": 14,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 73.984375,
+              "y": 85,
+              "width": 8.59375,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "o",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 82.5625,
+              "y": 85,
+              "width": 12.734375,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "w",
+            "start": 3,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 95.28125,
+              "y": 85,
+              "width": 16.9375,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "s",
+            "start": 4,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 112.203125,
+              "y": 85,
+              "width": 10.578125,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "e",
+            "start": 5,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 122.765625,
+              "y": 85,
+              "width": 12.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 6,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 135.28125,
+              "y": 85,
+              "width": 9.03125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שלום",
+            "expected": "ש",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 717.921875,
+              "y": 147,
+              "width": 16.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שלום",
+            "expected": "ל",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 706.4375,
+              "y": 147,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שלום",
+            "expected": "ו",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 700.046875,
+              "y": 147,
+              "width": 6.40625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שלום",
+            "expected": "ם",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 685,
+              "y": 147,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עולם",
+            "expected": "ע",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 665.984375,
+              "y": 147,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עולם",
+            "expected": "ו",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 659.375,
+              "y": 147,
+              "width": 6.625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עולם",
+            "expected": "ל",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 647.890625,
+              "y": 147,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עולם",
+            "expected": "ם",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 632.84375,
+              "y": 147,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "בדיקת",
+            "expected": "ב",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 614.546875,
+              "y": 147,
+              "width": 12.34375,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "בדיקת",
+            "expected": "ד",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 602.625,
+              "y": 147,
+              "width": 11.9375,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "בדיקת",
+            "expected": "י",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 596.140625,
+              "y": 147,
+              "width": 6.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "בדיקת",
+            "expected": "ק",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 582.34375,
+              "y": 147,
+              "width": 13.8125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "בדיקת",
+            "expected": "ת",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 567.28125,
+              "y": 147,
+              "width": 15.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "מסמך",
+            "expected": "מ",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 547.265625,
+              "y": 147,
+              "width": 14.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "מסמך",
+            "expected": "ס",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 533.125,
+              "y": 147,
+              "width": 14.15625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "מסמך",
+            "expected": "מ",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 518.609375,
+              "y": 147,
+              "width": 14.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "מסמך",
+            "expected": "ך",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 506.625,
+              "y": 147,
+              "width": 12,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עברית",
+            "expected": "ע",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 720.9375,
+              "y": 209,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עברית",
+            "expected": "ב",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 708.90625,
+              "y": 209,
+              "width": 12.046875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עברית",
+            "expected": "ר",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 697.390625,
+              "y": 209,
+              "width": 11.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עברית",
+            "expected": "י",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 691.34375,
+              "y": 209,
+              "width": 6.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עברית",
+            "expected": "ת",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 676.28125,
+              "y": 209,
+              "width": 15.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כתיבה",
+            "expected": "כ",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 658.984375,
+              "y": 209,
+              "width": 11.34375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כתיבה",
+            "expected": "ת",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 644.21875,
+              "y": 209,
+              "width": 14.78125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כתיבה",
+            "expected": "י",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 639.140625,
+              "y": 209,
+              "width": 5.09375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כתיבה",
+            "expected": "ב",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 626.546875,
+              "y": 209,
+              "width": 12.609375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כתיבה",
+            "expected": "ה",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 612.765625,
+              "y": 209,
+              "width": 13.796875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "טבלה",
+            "expected": "ט",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 592.859375,
+              "y": 209,
+              "width": 13.953125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "טבלה",
+            "expected": "ב",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 580.265625,
+              "y": 209,
+              "width": 12.609375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "טבלה",
+            "expected": "ל",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 568.78125,
+              "y": 209,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "טבלה",
+            "expected": "ה",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 555,
+              "y": 209,
+              "width": 13.796875,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שלום",
+            "expected": "ש",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 717.921875,
+              "y": 271,
+              "width": 16.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שלום",
+            "expected": "ל",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 706.4375,
+              "y": 271,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שלום",
+            "expected": "ו",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 700.046875,
+              "y": 271,
+              "width": 6.40625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שלום",
+            "expected": "ם",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 685,
+              "y": 271,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בעברית",
+            "expected": "ב",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 666.453125,
+              "y": 271,
+              "width": 12.59375,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בעברית",
+            "expected": "ע",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 653.40625,
+              "y": 271,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בעברית",
+            "expected": "ב",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 641.375,
+              "y": 271,
+              "width": 12.046875,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בעברית",
+            "expected": "ר",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 629.859375,
+              "y": 271,
+              "width": 11.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בעברית",
+            "expected": "י",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 623.8125,
+              "y": 271,
+              "width": 6.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בעברית",
+            "expected": "ת",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 608.75,
+              "y": 271,
+              "width": 15.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עולם",
+            "expected": "ע",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 589.734375,
+              "y": 271,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עולם",
+            "expected": "ו",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 583.125,
+              "y": 271,
+              "width": 6.625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עולם",
+            "expected": "ל",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 571.640625,
+              "y": 271,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עולם",
+            "expected": "ם",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 556.59375,
+              "y": 271,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ע",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 593.265625,
+              "y": 360,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ב",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 581.234375,
+              "y": 360,
+              "width": 12.046875,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ר",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 569.71875,
+              "y": 360,
+              "width": 11.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "י",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 563.671875,
+              "y": 360,
+              "width": 6.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ת",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 548.609375,
+              "y": 360,
+              "width": 15.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ש",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 581.53125,
+              "y": 429,
+              "width": 16.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ל",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 570.046875,
+              "y": 429,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ו",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 563.65625,
+              "y": 429,
+              "width": 6.40625,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ם",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 548.609375,
+              "y": 429,
+              "width": 15.0625,
+              "height": 29
+            }
+          }
+        ],
+        "fontSha256": "4bc68ea4ccec58a6df25ff9f5dc02d36f1bd25b0e2b4122d201f4073c547e189"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "word": "Browser",
+          "expected": "B",
+          "start": 0,
+          "end": 1,
+          "rtl": false,
+          "rect": {
+            "x": 60,
+            "y": 85,
+            "width": 14,
+            "height": 29
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 366.5957711442786,
+          "to": 378.5087064676617,
+          "y": 157.86256218905476,
+          "selectedText": "B",
+          "match": true
+        }
+      ]
+    },
+    {
+      "label": "arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-space-bounds-marked.pdf",
+      "sha256": "f1081d5a775c8236fcc418c0121ae17a35e5e2e4301182adfc80f0c63fc2ff48",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "sourceGeometry": {
+        "source": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+        "maxRectDelta": 0,
+        "maxTokenWidthDelta": 0,
+        "compatMode": "CSS1Compat",
+        "targets": [
+          {
+            "line": 0,
+            "expected": "Browser",
+            "rect": {
+              "x": 60,
+              "y": 77,
+              "width": 85.140625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "expected": "words",
+            "rect": {
+              "x": 295.6875,
+              "y": 77,
+              "width": 63.328125,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "expected": "اللُّغَةُ",
+            "rect": {
+              "x": 694.28125,
+              "y": 139,
+              "width": 39.71875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "expected": "جَمِيلَةٌ",
+            "rect": {
+              "x": 576.328125,
+              "y": 139,
+              "width": 51.1875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "expected": "مَرْحَبًا",
+            "rect": {
+              "x": 687.703125,
+              "y": 201,
+              "width": 46.296875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "expected": "123",
+            "rect": {
+              "x": 584.46875,
+              "y": 201,
+              "width": 37.765625,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "expected": "الْعَرَبِيَّةُ",
+            "rect": {
+              "x": 678.703125,
+              "y": 263,
+              "width": 55.296875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "expected": "الْكِتَابَةُ",
+            "rect": {
+              "x": 556.078125,
+              "y": 263,
+              "width": 53.359375,
+              "height": 46
+            }
+          }
+        ],
+        "ranges": [
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "B",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 60,
+              "y": 77,
+              "width": 14.3125,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 74.296875,
+              "y": 77,
+              "width": 8.65625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "o",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 82.9375,
+              "y": 77,
+              "width": 12.890625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "w",
+            "start": 3,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 95.8125,
+              "y": 77,
+              "width": 17.296875,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "s",
+            "start": 4,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 113.09375,
+              "y": 77,
+              "width": 10.5625,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "e",
+            "start": 5,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 123.640625,
+              "y": 77,
+              "width": 12.421875,
+              "height": 46
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 6,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 136.046875,
+              "y": 77,
+              "width": 9.09375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللُّغَةُ",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 728.75,
+              "y": 139,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللُّغَةُ",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 723.03125,
+              "y": 139,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللُّغَةُ",
+            "expected": "لُّ",
+            "start": 2,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 716.421875,
+              "y": 139,
+              "width": 6.625,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللُّغَةُ",
+            "expected": "غَ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 704.96875,
+              "y": 139,
+              "width": 11.46875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "اللُّغَةُ",
+            "expected": "ةُ",
+            "start": 7,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 694.28125,
+              "y": 139,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 683.296875,
+              "y": 139,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "لْ",
+            "start": 1,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 677.578125,
+              "y": 139,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "عَ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 666.109375,
+              "y": 139,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "رَ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 658.0625,
+              "y": 139,
+              "width": 8.0625,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "بِ",
+            "start": 7,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 652.140625,
+              "y": 139,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "يَّ",
+            "start": 9,
+            "end": 12,
+            "rtl": true,
+            "rect": {
+              "x": 643.9375,
+              "y": 139,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "ةُ",
+            "start": 12,
+            "end": 14,
+            "rtl": true,
+            "rect": {
+              "x": 633.25,
+              "y": 139,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جَمِيلَةٌ",
+            "expected": "جَ",
+            "start": 0,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 614.53125,
+              "y": 139,
+              "width": 12.984375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جَمِيلَةٌ",
+            "expected": "مِ",
+            "start": 2,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 601.8125,
+              "y": 139,
+              "width": 12.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جَمِيلَةٌ",
+            "expected": "ي",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 593.609375,
+              "y": 139,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جَمِيلَةٌ",
+            "expected": "لَ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 587.015625,
+              "y": 139,
+              "width": 6.609375,
+              "height": 46
+            }
+          },
+          {
+            "line": 1,
+            "word": "جَمِيلَةٌ",
+            "expected": "ةٌ",
+            "start": 7,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 576.328125,
+              "y": 139,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مَرْحَبًا",
+            "expected": "مَ",
+            "start": 0,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 722.4375,
+              "y": 201,
+              "width": 11.5625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مَرْحَبًا",
+            "expected": "رْ",
+            "start": 2,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 714.59375,
+              "y": 201,
+              "width": 7.859375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مَرْحَبًا",
+            "expected": "حَ",
+            "start": 4,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 701.640625,
+              "y": 201,
+              "width": 12.96875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مَرْحَبًا",
+            "expected": "بً",
+            "start": 6,
+            "end": 8,
+            "rtl": true,
+            "rect": {
+              "x": 694.09375,
+              "y": 201,
+              "width": 7.5625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "مَرْحَبًا",
+            "expected": "ا",
+            "start": 8,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 687.703125,
+              "y": 201,
+              "width": 6.40625,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بِالْعَالَمِ",
+            "expected": "بِ",
+            "start": 0,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 676.03125,
+              "y": 201,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بِالْعَالَمِ",
+            "expected": "ا",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 669.625,
+              "y": 201,
+              "width": 6.421875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بِالْعَالَمِ",
+            "expected": "لْ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 663.90625,
+              "y": 201,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بِالْعَالَمِ",
+            "expected": "عَ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 652.453125,
+              "y": 201,
+              "width": 11.46875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بِالْعَالَمِ",
+            "expected": "ا",
+            "start": 7,
+            "end": 8,
+            "rtl": true,
+            "rect": {
+              "x": 646.046875,
+              "y": 201,
+              "width": 6.421875,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بِالْعَالَمِ",
+            "expected": "لَ",
+            "start": 8,
+            "end": 10,
+            "rtl": true,
+            "rect": {
+              "x": 640.328125,
+              "y": 201,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "بِالْعَالَمِ",
+            "expected": "مِ",
+            "start": 10,
+            "end": 12,
+            "rtl": true,
+            "rect": {
+              "x": 627.96875,
+              "y": 201,
+              "width": 12.375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "123",
+            "expected": "1",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 584.46875,
+              "y": 201,
+              "width": 12.59375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "123",
+            "expected": "2",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 597.046875,
+              "y": 201,
+              "width": 12.59375,
+              "height": 46
+            }
+          },
+          {
+            "line": 2,
+            "word": "123",
+            "expected": "3",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 609.625,
+              "y": 201,
+              "width": 12.609375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 728.75,
+              "y": 263,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "لْ",
+            "start": 1,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 723.03125,
+              "y": 263,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "عَ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 711.5625,
+              "y": 263,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "رَ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 703.515625,
+              "y": 263,
+              "width": 8.0625,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "بِ",
+            "start": 7,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 697.59375,
+              "y": 263,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "يَّ",
+            "start": 9,
+            "end": 12,
+            "rtl": true,
+            "rect": {
+              "x": 689.390625,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْعَرَبِيَّةُ",
+            "expected": "ةُ",
+            "start": 12,
+            "end": 14,
+            "rtl": true,
+            "rect": {
+              "x": 678.703125,
+              "y": 263,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التَّعْلِيمُ",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 667.71875,
+              "y": 263,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التَّعْلِيمُ",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 662,
+              "y": 263,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التَّعْلِيمُ",
+            "expected": "تَّ",
+            "start": 2,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 653.796875,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التَّعْلِيمُ",
+            "expected": "عْ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 642.328125,
+              "y": 263,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التَّعْلِيمُ",
+            "expected": "لِ",
+            "start": 7,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 635.734375,
+              "y": 263,
+              "width": 6.609375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التَّعْلِيمُ",
+            "expected": "ي",
+            "start": 9,
+            "end": 10,
+            "rtl": true,
+            "rect": {
+              "x": 627.53125,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "التَّعْلِيمُ",
+            "expected": "مُ",
+            "start": 10,
+            "end": 12,
+            "rtl": true,
+            "rect": {
+              "x": 615.171875,
+              "y": 263,
+              "width": 12.375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْكِتَابَةُ",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 604.1875,
+              "y": 263,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْكِتَابَةُ",
+            "expected": "لْ",
+            "start": 1,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 598.46875,
+              "y": 263,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْكِتَابَةُ",
+            "expected": "كِ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 587.28125,
+              "y": 263,
+              "width": 11.203125,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْكِتَابَةُ",
+            "expected": "تَ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 579.078125,
+              "y": 263,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْكِتَابَةُ",
+            "expected": "ا",
+            "start": 7,
+            "end": 8,
+            "rtl": true,
+            "rect": {
+              "x": 572.6875,
+              "y": 263,
+              "width": 6.40625,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْكِتَابَةُ",
+            "expected": "بَ",
+            "start": 8,
+            "end": 10,
+            "rtl": true,
+            "rect": {
+              "x": 566.765625,
+              "y": 263,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 3,
+            "word": "الْكِتَابَةُ",
+            "expected": "ةُ",
+            "start": 10,
+            "end": 12,
+            "rtl": true,
+            "rect": {
+              "x": 556.078125,
+              "y": 263,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 598.703125,
+              "y": 352,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 592.984375,
+              "y": 352,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ع",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 581.515625,
+              "y": 352,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ر",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 573.46875,
+              "y": 352,
+              "width": 8.0625,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ب",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 567.546875,
+              "y": 352,
+              "width": 5.9375,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ي",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 559.34375,
+              "y": 352,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 5,
+            "word": "العربية",
+            "expected": "ة",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 548.65625,
+              "y": 352,
+              "width": 10.703125,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ا",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 601.203125,
+              "y": 421,
+              "width": 5.25,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ل",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 595.484375,
+              "y": 421,
+              "width": 5.734375,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ت",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 587.28125,
+              "y": 421,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ع",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 575.8125,
+              "y": 421,
+              "width": 11.484375,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ل",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 569.21875,
+              "y": 421,
+              "width": 6.609375,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "ي",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 561.015625,
+              "y": 421,
+              "width": 8.21875,
+              "height": 46
+            }
+          },
+          {
+            "line": 7,
+            "word": "التعليم",
+            "expected": "م",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 548.65625,
+              "y": 421,
+              "width": 12.375,
+              "height": 46
+            }
+          }
+        ],
+        "fontSha256": "4e51b6ab4196bb083b5dd473e1e6f68f4c82877375f346ecba396f9271142d6c"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "word": "Browser",
+          "expected": "B",
+          "start": 0,
+          "end": 1,
+          "rtl": false,
+          "rect": {
+            "x": 60,
+            "y": 77,
+            "width": 14.3125,
+            "height": 46
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 366.5957711442786,
+          "to": 378.8192630597015,
+          "y": 158.35945273631842,
+          "selectedText": "B",
+          "match": true
+        },
+        {
+          "line": 1,
+          "word": "جَمِيلَةٌ",
+          "expected": "لَ",
+          "start": 5,
+          "end": 7,
+          "rtl": true,
+          "rect": {
+            "x": 587.015625,
+            "y": 139,
+            "width": 6.609375,
+            "height": 46
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 894.9022077114428,
+          "to": 890.333935789801,
+          "y": 219.97388059701495,
+          "selectedText": "ل",
+          "match": false
+        },
+        {
+          "line": 1,
+          "word": "جَمِيلَةٌ",
+          "expected": "ةٌ",
+          "start": 7,
+          "end": 9,
+          "rtl": true,
+          "rect": {
+            "x": 576.328125,
+            "y": 139,
+            "width": 10.703125,
+            "height": 46
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 888.349463619403,
+          "to": 879.7129003420398,
+          "y": 219.97388059701495,
+          "selectedText": "ة",
+          "match": false
+        }
+      ]
+    },
+    {
+      "label": "hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-space-bounds-marked.pdf",
+      "sha256": "fb2aa882ef4e932aa6f618ea793e77671c998c39d68fe39e691fcf7d1a39a5ac",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "sourceGeometry": {
+        "source": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+        "maxRectDelta": 0,
+        "maxTokenWidthDelta": 0,
+        "compatMode": "CSS1Compat",
+        "targets": [
+          {
+            "line": 0,
+            "expected": "Browser",
+            "rect": {
+              "x": 60,
+              "y": 85,
+              "width": 84.3125,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "expected": "words",
+            "rect": {
+              "x": 309.484375,
+              "y": 85,
+              "width": 62.546875,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "expected": "שָׁלוֹם",
+            "rect": {
+              "x": 685,
+              "y": 147,
+              "width": 49,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "expected": "עוֹלָם",
+            "rect": {
+              "x": 632.84375,
+              "y": 147,
+              "width": 46.203125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "expected": "עִבְרִית",
+            "rect": {
+              "x": 676.28125,
+              "y": 209,
+              "width": 57.71875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "expected": "123",
+            "rect": {
+              "x": 568.78125,
+              "y": 209,
+              "width": 38.03125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "expected": "שָׁלוֹם",
+            "rect": {
+              "x": 685,
+              "y": 271,
+              "width": 49,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "expected": "עוֹלָם",
+            "rect": {
+              "x": 556.59375,
+              "y": 271,
+              "width": 46.203125,
+              "height": 29
+            }
+          }
+        ],
+        "ranges": [
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "B",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 60,
+              "y": 85,
+              "width": 14,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 73.984375,
+              "y": 85,
+              "width": 8.59375,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "o",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 82.5625,
+              "y": 85,
+              "width": 12.734375,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "w",
+            "start": 3,
+            "end": 4,
+            "rtl": false,
+            "rect": {
+              "x": 95.28125,
+              "y": 85,
+              "width": 16.9375,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "s",
+            "start": 4,
+            "end": 5,
+            "rtl": false,
+            "rect": {
+              "x": 112.203125,
+              "y": 85,
+              "width": 10.578125,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "e",
+            "start": 5,
+            "end": 6,
+            "rtl": false,
+            "rect": {
+              "x": 122.765625,
+              "y": 85,
+              "width": 12.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 0,
+            "word": "Browser",
+            "expected": "r",
+            "start": 6,
+            "end": 7,
+            "rtl": false,
+            "rect": {
+              "x": 135.28125,
+              "y": 85,
+              "width": 9.03125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שָׁלוֹם",
+            "expected": "שָׁ",
+            "start": 0,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 717.921875,
+              "y": 147,
+              "width": 16.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שָׁלוֹם",
+            "expected": "ל",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 706.4375,
+              "y": 147,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שָׁלוֹם",
+            "expected": "וֹ",
+            "start": 4,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 700.046875,
+              "y": 147,
+              "width": 6.40625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "שָׁלוֹם",
+            "expected": "ם",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 685,
+              "y": 147,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עוֹלָם",
+            "expected": "ע",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 665.984375,
+              "y": 147,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עוֹלָם",
+            "expected": "וֹ",
+            "start": 1,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 659.375,
+              "y": 147,
+              "width": 6.625,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עוֹלָם",
+            "expected": "לָ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 647.890625,
+              "y": 147,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 1,
+            "word": "עוֹלָם",
+            "expected": "ם",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 632.84375,
+              "y": 147,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עִבְרִית",
+            "expected": "עִ",
+            "start": 0,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 720.9375,
+              "y": 209,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עִבְרִית",
+            "expected": "בְ",
+            "start": 2,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 708.90625,
+              "y": 209,
+              "width": 12.046875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עִבְרִית",
+            "expected": "רִ",
+            "start": 4,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 697.390625,
+              "y": 209,
+              "width": 11.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עִבְרִית",
+            "expected": "י",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 691.34375,
+              "y": 209,
+              "width": 6.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "עִבְרִית",
+            "expected": "ת",
+            "start": 7,
+            "end": 8,
+            "rtl": true,
+            "rect": {
+              "x": 676.28125,
+              "y": 209,
+              "width": 15.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כְּתִיבָה",
+            "expected": "כְּ",
+            "start": 0,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 658.984375,
+              "y": 209,
+              "width": 11.34375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כְּתִיבָה",
+            "expected": "תִ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 644.21875,
+              "y": 209,
+              "width": 14.78125,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כְּתִיבָה",
+            "expected": "י",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 639.140625,
+              "y": 209,
+              "width": 5.09375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כְּתִיבָה",
+            "expected": "בָ",
+            "start": 6,
+            "end": 8,
+            "rtl": true,
+            "rect": {
+              "x": 626.546875,
+              "y": 209,
+              "width": 12.609375,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "כְּתִיבָה",
+            "expected": "ה",
+            "start": 8,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 612.765625,
+              "y": 209,
+              "width": 13.796875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "123",
+            "expected": "1",
+            "start": 0,
+            "end": 1,
+            "rtl": false,
+            "rect": {
+              "x": 568.78125,
+              "y": 209,
+              "width": 12.6875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "123",
+            "expected": "2",
+            "start": 1,
+            "end": 2,
+            "rtl": false,
+            "rect": {
+              "x": 581.453125,
+              "y": 209,
+              "width": 12.6875,
+              "height": 29
+            }
+          },
+          {
+            "line": 2,
+            "word": "123",
+            "expected": "3",
+            "start": 2,
+            "end": 3,
+            "rtl": false,
+            "rect": {
+              "x": 594.125,
+              "y": 209,
+              "width": 12.6875,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שָׁלוֹם",
+            "expected": "שָׁ",
+            "start": 0,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 717.921875,
+              "y": 271,
+              "width": 16.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שָׁלוֹם",
+            "expected": "ל",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 706.4375,
+              "y": 271,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שָׁלוֹם",
+            "expected": "וֹ",
+            "start": 4,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 700.046875,
+              "y": 271,
+              "width": 6.40625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "שָׁלוֹם",
+            "expected": "ם",
+            "start": 6,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 685,
+              "y": 271,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בְּעִבְרִית",
+            "expected": "בְּ",
+            "start": 0,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 666.453125,
+              "y": 271,
+              "width": 12.59375,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בְּעִבְרִית",
+            "expected": "עִ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 653.40625,
+              "y": 271,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בְּעִבְרִית",
+            "expected": "בְ",
+            "start": 5,
+            "end": 7,
+            "rtl": true,
+            "rect": {
+              "x": 641.375,
+              "y": 271,
+              "width": 12.046875,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בְּעִבְרִית",
+            "expected": "רִ",
+            "start": 7,
+            "end": 9,
+            "rtl": true,
+            "rect": {
+              "x": 629.859375,
+              "y": 271,
+              "width": 11.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בְּעִבְרִית",
+            "expected": "י",
+            "start": 9,
+            "end": 10,
+            "rtl": true,
+            "rect": {
+              "x": 623.8125,
+              "y": 271,
+              "width": 6.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "בְּעִבְרִית",
+            "expected": "ת",
+            "start": 10,
+            "end": 11,
+            "rtl": true,
+            "rect": {
+              "x": 608.75,
+              "y": 271,
+              "width": 15.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עוֹלָם",
+            "expected": "ע",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 589.734375,
+              "y": 271,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עוֹלָם",
+            "expected": "וֹ",
+            "start": 1,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 583.125,
+              "y": 271,
+              "width": 6.625,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עוֹלָם",
+            "expected": "לָ",
+            "start": 3,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 571.640625,
+              "y": 271,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 3,
+            "word": "עוֹלָם",
+            "expected": "ם",
+            "start": 5,
+            "end": 6,
+            "rtl": true,
+            "rect": {
+              "x": 556.59375,
+              "y": 271,
+              "width": 15.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ע",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 593.265625,
+              "y": 360,
+              "width": 13.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ב",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 581.234375,
+              "y": 360,
+              "width": 12.046875,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ר",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 569.71875,
+              "y": 360,
+              "width": 11.53125,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "י",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 563.671875,
+              "y": 360,
+              "width": 6.0625,
+              "height": 29
+            }
+          },
+          {
+            "line": 5,
+            "word": "עברית",
+            "expected": "ת",
+            "start": 4,
+            "end": 5,
+            "rtl": true,
+            "rect": {
+              "x": 548.609375,
+              "y": 360,
+              "width": 15.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ש",
+            "start": 0,
+            "end": 1,
+            "rtl": true,
+            "rect": {
+              "x": 581.53125,
+              "y": 429,
+              "width": 16.078125,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ל",
+            "start": 1,
+            "end": 2,
+            "rtl": true,
+            "rect": {
+              "x": 570.046875,
+              "y": 429,
+              "width": 11.5,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ו",
+            "start": 2,
+            "end": 3,
+            "rtl": true,
+            "rect": {
+              "x": 563.65625,
+              "y": 429,
+              "width": 6.40625,
+              "height": 29
+            }
+          },
+          {
+            "line": 7,
+            "word": "שלום",
+            "expected": "ם",
+            "start": 3,
+            "end": 4,
+            "rtl": true,
+            "rect": {
+              "x": 548.609375,
+              "y": 429,
+              "width": 15.0625,
+              "height": 29
+            }
+          }
+        ],
+        "fontSha256": "4bc68ea4ccec58a6df25ff9f5dc02d36f1bd25b0e2b4122d201f4073c547e189"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "word": "Browser",
+          "expected": "B",
+          "start": 0,
+          "end": 1,
+          "rtl": false,
+          "rect": {
+            "x": 60,
+            "y": 85,
+            "width": 14,
+            "height": 29
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 366.5957711442786,
+          "to": 378.5087064676617,
+          "y": 157.86256218905476,
+          "selectedText": "B",
+          "match": true
+        },
+        {
+          "line": 2,
+          "word": "כְּתִיבָה",
+          "expected": "כְּ",
+          "start": 0,
+          "end": 3,
+          "rtl": true,
+          "rect": {
+            "x": 658.984375,
+            "y": 209,
+            "width": 11.34375,
+            "height": 29
+          },
+          "requestedInset": 1,
+          "inset": 1,
+          "from": 971.1283232276119,
+          "to": 961.8551189365671,
+          "y": 281.0914179104478,
+          "selectedText": "כּ",
+          "match": false
+        }
+      ]
+    }
+  ]
+}

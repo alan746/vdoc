@@ -1,0 +1,182 @@
+{
+  "at": "2026-10-12T01:17:28.083471+00:00",
+  "scope": "QA copy-handler correction and read-only direct-export checks; no product acceptance",
+  "files": [
+    {
+      "path": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes-marked.pdf",
+      "sha256": "5d0110a368df098e9da3ebcbf3fb9f460e6705b2525bc0c610fcf9b6a91d63fd"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes-numbers.pdf",
+      "sha256": "e8deb5f3940d902d313d4d464ece3ae0a63bcfc8d25646466ff8025647121413"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "f4d8e32dce11fc3ccd9e4eb2360a9e088d9ae42faabc9720de4b3936ade46551"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes-marked.pdf",
+      "sha256": "b1f22b3d7ffc71d88cb4ac4726d28ff4d9f67a1ce865756b3956d22560052145"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes-numbers.pdf",
+      "sha256": "5c584814da97a3087df5986b001faa5cc1f7f927a35451b17f78059945261bae"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "e4a698142b0d87164d5964c6bfa151d308443e9774f880ac3ccd443b7aa78fb0"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "807dc1d6af0b9bbf307c118784d24c24c49395cc042c7ec459aa66ae522f83e6"
+    },
+    {
+      "path": "output/pdf/pdf-prefont-20261011/flow-contextual.pdf",
+      "sha256": "6ab784de64e33656c101629fcd4d6091956c4becb9fd1c86e65577edce37d927"
+    },
+    {
+      "path": "output/pdf/pdf-prefont-20261011/flow-fallback-contextual.pdf",
+      "sha256": "7a5441af4f1533aca09c6ad899332eafd9fc5b3f7600460617d343bd05cfb7c9"
+    },
+    {
+      "path": "output/pdf/pdf-unicode-20261011/repaired-b.pdf",
+      "sha256": "a67105f21228be267f7b499385d67586af8c6f8ebe93a656f31d63dfd7f0c913"
+    },
+    {
+      "path": "tests/fixtures/foundation-release-check-20261011/source-manifest.json",
+      "sha256": "223d10e3b9520ab7aed5414b0820a564f11755f78ffeb046b22f3589d75dd193"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/analysis.json",
+      "sha256": "50985057f38a3e93ad4f58f1b0b93578fa31df524d3ec6d09965baceeef391c8"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/analyze.py",
+      "sha256": "edc615cc3db35c9d254a3a752a9f753ba6ea2fd506c8b711aefdc711835299d5"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/b-original-fonts-repaired-chrome.png",
+      "sha256": "9aeaa4adbfb936df0868de30b4015a523b7fb4500396c6975deaca546d69d56d"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/b-original-fonts-repaired-copy-chrome.png",
+      "sha256": "9aeaa4adbfb936df0868de30b4015a523b7fb4500396c6975deaca546d69d56d"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/b-original-fonts-repaired-copy-pdfjs.png",
+      "sha256": "b7d86fe52a553632890943c3c7c57845f58683bcc45b9c533bb6dcf866be9c12"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/b-original-fonts-repaired-pdfjs.png",
+      "sha256": "b7d86fe52a553632890943c3c7c57845f58683bcc45b9c533bb6dcf866be9c12"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/check-copy.cjs",
+      "sha256": "9dbfd8f6d50a49f70c31633d3942c193fd9e45aa33b9d76cf26d3310a8aacdb0"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/check-copy.log",
+      "sha256": "6182bacd6894137525dcc90f6dfd5c261bde045477bfc82e020c65f42e55e37e"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/check-pdfjs-browser-before.cjs",
+      "sha256": "c58c4381b47498b2747bcade8356df8903b97e8ba2f6a24b51ce84295de03168"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/check.cjs",
+      "sha256": "b1cc50fd97cfa0c94558244e11987031d7d4e0f559318284d220edda22525282"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/check.log",
+      "sha256": "6182bacd6894137525dcc90f6dfd5c261bde045477bfc82e020c65f42e55e37e"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/copy-readers.json",
+      "sha256": "946ac04b1f1068bb61598dc5bcc40304b20e913516f4da4f0ae89f43363076b8"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-contextual-chrome.png",
+      "sha256": "5b4ff29a3c2b97be77239421776a5eb2300ad97a728ce08265f05ff94e7232e2"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-contextual-copy-chrome.png",
+      "sha256": "5b4ff29a3c2b97be77239421776a5eb2300ad97a728ce08265f05ff94e7232e2"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-contextual-copy-pdfjs.png",
+      "sha256": "07d639aae2f9578564cc24ab2365e5d9ee34711ced01bcd951db38d21170825a"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-contextual-pdfjs.png",
+      "sha256": "bba3bbf6334d3b8b0823bbb571f190a9e0a00a4130365ae18239f861d8a85bcc"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-fallback-contextual-chrome.png",
+      "sha256": "40f9961ebf4dd6f3e4b81112b95634a65d2b1a2402c2a63fe39c45982753b89f"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-fallback-contextual-copy-chrome.png",
+      "sha256": "e09f92b06fc0abbe61d94288dc065f32089498697d6fa40378b16c6cd8b06a49"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-fallback-contextual-copy-pdfjs.png",
+      "sha256": "127cb7ccf29f10b673329ee6ae3e6d69745236695c72ed199ce87a4b892b3c78"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/flow-fallback-contextual-pdfjs.png",
+      "sha256": "127cb7ccf29f10b673329ee6ae3e6d69745236695c72ed199ce87a4b892b3c78"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/inputs.json",
+      "sha256": "a4016f973958991392dd526950db8a9141a9a9697e264b71f7d07ea5953da2dd"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/marked-boxes-copy.log",
+      "sha256": "ff871a89475513ae60cd1303e8e7cee2830b3c904f78157da2465ef63a5ff4db"
+    },
+    {
+      "path": "tests/fixtures/pdf-direct-readers-20261012/readers.json",
+      "sha256": "0e633d75a0a54cdfcbce33d1b4f5b1ee14c33441db661b2154c1d302cf215f80"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-marked-boxes-copy-handler.json",
+      "sha256": "d9236e0a1b737d2116f9da03346e0c89f733ddd92c345dbdf5ec116e88b43374"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-marked-boxes-arabic-copy-handler.png",
+      "sha256": "38b6bec58ec138adf6d3db3cbddf5fabf3275e58dc5a095e0cae837dcb2b7e8a"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-marked-boxes-arabic-marked-copy-handler.png",
+      "sha256": "ac1571165b19b5dd7b0ef8b23a83909b5cffc18c99002570e33319969fc09369"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-marked-boxes-arabic-numbers-copy-handler.png",
+      "sha256": "51760ea033fa808114b89c1013ec41cd8c5905046f5f04700d21cde21e12f514"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-marked-boxes-hebrew-copy-handler.png",
+      "sha256": "963da4da2a4a00a67eb19e898a6871177ea752529e42dd144f81bdf06288cafa"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-marked-boxes-hebrew-marked-copy-handler.png",
+      "sha256": "4ea6dcc139d2fa095c52f5793c6ea4ac73e09bd439d2807e1d3917f85894e810"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-marked-boxes-hebrew-numbers-copy-handler.png",
+      "sha256": "f460f914a5a60e30b031edf81147873bba42afac35616a6465dda6685d149acb"
+    },
+    {
+      "path": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-marked-boxes-words-copy-handler.png",
+      "sha256": "3b94271af1ff4855ea8cda8b07d6229ba34b8cda865c459de79011c377fd46d3"
+    },
+    {
+      "path": "tools/pdf-export/check-pdfjs-browser.cjs",
+      "sha256": "22a5901e9e0b70e1a9e5a019d452de725556a8c172dd97a7142d28b9f28a21af"
+    }
+  ],
+  "sourceCandidateUnchanged": true,
+  "newProductPasses": 0,
+  "screenCapturePreflight": false,
+  "nativeClipboardUsed": false
+}

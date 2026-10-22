@@ -1,0 +1,42 @@
+{
+  "results": [
+    {
+      "field": "Alternative text",
+      "case": "cancel",
+      "passed": true,
+      "noPrematureSubmit": true,
+      "before": "图片 العربية",
+      "after": "图片 العربية"
+    },
+    {
+      "field": "Alternative text",
+      "case": "space",
+      "passed": true,
+      "noPrematureSubmit": true,
+      "before": "图片 العربية",
+      "after": "图片 العربية中"
+    },
+    {
+      "field": "Alternative text",
+      "case": "enter",
+      "passed": true,
+      "noPrematureSubmit": true,
+      "before": "图片 العربية中",
+      "after": "图片 العربية中ceshi"
+    },
+    {
+      "field": "Alternative text",
+      "case": "backspace",
+      "passed": true,
+      "noPrematureSubmit": true,
+      "before": "图片 العربية中ceshi",
+      "after": "图片 العربية中ceshi中"
+    },
+    {
+      "field": "Alternative text",
+      "case": "apply-undo-redo-reload-reopen",
+      "passed": true
+    }
+  ],
+  "allPassed": true
+}

@@ -1,0 +1,42 @@
+{
+  "scope": "Installed PDF.js source inspection supports a hypothesis only; actual DOM selection failures remain authoritative. No reader modified.",
+  "version": "5.6.205",
+  "sourceFile": "/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs",
+  "sha256": "499da1f7f1c6c24be898b556638d2ffec999b2ad234c796508e3d7c7025c28cb",
+  "negativeAdvanceBranch": "      const advanceX = (posX - lastPosX) / textContentItem.textAdvanceScale;\n      const advanceY = posY - lastPosY;\n      const textOrientation = Math.sign(textContentItem.width || textContentItem.totalWidth);\n      if (advanceX < textOrientation * textContentItem.negativeSpaceMax) {\n        if (Math.abs(advanceY) > 0.5 * textContentItem.height) {\n          appendEOL();\n          return true;\n        }\n        resetLastChars();\n        flushTextContentItem();\n        return true;\n      }\n",
+  "hypothesis": "RTL tokens are emitted in source word order, with backwards jumps between individually positioned tokens. The negative-advance branch resets pending whitespace and flushes text before the next token. This explains missing separators as a plausible mechanism; it is not evidence of a portable fix. Mark placement is a separate issue.",
+  "controls": [
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "f4d8e32dce11fc3ccd9e4eb2360a9e088d9ae42faabc9720de4b3936ade46551",
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selected": "Browser PDF — Arabic words\nاللغةالعربيةجميلة\nمرحبابالعالمالسلامعليكم\nالعربيةالتعليمالكتابة\nTable cell العربية\nDifferent context التعليم",
+      "exactAfterDeletingAllWhitespace": true,
+      "strictCollapsed": false
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes.pdf",
+      "sha256": "e4a698142b0d87164d5964c6bfa151d308443e9774f880ac3ccd443b7aa78fb0",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selected": "Browser PDF — Hebrew words\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה\nשלוםבעבריתעולם\nTable cell עברית\nDifferent context שלום",
+      "exactAfterDeletingAllWhitespace": true,
+      "strictCollapsed": false
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes-numbers.pdf",
+      "sha256": "e8deb5f3940d902d313d4d464ece3ae0a63bcfc8d25646466ff8025647121413",
+      "source": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selected": "Browser PDF — Arabic numbers\nمرحبا0123456789\nالعدد9876543210العربية\nالعربية١٢٣٤٥٦٧٨٩٠\nTable cell العربية\nDifferent context التعليم",
+      "exactAfterDeletingAllWhitespace": true,
+      "strictCollapsed": false
+    },
+    {
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes-numbers.pdf",
+      "sha256": "5c584814da97a3087df5986b001faa5cc1f7f927a35451b17f78059945261bae",
+      "source": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+      "selected": "Browser PDF — Hebrew numbers\nשלום0123456789\nמספר9876543210בעברית\nעברית1234567890\nTable cell עברית\nDifferent context שלום",
+      "exactAfterDeletingAllWhitespace": true,
+      "strictCollapsed": false
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+import { act, createElement } from 'react';
+import { createRoot, type Root } from 'react-dom/client';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+import PrintPreviewPage from '../app/print-preview/page';
+
+const calls = vi.hoisted(() => ({ images: vi.fn(), paginate: vi.fn(), stop: vi.fn(), destroy: vi.fn(), margin: vi.fn(), overflow: vi.fn() }));
+vi.mock('../lib/editor/preview-images', () => ({ waitForPreviewImages: calls.images }));
+// Real source serialization/content validation; layout itself is covered by its
+// geometry tests and browser acceptance, not simulated by this lifecycle suite.
+vi.mock('../lib/editor/preview-layout', async importOriginal => ({ ...await importOriginal<object>(), previewOverflowDetails: calls.overflow, previewMarginOverflow: calls.margin }));
+vi.mock('pagedjs', () => ({ Previewer: class {
+  polisher = { styleEl: document.createElement('style'), destroy: calls.destroy };
+  chunker = { stop: calls.stop, hooks: { renderNode: { register: vi.fn() }, beforePageLayout: { register: vi.fn() } } };
+  preview = calls.paginate;
+} }));
+let mount: HTMLDivElement, root: Root, post: ReturnType<typeof vi.spyOn>, print: ReturnType<typeof vi.spyOn>;
+const fonts = Object.getOwnPropertyDescriptor(document, 'fonts');
+const snapshot = { title: 'Print QA', html: '<p data-block-id="qa">中文 العربية</p>', content: { type: 'doc' } };
+const deferred = () => { let resolve!: () => void, reject!: (error: Error) => void; const promise = new Promise<void>((yes, no) => { resolve = yes; reject = no; }); return { resolve, reject, promise }; };
+const status = () => post.mock.calls.map(args => args[0] as { type: string }).filter(message => message.type === 'vdoc-preview-status');
+async function message(type: string, token = 'qa-token', origin = window.location.origin) {
+  await act(async () => window.dispatchEvent(new MessageEvent('message', { source: window, origin, data: { type, token, snapshot } })));
+}
+beforeEach(async () => {
+  vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true);
+  for (const call of Object.values(calls)) call.mockReset();
+  calls.images.mockResolvedValue(undefined);
+  calls.margin.mockReturnValue(null);
+  calls.overflow.mockReturnValue(null);
+  calls.paginate.mockImplementation(async (html: string, _styles: unknown, host: HTMLElement) => { host.innerHTML = `<div class="pagedjs_page"><div class="pagedjs_area">${html}</div></div>`; return { total: 1 }; });
+  Object.defineProperty(document, 'fonts', { configurable: true, value: { ready: Promise.resolve() } });
+  post = vi.spyOn(window, 'postMessage').mockImplementation(() => {}); print = vi.spyOn(window, 'print').mockImplementation(() => {});
+  mount = document.createElement('div'); document.body.appendChild(mount); root = createRoot(mount);
+  await act(async () => root.render(createElement(PrintPreviewPage)));
+});
+afterEach(() => {
+  act(() => root.unmount()); mount.remove(); vi.restoreAllMocks(); vi.unstubAllGlobals();
+  if (fonts) Object.defineProperty(document, 'fonts', fonts); else Reflect.deleteProperty(document, 'fonts');
+});
+it('requires source images and final page images before enabling printing', async () => {
+  const source = deferred(), pages = deferred(); calls.images.mockReturnValueOnce(source.promise).mockReturnValueOnce(pages.promise);
+  await message('vdoc-preview-render'); expect(calls.paginate).not.toHaveBeenCalled();
+  await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+  await act(async () => source.resolve()); expect(calls.paginate).toHaveBeenCalledOnce(); expect(calls.images).toHaveBeenCalledTimes(2);
+  expect(status()).toEqual([]); await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+  await act(async () => pages.resolve()); expect(status()).toEqual([expect.objectContaining({ state: 'ready', pages: 1 })]);
+  await message('vdoc-preview-print'); expect(print).toHaveBeenCalledOnce();
+});
+it('does not paginate or print if the source contains a failed image', async () => {
+  calls.images.mockRejectedValueOnce(new Error('Image 1 could not be loaded.'));
+  await message('vdoc-preview-render'); expect(calls.paginate).not.toHaveBeenCalled();
+  expect(status()).toEqual([expect.objectContaining({ state: 'error', error: 'Image 1 could not be loaded.' })]);
+  await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+});
+it('finishes paragraph border caps before reporting a printable preview',async()=>{
+  const edges={top:{color:'#663399',width:3,style:'solid',padding:6},bottom:{color:'#663399',width:3,style:'solid',padding:6}};
+  const html=`<p data-block-id="qa" data-paragraph-borders='${JSON.stringify(edges)}'>Border 中文</p>`;
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+  expect(mount.querySelectorAll('[data-preview-border-line]')).toHaveLength(2);
+  expect(status()).toEqual([expect.objectContaining({state:'ready'})]);
+});
+it('does not accept a complete layout whose rendered images fail to load', async () => {
+  calls.images.mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error('Image 2 could not be loaded.'));
+  await message('vdoc-preview-render'); expect(calls.paginate).toHaveBeenCalledOnce();
+  expect(status()).toEqual([expect.objectContaining({ state: 'error' })]);
+  await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+});
+it('blocks printing when a repeated table header loses content even though body text matches',async()=>{
+  calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+    host.innerHTML=`<div class="pagedjs_page">${html}</div>`;
+    const table=host.querySelector('table')!.cloneNode(true) as HTMLTableElement;
+    table.querySelector('tbody')!.remove();table.querySelector('thead')!.setAttribute('data-repeated-header','true');
+    table.querySelector('p')!.textContent='Damaged';
+    const page=document.createElement('div');page.className='pagedjs_page';page.appendChild(table);host.appendChild(page);return {total:2};
+  });
+  const html='<table data-pinned-rows="1"><tr><th><p>Header 中文</p></th></tr><tr><td><p>Body</p></td></tr></table>';
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+  expect(status()).toEqual([expect.objectContaining({state:'error',error:'Table headers could not be repeated reliably on page 2. Return to editing or export Word instead.'})]);
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+it('blocks printing when a tall row defers top-aligned sibling cell content',async()=>{
+  calls.paginate.mockImplementation(async(html:string,_styles:unknown,host:HTMLElement)=>{
+    const source=document.createElement('div');source.innerHTML=html;
+    const first=source.cloneNode(true) as HTMLElement,last=source.cloneNode(true) as HTMLElement;
+    first.querySelectorAll('td')[1].textContent='';last.querySelector('td')!.textContent='';
+    host.innerHTML=`<div class="pagedjs_page">${first.innerHTML}</div><div class="pagedjs_page">${last.innerHTML}</div>`;return {total:2};
+  });
+  const html='<table><tr><td><p>Long cell</p></td><td><p>Right cell</p></td></tr></table>';
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+  expect(status()).toEqual([expect.objectContaining({state:'error',error:'Table cells became misaligned across pages near page 1. Split long rows into smaller rows or export Word instead.'})]);
+  expect(calls.paginate).toHaveBeenCalledTimes(2);
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+it('retries once with a new-page row marker, releases the first layout and reports only the successful result',async()=>{
+  calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+    const source=document.createElement('div');source.innerHTML=html;
+    const first=source.cloneNode(true) as HTMLElement,last=source.cloneNode(true) as HTMLElement;
+    first.querySelectorAll('td')[1].textContent='';last.querySelector('td')!.textContent='';
+    host.innerHTML=`<div class="pagedjs_page">${first.innerHTML}</div><div class="pagedjs_page">${last.innerHTML}</div>`;return {total:2};
+  });
+  const html='<table><tr><td><p>Long cell</p></td><td><p>Right cell</p></td></tr></table>';
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+  expect(calls.paginate).toHaveBeenCalledTimes(2);expect(calls.paginate.mock.calls[1][0]).toContain('data-break-before="page"');
+  expect(calls.stop).toHaveBeenCalledOnce();expect(calls.destroy).toHaveBeenCalledOnce();
+  expect(status()).toEqual([expect.objectContaining({state:'ready',pages:1})]);
+});
+it('repairs a fitting delayed sibling before declaring the real page flow printable',async()=>{
+  calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+    const source=document.createElement('div');source.innerHTML=html;
+    const first=source.cloneNode(true) as HTMLElement,last=source.cloneNode(true) as HTMLElement;
+    first.querySelector('p')!.textContent='Long';last.querySelector('p')!.textContent=' cell';first.querySelectorAll('td')[1].textContent='';
+    host.innerHTML=`<div class="pagedjs_page">${first.innerHTML}</div><div class="pagedjs_page">${last.innerHTML}</div>`;
+    host.querySelectorAll('tr,td').forEach(node=>vi.spyOn(node,'getBoundingClientRect').mockReturnValue(new DOMRect(0,0,200,300)));
+    host.querySelectorAll('p').forEach(node=>vi.spyOn(node,'getBoundingClientRect').mockReturnValue(new DOMRect(0,0,200,40)));
+    return {total:2};
+  });
+  const html='<table><tr><td><p>Long cell</p></td><td><p>Right cell</p></td></tr></table>';
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+  expect(calls.paginate).toHaveBeenCalledTimes(2);expect(mount.querySelectorAll('td')[1].textContent).toBe('Right cell');
+  expect(mount.querySelectorAll('td')).toHaveLength(4);expect(mount.querySelectorAll('td')[1].rowSpan).toBe(1);expect(status()).toEqual([expect.objectContaining({state:'ready',pages:1})]);
+});
+it('aborts pending image work on unmount and suppresses late errors', async () => {
+  const pending = deferred(); calls.images.mockReturnValueOnce(pending.promise);
+  await message('vdoc-preview-render'); const signal = calls.images.mock.calls[0][1] as AbortSignal;
+  act(() => root.unmount()); expect(signal.aborted).toBe(true);
+  await act(async () => pending.reject(new DOMException('Closed', 'AbortError')));
+  expect(status()).toEqual([]); expect(calls.paginate).not.toHaveBeenCalled();
+});
+it('stops pagination on close and ignores a late completed layout', async () => {
+  let finish!: (value: { total: number }) => void;
+  calls.paginate.mockReturnValueOnce(new Promise(resolve => { finish = resolve; }));
+  await message('vdoc-preview-render'); act(() => root.unmount());
+  expect(calls.stop).toHaveBeenCalledOnce(); expect(calls.destroy).toHaveBeenCalledOnce();
+  await act(async () => finish({ total: 1 })); expect(calls.images).toHaveBeenCalledOnce(); expect(status()).toEqual([]);
+});
+
+it.each(['pagination', 'final-image', 'content-loss', 'overflow'])('releases failed %s work immediately, before the parent removes the frame', async failure => {
+  if (failure === 'pagination') calls.paginate.mockRejectedValueOnce(new Error('Layout failed.'));
+  if (failure === 'final-image') calls.images.mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error('Image 1 could not be loaded.'));
+  if (failure === 'content-loss') calls.paginate.mockImplementationOnce(async (_html: string, _styles: unknown, host: HTMLElement) => {
+    host.innerHTML = '<div class="pagedjs_page"><p>Missing original text</p></div>'; return { total: 1 };
+  });
+  if (failure === 'overflow') calls.overflow.mockReturnValue({ page: 1, kind: 'table', edge: 'right', pixels: 50 });
+  await message('vdoc-preview-render');
+  expect(status()).toEqual([expect.objectContaining({ state: 'error' })]);
+  expect(calls.stop).toHaveBeenCalledOnce(); expect(calls.destroy).toHaveBeenCalledOnce();
+  expect((calls.images.mock.calls[0][1] as AbortSignal).aborted).toBe(true);
+  expect(mount.querySelector('#preview-pages')!.childNodes).toHaveLength(0);
+  await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+  // Parent removal or repeated cleanup must not touch an already released engine.
+  act(() => root.unmount());
+  expect(calls.stop).toHaveBeenCalledOnce(); expect(calls.destroy).toHaveBeenCalledOnce();
+});
+
+it('releases both retry attempts when the second layout fails without double-cleaning on close', async () => {
+  calls.overflow.mockReturnValueOnce({ page: 1, kind: 'table', edge: 'bottom', pixels: 5 });
+  const paginate = calls.paginate.getMockImplementation()!;
+  calls.paginate.mockImplementationOnce(paginate).mockRejectedValueOnce(new Error('Retry layout failed.'));
+  await message('vdoc-preview-render');
+  expect(calls.paginate).toHaveBeenCalledTimes(2);
+  expect(status()).toEqual([expect.objectContaining({ state: 'error', error: 'Retry layout failed.' })]);
+  expect(calls.stop).toHaveBeenCalledTimes(2); expect(calls.destroy).toHaveBeenCalledTimes(2);
+  expect(mount.querySelector('#preview-pages')!.childNodes).toHaveLength(0);
+  act(() => root.unmount());
+  expect(calls.stop).toHaveBeenCalledTimes(2); expect(calls.destroy).toHaveBeenCalledTimes(2);
+});
+it('ignores wrong-origin and wrong-session print requests', async () => {
+  await message('vdoc-preview-render', 'qa-token', 'https://example.com'); expect(calls.images).not.toHaveBeenCalled();
+  await message('vdoc-preview-render'); await message('vdoc-preview-print', 'old-token'); expect(print).not.toHaveBeenCalled();
+  await message('vdoc-preview-print'); expect(print).toHaveBeenCalledOnce();
+});
+
+it.each(['Header', 'Footer', 'Page number'])('blocks printing when %s does not fit its page margin', async part => {
+  calls.margin.mockReturnValue({ page: 3, part });
+  await message('vdoc-preview-render');
+  expect(status()).toEqual([expect.objectContaining({ state: 'error', error: `${part} does not fit on page 3. Increase page margins or shorten the header or footer before printing.` })]);
+  await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+});
+it('makes both long columns start together while preserving their complete continuation streams',async()=>{
+  calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+    const source=document.createElement('div');source.innerHTML=html;
+    const pieces=[['Long',''],[' cell','Right'],['',' cell']];
+    host.innerHTML=pieces.map(texts=>{
+      const clone=source.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll('td').forEach((cell,i)=>{if(texts[i])cell.querySelector('p')!.textContent=texts[i];else cell.replaceChildren();});
+      return `<div class="pagedjs_page">${clone.innerHTML}</div>`;
+    }).join('');
+    host.querySelectorAll('tr,td').forEach(node=>vi.spyOn(node,'getBoundingClientRect').mockReturnValue(new DOMRect(0,0,200,300)));
+    host.querySelectorAll('p').forEach(node=>vi.spyOn(node,'getBoundingClientRect').mockReturnValue(new DOMRect(0,0,180,40)));
+    return {total:3};
+  });
+  const html='<table><tr><td><p>Long cell</p></td><td><p>Right cell</p></td></tr></table>';
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+  expect(calls.paginate).toHaveBeenCalledTimes(2);
+  expect(Array.from(mount.querySelectorAll('td')).map(cell=>cell.textContent)).toEqual(['Long','Right',' cell',' cell']);
+  expect(status()).toEqual([expect.objectContaining({state:'ready',pages:1})]);
+  expect(calls.stop).toHaveBeenCalledOnce();expect(calls.destroy).toHaveBeenCalledOnce();
+});
+function repairedFlow(html:string,_styles:unknown,host:HTMLElement){
+  const source=document.createElement('div');source.innerHTML=html;
+  host.innerHTML=[['Long',''],[' cell','Right cell']].map(texts=>{
+    const clone=source.cloneNode(true) as HTMLElement;clone.querySelectorAll('td').forEach((cell,i)=>{if(texts[i])cell.querySelector('p')!.textContent=texts[i];else cell.replaceChildren();});
+    return `<div class="pagedjs_page">${clone.innerHTML}</div>`;
+  }).join('');
+  host.querySelectorAll('tr,td').forEach(node=>vi.spyOn(node,'getBoundingClientRect').mockReturnValue(new DOMRect(0,0,200,300)));
+  host.querySelectorAll('p').forEach(node=>vi.spyOn(node,'getBoundingClientRect').mockReturnValue(new DOMRect(0,0,180,40)));
+  return Promise.resolve({total:2});
+}
+const repairedSnapshot={...snapshot,html:'<table><tr><td><p>Long cell</p></td><td><p>Right cell</p></td></tr></table>'};
+it('rejects content loss in the final compacted pagination instead of using its smaller page count',async()=>{
+  calls.paginate.mockImplementationOnce(repairedFlow).mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{host.innerHTML=`<div class="pagedjs_page">${html}</div>`;host.querySelector('p')!.remove();return {total:1};});
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:repairedSnapshot}})));
+  expect(calls.paginate).toHaveBeenCalledTimes(2);expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('Some text could not be paginated reliably')})]);
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+it('stops and ignores a compacted reflow that completes after the preview is closed',async()=>{
+  const pending=deferred();calls.paginate.mockImplementationOnce(repairedFlow).mockReturnValueOnce(pending.promise);
+  await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:repairedSnapshot}})));
+  expect(calls.paginate).toHaveBeenCalledTimes(2);act(()=>root.unmount());
+  await act(async()=>pending.resolve());expect(status()).toEqual([]);expect(calls.stop).toHaveBeenCalledTimes(3);
+});
+
+it('blocks printing when the paginator ignores a manual page break despite preserving all text', async () => {
+  const html = '<p>Before 中文</p><div class="page-break"><span>Page break</span></div><h2>After العربية</h2>';
+  await act(async () => window.dispatchEvent(new MessageEvent('message', { source: window, origin: window.location.origin, data: { type: 'vdoc-preview-render', token: 'qa-token', snapshot: { ...snapshot, html } } })));
+  expect(status()).toEqual([expect.objectContaining({ state: 'error', error: 'A page break was not preserved near page 1. Return to editing or export Word instead.' })]);
+  await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+});
+
+it('reports the overflowing object and edge while continuing to block printing', async () => {
+  calls.overflow.mockReturnValue({page:1,kind:'table',edge:'bottom',pixels:14});
+  await message('vdoc-preview-render');
+  expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('table crosses the bottom edge by 14 px')})]);
+  await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+});
+
+it('ends temporary column layout before inspecting final page geometry and allowing print',async()=>{
+  calls.paginate.mockImplementation(async(html:string,_styles:unknown,host:HTMLElement)=>{
+    host.innerHTML=`<div class="pagedjs_page"><div class="pagedjs_area"><div class="pagedjs_page_content" style="column-width:642px;column-gap:1151px">${html}</div></div></div>`;return {total:1};
+  });
+  calls.overflow.mockImplementation((host:HTMLElement)=>{
+    expect(host.querySelector<HTMLElement>('.pagedjs_page_content')!.style.columnWidth).toBe('auto');
+    return {page:1,kind:'table',edge:'bottom',pixels:12};
+  });
+  await message('vdoc-preview-render');
+  expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('bottom edge by 12 px')})]);
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+
+it('repaginates a 5px bottom overflow with 7px reserved space and checks the new pages before printing',async()=>{
+  calls.overflow.mockReturnValueOnce({page:1,kind:'table',edge:'bottom',pixels:5});
+  await message('vdoc-preview-render');
+  expect(calls.paginate).toHaveBeenCalledTimes(2);
+  const firstCSS=Object.values(calls.paginate.mock.calls[0][1][0])[0] as string;
+  const retryCSS=Object.values(calls.paginate.mock.calls[1][1][0])[0] as string;
+  expect(retryCSS).toContain(firstCSS);
+  expect(retryCSS).toContain('height: calc(100% - var(--pagedjs-footnotes-height) - 7px) !important');
+  expect(calls.paginate.mock.calls[1][0]).toBe(calls.paginate.mock.calls[0][0]);
+  expect(calls.overflow).toHaveBeenCalledTimes(2);
+  expect(calls.images).toHaveBeenCalledTimes(3);
+  expect(calls.stop).toHaveBeenCalledOnce();expect(calls.destroy).toHaveBeenCalledOnce();
+  expect(mount.querySelectorAll('.pagedjs_page')).toHaveLength(1);
+  expect(status()).toEqual([expect.objectContaining({state:'ready',pages:1})]);
+  await message('vdoc-preview-print');expect(print).toHaveBeenCalledOnce();
+});
+it('retries a small bottom overflow only once and refuses print if it persists',async()=>{
+  calls.overflow.mockReturnValue({page:1,kind:'table',edge:'bottom',pixels:5});
+  await message('vdoc-preview-render');
+  expect(calls.paginate).toHaveBeenCalledTimes(2);
+  expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('bottom edge by 5 px')})]);
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+it.each([{edge:'right',pixels:5},{edge:'bottom',pixels:9},{edge:'right',pixels:1794}])('does not retry unrelated overflow: $edge $pixels px',async overflow=>{
+  calls.overflow.mockReturnValue({page:1,kind:'table',...overflow});
+  await message('vdoc-preview-render');expect(calls.paginate).toHaveBeenCalledOnce();
+  expect(status()).toEqual([expect.objectContaining({state:'error'})]);
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+it('rejects text lost during bottom-reserve repagination',async()=>{
+  calls.overflow.mockReturnValueOnce({page:1,kind:'table',edge:'bottom',pixels:5});
+  const paginate=calls.paginate.getMockImplementation()!;
+  calls.paginate.mockImplementationOnce(paginate).mockImplementationOnce(async(_html:string,_styles:unknown,host:HTMLElement)=>{host.innerHTML='<div class="pagedjs_page"><p>Incomplete</p></div>';return {total:1};});
+  await message('vdoc-preview-render');
+  expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('Some text could not be paginated reliably')})]);
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+it('waits for retry images and refuses printing when they fail',async()=>{
+  calls.overflow.mockReturnValueOnce({page:1,kind:'table',edge:'bottom',pixels:5});
+  const pending=deferred();calls.images.mockResolvedValueOnce(undefined).mockResolvedValueOnce(undefined).mockReturnValueOnce(pending.promise);
+  await message('vdoc-preview-render');expect(calls.paginate).toHaveBeenCalledTimes(2);
+  expect(status()).toEqual([]);await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+  await act(async()=>pending.reject(new Error('Image 1 could not be loaded.')));
+  expect(status()).toEqual([expect.objectContaining({state:'error',error:'Image 1 could not be loaded.'})]);
+});
+it('ignores a bottom-reserve retry finishing after the preview is closed',async()=>{
+  calls.overflow.mockReturnValueOnce({page:1,kind:'table',edge:'bottom',pixels:5});
+  const pending=deferred(),paginate=calls.paginate.getMockImplementation()!;
+  calls.paginate.mockImplementationOnce(paginate).mockReturnValueOnce(pending.promise);
+  await message('vdoc-preview-render');expect(calls.paginate).toHaveBeenCalledTimes(2);
+  act(()=>root.unmount());await act(async()=>pending.resolve());
+  expect(status()).toEqual([]);expect(calls.stop).toHaveBeenCalledTimes(3);
+});
+
+it('installs native sheet rules after successful pagination and removes them on close',async()=>{
+  calls.paginate.mockImplementation(async(html:string,_styles:unknown,host:HTMLElement)=>{
+    expect(document.head.querySelector('[data-preview-print]')).toBeNull();
+    host.innerHTML=`<div class="pagedjs_page"><div class="pagedjs_area">${html}</div></div>`;return {total:1};
+  });
+  await message('vdoc-preview-render');
+  expect(status()).toEqual([expect.objectContaining({state:'ready'})]);
+  expect(document.head.querySelector('[data-preview-print]')!.textContent).toContain('size: 210mm 297mm');
+  act(()=>root.unmount());expect(document.head.querySelector('[data-preview-print]')).toBeNull();
+});
+it('does not install printable sheet rules when preview validation fails',async()=>{
+  calls.overflow.mockReturnValue({page:1,kind:'table',edge:'right',pixels:1794});
+  await message('vdoc-preview-render');
+  expect(document.head.querySelector('[data-preview-print]')).toBeNull();
+  await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+
+it.each(['message', 'keyboard'])('retains a validated preview and retries after a native print exception from %s', async trigger => {
+  await message('vdoc-preview-render');
+  print.mockImplementationOnce(() => { throw new Error('Native print unavailable'); });
+  const request = async () => {
+    if (trigger === 'message') await message('vdoc-preview-print');
+    else act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'p', metaKey: true, cancelable: true })));
+  };
+  await request();
+  expect(post).toHaveBeenLastCalledWith(expect.objectContaining({ type: 'vdoc-preview-print-result', token: 'qa-token', error: expect.stringContaining('Try Print / Save PDF again') }), window.location.origin);
+  expect(mount.querySelector('.pagedjs_page')).not.toBeNull(); expect(status()).toEqual([expect.objectContaining({ state: 'ready' })]);
+  await request(); expect(print).toHaveBeenCalledTimes(2); expect(calls.paginate).toHaveBeenCalledOnce();
+  expect(post).toHaveBeenLastCalledWith({ type: 'vdoc-preview-print-result', token: 'qa-token' }, window.location.origin);
+});
+it('does not invoke native printing repeatedly or during composition inside the preview', async () => {
+  await message('vdoc-preview-render');
+  for (const flags of [{ repeat: true }, { isComposing: true }, { keyCode: 229 }]) {
+    act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'p', ctrlKey: true, cancelable: true, ...flags })));
+  }
+  expect(print).not.toHaveBeenCalled();
+  act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'p', ctrlKey: true, cancelable: true })));
+  expect(print).toHaveBeenCalledOnce();
+});
+
+it('refuses printing when table-cell text survives pagination but its explicit line break disappears', async () => {
+ calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+  host.innerHTML=`<div class="pagedjs_page">${html}</div>`;
+  host.querySelector('br')!.remove(); return {total:1};
+ });
+ const html='<table><tr><td><p>中文<br>العربية</p></td></tr></table>';
+ await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+ expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('could not be paginated reliably')})]);
+ await message('vdoc-preview-print'); expect(print).not.toHaveBeenCalled();
+ expect(document.head.querySelector('[data-preview-print]')).toBeNull();
+});
+
+it.each(['rule','image'])('refuses printing when a %s crosses its neighboring text block',async kind=>{
+ const object=kind==='rule'?'<hr data-block-id="r">':'<img data-block-id="i" src="data:image/png;base64,AA==">';
+ calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+  host.innerHTML=`<div class="pagedjs_page">${html}</div>`;
+  const page=host.firstElementChild!;page.appendChild(page.querySelector(kind==='rule'?'hr':'img')!);return {total:1};
+ });
+ const html='<p data-block-id="a">Before</p>'+object+'<p data-block-id="b">After</p>';
+ await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+ expect(status()).toEqual([expect.objectContaining({state:'error'})]);
+ await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+
+it.each(['br','hr'])('blocks native printing if only a repeated header loses its %s',async tag=>{
+ calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+  host.innerHTML=`<div class="pagedjs_page">${html}</div>`;
+  const second=host.querySelector('table')!.cloneNode(true) as HTMLTableElement;
+  second.querySelector(':scope > tbody')!.remove();
+  const head=second.querySelector('thead')!;head.setAttribute('data-repeated-header','true');head.querySelector(tag)!.remove();
+  const page=document.createElement('div');page.className='pagedjs_page';page.appendChild(second);host.appendChild(page);return {total:2};
+ });
+ const html='<table data-pinned-rows="1"><tr><th><p>Header 中文<br>العربية</p><hr></th></tr><tr><td><p>Body</p></td></tr></table>';
+ await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+ expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('Table headers could not be repeated reliably on page 2')})]);
+ await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+ expect(document.head.querySelector('[data-preview-print]')).toBeNull();
+});
+
+it('rejects a changed body colspan even when text, IDs and object order survive pagination',async()=>{
+ calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+  host.innerHTML=`<div class="pagedjs_page">${html}</div>`;
+  host.querySelector('td[colspan]')!.setAttribute('colspan','1');return {total:1};
+ });
+ const html='<table data-pinned-rows="0"><tr><td colspan="2"><p>Full width 中文</p></td></tr><tr><td><p>A</p></td><td><p>B</p></td></tr></table>';
+ await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+ expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('Table cells became misaligned')})]);
+ await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+
+it('blocks printing if a shortened rowspan silently moves later content into the first column',async()=>{
+ calls.paginate.mockImplementationOnce(async(html:string,_styles:unknown,host:HTMLElement)=>{
+  host.innerHTML=`<div class="pagedjs_page">${html}</div>`;host.querySelector('td[rowspan]')!.setAttribute('rowspan','1');return {total:1};
+ });
+ const html='<table data-pinned-rows="0"><tr><td rowspan="2"><p>Merged</p></td><td><p>Right A</p></td></tr><tr><td><p>Right B</p></td></tr></table>';
+ await act(async()=>window.dispatchEvent(new MessageEvent('message',{source:window,origin:window.location.origin,data:{type:'vdoc-preview-render',token:'qa-token',snapshot:{...snapshot,html}}})));
+ expect(status()).toEqual([expect.objectContaining({state:'error',error:expect.stringContaining('Table cells became misaligned')})]);
+ await message('vdoc-preview-print');expect(print).not.toHaveBeenCalled();
+});
+
+it('answers a late parent connection without starting pagination until the snapshot arrives', async () => {
+  post.mockClear();
+  await message('vdoc-preview-connect', 'qa-token', 'https://example.com');
+  expect(post).not.toHaveBeenCalled();
+  await message('vdoc-preview-connect');
+  expect(post).toHaveBeenCalledExactlyOnceWith({ type: 'vdoc-preview-ready' }, window.location.origin);
+  expect(calls.images).not.toHaveBeenCalled(); expect(calls.paginate).not.toHaveBeenCalled();
+});
+it('acknowledges a received snapshot before resource waits and never starts it twice', async () => {
+  const pending = deferred(); calls.images.mockReturnValueOnce(pending.promise);
+  post.mockClear();
+  await message('vdoc-preview-render');
+  expect(post).toHaveBeenCalledWith({ type: 'vdoc-preview-accepted', token: 'qa-token' }, window.location.origin);
+  expect(calls.paginate).not.toHaveBeenCalled();
+  post.mockClear();
+  await message('vdoc-preview-connect', 'old-token'); expect(post).not.toHaveBeenCalled();
+  await message('vdoc-preview-connect');
+  expect(post).toHaveBeenCalledExactlyOnceWith({ type: 'vdoc-preview-accepted', token: 'qa-token' }, window.location.origin);
+  await message('vdoc-preview-render'); expect(calls.images).toHaveBeenCalledOnce();
+  await act(async () => pending.resolve());
+  expect(calls.paginate).toHaveBeenCalledOnce();
+});
+
+// Paged.js can resume CSS parsing after chunker.stop(); an earlier cleanup
+// therefore cannot release nodes that the pending preview has not created yet.
+it.each(['resolve', 'reject'] as const)('reclaims resources created after closing a pending layout (%s)', async outcome => {
+  const pending = deferred();
+  const lateStyle = document.createElement('style');
+  let detachedHost!: HTMLElement;
+  calls.destroy.mockImplementation(() => lateStyle.remove());
+  calls.paginate.mockImplementationOnce(async (_html: string, _styles: unknown, host: HTMLElement) => {
+    detachedHost = host;
+    await pending.promise;
+    document.head.appendChild(lateStyle);
+    host.innerHTML = '<div class="pagedjs_page">Late layout</div>';
+    if (outcome === 'reject') throw new Error('Closed layout resumed.');
+    return { total: 1 };
+  });
+  try {
+    await message('vdoc-preview-render');
+    act(() => root.unmount());
+    expect(lateStyle.isConnected).toBe(false);
+    await act(async () => pending.resolve());
+    expect(lateStyle.isConnected).toBe(false);
+    expect(detachedHost.childNodes).toHaveLength(0);
+    expect(status()).toEqual([]);
+    expect(print).not.toHaveBeenCalled();
+  } finally { lateStyle.remove(); }
+});
+
+it('routes iframe printing through the parent PDF flow only after a trusted mode handshake', async () => {
+  await message('vdoc-preview-render');
+  await act(async () => window.dispatchEvent(new MessageEvent('message', { source: window, origin: window.location.origin,
+    data: { type: 'vdoc-preview-print-mode', token: 'qa-token', localPdf: true } })));
+  post.mockClear();
+  act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'p', metaKey: true, cancelable: true })));
+  expect(print).not.toHaveBeenCalled();
+  expect(post).toHaveBeenCalledExactlyOnceWith({ type: 'vdoc-preview-request-print', token: 'qa-token' }, window.location.origin);
+  // Explicit browser-print fallback still reaches the native dialog.
+  await message('vdoc-preview-print'); expect(print).toHaveBeenCalledOnce();
+});

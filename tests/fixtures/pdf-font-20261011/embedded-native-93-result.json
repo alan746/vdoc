@@ -1,0 +1,18 @@
+{
+  "scale": 93,
+  "file": "output/pdf/safari-native-20261011/embedded-native-93.pdf",
+  "nativePageLabel": "All 5 Pages",
+  "sha256": "a6bb73da6f41a5a36c9066d4cef27b09003bdc693edeb3526bde407e7a06a7c5",
+  "bytes": 177121,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "browser": "154.0.8037.98",
+  "origin": "http://127.0.0.1:4178/#document=a493a57c-1976-44ff-bc50-5ed3dd584bcd",
+  "results": [
+    {
+      "menu": "Insert",
+      "item": "Image from device",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "Insert",
+      "item": "Link",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "Format",
+      "item": "Page setup",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "Format",
+      "item": "Paragraph layout",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "Format",
+      "item": "Paragraph borders…",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "File",
+      "item": "Language…",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "File",
+      "item": "Open local document",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "View",
+      "item": "Word count",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    },
+    {
+      "menu": "View",
+      "item": "Keyboard shortcuts",
+      "initialDialogFocus": true,
+      "returnedEditorFocus": true,
+      "realTypingAndExactUndo": true
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-11T20:58:04.949Z",
+  "browser": "154.0.8037.98",
+  "method": "Full selection from isolated Chrome PDF plugin; no pointer probes, no clipboard access.",
+  "results": [
+    {
+      "label": "hebrew",
+      "file": "output/pdf/typst-browser-20261011/hebrew.pdf",
+      "sha256": "b2578879fe33b5bbd90eb820736c402fc4fab744028091e5e72261eb083f49a7",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [],
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשָׁלוֹם עוֹלָם 123",
+      "selectedText": "123 font embedded QA\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nָׁש לֹום עֹוָלם 123",
+      "matchCollapsed": false
+    },
+    {
+      "label": "arabic",
+      "file": "output/pdf/typst-browser-20261011/arabic.pdf",
+      "sha256": "435e08a09c2d336c6f74287cf14a9a4cdfaf7c17cc577cbf84d60ed7ed0e2129",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [],
+      "source": "QA embedded font 123\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ 123",
+      "selectedText": "123 font embedded QA\nالل غغ ةة ب العربييةة ج ج يمي ةلة\nحرم ببا ب بالعالم السلام ي عليكم\nٌةٌةٌة\nَل\nَجَجَج ِمِمييَل\nَّيَّيَّيَّي ُةُةُة\nِب\nَعَعَرَرِبِب\nْل\nَغَغَغ ُةُةُة اْل\nالُّل 123 ُّلُّل",
+      "matchCollapsed": false
+    },
+    {
+      "label": "hindi",
+      "file": "output/pdf/typst-browser-20261011/hindi.pdf",
+      "sha256": "dbbc85d58fb7ab3ab56576da9f9eecad20003b447d9472e9587c12ab6b5e737f",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [],
+      "source": "QA embedded font 123\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nहिन्दी भाषा 123",
+      "selectedText": "QA embedded font 123\nहिन्दी हिंदी भाषा मेंदस्तावेज़ लिखना।\nदुनिया नमस्तेशिक्षा क्षत्रिय प्रार्थना।\nहिन्दी भाषा 123",
+      "matchCollapsed": false
+    }
+  ]
+}

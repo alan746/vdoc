@@ -1,0 +1,109 @@
+{
+  "sha256": "41771f9322cd457dabffcf46d7b19bf0d9414b243ba4a43b807e6474ccd6bbaa",
+  "pages": 5,
+  "metadata": {
+    "/ModDate": "D:20261010065321Z00'00'",
+    "/Producer": "macOS Version 26.6.2 (Build 25G83) Quartz PDFContext",
+    "/Author": "钱弈非",
+    "/Title": "QA final system acceptance",
+    "/Creator": "Safari",
+    "/CreationDate": "D:20261010065321Z00'00'"
+  },
+  "rows": {
+    "01": 1,
+    "02": 1,
+    "03": 1,
+    "04": 1,
+    "05": 1,
+    "06": 1,
+    "07": 1,
+    "08": 1,
+    "09": 1,
+    "10": 1,
+    "11": 1,
+    "12": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1,
+    "21": 1,
+    "22": 1,
+    "23": 1,
+    "24": 1,
+    "25": 1,
+    "26": 1,
+    "27": 1,
+    "28": 1,
+    "29": 1,
+    "30": 1,
+    "31": 1,
+    "32": 1,
+    "33": 1,
+    "34": 1,
+    "35": 1,
+    "36": 1
+  },
+  "perPage": [
+    {
+      "page": 1,
+      "chars": 881,
+      "start": "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, i",
+      "end": "appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "images": 1
+    },
+    {
+      "page": 2,
+      "chars": 1036,
+      "start": "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nRO",
+      "end": "appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "images": 0
+    },
+    {
+      "page": 3,
+      "chars": 1036,
+      "start": "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nRO",
+      "end": "appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "images": 0
+    },
+    {
+      "page": 4,
+      "chars": 447,
+      "start": "VDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nRO",
+      "end": "⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "images": 0
+    },
+    {
+      "page": 5,
+      "chars": 142,
+      "start": "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample.",
+      "end": "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample.",
+      "images": 0
+    }
+  ],
+  "visualReview": {
+    "allPagesRenderedAndInspected": true,
+    "imageVisible": true,
+    "repeatedHeadersOnPages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "tableRowsCompleteWithoutVisibleClipping": true,
+    "lastPageHasHeadingAndEndingParagraph": true,
+    "documentPageNumbers": [
+      "1 / 5",
+      "2 / 5",
+      "3 / 5",
+      "4 / 5",
+      "5 / 5"
+    ],
+    "blankPages": [],
+    "renderer": "Poppler pdftoppm, scale-to 1200",
+    "note": "pypdf reported ignored wrong-pointing objects; extraction completed and Poppler rendered all five pages without error."
+  }
+}

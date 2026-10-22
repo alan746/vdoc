@@ -1,0 +1,601 @@
+{
+  "candidate": "76258d84e5baf84433a244aed8a08e9f10c187c7f450763338a53e0f74ab6f3a",
+  "productionFlow": {
+    "browser": "154.0.8037.98",
+    "sourceUnchanged": true,
+    "saveAndReloadUnchanged": true,
+    "errors": [],
+    "bytes": 187889,
+    "responseType": "application/pdf",
+    "popupProtocol": "blob:"
+  },
+  "nativeScales": [
+    {
+      "scale": 93,
+      "file": "output/pdf/safari-native-20261011/local-production-93.pdf",
+      "sha256": "7ae4771155d46b039fa15912db587a9681c90e72bf704ef95db815019f952935",
+      "pages": 5,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "headers": 5,
+      "footers": 5,
+      "lastPageBody": true,
+      "geometry": [
+        {
+          "page": 1,
+          "charactersOutsideMediaBox": 0,
+          "images": 1,
+          "inkBounds": [
+            73.17573870000001,
+            51.25634000000002,
+            521.31961425,
+            790.60634
+          ]
+        },
+        {
+          "page": 2,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            73.17573870000001,
+            51.25644,
+            521.31961425,
+            790.6064400000001
+          ]
+        },
+        {
+          "page": 3,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            73.17573870000001,
+            51.25594000000001,
+            521.31961425,
+            790.6059399999998
+          ]
+        },
+        {
+          "page": 4,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            73.17573870000001,
+            51.256439999999884,
+            521.31961425,
+            790.6064399999999
+          ]
+        },
+        {
+          "page": 5,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            73.17573870000001,
+            51.256939999999986,
+            521.31961425,
+            790.60694
+          ]
+        }
+      ],
+      "blankPages": [],
+      "passed": true
+    },
+    {
+      "scale": 99,
+      "file": "output/pdf/safari-native-20261011/local-production-99.pdf",
+      "sha256": "b1a37689811bfabd4eb1611c8987be1b7dd1d684e77ff1d2a1dadb7593d1b1b7",
+      "pages": 5,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "headers": 5,
+      "footers": 5,
+      "lastPageBody": true,
+      "geometry": [
+        {
+          "page": 1,
+          "charactersOutsideMediaBox": 0,
+          "images": 1,
+          "inkBounds": [
+            59.0867541,
+            27.960620000000063,
+            536.14313775,
+            815.0106200000001
+          ]
+        },
+        {
+          "page": 2,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            59.0867541,
+            27.9609200000001,
+            536.14313775,
+            815.01092
+          ]
+        },
+        {
+          "page": 3,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            59.0867541,
+            27.960420000000113,
+            536.14313775,
+            815.0104200000002
+          ]
+        },
+        {
+          "page": 4,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            59.0867541,
+            27.960919999999987,
+            536.14313775,
+            815.0109199999998
+          ]
+        },
+        {
+          "page": 5,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            59.0867541,
+            27.96042000000034,
+            536.14313775,
+            815.0104200000002
+          ]
+        }
+      ],
+      "blankPages": [],
+      "passed": true
+    },
+    {
+      "scale": 100,
+      "file": "output/pdf/safari-native-20261011/local-production-100.pdf",
+      "sha256": "9764f4df9d3b822e004cb8f9d3f8c0daa967cae95888ff30af9ec84e35e4c8f9",
+      "pages": 5,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "headers": 5,
+      "footers": 5,
+      "lastPageBody": true,
+      "geometry": [
+        {
+          "page": 1,
+          "charactersOutsideMediaBox": 0,
+          "images": 1,
+          "inkBounds": [
+            56.683589999999995,
+            23.738000000000056,
+            538.558725,
+            818.738
+          ]
+        },
+        {
+          "page": 2,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            56.683589999999995,
+            23.737999999999943,
+            538.558725,
+            818.7379999999999
+          ]
+        },
+        {
+          "page": 3,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            56.683589999999995,
+            23.737999999999943,
+            538.558725,
+            818.7379999999999
+          ]
+        },
+        {
+          "page": 4,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            56.683589999999995,
+            23.737999999999943,
+            538.558725,
+            818.7379999999999
+          ]
+        },
+        {
+          "page": 5,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            56.683589999999995,
+            23.737999999999943,
+            538.558725,
+            818.7379999999999
+          ]
+        }
+      ],
+      "blankPages": [],
+      "passed": true
+    },
+    {
+      "scale": 101,
+      "file": "output/pdf/safari-native-20261011/local-production-101.pdf",
+      "sha256": "deee2c7938aa90de947a5c156f2ad3efb81c5351fa8975ad61296716817708b1",
+      "pages": 5,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "headers": 5,
+      "footers": 5,
+      "lastPageBody": true,
+      "geometry": [
+        {
+          "page": 1,
+          "charactersOutsideMediaBox": 0,
+          "images": 1,
+          "inkBounds": [
+            54.220425899999995,
+            19.595379999999977,
+            540.91431225,
+            822.5453799999999
+          ]
+        },
+        {
+          "page": 2,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            54.220425899999995,
+            19.59507999999994,
+            540.91431225,
+            822.54508
+          ]
+        },
+        {
+          "page": 3,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            54.220425899999995,
+            19.595580000000155,
+            540.91431225,
+            822.5455800000001
+          ]
+        },
+        {
+          "page": 4,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            54.220425899999995,
+            19.595079999999825,
+            540.91431225,
+            822.54508
+          ]
+        },
+        {
+          "page": 5,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            54.220425899999995,
+            19.595580000000382,
+            540.91431225,
+            822.5455800000005
+          ]
+        }
+      ],
+      "blankPages": [],
+      "passed": true
+    },
+    {
+      "scale": 102,
+      "file": "output/pdf/safari-native-20261011/local-production-102.pdf",
+      "sha256": "3fa2dd4268b1af0c06b5b9dd472ecc33e9bfa45e34cc05e1a3c2ca8297626c2c",
+      "pages": 5,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "headers": 5,
+      "footers": 5,
+      "lastPageBody": true,
+      "geometry": [
+        {
+          "page": 1,
+          "charactersOutsideMediaBox": 0,
+          "images": 1,
+          "inkBounds": [
+            51.6972618,
+            15.532760000000053,
+            543.2098994999999,
+            826.43276
+          ]
+        },
+        {
+          "page": 2,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            51.6972618,
+            15.533160000000066,
+            543.2098994999999,
+            826.43316
+          ]
+        },
+        {
+          "page": 3,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            51.6972618,
+            15.533160000000066,
+            543.2098994999999,
+            826.43316
+          ]
+        },
+        {
+          "page": 4,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            51.6972618,
+            15.533160000000294,
+            543.2098994999999,
+            826.43316
+          ]
+        },
+        {
+          "page": 5,
+          "charactersOutsideMediaBox": 0,
+          "images": 0,
+          "inkBounds": [
+            51.6972618,
+            15.533159999999839,
+            543.2098994999999,
+            826.43316
+          ]
+        }
+      ],
+      "blankPages": [],
+      "passed": true
+    }
+  ],
+  "visualReview": "All 25 rendered pages inspected in five contact sheets. Image, table, repeated headings, footers and last-page body visible; no blank page or clipped border. This is layout acceptance, not complex-text copy acceptance.",
+  "testResults": {
+    "launcherAndHandler": 12,
+    "typecheck": "passed",
+    "lint": "passed",
+    "priorFullSuite": 2025,
+    "fullSuiteRepeated": false
+  },
+  "lifecycle": [
+    {
+      "mode": "ready-stop",
+      "pid": 65639,
+      "url": "http://127.0.0.1:52090",
+      "pageStatus": 200,
+      "capabilityStatus": 200,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "ownedChildren": [
+        65640,
+        65641,
+        65642,
+        65643,
+        65645
+      ],
+      "remainingChildren": [],
+      "workerPort": 52095,
+      "workerPortState": "ECONNREFUSED",
+      "publicPortState": "ECONNREFUSED",
+      "passed": true
+    },
+    {
+      "mode": "startup-cancel",
+      "pid": 65700,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "ownedChildren": [
+        65701,
+        65702,
+        65712
+      ],
+      "remainingChildren": [],
+      "passed": true
+    }
+  ],
+  "scope": "Local production web UI in isolated Chrome → actual downloaded fixed PDF → native Safari Print/Save PDF at 93,99,100,101,102%. Safari VDoc web UI itself not exercised in this run. Requires installed Chrome/Chromium.",
+  "cleanup": {
+    "ownedSafariWindow7319": "closed with exact URL guard",
+    "pdfServer": "stopped",
+    "productionServer": "stopped",
+    "originalDev5173": "preserved",
+    "printScale": "restored100"
+  },
+  "parserDiagnostic": "pypdf reported unused wrong-pointing objects30/31 in native files; all five parsed and rendered successfully, all geometry/content assertions passed."
+}

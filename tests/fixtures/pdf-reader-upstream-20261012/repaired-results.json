@@ -1,0 +1,3885 @@
+{
+  "at": "2026-10-12T19:24:36.136Z",
+  "scope": "Unmodified official online demo 6.5.128. DOM Range selection and official copy handler via synthetic in-memory ClipboardEvent, not native clipboard acceptance.",
+  "assets": [
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.html",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.html",
+      "sha256": "0432cc6ab06150b13f581d955841d2895227fec0171a70920fb20adf0e208ae5"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.mjs",
+      "sha256": "cacf508f8cb3fb8a1630d45240913455821a01d5d5c148282b1483207a831936"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.css",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.css",
+      "sha256": "99b508bee7189236c18f6ee378d98ee681165e8cdf863f1283c489dac00430e6"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/build/pdf.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/demo-pdf.mjs",
+      "sha256": "d03207dedb650eabb5a60da9885559ce5a88b55fca166863ab7fa1f5e14f91d7"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/build/pdf.worker.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/demo-worker.mjs",
+      "sha256": "6cc4c112779c219502b906068cf5c0b500e206fb16ff84b84f7c44c55f26a779"
+    }
+  ],
+  "results": [
+    {
+      "label": "upstream-td",
+      "file": "tmp/pdf-reader-upstream-20261012/upstream-td.pdf",
+      "sourceText": "सप्रणाम",
+      "sha256": "8a39451d3238ef4e509b0845d6974be00cb68caad8f3da6287db8c56b4b729ca",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "सप्रणाम"
+      ],
+      "rawSelections": [
+        "सप्रणाम"
+      ],
+      "items": [
+        [
+          {
+            "str": "सप्रणाम",
+            "width": 109.12,
+            "dir": "ltr"
+          }
+        ]
+      ],
+      "copiedText": "सप्रणाम",
+      "exactCollapsedMatch": true,
+      "hindiWholeWord": false
+    },
+    {
+      "label": "flow-contextual",
+      "file": "output/pdf/pdf-prefont-20261011/flow-contextual.pdf",
+      "report": "output/pdf/pdf-prefont-20261011/flow.pdf.json",
+      "sourceText": "Font flow stress 中文 日本語 हिन्दी\n\nBLOCK 01 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 01\n\nBLOCK 02 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 02\n\nBLOCK 03 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 \n日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 03\n\nBLOCK 04 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 04\n\nBLOCK 05 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 \n日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 05\n\nBLOCK 06 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 06\n\nBLOCK 07 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 07\n\nBLOCK 08 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 \n日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 08",
+      "pages": 4,
+      "fontPhase": "before-pagination",
+      "fontChanges": {
+        "diagnosticFontPhase": "before-pagination",
+        "diagnosticDevanagariFont": "Devanagari Sangam MN",
+        "diagnosticCjkFont": "Arial Unicode MS",
+        "diagnosticFontFile": null
+      },
+      "layoutDifferences": 0,
+      "sha256": "6ab784de64e33656c101629fcd4d6091956c4becb9fd1c86e65577edce37d927",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "copies": [],
+      "rawSelections": [],
+      "items": [],
+      "error": "page.evaluate: Error: Official copy handler absent\n    at eval (eval at evaluate (:311:30), <anonymous>:9:86)\n    at async <anonymous>:337:30\n    at /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-reader-upstream-20261012/check-demo.cjs:49:32"
+    },
+    {
+      "label": "flow-fallback-contextual",
+      "file": "output/pdf/pdf-prefont-20261011/flow-fallback-contextual.pdf",
+      "report": "output/pdf/pdf-prefont-20261011/flow-fallback.pdf.json",
+      "sourceText": "Font flow stress 中文 日本語 हिन्दी\n\nBLOCK 01 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 01\n\nBLOCK 02 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 02\n\nBLOCK 03 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 \n日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 03\n\nBLOCK 04 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 04\n\nBLOCK 05 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 \n日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 05\n\nBLOCK 06 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 06\n\nBLOCK 07 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 07\n\nBLOCK 08 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 \n日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 08",
+      "pages": 4,
+      "fontPhase": "before-pagination",
+      "fontChanges": {
+        "diagnosticFontPhase": "before-pagination",
+        "diagnosticDevanagariFont": "Devanagari Sangam MN",
+        "diagnosticCjkFont": "Arial Unicode MS",
+        "diagnosticFontFile": null
+      },
+      "layoutDifferences": 0,
+      "sha256": "7a5441af4f1533aca09c6ad899332eafd9fc5b3f7600460617d343bd05cfb7c9",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "copies": [],
+      "rawSelections": [],
+      "items": [],
+      "error": "page.evaluate: Error: Official copy handler absent\n    at eval (eval at evaluate (:311:30), <anonymous>:9:86)\n    at async <anonymous>:337:30\n    at /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-reader-upstream-20261012/check-demo.cjs:49:32"
+    },
+    {
+      "label": "b-original-fonts-repaired",
+      "file": "output/pdf/pdf-unicode-20261011/repaired-b.pdf",
+      "report": "output/pdf/safari-fixed-pdf-20261011/prototype-b.pdf.json",
+      "sourceText": "VDoc core system acceptance\n\nIME test area: 中文输入测试.\n\nVerify Chinese candidate selection and cancellation.\n\nVerify PDF text, image, repeated header and page numbers.\n\nGroup 中文\n\n\t\n\nDetails العربية\n\n\n\n\nGROUP 01 — rows 01–02 中文 日本語\n\n\t\n\nROW 01 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 02 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 02 — rows 03–04 中文 日本語\n\n\t\n\nROW 03 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 04 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 03 — rows 05–06 中文 日本語\n\n\t\n\nROW 05 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 06 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 04 — rows 07–08 中文 日本語\n\n\t\n\nROW 07 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 08 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\nGroup 中文\n\n\t\n\nDetails العربية\n\n\n\n\nGROUP 05 — rows 09–10 中文 日本語\n\n\t\n\nROW 09 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 10 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 06 — rows 11–12 中文 日本語\n\n\t\n\nROW 11 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 12 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 07 — rows 13–14 中文 日本語\n\n\t\n\nROW 13 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 14 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 08 — rows 15–16 中文 日本語\n\n\t\n\nROW 15 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 16 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 09 — rows 17–18 中文 日本語\n\n\t\n\nROW 17 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 18 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 10 — rows 19–20 中文 日本語\n\n\t\n\nROW 19 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 20 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\nGroup 中文\n\n\t\n\nDetails العربية\n\n\n\n\nGROUP 11 — rows 21–22 中文 日本語\n\n\t\n\nROW 21 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 22 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 12 — rows 23–24 中文 日本語\n\n\t\n\nROW 23 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 24 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 13 — rows 25–26 中文 日本語\n\n\t\n\nROW 25 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 26 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 14 — rows 27–28 中文 日本語\n\n\t\n\nROW 27 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 28 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 15 — rows 29–30 中文 日本語\n\n\t\n\nROW 29 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 30 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 16 — rows 31–32 中文 日本語\n\n\t\n\nROW 31 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 32 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\nGroup 中文\n\n\t\n\nDetails العربية\n\n\n\n\nGROUP 17 — rows 33–34 中文 日本語\n\n\t\n\nROW 33 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 34 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\n\n\n\nGROUP 18 — rows 35–36 中文 日本語\n\n\t\n\nROW 35 — English 中文 العربية\n\nCheck complete text and cell borders.\n\n\n\n\nROW 36 — 日本語 हिन्दी עברית\n\nVerify this row appears exactly once.\n\nTABLE END — all 36 body rows must appear once.\nFINAL PAGE CHECK 中文\n\nThis heading must start on a new page. End of acceptance sample.",
+      "pages": 5,
+      "fontPhase": null,
+      "fontChanges": {},
+      "layoutDifferences": 0,
+      "sha256": "a67105f21228be267f7b499385d67586af8c6f8ebe93a656f31d63dfd7f0c913",
+      "errors": [],
+      "missing": [
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/wasm/qcms_bg.wasm",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/loading.svg",
+        "/web/images/toolbarButton-pageDown.svg"
+      ],
+      "copies": [
+        "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02 中⽂ ⽇本語 ROW 01 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample."
+      ],
+      "rawSelections": [
+        "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02 中⽂ ⽇本語 ROW 01 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+        "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample."
+      ],
+      "items": [
+        [
+          {
+            "str": "VDoc system acceptance",
+            "width": 101.54442905898192,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.3339852799998875,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Local document acceptance",
+            "width": 112.0737252702612,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 469.69336508000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "1 / 5",
+            "width": 17.53271032947046,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "VDoc core system acceptance",
+            "width": 324.1406104141408,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "IME test area:",
+            "width": 74.69530908769534,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.4453133999999475,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 12.00000069999995,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 12.00000069999995,
+            "dir": "ltr"
+          },
+          {
+            "str": "输",
+            "width": 12.00000069999995,
+            "dir": "ltr"
+          },
+          {
+            "str": "⼊",
+            "width": 12.00000069999995,
+            "dir": "ltr"
+          },
+          {
+            "str": "测试",
+            "width": 24.0000013999999,
+            "dir": "ltr"
+          },
+          {
+            "str": ".",
+            "width": 3.333984221083985,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify Chinese candidate selection and cancellation.",
+            "width": 276.843737339844,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify PDF text, image, repeated header and page numbers.",
+            "width": 320.85350066610374,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Group",
+            "width": 31.494871642713626,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889649060000025,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 246.86718920000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "Details",
+            "width": 34.432615595307624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.902343960000074,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 4.357909948420411,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 4.542480305729979,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 3.7836912223461923,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.4609373974609374,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.2763671451513647,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 01 — rows 01–02",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 01 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 02 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 02 — rows 03–04",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 03 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 04 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 03 — rows 05–06",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 05 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 06 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 04 — rows 07–08",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 07 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 08 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          }
+        ],
+        [
+          {
+            "str": "VDoc system acceptance",
+            "width": 101.54442905898192,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.3339852799998875,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Local document acceptance",
+            "width": 112.0737252702612,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 469.69336508000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "2 / 5",
+            "width": 17.53271032947046,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Group",
+            "width": 31.494871642713626,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889649060000025,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 246.86718920000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "Details",
+            "width": 34.432615595307624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.902343960000074,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 4.357909948420411,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 4.542480305729979,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 3.7836912223461923,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.4609373974609374,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.2763671451513647,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 05 — rows 09–10",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 09 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 10 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 06 — rows 11–12",
+            "width": 122.74950616543701,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896489600000552,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896432000000205,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 79.30469080000007,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 11 — English",
+            "width": 90.24975201459357,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896482999999966,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.9023412000000435,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 12 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 07 — rows 13–14",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 13 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 14 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 08 — rows 15–16",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 15 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 16 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 09 — rows 17–18",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 17 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 18 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 10 — rows 19–20",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 19 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 20 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          }
+        ],
+        [
+          {
+            "str": "VDoc system acceptance",
+            "width": 101.54442905898192,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.3339852799998875,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Local document acceptance",
+            "width": 112.0737252702612,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 469.69336508000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "3 / 5",
+            "width": 17.53271032947046,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Group",
+            "width": 31.494871642713626,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889649060000025,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 246.86718920000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "Details",
+            "width": 34.432615595307624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.902343960000074,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 4.357909948420411,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 4.542480305729979,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 3.7836912223461923,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.4609373974609374,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.2763671451513647,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 11 — rows 21–22",
+            "width": 122.74950636043695,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648700000103,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896432000000205,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 79.30469080000007,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 21 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 22 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 12 — rows 23–24",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 23 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 24 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 13 — rows 25–26",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 25 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 26 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 14 — rows 27–28",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 27 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 28 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 15 — rows 29–30",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 29 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 30 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 16 — rows 31–32",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 31 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 32 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          }
+        ],
+        [
+          {
+            "str": "VDoc system acceptance",
+            "width": 101.54442905898192,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.3339852799998875,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Local document acceptance",
+            "width": 112.0737252702612,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 469.69336508000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "4 / 5",
+            "width": 17.53271032947046,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Group",
+            "width": 31.494871642713626,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889649060000025,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 246.86718920000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "Details",
+            "width": 34.432615595307624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.902343960000074,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 4.357909948420411,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.850585871225584,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 4.542480305729979,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 3.7836912223461923,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.4609373974609374,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.2763671451513647,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 17 — rows 33–34",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 33 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 34 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "GROUP 18 — rows 35–36",
+            "width": 123.52880311296624,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.88965232000017,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896472000000255,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 78.26562080000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 35 — English",
+            "width": 91.02904879712285,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.889648880000026,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8945282000000834,
+            "dir": "ltr"
+          },
+          {
+            "str": "ﺔ",
+            "width": 3.9374998359375,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﯾ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﺑ",
+            "width": 2.5634765081884745,
+            "dir": "rtl"
+          },
+          {
+            "str": "ر",
+            "width": 5.13207985116333,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻌ",
+            "width": 4.137451012606201,
+            "dir": "rtl"
+          },
+          {
+            "str": "ﻟ",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 2.173828034423828,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Check complete text and cell borders.",
+            "width": 175.66991382041985,
+            "dir": "ltr"
+          },
+          {
+            "str": "ROW 36 —",
+            "width": 53.67406996358036,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896484000000044,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽇",
+            "width": 10.500000612499957,
+            "dir": "ltr"
+          },
+          {
+            "str": "本語",
+            "width": 21.000001224999913,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8896448000000303,
+            "dir": "ltr"
+          },
+          {
+            "str": "िह",
+            "width": 8.189993441100247,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्दी",
+            "width": 11.203497794837581,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.8910424177998717,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 25.932127904494624,
+            "dir": "rtl"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Verify this row appears exactly once.",
+            "width": 170.41478717438343,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "TABLE END — all 36 body rows must appear once.",
+            "width": 273.9023315124025,
+            "dir": "ltr"
+          }
+        ],
+        [
+          {
+            "str": "VDoc system acceptance",
+            "width": 101.54442905898192,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 3.3339852799998875,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 9.000000524999962,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Local document acceptance",
+            "width": 112.0737252702612,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 469.69336508000004,
+            "dir": "ltr"
+          },
+          {
+            "str": "5 / 5",
+            "width": 17.53271032947046,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "FINAL PAGE CHECK",
+            "width": 157.70067697413813,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 6.112301940000068,
+            "dir": "ltr"
+          },
+          {
+            "str": "中",
+            "width": 16.500000962499932,
+            "dir": "ltr"
+          },
+          {
+            "str": "⽂",
+            "width": 16.500000962499932,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "This heading must start on a new page. End of acceptance sample.",
+            "width": 358.2128740344632,
+            "dir": "ltr"
+          }
+        ]
+      ],
+      "copiedText": "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02 中⽂ ⽇本語 ROW 01 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nVDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nVDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nVDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.\nVDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample.",
+      "exactCollapsedMatch": false,
+      "hindiWholeWord": false
+    }
+  ],
+  "browser": "154.0.8037.98"
+}

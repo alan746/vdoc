@@ -1,0 +1,418 @@
+{
+  "at": "2026-10-11T00:49:27.501877+00:00",
+  "applicationSha256": "7f9c2d5d1b4f7ddcc5ef8a0b0295a717a7324089d7e87e342f547fbebd1648b3",
+  "environment": {
+    "browser": "154.0.8037.98",
+    "origin": "http://127.0.0.1:4178",
+    "profile": "Fresh temporary Chrome profile for each sequential script; never attaches to a personal browser"
+  },
+  "preparatoryWorkflowRows": [
+    "F012",
+    "F013",
+    "F014",
+    "F015",
+    "F016",
+    "F017",
+    "F018",
+    "F019",
+    "F020",
+    "F021",
+    "F022",
+    "F023",
+    "F024",
+    "F025",
+    "F026",
+    "F027",
+    "F028",
+    "F029",
+    "F030",
+    "F031",
+    "F032",
+    "F033",
+    "F034",
+    "F035",
+    "F036",
+    "F037",
+    "F038",
+    "F039",
+    "F040",
+    "F042",
+    "F043",
+    "F044"
+  ],
+  "workflowResult": "Complete production browser workflow passed; preceding native gates are not waived",
+  "fixes": [
+    "Print sizing deducts all owning list, quote and task-label offsets before fitting disposable tables, including lists within cells. Saved document widths and content unchanged.",
+    "Dropdown menus and color popovers restore editor keyboard focus after focus scope closes, preserving selection. Newly opened dialogs/search inputs and other focused fields are protected.",
+    "Editor-scoped dialog focus return restores typing after menu-launched dialogs close. Explicit dialog handlers and normal library trigger return are preserved; nine production dialog routes pass initial focus, cancellation, real typing and exact JSON undo."
+  ],
+  "tests": {
+    "fullFiles": 138,
+    "fullTests": 1947,
+    "focusedPreviewTests": 48,
+    "focusedMenuTests": 32,
+    "testOnlyTypeCorrection": "appendChild replaces ambiguous append DOM/Workers overload; six affected tests repeated successfully",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "dialogFocusTests": 13
+  },
+  "browserEvidence": {
+    "workflow": "events.json",
+    "menuBefore": "menu-focus-probe.json",
+    "menuAfter": "menu-focus-fixed.json",
+    "nestedPrint": "../preview-container-width-20261010/events.json",
+    "dialogs": "dialog-focus-matrix.json"
+  },
+  "harnessCorrections": [
+    "Select both list paragraphs in one conversion; separate toggles intentionally create independent lists.",
+    "Wait for modal closure and input transaction before reading state; retain the separate real menu-focus failure and its product fix.",
+    "Use explicit DOM selection with model-position readback for the document end; final search target is asserted to be the last block. Headless shortcut dispatch alone did not prove end navigation.",
+    "Wait for the explicit second Word download link.",
+    "A hash-only same-page URL change does not reopen a document: reload the requested document URL before checking its content.",
+    "Disable finite popup animations when capturing screenshots.",
+    "Wait for ArrowRight selection collapse before Enter, assert the model selection is collapsed and the previous list item text survives exiting the list; final production workflow and screenshot both confirm preservation."
+  ],
+  "remaining": [
+    "System IME candidate/cancellation observations paired with saved state; user confirmation remains valid but unpaired.",
+    "Exact source of the historical project-plan PDF missing; the current copy differs.",
+    "Safari remote automation is still disabled; no new native Safari PDF from this run.",
+    "Final overall signoff depends on these remaining native gates; AI has not been connected."
+  ],
+  "artifacts": [
+    {
+      "file": "baseline.vdoc.json",
+      "sha256": "e242cc10cb98f4bc732eb6d48cba8ebb4117796d81fd5a37da08a75ef0000d0a",
+      "bytes": 27450
+    },
+    {
+      "file": "build-dialog-final.log",
+      "sha256": "cfb7689c0e3a7c1b9e527baf40de91955ae97d65701824038f08225c7b57ede4",
+      "bytes": 1509
+    },
+    {
+      "file": "build-final.log",
+      "sha256": "f98bca6cdae950d05a6f7e70bc75a9d7602918968c770a4391e2922d7c3985ac",
+      "bytes": 1509
+    },
+    {
+      "file": "build.log",
+      "sha256": "31f82b8207fe4ae5773f641946d7dbc2e9479f45df37f07a5fb90f7e5a9b5144",
+      "bytes": 1509
+    },
+    {
+      "file": "containers-final.log",
+      "sha256": "2cd8c6d11ca14a6c05574f72d70a749d396e9b9e667e339a0606e8d40b66b606",
+      "bytes": 200
+    },
+    {
+      "file": "containers.cjs",
+      "sha256": "abce6846512982d0acf9a6156d573c04b592b6b9f294b32bc08b50ba45c6f573",
+      "bytes": 3677
+    },
+    {
+      "file": "containers.log",
+      "sha256": "2cd8c6d11ca14a6c05574f72d70a749d396e9b9e667e339a0606e8d40b66b606",
+      "bytes": 200
+    },
+    {
+      "file": "dialog-focus-fixed.log",
+      "sha256": "9a7df5c6d26ce9a1006dbafd81edfafdfb4a489adc3e1327ad424bfb87c5d9a8",
+      "bytes": 90
+    },
+    {
+      "file": "dialog-focus-matrix.cjs",
+      "sha256": "d005253c82ac027e4532989fc6e2316e834a0eddac07c7277cfa99bbdf87d939",
+      "bytes": 2355
+    },
+    {
+      "file": "dialog-focus-matrix.json",
+      "sha256": "824e309c9f276c9da9fd5ca1b40b16f132bbf5120a450422dfba6be7e66e2cb4",
+      "bytes": 1701
+    },
+    {
+      "file": "dialog-focus-tests.log",
+      "sha256": "5806f00517f260c1ee31211c828302258492142c2104f13de4eafe0f11a9d09a",
+      "bytes": 393
+    },
+    {
+      "file": "dialog-focus.cjs",
+      "sha256": "fece03661400d3d2c23b9ad23ebe7314cfd09b3ad7a99894540f1d7133ebf146",
+      "bytes": 2466
+    },
+    {
+      "file": "dialog-focus.json",
+      "sha256": "fc481ae40453c89a293ba338c49cf7a8423c188510347235cf9d21a155ce6241",
+      "bytes": 8285
+    },
+    {
+      "file": "dialog-focus.log",
+      "sha256": "bab46b7e5b920739076a09d576aefa5bc1c7385cc467bdf872a7176b27e5115c",
+      "bytes": 410
+    },
+    {
+      "file": "dialog-matrix-dev.log",
+      "sha256": "1baa3bf8a6f70c07f6c4e15ea35eb2cc40588fa4812168f9abbef2166e530698",
+      "bytes": 197
+    },
+    {
+      "file": "dialog-matrix-production.log",
+      "sha256": "1baa3bf8a6f70c07f6c4e15ea35eb2cc40588fa4812168f9abbef2166e530698",
+      "bytes": 197
+    },
+    {
+      "file": "events.json",
+      "sha256": "7f2f6af2376d3f63ec04828ff5b007fecd9fe62a03496a5f368072238ac0fddc",
+      "bytes": 94344
+    },
+    {
+      "file": "failure-dom.json",
+      "sha256": "5453bed7e12cbd3ffc55836c2b8426638c101392d7f2bb0f4d8f7c52665b5dad",
+      "bytes": 660
+    },
+    {
+      "file": "failure.png",
+      "sha256": "791396f828450c0b403ba846a9e011790165f355ce0baf406d3eef289bb088a6",
+      "bytes": 50084
+    },
+    {
+      "file": "final.docx",
+      "sha256": "6ad2f5347d06358de83c5cf6b62eb481bc2091dc8ee469b04323c1fde07f4488",
+      "bytes": 11538
+    },
+    {
+      "file": "final.vdoc.json",
+      "sha256": "47e7ebf423d296c951b80e24d309a53da52aefb490689c967fdfa7097fc47a04",
+      "bytes": 48623
+    },
+    {
+      "file": "focus-fixed-dev.log",
+      "sha256": "9a7df5c6d26ce9a1006dbafd81edfafdfb4a489adc3e1327ad424bfb87c5d9a8",
+      "bytes": 90
+    },
+    {
+      "file": "focus-production.log",
+      "sha256": "9a7df5c6d26ce9a1006dbafd81edfafdfb4a489adc3e1327ad424bfb87c5d9a8",
+      "bytes": 90
+    },
+    {
+      "file": "focus-tests.log",
+      "sha256": "a659185d6fed9a66ff5e6bef2b1fb44e77d85b93acb01fe84729f109365463e3",
+      "bytes": 390
+    },
+    {
+      "file": "focus-type-recheck.log",
+      "sha256": "e8ac47dfa40ca6d829ef88ffeaf412059a193a7be5c34bfc9d1e9f91f4ea56f1",
+      "bytes": 273
+    },
+    {
+      "file": "focus.cjs",
+      "sha256": "ef5d74f5fae293fd9318ba2d4cefc2c7dbb84d49f0bcc7942de2e28ccc88f409",
+      "bytes": 2327
+    },
+    {
+      "file": "focus.log",
+      "sha256": "5c996a979806299e420b9b373f94a00ceba03c27b8d09086d97381affc083894",
+      "bytes": 4403
+    },
+    {
+      "file": "full-tests-dialog-final.log",
+      "sha256": "d613f660dbf1891c6a0505818e3f0ec61322a3a1d8c428311c704d02a9e5774f",
+      "bytes": 10188
+    },
+    {
+      "file": "full-tests-final.log",
+      "sha256": "0eec55f7ab53cb19d6f921388a577a0c16559c30a8116148f08cc55ea99eef75",
+      "bytes": 10449
+    },
+    {
+      "file": "full-tests.log",
+      "sha256": "850f120cb6847d6ff36c751f63130dc69c344d1b6663801978c63ba1c53094d6",
+      "bytes": 10088
+    },
+    {
+      "file": "legacy-v1.vdoc.json",
+      "sha256": "5a9dc6bd653e9efd06ce74206de035687e89015e3544b8cc35d5c0b5e93b914b",
+      "bytes": 308
+    },
+    {
+      "file": "menu-focus-fixed.json",
+      "sha256": "a1af18652bcea0015cc5aaf2da9b7f067d502a1d4a73e871cb909afc80555b4e",
+      "bytes": 8285
+    },
+    {
+      "file": "menu-focus-probe.json",
+      "sha256": "55f0b690acb437fcf64adc9d8c0ce2eef9769d0f898c6b71566a94cbba8f0aa9",
+      "bytes": 7573
+    },
+    {
+      "file": "nested-table-overflow-content.json",
+      "sha256": "e0d6c0c07274b8ff53950c14d8435858945db63e791959e945d07383a98f4a65",
+      "bytes": 71240
+    },
+    {
+      "file": "nested-table-overflow.png",
+      "sha256": "aaf376f9c505d0af1f3107914c3d6c7c83bda35b722d5ad816eb0f3cd3fbd897",
+      "bytes": 65229
+    },
+    {
+      "file": "preview.png",
+      "sha256": "5aa845f52760ca2aa06d5fe64ec197aab0e6b2c964aec393f131e866f0d102e3",
+      "bytes": 105979
+    },
+    {
+      "file": "run-01.log",
+      "sha256": "433ba8f071a1a87a07504a47eeb252ae82358966c6266313be81c82b718523f1",
+      "bytes": 4536
+    },
+    {
+      "file": "run-02.log",
+      "sha256": "71db332bfd342a7b0db379b582b733b6e93e0b439bbb000bfe25839c83278179",
+      "bytes": 1199
+    },
+    {
+      "file": "run-03.log",
+      "sha256": "f23a974ab1d1e99b2449a6d9b35a0b2ff5d900a0796fd203bc37ad63ff0f3046",
+      "bytes": 1887
+    },
+    {
+      "file": "run-04.log",
+      "sha256": "b3397180087d95f7a49937e448e7696c649f7143fb33577a588443f89ca0249f",
+      "bytes": 2257
+    },
+    {
+      "file": "run-05.log",
+      "sha256": "b1420e15a4e68547d47d3af09d7e39cb490ee43c7ce22e53fb43e2d5930eb43e",
+      "bytes": 2036
+    },
+    {
+      "file": "run-06.log",
+      "sha256": "c4ea9b9842a8d7ad3d599c93d4bfaad3f5f92599df3485595909823c4a173050",
+      "bytes": 734
+    },
+    {
+      "file": "run-07.log",
+      "sha256": "200baae64da444a2f4279ee3bed20609fb87ed3ef67eadfe500b5b9c2516a92b",
+      "bytes": 3689
+    },
+    {
+      "file": "run-08.log",
+      "sha256": "fdc3cdb3e76a21e731c8354f24cf453aea6697d6d54ba9679fcd4075caae8544",
+      "bytes": 3723
+    },
+    {
+      "file": "run-09.log",
+      "sha256": "036832f6be799f4140496a9cbe4da7b97fc3752973fe1b2805524906eb148836",
+      "bytes": 3723
+    },
+    {
+      "file": "run-dialog-final.log",
+      "sha256": "5a2faf59218bf2b6cbfc11a656570875ddc25d560e3ce332c547bae2b309c52e",
+      "bytes": 3723
+    },
+    {
+      "file": "run-list-check.log",
+      "sha256": "20e866ee08071ded9df4573e8e1cfdbbbb55d7514c8fbaac1bb23852611f83bb",
+      "bytes": 4580
+    },
+    {
+      "file": "run.cjs",
+      "sha256": "297dcccb6fefb9d505ed5520684015336748a58c3fda014b7f1d62319186f271",
+      "bytes": 19807
+    },
+    {
+      "file": "safari-driver-status.json",
+      "sha256": "c14aa6e0ec0490cf79e35d43ced90665ab1d1050d31fdea3c8a2f187b36bf4e8",
+      "bytes": 293
+    },
+    {
+      "file": "search-100%.png",
+      "sha256": "ceb5d0a9b844fad991c12fff831735cf642e02522f1e85d2c4400c963d2c1d4e",
+      "bytes": 145217
+    },
+    {
+      "file": "search-125%.png",
+      "sha256": "1012e3af5b296e6f23fec8a0cf1854f5a76c114903788e272ffa05f3a29d22a0",
+      "bytes": 136028
+    },
+    {
+      "file": "server-dialog-final.log",
+      "sha256": "92a532ef3abdbc2507d19d2a34d27429372b1be4451e41e0812def99cf96fe76",
+      "bytes": 36652
+    },
+    {
+      "file": "server-final-continuation.log",
+      "sha256": "96f5e8adb2ab4106976b76a9a24c5938053ec10bacd9328fbea7cafad478f679",
+      "bytes": 35642
+    },
+    {
+      "file": "server-final.log",
+      "sha256": "142346fdc46ff019e7304b073f2833354904152178616888c2684880f47aeb69",
+      "bytes": 38710
+    },
+    {
+      "file": "server-list-check.log",
+      "sha256": "f9351ae57a2b7a74562c60a10a4321463b8445b1bbc5a0e9f0e85f8051d39f0f",
+      "bytes": 35639
+    },
+    {
+      "file": "server.log",
+      "sha256": "e502d1541501dcfae99ab104cfa61a9a7f56cadb9bf97d0d9fb671300ec9ea6f",
+      "bytes": 39681
+    },
+    {
+      "file": "source-manifest.json",
+      "sha256": "0deb1a310c9a55c1fc535f129fd2b5ae8acf9220a37b2e643fa63ecc567c0aea",
+      "bytes": 24791
+    },
+    {
+      "file": "targeted.log",
+      "sha256": "5c85536442e14f4c78edbf2595a26fbb02325ac9192d19e5f280448f96dcbbce",
+      "bytes": 331
+    },
+    {
+      "file": "typecheck-dialog-final.log",
+      "sha256": "62c43c4d1ccdb60bc4783c4e95bff684a9f327e48803351fae38e50d7bb58311",
+      "bytes": 40
+    },
+    {
+      "file": "typecheck-final.log",
+      "sha256": "62c43c4d1ccdb60bc4783c4e95bff684a9f327e48803351fae38e50d7bb58311",
+      "bytes": 40
+    },
+    {
+      "file": "typecheck.log",
+      "sha256": "62c43c4d1ccdb60bc4783c4e95bff684a9f327e48803351fae38e50d7bb58311",
+      "bytes": 40
+    },
+    {
+      "file": "word-roundtrip-structures.json",
+      "sha256": "b187eb5be2d6fff93845fc32745e5a400bcbbbc1b7da1d55f3d20327792553a4",
+      "bytes": 1864
+    },
+    {
+      "file": "word-roundtrip.json",
+      "sha256": "915039a7d4436bbf8ee2c477c56ed411f2d838bceb8efffa5298d3dd320f1a50",
+      "bytes": 58221
+    },
+    {
+      "file": "workbook-dialog-final.log",
+      "sha256": "57510f159c4854752ee53307ebb40d178dc993eae2e991b9c995a0e4f0130e3e",
+      "bytes": 927
+    },
+    {
+      "file": "workbook.log",
+      "sha256": "57510f159c4854752ee53307ebb40d178dc993eae2e991b9c995a0e4f0130e3e",
+      "bytes": 927
+    }
+  ],
+  "workbook": {
+    "file": "outputs/final-five-20261010/VDoc-AI前五项验收-320条.xlsx",
+    "sha256": "38930d2d89182e77c588fb23655083299d522aae5fb95ceed734c17b08729543",
+    "rows": 320,
+    "formulaChecks": "passed",
+    "visualReview": [
+      "overview.png",
+      "workflow-evidence.png"
+    ]
+  }
+}

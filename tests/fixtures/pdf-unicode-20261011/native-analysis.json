@@ -1,0 +1,554 @@
+[
+  {
+    "file": "output/pdf/safari-native-20261011/clusters-native-100.pdf",
+    "sha256": "e2f430fbb3ed21992d477b04401fa0f9b1472ff0a53b98ebb91ad906b05f5771",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      803,
+      929,
+      929,
+      408,
+      138
+    ],
+    "texts": [
+      "VDoc system acceptance \nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: .\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02  \n ROW 01 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 —   עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04  ROW 03 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 —   עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06  ROW 05 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 —   עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08  ROW 07 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 2 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10  ROW 09 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 —   עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12  ROW 11 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 —   עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14  ROW 13 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 —   עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16  ROW 15 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 —   עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18  ROW 17 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 —   עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20  ROW 19 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 3 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22  ROW 21 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 —   עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24  ROW 23 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 —   עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26  ROW 25 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 —   עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28  ROW 27 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 —   עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30  ROW 29 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 —   עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32  ROW 31 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 4 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34  ROW 33 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 —   עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36  ROW 35 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 —   עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance \nLocal document acceptance 5 / 5\nFINAL PAGE CHECK \nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/pdf-unicode-20261011/renders/clusters-native-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/global-native-100.pdf",
+    "sha256": "ef4b9fcb549b38b15634b51c616fb9521cedbcce2c9b1818cd53ec376d760456",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      803,
+      929,
+      929,
+      408,
+      138
+    ],
+    "texts": [
+      "VDoc system acceptance \nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: .\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup Details ﺔيﺑرﻌﻟا\nGROUP 01 — rows 01–02  \n ROW 01 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 —   עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04  ROW 03 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 —   עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06  ROW 05 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 —   עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08  ROW 07 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 2 / 5\nGroup Details ﺔيﺑرﻌﻟا\nGROUP 05 — rows 09–10  ROW 09 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 —   עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12  ROW 11 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 —   עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14  ROW 13 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 —   עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16  ROW 15 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 —   עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18  ROW 17 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 —   עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20  ROW 19 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 3 / 5\nGroup Details ﺔيﺑرﻌﻟا\nGROUP 11 — rows 21–22  ROW 21 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 —   עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24  ROW 23 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 —   עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26  ROW 25 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 —   עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28  ROW 27 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 —   עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30  ROW 29 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 —   עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32  ROW 31 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 4 / 5\nGroup Details ﺔيﺑرﻌﻟا\nGROUP 17 — rows 33–34  ROW 33 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 —   עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36  ROW 35 — English  ﺔيﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 —   עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance \nLocal document acceptance 5 / 5\nFINAL PAGE CHECK \nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/pdf-unicode-20261011/renders/global-native-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/incremental-native-100.pdf",
+    "sha256": "ec6628d36c5453765b2e4d3bc6312887afa5b6c19b91136e0948611590933b2c",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      803,
+      929,
+      929,
+      408,
+      138
+    ],
+    "texts": [
+      "VDoc system acceptance \nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: .\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02  \n ROW 01 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 —   עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04  ROW 03 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 —   עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06  ROW 05 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 —   עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08  ROW 07 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 2 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10  ROW 09 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 —   עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12  ROW 11 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 —   עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14  ROW 13 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 —   עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16  ROW 15 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 —   עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18  ROW 17 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 —   עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20  ROW 19 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 3 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22  ROW 21 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 —   עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24  ROW 23 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 —   עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26  ROW 25 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 —   עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28  ROW 27 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 —   עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30  ROW 29 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 —   עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32  ROW 31 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 4 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34  ROW 33 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 —   עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36  ROW 35 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 —   עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance \nLocal document acceptance 5 / 5\nFINAL PAGE CHECK \nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/pdf-unicode-20261011/renders/incremental-native-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/normalized-native-100.pdf",
+    "sha256": "60fdb609b567fcabfacad676e92c1bba66a3b8387663cc769f11d99a74ab65cb",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      803,
+      929,
+      929,
+      408,
+      138
+    ],
+    "texts": [
+      "VDoc system acceptance \nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: .\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02  \n ROW 01 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 —   עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04  ROW 03 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 —   עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06  ROW 05 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 —   עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08  ROW 07 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 2 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10  ROW 09 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 —   עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12  ROW 11 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 —   עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14  ROW 13 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 —   עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16  ROW 15 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 —   עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18  ROW 17 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 —   עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20  ROW 19 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 3 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22  ROW 21 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 —   עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24  ROW 23 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 —   עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26  ROW 25 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 —   עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28  ROW 27 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 —   עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30  ROW 29 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 —   עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32  ROW 31 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 4 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34  ROW 33 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 —   עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36  ROW 35 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 —   עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance \nLocal document acceptance 5 / 5\nFINAL PAGE CHECK \nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/pdf-unicode-20261011/renders/normalized-native-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/normalized-native-101.pdf",
+    "sha256": "51aaebbc8dae0062ac342d9496169dbcdb441a89d453b95f949c0da8d9400ed2",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      803,
+      929,
+      929,
+      408,
+      138
+    ],
+    "texts": [
+      "VDoc system acceptance \nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: .\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02  \n ROW 01 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 —   עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04  ROW 03 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 —   עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06  ROW 05 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 —   עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08  ROW 07 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 2 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10  ROW 09 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 —   עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12  ROW 11 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 —   עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14  ROW 13 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 —   עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16  ROW 15 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 —   עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18  ROW 17 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 —   עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20  ROW 19 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 3 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22  ROW 21 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 —   עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24  ROW 23 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 —   עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26  ROW 25 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 —   עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28  ROW 27 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 —   עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30  ROW 29 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 —   עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32  ROW 31 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 4 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34  ROW 33 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 —   עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36  ROW 35 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 —   עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance \nLocal document acceptance 5 / 5\nFINAL PAGE CHECK \nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/pdf-unicode-20261011/renders/normalized-native-101-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/normalized-native-93.pdf",
+    "sha256": "f79783dd545369f070d0b053df70f678f6ff8ff71fa267e1b075bff623858f6a",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      803,
+      929,
+      929,
+      408,
+      138
+    ],
+    "texts": [
+      "VDoc system acceptance \nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: .\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 01 — rows 01–02  \n ROW 01 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 02 —   עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04  ROW 03 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 04 —   עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06  ROW 05 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 06 —   עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08  ROW 07 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 08 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 2 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 05 — rows 09–10  ROW 09 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 10 —   עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12  ROW 11 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 12 —   עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14  ROW 13 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 14 —   עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16  ROW 15 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 16 —   עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18  ROW 17 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 18 —   עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20  ROW 19 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 20 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 3 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 11 — rows 21–22  ROW 21 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 22 —   עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24  ROW 23 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 24 —   עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26  ROW 25 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 26 —   עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28  ROW 27 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 28 —   עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30  ROW 29 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 30 —   עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32  ROW 31 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 32 —   עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance \nLocal document acceptance 4 / 5\nGroup Details ﺔﯾﺑرﻌﻟا\nGROUP 17 — rows 33–34  ROW 33 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 34 —   עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36  ROW 35 — English  ﺔﯾﺑرﻌﻟا\nCheck complete text and cell borders.\nROW 36 —   עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance \nLocal document acceptance 5 / 5\nFINAL PAGE CHECK \nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/pdf-unicode-20261011/renders/normalized-native-93-contact.png"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "scale": 101,
+  "file": "output/pdf/safari-native-20261011/diagnostic-root-clipped-101.pdf",
+  "nativePageLabel": "All 4 Pages",
+  "sha256": "323013e00e8d115a1f75dfd05ca011d02241e8391fa3279041f557f28d44f518",
+  "bytes": 23516,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "note": "PDF action succeeded before focus guard stopped; resumed existing Save sheet"
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  },
+  "sourceCheck": "Standalone fixed HTML control; no editor snapshot applies"
+}

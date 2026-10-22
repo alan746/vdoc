@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+    "-env:UserInstallation=file:///var/folders/1z/7tmqhmgs4z54mn9wv4njr02h0000gn/T/vdoc-lo-fonts-4cofkggh",
+    "--headless",
+    "--norestore",
+    "--convert-to",
+    "pdf:writer_pdf_Export",
+    "--outdir",
+    "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts",
+    "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/words.fodt",
+    "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/arabic.fodt",
+    "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/hebrew.fodt"
+  ],
+  "exit": 0,
+  "stdout": "convert /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/words.fodt as a Writer document -> /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/words.pdf using filter : writer_pdf_Export\nconvert /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/arabic.fodt as a Writer document -> /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/arabic.pdf using filter : writer_pdf_Export\nconvert /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/hebrew.fodt as a Writer document -> /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/hebrew.pdf using filter : writer_pdf_Export\n",
+  "stderr": "",
+  "seconds": 1.050104291003663
+}

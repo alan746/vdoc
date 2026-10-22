@@ -1,0 +1,18 @@
+{
+  "scale": 100,
+  "file": "output/pdf/safari-native-20261011/prototype-native-100.pdf",
+  "nativePageLabel": "All 5 Pages",
+  "sha256": "ac7f7b8631e6c12b607d95689af683004c739b704fcb53876c95b5e5de91b9ab",
+  "bytes": 49152,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

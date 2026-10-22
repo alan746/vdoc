@@ -1,0 +1,7 @@
+{
+  "url": "http://localhost:5173/lib/editor/preview-images.ts",
+  "contentType": "text/javascript",
+  "sha256": "165aa404a696c603644ea59cb14b6a68890df6073438f2e6b13e932c20efc8fc",
+  "localSourceSha256": "b54a4de6009cb1ecc7163af0327ae4ae2f26db2811e90a4c1365173fa84d2aca",
+  "scope": "Development server serves updated visible-time logic; not native acceptance."
+}

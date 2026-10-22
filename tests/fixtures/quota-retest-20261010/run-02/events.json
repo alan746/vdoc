@@ -1,0 +1,76 @@
+[
+  {
+    "at": "2026-10-10T23:47:56.481Z",
+    "name": "environment",
+    "version": "154.0.8037.98",
+    "url": "http://127.0.0.1:4176/tools/quota-workspace/index.html?qaBucket=vdoc-qa-11d754ae-4f6c-453a-a065-b93e1a1210c9",
+    "profile": "new ephemeral Chrome profile; no personal profile or existing window attached"
+  },
+  {
+    "at": "2026-10-10T23:47:58.291Z",
+    "name": "baseline-persisted",
+    "id": "9e0383a1-7d7b-4ffb-9c15-9f88fdc70bf1"
+  },
+  {
+    "at": "2026-10-10T23:47:59.395Z",
+    "name": "initial-clean-restore",
+    "url": "http://127.0.0.1:4176/tools/quota-workspace/index.html?qaBucket=vdoc-qa-95a44e22-a5a5-4d0e-ac2d-a59316ef5348#document=6995c82e-28da-45aa-a7d5-3795d7329675",
+    "fullContentEqual": true
+  },
+  {
+    "at": "2026-10-10T23:48:02.091Z",
+    "name": "native-bucket-filled",
+    "bucket": "vdoc-qa-11d754ae-4f6c-453a-a065-b93e1a1210c9",
+    "bytes": 8261632
+  },
+  {
+    "at": "2026-10-10T23:48:03.058Z",
+    "name": "QuotaExceededError",
+    "oldContentEqual": true,
+    "newTitleInActualBackup": true
+  },
+  {
+    "at": "2026-10-10T23:48:04.502Z",
+    "name": "no-unprompted-write-loop",
+    "observationsMs": 1400,
+    "transactions": 13
+  },
+  {
+    "at": "2026-10-10T23:48:05.399Z",
+    "name": "failed-navigation-keeps-editor"
+  },
+  {
+    "at": "2026-10-10T23:48:05.791Z",
+    "name": "new-failure-visible",
+    "persistentError": "Local storage is full. Download a backup of any unsaved changes, free some space, then try again.",
+    "documents": 2
+  },
+  {
+    "at": "2026-10-10T23:48:06.365Z",
+    "name": "copy-failure-visible",
+    "persistentError": "Local storage is full. Download a backup of any unsaved changes, free some space, then try again.",
+    "documents": 2
+  },
+  {
+    "at": "2026-10-10T23:48:06.442Z",
+    "name": "import-failure-visible",
+    "persistentError": "Local storage is full. Download a backup of any unsaved changes, free some space, then try again.",
+    "documents": 2
+  },
+  {
+    "at": "2026-10-10T23:48:06.507Z",
+    "name": "failed-actions-entire-database-unchanged"
+  },
+  {
+    "at": "2026-10-10T23:48:07.556Z",
+    "name": "retry-counts-control-intact"
+  },
+  {
+    "at": "2026-10-10T23:48:08.387Z",
+    "name": "actual-reload-title-content-equal"
+  },
+  {
+    "at": "2026-10-10T23:48:11.229Z",
+    "name": "clean-restored-subsequent-edit-reloads"
+  }
+]

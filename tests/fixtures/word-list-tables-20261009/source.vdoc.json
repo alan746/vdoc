@@ -1,0 +1,429 @@
+{
+  "version": 1,
+  "title": "QA list tables roundtrip 2026-10-09",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LIST_TABLE_START 中文 العربية"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 7,
+          "type": "I",
+          "numberPrefix": "(",
+          "numberSuffix": ")"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Seven"
+                  }
+                ]
+              },
+              {
+                "type": "table",
+                "content": [
+                  {
+                    "type": "tableRow",
+                    "content": [
+                      {
+                        "type": "tableCell",
+                        "attrs": {
+                          "colspan": 2
+                        },
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "First merged 中文 العربية"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableRow",
+                    "content": [
+                      {
+                        "type": "tableCell",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "First A 日本語"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "tableCell",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "First B 👩‍💻 café कि"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Same seventh item after table"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Eight"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Between lists"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 9,
+          "type": "I",
+          "numberPrefix": "(",
+          "numberSuffix": ")",
+          "continuePrevious": true
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Nine"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Quote"
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Quoted item"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "table",
+                    "content": [
+                      {
+                        "type": "tableRow",
+                        "content": [
+                          {
+                            "type": "tableCell",
+                            "attrs": {
+                              "colspan": 2
+                            },
+                            "content": [
+                              {
+                                "type": "paragraph",
+                                "content": [
+                                  {
+                                    "type": "text",
+                                    "text": "Quoted merged 中文 العربية"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "tableRow",
+                        "content": [
+                          {
+                            "type": "tableCell",
+                            "content": [
+                              {
+                                "type": "paragraph",
+                                "content": [
+                                  {
+                                    "type": "text",
+                                    "text": "Quoted A 日本語"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "content": [
+                              {
+                                "type": "paragraph",
+                                "content": [
+                                  {
+                                    "type": "text",
+                                    "text": "Quoted B 👩‍💻 café कि"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Quoted item tail"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 2
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Outer cell"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "bulletList",
+                    "content": [
+                      {
+                        "type": "listItem",
+                        "content": [
+                          {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "Cell item"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "table",
+                            "content": [
+                              {
+                                "type": "tableRow",
+                                "content": [
+                                  {
+                                    "type": "tableCell",
+                                    "attrs": {
+                                      "colspan": 2
+                                    },
+                                    "content": [
+                                      {
+                                        "type": "paragraph",
+                                        "content": [
+                                          {
+                                            "type": "text",
+                                            "text": "Nested merged 中文 العربية"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "tableRow",
+                                "content": [
+                                  {
+                                    "type": "tableCell",
+                                    "content": [
+                                      {
+                                        "type": "paragraph",
+                                        "content": [
+                                          {
+                                            "type": "text",
+                                            "text": "Nested A 日本語"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "tableCell",
+                                    "content": [
+                                      {
+                                        "type": "paragraph",
+                                        "content": [
+                                          {
+                                            "type": "text",
+                                            "text": "Nested B 👩‍💻 café कि"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "paragraph",
+                            "content": [
+                              {
+                                "type": "text",
+                                "text": "Same cell item tail"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Outer cell tail"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Outer A 日本語"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Outer B 👩‍💻 café कि"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LIST_TABLE_END العربية"
+          }
+        ]
+      }
+    ]
+  }
+}

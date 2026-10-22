@@ -1,0 +1,1388 @@
+{
+  "version": 1,
+  "title": "QA Word roundtrip 2026-10-10",
+  "content": {
+    "type": "doc",
+    "attrs": {
+      "language": "und",
+      "pageSize": "a4",
+      "orientation": "portrait",
+      "pageMargin": 20,
+      "pageColor": "#FFFFFF",
+      "header": "",
+      "footer": "",
+      "pageNumbers": false
+    },
+    "content": [
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": false,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_98f13dc6-2786-4621-8ad2-b6c1f2151fe8"
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(104, 119, 141)",
+                  "fontFamily": "Arial",
+                  "fontSize": "12px"
+                }
+              }
+            ],
+            "text": "PRODUCT / 01"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": true,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_d373a38c-4ee3-4a1e-9d0d-0660a902028d",
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(36, 51, 76)",
+                  "fontFamily": "Arial",
+                  "fontSize": "32px"
+                }
+              },
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "把想法，写成下一步。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": false,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_4dda47ee-c6cd-4cde-b7a9-aa04755ffa51"
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(104, 119, 141)",
+                  "fontFamily": "Arial",
+                  "fontSize": "18px"
+                }
+              }
+            ],
+            "text": "VDoc 项目计划"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": true,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_ce80e915-bc07-4706-bbb9-b8b76cfbaa1b",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(40, 57, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "19.3333px"
+                }
+              },
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "项目概览"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": false,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_3106dbcf-8a6f-46ea-a279-53fe952c8e2c"
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(54, 65, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "16px"
+                }
+              },
+              {
+                "type": "underline"
+              },
+              {
+                "type": "highlight",
+                "attrs": {
+                  "color": "#DDEBFE"
+                }
+              }
+            ],
+            "text": "好的文档，让想法更清晰。"
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(54, 65, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "16px"
+                }
+              }
+            ],
+            "text": "我们希望为每一次思考，提供一个"
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(54, 65, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "16px"
+                }
+              },
+              {
+                "type": "highlight",
+                "attrs": {
+                  "color": "#FFF0AD"
+                }
+              }
+            ],
+            "text": "安静、流畅、可靠"
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(54, 65, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "16px"
+                }
+              }
+            ],
+            "text": "的书写空间。从一句灵感开始，逐渐整理成可以执行的计划。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": true,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_b8e836de-7967-413c-9f67-d108625fcab2",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(40, 57, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "19.3333px"
+                }
+              },
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "我们关注什么"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "b_99309d60-f435-456c-aecc-6acfbbf646a4",
+          "bulletText": null,
+          "bulletStyle": "disc"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "keepWithNext": false,
+                  "keepLinesTogether": false,
+                  "preventSingleLines": true,
+                  "paragraphBorderJoin": false,
+                  "paragraphBorders": null,
+                  "paragraphBackground": null,
+                  "indent": 0,
+                  "indentStart": null,
+                  "indentEnd": 0,
+                  "firstLineIndent": 0,
+                  "tabInterval": 48,
+                  "direction": "auto",
+                  "spaceBefore": null,
+                  "spaceAfter": null,
+                  "lineHeight": null,
+                  "blockId": "b_82bad013-a6e1-4df2-b9d3-59ff87bc108d"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "color": "rgb(54, 65, 82)",
+                          "fontFamily": "Arial",
+                          "fontSize": "16px"
+                        }
+                      },
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "自然书写"
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "color": "rgb(54, 65, 82)",
+                          "fontFamily": "Arial",
+                          "fontSize": "16px"
+                        }
+                      }
+                    ],
+                    "text": " — 让输入、选择和修改都顺手。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "keepWithNext": false,
+                  "keepLinesTogether": false,
+                  "preventSingleLines": true,
+                  "paragraphBorderJoin": false,
+                  "paragraphBorders": null,
+                  "paragraphBackground": null,
+                  "indent": 0,
+                  "indentStart": null,
+                  "indentEnd": 0,
+                  "firstLineIndent": 0,
+                  "tabInterval": 48,
+                  "direction": "auto",
+                  "spaceBefore": null,
+                  "spaceAfter": null,
+                  "lineHeight": null,
+                  "blockId": "b_ca667ba9-49e0-4516-ba73-5c2f67edd9f9"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "color": "rgb(54, 65, 82)",
+                          "fontFamily": "Arial",
+                          "fontSize": "16px"
+                        }
+                      },
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "清晰表达"
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "color": "rgb(54, 65, 82)",
+                          "fontFamily": "Arial",
+                          "fontSize": "16px"
+                        }
+                      }
+                    ],
+                    "text": " — 用标题、列表和表格组织复杂的信息。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "keepWithNext": false,
+                  "keepLinesTogether": false,
+                  "preventSingleLines": true,
+                  "paragraphBorderJoin": false,
+                  "paragraphBorders": null,
+                  "paragraphBackground": null,
+                  "indent": 0,
+                  "indentStart": null,
+                  "indentEnd": 0,
+                  "firstLineIndent": 0,
+                  "tabInterval": 48,
+                  "direction": "auto",
+                  "spaceBefore": null,
+                  "spaceAfter": null,
+                  "lineHeight": null,
+                  "blockId": "b_f0546776-458c-4b7e-8c2a-2ec1a7445255"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "color": "rgb(54, 65, 82)",
+                          "fontFamily": "Arial",
+                          "fontSize": "16px"
+                        }
+                      },
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "安心编辑"
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "textStyle",
+                        "attrs": {
+                          "color": "rgb(54, 65, 82)",
+                          "fontFamily": "Arial",
+                          "fontSize": "16px"
+                        }
+                      }
+                    ],
+                    "text": " — 每一次修改，都可以从容撤销。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": true,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_e0a2da5f-dfde-410e-a9ab-484f458260f3",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(40, 57, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "19.3333px"
+                }
+              },
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "阶段安排"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "attrs": {
+          "blockId": "b_3c8eb87e-4481-41bd-9ec6-91fb8c95c785",
+          "columnDirection": "ltr",
+          "alignment": "left",
+          "pinnedRows": 1
+        },
+        "content": [
+          {
+            "type": "tableRow",
+            "attrs": {
+              "blockId": "b_a28a75b3-5e02-4e82-892b-52f79d83b9c3",
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "blockId": "b_a28076a1-a360-46be-a066-5bcb8b0898d3",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_92b61c83-5b9c-40b0-a413-5cca9df36d34"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          },
+                          {
+                            "type": "bold"
+                          }
+                        ],
+                        "text": "阶段"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "blockId": "b_3685f10c-f457-4c97-b34a-b955b75dab3f",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_45f7f5bc-e7f4-49b8-8071-ee7a7496d9fd"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          },
+                          {
+                            "type": "bold"
+                          }
+                        ],
+                        "text": "重点工作"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "blockId": "b_20bbbed2-74f5-42a0-9b38-4a77d3ac4baa",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_4e98c73e-47d4-41ca-9ea5-fb22894d597a"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          },
+                          {
+                            "type": "bold"
+                          }
+                        ],
+                        "text": "交付成果"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "blockId": "b_274123f3-8313-463c-9290-bdc1bf425fc8",
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_4c43c2b5-ddd0-4bd0-94a1-e67d341a3a30",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_19806e9b-d758-4556-83d9-a354dc9c1c8a"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "01 · 基础"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_b8b02c03-b991-4523-acd9-ca322a518eca",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_0beffacf-c38b-4cae-b099-bb30e4b0894f"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "编辑与排版"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_9346bbe4-5e7e-4b3e-8d84-6d79d11aae97",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_ea1e87d2-88d0-46ef-b01d-76c3e7f41de1"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "可用的文档工作台"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "blockId": "b_79b052ea-3328-4f65-b411-4da32adb5089",
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_a3ce640b-eb2a-4a5e-8775-82c35761f24b",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_f2b73f9d-16d8-4d1c-b5b5-9bc5c74fc3f4"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "02 · 体验"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_d8ff8be8-a7f4-48fd-91a7-95d70f53a0f2",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_5128c106-6e24-4d87-b637-6ab8c07099ec"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "选择、表格与撤销"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_52e6a5da-5c49-4c27-8185-39a9d693f69f",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_57c9ed11-875e-4d38-a66e-9c96f22b5e5b"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "顺畅的编辑体验"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "blockId": "b_c82b1a69-8bd5-43fc-9bf9-5092809f026c",
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_aeaf28ba-1c20-4309-a652-cccbf7d216d9",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_4e63f716-bfef-4656-ae41-7c45e09c873b"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "03 · 验证"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_426a5d0c-08c4-4e96-940d-7f6bffa6a7ee",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_5df497dc-e72e-4d04-a986-37e47dbd49b9"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "实际文档测试"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_8bc6c8e6-0252-4092-8642-81dc6cc296e2",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": "rgb(220, 227, 237)",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "padding": 10,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": false,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_fc8ea5b2-7a07-45e1-b093-c7dc258751ce"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "textStyle",
+                            "attrs": {
+                              "color": "rgb(54, 65, 82)",
+                              "fontFamily": "Arial",
+                              "fontSize": "16px"
+                            }
+                          }
+                        ],
+                        "text": "稳定的第一版"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": true,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_dc40708b-048b-4ebc-a4ea-f69f14c384d1",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(40, 57, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "19.3333px"
+                }
+              },
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "下一步"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": false,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_43b1ff58-0c3e-4775-b550-c259d602cf77"
+        },
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "textStyle",
+                "attrs": {
+                  "color": "rgb(54, 65, 82)",
+                  "fontFamily": "Arial",
+                  "fontSize": "16px"
+                }
+              }
+            ],
+            "text": "选中一段文字，试试上方的格式工具；也可以直接开始写下你的想法。"
+          }
+        ]
+      }
+    ]
+  },
+  "savedAt": "2026-10-10T18:45:34.576Z"
+}

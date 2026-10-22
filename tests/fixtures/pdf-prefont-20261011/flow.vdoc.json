@@ -1,0 +1,264 @@
+{
+  "version": 1,
+  "title": "QA multilingual font flow",
+  "content": {
+    "type": "doc",
+    "attrs": {
+      "language": "und",
+      "pageSize": "a4",
+      "orientation": "portrait",
+      "pageMargin": 20,
+      "pageColor": "#FFFFFF",
+      "header": "VDoc system acceptance 中文",
+      "footer": "Local document acceptance",
+      "pageNumbers": true
+    },
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Font flow stress 中文 日本語 हिन्दी"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 01 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 01"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 02 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 02"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 03 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 03"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 04 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 04"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 05 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 05"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 06 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 06"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 07 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 07"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BLOCK 08 — English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית. English document flow. 中文段落在分页前加载字体，保持编辑与打印一致。 日本語の文章を確認します。 हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। العربية עברית.  END 08"
+          }
+        ],
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null
+        }
+      }
+    ]
+  },
+  "savedAt": "2026-10-05T04:48:12.166Z"
+}

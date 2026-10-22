@@ -1,0 +1,203 @@
+{
+  "at": "2026-10-11T20:41:35.773Z",
+  "browser": "154.0.8037.98",
+  "scope": "Official PDF.js PDFPageView canvas/text layer; DOM Range full selection read through Selection.toString, no clipboard or Ctrl-C event. Separate from PDFium plugin and raw getTextContent concatenation. Not an arbitrary third-party viewer or assistive-technology signoff.",
+  "requests": [
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/images/loading-icon.gif"
+  ],
+  "results": [
+    {
+      "label": "hebrew",
+      "mode": "record-leading-space",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-leading-space.pdf",
+      "pdfSha256": "388f00ec2b0f2c41ccb254d6dc4f67d961c09faf90165cd350a3c1d87bd4092a",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell עברית\nDifferent context שלום",
+      "textContent": "Browser PDF — Hebrew wordsשלום עולם בדיקת מסמךעברית כתיבה טבלהשלום בעברית עולםTable cell עבריתDifferent context שלום",
+      "rawText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell עברית\nDifferent context שלום",
+      "spans": [
+        {
+          "text": "Browser PDF — Hebrew words",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 109.390625,
+            "width": 312.0453186035156,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלום",
+          "dir": "rtl",
+          "rect": {
+            "x": 703.96875,
+            "y": 171.390625,
+            "width": 49.0064697265625,
+            "height": 22
+          }
+        },
+        {
+          "text": " עולם",
+          "dir": "rtl",
+          "rect": {
+            "x": 651.8125,
+            "y": 171.390625,
+            "width": 46.20758056640625,
+            "height": 22
+          }
+        },
+        {
+          "text": " בדיקת",
+          "dir": "rtl",
+          "rect": {
+            "x": 586.3125,
+            "y": 171.390625,
+            "width": 59.60064697265625,
+            "height": 22
+          }
+        },
+        {
+          "text": " מסמך",
+          "dir": "rtl",
+          "rect": {
+            "x": 525.640625,
+            "y": 171.390625,
+            "width": 54.69964599609375,
+            "height": 22
+          }
+        },
+        {
+          "text": "עברית",
+          "dir": "rtl",
+          "rect": {
+            "x": 695.234375,
+            "y": 233.375,
+            "width": 57.7078857421875,
+            "height": 22
+          }
+        },
+        {
+          "text": " כתיבה",
+          "dir": "rtl",
+          "rect": {
+            "x": 631.71875,
+            "y": 233.375,
+            "width": 57.56341552734375,
+            "height": 22
+          }
+        },
+        {
+          "text": " טבלה",
+          "dir": "rtl",
+          "rect": {
+            "x": 574,
+            "y": 233.375,
+            "width": 51.8125,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלום",
+          "dir": "rtl",
+          "rect": {
+            "x": 703.96875,
+            "y": 295.359375,
+            "width": 49.0064697265625,
+            "height": 22
+          }
+        },
+        {
+          "text": " בעברית",
+          "dir": "rtl",
+          "rect": {
+            "x": 627.75,
+            "y": 295.359375,
+            "width": 70.29351806640625,
+            "height": 22
+          }
+        },
+        {
+          "text": " עולם",
+          "dir": "rtl",
+          "rect": {
+            "x": 575.59375,
+            "y": 295.359375,
+            "width": 46.20758056640625,
+            "height": 22
+          }
+        },
+        {
+          "text": "Table cell",
+          "dir": "ltr",
+          "rect": {
+            "x": 91.953125,
+            "y": 384.421875,
+            "width": 94.04487609863281,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 186.046875,
+            "y": 384.421875,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "עברית",
+          "dir": "rtl",
+          "rect": {
+            "x": 567.5625,
+            "y": 384.421875,
+            "width": 57.7078857421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "Different context",
+          "dir": "ltr",
+          "rect": {
+            "x": 91.953125,
+            "y": 453.375,
+            "width": 174.33251953125,
+            "height": 22
+          }
+        },
+        {
+          "text": " ",
+          "dir": "ltr",
+          "rect": {
+            "x": 266.328125,
+            "y": 453.375,
+            "width": 6.125,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלום",
+          "dir": "rtl",
+          "rect": {
+            "x": 567.5625,
+            "y": 453.375,
+            "width": 49.0064697265625,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": true,
+      "rawMatchCollapsed": true,
+      "screenshot": "tests/fixtures/reader-control-20261011/pdfjs-browser-record-leading-space-probe-hebrew.png",
+      "errors": []
+    }
+  ]
+}

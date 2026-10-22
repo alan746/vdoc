@@ -1,0 +1,73 @@
+[
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-full-sheet-100.pdf",
+    "pages": 2,
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page."
+    ]
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-full-sheet-101.pdf",
+    "pages": 6,
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page.",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-intrinsic-height-control-100.pdf",
+    "pages": 2,
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page."
+    ]
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-intrinsic-height-control-101.pdf",
+    "pages": 4,
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page.",
+      ""
+    ]
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-plain-control-100.pdf",
+    "pages": 2,
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page."
+    ]
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-plain-control-101.pdf",
+    "pages": 4,
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page.",
+      ""
+    ]
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-single-page-control-100.pdf",
+    "pages": 1,
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text."
+    ]
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-single-page-control-101.pdf",
+    "pages": 2,
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text.",
+      ""
+    ]
+  }
+]

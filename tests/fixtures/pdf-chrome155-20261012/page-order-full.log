@@ -1,0 +1,7 @@
+{"label":"full-words","match":true,"body":true}
+{"label":"full-arabic","match":true,"body":true}
+{"label":"full-hebrew","match":true,"body":true}
+{"label":"full-arabic-marked","match":false,"body":false}
+{"label":"full-hebrew-marked","match":false,"body":false}
+{"label":"full-arabic-numbers","match":true,"body":true}
+{"label":"full-hebrew-numbers","match":true,"body":true}

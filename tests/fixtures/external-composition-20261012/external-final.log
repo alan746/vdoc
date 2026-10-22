@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/external-operations.test.ts (16 tests) 211ms
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  21:35:19
+   Duration  670ms (transform 118ms, setup 11ms, collect 193ms, tests 211ms, environment 147ms, prepare 29ms)
+

@@ -1,0 +1,108 @@
+{
+  "sourceText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+  "targets": [
+    {
+      "line": 0,
+      "expected": "Browser",
+      "x": 102.5703125,
+      "y": 99.5,
+      "rect": {
+        "x": 60,
+        "y": 85,
+        "width": 85.140625,
+        "height": 29
+      }
+    },
+    {
+      "line": 0,
+      "expected": "vectors",
+      "x": 406.28125,
+      "y": 99.5,
+      "rect": {
+        "x": 368.765625,
+        "y": 85,
+        "width": 75.03125,
+        "height": 29
+      }
+    },
+    {
+      "line": 1,
+      "expected": "हिन्दी",
+      "x": 80.78125,
+      "y": 161.5,
+      "rect": {
+        "x": 60,
+        "y": 147,
+        "width": 41.5625,
+        "height": 29
+      }
+    },
+    {
+      "line": 1,
+      "expected": "लिखना।",
+      "x": 317.109375,
+      "y": 161.5,
+      "rect": {
+        "x": 284.671875,
+        "y": 147,
+        "width": 64.875,
+        "height": 29
+      }
+    },
+    {
+      "line": 2,
+      "expected": "दुनिया",
+      "x": 84.03125,
+      "y": 223.5,
+      "rect": {
+        "x": 60,
+        "y": 209,
+        "width": 48.0625,
+        "height": 29
+      }
+    },
+    {
+      "line": 2,
+      "expected": "प्रार्थना।",
+      "x": 295.15625,
+      "y": 223.5,
+      "rect": {
+        "x": 265.890625,
+        "y": 209,
+        "width": 58.53125,
+        "height": 29
+      }
+    },
+    {
+      "line": 3,
+      "expected": "Repeat",
+      "x": 96.1640625,
+      "y": 285.5,
+      "rect": {
+        "x": 60,
+        "y": 271,
+        "width": 72.328125,
+        "height": 29
+      }
+    },
+    {
+      "line": 3,
+      "expected": "shapes.",
+      "x": 474.9140625,
+      "y": 285.5,
+      "rect": {
+        "x": 435.484375,
+        "y": 271,
+        "width": 78.859375,
+        "height": 29
+      }
+    }
+  ],
+  "width": 794,
+  "height": 1123,
+  "sha256": "19b736b80c13b6a1419dacf5970680e54f6ed3f548c1396bf0784bdfb48047e5",
+  "sourceUnchanged": true,
+  "fontSha256": "8c91b67bf7fdbf3136d05b42711d4d8d61e28f56de4bc5453cf631ef619b4645",
+  "renderer": "154.0.8037.98",
+  "method": "Playwright page.pdf native print control; not a shipping browser API"
+}

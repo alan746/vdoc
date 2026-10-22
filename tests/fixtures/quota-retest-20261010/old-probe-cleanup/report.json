@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-11T00:11:28.694Z",
+  "origin": "http://127.0.0.1:4175",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+  "bucketName": "vdoc-qa-09263cbf-1f69-4e36-bf79-ce5314146073",
+  "existedBefore": true,
+  "before": {
+    "quota": 8388608,
+    "usage": 0,
+    "usageDetails": {}
+  },
+  "deleted": true,
+  "existsAfter": false,
+  "existsAfterIdle": false,
+  "originEstimateAfter": {
+    "quota": 10737418240,
+    "usage": 0,
+    "usageDetails": {}
+  }
+}

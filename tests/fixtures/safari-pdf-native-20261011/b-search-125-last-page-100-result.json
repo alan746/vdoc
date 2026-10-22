@@ -1,0 +1,18 @@
+{
+  "scale": 100,
+  "file": "output/pdf/safari-native-20261011/b-search-125-last-page-100.pdf",
+  "nativePageLabel": "All 5 Pages",
+  "sha256": "7cad074abefeb71fc428213f3cd038940f7af787d3081ef164e923bcaa46e109",
+  "bytes": 97181,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

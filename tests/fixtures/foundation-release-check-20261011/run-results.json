@@ -1,0 +1,87 @@
+{
+  "candidate": "d4d031f5f51cec43eeb87ad40ae5dddb2745ee878a86fb9f30cbab0562dfccdf",
+  "build": {
+    "exitCode": 0,
+    "log": "build.log"
+  },
+  "typecheck": {
+    "exitCode": 0,
+    "log": "typecheck.log"
+  },
+  "firstFullRun": {
+    "exitCode": 1,
+    "filesPassed": 135,
+    "filesFailed": 3,
+    "expectedFiles": 139,
+    "testsPassed": 1955,
+    "testsFailed": 3,
+    "workerErrors": 1,
+    "log": "tests.log"
+  },
+  "isolatedFullRun": {
+    "exitCode": 1,
+    "filesPassed": 138,
+    "filesFailed": 1,
+    "testsPassed": 1970,
+    "testsFailed": 1,
+    "log": "tests-isolated.log"
+  },
+  "toolbarFollowup": {
+    "exitCode": 0,
+    "testsPassed": 22,
+    "log": "toolbar-recheck.log"
+  },
+  "completeAcceptance": false,
+  "limitations": [
+    "First run had three test timeouts plus a worker RPC timeout; second had a different toolbar timeout. Do not attribute to sleep without evidence.",
+    "No product changes or timeout increases.",
+    "Production smoke is independent preflight, not final I/P/S/F signoff or actual native PDF export."
+  ],
+  "awakeFullRun": {
+    "exitCode": 1,
+    "summary": "Test Files  2 failed | 137 passed (139)\n      Tests  2 failed | 1969 passed (1971)\n   Start at  20:39:24\n   Duration  170.92s (transform 1.43s, setup 552ms, collect 16.89s, tests 97.92s, environment 29.55s, prepare 5.06s)",
+    "log": "tests-awake.log"
+  },
+  "parameterizedFullRun": {
+    "exitCode": 1,
+    "summary": "Test Files  1 failed | 138 passed (139)\n      Tests  1 failed | 2009 passed (2010)\n   Start at  20:43:25\n   Duration  168.24s (transform 1.39s, setup 547ms, collect 22.64s, tests 93.46s, environment 32.90s, prepare 4.84s)",
+    "log": "tests-after.log"
+  },
+  "diagnosticFullRun": {
+    "exitCode": 1,
+    "summary": "Test Files  1 failed | 138 passed (139)\n      Tests  1 failed | 2009 passed (2010)\n   Start at  20:46:49\n   Duration  169.63s (transform 1.38s, setup 912ms, collect 16.35s, tests 93.27s, environment 34.70s, prepare 4.90s)",
+    "log": "tests-diagnostic.log"
+  },
+  "targetedAfter": {
+    "exitCode": 0,
+    "testsPassed": 100,
+    "log": "targeted-after.log"
+  },
+  "candidateAfterTestConfigChange": "99d783b542a557fb92a882c07735953123be9ee29161b23fa5dbb2b0e74332d0",
+  "finalFullRun": {
+    "exitCode": 0,
+    "filesPassed": 139,
+    "testsPassed": 2010,
+    "log": "tests-final.log",
+    "durationSeconds": 171.66,
+    "defaultTestTimeoutMs": 15000,
+    "retry": 0
+  },
+  "typecheckFinal": {
+    "exitCode": 0,
+    "log": "typecheck-final.log"
+  },
+  "lintFinal": {
+    "exitCode": 0,
+    "log": "lint-final.log"
+  },
+  "confirmationFullRun": {
+    "exitCode": 0,
+    "filesPassed": 139,
+    "testsPassed": 2010,
+    "log": "tests-confirmation.log",
+    "defaultTestTimeoutMs": 15000,
+    "retry": 0
+  },
+  "nativeGatesRemainOpen": true
+}

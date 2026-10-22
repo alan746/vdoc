@@ -1,0 +1,4 @@
+{"label":"local-production","match":false,"hindiWholeWord":false,"errors":[]}
+{"label":"words","match":false,"hindiWholeWord":false,"errors":[]}
+{"label":"arabic","match":false,"hindiWholeWord":false,"errors":[]}
+{"label":"hebrew","match":true,"hindiWholeWord":false,"errors":[]}

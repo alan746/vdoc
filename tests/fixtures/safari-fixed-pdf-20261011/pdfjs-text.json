@@ -1,0 +1,92 @@
+[
+  {
+    "file": "prototype-b.pdf",
+    "pages": [
+      {
+        "page": 1,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   1 / 5  VDoc core system acceptance  IME test area:   中 ⽂ 输 ⼊ 测试 . Verify Chinese candidate selection and cancellation. Verify PDF text, image, repeated header and page numbers.  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 01 — rows 01–02   中 ⽂   ⽇ 本語   ROW 01 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 02 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 02 — rows 03–04   中 ⽂   ⽇ 本語   ROW 03 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 04 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 03 — rows 05–06   中 ⽂   ⽇ 本語   ROW 05 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 06 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 04 — rows 07–08   中 ⽂   ⽇ 本語   ROW 07 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 08 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once.",
+        "nullCount": 8
+      },
+      {
+        "page": 2,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   2 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 05 — rows 09–10   中 ⽂   ⽇ 本語   ROW 09 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 10 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 06 — rows 11–12   中 ⽂   ⽇ 本語   ROW 11 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 12 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 07 — rows 13–14   中 ⽂   ⽇ 本語   ROW 13 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 14 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 08 — rows 15–16   中 ⽂   ⽇ 本語   ROW 15 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 16 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 09 — rows 17–18   中 ⽂   ⽇ 本語   ROW 17 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 18 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 10 — rows 19–20   中 ⽂   ⽇ 本語   ROW 19 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 20 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once.",
+        "nullCount": 12
+      },
+      {
+        "page": 3,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   3 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 11 — rows 21–22   中 ⽂   ⽇ 本語   ROW 21 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 22 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 12 — rows 23–24   中 ⽂   ⽇ 本語   ROW 23 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 24 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 13 — rows 25–26   中 ⽂   ⽇ 本語   ROW 25 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 26 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 14 — rows 27–28   中 ⽂   ⽇ 本語   ROW 27 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 28 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 15 — rows 29–30   中 ⽂   ⽇ 本語   ROW 29 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 30 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 16 — rows 31–32   中 ⽂   ⽇ 本語   ROW 31 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 32 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once.",
+        "nullCount": 12
+      },
+      {
+        "page": 4,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   4 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 17 — rows 33–34   中 ⽂   ⽇ 本語   ROW 33 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 34 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once. GROUP 18 — rows 35–36   中 ⽂   ⽇ 本語   ROW 35 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 36 —   ⽇ 本語   \u0000ह \u0000ी   עברית  Verify this row appears exactly once.  TABLE END — all 36 body rows must appear once.",
+        "nullCount": 4
+      },
+      {
+        "page": 5,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   5 / 5  FINAL PAGE CHECK   中 ⽂  This heading must start on a new page. End of acceptance sample.",
+        "nullCount": 0
+      }
+    ]
+  },
+  {
+    "file": "prototype-b-font.pdf",
+    "pages": [
+      {
+        "page": 1,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   1 / 5  VDoc core system acceptance  IME test area:   中 ⽂ 输 ⼊ 测试 . Verify Chinese candidate selection and cancellation. Verify PDF text, image, repeated header and page numbers.  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 01 — rows 01–02   中 ⽂   ⽇ 本語   ROW 01 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 02 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 02 — rows 03–04   中 ⽂   ⽇ 本語   ROW 03 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 04 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 03 — rows 05–06   中 ⽂   ⽇ 本語   ROW 05 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 06 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 04 — rows 07–08   中 ⽂   ⽇ 本語   ROW 07 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 08 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once.",
+        "nullCount": 12
+      },
+      {
+        "page": 2,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   2 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 05 — rows 09–10   中 ⽂   ⽇ 本語   ROW 09 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 10 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 06 — rows 11–12   中 ⽂   ⽇ 本語   ROW 11 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 12 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 07 — rows 13–14   中 ⽂   ⽇ 本語   ROW 13 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 14 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 08 — rows 15–16   中 ⽂   ⽇ 本語   ROW 15 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 16 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 09 — rows 17–18   中 ⽂   ⽇ 本語   ROW 17 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 18 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 10 — rows 19–20   中 ⽂   ⽇ 本語   ROW 19 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 20 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once.",
+        "nullCount": 18
+      },
+      {
+        "page": 3,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   3 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 11 — rows 21–22   中 ⽂   ⽇ 本語   ROW 21 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 22 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 12 — rows 23–24   中 ⽂   ⽇ 本語   ROW 23 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 24 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 13 — rows 25–26   中 ⽂   ⽇ 本語   ROW 25 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 26 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 14 — rows 27–28   中 ⽂   ⽇ 本語   ROW 27 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 28 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 15 — rows 29–30   中 ⽂   ⽇ 本語   ROW 29 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 30 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 16 — rows 31–32   中 ⽂   ⽇ 本語   ROW 31 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 32 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once.",
+        "nullCount": 18
+      },
+      {
+        "page": 4,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   4 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 17 — rows 33–34   中 ⽂   ⽇ 本語   ROW 33 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 34 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once. GROUP 18 — rows 35–36   中 ⽂   ⽇ 本語   ROW 35 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 36 —   ⽇ 本語   \u0000ह \u0000\u0000   עברית  Verify this row appears exactly once.  TABLE END — all 36 body rows must appear once.",
+        "nullCount": 6
+      },
+      {
+        "page": 5,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   5 / 5  FINAL PAGE CHECK   中 ⽂  This heading must start on a new page. End of acceptance sample.",
+        "nullCount": 0
+      }
+    ]
+  },
+  {
+    "file": "prototype-b-noto.pdf",
+    "pages": [
+      {
+        "page": 1,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   1 / 5  VDoc core system acceptance  IME test area:   中 ⽂ 输 ⼊ 测试 . Verify Chinese candidate selection and cancellation. Verify PDF text, image, repeated header and page numbers.  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 01 — rows 01–02   中 ⽂   ⽇ 本語   ROW 01 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 02 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 02 — rows 03–04   中 ⽂   ⽇ 本語   ROW 03 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 04 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 03 — rows 05–06   中 ⽂   ⽇ 本語   ROW 05 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 06 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 04 — rows 07–08   中 ⽂   ⽇ 本語   ROW 07 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 08 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once.",
+        "nullCount": 4
+      },
+      {
+        "page": 2,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   2 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 05 — rows 09–10   中 ⽂   ⽇ 本語   ROW 09 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 10 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 06 — rows 11–12   中 ⽂   ⽇ 本語   ROW 11 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 12 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 07 — rows 13–14   中 ⽂   ⽇ 本語   ROW 13 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 14 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 08 — rows 15–16   中 ⽂   ⽇ 本語   ROW 15 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 16 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 09 — rows 17–18   中 ⽂   ⽇ 本語   ROW 17 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 18 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 10 — rows 19–20   中 ⽂   ⽇ 本語   ROW 19 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 20 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once.",
+        "nullCount": 6
+      },
+      {
+        "page": 3,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   3 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 11 — rows 21–22   中 ⽂   ⽇ 本語   ROW 21 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 22 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 12 — rows 23–24   中 ⽂   ⽇ 本語   ROW 23 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 24 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 13 — rows 25–26   中 ⽂   ⽇ 本語   ROW 25 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 26 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 14 — rows 27–28   中 ⽂   ⽇ 本語   ROW 27 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 28 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 15 — rows 29–30   中 ⽂   ⽇ 本語   ROW 29 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 30 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 16 — rows 31–32   中 ⽂   ⽇ 本語   ROW 31 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 32 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once.",
+        "nullCount": 6
+      },
+      {
+        "page": 4,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   4 / 5  Group   中 ⽂   Details   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  GROUP 17 — rows 33–34   中 ⽂   ⽇ 本語   ROW 33 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 34 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once. GROUP 18 — rows 35–36   中 ⽂   ⽇ 本語   ROW 35 — English   中 ⽂   ﺔ ﯾ ﺑ ر ﻌ ﻟ ا  Check complete text and cell borders. ROW 36 —   ⽇ 本語   \u0000ह न्   दी   עברית  Verify this row appears exactly once.  TABLE END — all 36 body rows must appear once.",
+        "nullCount": 2
+      },
+      {
+        "page": 5,
+        "text": "VDoc system acceptance   中 ⽂  Local document acceptance   5 / 5  FINAL PAGE CHECK   中 ⽂  This heading must start on a new page. End of acceptance sample.",
+        "nullCount": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+[
+  {
+    "label": "hebrew-numbers",
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-direction-boundary-155-numbers.pdf",
+    "sourceText": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום"
+  }
+]

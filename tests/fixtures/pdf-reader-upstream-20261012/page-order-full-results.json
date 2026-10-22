@@ -1,0 +1,1462 @@
+{
+  "at": "2026-10-12T19:36:16.066Z",
+  "scope": "Unmodified official online demo 6.5.128. DOM Range selection and official copy handler via synthetic in-memory ClipboardEvent, not native clipboard acceptance.",
+  "assets": [
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.html",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.html",
+      "sha256": "0432cc6ab06150b13f581d955841d2895227fec0171a70920fb20adf0e208ae5"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.mjs",
+      "sha256": "cacf508f8cb3fb8a1630d45240913455821a01d5d5c148282b1483207a831936"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/web/viewer.css",
+      "local": "tmp/pdf-reader-upstream-20261012/viewer.css",
+      "sha256": "99b508bee7189236c18f6ee378d98ee681165e8cdf863f1283c489dac00430e6"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/build/pdf.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/demo-pdf.mjs",
+      "sha256": "d03207dedb650eabb5a60da9885559ce5a88b55fca166863ab7fa1f5e14f91d7"
+    },
+    {
+      "url": "https://mozilla.github.io/pdf.js/build/pdf.worker.mjs",
+      "local": "tmp/pdf-reader-upstream-20261012/demo-worker.mjs",
+      "sha256": "6cc4c112779c219502b906068cf5c0b500e206fb16ff84b84f7c44c55f26a779"
+    }
+  ],
+  "results": [
+    {
+      "label": "full-words",
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-page-order-155.pdf",
+      "sourceText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+      "sha256": "f8b39b7889d8d3e49432048a1138ddeadda1c6bf745d53f158a93f2c5fa964f0",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना"
+      ],
+      "rawSelections": [
+        "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — local text and vectors",
+            "width": 287.93296875,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "हि",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्",
+            "width": 5.0985000000000005,
+            "dir": "ltr"
+          },
+          {
+            "str": "दी",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.3041562500000055,
+            "dir": "ltr"
+          },
+          {
+            "str": "हिं",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": "दी",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.305000000000007,
+            "dir": "ltr"
+          },
+          {
+            "str": "भा",
+            "width": 15.873000000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "षा",
+            "width": 13.810500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.300875000000019,
+            "dir": "ltr"
+          },
+          {
+            "str": "में",
+            "width": 9.867,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.300968749999981,
+            "dir": "ltr"
+          },
+          {
+            "str": "द",
+            "width": 8.7615,
+            "dir": "ltr"
+          },
+          {
+            "str": "स्",
+            "width": 6.4185,
+            "dir": "ltr"
+          },
+          {
+            "str": "ता",
+            "width": 13.678500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "वे",
+            "width": 9.174000000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "ज़",
+            "width": 12.243,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.310437499999978,
+            "dir": "ltr"
+          },
+          {
+            "str": "लि",
+            "width": 15.460500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "ख",
+            "width": 13.497,
+            "dir": "ltr"
+          },
+          {
+            "str": "ना",
+            "width": 13.431000000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "।",
+            "width": 6.253500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "दु",
+            "width": 8.7615,
+            "dir": "ltr"
+          },
+          {
+            "str": "नि",
+            "width": 13.431000000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "या",
+            "width": 13.8435,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.311656249999999,
+            "dir": "ltr"
+          },
+          {
+            "str": "नम",
+            "width": 19.024500000000003,
+            "dir": "ltr"
+          },
+          {
+            "str": "स्",
+            "width": 6.4185,
+            "dir": "ltr"
+          },
+          {
+            "str": "ते",
+            "width": 9.405000000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.304343750000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "शि",
+            "width": 15.493500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "क्षा",
+            "width": 16.104,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.308750000000003,
+            "dir": "ltr"
+          },
+          {
+            "str": "क्ष",
+            "width": 11.8305,
+            "dir": "ltr"
+          },
+          {
+            "str": "त्रि",
+            "width": 13.3815,
+            "dir": "ltr"
+          },
+          {
+            "str": "य",
+            "width": 9.57,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.311749999999989,
+            "dir": "ltr"
+          },
+          {
+            "str": "प्रा",
+            "width": 13.662,
+            "dir": "ltr"
+          },
+          {
+            "str": "र्थ",
+            "width": 10.5435,
+            "dir": "ltr"
+          },
+          {
+            "str": "ना",
+            "width": 13.431000000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "।",
+            "width": 6.253500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "Repeat",
+            "width": 54.23550000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.311375000000012,
+            "dir": "ltr"
+          },
+          {
+            "str": "हि",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्",
+            "width": 5.0985000000000005,
+            "dir": "ltr"
+          },
+          {
+            "str": "दी",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.3041562500000055,
+            "dir": "ltr"
+          },
+          {
+            "str": "and",
+            "width": 29.601000000000003,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.301343750000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "हिं",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": "दी",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.304999999999978,
+            "dir": "ltr"
+          },
+          {
+            "str": "with contextual shapes.",
+            "width": 182.557875,
+            "dir": "ltr"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.86890625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 241.35375,
+            "dir": "ltr"
+          },
+          {
+            "str": "हि",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": "न्",
+            "width": 5.0985000000000005,
+            "dir": "ltr"
+          },
+          {
+            "str": "दी",
+            "width": 13.035,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.3041562500000055,
+            "dir": "ltr"
+          },
+          {
+            "str": "भा",
+            "width": 15.873000000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "षा",
+            "width": 13.810500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "",
+            "width": 0,
+            "dir": "ltr"
+          },
+          {
+            "str": "Different context",
+            "width": 130.92403125,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 181.29862500000002,
+            "dir": "ltr"
+          },
+          {
+            "str": "शि",
+            "width": 15.493500000000001,
+            "dir": "ltr"
+          },
+          {
+            "str": "क्षा",
+            "width": 16.104,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 4.308750000000032,
+            "dir": "ltr"
+          },
+          {
+            "str": "प्रा",
+            "width": 13.662,
+            "dir": "ltr"
+          },
+          {
+            "str": "र्थ",
+            "width": 10.5435,
+            "dir": "ltr"
+          },
+          {
+            "str": "ना",
+            "width": 13.431000000000001,
+            "dir": "ltr"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना",
+      "exactCollapsedMatch": true,
+      "hindiWholeWord": true
+    },
+    {
+      "label": "full-arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155.pdf",
+      "sourceText": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "sha256": "3172230b20f4c9f8707054ed1458bd1085da79c41f30f47eb396a13efb29164e",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "rawSelections": [
+        "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Arabic words",
+            "width": 224.25262499999994,
+            "dir": "ltr"
+          },
+          {
+            "str": "اللغة العربية جميلة",
+            "width": 118.24734375000014,
+            "dir": "rtl"
+          },
+          {
+            "str": "مرحبا بالعالم السلام عليكم",
+            "width": 165.29803124999995,
+            "dir": "rtl"
+          },
+          {
+            "str": "العربية التعليم الكتابة",
+            "width": 133.43325000000002,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.86890625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 285.87328125,
+            "dir": "ltr"
+          },
+          {
+            "str": "العربية",
+            "width": 41.4645,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.92403125,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.81815625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": "التعليم",
+            "width": 43.3455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell العربية\nDifferent context التعليم",
+      "exactCollapsedMatch": true,
+      "hindiWholeWord": false
+    },
+    {
+      "label": "full-hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155.pdf",
+      "sourceText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "sha256": "67011b1294b24844924eaff7265cae75a99e002bb47dd223152840c2d004ebea",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell עברית\nDifferent context שלום"
+      ],
+      "rawSelections": [
+        "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell עברית\nDifferent context שלום"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Hebrew words",
+            "width": 234.02278124999998,
+            "dir": "ltr"
+          },
+          {
+            "str": "שלום עולם בדיקת מסמך",
+            "width": 170.52674999999988,
+            "dir": "rtl"
+          },
+          {
+            "str": "עברית כתיבה טבלה",
+            "width": 134.24043749999993,
+            "dir": "rtl"
+          },
+          {
+            "str": "שלום בעברית עולם",
+            "width": 133.0501874999999,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.53215625000001,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 286.174875,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 43.279500000000006,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.73981250000003,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.96721875,
+            "dir": "ltr"
+          },
+          {
+            "str": "שלום",
+            "width": 36.7455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell עברית\nDifferent context שלום",
+      "exactCollapsedMatch": true,
+      "hindiWholeWord": false
+    },
+    {
+      "label": "full-arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155-marked.pdf",
+      "sourceText": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "sha256": "970250d2e3ee10ec3fe630291d433fba0b149373390a87266b91c813b78c4226",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Arabic words\nَجِمَيلٌة ْالَعَرِبَّيُة ُّاللَغُة\n123 ِبْالَعَالِم َمْرَحًبا\nْالِكَتَابُة َّالتْعِلُيم ْالَعَرِبَّيُة\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "rawSelections": [
+        "Browser PDF — Arabic words\nَجِمَيلٌة ْالَعَرِبَّيُة ُّاللَغُة\n123 ِبْالَعَالِم َمْرَحًبا\nْالِكَتَابُة َّالتْعِلُيم ْالَعَرِبَّيُة\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Arabic words",
+            "width": 224.25262499999994,
+            "dir": "ltr"
+          },
+          {
+            "str": "َج",
+            "width": 9.7185,
+            "dir": "rtl"
+          },
+          {
+            "str": "ِم",
+            "width": 9.537,
+            "dir": "rtl"
+          },
+          {
+            "str": "َيل",
+            "width": 11.104500000000002,
+            "dir": "rtl"
+          },
+          {
+            "str": "ٌة",
+            "width": 8.019,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 67.91990625,
+            "dir": "ltr"
+          },
+          {
+            "str": "ْال",
+            "width": 8.217,
+            "dir": "rtl"
+          },
+          {
+            "str": "َع",
+            "width": 8.5965,
+            "dir": "rtl"
+          },
+          {
+            "str": "َر",
+            "width": 6.039000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ِب",
+            "width": 4.4385,
+            "dir": "rtl"
+          },
+          {
+            "str": "َّي",
+            "width": 6.1545000000000005,
+            "dir": "rtl"
+          },
+          {
+            "str": "ُة",
+            "width": 8.019,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 54.369937499999935,
+            "dir": "ltr"
+          },
+          {
+            "str": "ُّالل",
+            "width": 13.167,
+            "dir": "rtl"
+          },
+          {
+            "str": "َغ",
+            "width": 8.5965,
+            "dir": "rtl"
+          },
+          {
+            "str": "ُة",
+            "width": 8.019,
+            "dir": "rtl"
+          },
+          {
+            "str": "123",
+            "width": 28.314,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 40.363500000000045,
+            "dir": "ltr"
+          },
+          {
+            "str": "ِب",
+            "width": 4.4385,
+            "dir": "rtl"
+          },
+          {
+            "str": "ْال",
+            "width": 9.0915,
+            "dir": "rtl"
+          },
+          {
+            "str": "َع",
+            "width": 8.5965,
+            "dir": "rtl"
+          },
+          {
+            "str": "َال",
+            "width": 9.0915,
+            "dir": "rtl"
+          },
+          {
+            "str": "ِم",
+            "width": 9.273,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 61.58128124999996,
+            "dir": "ltr"
+          },
+          {
+            "str": "َم",
+            "width": 8.6625,
+            "dir": "rtl"
+          },
+          {
+            "str": "ْر",
+            "width": 5.8740000000000006,
+            "dir": "rtl"
+          },
+          {
+            "str": "َح",
+            "width": 9.7185,
+            "dir": "rtl"
+          },
+          {
+            "str": "ًب",
+            "width": 5.6595,
+            "dir": "rtl"
+          },
+          {
+            "str": "ا",
+            "width": 4.8015,
+            "dir": "rtl"
+          },
+          {
+            "str": "ْال",
+            "width": 8.217,
+            "dir": "rtl"
+          },
+          {
+            "str": "ِك",
+            "width": 8.382,
+            "dir": "rtl"
+          },
+          {
+            "str": "َت",
+            "width": 6.1545000000000005,
+            "dir": "rtl"
+          },
+          {
+            "str": "َاب",
+            "width": 9.24,
+            "dir": "rtl"
+          },
+          {
+            "str": "ُة",
+            "width": 8.019,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 65.27531249999993,
+            "dir": "ltr"
+          },
+          {
+            "str": "َّالت",
+            "width": 14.371500000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ْع",
+            "width": 8.5965,
+            "dir": "rtl"
+          },
+          {
+            "str": "ِل",
+            "width": 4.95,
+            "dir": "rtl"
+          },
+          {
+            "str": "ُيم",
+            "width": 15.4275,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 65.46843749999994,
+            "dir": "ltr"
+          },
+          {
+            "str": "ْال",
+            "width": 8.217,
+            "dir": "rtl"
+          },
+          {
+            "str": "َع",
+            "width": 8.5965,
+            "dir": "rtl"
+          },
+          {
+            "str": "َر",
+            "width": 6.039000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ِب",
+            "width": 4.4385,
+            "dir": "rtl"
+          },
+          {
+            "str": "َّي",
+            "width": 6.1545000000000005,
+            "dir": "rtl"
+          },
+          {
+            "str": "ُة",
+            "width": 8.019,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.86890625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 285.87328125,
+            "dir": "ltr"
+          },
+          {
+            "str": "العربية",
+            "width": 41.4645,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.92403125,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.81815625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": "التعليم",
+            "width": 43.3455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Arabic words\nَجِمَيلٌة ْالَعَرِبَّيُة ُّاللَغُة\n123 ِبْالَعَالِم َمْرَحًبا\nْالِكَتَابُة َّالتْعِلُيم ْالَعَرِبَّيُة\nTable cell العربية\nDifferent context التعليم",
+      "exactCollapsedMatch": false,
+      "hindiWholeWord": false
+    },
+    {
+      "label": "full-hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155-marked.pdf",
+      "sourceText": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "sha256": "0a454a4c3cbc37c2707a3fcfe09df1b3be37f7a74b5d6477e1b0488dcf8fbfe6",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Hebrew words\nֹעוָלם ָׁשֹלום\n123 ְּכִתָיבה ִעְבִרית\nֹעוָלם ְּבִעְבִרית ָׁשֹלום\nTable cell עברית\nDifferent context שלום"
+      ],
+      "rawSelections": [
+        "Browser PDF — Hebrew words\nֹעוָלם ָׁשֹלום\n123 ְּכִתָיבה ִעְבִרית\nֹעוָלם ְּבִעְבִרית ָׁשֹלום\nTable cell עברית\nDifferent context שלום"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Hebrew words",
+            "width": 234.02278124999998,
+            "dir": "ltr"
+          },
+          {
+            "str": "ֹעו",
+            "width": 14.751000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ָל",
+            "width": 8.613,
+            "dir": "rtl"
+          },
+          {
+            "str": "ם",
+            "width": 11.286000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 52.53168749999992,
+            "dir": "ltr"
+          },
+          {
+            "str": "ָׁש",
+            "width": 12.045,
+            "dir": "rtl"
+          },
+          {
+            "str": "ֹלו",
+            "width": 13.4145,
+            "dir": "rtl"
+          },
+          {
+            "str": "ם",
+            "width": 11.286000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "123",
+            "width": 28.512000000000004,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 39.14278124999987,
+            "dir": "ltr"
+          },
+          {
+            "str": "ְּכ",
+            "width": 8.4975,
+            "dir": "rtl"
+          },
+          {
+            "str": "ִת",
+            "width": 11.0715,
+            "dir": "rtl"
+          },
+          {
+            "str": "ָיב",
+            "width": 13.249500000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ה",
+            "width": 10.345500000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 70.78621874999993,
+            "dir": "ltr"
+          },
+          {
+            "str": "ִע",
+            "width": 9.784500000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ְב",
+            "width": 9.025500000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ִר",
+            "width": 8.6295,
+            "dir": "rtl"
+          },
+          {
+            "str": "ית",
+            "width": 15.84,
+            "dir": "rtl"
+          },
+          {
+            "str": "ֹעו",
+            "width": 14.751000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ָל",
+            "width": 8.613,
+            "dir": "rtl"
+          },
+          {
+            "str": "ם",
+            "width": 11.286000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 71.11068749999998,
+            "dir": "ltr"
+          },
+          {
+            "str": "ְּב",
+            "width": 9.438,
+            "dir": "rtl"
+          },
+          {
+            "str": "ִע",
+            "width": 9.784500000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ְב",
+            "width": 9.025500000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "ִר",
+            "width": 8.6295,
+            "dir": "rtl"
+          },
+          {
+            "str": "ית",
+            "width": 15.84,
+            "dir": "rtl"
+          },
+          {
+            "str": " ",
+            "width": 66.04799999999989,
+            "dir": "ltr"
+          },
+          {
+            "str": "ָׁש",
+            "width": 12.045,
+            "dir": "rtl"
+          },
+          {
+            "str": "ֹלו",
+            "width": 13.4145,
+            "dir": "rtl"
+          },
+          {
+            "str": "ם",
+            "width": 11.286000000000001,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.53215625000001,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 286.174875,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 43.279500000000006,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.73981250000003,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.96721875,
+            "dir": "ltr"
+          },
+          {
+            "str": "שלום",
+            "width": 36.7455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Hebrew words\nֹעוָלם ָׁשֹלום\n123 ְּכִתָיבה ִעְבִרית\nֹעוָלם ְּבִעְבִרית ָׁשֹלום\nTable cell עברית\nDifferent context שלום",
+      "exactCollapsedMatch": false,
+      "hindiWholeWord": false
+    },
+    {
+      "label": "full-arabic-numbers",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155-numbers.pdf",
+      "sourceText": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "sha256": "68e28a670bb565c868dc1deb6a9791a757bc172f5a3651cf1313e735c049c344",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "rawSelections": [
+        "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell العربية\nDifferent context التعليم"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Arabic numbers",
+            "width": 246.758625,
+            "dir": "ltr"
+          },
+          {
+            "str": "مرحبا 0123456789",
+            "width": 133.39959375,
+            "dir": "rtl"
+          },
+          {
+            "str": "العدد 9876543210 العربية",
+            "width": 177.9190312500001,
+            "dir": "rtl"
+          },
+          {
+            "str": "العربية ١٢٣٤٥٦٧٨٩٠",
+            "width": 140.14809375000007,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.86890625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 285.87328125,
+            "dir": "ltr"
+          },
+          {
+            "str": "العربية",
+            "width": 41.4645,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.92403125,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.81815625000002,
+            "dir": "ltr"
+          },
+          {
+            "str": "التعليم",
+            "width": 43.3455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell العربية\nDifferent context التعليم",
+      "exactCollapsedMatch": true,
+      "hindiWholeWord": false
+    },
+    {
+      "label": "full-hebrew-numbers",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155-numbers.pdf",
+      "sourceText": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+      "sha256": "a0a7df33635c152660d540d08019be2a2b315aec132b2a4029cfe56ba524333b",
+      "errors": [],
+      "missing": [
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/locale/locale.json",
+        "/web/images/toolbarButton-viewsManagerToggle.svg",
+        "/web/images/toolbarButton-search.svg",
+        "/web/images/toolbarButton-pageUp.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/toolbarButton-zoomOut.svg",
+        "/web/images/toolbarButton-zoomIn.svg",
+        "/web/images/toolbarButton-menuArrow.svg",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg",
+        "/web/images/toolbarButton-print.svg",
+        "/web/images/toolbarButton-download.svg",
+        "/web/images/toolbarButton-secondaryToolbarToggle.svg",
+        "/web/images/toolbarButton-pageDown.svg",
+        "/web/images/loading.svg",
+        "/web/images/loading-icon.gif",
+        "/web/images/toolbarButton-editorHighlight.svg",
+        "/web/images/toolbarButton-editorFreeText.svg",
+        "/web/images/toolbarButton-editorInk.svg",
+        "/web/images/toolbarButton-editorStamp.svg"
+      ],
+      "pages": 1,
+      "copies": [
+        "Browser PDF — Hebrew numbers\n0123456789 שלום\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell עברית\nDifferent context שלום"
+      ],
+      "rawSelections": [
+        "Browser PDF — Hebrew numbers\n0123456789 שלום\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell עברית\nDifferent context שלום"
+      ],
+      "items": [
+        [
+          {
+            "str": "Browser PDF — Hebrew numbers",
+            "width": 256.26478125,
+            "dir": "ltr"
+          },
+          {
+            "str": "0123456789 שלום",
+            "width": 136.26112499999996,
+            "dir": "ltr"
+          },
+          {
+            "str": "מספר 9876543210 בעברית",
+            "width": 196.1876249999999,
+            "dir": "rtl"
+          },
+          {
+            "str": "עברית 1234567890",
+            "width": 142.79512499999996,
+            "dir": "rtl"
+          },
+          {
+            "str": "Table cell",
+            "width": 70.53215625000001,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 286.174875,
+            "dir": "ltr"
+          },
+          {
+            "str": "עברית",
+            "width": 43.279500000000006,
+            "dir": "rtl"
+          },
+          {
+            "str": "Different context",
+            "width": 130.73981250000003,
+            "dir": "ltr"
+          },
+          {
+            "str": " ",
+            "width": 225.96721875,
+            "dir": "ltr"
+          },
+          {
+            "str": "שלום",
+            "width": 36.7455,
+            "dir": "rtl"
+          }
+        ]
+      ],
+      "copiedText": "Browser PDF — Hebrew numbers\n0123456789 שלום\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell עברית\nDifferent context שלום",
+      "exactCollapsedMatch": false,
+      "hindiWholeWord": false
+    }
+  ],
+  "browser": "154.0.8037.98"
+}

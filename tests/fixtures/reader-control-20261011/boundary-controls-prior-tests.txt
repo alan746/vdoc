@@ -1,0 +1,15 @@
+test_actual_pdfjs_failures_not_claimed_fixed (__main__.MarkedSelection.test_actual_pdfjs_failures_not_claimed_fixed) ... ok
+test_all_eight_sources_unchanged_and_pdf_hashes (__main__.MarkedSelection.test_all_eight_sources_unchanged_and_pdf_hashes) ... ok
+test_each_pass_retained_with_both_offsets (__main__.MarkedSelection.test_each_pass_retained_with_both_offsets) ... ok
+test_every_source_coordinate_and_screenshot_bound (__main__.MarkedSelection.test_every_source_coordinate_and_screenshot_bound) ... ok
+test_new_candidate_rejects_seven_invalid_or_cancelled_exports (__main__.MarkedSelection.test_new_candidate_rejects_seven_invalid_or_cancelled_exports) ... ok
+test_numeric_edge_and_internal_totals_preserved (__main__.MarkedSelection.test_numeric_edge_and_internal_totals_preserved) ... ok
+test_only_marked_samples_improve_and_failures_stay_visible (__main__.MarkedSelection.test_only_marked_samples_improve_and_failures_stay_visible) ... ok
+test_search_highlight_positive_and_absent_controls (__main__.MarkedSelection.test_search_highlight_positive_and_absent_controls) ... ok
+test_seven_full_selections_and_fifty_six_words (__main__.MarkedSelection.test_seven_full_selections_and_fifty_six_words) ... ok
+test_visible_vectors_unchanged_and_raster_differences_retained (__main__.MarkedSelection.test_visible_vectors_unchanged_and_raster_differences_retained) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.176s
+
+OK

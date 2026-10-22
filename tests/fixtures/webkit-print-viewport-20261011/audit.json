@@ -1,0 +1,374 @@
+{
+  "at": "2026-10-11T23:05:47.875659+00:00",
+  "applicationSha256": "d4d031f5f51cec43eeb87ad40ae5dddb2745ee878a86fb9f30cbab0562dfccdf",
+  "productChanged": false,
+  "environment": {
+    "macOS": "26.6.2",
+    "build": "25G83",
+    "WebKitBundleVersion": "21624.5.1.11.3"
+  },
+  "scope": "Independent local nonpersistent WKWebView NSPrintOperation, read-only geometry inspection of two previously saved Safari PDFs. No new Safari session or AI.",
+  "newPdfCount": 6,
+  "newPhysicalPages": 19,
+  "finding": "The second page of the short 101% PDF is a right-hand strip, not a following vertical content page. All six even pages in each historical Safari 12-page PDF likewise clip to a 6.054912 pt right strip. Vertical reslicing additionally creates the last footer row.",
+  "measurements": {
+    "scope": "Six generated PDFs plus two existing native Safari outputs; diagnosis only",
+    "outputs": [
+      {
+        "file": "output/pdf/webkit-print-viewport-20261011/short-100.pdf",
+        "sha256": "b6edf7e4efcc0c20a69c21b463ccfb524c5790556ca80f660eed0efa8fde3607",
+        "pages": 1,
+        "passedDiagnostic": true
+      },
+      {
+        "file": "output/pdf/webkit-print-viewport-20261011/short-101.pdf",
+        "sha256": "dcbd2c05bc2147327b3afb2193fa25f0a146db336f15b429e44225d3ee0166dc",
+        "pages": 2,
+        "passedDiagnostic": true
+      },
+      {
+        "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-100.pdf",
+        "sha256": "2ac9140602b72fa072633ed6cb51a2ef24318c7c9f41926c7b4bdf4f5960eac0",
+        "pages": 2,
+        "passedDiagnostic": true
+      },
+      {
+        "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-101.pdf",
+        "sha256": "3103de2f0fc473399daba4d752d576b28598416af56e8d1137cab16f77083cf3",
+        "pages": 6,
+        "passedDiagnostic": true
+      },
+      {
+        "file": "output/pdf/webkit-print-viewport-20261011/viewport-100.pdf",
+        "sha256": "7a4e67339419be9afcc1d7ef36fb7033f89ed60dcac76b03f1633c692c1fae98",
+        "pages": 2,
+        "passedDiagnostic": true
+      },
+      {
+        "file": "output/pdf/webkit-print-viewport-20261011/viewport-101.pdf",
+        "sha256": "d882630861a64c5f69ff8ad1de6625dc81fbb58bf55387864ee8bec18c40dcb5",
+        "pages": 6,
+        "passedDiagnostic": true
+      }
+    ],
+    "legacySafari": [
+      {
+        "file": "output/pdf/safari-native-20261011/b-101.pdf",
+        "sha256": "d329348224b5e4b6d89109db43668322eaef22a44e855f23719a088c9a246ed4",
+        "pairs": 6,
+        "rightStripWidthsPt": [
+          6.054912,
+          6.054912,
+          6.054912,
+          6.054912,
+          6.054912,
+          6.054912
+        ]
+      },
+      {
+        "file": "output/pdf/safari-native-20261011/b-101-repeat.pdf",
+        "sha256": "591e9154fd21fd811ddf82d8b798ee2878f46992473bdbdb7659e643ed184752",
+        "pairs": 6,
+        "rightStripWidthsPt": [
+          6.054912,
+          6.054912,
+          6.054912,
+          6.054912,
+          6.054912,
+          6.054912
+        ]
+      }
+    ],
+    "shortHorizontalOffsetPt": 594.4795,
+    "shortRightStripWidthPt": 6.470525,
+    "shortRightStripVisuallyBlank": true,
+    "publicScaleMetricsEqual": true,
+    "passed": true
+  },
+  "publicWebMetrics": "Beforeprint, matchMedia(print) and afterprint geometry snapshots are identical between 100% and 101% within each of the three fixtures. These measurements cannot provide the scale for a proposed JavaScript compensator. Not a proof about every possible browser API.",
+  "sourceCorroboration": "Current public WebPage::beginPrinting calls computePageRects with horizontal tiling enabled. PrintContext divides page dimensions by user scale and loops over inline as well as block dimensions. Consistent with observed strips; installed binary source not asserted identical.",
+  "rejectedRoute": "Viewport-unit paper dimensions still produce 2→6 physical pages at 101%, like fixed mm dimensions. Do not apply this CSS change to production or increase overflow tolerance.",
+  "visualReview": "All19 pages rendered and inspected in contact sheet; short101 page2 pixel-white despite repeated extractable off-page text. Border-only fragments in two-sheet controls are not classified as fully white.",
+  "harnessFailures": [
+    "Initial Swift top-level guard binding did not compile; converted to explicit global constant before execution.",
+    "Synchronous NSPrintOperation produced unbounded incomplete output, stopped at35 seconds; SHA256/size retained and created partial file removed.",
+    "Copying default NSPrintInfo did not fix synchronous output; own process stopped at2 MB and partial file removed.",
+    "Asynchronous runModal with separate thread completed all6 small outputs. Apple documentation distinguishes run blocking current thread from runModal separate-thread capability."
+  ],
+  "bounds": {
+    "perProcessSeconds": 20,
+    "perPdfMaxBytes": 2000000,
+    "overwriteRefused": true,
+    "navigation": "only its specific local HTML URL",
+    "personalSafariAccess": false,
+    "printerSubmission": false,
+    "allOwnProcessesTerminal": true
+  },
+  "limitations": [
+    "Diagnosis is not the requested product repair; S remains unsigned.",
+    "No non100% product PDF, Unicode selection repair, original project-plan source recovery or IME candidate capture completed.",
+    "Do not blind-delete even pages: text and objects can reside outside the visible clip, and vertical cuts remain.",
+    "No application/unit changes; previous candidate tests remain their earlier results."
+  ],
+  "references": {
+    "appleRun": "https://developer.apple.com/documentation/appkit/nsprintoperation/run()",
+    "appleRunModal": "https://developer.apple.com/documentation/appkit/nsprintoperation/runmodal(for:delegate:didrun:contextinfo:)",
+    "webkitPrintContext": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/page/PrintContext.cpp",
+    "webkitWebPage": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/WebProcess/WebPage/WebPage.cpp",
+    "webkitPrintingView": "https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/mac/WKPrintingView.mm"
+  },
+  "files": [
+    {
+      "file": "output/pdf/safari-native-20261011/b-101-repeat.pdf",
+      "sha256": "591e9154fd21fd811ddf82d8b798ee2878f46992473bdbdb7659e643ed184752"
+    },
+    {
+      "file": "output/pdf/safari-native-20261011/b-101.pdf",
+      "sha256": "d329348224b5e4b6d89109db43668322eaef22a44e855f23719a088c9a246ed4"
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-100.pdf",
+      "sha256": "2ac9140602b72fa072633ed6cb51a2ef24318c7c9f41926c7b4bdf4f5960eac0"
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/fixed-mm-101.pdf",
+      "sha256": "3103de2f0fc473399daba4d752d576b28598416af56e8d1137cab16f77083cf3"
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/short-100.pdf",
+      "sha256": "b6edf7e4efcc0c20a69c21b463ccfb524c5790556ca80f660eed0efa8fde3607"
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/short-101.pdf",
+      "sha256": "dcbd2c05bc2147327b3afb2193fa25f0a146db336f15b429e44225d3ee0166dc"
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/viewport-100.pdf",
+      "sha256": "7a4e67339419be9afcc1d7ef36fb7033f89ed60dcac76b03f1633c692c1fae98"
+    },
+    {
+      "file": "output/pdf/webkit-print-viewport-20261011/viewport-101.pdf",
+      "sha256": "d882630861a64c5f69ff8ad1de6625dc81fbb58bf55387864ee8bec18c40dcb5"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/analysis.json",
+      "sha256": "97406d190b5985aa7fda8d2ec8c3cf9fb64596b00845315ea55fd3be8ed132fa"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/check-evidence.log",
+      "sha256": "a20784d2fcc1a6462114c7b7a2bbd7c8e2cde6a0dd5cee00d44f8343ed08ef79"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/check-evidence.py",
+      "sha256": "8123b7b59b200fb9e6bc9af9d7131587cb66c53b114324b495fd01ac569b9cbe"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/contact.png",
+      "sha256": "33f2bc4a572dfe984fafdb8e2ec6b4109476cc006c5bbc660712e907827c1b60"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/evidence-check.json",
+      "sha256": "a20784d2fcc1a6462114c7b7a2bbd7c8e2cde6a0dd5cee00d44f8343ed08ef79"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/first-failure.json",
+      "sha256": "9b0741036fbb9c4dbca3e3cfbbc9a4559aca86658d6279a61c525f4b53700eee"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-100-1.png",
+      "sha256": "00b22a330afbd9e7051b2b322c2d43ee2726bd80fcc35a673caa3bad2da8beaa"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-100-2.png",
+      "sha256": "010820495943b9f1c858d69d718359e29fc756bac1bcdb480d73a95ba4e257b7"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-100.run.json",
+      "sha256": "c50adb1a83625de0ba54e89d7dedcb671b000de363bb75fbd6047dfaa55c7623"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-100.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-100.stdout",
+      "sha256": "e32dc729701565361d6eed08c485656bfc03217c2e02e7449b3cfab5e18fdc13"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101-1.png",
+      "sha256": "f58d85ac9ef17f168b2f7d7e9e519349ed0ba20783a8a65f9805c755eb481658"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101-2.png",
+      "sha256": "9593143ba806a633272d8f06c1fcad5f1c6c5fe266e4cc92c3f937e61330788a"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101-3.png",
+      "sha256": "193f0cdf5fc55f8a625d0ad4d42ee8a3d14f18afe6680b7fdfb413e60d9c4fe2"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101-4.png",
+      "sha256": "1ce88438fef96239022a6850d53d3ade2ecfa129468a904b6a6eb58c59a861b4"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101-5.png",
+      "sha256": "4beb4badf77d875d404bb5eaa7c9d6749e10a588bec7153476a6923246cbd96f"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101-6.png",
+      "sha256": "7b5f468292634b72e220614f35d7583e9d4eed033c06bd2a3a27c9a9b17d5538"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101.run.json",
+      "sha256": "e6a3c9b3a6a3b2456ff00dce3faa7436379f275186a875196d10965b93426cd0"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm-101.stdout",
+      "sha256": "33a31505d4ade1885ce94dfc1ac1ee5e764252bf84b83f0335d9d36c5f1dc367"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/fixed-mm.html",
+      "sha256": "3be84179b7082303a83214473d2490c0de9e536c38921d0315a539403de5ad06"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/print.first.swift",
+      "sha256": "2b3cbc546cf880608e386e6bb5eeeae41ac650edfe13ef3a40c310feda4dcf76"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/print.swift",
+      "sha256": "ef03ffc9c313e6b6420e4f22d553b548087f4b6b087b9ddd7ec36dd7b11fc383"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/references.json",
+      "sha256": "c8fcaa892970098798f5386bf5431b37fc8410b2d0c2140d72c526607fccaad8"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/run-one.py",
+      "sha256": "f0f1baa6dd15bc76264a111b69ee87fdf3b9f60a395f2950590089204dcc854e"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/safari-page-geometry.json",
+      "sha256": "fde6e12d33a16d2e310fd9a9888e44474291740e7860746bc9ee37ec9af43494"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-100-1.png",
+      "sha256": "508d830b5c6cf2218eb2f5e653f0aeb098a845a8e2a5768d048e20cb7325874c"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-100.run.json",
+      "sha256": "f4c79c8d7fdac0a04b4469da273e69e4275fd85beaa2ffe78f27aa2b395456af"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-100.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-100.stdout",
+      "sha256": "83f4f67c97c5bad0f4f8c4072c7442e8befe9c59f14e76fb669b47851713dbb7"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-101-1.png",
+      "sha256": "6df8608c178b0ba293bbf03f6274c013c3480a390ca111191d8385ab2beaf130"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-101-2.png",
+      "sha256": "89bfce750307a2434a75b4d5a045cbbb18963c2d1665f56f7e5ba6c68a6f658a"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-101.run.json",
+      "sha256": "3548b7fd3eea5d8f97742dd6f20b0b2b26f96cbdcac413e8af0b900b737fc13a"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-101.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short-101.stdout",
+      "sha256": "47724eed8fc3782e36786d8471ee3cf3477d251a711cc228fa228d14a96bca87"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/short.html",
+      "sha256": "38183963db3d624f7c6f23d6ab6aeb95405c2aeae58a271111abb21fd78eb19e"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/sync-print.swift",
+      "sha256": "b1f994138bbd7e62504e2e534ef9fa4628b222d291a83601b0f2b18aab3cb413"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/sync-short-100.run.json",
+      "sha256": "d7f847217b5eb6ddc05d5a5be629395d7b024d477d1ab14f286a852ec56659f0"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/sync-short-100.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/sync-short-100.stdout",
+      "sha256": "d4eba03d691366cd3f6d652f28303e7f9bb99846433b33b7cd6f86f03d17d8d1"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-100-1.png",
+      "sha256": "46bb61e755296779e983b91edc65b5785d10d0dae0d87a5b38d9def219b3abca"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-100-2.png",
+      "sha256": "0620340cc4a3baabfa3a5db1a0381bfd89605bc504fb1dcb8e5cd281b7f43ac2"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-100.run.json",
+      "sha256": "a48fc5f18a655c8e4ee06b971ad0e50801dbfc971f39434a2742573989df5c10"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-100.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-100.stdout",
+      "sha256": "8a5ef7ea517243761240b05b6f98f501e962d1e9e7baefbd23b2ad25c2f0a5d1"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101-1.png",
+      "sha256": "4cef57b740bff0d2a8580039ba4575938eb47a4db124ee5d5a1808b40b57d1f8"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101-2.png",
+      "sha256": "db217a602c3682013174efa1d4484eefc26b9aac25d75b5977b34d7e80e19446"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101-3.png",
+      "sha256": "4399bc64f1d6d6fd095b29b29e87deeae3c7ca318c6ddb442d01787dc3ccc974"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101-4.png",
+      "sha256": "bb481d63863cafed787a4be1159b7060e2b485c14902185f2eb06c8f2ca9c127"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101-5.png",
+      "sha256": "89bfce750307a2434a75b4d5a045cbbb18963c2d1665f56f7e5ba6c68a6f658a"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101-6.png",
+      "sha256": "89bfce750307a2434a75b4d5a045cbbb18963c2d1665f56f7e5ba6c68a6f658a"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101.run.json",
+      "sha256": "db6835db3ad8964478ebe5d3b44b9781baa4faf7e9b215ea0891a8ad207828f5"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport-101.stdout",
+      "sha256": "7f65c9d185db56bd941963bbea4e1f07f58c121196e910a0561ce5b11cb69132"
+    },
+    {
+      "file": "tests/fixtures/webkit-print-viewport-20261011/viewport.html",
+      "sha256": "597b6ad8141671a4513319abdbda75a04f14548ed253f63e29cad8ca71724965"
+    }
+  ]
+}

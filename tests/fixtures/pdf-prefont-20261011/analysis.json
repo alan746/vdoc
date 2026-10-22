@@ -1,0 +1,185 @@
+{
+  "files": [
+    {
+      "file": "output/pdf/pdf-prefont-20261011/flow-contextual.pdf",
+      "pages": 4,
+      "nulls": 0,
+      "types": {
+        "/Type0": 143,
+        "/Type3": 4
+      },
+      "inventories": {
+        "cjk": true,
+        "hindi": true,
+        "arabic": true,
+        "hebrew": true
+      },
+      "hindiOrder": true,
+      "markersOnce": true
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/flow-family-contextual.pdf",
+      "pages": 4,
+      "nulls": 0,
+      "types": {
+        "/Type0": 13,
+        "/Type3": 207
+      },
+      "inventories": {
+        "cjk": true,
+        "hindi": true,
+        "arabic": true,
+        "hebrew": true
+      },
+      "hindiOrder": true,
+      "markersOnce": true
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/flow-fallback.pdf",
+      "pages": 4,
+      "nulls": 867,
+      "types": {
+        "/Type0": 23
+      },
+      "inventories": {
+        "cjk": true,
+        "hindi": false,
+        "arabic": false,
+        "hebrew": true
+      },
+      "hindiOrder": false,
+      "markersOnce": true
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/b-early-verified.pdf",
+      "pages": 5,
+      "nulls": 54,
+      "types": {
+        "/Type0": 41,
+        "/Type3": 4
+      }
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/b-early-verified-logical.pdf",
+      "pages": 5,
+      "nulls": 0,
+      "types": {
+        "/Type0": 41,
+        "/Type3": 4
+      }
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/flow-family.pdf",
+      "pages": 4,
+      "nulls": 722,
+      "types": {
+        "/Type0": 9,
+        "/Type3": 103
+      },
+      "inventories": {
+        "cjk": false,
+        "hindi": false,
+        "arabic": false,
+        "hebrew": true
+      },
+      "hindiOrder": false,
+      "markersOnce": true
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/b-early.pdf",
+      "pages": 5,
+      "nulls": 54,
+      "types": {
+        "/Type0": 41,
+        "/Type3": 4
+      }
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/b-early-logical.pdf",
+      "pages": 5,
+      "nulls": 0,
+      "types": {
+        "/Type0": 41,
+        "/Type3": 4
+      }
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/flow-fallback-contextual.pdf",
+      "pages": 4,
+      "nulls": 0,
+      "types": {
+        "/Type0": 143
+      },
+      "inventories": {
+        "cjk": true,
+        "hindi": true,
+        "arabic": true,
+        "hebrew": true
+      },
+      "hindiOrder": true,
+      "markersOnce": true
+    },
+    {
+      "file": "output/pdf/pdf-prefont-20261011/flow.pdf",
+      "pages": 4,
+      "nulls": 867,
+      "types": {
+        "/Type0": 27,
+        "/Type3": 4
+      },
+      "inventories": {
+        "cjk": true,
+        "hindi": false,
+        "arabic": true,
+        "hebrew": true
+      },
+      "hindiOrder": false,
+      "markersOnce": true
+    },
+    {
+      "file": "output/pdf/safari-native-20261011/flow-native-101.pdf",
+      "pages": 4,
+      "nulls": 0,
+      "types": {
+        "/Type0": 23
+      },
+      "inventories": {
+        "cjk": true,
+        "hindi": false,
+        "arabic": false,
+        "hebrew": true
+      },
+      "hindiOrder": false,
+      "markersOnce": true
+    }
+  ],
+  "pixelComparison": [
+    {
+      "variant": "flow",
+      "pagesIdentical": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "variant": "flow-family",
+      "pagesIdentical": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "variant": "flow-fallback",
+      "pagesIdentical": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import type { Editor } from '@tiptap/core';
+import { FolderOpen, FilePlus2, Upload, ArrowDownToLine, Printer } from 'lucide-react';
+import { toast } from 'sonner';
+import { actionErrorMessage } from '@/lib/editor/error-message';
+import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Menu } from './toolbar';
+import { useDocumentNavigation } from './use-document-navigation';
+import { assertAutosaveActive, type SaveBlock } from '@/lib/editor/document-navigation';
+import { readDocumentImport } from '@/lib/editor/import-file';
+import { notifyDocumentImport } from './import-feedback';
+import { listLibrary, type LibraryItem } from '@/lib/editor/library-store';
+import { activateDocument, selectDocument, saveDocument, type LibraryEntry, type SavedDocument } from '@/lib/editor/document-store';
+
+function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>) {
+  const names: string[] = [], visited = new Set([document.id]);
+  let parent = document.parentId;
+  while (parent) {
+    const folder = items.get(parent);
+    if (visited.has(parent) || !folder || folder.kind !== 'folder' || folder.trashedAt) {
+      return ['Unavailable folder', ...names].join(' / ');
+    }
+    visited.add(parent); names.unshift(folder.title); parent = folder.parentId;
+  }
+  return ['Workspace', ...names].join(' / ');
+}
+
+export function LocalDocuments({ wordExportBusy = false, editor, title, blocked, documentId, onOpen, capture, exportDoc, onLanguage, onPrint }: { wordExportBusy?: boolean; onPrint: () => void; onLanguage: () => void; documentId: string; capture: () => void; exportDoc: (format: 'json' | 'html' | 'docx' | 'txt') => void; editor: Editor; title: string; blocked: SaveBlock; onOpen: (document: SavedDocument) => void }) {
+  const [open, setOpen] = useState(false);
+  const [documents, setDocuments] = useState<(LibraryEntry & { location: string })[]>([]);
+  const { navigation, busy } = useDocumentNavigation(editor);
+  const file = useRef<HTMLInputElement>(null);
+  const mounted = useRef(true), current = useRef({ title, blocked });
+  current.current = { title, blocked };
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const perform = async (work: () => Promise<void>, fallback = 'The document could not be opened.') => {
+    // A ref closes the same-event gap before React commits disabled controls.
+    if (!mounted.current || !navigation!.acquire()) return;
+    try { await work(); }
+    catch (error) { if (mounted.current) toast.error(actionErrorMessage(error, fallback)); }
+    finally { navigation!.release(); }
+  };
+  const ensureWritable = () => { assertAutosaveActive(current.current.blocked); };
+  const preserve = async () => {
+    ensureWritable();
+    await saveDocument(current.current.title.trim() || 'Untitled document', editor.getJSON(), documentId);
+    // A conflict may arrive while the final save is still pending.
+    ensureWritable();
+  };
+  const load = async (document: SavedDocument | string, onLoaded?: () => void) => {
+    if (!mounted.current || editor.isDestroyed) return;
+    navigation!.freeze();
+    await preserve(); if (!mounted.current || editor.isDestroyed) return;
+    // Read existing documents after the final save, including reopening this
+    // document. Only newly created/imported content uses the writing path.
+    const next = typeof document === 'string' ? await selectDocument(document) : await activateDocument(document);
+    if (!mounted.current) return;
+    ensureWritable();
+    setOpen(false); onOpen(next); onLoaded?.();
+  };
+  const openLibrary = () => perform(async () => {
+    const protectInput = () => {
+      if (navigation!.isComposing()) throw new Error('Finish composing your text before opening the document list.');
+    };
+    protectInput();
+    await preserve(); if (!mounted.current) return;
+    protectInput();
+    const library = await listLibrary(); if (!mounted.current) return;
+    // Reading may be slow while the editor remains usable. A late dialog's
+    // autofocus must not interrupt a candidate started during either await.
+    protectInput();
+    const byId = new Map(library.map(item => [item.id, item]));
+    setDocuments(library.filter(item => item.kind === 'document' && !item.trashedAt)
+      .sort((a, b) => b.savedAt.localeCompare(a.savedAt))
+      .map(item => ({ ...item, location: documentLocation(item, byId) })));
+    setOpen(true);
+  }, 'The document library could not be read. Download a backup first.');
+  return <>
+    <Menu editor={editor} capture={capture} label={busy ? 'File…' : 'File'} ariaLabel="File"><DropdownMenuItem disabled={busy} onSelect={() => perform(() => load({ version: 1, id: crypto.randomUUID(), title: 'Untitled document', content: { type: 'doc', content: [{ type: 'paragraph' }] }, savedAt: new Date().toISOString() }))}><FilePlus2 />New document</DropdownMenuItem>
+    <DropdownMenuItem disabled={busy} onSelect={openLibrary}><FolderOpen />Open local document</DropdownMenuItem>
+    <DropdownMenuItem disabled={busy} onSelect={() => file.current?.click()}><Upload />Import document</DropdownMenuItem>
+    <DropdownMenuItem onSelect={onLanguage}>Language…</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={() => exportDoc('json')}><ArrowDownToLine />Download VDoc backup</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('html')}><ArrowDownToLine />Download HTML</DropdownMenuItem><DropdownMenuItem disabled={wordExportBusy} onSelect={() => exportDoc('docx')}><ArrowDownToLine />{wordExportBusy ? 'Preparing Word…' : 'Download Word (.docx)'}</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('txt')}><ArrowDownToLine />Download plain text</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={onPrint}><Printer />Print / Save as PDF</DropdownMenuItem></Menu>
+    <span role="status" className="sr-only">{busy ? 'Opening local file…' : ''}</span>
+    <input ref={file} type="file" accept=".json,.docx,.txt" hidden disabled={busy} aria-label="Import document file" onChange={e => {
+      const selected = e.target.files?.[0]; e.target.value = ''; if (!selected) return;
+      void perform(async () => { const imported = await readDocumentImport(selected);
+        if (!mounted.current) return;
+        await load({ ...imported.document, id: crypto.randomUUID() }, () => notifyDocumentImport(imported)); }, 'This document could not be read.');
+    }} />
+    <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>Documents on this device</DialogTitle><DialogDescription>Your documents stay in this browser. Download backups to keep a separate copy.</DialogDescription><div className="local-documents" aria-busy={busy}>{documents.map(doc => <button key={doc.id} disabled={busy} aria-current={doc.id === documentId ? 'true' : undefined} onClick={() => perform(async () => { await load(doc.id); }, 'This saved document could not be opened.')}><strong>{doc.title || 'Untitled document'}</strong><span>{doc.location}</span><span>{new Date(doc.savedAt).toLocaleString()}{doc.id === documentId ? ' · Current document' : ''}</span></button>)}{!documents.length && <p>No saved documents yet.</p>}</div></DialogContent></Dialog>
+  </>;
+}

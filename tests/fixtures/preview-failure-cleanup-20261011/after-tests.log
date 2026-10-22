@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/print-preview-page.test.ts (47 tests) 229ms
+ ✓ tests/print-preview-controls.test.ts (22 tests) 370ms
+ ✓ tests/preview-images.test.ts (16 tests) 14ms
+
+ Test Files  3 passed (3)
+      Tests  85 passed (85)
+   Start at  16:30:57
+   Duration  1.80s (transform 120ms, setup 18ms, collect 351ms, tests 613ms, environment 470ms, prepare 86ms)
+

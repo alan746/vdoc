@@ -1,0 +1,692 @@
+{
+  "at": "2026-10-11T18:19:27.049Z",
+  "browser": "154.0.8037.98",
+  "method": "Double-click a visible word in isolated Chrome PDF viewer, then read actual selected text; no system clipboard.",
+  "results": [
+    {
+      "label": "words",
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-logical.pdf",
+      "sha256": "776b57fe418d90d186902d13ec99f95c61a28d55269ea68de15c0e0d58682749",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "expected": "Browser",
+          "x": 407.9013428949005,
+          "y": 157.86256218905476,
+          "rect": {
+            "x": 60,
+            "y": 85,
+            "width": 85.140625,
+            "height": 29
+          },
+          "selectedText": "Browser",
+          "match": true
+        },
+        {
+          "line": 0,
+          "expected": "vectors",
+          "x": 709.7235307835821,
+          "y": 157.86256218905476,
+          "rect": {
+            "x": 368.765625,
+            "y": 85,
+            "width": 75.03125,
+            "height": 29
+          },
+          "selectedText": "vectors",
+          "match": true
+        },
+        {
+          "line": 1,
+          "expected": "हिन्दी",
+          "x": 386.2477845149254,
+          "y": 219.47699004975124,
+          "rect": {
+            "x": 60,
+            "y": 147,
+            "width": 41.5625,
+            "height": 29
+          },
+          "selectedText": "न्",
+          "match": false
+        },
+        {
+          "line": 1,
+          "expected": "लिखना।",
+          "x": 621.1062072450248,
+          "y": 219.47699004975124,
+          "rect": {
+            "x": 284.671875,
+            "y": 147,
+            "width": 64.875,
+            "height": 29
+          },
+          "selectedText": "खना",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "दुनिया",
+          "x": 389.4775730721393,
+          "y": 281.0914179104478,
+          "rect": {
+            "x": 60,
+            "y": 209,
+            "width": 48.0625,
+            "height": 29
+          },
+          "selectedText": "नि",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "प्रार्थना।",
+          "x": 599.2896066542289,
+          "y": 281.0914179104478,
+          "rect": {
+            "x": 265.890625,
+            "y": 209,
+            "width": 58.53125,
+            "height": 29
+          },
+          "selectedText": "र्थ",
+          "match": false
+        },
+        {
+          "line": 3,
+          "expected": "Repeat",
+          "x": 401.5349327580846,
+          "y": 342.7058457711443,
+          "rect": {
+            "x": 60,
+            "y": 271,
+            "width": 72.328125,
+            "height": 29
+          },
+          "selectedText": "Repeat",
+          "match": true
+        },
+        {
+          "line": 3,
+          "expected": "shapes.",
+          "x": 777.9295223103234,
+          "y": 342.7058457711443,
+          "rect": {
+            "x": 435.484375,
+            "y": 271,
+            "width": 78.859375,
+            "height": 29
+          },
+          "selectedText": "shapes",
+          "match": true
+        }
+      ],
+      "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+      "selectedText": "Browser PDF — local text and vectors\nहि न् दी हिं दी भा षा में दस् ता वे ज़ लि खना ।\nदु नि या नमस् ते शि क्षा क्ष त्रि य प्रा र्थ ना ।\nRepeat हि न् दी and हिं दी with contextual shapes.\nTable cell हि न् दी भा षा\nDifferent context शि क्षा प्रा र्थ ना",
+      "matchCollapsed": false
+    },
+    {
+      "label": "arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-logical.pdf",
+      "sha256": "b2dd791510784f0e9edea82a32d3b4266430ee81888c65f5fce08c77fb5790f1",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "expected": "Browser",
+          "x": 407.9013428949005,
+          "y": 158.35945273631842,
+          "rect": {
+            "x": 60,
+            "y": 77,
+            "width": 85.140625,
+            "height": 46
+          },
+          "selectedText": "Browser",
+          "match": true
+        },
+        {
+          "line": 0,
+          "expected": "words",
+          "x": 631.2070604011194,
+          "y": 158.35945273631842,
+          "rect": {
+            "x": 295.609375,
+            "y": 77,
+            "width": 63.328125,
+            "height": 46
+          },
+          "selectedText": "words",
+          "match": true
+        },
+        {
+          "line": 1,
+          "expected": "اللغة",
+          "x": 1015.668357431592,
+          "y": 219.97388059701495,
+          "rect": {
+            "x": 694.28125,
+            "y": 139,
+            "width": 39.71875,
+            "height": 46
+          },
+          "selectedText": "ةغللا",
+          "match": false
+        },
+        {
+          "line": 1,
+          "expected": "جميلة",
+          "x": 904.2095965485074,
+          "y": 219.97388059701495,
+          "rect": {
+            "x": 576.390625,
+            "y": 139,
+            "width": 51.1875,
+            "height": 46
+          },
+          "selectedText": "ةليمج",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "مرحبا",
+          "x": 1012.3919853855722,
+          "y": 281.58830845771143,
+          "rect": {
+            "x": 687.6875,
+            "y": 201,
+            "width": 46.3125,
+            "height": 46
+          },
+          "selectedText": "ابحرم",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "عليكم",
+          "x": 840.988038324005,
+          "y": 281.58830845771143,
+          "rect": {
+            "x": 513.65625,
+            "y": 201,
+            "width": 49.421875,
+            "height": 46
+          },
+          "selectedText": "مكيلع",
+          "match": false
+        },
+        {
+          "line": 3,
+          "expected": "العربية",
+          "x": 1007.927734375,
+          "y": 343.202736318408,
+          "rect": {
+            "x": 678.703125,
+            "y": 263,
+            "width": 55.296875,
+            "height": 46
+          },
+          "selectedText": "ةيبرعلا",
+          "match": false
+        },
+        {
+          "line": 3,
+          "expected": "الكتابة",
+          "x": 885.1491857120647,
+          "y": 343.202736318408,
+          "rect": {
+            "x": 556.125,
+            "y": 263,
+            "width": 53.359375,
+            "height": 46
+          },
+          "selectedText": "ةباتكلا",
+          "match": false
+        }
+      ],
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nةغللا ةيبرعلا ةليمج\nابحرم ملاعلاب مالسلا مكيلع\nةيبرعلا ميلعتلا ةباتكلا\nTable cell ةيبرعلا\nDifferent context ميلعتلا",
+      "matchCollapsed": false
+    },
+    {
+      "label": "hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-logical.pdf",
+      "sha256": "725ddf8416483809d60cd265de8a274ccfe4ae2f2d45835262ddb355ea235a77",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "expected": "Browser",
+          "x": 407.4898554104478,
+          "y": 157.86256218905476,
+          "rect": {
+            "x": 60,
+            "y": 85,
+            "width": 84.3125,
+            "height": 29
+          },
+          "selectedText": "Browser",
+          "match": true
+        },
+        {
+          "line": 0,
+          "expected": "words",
+          "x": 644.5377021144279,
+          "y": 157.86256218905476,
+          "rect": {
+            "x": 309.40625,
+            "y": 85,
+            "width": 62.5625,
+            "height": 29
+          },
+          "selectedText": "words",
+          "match": true
+        },
+        {
+          "line": 1,
+          "expected": "שלום",
+          "x": 1011.048828125,
+          "y": 219.47699004975124,
+          "rect": {
+            "x": 684.984375,
+            "y": 147,
+            "width": 49.015625,
+            "height": 29
+          },
+          "selectedText": "םולש",
+          "match": false
+        },
+        {
+          "line": 1,
+          "expected": "מסמך",
+          "x": 836.6868295242537,
+          "y": 219.47699004975124,
+          "rect": {
+            "x": 506.6875,
+            "y": 147,
+            "width": 54.703125,
+            "height": 29
+          },
+          "selectedText": "ךמסמ",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "עברית",
+          "x": 1006.7243275808457,
+          "y": 281.0914179104478,
+          "rect": {
+            "x": 676.28125,
+            "y": 209,
+            "width": 57.71875,
+            "height": 29
+          },
+          "selectedText": "תירבע",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "טבלה",
+          "x": 883.3091379042289,
+          "y": 281.0914179104478,
+          "rect": {
+            "x": 555.046875,
+            "y": 209,
+            "width": 51.8125,
+            "height": 29
+          },
+          "selectedText": "הלבט",
+          "match": false
+        },
+        {
+          "line": 3,
+          "expected": "שלום",
+          "x": 1011.048828125,
+          "y": 342.7058457711443,
+          "rect": {
+            "x": 684.984375,
+            "y": 271,
+            "width": 49.015625,
+            "height": 29
+          },
+          "selectedText": "םולש",
+          "match": false
+        },
+        {
+          "line": 3,
+          "expected": "עולם",
+          "x": 882.0902032804726,
+          "y": 342.7058457711443,
+          "rect": {
+            "x": 556.625,
+            "y": 271,
+            "width": 46.203125,
+            "height": 29
+          },
+          "selectedText": "םלוע",
+          "match": false
+        }
+      ],
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nםולש םלוע תקידב ךמסמ\nתירבע הביתכ הלבט\nםולש תירבעב םלוע\nTable cell תירבע\nDifferent context םולש",
+      "matchCollapsed": false
+    },
+    {
+      "label": "arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-logical-marked.pdf",
+      "sha256": "b14d6c03122c87eecf919e6d80b9c689b3131069ce7fdf98bba4c5e90e81460a",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "expected": "Browser",
+          "x": 407.9013428949005,
+          "y": 158.35945273631842,
+          "rect": {
+            "x": 60,
+            "y": 77,
+            "width": 85.140625,
+            "height": 46
+          },
+          "selectedText": "Browser",
+          "match": true
+        },
+        {
+          "line": 0,
+          "expected": "words",
+          "x": 631.2070604011194,
+          "y": 158.35945273631842,
+          "rect": {
+            "x": 295.609375,
+            "y": 77,
+            "width": 63.328125,
+            "height": 46
+          },
+          "selectedText": "words",
+          "match": true
+        },
+        {
+          "line": 1,
+          "expected": "اللُّغَةُ",
+          "x": 1015.668357431592,
+          "y": 219.97388059701495,
+          "rect": {
+            "x": 694.28125,
+            "y": 139,
+            "width": 39.71875,
+            "height": 46
+          },
+          "selectedText": "للاُّغَةُ",
+          "match": false
+        },
+        {
+          "line": 1,
+          "expected": "جَمِيلَةٌ",
+          "x": 904.2095965485074,
+          "y": 219.97388059701495,
+          "rect": {
+            "x": 576.390625,
+            "y": 139,
+            "width": 51.1875,
+            "height": 46
+          },
+          "selectedText": "جَمِليَةٌ",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "مَرْحَبًا",
+          "x": 1012.3997493003732,
+          "y": 281.58830845771143,
+          "rect": {
+            "x": 687.703125,
+            "y": 201,
+            "width": 46.296875,
+            "height": 46
+          },
+          "selectedText": "مَرْحَبًا",
+          "match": true
+        },
+        {
+          "line": 2,
+          "expected": "123",
+          "x": 905.6148651274875,
+          "y": 281.58830845771143,
+          "rect": {
+            "x": 584.515625,
+            "y": 201,
+            "width": 37.765625,
+            "height": 46
+          },
+          "selectedText": "123",
+          "match": true
+        },
+        {
+          "line": 3,
+          "expected": "الْعَرَبِيَّةُ",
+          "x": 1007.927734375,
+          "y": 343.202736318408,
+          "rect": {
+            "x": 678.703125,
+            "y": 263,
+            "width": 55.296875,
+            "height": 46
+          },
+          "selectedText": "لاْعَرَبِيَّةُ",
+          "match": false
+        },
+        {
+          "line": 3,
+          "expected": "الْكِتَابَةُ",
+          "x": 885.1491857120647,
+          "y": 343.202736318408,
+          "rect": {
+            "x": 556.125,
+            "y": 263,
+            "width": 53.359375,
+            "height": 46
+          },
+          "selectedText": "لاْكِتَباَةُ",
+          "match": false
+        }
+      ],
+      "source": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nللاُّغَةُ لاْعَرَبِيَّةُ جَمِليَةٌ\nمَرْحَبًا بِلاْعَلاَمِ 123\nلاْعَرَبِيَّةُ تلاَّعْلِميُ لاْكِتَباَةُ\nTable cell ةيبرعلا\nDifferent context ميلعتلا",
+      "matchCollapsed": false
+    },
+    {
+      "label": "hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-logical-marked.pdf",
+      "sha256": "a00e4b19f9337f5028626a7b53128054f84ea0aee6598a67d9cb09134fd69b4b",
+      "geometry": {
+        "rect": {
+          "x": 4.968905472636816,
+          "y": 2.9813432835820897,
+          "width": 789.0621890547263,
+          "height": 1116.016169154229
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "selections": [
+        {
+          "line": 0,
+          "expected": "Browser",
+          "x": 407.4898554104478,
+          "y": 157.86256218905476,
+          "rect": {
+            "x": 60,
+            "y": 85,
+            "width": 84.3125,
+            "height": 29
+          },
+          "selectedText": "Browser",
+          "match": true
+        },
+        {
+          "line": 0,
+          "expected": "words",
+          "x": 644.5377021144279,
+          "y": 157.86256218905476,
+          "rect": {
+            "x": 309.40625,
+            "y": 85,
+            "width": 62.5625,
+            "height": 29
+          },
+          "selectedText": "words",
+          "match": true
+        },
+        {
+          "line": 1,
+          "expected": "שָׁלוֹם",
+          "x": 1011.048828125,
+          "y": 219.47699004975124,
+          "rect": {
+            "x": 684.984375,
+            "y": 147,
+            "width": 49.015625,
+            "height": 29
+          },
+          "selectedText": "שָׁולֹם",
+          "match": false
+        },
+        {
+          "line": 1,
+          "expected": "עוֹלָם",
+          "x": 957.8504839085821,
+          "y": 219.47699004975124,
+          "rect": {
+            "x": 632.859375,
+            "y": 147,
+            "width": 46.203125,
+            "height": 29
+          },
+          "selectedText": "ועֹלָם",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "עִבְרִית",
+          "x": 1006.7243275808457,
+          "y": 281.0914179104478,
+          "rect": {
+            "x": 676.28125,
+            "y": 209,
+            "width": 57.71875,
+            "height": 29
+          },
+          "selectedText": "עִבְרִתי",
+          "match": false
+        },
+        {
+          "line": 2,
+          "expected": "123",
+          "x": 890.1569107587064,
+          "y": 281.0914179104478,
+          "rect": {
+            "x": 568.828125,
+            "y": 209,
+            "width": 38.03125,
+            "height": 29
+          },
+          "selectedText": "123",
+          "match": true
+        },
+        {
+          "line": 3,
+          "expected": "שָׁלוֹם",
+          "x": 1011.048828125,
+          "y": 342.7058457711443,
+          "rect": {
+            "x": 684.984375,
+            "y": 271,
+            "width": 49.015625,
+            "height": 29
+          },
+          "selectedText": "שָׁולֹם",
+          "match": false
+        },
+        {
+          "line": 3,
+          "expected": "עוֹלָם",
+          "x": 882.0902032804726,
+          "y": 342.7058457711443,
+          "rect": {
+            "x": 556.625,
+            "y": 271,
+            "width": 46.203125,
+            "height": 29
+          },
+          "selectedText": "ועֹלָם",
+          "match": false
+        }
+      ],
+      "source": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nשָׁולֹם ועֹלָם\nעִבְרִתי כְּתִביָה 123\nשָׁולֹם בְּעִבְרִתי ועֹלָם\nTable cell תירבע\nDifferent context םולש",
+      "matchCollapsed": false
+    }
+  ]
+}

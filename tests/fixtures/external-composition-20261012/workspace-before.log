@@ -1,0 +1,49 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ❯ tests/workspace-composition.test.ts (19 tests | 1 failed | 18 skipped) 131ms
+   × connects title composition to the real external operation and undo entry points 130ms
+     → expected undefined to be 'COMPOSING' // Object.is equality
+   ↓ keeps an active title composition when a pending home save finishes and saves the final title on retry
+   ↓ keeps the draft if a file finishes reading during title composition and permits import after it ends
+   ↓ keeps flagless Enter in an active title composition, then resumes after compositionend
+   ↓ ignores flagless shortcut p while an input composition is active, then resumes
+   ↓ ignores flagless shortcut f while an input composition is active, then resumes
+   ↓ ignores flagless shortcut h while an input composition is active, then resumes
+   ↓ clears interrupted title composition on blur
+   ↓ protects global shortcuts in the replacement field without locking later searches
+   ↓ keeps candidate-confirming Enter in the title field: {"isComposing":true}
+   ↓ keeps candidate-confirming Enter in the title field: {"keyCode":229}
+   ↓ still returns to the document on ordinary title Enter
+   ↓ does not open panels for IME shortcut p from a title or body
+   ↓ does not open panels for IME shortcut f from a title or body
+   ↓ does not open panels for IME shortcut h from a title or body
+   ↓ restores ordinary shortcut p after composition ends
+   ↓ restores ordinary shortcut f after composition ends
+   ↓ restores ordinary shortcut h after composition ends
+   ↓ respects a shortcut already handled by a nested control
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/workspace-composition.test.ts > connects title composition to the real external operation and undo entry points
+AssertionError: expected undefined to be 'COMPOSING' // Object.is equality
+
+- Expected: 
+"COMPOSING"
+
++ Received: 
+undefined
+
+ ❯ tests/workspace-composition.test.ts:52:54
+
+ ❯ Proxy.process.env.NODE_ENV.exports.act node_modules/react/cjs/react.development.js:814:22
+ ❯ tests/workspace-composition.test.ts:52:8
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 skipped (19)
+   Start at  21:30:41
+   Duration  967ms (transform 252ms, setup 9ms, collect 527ms, tests 131ms, environment 148ms, prepare 28ms)
+

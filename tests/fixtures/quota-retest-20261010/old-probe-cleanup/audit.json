@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-11T00:14:54.083528+00:00",
+  "reportSha256": "60fa6c032cdb310069db09b1105071ea45f77568d6a90c0b1ab940cfe86930ed",
+  "scope": "Exact registered QA bucket in original embedded Chrome 152 origin; default IndexedDB not accessed",
+  "beforeUsageBytes": 0,
+  "caveat": "Historical 7 MiB no longer present at readback; this run removed retained empty limited bucket only",
+  "gate": "Q signed; native IME/original-source/Safari PDF remain unsigned"
+}

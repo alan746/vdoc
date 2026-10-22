@@ -1,0 +1,145 @@
+{
+  "at": "2026-10-11T04:45:43.776501+00:00",
+  "productChanged": false,
+  "candidate": "0a2386834f95c86adf6c8fd8fafbd0ab5b43ec6f281749da6eaaea9c85cb5ffd",
+  "newPdfCount": 11,
+  "newPages": 55,
+  "fixedPdfHandoff": {
+    "scales": [
+      93,
+      99,
+      100,
+      101,
+      102
+    ],
+    "nativePages": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "oraclePassed": true,
+    "evidence": [
+      "pdf-analysis.json",
+      "content-geometry.json",
+      "regression.json"
+    ]
+  },
+  "prototype": {
+    "tool": "tools/pdf-export/render-prototype.cjs",
+    "sourceUnchanged": true,
+    "externalRequestsObserved": false,
+    "nativeScales": [
+      100,
+      101,
+      93
+    ],
+    "nativePages": [
+      5,
+      5,
+      5
+    ],
+    "accepted": false,
+    "reason": "Hindi unmapped characters in pypdf and PDF.js; native Safari AX sees unmapped default-prototype text. Native reprints retain page structure but fail Hindi inventory. Local and Noto diagnostic fonts did not fix it.",
+    "evidence": [
+      "prototype-analysis.json",
+      "prototype-native-analysis.json",
+      "pdfjs-text.json",
+      "regression.json",
+      "prototype-runner/current-ax.json"
+    ]
+  },
+  "regression": {
+    "tool": "tools/pdf-export/verify-acceptance.py",
+    "inputCount": 19,
+    "oldFailuresDetected": 5,
+    "goodBaselinesPassed": 8,
+    "incompletePrototypesRejected": 6,
+    "scope": "B fixture only; saved actual PDFs; not a rerun of product UI"
+  },
+  "mechanismResearch": {
+    "sources": [
+      "https://raw.githubusercontent.com/WebKit/WebKit/main/Source/WebCore/page/PrintContext.cpp",
+      "https://raw.githubusercontent.com/WebKit/WebKit/main/Source/WebKit/WebProcess/WebPage/WebPage.cpp"
+    ],
+    "inference": "Public WebKit HTML path divides page rect size by native user scale and enables horizontal tiling; PDF path uses separate pagination. Consistent with observations, not verified source of the installed Safari binary."
+  },
+  "visualReview": "All 55 pages rendered. Fixed and prototype contact sheets examined; stable page structure, no empty last page. Prototype text defect means it is not accepted despite visual layout.",
+  "cleanup": {
+    "ownedWindows": [
+      {
+        "id": 1997,
+        "exists": false
+      },
+      {
+        "id": 2161,
+        "exists": false
+      }
+    ],
+    "nativeScaleRestored": 100,
+    "testPortsStopped": [
+      4189,
+      4190
+    ],
+    "mainServerPreserved": 5173
+  },
+  "next": "Resolve complex-script PDF extraction and a supported local web export architecture before integrating the product button. Keep S054 and I/P/S/F unsigned; no AI.",
+  "files": [
+    {
+      "path": "output/pdf/safari-fixed-pdf-20261011/prototype-b-font.pdf",
+      "sha256": "de15deb1b5eb2d7fe66420af6911cacd0df9f9e2792efdb33a5ba824f252544b",
+      "bytes": 143654
+    },
+    {
+      "path": "output/pdf/safari-fixed-pdf-20261011/prototype-b-noto.pdf",
+      "sha256": "c859e49392fb2d9a246420df322bdd3335480f60a63eb0998f3deebdfe6b9405",
+      "bytes": 147405
+    },
+    {
+      "path": "output/pdf/safari-fixed-pdf-20261011/prototype-b.pdf",
+      "sha256": "dc9027ab31b56a146dc9988ed001116fc95b39c4f708a82808d4a45c8e6ea541",
+      "bytes": 146390
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/fixed-handoff-100.pdf",
+      "sha256": "7c01be60242ffea229e11aaeb345cd1fd64bb471c2fc15812e39d1e1c5e6397b",
+      "bytes": 97314
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/fixed-handoff-101.pdf",
+      "sha256": "f54a7ba0e5fe3ac132e64233ddc5057f9bfd4eba5867175d3e507490cc0776a0",
+      "bytes": 97144
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/fixed-handoff-102.pdf",
+      "sha256": "dd233e7619673cd34f02183c51a5201d2a0a40839eab3834ae9b719c10cdc092",
+      "bytes": 97064
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/fixed-handoff-93.pdf",
+      "sha256": "87e7b3329e2b309062acf1b9171678b5848f7d6ea2dfc0b2a9390841157bc601",
+      "bytes": 97255
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/fixed-handoff-99.pdf",
+      "sha256": "a62999139e0c49e8f4582e265bf22e742f8fc3d01b9e3a146bd1fe2944d5a7e0",
+      "bytes": 97264
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/prototype-native-100.pdf",
+      "sha256": "13b7b48bee19394f45b06c83deaf622960887cbe4f437c5fc52694880cc90e29",
+      "bytes": 185233
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/prototype-native-101.pdf",
+      "sha256": "797261f348334eded124745dc160309a163366fa6100c1c6ba6ef8d4c97b4ac5",
+      "bytes": 195622
+    },
+    {
+      "path": "output/pdf/safari-native-20261011/prototype-native-93.pdf",
+      "sha256": "a1ff8d6de7efc94998b586501a194e73c88258fbf7fa4b97a010910aaec763d2",
+      "bytes": 195819
+    }
+  ]
+}

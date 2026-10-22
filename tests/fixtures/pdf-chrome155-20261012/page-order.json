@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-12T19:34:50.223Z",
+  "scope": "Official Chrome for Testing with disposable profile; stock plugin selectAll/getSelectedText, not OS clipboard. Existing PDFs unchanged.",
+  "results": [
+    {
+      "label": "page-order-arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155.pdf",
+      "sha256": "3172230b20f4c9f8707054ed1458bd1085da79c41f30f47eb396a13efb29164e",
+      "expected": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 142,
+        "expectedContext": "ربية Different context التعليم",
+        "actualContext": "ربية Different context التعليم"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 142,
+        "expectedContext": "ربية Different context التعليم",
+        "actualContext": "ربية Different context التعليم"
+      }
+    },
+    {
+      "label": "page-order-hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155.pdf",
+      "sha256": "67011b1294b24844924eaff7265cae75a99e002bb47dd223152840c2d004ebea",
+      "expected": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 121,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 121,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      }
+    }
+  ],
+  "version": "155.0.8059.39"
+}

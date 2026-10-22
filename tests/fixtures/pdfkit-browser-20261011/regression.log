@@ -1,0 +1,14 @@
+test_actualtext_changes_neither_visible_pixels_nor_drawing_operators (__main__.ReaderSelectionEvidence.test_actualtext_changes_neither_visible_pixels_nor_drawing_operators) ... ok
+test_five_actual_reader_copies_preserve_words_marks_and_numbers (__main__.ReaderSelectionEvidence.test_five_actual_reader_copies_preserve_words_marks_and_numbers) ... ok
+test_full_copy_success_does_not_approve_wrong_word_hit_positions (__main__.ReaderSelectionEvidence.test_full_copy_success_does_not_approve_wrong_word_hit_positions) ... ok
+test_hindi_readers_disagree_so_extractor_failure_is_not_copy_failure (__main__.ReaderSelectionEvidence.test_hindi_readers_disagree_so_extractor_failure_is_not_copy_failure) ... ok
+test_library_download_matches_bytes_and_source_was_unchanged (__main__.ReaderSelectionEvidence.test_library_download_matches_bytes_and_source_was_unchanged) ... ok
+test_other_extractors_remain_an_explicit_limitation (__main__.ReaderSelectionEvidence.test_other_extractors_remain_an_explicit_limitation) ... ok
+test_selection_evidence_is_bound_to_exact_pdf_bytes (__main__.ReaderSelectionEvidence.test_selection_evidence_is_bound_to_exact_pdf_bytes) ... ok
+test_smaller_annotations_and_combined_operators_do_not_close_rtl (__main__.ReaderSelectionEvidence.test_smaller_annotations_and_combined_operators_do_not_close_rtl) ... ok
+test_unannotated_rtl_and_library_are_real_negative_controls (__main__.ReaderSelectionEvidence.test_unannotated_rtl_and_library_are_real_negative_controls) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.064s
+
+OK

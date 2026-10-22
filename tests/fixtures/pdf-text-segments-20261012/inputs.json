@@ -1,0 +1,134 @@
+[
+  {
+    "label": "auto",
+    "file": "tests/fixtures/pdf-text-segments-20261012/auto.pdf",
+    "original": "output/pdf/type0-minimal-20261011/hebrew-page-visual.pdf",
+    "sourceText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+    "targets": [
+      {
+        "expected": "QA",
+        "x": 75.21875,
+        "y": 99.5
+      },
+      {
+        "expected": "embedded",
+        "x": 151.8203125,
+        "y": 99.5
+      },
+      {
+        "expected": "font",
+        "x": 234.1640625,
+        "y": 99.5
+      },
+      {
+        "expected": "123",
+        "x": 280.09375,
+        "y": 99.5
+      },
+      {
+        "expected": "שלום",
+        "x": 709.5,
+        "y": 161.5
+      },
+      {
+        "expected": "עולם",
+        "x": 655.9453125,
+        "y": 161.5
+      },
+      {
+        "expected": "בדיקת",
+        "x": 597.0859375,
+        "y": 161.5
+      },
+      {
+        "expected": "מסמך",
+        "x": 533.9765625,
+        "y": 161.5
+      },
+      {
+        "expected": "עברית",
+        "x": 705.140625,
+        "y": 223.5
+      },
+      {
+        "expected": "כתיבה",
+        "x": 641.546875,
+        "y": 223.5
+      },
+      {
+        "expected": "טבלה",
+        "x": 580.90625,
+        "y": 223.5
+      }
+    ],
+    "stringsBefore": 56,
+    "stringsAfter": 27,
+    "sha256": "34797d53bb11fe3067a6cc92fe4d0c24385da4723d821393bbbea2ea743f1ff2"
+  },
+  {
+    "label": "r2l",
+    "file": "tests/fixtures/pdf-text-segments-20261012/r2l.pdf",
+    "original": "tests/fixtures/pdf-reading-direction-20261012/page-visual-r2l.pdf",
+    "sourceText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+    "targets": [
+      {
+        "expected": "QA",
+        "x": 75.21875,
+        "y": 99.5
+      },
+      {
+        "expected": "embedded",
+        "x": 151.8203125,
+        "y": 99.5
+      },
+      {
+        "expected": "font",
+        "x": 234.1640625,
+        "y": 99.5
+      },
+      {
+        "expected": "123",
+        "x": 280.09375,
+        "y": 99.5
+      },
+      {
+        "expected": "שלום",
+        "x": 709.5,
+        "y": 161.5
+      },
+      {
+        "expected": "עולם",
+        "x": 655.9453125,
+        "y": 161.5
+      },
+      {
+        "expected": "בדיקת",
+        "x": 597.0859375,
+        "y": 161.5
+      },
+      {
+        "expected": "מסמך",
+        "x": 533.9765625,
+        "y": 161.5
+      },
+      {
+        "expected": "עברית",
+        "x": 705.140625,
+        "y": 223.5
+      },
+      {
+        "expected": "כתיבה",
+        "x": 641.546875,
+        "y": 223.5
+      },
+      {
+        "expected": "טבלה",
+        "x": 580.90625,
+        "y": 223.5
+      }
+    ],
+    "stringsBefore": 56,
+    "stringsAfter": 27,
+    "sha256": "93c6fff71359940dee284f07024f195ce9c91dd4461e4c70bab8265663dbb376"
+  }
+]

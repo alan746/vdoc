@@ -1,0 +1,19 @@
+test_21_pdfs_bound_to_sources_and_one_page (__main__.NumericReader.test_21_pdfs_bound_to_sources_and_one_page) ... ok
+test_arabic_indic_digits_selected_at_both_offsets (__main__.NumericReader.test_arabic_indic_digits_selected_at_both_offsets) ... ok
+test_broad_digit_boxes_are_rejected_for_new_failure (__main__.NumericReader.test_broad_digit_boxes_are_rejected_for_new_failure) ... ok
+test_exact_totals_keep_edge_and_interior_failures_separate (__main__.NumericReader.test_exact_totals_keep_edge_and_interior_failures_separate) ... ok
+test_final_base_visible_paths_and_positions_preserved (__main__.NumericReader.test_final_base_visible_paths_and_positions_preserved) ... ok
+test_final_seven_full_selections_and_56_words (__main__.NumericReader.test_final_seven_full_selections_and_56_words) ... ok
+test_independent_geometry_is_not_sufficient_for_ink_or_drag (__main__.NumericReader.test_independent_geometry_is_not_sufficient_for_ink_or_drag) ... ok
+test_no_regression_in_each_protocol_and_fixture (__main__.NumericReader.test_no_regression_in_each_protocol_and_fixture) ... ok
+test_numeric_hitboxes_are_terminal_only (__main__.NumericReader.test_numeric_hitboxes_are_terminal_only) ... ok
+test_positive_and_absent_search_controls (__main__.NumericReader.test_positive_and_absent_search_controls) ... ok
+test_real_pdfjs_layers_keep_all_six_rtl_failures (__main__.NumericReader.test_real_pdfjs_layers_keep_all_six_rtl_failures) ... ok
+test_render_pixel_differences_remain_explicit (__main__.NumericReader.test_render_pixel_differences_remain_explicit) ... ok
+test_source_geometry_and_pixels_match_originals (__main__.NumericReader.test_source_geometry_and_pixels_match_originals) ... ok
+test_visual_token_order_rejected_despite_pdfjs_success (__main__.NumericReader.test_visual_token_order_rejected_despite_pdfjs_success) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.366s
+
+OK

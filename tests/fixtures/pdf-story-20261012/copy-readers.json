@@ -1,0 +1,214 @@
+{
+  "at": "2026-10-12T01:20:01.186Z",
+  "browser": "154.0.8037.98",
+  "scope": "Stock Chrome plugin selectAll plus official PDF.js text-layer copy handler for each page. Synthetic ClipboardEvent with isolated in-memory DataTransfer; no system clipboard or native key press. Raw Selection.toString retained separately. Known generated margins are excluded only for a separate body comparison, with occurrence counts retained. Neither raw nor body comparison silently changes Unicode or word order.",
+  "results": [
+    {
+      "label": "hebrew",
+      "file": "output/pdf/pdf-story-20261012/hebrew.pdf",
+      "pdfSha256": "39c16b4cf0ac4e25e6bbf3cf719a61fad31cc929c5419d1468e48ca0a8bad135",
+      "source": "שלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "chrome": {
+        "selectedText": "ךמסמ תקידב םלוע םולש\nהלבט הביתכ תירבע",
+        "match": false,
+        "expectedLength": 37,
+        "actualLength": 37,
+        "firstDifference": 0,
+        "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "ךמסמ תקידב םלוע םולש הלבט הביתכ תירבע",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 37,
+          "actualLength": 37,
+          "firstDifference": 0,
+          "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "ךמסמ תקידב םלוע םולש הלבט הביתכ תירבע",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "שלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה"
+        ],
+        "copies": [
+          "שלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "שלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+        "copiedText": "שלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+        "match": false,
+        "expectedLength": 37,
+        "actualLength": 32,
+        "firstDifference": 4,
+        "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+        "actualContext": "שלוםעולםבדיקתמסמך עבריתכתיבהטבלה",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 37,
+          "actualLength": 32,
+          "firstDifference": 4,
+          "expectedContext": "שלום עולם בדיקת מסמך עברית כתיבה טבלה",
+          "actualContext": "שלוםעולםבדיקתמסמך עבריתכתיבהטבלה",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      }
+    },
+    {
+      "label": "arabic",
+      "file": "output/pdf/pdf-story-20261012/arabic.pdf",
+      "pdfSha256": "1cdc410f6b17425f7f6265d2bb3a86da6af14771c9a0962ce3e5d5c5f4f07734",
+      "source": "العربية لغة جميلة\nمرحبا بالعالم كتابة مستند",
+      "chrome": {
+        "selectedText": "يمجǁة Ǆةغ اǄةيبرع\nدنتسم ةباتك ابǄاعǄم ابحرم",
+        "match": false,
+        "expectedLength": 43,
+        "actualLength": 43,
+        "firstDifference": 0,
+        "expectedContext": "العربية لغة جميلة مرحبا بالعالم كتابة مستند",
+        "actualContext": "يمجǁة Ǆةغ اǄةيبرع دنتسم ةباتك ابǄاعǄم ابحرم",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 43,
+          "actualLength": 43,
+          "firstDifference": 0,
+          "expectedContext": "العربية لغة جميلة مرحبا بالعالم كتابة مستند",
+          "actualContext": "يمجǁة Ǆةغ اǄةيبرع دنتسم ةباتك ابǄاعǄم ابحرم",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "ﺍǄﻌﺮﺑﻴﺔǄﻐﺔﺟﻤﻴǁﺔ\nﻣﺮﺣﺒﺎﺑﺎǄﻌﺎǄﻢﻛﺘﺎﺑﺔﻣﺴﺘﻨﺪ"
+        ],
+        "copies": [
+          "ﺍǄﻌﺮﺑﻴﺔǄﻐﺔﺟﻤﻴǁﺔ\nﻣﺮﺣﺒﺎﺑﺎǄﻌﺎǄﻢﻛﺘﺎﺑﺔﻣﺴﺘﻨﺪ"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "ﺍǄﻌﺮﺑﻴﺔǄﻐﺔﺟﻤﻴǁﺔ\nﻣﺮﺣﺒﺎﺑﺎǄﻌﺎǄﻢﻛﺘﺎﺑﺔﻣﺴﺘﻨﺪ",
+        "copiedText": "ﺍǄﻌﺮﺑﻴﺔǄﻐﺔﺟﻤﻴǁﺔ\nﻣﺮﺣﺒﺎﺑﺎǄﻌﺎǄﻢﻛﺘﺎﺑﺔﻣﺴﺘﻨﺪ",
+        "match": false,
+        "expectedLength": 43,
+        "actualLength": 38,
+        "firstDifference": 0,
+        "expectedContext": "العربية لغة جميلة مرحبا بالعالم كتابة مستند",
+        "actualContext": "ﺍǄﻌﺮﺑﻴﺔǄﻐﺔﺟﻤﻴǁﺔ ﻣﺮﺣﺒﺎﺑﺎǄﻌﺎǄﻢﻛﺘﺎﺑﺔﻣﺴﺘﻨﺪ",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 43,
+          "actualLength": 38,
+          "firstDifference": 0,
+          "expectedContext": "العربية لغة جميلة مرحبا بالعالم كتابة مستند",
+          "actualContext": "ﺍǄﻌﺮﺑﻴﺔǄﻐﺔﺟﻤﻴǁﺔ ﻣﺮﺣﺒﺎﺑﺎǄﻌﺎǄﻢﻛﺘﺎﺑﺔﻣﺴﺘﻨﺪ",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      }
+    },
+    {
+      "label": "hindi",
+      "file": "output/pdf/pdf-story-20261012/hindi.pdf",
+      "pdfSha256": "d9602dd973ee4c2114001f4f60313b018fc2fdc554b5884d9c65d35f304d4b0b",
+      "source": "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+      "chrome": {
+        "selectedText": "हə ďदी हɥ ͆दी भाषा मȶदĚतावेज़ लɛ खना।\nȞ नə या नमĚते शɛ Zा Z ŕɛ य Śाथना। ù",
+        "match": false,
+        "expectedLength": 79,
+        "actualLength": 72,
+        "firstDifference": 1,
+        "expectedContext": "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+        "actualContext": "हə ďदी हɥ ͆दी भाषा मȶदĚतावेज़ लɛ खना। Ȟ नə या नमĚते शɛ Zा Z ŕɛ य Śाथना। ù",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 79,
+          "actualLength": 72,
+          "firstDifference": 1,
+          "expectedContext": "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+          "actualContext": "हə ďदी हɥ ͆दी भाषा मȶदĚतावेज़ लɛ खना। Ȟ नə या नमĚते शɛ Zा Z ŕɛ य Śाथना। ù",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "हə ďदी हɥ͆ दी भाषा मȶ दĚतावेज़ लɛ खना।\nȞ नə या नमĚते शɛ Zा Z ŕɛ य Śा ùथना।"
+        ],
+        "copies": [
+          "हə ďदी हɥ͆ दी भाषा मȶ दĚतावेज़ लɛ खना।\nȞ नə या नमĚते शɛ Zा Z ŕɛ य Śा ùथना।"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "हə ďदी हɥ͆ दी भाषा मȶ दĚतावेज़ लɛ खना।\nȞ नə या नमĚते शɛ Zा Z ŕɛ य Śा ùथना।",
+        "copiedText": "हə ďदी हɥ͆ दी भाषा मȶ दĚतावेज़ लɛ खना।\nȞ नə या नमĚते शɛ Zा Z ŕɛ य Śा ùथना।",
+        "match": false,
+        "expectedLength": 79,
+        "actualLength": 73,
+        "firstDifference": 1,
+        "expectedContext": "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+        "actualContext": "हə ďदी हɥ͆ दी भाषा मȶ दĚतावेज़ लɛ खना। Ȟ नə या नमĚते शɛ Zा Z ŕɛ य Śा ùथना।",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 79,
+          "actualLength": 73,
+          "firstDifference": 1,
+          "expectedContext": "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+          "actualContext": "हə ďदी हɥ͆ दी भाषा मȶ दĚतावेज़ लɛ खना। Ȟ नə या नमĚते शɛ Zा Z ŕɛ य Śा ùथना।",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      }
+    }
+  ]
+}

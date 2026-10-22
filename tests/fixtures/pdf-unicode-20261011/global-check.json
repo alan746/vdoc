@@ -1,0 +1,140 @@
+{
+  "fixture": "B: tests/fixtures/safari-preview/source.vdoc.json",
+  "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/pdf-unicode-20261011/global-order-b.pdf",
+  "sha256": "a7cfdc5c5768661b03202da136f7ec0bf92595e015c2af7f61d6daefe62acfbd",
+  "passed": true,
+  "failures": [],
+  "pages": [
+    {
+      "page": 1,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 2,
+      "rows": [
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 3,
+      "rows": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 4,
+      "rows": [
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 5,
+      "rows": [],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "hindiCodepointsPreserved": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    }
+  ],
+  "limits": "Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping."
+}

@@ -1,0 +1,106 @@
+{
+  "checks": [
+    {
+      "zoom": 75,
+      "where": "middle",
+      "hits": [
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ]
+      ]
+    },
+    {
+      "zoom": 75,
+      "where": "end",
+      "hits": [
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ]
+      ]
+    },
+    {
+      "zoom": 100,
+      "where": "middle",
+      "hits": [
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ]
+      ]
+    },
+    {
+      "zoom": 100,
+      "where": "end",
+      "hits": [
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ]
+      ]
+    },
+    {
+      "zoom": 125,
+      "where": "middle",
+      "hits": [
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ]
+      ]
+    },
+    {
+      "zoom": 125,
+      "where": "end",
+      "hits": [
+        [
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true
+        ]
+      ]
+    }
+  ],
+  "printTransforms": [
+    "none",
+    "none"
+  ],
+  "browser": "154.0.8037.98",
+  "fullJSONUnchanged": true
+}

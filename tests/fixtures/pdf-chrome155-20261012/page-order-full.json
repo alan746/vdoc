@@ -1,0 +1,140 @@
+{
+  "at": "2026-10-12T19:36:12.231Z",
+  "scope": "Official Chrome for Testing with disposable profile; stock plugin selectAll/getSelectedText, not OS clipboard. Existing PDFs unchanged.",
+  "results": [
+    {
+      "label": "full-words",
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-page-order-155.pdf",
+      "sha256": "f8b39b7889d8d3e49432048a1138ddeadda1c6bf745d53f158a93f2c5fa964f0",
+      "expected": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+      "actual": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 222,
+        "expectedContext": "erent context शिक्षा प्रार्थना",
+        "actualContext": "erent context शिक्षा प्रार्थना"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 222,
+        "expectedContext": "erent context शिक्षा प्रार्थना",
+        "actualContext": "erent context शिक्षा प्रार्थना"
+      }
+    },
+    {
+      "label": "full-arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155.pdf",
+      "sha256": "3172230b20f4c9f8707054ed1458bd1085da79c41f30f47eb396a13efb29164e",
+      "expected": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 142,
+        "expectedContext": "ربية Different context التعليم",
+        "actualContext": "ربية Different context التعليم"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 142,
+        "expectedContext": "ربية Different context التعليم",
+        "actualContext": "ربية Different context التعليم"
+      }
+    },
+    {
+      "label": "full-hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155.pdf",
+      "sha256": "67011b1294b24844924eaff7265cae75a99e002bb47dd223152840c2d004ebea",
+      "expected": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 121,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 121,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      }
+    },
+    {
+      "label": "full-arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155-marked.pdf",
+      "sha256": "970250d2e3ee10ec3fe630291d433fba0b149373390a87266b91c813b78c4226",
+      "expected": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic words\nُةَغُّالل ُةَّيِبَرَعْال ٌةَيلِمَج\nاًبَحْرَم ِمَالَعْالِب 123\nُةَّيِبَرَعْال ُيمِلْعَّالت ُةَابَتِكْال\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ مَرْحَبًا بِالْعَالَمِ 123 الْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ Table cell العربي",
+        "actualContext": "Browser PDF — Arabic words ُةَغُّالل ُةَّيِبَرَعْال ٌةَيلِمَج اًبَحْرَم ِمَالَعْالِب 123 ُةَّيِبَرَعْال ُيمِلْعَّالت ُةَابَتِكْال Table cell العربي"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ مَرْحَبًا بِالْعَالَمِ 123 الْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ Table cell العربي",
+        "actualContext": "Browser PDF — Arabic words ُةَغُّالل ُةَّيِبَرَعْال ٌةَيلِمَج اًبَحْرَم ِمَالَعْالِب 123 ُةَّيِبَرَعْال ُيمِلْعَّالت ُةَابَتِكْال Table cell العربي"
+      }
+    },
+    {
+      "label": "full-hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155-marked.pdf",
+      "sha256": "0a454a4c3cbc37c2707a3fcfe09df1b3be37f7a74b5d6477e1b0488dcf8fbfe6",
+      "expected": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew words\nםֹלוָׁש םָלֹעו\nיתִרְבִע הָיבִתְּכ 123\nםֹלוָׁש יתִרְבִעְּב םָלֹעו\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שָׁלוֹם עוֹלָם עִבְרִית כְּתִיבָה 123 שָׁלוֹם בְּעִבְרִית עוֹלָם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words םֹלוָׁש םָלֹעו יתִרְבִע הָיבִתְּכ 123 םֹלוָׁש יתִרְבִעְּב םָלֹעו Table cell עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": false,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שָׁלוֹם עוֹלָם עִבְרִית כְּתִיבָה 123 שָׁלוֹם בְּעִבְרִית עוֹלָם Table cell עברית Different context שלום",
+        "actualContext": "Browser PDF — Hebrew words םֹלוָׁש םָלֹעו יתִרְבִע הָיבִתְּכ 123 םֹלוָׁש יתִרְבִעְּב םָלֹעו Table cell עברית Different context שלום"
+      }
+    },
+    {
+      "label": "full-arabic-numbers",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-page-order-155-numbers.pdf",
+      "sha256": "68e28a670bb565c868dc1deb6a9791a757bc172f5a3651cf1313e735c049c344",
+      "expected": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "actual": "Browser PDF — Arabic numbers\nمرحبا 0123456789\nالعدد 9876543210 العربية\nالعربية ١٢٣٤٥٦٧٨٩٠\nTable cell العربية\nDifferent context التعليم",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 134,
+        "expectedContext": "ربية Different context التعليم",
+        "actualContext": "ربية Different context التعليم"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 134,
+        "expectedContext": "ربية Different context التعليم",
+        "actualContext": "ربية Different context التعليم"
+      }
+    },
+    {
+      "label": "full-hebrew-numbers",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-page-order-155-numbers.pdf",
+      "sha256": "a0a7df33635c152660d540d08019be2a2b315aec132b2a4029cfe56ba524333b",
+      "expected": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 124,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 124,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      }
+    }
+  ],
+  "version": "155.0.8059.39"
+}

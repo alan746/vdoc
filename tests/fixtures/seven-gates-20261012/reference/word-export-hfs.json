@@ -1,0 +1,6 @@
+{
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "282:319: execution error: Owned reference document not opened (-2700)\n",
+  "pdfExists": false
+}

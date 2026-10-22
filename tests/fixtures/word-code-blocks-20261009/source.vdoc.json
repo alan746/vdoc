@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "title": "QA code block roundtrip 2026-10-09",
+  "savedAt": "2026-10-09T00:00:00.000Z",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WORD_CODE_START 中文"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "content": [
+          {
+            "type": "text",
+            "text": "\tif 中文 < 3:\n  print(\"العربية 👩‍💻 café कि\")\n\n\t\treturn 日本語\n"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 2
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Merged code cell"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "codeBlock",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "\tif 中文 < 3:\n  print(\"العربية 👩‍💻 café कि\")\n\n\t\treturn 日本語\n"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "END_CELL"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "A"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WORD_CODE_END العربية"
+          }
+        ]
+      }
+    ]
+  }
+}

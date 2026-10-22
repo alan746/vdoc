@@ -1,0 +1,296 @@
+{
+  "fixture": "number-cases-v1",
+  "report": {
+    "prototypeOnly": true,
+    "pages": 1,
+    "tokens": 28,
+    "uniqueWords": 17,
+    "uniqueClusters": 50,
+    "measurements": [
+      {
+        "text": "Browser",
+        "domWidth": 84.3125,
+        "fontWidth": 84.304,
+        "delta": 0.008499999999997954
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "PDF",
+        "domWidth": 39.890625,
+        "fontWidth": 39.885999999999996,
+        "delta": 0.00462500000000432
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "—",
+        "domWidth": 22,
+        "fontWidth": 22,
+        "delta": 0
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "Hebrew",
+        "domWidth": 79.46875,
+        "fontWidth": 79.464,
+        "delta": 0.004750000000001364
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "numbers",
+        "domWidth": 92.203125,
+        "fontWidth": 92.202,
+        "delta": 0.001125000000001819
+      },
+      {
+        "text": "0123456789",
+        "domWidth": 126.734375,
+        "fontWidth": 126.72,
+        "delta": 0.014375000000001137
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "שלום",
+        "domWidth": 49,
+        "fontWidth": 48.994,
+        "delta": 0.006000000000000227
+      },
+      {
+        "text": "בעברית",
+        "domWidth": 70.296875,
+        "fontWidth": 70.28999999999999,
+        "delta": 0.006875000000007958
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "9876543210",
+        "domWidth": 126.734375,
+        "fontWidth": 126.72,
+        "delta": 0.014375000000001137
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "מספר",
+        "domWidth": 52.65625,
+        "fontWidth": 52.645999999999994,
+        "delta": 0.01025000000000631
+      },
+      {
+        "text": "1234567890",
+        "domWidth": 126.734375,
+        "fontWidth": 126.72,
+        "delta": 0.014375000000001137
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "עברית",
+        "domWidth": 57.71875,
+        "fontWidth": 57.706,
+        "delta": 0.01274999999999693
+      },
+      {
+        "text": "Table",
+        "domWidth": 53.59375,
+        "fontWidth": 53.592,
+        "delta": 0.0017500000000012506
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "cell",
+        "domWidth": 34.5,
+        "fontWidth": 34.496,
+        "delta": 0.003999999999997783
+      },
+      {
+        "text": "עברית",
+        "domWidth": 57.71875,
+        "fontWidth": 57.706,
+        "delta": 0.01274999999999693
+      },
+      {
+        "text": "Different",
+        "domWidth": 90.640625,
+        "fontWidth": 90.64,
+        "delta": 0.0006249999999994316
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "context",
+        "domWidth": 77.734375,
+        "fontWidth": 77.726,
+        "delta": 0.00837500000000091
+      },
+      {
+        "text": "שלום",
+        "domWidth": 49,
+        "fontWidth": 48.994,
+        "delta": 0.006000000000000227
+      }
+    ],
+    "scope": "Regular-weight cluster-level selection, QA single-page layout only. One shaped cluster maps to its full Unicode sequence; no codepoint decomposition. QA only, selection acceptance pending."
+  },
+  "cancelled": true,
+  "checks": [],
+  "sourceUnchanged": true,
+  "sha256": "1c39afe49426a82711f0c53aad1e43b3dc7e90962456524cf223dd7c644d3111",
+  "sourceText": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+  "targets": [
+    {
+      "line": 0,
+      "expected": "Browser",
+      "x": 102.15625,
+      "y": 99.5,
+      "rect": {
+        "x": 60,
+        "y": 85,
+        "width": 84.3125,
+        "height": 29
+      }
+    },
+    {
+      "line": 0,
+      "expected": "numbers",
+      "x": 355.5859375,
+      "y": 99.5,
+      "rect": {
+        "x": 309.484375,
+        "y": 85,
+        "width": 92.203125,
+        "height": 29
+      }
+    },
+    {
+      "line": 1,
+      "expected": "שלום",
+      "x": 709.5,
+      "y": 161.5,
+      "rect": {
+        "x": 685,
+        "y": 147,
+        "width": 49,
+        "height": 29
+      }
+    },
+    {
+      "line": 1,
+      "expected": "0123456789",
+      "x": 615.6796875,
+      "y": 161.5,
+      "rect": {
+        "x": 552.3125,
+        "y": 147,
+        "width": 126.734375,
+        "height": 29
+      }
+    },
+    {
+      "line": 2,
+      "expected": "מספר",
+      "x": 707.671875,
+      "y": 223.5,
+      "rect": {
+        "x": 681.34375,
+        "y": 209,
+        "width": 52.65625,
+        "height": 29
+      }
+    },
+    {
+      "line": 2,
+      "expected": "בעברית",
+      "x": 507.5546875,
+      "y": 223.5,
+      "rect": {
+        "x": 472.40625,
+        "y": 209,
+        "width": 70.296875,
+        "height": 29
+      }
+    },
+    {
+      "line": 3,
+      "expected": "עברית",
+      "x": 705.140625,
+      "y": 285.5,
+      "rect": {
+        "x": 676.28125,
+        "y": 271,
+        "width": 57.71875,
+        "height": 29
+      }
+    },
+    {
+      "line": 3,
+      "expected": "1234567890",
+      "x": 606.9609375,
+      "y": 285.5,
+      "rect": {
+        "x": 543.59375,
+        "y": 271,
+        "width": 126.734375,
+        "height": 29
+      }
+    }
+  ],
+  "requests": [
+    "/",
+    "/runtime.js",
+    "/fontkit.js",
+    "/pdf.js",
+    "/prototype.js",
+    "/hb/index.mjs",
+    "/hb/harfbuzz.js",
+    "/hb/harfbuzz.wasm",
+    "/font.ttf",
+    "/font.ttf"
+  ]
+}

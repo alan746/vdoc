@@ -1,0 +1,39 @@
+{
+  "status": "partial-body-confirm-and-cancel-user-confirmed",
+  "environment": "Safari, independent Private VDoc test window",
+  "windowID": "6CD174C4-C84C-42A8-A066-74933CFF710A",
+  "documentID": "086c8e8e-1529-437a-82e1-7395146ff767",
+  "documentTitle": "QA final system acceptance",
+  "observations": [
+    {
+      "source": "user",
+      "result": "Keyboard input source switched; Chinese candidate window appeared for zhong."
+    },
+    {
+      "source": "native-accessibility",
+      "result": "Document status Finishing input…; body IME test area: 中文输入测试.zhong; format-copy controls disabled."
+    },
+    {
+      "source": "native-controller",
+      "result": "Space followed by native-controller letter keys did not produce a confirmed Chinese character; body ended in zhongzhong. This is not an IME commit pass."
+    },
+    {
+      "source": "native-accessibility",
+      "result": "Selected and removed only probe zhongzhong. Body restored to IME test area: 中文输入测试."
+    },
+    {
+      "source": "user",
+      "result": "Confirmed exactly one 钟 was added, no extra newline and next candidate cancellation correct."
+    },
+    {
+      "source": "native-accessibility-and-downloaded-backup",
+      "result": "Subsequent Safari original B document had its original 2498 characters, no added 钟; exported full content equalled source. Do not infer persistence of the user-confirmed character or perform undo on an unconfirmed target."
+    }
+  ],
+  "screenshot": "Not captured: automatic approval rejected full Safari-window screenshot due to scope concerns. No workaround used.",
+  "pending": [
+    "Bind the user-confirmed body commit/cancel to the same document ID and a subsequent persisted backup; do not repeat the already confirmed behavior as if no user evidence existed",
+    "Cursor/delete/Undo/Redo and save/reload",
+    "List, table, title, find/replace, header, image description, version-name composition cases"
+  ]
+}

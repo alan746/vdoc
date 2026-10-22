@@ -1,0 +1,10 @@
+[
+  {
+    "label": "arabic",
+    "unicodeOnlyPixelEqual": true
+  },
+  {
+    "label": "hebrew",
+    "unicodeOnlyPixelEqual": true
+  }
+]

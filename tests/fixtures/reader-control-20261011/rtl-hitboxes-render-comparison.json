@@ -1,0 +1,167 @@
+[
+  {
+    "mode": "record-rtl",
+    "label": "words",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "mode": "record-rtl",
+    "label": "arabic",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "mode": "record-rtl",
+    "label": "hebrew",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "mode": "record-rtl",
+    "label": "arabic-marked",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "mode": "record-rtl",
+    "label": "hebrew-marked",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": false,
+    "differenceBounds": [
+      685,
+      156,
+      699,
+      295
+    ]
+  },
+  {
+    "mode": "record-boxes",
+    "label": "words",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": true,
+    "differenceBounds": null
+  },
+  {
+    "mode": "record-boxes",
+    "label": "arabic",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": false,
+    "differenceBounds": [
+      91,
+      93,
+      733,
+      460
+    ]
+  },
+  {
+    "mode": "record-boxes",
+    "label": "hebrew",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": false,
+    "differenceBounds": [
+      506,
+      153,
+      733,
+      453
+    ]
+  },
+  {
+    "mode": "record-boxes",
+    "label": "arabic-marked",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": false,
+    "differenceBounds": [
+      548,
+      140,
+      733,
+      460
+    ]
+  },
+  {
+    "mode": "record-boxes",
+    "label": "hebrew-marked",
+    "size": [
+      794,
+      1123
+    ],
+    "priorSize": [
+      794,
+      1123
+    ],
+    "equal": false,
+    "differenceBounds": [
+      548,
+      153,
+      733,
+      453
+    ]
+  }
+]

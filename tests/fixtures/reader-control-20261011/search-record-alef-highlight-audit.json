@@ -1,0 +1,257 @@
+{
+  "scope": "Whole-word PDF plugin text-fragment lookup; not Cmd-F UI, editor search, or character selection. Page-only pixel comparisons exclude asynchronous reader toolbar/thumbnail loading. All five positive screenshots visually inspected. Negative criterion: zero lavender pixels and at most 1/255 per-channel difference from initial page; exact equality also recorded.",
+  "rawMethodCorrection": "Not needed: current report labels the text-fragment method correctly.",
+  "excludedInvalidComparison": "Earlier bidi-runs whole-window comparison excluded; no such comparison used in this run.",
+  "results": [
+    {
+      "label": "words",
+      "pdfSha256": "c24a5bfc2e25332f32e59f41099aef794cb9164b69409cd5535ec0da3d762df0",
+      "query": "हिन्दी",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        365,
+        205,
+        407,
+        228
+      ],
+      "sourceWordScreenBounds": [
+        365.5957711442786,
+        205.0671641791045,
+        406.8997978855722,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        63,
+        147,
+        64,
+        148
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 640,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-words-before.png",
+          "sha256": "30cc3df05b0501d38308b0967eede0232b4cf2048fa12711bfc25f69c774c966"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-words-match.png",
+          "sha256": "abd68564d60e31c657d1deaf7000371ccba6564eecc1be91d0128d93b13ffa3a"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-words-absent.png",
+          "sha256": "3632abff1c39330acfc096893c25c961d6e1fbd4446524f48b08e956c7d082a3"
+        }
+      ]
+    },
+    {
+      "label": "arabic",
+      "pdfSha256": "83a8e3a54b23df9ad4e0761e88f43f8b7ecd941f9047978450380b316187ae3f",
+      "query": "اللغة",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        196,
+        1036,
+        243
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        160,
+        692,
+        161
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 1650,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-arabic-before.png",
+          "sha256": "7122d4683633fb6a6784ff1b3b9604620e52d9c26dd0b2fd30e145327383d02c"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-arabic-match.png",
+          "sha256": "c4582d807598aa7db59498c59ab6550416893e2796980b30cdc5bde86e594001"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-arabic-absent.png",
+          "sha256": "2112f8fe597b9948cda63a413392b83aace4d9c80f49fcf7cd19abb6c57fb5ad"
+        }
+      ]
+    },
+    {
+      "label": "hebrew",
+      "pdfSha256": "55e3a667787ee77a172a69f591349900a91bd6ef37f024182039cef2642863fa",
+      "query": "שלום",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        210,
+        1036,
+        232
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeExactlyIdentical": true,
+      "maxNegativeChannelDelta": 0,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 821,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-hebrew-before.png",
+          "sha256": "8a093a5cbacc48ce52ca558e06f2f1a987fdba07ac20f39294924481305349a3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-hebrew-match.png",
+          "sha256": "ca63dbe18eb1e63138046a304272148901fc7703f38798404e880aa1ca0cc12d"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-hebrew-absent.png",
+          "sha256": "f1b4e7b708e6befcdc5d496efc9c6eef04e59fdacd182dba54f59983fd9944f2"
+        }
+      ]
+    },
+    {
+      "label": "arabic-marked",
+      "pdfSha256": "63dde47ab3e987013654a19bac9ad6ee5b6ed9da477f88076e96212353d904ac",
+      "query": "اللُّغَةُ",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        198,
+        1036,
+        243
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        147,
+        713,
+        161
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 1516,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-arabic-marked-before.png",
+          "sha256": "7ff321304174a2b6e636e8b2349f3310d8399bb96d09943c69cde97983a4bc49"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-arabic-marked-match.png",
+          "sha256": "b06fde533bc7f4081c2b7c056cafc2d236b912f177d56b07493c1b849c90b1b3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-arabic-marked-absent.png",
+          "sha256": "64b37626f8607f27a56e65dc572de4b29a773bd8d19f141ef85fe3ad1da9b7a3"
+        }
+      ]
+    },
+    {
+      "label": "hebrew-marked",
+      "pdfSha256": "3b0c8cdf86050a6c5120d9435d4624ba702f939f07d0aec684b706aa30dfb18f",
+      "query": "שָׁלוֹם",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        210,
+        1036,
+        233
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeExactlyIdentical": true,
+      "maxNegativeChannelDelta": 0,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 862,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-hebrew-marked-before.png",
+          "sha256": "391f15f2f9c62f19d945c0c1d35082b859f1c0adbfe988e3dbd00faee7c1dd17"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-hebrew-marked-match.png",
+          "sha256": "c295f2a031d71e5c356578e3649f17892182cc2c48ec19e1f97914dd8fc7e8b4"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-alef-hebrew-marked-absent.png",
+          "sha256": "2a06ff7e23b423d7c82e5b0ba82ce881d6eb35f1c89b16ce07868e6d0d5790fb"
+        }
+      ]
+    }
+  ]
+}

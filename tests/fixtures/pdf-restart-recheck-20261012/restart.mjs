@@ -1,0 +1,70 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+import { startLocalApp } from '../../../scripts/start-local.mjs';
+const require = createRequire(import.meta.url);
+const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const out = 'tests/fixtures/pdf-restart-recheck-20261012';
+const options = {port: 4193, ip: '127.0.0.1', persistTo: 'tmp/pdf-restart-recheck-worker'};
+let app, browser;
+const report = {at: new Date().toISOString(), checks: [], errors: []};
+const check = name => report.checks.push({name, passed: true});
+try {
+  await fs.access(out + '/browser.json').then(() => { throw Error('Refuse overwrite evidence'); }, () => {});
+  app = await startLocalApp(options);
+  const origin = app.url;
+  browser = await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+  report.browser = browser.version();
+  const context = await browser.newContext({viewport:{width:1440,height:1000}});
+  await context.route('**/*', r => {
+    const u = new URL(r.request().url());
+    return u.origin === origin || ['data:', 'blob:', 'about:'].includes(u.protocol) ? r.continue() : r.abort();
+  });
+  const page = await context.newPage();
+  page.on('pageerror', e => report.errors.push(e.message));
+  await page.goto(origin);
+  await page.getByLabel('Import file into library').setInputFiles('tests/fixtures/safari-preview/source.vdoc.json');
+  await page.getByRole('textbox',{name:'Document body',exact:true}).waitFor();
+  await page.getByText('Saved locally',{exact:true}).first().waitFor();
+  const before = await page.evaluate(() => window.vdoc.snapshot().document);
+  await page.getByRole('button',{name:'Print',exact:true}).click();
+  await page.getByText('Your PDF opens in a new tab with fixed pages.',{exact:false}).waitFor({timeout:65000});
+  const oldToken = (await (await context.request.get(origin + '/__vdoc/local-pdf')).json()).token;
+  const preview = page.frameLocator('iframe[title="Paginated document preview"]');
+  assert.equal(await preview.locator('.pagedjs_page').count(), 5);
+  await app.close(); app = null;
+  app = await startLocalApp(options); assert.equal(app.url, origin);
+  const freshToken = (await (await context.request.get(origin + '/__vdoc/local-pdf')).json()).token;
+  assert.notEqual(freshToken, oldToken); check('actual owned local server restart rotates credentials');
+  const stale = await context.request.post(origin + '/__vdoc/local-pdf', {headers:{Origin:origin,'X-VDoc-PDF-Token':oldToken},data:{}});
+  assert.equal(stale.status(),403); check('server still rejects obsolete credentials');
+  // Keep the same live document and preview; do not reload to refresh hooks.
+  const response = page.waitForResponse(r => r.url().endsWith('/__vdoc/local-pdf') && r.request().method() === 'POST',{timeout:60000});
+  const popupEvent = context.waitForEvent('page');
+  await page.getByRole('button',{name:'Print / Save PDF',exact:true}).click();
+  const popup = await popupEvent, result = await response;
+  assert.equal(result.status(),200);
+  assert.equal(result.request().headers()['x-vdoc-pdf-token'],freshToken);
+  await popup.waitForURL('blob:**',{timeout:10000});
+  check('same preview exports successfully using fresh credentials without reload');
+  const transfer = page.waitForEvent('download');
+  await page.evaluate(url => {const a=document.createElement('a');a.href=url;a.download='VDoc restart acceptance.pdf';document.body.append(a);a.click();a.remove();},popup.url());
+  const download = await transfer; assert.equal(await download.failure(),null);
+  await download.saveAs(out+'/after-restart.pdf');
+  const bytes = await fs.readFile(out+'/after-restart.pdf'); assert.equal(bytes.subarray(0,5).toString(),'%PDF-');
+  check('actual PDF download succeeds'); report.pdfBytes = bytes.length;
+  assert.deepEqual(await page.evaluate(() => window.vdoc.snapshot().document),before);
+  check('complete source document unchanged');
+  assert.equal(await preview.locator('.pagedjs_page').count(),5);
+  assert.match(await preview.locator('.pagedjs_page').last().innerText(),/FINAL PAGE CHECK/);
+  check('five-page preview and final text retained');
+  await page.screenshot({path:out+'/preview.png'});
+  assert.deepEqual(report.errors,[]); report.passed = true;
+} catch (error) { report.passed = false; report.error = error.stack; process.exitCode = 1; }
+finally {
+  if (browser) await browser.close();
+  if (app) await app.close();
+  report.ownedResourcesClosed = true;
+  await fs.writeFile(out+'/browser.json',JSON.stringify(report,null,2));
+  console.log(JSON.stringify({passed:report.passed,checks:report.checks,error:report.error}));
+}

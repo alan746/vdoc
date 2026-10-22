@@ -1,0 +1,15 @@
+environment {"version":"154.0.8037.98","url":"http://127.0.0.1:4176/tools/quota-workspace/index.html?qaBucket=vdoc-qa-0c276792-40a7-43ee-8e4d-33b05c9d2780","profile":"new ephemeral Chrome profile; no personal profile or existing window attached"}
+baseline-persisted {"id":"65be20c4-80da-44e9-92ea-e84148ebc78c"}
+initial-clean-restore {"url":"http://127.0.0.1:4176/tools/quota-workspace/index.html?qaBucket=vdoc-qa-9f10f34c-a8c6-4bd5-95e7-fd55d826ff80#document=9d8cea54-fde4-4770-8f7c-08ad3e1f3b43","fullContentEqual":true}
+native-bucket-filled {"bucket":"vdoc-qa-0c276792-40a7-43ee-8e4d-33b05c9d2780","bytes":8261632}
+native-save-error-proved {"name":"QuotaExceededError","oldContentEqual":true,"newTitleInActualBackup":true}
+no-unprompted-write-loop {"observationsMs":1400,"transactions":13}
+failed-navigation-keeps-editor {}
+new-failure-visible {"persistentError":"Local storage is full. Download a backup of any unsaved changes, free some space, then try again.","documents":2}
+copy-failure-visible {"persistentError":"Local storage is full. Download a backup of any unsaved changes, free some space, then try again.","documents":2}
+import-failure-visible {"persistentError":"Local storage is full. Download a backup of any unsaved changes, free some space, then try again.","documents":2}
+failed-actions-entire-database-unchanged {}
+retry-counts-control-intact {}
+actual-reload-title-content-equal {}
+clean-restored-subsequent-edit-reloads {}
+completed {"cleanup":"All filler in this temporary context released; browser profile destroyed on close. Earlier in-app 4175 probe not accessed."}

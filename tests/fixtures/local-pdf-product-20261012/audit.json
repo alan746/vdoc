@@ -1,0 +1,241 @@
+{
+  "candidate": "573e638d70db96bcc330215c561c1a40c0a24cb40abd516e996959f599a902cf",
+  "scope": "Local Vite runtime only; installed Chrome/Chromium required. No hosted Worker PDF service or new dependency. Native Safari scale gate remains open.",
+  "checks": {
+    "fullTests": 2025,
+    "testFiles": 142,
+    "targetedTests": 82,
+    "typecheck": true,
+    "build": true,
+    "lintErrors": 0,
+    "existingPrintPreviewHookWarning": 1,
+    "actualDownloadFivePages": true,
+    "rows36ExactlyOnce": true,
+    "finalPageBody": true,
+    "allFivePagesViewed": true,
+    "sourceUnchanged": true
+  },
+  "native": {
+    "scaleAcceptance": false,
+    "reason": "Owned target 7305 identified by unique title and exact loopback URL. Safari could not become frontmost; no print dialog or scale actions performed. Both created test documents closed, owned temporary server stopped.",
+    "evidence": "native/frontmost-result.json"
+  },
+  "files": [
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/analysis.json",
+      "sha256": "e1d5dcc902997320c022727a796293552dd1f799ba18ae071b5aca4c45ead701"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-analysis.json",
+      "sha256": "e1d5dcc902997320c022727a796293552dd1f799ba18ae071b5aca4c45ead701"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-download-verified.pdf",
+      "sha256": "07226c4a31e3adb47e16fbebd9be6047d0bf374f5b63af5f39cc1ffacbd171a4"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-download.pdf",
+      "sha256": "0a048d04faece4853485d3520d04d741154bf1d1da61381b25c1428fdc65b47c"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-page-1.png",
+      "sha256": "28018e357da7e1e77c7e47dcf19b9ed5d6622635712c63edb6a8d2276e44e26f"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-page-2.png",
+      "sha256": "94c17b490b410434483cb665afc877c4fbe544690604c88f9e08e2a530ea0f6f"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-page-3.png",
+      "sha256": "91405b76d918e87fe2373a5a41e6c4cd8330bdb278f4cf2166c22b9ada4ae61a"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-page-4.png",
+      "sha256": "1ff5779c98b1f2f73b96fcc9134d2fcb31bdbc324a64f0c89197f6bb8ef49c7d"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-page-5.png",
+      "sha256": "084236124d7dc2f6bb4aa23021854e3e48faadb667acdae5b9bf4b28ee30a0a7"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-preview-verified.png",
+      "sha256": "56a2af3df5a6bccca2c8a106dd71a85ffff8c70b27b65d0bdbae9cac6125ea9c"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-preview.png",
+      "sha256": "56a2af3df5a6bccca2c8a106dd71a85ffff8c70b27b65d0bdbae9cac6125ea9c"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-verified.cjs",
+      "sha256": "b30a768349ecabcc05d0e14a14e7e52230e6b1ccd676edaaac97eef8d9d4fa09"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-verified.json",
+      "sha256": "a1f1f73618a6f6a7daef0b389ae95e18bfdbd258524c51517c5e30ba8841c1fe"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser-verified.log",
+      "sha256": "661fe28822ab489ffa69c02f210d16698f37fabe71c6628707603a59f0cf3d7d"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser.cjs",
+      "sha256": "39259905b31fbddcbd389d8e4ccad77e6c7a14faaa955291f541fab4d3f76292"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser.json",
+      "sha256": "524aa95d56a77dbb63c2d4fcdff2c032b771f64a536f5f2f00e5c8d0240b6c46"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/browser.log",
+      "sha256": "661fe28822ab489ffa69c02f210d16698f37fabe71c6628707603a59f0cf3d7d"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/build.log",
+      "sha256": "be96b62c11edcda05fdcf28e2937e28de056b5b86ad2e24463e790a6bf87809b"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/contact.png",
+      "sha256": "1acd397b459a76563b3156c071bc837a985085f8f4925236ea3779fc452c4c73"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/existing-preview-tests.log",
+      "sha256": "4f04bea1d37ff8805f0060452ade2daca31c96631af40008cc2cbd9ff9e5b402"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/full-tests.log",
+      "sha256": "6340819867285eff966d3482700742913c9a78451ec9286562dc9d417eb05d56"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/hook-tests-final.log",
+      "sha256": "e6f6444a970b603ca47b3fe4c16c9fc04f7759bb212f4428cdca498210cd286c"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/hook-tests.log",
+      "sha256": "73448b439323ec2dc8c77676403c741cd9dd41cd68d5f71e54ef0887b0f77c31"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/initial-download-error.json",
+      "sha256": "9bbde01ee0c365535b3afa1b2512e2f4117560ee330ac92878475c6c7e3b5ec6"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/lint-fixed.log",
+      "sha256": "7137966f15a6b42679fb201cdfea715aa9c7d01e7417064166b30d834ce5cfa7"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/lint.log",
+      "sha256": "1d6c805b786ac275a916e639fd6aed9fa37a0f7189a62b0894f51127864ae01b"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/action.swift",
+      "sha256": "bddfe336fdb33bc1914b49f4b8990a0fed1702ac32c57916bfe23b8746897283"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/ax-front-check.json",
+      "sha256": "3e812583a7adda71e8121ef69b0f6e808e900ac34102cecbc30e7c352f98b950"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/ax.swift",
+      "sha256": "7c60b3fb85e0cbfa622319382216fd3778b1b420dbf019314978ce99f4705c26"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/cleanup.json",
+      "sha256": "3d00f094302ad97f2b9f88a49460101533f09b00f823d2a328957800b99e5d19"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/focus-frontmost.py",
+      "sha256": "5389a4a0119a70e56d013a5694167a1635c6f1b541af9831adc4d968b90f60b1"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/focus-raise.py",
+      "sha256": "98ca8dd2a17d3a84a1e2d2b0cb17edd943d7515266b3081d7fb2f5d9f772e0a1"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/focus-result.json",
+      "sha256": "809339730eee1c7ac7a19177f41e291fb557ac25e60fb74f5d6c3a0398d9449f"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/focus.py",
+      "sha256": "add180db5c9c409146169d94a446510e06f2a8ef5504b1d4536ae4ad26c697ba"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/frontmost-result.json",
+      "sha256": "00a1bdfa972e8b22cdcaa1791d6c200fc71669126b1204af006473461ed04c9a"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/prepare-applescript.py",
+      "sha256": "e53442e2863235476bb13eda794fbab108a1d70a2af1c8646b759432d94b2467"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/prepare.py",
+      "sha256": "3de331d85d6e8cb133538cc0febb0596907d544c8eaa748ad1bea2d15911cd18"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/server.cjs",
+      "sha256": "b71b24b3308e51ab325f1b2a5cfdaabcf7b7d2e95b1b3b7af89aaf62322823fe"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/native/server.json",
+      "sha256": "da13f225aa029ec5f8c1d5002bdba1e91941fe6165b75af99e978d8c03305fc9"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/new-tests-fixed.log",
+      "sha256": "fba78223358969e4471a80f25a37d2b0b0f96fcf77ff32928b22b77d9ed93676"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/new-tests.log",
+      "sha256": "f5f70428c2c1c4aab9e849a8effab5bceefd1a0cf72bd599f6e8bad4eb549cd6"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/page-1.png",
+      "sha256": "28018e357da7e1e77c7e47dcf19b9ed5d6622635712c63edb6a8d2276e44e26f"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/page-2.png",
+      "sha256": "94c17b490b410434483cb665afc877c4fbe544690604c88f9e08e2a530ea0f6f"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/page-3.png",
+      "sha256": "91405b76d918e87fe2373a5a41e6c4cd8330bdb278f4cf2166c22b9ada4ae61a"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/page-4.png",
+      "sha256": "1ff5779c98b1f2f73b96fcc9134d2fcb31bdbc324a64f0c89197f6bb8ef49c7d"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/page-5.png",
+      "sha256": "084236124d7dc2f6bb4aa23021854e3e48faadb667acdae5b9bf4b28ee30a0a7"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/render.log",
+      "sha256": "f6366d2b4fe9333281cb395c46fec3d9aa09c670cdd5513afbb0c9f176b902d8"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/render.mjs",
+      "sha256": "c9cadd5782344210db97ec12beb9cca151d1fb40165eff041d3272534386ede0"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/render.pdf",
+      "sha256": "e8e3c0d42e06ec2ecb0ea398821db0559b1d66d7ae8f0db6a6c5cb0cb4472f75"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/source-manifest.json",
+      "sha256": "8649bd3a410f75478a812422e9de3a68713459dcbcb23c0dc02fdbf309eda8b3"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/targeted.log",
+      "sha256": "b8084762ffc8cbf4a1b36d274887702a4113c46210eba5d2ea716f23f397121d"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/test-lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/test-lint.log",
+      "sha256": "9ec6d9a7d9a3c3ec398efec01046f9a993a2c787c04a0c7b3262d8d661e0f7fa"
+    },
+    {
+      "file": "tests/fixtures/local-pdf-product-20261012/typecheck-final.log",
+      "sha256": "62c43c4d1ccdb60bc4783c4e95bff684a9f327e48803351fae38e50d7bb58311"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "fixture": "B: tests/fixtures/safari-preview/source.vdoc.json",
+  "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/safari-fixed-pdf-20261011/prototype-b-font.pdf",
+  "sha256": "de15deb1b5eb2d7fe66420af6911cacd0df9f9e2792efdb33a5ba824f252544b",
+  "passed": false,
+  "failures": [
+    "Page 1: noUnmappedCharacters",
+    "Page 2: noUnmappedCharacters",
+    "Page 3: noUnmappedCharacters",
+    "Page 4: noUnmappedCharacters"
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "rows": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "noUnmappedCharacters": false,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 2,
+      "rows": [
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "noUnmappedCharacters": false,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 3,
+      "rows": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "noUnmappedCharacters": false,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 4,
+      "rows": [
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "noUnmappedCharacters": false,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    },
+    {
+      "page": 5,
+      "rows": [],
+      "checks": {
+        "rowsOnExpectedPage": true,
+        "headerOnce": true,
+        "footerOnce": true,
+        "pageNumberOnce": true,
+        "finalHeadingOnLastPage": true,
+        "finalBodyOnLastPage": true,
+        "tableEndOnFourthPage": true,
+        "selectableText": true,
+        "noUnmappedCharacters": true,
+        "imagePresentOnFirstPage": true,
+        "noTextOutsidePage": true
+      }
+    }
+  ],
+  "limits": "Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping."
+}

@@ -1,0 +1,108 @@
+{
+  "sourceText": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+  "targets": [
+    {
+      "line": 0,
+      "expected": "Browser",
+      "x": 102.5703125,
+      "y": 100,
+      "rect": {
+        "x": 60,
+        "y": 77,
+        "width": 85.140625,
+        "height": 46
+      }
+    },
+    {
+      "line": 0,
+      "expected": "words",
+      "x": 327.2734375,
+      "y": 100,
+      "rect": {
+        "x": 295.609375,
+        "y": 77,
+        "width": 63.328125,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "اللغة",
+      "x": 714.140625,
+      "y": 162,
+      "rect": {
+        "x": 694.28125,
+        "y": 139,
+        "width": 39.71875,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "جميلة",
+      "x": 601.984375,
+      "y": 162,
+      "rect": {
+        "x": 576.390625,
+        "y": 139,
+        "width": 51.1875,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "مرحبا",
+      "x": 710.84375,
+      "y": 224,
+      "rect": {
+        "x": 687.6875,
+        "y": 201,
+        "width": 46.3125,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "عليكم",
+      "x": 538.3671875,
+      "y": 224,
+      "rect": {
+        "x": 513.65625,
+        "y": 201,
+        "width": 49.421875,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "العربية",
+      "x": 706.3515625,
+      "y": 286,
+      "rect": {
+        "x": 678.703125,
+        "y": 263,
+        "width": 55.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "الكتابة",
+      "x": 582.8046875,
+      "y": 286,
+      "rect": {
+        "x": 556.125,
+        "y": 263,
+        "width": 53.359375,
+        "height": 46
+      }
+    }
+  ],
+  "width": 794,
+  "height": 1123,
+  "sha256": "3f10375d1d2da3b4b5540c5d3d06ad1e725f7558640b5627f6b74ed1ce772601",
+  "sourceUnchanged": true,
+  "fontSha256": "4e51b6ab4196bb083b5dd473e1e6f68f4c82877375f346ecba396f9271142d6c",
+  "renderer": "154.0.8037.98",
+  "method": "Playwright page.pdf native print control; not a shipping browser API"
+}

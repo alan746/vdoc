@@ -1,0 +1,9 @@
+{
+  "scope": "One bounded plain Hebrew diagnostic, not a general RTL solution",
+  "result": "rejected",
+  "chrome": "word order reversed",
+  "pdfjs": "character order reversed",
+  "renderViewed": true,
+  "productIntegration": false,
+  "initialHarnessFailure": "fontTools unavailable in bundled Python; installed in isolated tmp target and imported explicitly before retry. No PDF existed at failed attempt."
+}

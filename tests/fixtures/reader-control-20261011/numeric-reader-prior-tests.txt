@@ -1,0 +1,18 @@
+test_15_reader_pdfs_bound_to_unchanged_sources (__main__.RtlHitboxes.test_15_reader_pdfs_bound_to_unchanged_sources) ... ok
+test_272_of_318_does_not_hide_46_remaining_failures (__main__.RtlHitboxes.test_272_of_318_does_not_hide_46_remaining_failures) ... ok
+test_actual_vectors_preserve_paths_and_placement (__main__.RtlHitboxes.test_actual_vectors_preserve_paths_and_placement) ... ok
+test_cancel_guard_and_download_bytes (__main__.RtlHitboxes.test_cancel_guard_and_download_bytes) ... ok
+test_cross_reader_limitations_are_retained (__main__.RtlHitboxes.test_cross_reader_limitations_are_retained) ... ok
+test_hindi_and_plain_hebrew_remain_complete (__main__.RtlHitboxes.test_hindi_and_plain_hebrew_remain_complete) ... ok
+test_no_new_failures_at_both_recorded_pointer_insets (__main__.RtlHitboxes.test_no_new_failures_at_both_recorded_pointer_insets) ... ok
+test_pixel_differences_are_not_relabelled_as_identical (__main__.RtlHitboxes.test_pixel_differences_are_not_relabelled_as_identical) ... ok
+test_rejected_rtl_annotations_and_broad_boxes_stay_rejected (__main__.RtlHitboxes.test_rejected_rtl_annotations_and_broad_boxes_stay_rejected) ... ok
+test_search_positive_and_missing_controls (__main__.RtlHitboxes.test_search_positive_and_missing_controls) ... ok
+test_source_coordinates_and_screenshots_are_identical (__main__.RtlHitboxes.test_source_coordinates_and_screenshots_are_identical) ... ok
+test_targeted_five_full_copies_and_forty_words (__main__.RtlHitboxes.test_targeted_five_full_copies_and_forty_words) ... ok
+test_targeted_scope_has_no_raster_or_rtl_actualtext (__main__.RtlHitboxes.test_targeted_scope_has_no_raster_or_rtl_actualtext) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.332s
+
+OK

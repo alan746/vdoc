@@ -1,0 +1,15 @@
+select false 0 {"selection":{"from":13,"to":14},"dom":"d","active":"Document body"}
+select false 1 {"selection":{"from":12,"to":14},"dom":"nd","active":"Document body"}
+select false 2 {"selection":{"from":11,"to":14},"dom":"ond","active":"Document body"}
+select false 3 {"selection":{"from":10,"to":14},"dom":"cond","active":"Document body"}
+select false 4 {"selection":{"from":9,"to":14},"dom":"econd","active":"Document body"}
+select false 5 {"selection":{"from":8,"to":14},"dom":"Second","active":"Document body"}
+retained false FirstSecond
+select true 0 {"selection":{"from":17,"to":18},"dom":"d","active":"Document body"}
+select true 1 {"selection":{"from":16,"to":18},"dom":"nd","active":"Document body"}
+select true 2 {"selection":{"from":15,"to":18},"dom":"ond","active":"Document body"}
+select true 3 {"selection":{"from":14,"to":18},"dom":"cond","active":"Document body"}
+select true 4 {"selection":{"from":13,"to":18},"dom":"econd","active":"Document body"}
+select true 5 {"selection":{"from":12,"to":18},"dom":"Second","active":"Document body"}
+retained true FirstSecond
+Rapid real-keyboard selection collapse and Enter retain text, with and without a formatting menu.

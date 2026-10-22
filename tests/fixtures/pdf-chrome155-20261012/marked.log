@@ -1,0 +1,7 @@
+{"label":"words","match":true,"body":true}
+{"label":"arabic","match":false,"body":false}
+{"label":"hebrew","match":false,"body":false}
+{"label":"arabic-marked","match":false,"body":false}
+{"label":"hebrew-marked","match":false,"body":false}
+{"label":"arabic-numbers","match":false,"body":false}
+{"label":"hebrew-numbers","match":false,"body":false}

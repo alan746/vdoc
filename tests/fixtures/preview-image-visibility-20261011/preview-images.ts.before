@@ -1,0 +1,33 @@
+/** Paged.js tolerates image load failures; a printable preview must not. */
+export function waitForPreviewImages(root: HTMLElement, signal: AbortSignal, timeoutMs = 15_000): Promise<void> {
+  if (signal.aborted) return Promise.reject(new DOMException('Preview closed.', 'AbortError'));
+  const images = Array.from(root.querySelectorAll('img'));
+  if (!images.length) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const pending = new Set(images);
+    const cleanups: (() => void)[] = [];
+    let settled = false;
+    const finish = (error?: Error) => {
+      if (settled) return;
+      settled = true; clearTimeout(timer);
+      signal.removeEventListener('abort', abort);
+      cleanups.forEach(cleanup => cleanup());
+      if (error) reject(error); else resolve();
+    };
+    const abort = () => finish(new DOMException('Preview closed.', 'AbortError'));
+    const timer = setTimeout(() => finish(new Error('An image is taking too long to load. Return to editing and check the images before printing.')), timeoutMs);
+    signal.addEventListener('abort', abort, { once: true });
+    for (const [index, image] of images.entries()) {
+      const failed = () => finish(new Error(`Image ${index + 1} could not be loaded. Return to editing and replace it before printing.`));
+      const loaded = () => {
+        if (!image.naturalWidth || !image.naturalHeight) { failed(); return; }
+        pending.delete(image);
+        if (!pending.size) finish();
+      };
+      image.addEventListener('load', loaded); image.addEventListener('error', failed);
+      cleanups.push(() => { image.removeEventListener('load', loaded); image.removeEventListener('error', failed); });
+      if (image.complete) loaded();
+      if (settled) break;
+    }
+  });
+}

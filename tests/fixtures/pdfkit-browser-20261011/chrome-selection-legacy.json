@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-11T17:51:10.396Z",
+  "browser": "154.0.8037.98",
+  "method": "Loaded local PDF in actual Chrome PDF viewer; selectAll/getSelectedText via its plugin controller. Not a system clipboard or AX-empty pass.",
+  "results": [
+    {
+      "label": "cluster-arabic",
+      "file": "output/pdf/browser-pdf-20261011/arabic-cluster-contiguous.pdf",
+      "sha256": "52013d226bbaba9229558687c3b770a92f15105e19eaf4944f2568f244a07f48",
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nجميلة العربية اللغة\nعليكم السلام بالعالم مرحبا\nالكتابة التعليم العربية\nTable cell العربية\nDifferent context التعليم",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "word-arabic",
+      "file": "output/pdf/browser-pdf-20261011/arabic.pdf",
+      "sha256": "041dfed40c818364d2f7c1d853267d25ae1edadcac60cfe0828377f79ab739bb",
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "BrowserPDF—Arabicwords\nةغللاةيبرعلاةليمج\nابحرمملاعلابمالسلامكيلع\nةيبرعلاميلعتلاةباتكلا\nTablecell ةيبرعلا\nDifferentcontext ميلعتلا",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "unicode-word-arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode.pdf",
+      "sha256": "8b01a4e573b9a6d681cf851f0cf4dda7ab8958ec407ca61e45b9edd748426212",
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nجميلة العربية اللغة\nعليكم السلام بالعالم مرحبا\nالكتابة التعليم العربية\nTable cell العربية\nDifferent context التعليم",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "cluster-hebrew",
+      "file": "output/pdf/browser-pdf-20261011/hebrew-cluster-contiguous.pdf",
+      "sha256": "19c32a65461561b6554b76599f18766fad457afa83f2dc19f4311c5738fd6b2e",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nעולם בעברית שלום\nTable cell עברית\nDifferent context שלום",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "word-hebrew",
+      "file": "output/pdf/browser-pdf-20261011/hebrew.pdf",
+      "sha256": "aca59654feb478c18a4218d9911db15e468ae1317196a0a36c70ac4823df0f60",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "BrowserPDF—Hebrewwords\nםולשםלועתקידבךמסמ\nתירבעהביתכהלבט\nםולשתירבעבםלוע\nTablecell תירבע\nDifferentcontext םולש",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "unicode-word-hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode.pdf",
+      "sha256": "806ca532bbea89ca60450c848977b93bdb00e55164f5958fb0c112581c920a51",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nעולם בעברית שלום\nTable cell עברית\nDifferent context שלום",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    }
+  ]
+}

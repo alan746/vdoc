@@ -1,0 +1,8 @@
+{
+  "state": "isolated harness timed out after 35 seconds; subprocess.run killed owned child",
+  "notProductResult": true,
+  "outputIncomplete": true,
+  "bytes": 204046336,
+  "sha256": "50bf604a2459dda89af76d0c388e1f1409d9a7ca728bbcd9c604c79c120c1ae4",
+  "incompleteTemporaryOutputRemoved": true
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "Isolated Safari WebDriver: real preview lifecycle and two owned VDoc tabs; no native PDF assertion",
+  "checks": [],
+  "applicationSha256": "0a2386834f95c86adf6c8fd8fafbd0ab5b43ec6f281749da6eaaea9c85cb5ffd",
+  "capabilities": {
+    "safari:platformVersion": "26.6.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "26.6.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "25G83",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "documentURL": "http://localhost:5173/#document=c5d19b1c-6da0-49fe-ada6-be8e252a24d7",
+  "readyStatus": "5 pages · A4 · portrait",
+  "state": "failed",
+  "error": "AssertionError([{'at': 1791689258355, 'type': 'vdoc-preview-ready'}, {'at': 1791689258364, 'type': 'vdoc-preview-accepted', 'token': '1ee2c103-1eaf-4626-b557-744604fa59d7'}, {'at': 1791689258652, 'pages': 5, 'state': 'ready', 'fittedTables': 0, 'type': 'vdoc-preview-status', 'token': '1ee2c103-1eaf-4626-b557-744604fa59d7'}, {'at': 1791689258652, 'type': 'vdoc-preview-current-page', 'token': '1ee2c103-1eaf-4626-b557-744604fa59d7', 'page': 1}])",
+  "ownSessionClosed": true
+}

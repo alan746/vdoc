@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-11T20:14:01.216063+00:00",
+  "files": [
+    {
+      "file": "lib/editor/preview-images.ts",
+      "sha256": "af0471bcadecc14041fcfc32c1098240300d032d611e67148895a6ec5f5ec8c6",
+      "snapshot": "tests/fixtures/preview-image-visibility-20261011/preview-images.ts.before"
+    },
+    {
+      "file": "tests/preview-images.test.ts",
+      "sha256": "d840e35097760f6c923ef6c4b7489e75eb2e0005caf96b05c87d41d3030bbcdd",
+      "snapshot": "tests/fixtures/preview-image-visibility-20261011/preview-images.test.ts.before"
+    },
+    {
+      "file": "tests/print-preview-page.test.ts",
+      "sha256": "3da60de76bc4cd5c26b877e3f7e80a70c253ee2ab65d57c7580162113c588c7c",
+      "snapshot": "tests/fixtures/preview-image-visibility-20261011/print-preview-page.test.ts.before"
+    }
+  ]
+}

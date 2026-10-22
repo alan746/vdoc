@@ -1,0 +1,15 @@
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+AssertionError [ERR_ASSERTION]: Image dialog cancel should return focus to document
+    at /Users/ph.qian/Desktop/Vdoc/tmp/combined-workflow/dialog-focus.cjs:2:1886 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

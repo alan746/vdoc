@@ -1,0 +1,222 @@
+{
+  "scope": "Whole-word PDF plugin text-fragment lookup; not Cmd-F UI, editor search, or character selection. Page-only pixel comparisons exclude asynchronous reader toolbar/thumbnail loading. All five positive screenshots visually inspected.",
+  "rawMethodCorrection": "Raw top-level double-click method label was inherited incorrectly; per-result methods and the search tool describe the actual text-fragment calls. Raw report retained.",
+  "excludedInvalidComparison": "search-bidi-runs-pixels.json compared the whole browser including loading toolbar/thumbnail and is not a valid search verdict.",
+  "results": [
+    {
+      "label": "words",
+      "pdfSha256": "307126c3daa2291ec7443a2fb70c60bcb86c8216ef5cb57dffc12bdee7af0784",
+      "query": "हिन्दी",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        365,
+        205,
+        407,
+        231
+      ],
+      "sourceWordScreenBounds": [
+        365.5957711442786,
+        205.0671641791045,
+        406.8997978855722,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        63,
+        147,
+        64,
+        148
+      ],
+      "negativeClearsHighlight": false,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-words-before.png",
+          "sha256": "b5c6b9495ec02fb9c62bab9df36ff8d3e4836c77afee2344d81aceccbe34ccb6"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-words-match.png",
+          "sha256": "29d8006d4628e5c52b64f88c94a843fd630e5e8f8fff3e6fd93c4061b45f2798"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-words-absent.png",
+          "sha256": "9971ebdef0f50e163b203b5dcd59ee3a47593c0ecd069672c307ce2a19dfdff0"
+        }
+      ]
+    },
+    {
+      "label": "arabic",
+      "pdfSha256": "78242fe2b5614076a74e9c67830a229f0562c1ec998eab1a63a5a49c00933062",
+      "query": "اللغة",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        209,
+        1036,
+        236
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        160,
+        692,
+        161
+      ],
+      "negativeClearsHighlight": false,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-arabic-before.png",
+          "sha256": "ae85bfed9be8da27c9923ed04547a078fb7a70ef17e4232295d233e24ee811ed"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-arabic-match.png",
+          "sha256": "aaf2e078c64c6366a320840dc2aacc123f3f6adcfc3c9bea98289ec75ce21ad3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-arabic-absent.png",
+          "sha256": "3aa1ef35d8bb8cd38e4ab36c20a336b9e93115117a3b4132ec500737ff54e666"
+        }
+      ]
+    },
+    {
+      "label": "hebrew",
+      "pdfSha256": "8f458d58912ad2852de72f9d13663dfbb91d539d78f119189f0e8c50d6ffd0ea",
+      "query": "שלום",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        210,
+        1036,
+        232
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-hebrew-before.png",
+          "sha256": "eda93b0ecbb1f4fb202e9e0862dedf8e1085caeb150283d381d791e5d9a3f2fa"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-hebrew-match.png",
+          "sha256": "ca63dbe18eb1e63138046a304272148901fc7703f38798404e880aa1ca0cc12d"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-hebrew-absent.png",
+          "sha256": "f1b4e7b708e6befcdc5d496efc9c6eef04e59fdacd182dba54f59983fd9944f2"
+        }
+      ]
+    },
+    {
+      "label": "arabic-marked",
+      "pdfSha256": "18766341cead2c830d2e874d54e43082222d209e3bb32187c2ec3bbdde34d7d1",
+      "query": "اللُّغَةُ",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        198,
+        1036,
+        236
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        147,
+        713,
+        161
+      ],
+      "negativeClearsHighlight": false,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-arabic-marked-before.png",
+          "sha256": "5ffa0426592936dd72665f68141a925259f76a22f6b0b12afe668b31e9c750b7"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-arabic-marked-match.png",
+          "sha256": "3131673e570fe856b97f9a2f3a2fdebd5a3af85e97a3a8ec2ba81dd5c6cec1c3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-arabic-marked-absent.png",
+          "sha256": "f3f60c7bc9f6efc2ba0624def86ad92a52cd8b7fba21a68bf05e825b0ad5439f"
+        }
+      ]
+    },
+    {
+      "label": "hebrew-marked",
+      "pdfSha256": "f21dcca98f207e9b844828adc49b1352d6da158adf75187e16e5f0d8004249b2",
+      "query": "שָׁלוֹם",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        210,
+        1036,
+        233
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-hebrew-marked-before.png",
+          "sha256": "7d3014bc6002e6d8c1377bc8af60481d524ee6d522bd5097800e343c1ad6ab7c"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-hebrew-marked-match.png",
+          "sha256": "c295f2a031d71e5c356578e3649f17892182cc2c48ec19e1f97914dd8fc7e8b4"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-hebrew-marked-absent.png",
+          "sha256": "2a06ff7e23b423d7c82e5b0ba82ce881d6eb35f1c89b16ce07868e6d0d5790fb"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-10",
+  "browser": "Safari 26.6.2",
+  "os": "macOS 26.6.2 (25G83)",
+  "paper": "A4 portrait",
+  "safariHeadersFooters": false,
+  "printBackgrounds": true,
+  "evidenceKind": "Observed native print-dialog page counts; no new PDF saved",
+  "productionPrintSourceSha256": "26aa15e13f8840546d9efacd11e979bc929fae93af9cd2f36ed3aeab267f687f",
+  "observations": [
+    {
+      "file": "full-sheet.html",
+      "sha256": "7f9197849cc813d6b9bd8a705943e57e662e4ef5c249b6d5037dceb9ba277c99",
+      "pagesAt100Percent": 2,
+      "pagesAt101Percent": 6,
+      "note": "Production print rules; Safari headers/footers disabled. Initial 100% run with Safari headers/footers enabled showed 4 pages."
+    },
+    {
+      "file": "intrinsic-height-control.html",
+      "sha256": "330bfda5d43c30ccc6c137b8335578d6acd2528bbf20b5f4e6b52c4708601525",
+      "pagesAt100Percent": 2,
+      "pagesAt101Percent": 4,
+      "note": "Page and sheet height auto."
+    },
+    {
+      "file": "root-auto-control.html",
+      "sha256": "9297aba35fd88e54d876b90d8baa5d334e8a9cc19e2f96ee6af1118f1830f886",
+      "pagesAt100Percent": null,
+      "pagesAt101Percent": null,
+      "note": "Prepared, not executed."
+    },
+    {
+      "file": "all-auto-control.html",
+      "sha256": "2410bb69e8ef9ee3f1e43f147913dd75588bd4f52b013e851f688f463fb84bc9",
+      "pagesAt100Percent": 2,
+      "pagesAt101Percent": 4,
+      "note": "Auto page/sheet height and auto widths on all outer containers."
+    },
+    {
+      "file": "auto-paper-fixed-control.html",
+      "sha256": "cee5308ff37210469294b38d3c2412cb7d306ad13d3381ceec4ac97b84aad28e",
+      "pagesAt100Percent": 4,
+      "pagesAt101Percent": 6,
+      "note": "Fixed containers with @page size auto."
+    },
+    {
+      "file": "auto-paper-control.html",
+      "sha256": "e505324a1cb3d5b45d9dfeae0b39428169145632b46d2291b7ec7d0001e004e9",
+      "pagesAt100Percent": 2,
+      "pagesAt101Percent": 4,
+      "note": "Auto heights, auto outer widths, @page size auto."
+    },
+    {
+      "file": "plain-control.html",
+      "sha256": "83898a6767ac287bc442ceead37e83e38cc347ab0b10dbc37898a9de4db07b13",
+      "pagesAt100Percent": 2,
+      "pagesAt101Percent": 4,
+      "note": "Only short blocks and an explicit page break; no production CSS."
+    },
+    {
+      "file": "single-page-control.html",
+      "sha256": "8a8d5f2eb48a91cbe7e37c818ac881f85932d2fa119a257458b6a781f3d9889f",
+      "pagesAt100Percent": 1,
+      "pagesAt101Percent": 2,
+      "note": "No CSS. Repeated in both regular and Private Safari with the same result."
+    }
+  ]
+}

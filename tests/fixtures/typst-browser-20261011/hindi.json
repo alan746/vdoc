@@ -1,0 +1,15 @@
+{
+  "label": "hindi",
+  "font": "Devanagari",
+  "lang": "hi",
+  "lines": [
+    "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना।",
+    "दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+    "हिन्दी भाषा 123"
+  ],
+  "file": "output/pdf/typst-browser-20261011/hindi.pdf",
+  "source": "#set page(width: 595.5pt, height: 842.25pt, margin: 45pt)\n#set text(font: \"Noto Sans Devanagari\", size: 16.5pt, lang: \"hi\", dir: ltr)\n#align(left, text(dir: ltr, \"QA embedded font 123\"))\n#v(16.5pt)\n#text(\"हिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\")\n#parbreak()\n#text(\"दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\")\n#parbreak()\n#text(\"हिन्दी भाषा 123\")\n#parbreak()",
+  "sourceText": "QA embedded font 123\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nहिन्दी भाषा 123",
+  "sha256": "dbbc85d58fb7ab3ab56576da9f9eecad20003b447d9472e9587c12ab6b5e737f",
+  "bytes": 11356
+}

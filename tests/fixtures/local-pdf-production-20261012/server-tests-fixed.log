@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/local-start-options.test.ts (8 tests) 2ms
+ ✓ tests/local-pdf-handler.test.ts (4 tests) 179ms
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  00:30:37
+   Duration  948ms (transform 40ms, setup 15ms, collect 38ms, tests 181ms, environment 419ms, prepare 63ms)
+

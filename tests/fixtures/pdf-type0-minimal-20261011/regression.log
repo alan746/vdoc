@@ -1,0 +1,11 @@
+test_all_reader_artifacts_are_bound_and_runtime_error_free (__main__.EmbeddedFontControls.test_all_reader_artifacts_are_bound_and_runtime_error_free) ... ok
+test_arabic_multi_glyph_guard_not_misreported_as_pass (__main__.EmbeddedFontControls.test_arabic_multi_glyph_guard_not_misreported_as_pass) ... ok
+test_exact_embedded_font_cid_mapping_and_four_source_snapshots (__main__.EmbeddedFontControls.test_exact_embedded_font_cid_mapping_and_four_source_snapshots) ... ok
+test_four_identical_rasters_do_not_imply_text_correctness (__main__.EmbeddedFontControls.test_four_identical_rasters_do_not_imply_text_correctness) ... ok
+test_local_actualtext_variant_is_rejected_by_both_readers (__main__.EmbeddedFontControls.test_local_actualtext_variant_is_rejected_by_both_readers) ... ok
+test_readers_disagree_on_the_three_order_controls (__main__.EmbeddedFontControls.test_readers_disagree_on_the_three_order_controls) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.024s
+
+OK

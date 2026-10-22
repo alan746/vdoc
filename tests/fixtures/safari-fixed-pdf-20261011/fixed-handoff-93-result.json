@@ -1,0 +1,18 @@
+{
+  "scale": 93,
+  "file": "output/pdf/safari-native-20261011/fixed-handoff-93.pdf",
+  "nativePageLabel": "All 5 Pages",
+  "sha256": "87e7b3329e2b309062acf1b9171678b5848f7d6ea2dfc0b2a9390841157bc601",
+  "bytes": 97255,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

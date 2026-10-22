@@ -1,0 +1,7 @@
+Mixed document 中文 العربية
+
+"Image cell 日本語
+[Image: 图片 العربية]"	Top 中文
+	أسفل
+
+End of mixed sample.

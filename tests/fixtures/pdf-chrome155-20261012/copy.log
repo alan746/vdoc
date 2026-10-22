@@ -1,0 +1,7 @@
+{"label":"local-production","match":false,"body":false}
+{"label":"words","match":false,"body":false}
+{"label":"arabic","match":false,"body":false}
+{"label":"hebrew","match":true,"body":true}
+{"label":"flow-contextual","match":false,"body":false}
+{"label":"flow-fallback-contextual","match":false,"body":false}
+{"label":"b-original-fonts-repaired","match":false,"body":false}

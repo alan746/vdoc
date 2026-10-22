@@ -1,0 +1,17 @@
+
+/Users/ph.qian/Desktop/Vdoc/tests/use-local-pdf.test.ts
+  10:22  error  Error: Cannot reassign variables declared outside of the component/hook
+
+Variable `api` is declared outside of the component/hook. Reassigning this value during render is a form of side effect, which can cause unpredictable behavior depending on when the component happens to re-render. If this variable is used in rendering, use useState instead. Otherwise, consider updating it in an effect. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render).
+
+/Users/ph.qian/Desktop/Vdoc/tests/use-local-pdf.test.ts:10:22
+   8 | let tab: { document: { title: string; body: { textContent: string } }; opener: unknown; location: { replace: ReturnType<typeof vi.fn> }; closed: boolean; close: ReturnType<typeof vi.fn> };
+   9 | const error = vi.fn();
+> 10 | function Harness() { api = useLocalPdf({ getDocument: () => frame.contentDocument, details: { title: 'QA', pages: 1, pageSize: 'a4', orientation: 'portrait' }, onError: error }); return null; }
+     |                      ^^^ `api` cannot be reassigned
+  11 | beforeEach(async () => {
+  12 |   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); error.mockReset(); calls.request.mockReset();
+  13 |   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({ version: 1, token: 'a'.repeat(64) }) }));  react-hooks/globals
+
+✖ 1 problem (1 error, 0 warnings)
+

@@ -1,0 +1,5 @@
+{
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "start\nwindow object\ntmp/safari-native-fields/keytrace.js: execution error: Error: Error: Front window is not the owned VDoc QA document (-2700)\n"
+}

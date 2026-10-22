@@ -1,0 +1,1 @@
+Inputs and candidate fingerprint valid. No browser acceptance performed.

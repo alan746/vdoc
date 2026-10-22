@@ -1,0 +1,49 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import type { Editor } from '@tiptap/core';
+import { FileText } from 'lucide-react';
+import { toast } from 'sonner';
+import { actionErrorMessage } from '@/lib/editor/error-message';
+import { useDocumentNavigation } from './use-document-navigation';
+import { saveDocument } from '@/lib/editor/document-store';
+import { assertAutosaveActive, type SaveBlock } from '@/lib/editor/document-navigation';
+
+export function BackToDocuments({ editor, title, documentId, blocked, onHome }: {
+  editor: Editor; title: string; documentId: string; blocked: SaveBlock; onHome: () => void;
+}) {
+  const current = useRef({ title, blocked, onHome });
+  current.current = { title, blocked, onHome };
+  const mounted = useRef(true);
+  const { navigation, busy } = useDocumentNavigation(editor);
+  const [saving, setSaving] = useState(false);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+
+  const leave = async () => {
+    if (!mounted.current || !navigation!.acquire()) return;
+    setSaving(true);
+    try {
+      while (mounted.current && !editor.isDestroyed) {
+        assertAutosaveActive(current.current.blocked);
+        if (navigation!.isComposing()) throw new Error('Finish composing your text before returning to documents.');
+        const savedTitle = current.current.title.trim() || 'Untitled document';
+        const savedContent = editor.state.doc;
+        await saveDocument(savedTitle, savedContent.toJSON(), documentId);
+        if (!mounted.current || editor.isDestroyed) return;
+        // Recheck after storage finishes: typing and renaming remain available
+        // during a slow save. Never navigate with a superseded snapshot.
+        assertAutosaveActive(current.current.blocked);
+        if (navigation!.isComposing()) throw new Error('Finish composing your text before returning to documents.');
+        if (savedContent !== editor.state.doc || savedTitle !== (current.current.title.trim() || 'Untitled document')) continue;
+        current.current.onHome();
+        return;
+      }
+    } catch (error) {
+      if (mounted.current) toast.error(actionErrorMessage(error, 'Save failed. Keep this document open and download a backup.'));
+    } finally {
+      navigation!.release();
+      if (mounted.current) setSaving(false);
+    }
+  };
+
+  return <><button className="brand-icon" aria-label="Back to documents" title={saving ? 'Saving before leaving…' : 'Back to documents'} disabled={busy} onClick={leave}><FileText size={23} strokeWidth={1.8} /></button><span role="status" className="sr-only">{saving ? 'Saving before returning to documents…' : ''}</span></>;
+}

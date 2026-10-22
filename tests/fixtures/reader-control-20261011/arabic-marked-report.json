@@ -1,0 +1,108 @@
+{
+  "sourceText": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+  "targets": [
+    {
+      "line": 0,
+      "expected": "Browser",
+      "x": 102.5703125,
+      "y": 100,
+      "rect": {
+        "x": 60,
+        "y": 77,
+        "width": 85.140625,
+        "height": 46
+      }
+    },
+    {
+      "line": 0,
+      "expected": "words",
+      "x": 327.2734375,
+      "y": 100,
+      "rect": {
+        "x": 295.609375,
+        "y": 77,
+        "width": 63.328125,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "اللُّغَةُ",
+      "x": 714.140625,
+      "y": 162,
+      "rect": {
+        "x": 694.28125,
+        "y": 139,
+        "width": 39.71875,
+        "height": 46
+      }
+    },
+    {
+      "line": 1,
+      "expected": "جَمِيلَةٌ",
+      "x": 601.984375,
+      "y": 162,
+      "rect": {
+        "x": 576.390625,
+        "y": 139,
+        "width": 51.1875,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "مَرْحَبًا",
+      "x": 710.8515625,
+      "y": 224,
+      "rect": {
+        "x": 687.703125,
+        "y": 201,
+        "width": 46.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 2,
+      "expected": "123",
+      "x": 603.3984375,
+      "y": 224,
+      "rect": {
+        "x": 584.515625,
+        "y": 201,
+        "width": 37.765625,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "الْعَرَبِيَّةُ",
+      "x": 706.3515625,
+      "y": 286,
+      "rect": {
+        "x": 678.703125,
+        "y": 263,
+        "width": 55.296875,
+        "height": 46
+      }
+    },
+    {
+      "line": 3,
+      "expected": "الْكِتَابَةُ",
+      "x": 582.8046875,
+      "y": 286,
+      "rect": {
+        "x": 556.125,
+        "y": 263,
+        "width": 53.359375,
+        "height": 46
+      }
+    }
+  ],
+  "width": 794,
+  "height": 1123,
+  "sha256": "ad60984c9221f07eac6d6201ca166795dbc5f0ff9c4df71ee3c10c6d0f388b8f",
+  "sourceUnchanged": true,
+  "fontSha256": "4e51b6ab4196bb083b5dd473e1e6f68f4c82877375f346ecba396f9271142d6c",
+  "renderer": "154.0.8037.98",
+  "method": "Playwright page.pdf native print control; not a shipping browser API"
+}

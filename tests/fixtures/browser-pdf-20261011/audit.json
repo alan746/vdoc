@@ -1,0 +1,241 @@
+{
+  "at": "2026-10-11T05:56:54.675500+00:00",
+  "productChanged": false,
+  "candidate": "0a2386834f95c86adf6c8fd8fafbd0ab5b43ec6f281749da6eaaea9c85cb5ffd",
+  "scope": "Browser-only vector PDF generation QA; standalone regular single-page fixture, no application import or formal UI integration.",
+  "pdfCount": 11,
+  "renderedPages": 11,
+  "artifacts": [
+    {
+      "file": "output/pdf/browser-pdf-20261011/arabic-cluster-contiguous.pdf",
+      "sha256": "52013d226bbaba9229558687c3b770a92f15105e19eaf4944f2568f244a07f48",
+      "bytes": 24595,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/arabic-cluster-contiguous-render.png",
+      "renderSha256": "90b40cb13568f77f70345c1d2f57362122b93cd0e737687b00ce9bdf6462a903",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/arabic-cluster-grouped.pdf",
+      "sha256": "45af234b4d08fcbe1cb833b4d5b186e6b7168a17103b1b0f4bd7d862d4df5519",
+      "bytes": 25387,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/arabic-cluster-grouped-render.png",
+      "renderSha256": "90b40cb13568f77f70345c1d2f57362122b93cd0e737687b00ce9bdf6462a903",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/arabic-cluster.pdf",
+      "sha256": "6ba4a43773dd77104900711a571392799783255a68eb7c27db5adddc185a7231",
+      "bytes": 25420,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/arabic-cluster-render.png",
+      "renderSha256": "90b40cb13568f77f70345c1d2f57362122b93cd0e737687b00ce9bdf6462a903",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/arabic.pdf",
+      "sha256": "041dfed40c818364d2f7c1d853267d25ae1edadcac60cfe0828377f79ab739bb",
+      "bytes": 36653,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/arabic-render.png",
+      "renderSha256": "43734b8db8d62321553d727a83d80593f10be3060ac27f47b86078bdb747839c",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/hebrew-cluster-contiguous.pdf",
+      "sha256": "19c32a65461561b6554b76599f18766fad457afa83f2dc19f4311c5738fd6b2e",
+      "bytes": 17333,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/hebrew-cluster-contiguous-render.png",
+      "renderSha256": "8633caed63f3c6d25b346dd1f536600b70dc82236cc92b41cb6f8834148de7a2",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/hebrew-cluster-grouped.pdf",
+      "sha256": "0a7690c3969a35f83b18a59c10dd3748b6843f8d34e22731b9cd6b4bbb97f669",
+      "bytes": 17926,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/hebrew-cluster-grouped-render.png",
+      "renderSha256": "8633caed63f3c6d25b346dd1f536600b70dc82236cc92b41cb6f8834148de7a2",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/hebrew.pdf",
+      "sha256": "aca59654feb478c18a4218d9911db15e468ae1317196a0a36c70ac4823df0f60",
+      "bytes": 20674,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/hebrew-render.png",
+      "renderSha256": "f7b471035460269eaf86816dbbc2eea914e300befccb84014c4846a2ef811a9f",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/words-cluster-contiguous-safety.pdf",
+      "sha256": "1328ad7e797598b9d563959ada30cfc711ea4d86595efe8e487eb8bef249b66e",
+      "bytes": 30176,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/words-cluster-contiguous-safety-render.png",
+      "renderSha256": "c6511ed504970b4c0c17645204b75ffb9dcacb735d8d83f8f1601af38b01499e",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/words-cluster-contiguous.pdf",
+      "sha256": "aa83f780e4710d491f2c4fc2140fe8261caa171a9080c8fb7a896c4be1df8147",
+      "bytes": 30176,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/words-cluster-contiguous-render.png",
+      "renderSha256": "c6511ed504970b4c0c17645204b75ffb9dcacb735d8d83f8f1601af38b01499e",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/words-cluster-grouped.pdf",
+      "sha256": "2faa35f312d6f63f60e6cebc79ae96875030a684bec7e30972ef1a39d3ca1dc4",
+      "bytes": 30961,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/words-cluster-grouped-render.png",
+      "renderSha256": "c6511ed504970b4c0c17645204b75ffb9dcacb735d8d83f8f1601af38b01499e",
+      "images": 0
+    },
+    {
+      "file": "output/pdf/browser-pdf-20261011/words.pdf",
+      "sha256": "06733e1b8767081bb22b94c08b914a6a10d7ef374ff625cd08bbd6a36512b497",
+      "bytes": 42149,
+      "pages": 1,
+      "render": "tests/fixtures/browser-pdf-20261011/words-render.png",
+      "renderSha256": "c4f1254c38bfb232dfd14c8568084c96b03cfc60d324387318f7e1465952aefb",
+      "images": 0
+    }
+  ],
+  "sourceTools": [
+    {
+      "file": "tools/pdf-export/browser-cluster-prototype.js",
+      "sha256": "ac4d199d227990540e8adeb541a6683da9c44b8e96be6afb2a96ab005bf0f4a7"
+    },
+    {
+      "file": "tools/pdf-export/browser-word-prototype.js",
+      "sha256": "3738cc421a4a348941d25496185d55e0bf180418a00709137e842c795e76d328"
+    },
+    {
+      "file": "tools/pdf-export/run-browser-prototype.cjs",
+      "sha256": "9e18f0ceb22ca79855c3c10304cf5229fc40653e295ba48db060c3d149f9f6b0"
+    },
+    {
+      "file": "tools/pdf-export/test-browser-prototype.py",
+      "sha256": "8135478dfb380b687655a290b44a0acc22ba4f11092d76b9d3d4aeec869cc078"
+    },
+    {
+      "file": "tools/pdf-export/verify-browser-prototype.mjs",
+      "sha256": "7545dc3df3cd8a0cb23023c40dc701f0b6c2a2924d286e9600fbec1cdacdc8be"
+    }
+  ],
+  "visualReview": [
+    {
+      "name": "words-cluster-contiguous",
+      "pixelDimensions": [
+        794,
+        1123
+      ],
+      "sameSize": true,
+      "meanAbsoluteChannelDifference": [
+        0.9182638712875507,
+        0.9182638712875507,
+        0.9201020117488465
+      ],
+      "manualReview": "Text shapes, baseline positions, direction and 2x2 table visually match source browser screenshot; minor border/antialias differences, not pixel identity."
+    },
+    {
+      "name": "arabic-cluster-contiguous",
+      "pixelDimensions": [
+        794,
+        1123
+      ],
+      "sameSize": true,
+      "meanAbsoluteChannelDifference": [
+        0.578355924105771,
+        0.578355924105771,
+        0.5797914456374725
+      ],
+      "manualReview": "Text shapes, baseline positions, direction and 2x2 table visually match source browser screenshot; minor border/antialias differences, not pixel identity."
+    },
+    {
+      "name": "hebrew-cluster-contiguous",
+      "pixelDimensions": [
+        794,
+        1123
+      ],
+      "sameSize": true,
+      "meanAbsoluteChannelDifference": [
+        0.5745686145647118,
+        0.5745686145647118,
+        0.5756833867541736
+      ],
+      "manualReview": "Text shapes, baseline positions, direction and 2x2 table visually match source browser screenshot; minor border/antialias differences, not pixel identity."
+    }
+  ],
+  "safetyChecks": [
+    {
+      "name": "cancel-after-start",
+      "ok": true
+    },
+    {
+      "name": "missing-glyph",
+      "ok": true,
+      "failure": {
+        "name": "Error",
+        "message": "Missing glyph: 中"
+      }
+    },
+    {
+      "name": "unsupported-bold",
+      "ok": true,
+      "failure": {
+        "name": "Error",
+        "message": "Unsupported QA font style"
+      }
+    },
+    {
+      "name": "page-overflow",
+      "ok": true,
+      "failure": {
+        "name": "Error",
+        "message": "QA content exceeds page bounds"
+      }
+    },
+    {
+      "name": "token-limit",
+      "ok": true,
+      "failure": {
+        "name": "Error",
+        "message": "QA token bound exceeded"
+      }
+    },
+    {
+      "name": "font-mismatch",
+      "ok": true,
+      "failure": {
+        "name": "Error",
+        "message": "Browser/font shaper width mismatch: Browser 21.000625"
+      }
+    }
+  ],
+  "preAbort": true,
+  "actualDownload": {
+    "suggestedFilename": "words-cluster-contiguous-safety.pdf",
+    "sha256": "1328ad7e797598b9d563959ada30cfc711ea4d86595efe8e487eb8bef249b66e"
+  },
+  "sourceUnchanged": true,
+  "regression": "7 real-artifact regression checks passed, including expected rejection of failed variants; not 7 product gates passed.",
+  "findings": [
+    "PDF generation runs in page with local font data, PDF-lib, fontkit and HarfBuzz WASM. Node drives fixture and retains bytes only; no Chrome printToPDF or Python repair.",
+    "Word-level ToUnicode fails RTL text in PDF.js. Per-cluster BT/ET fails RTL in pypdf. One text object per word fixes both tested RTL samples.",
+    "Contiguous Tj clusters preserve all tested codepoints in both readers after whitespace removal, but Hindi complete-word search fails in PDF.js; whitespace removal cannot approve output.",
+    "Bundled PDF.js getCharUnicodeCategory regex detects Mn anywhere in multi-codepoint ToUnicode; buildTextContentItem sets whole cluster advance to zero. This is local source diagnosis, not verification of all reader versions."
+  ],
+  "limitations": [
+    "Only explicit one-font regular-weight single-page sample. No VDoc document adapter, CJK, arbitrary fonts/styles, images, page headers/footers or multipage integration.",
+    "Type3 vector fonts remain QA-only; previous Safari reprint text-loss evidence still applies as an unresolved risk, not retested this turn.",
+    "Hindi PDF.js word boundaries/positions fail. Actual native selection/search not tested.",
+    "Q signed; I/P/S/F unsigned. No AI integration. Original A source and candidate-window visual proof still missing."
+  ],
+  "cleanup": "All isolated headless browser contexts closed in finally; no Safari automation or native UI changes, no temporary HTTP server started. Main 5173 left untouched."
+}

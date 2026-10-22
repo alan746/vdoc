@@ -1,0 +1,29 @@
+[
+  {
+    "file": "output/pdf/type0-minimal-20261011/hebrew-page-visual.pdf",
+    "pages": 1,
+    "text": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+    "fontSubtypes": [
+      "/Type0"
+    ],
+    "render": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-page-visual-render.png"
+  },
+  {
+    "file": "output/pdf/type0-minimal-20261011/hebrew-source-logical.pdf",
+    "pages": 1,
+    "text": "QA embedded font 123\nךמסמ תקידב םלוע םולש \nהלבט הביתכ תירבע ",
+    "fontSubtypes": [
+      "/Type0"
+    ],
+    "render": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-logical-render.png"
+  },
+  {
+    "file": "output/pdf/type0-minimal-20261011/hebrew-source-visual.pdf",
+    "pages": 1,
+    "text": "QA embedded font 123\nמסמך בדיקת עולם שלום \nטבלה כתיבה עברית ",
+    "fontSubtypes": [
+      "/Type0"
+    ],
+    "render": "tests/fixtures/pdf-type0-minimal-20261011/hebrew-source-visual-render.png"
+  }
+]

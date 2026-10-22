@@ -1,0 +1,160 @@
+{
+  "at": "2026-10-10T23:38:44.154523+00:00",
+  "applicationSha256": "c3a325528e149f3e3d33530ac594df9815f59d06aab6351987ca582f1a08f359",
+  "scope": "Real browser-enforced 8 MiB named Storage Bucket using native IndexedDB and VDoc product save logic. Test Vite build selects the bucket factory at compilation. Not default-bucket, Safari, physical disk exhaustion, or synthetic quota errors.",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+    "origin": "http://127.0.0.1:4176",
+    "requestedQuota": 8388608,
+    "readBackQuota": 8388608,
+    "systemFreeKiBObservedBeforeRichCycle": 86409888,
+    "fillerBudgetPerRun": 33554432,
+    "maxBatchBytes": 1048576
+  },
+  "plain": {
+    "bucket": "vdoc-qa-c2a79882-6bd4-4470-9abb-e94496be9a12",
+    "documentId": "fd866d74-c5b7-4af3-9e20-c5c90917ee55",
+    "fillerBytes": 8355840,
+    "keys": 38,
+    "usageAfterFill": 8434238,
+    "browserFillerError": "QuotaExceededError",
+    "saveFailedVisible": true,
+    "retryAndBackupAvailable": true,
+    "oldCommittedTitleContentEqual": true,
+    "draftMarkers": [
+      "QUOTA_DRAFT",
+      "QUOTA_SECOND 中文"
+    ],
+    "leaveBlockedWithoutDiscard": true,
+    "backupActuallyDownloaded": true,
+    "cleanBucket": "vdoc-qa-0a59baf2-464a-4bfb-8aa7-d66cb81e24dc",
+    "reimportFullJSONEqual": true,
+    "recoveredEditSavedIndicator": true,
+    "recoveredEditReloadNotChecked": true,
+    "usageAfterRelease": 2402707,
+    "retrySavedIndicator": true,
+    "retriedStoredTitleContentEqualDraft": true,
+    "newPageSameDocumentFullJSONEqual": true,
+    "actualReloadNewSessionFullJSONEqual": true,
+    "refreshMethod": "test-only Reload QA workspace button calling location.reload; Meta+r did not reload and was not counted"
+  },
+  "rich": {
+    "bucket": "vdoc-qa-b2c0fb29-af5e-434f-809b-8dce495596e2",
+    "documentId": "7b35acc1-71ea-4629-a9b6-9d28f369d11e",
+    "baselineRows": 2,
+    "baselineImages": 1,
+    "fillerBytes": 8335360,
+    "perBatchEvents": "rich-fill-report.json",
+    "firstNativeRefusalStopsFill": true,
+    "quotaRefusalMessage": "",
+    "mutations": [
+      "rename to QA rich quota UNSAVED 中文",
+      "add third table row",
+      "insert second image QUOTA_NEW_IMAGE 中文"
+    ],
+    "saveFailedVisibleAfterEach": true,
+    "oldCommittedTitleContentEqual": true,
+    "actualBackupRows": 3,
+    "actualBackupImages": 2,
+    "cleanReimportFullJSONEqual": true,
+    "namedVersionAttemptBlockedByUnsavedChanges": "QA before quota remained listed; no QA should fail quota created. Did not reach an isolated version-store quota refusal.",
+    "newAndCopyFailure": "Stayed at one item, no phantom document; error text was empty. Product defect confirmed.",
+    "releasedKeys": 54,
+    "remainingFillerKeys": [],
+    "usageAfterRelease": 2205016,
+    "retriedStoredTitleContentEqualDraft": true
+  },
+  "fix": {
+    "problem": "Empty browser DOMException.message made library create/copy failures silent and could blank navigation/version errors.",
+    "change": "Shared actionErrorMessage names quota failures explicitly, retains specific nonempty explanations, and falls back for blank messages; used in library, local-file navigation, saved versions and return home.",
+    "oldRegressionFailed": true,
+    "targetedFiles": 5,
+    "targetedTests": 129,
+    "fullRegression": {
+      "files": 135,
+      "tests": 1923,
+      "exitCode": 0,
+      "log": "full-regression.log"
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "incremental": false,
+      "log": "typecheck.log"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    "liveRetest": "Pending: browser control tool is absent in the continuation after 23:32Z. Existing filler released before source changes.",
+    "nativeTransactionObserver": "Added non-mutating complete/abort listeners in test-only Vite transform; not yet executed and not counted as native save-error proof.",
+    "productionHTTP": {
+      "log": "production-http.json",
+      "routes": [
+        "/",
+        "/print-preview"
+      ],
+      "all200": true,
+      "scope": "HTTP only; not rendered UI or quota retest"
+    }
+  },
+  "limitations": [
+    "Q011 planned initial baseline reimport before filling was not executed in that order. Actual failed-backup imports were verified separately.",
+    "Native quota errors were captured for filler; product save failure was observed in the same full bucket. Product transaction error.name is not yet archived.",
+    "Combined rich title/row/image workflow is partial evidence for the independent Q034-Q036 variants.",
+    "No Safari/IME/PDF gate is inferred.",
+    "The initial separate capability-probe bucket on port 4175 retains about 7 MiB filler. Both VDoc failure-loop buckets have released their registered filler. No background fill loop remains.",
+    "No revised quota error message live retest, full final joint signoff or AI model integration has occurred."
+  ],
+  "artifacts": [
+    {
+      "file": "baseline.vdoc.json",
+      "bytes": 1177,
+      "sha256": "b3884dbf7161c8b4893f53491581f3b69cbb555be64b0f6b2a92fcede338f199"
+    },
+    {
+      "file": "failed-draft.vdoc.json",
+      "bytes": 61210,
+      "sha256": "6ffa12c3d52febfd170aa35d2b5547022ffdee9180b66add55b42913b9b6f9b4"
+    },
+    {
+      "file": "last-committed.vdoc.json",
+      "bytes": 1225,
+      "sha256": "76d4d0699fa73575ed9437896ee05e31fb6c4d5823931f3d990b2ae2c5c1dc54"
+    },
+    {
+      "file": "retried-committed.vdoc.json",
+      "bytes": 61258,
+      "sha256": "7b355dc970ddf0bc47b3621553c2da604684af19b8627684dcf4f993d08ed4d9"
+    },
+    {
+      "file": "rich-baseline.vdoc.json",
+      "bytes": 8690,
+      "sha256": "a1f4ab465dd634cefc2324fd97e46971ce0937cf7d3ef3ec5c4d521e8de8e181"
+    },
+    {
+      "file": "rich-failed-draft.vdoc.json",
+      "bytes": 13136,
+      "sha256": "c673f2b7456f3bc72176c0eedd03dab13d532ad941b1055cccb927d5cf773d26"
+    },
+    {
+      "file": "rich-fill-report.json",
+      "bytes": 47569,
+      "sha256": "cbaac35d43850f0f0633492d57df1c781b24aadc7be9420f17e206e95da1675b"
+    },
+    {
+      "file": "rich-last-committed.vdoc.json",
+      "bytes": 8690,
+      "sha256": "b3699b9192d9b76223dcbc2ce41d9b572ba12fffdb71530238f8a9b0667b8fd1"
+    },
+    {
+      "file": "rich-release-report.json",
+      "bytes": 31597,
+      "sha256": "ab3f5393782cfd967725936a4587d27bdf6a2529ad0bf6d310d307631766788f"
+    },
+    {
+      "file": "rich-retried-committed.vdoc.json",
+      "bytes": 13184,
+      "sha256": "b7df68fd98492dab355d0996881ac6612ec4aeae043f288cc728c1418f17e924"
+    }
+  ]
+}

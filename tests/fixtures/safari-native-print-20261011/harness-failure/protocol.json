@@ -1,0 +1,25 @@
+[
+  {
+    "at": 1791689258355,
+    "type": "vdoc-preview-ready"
+  },
+  {
+    "at": 1791689258364,
+    "type": "vdoc-preview-accepted",
+    "token": "1ee2c103-1eaf-4626-b557-744604fa59d7"
+  },
+  {
+    "at": 1791689258652,
+    "pages": 5,
+    "state": "ready",
+    "fittedTables": 0,
+    "type": "vdoc-preview-status",
+    "token": "1ee2c103-1eaf-4626-b557-744604fa59d7"
+  },
+  {
+    "at": 1791689258652,
+    "type": "vdoc-preview-current-page",
+    "token": "1ee2c103-1eaf-4626-b557-744604fa59d7",
+    "page": 1
+  }
+]

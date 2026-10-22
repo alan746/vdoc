@@ -1,0 +1,60 @@
+{
+  "scope": "Exact visible glyph path multiset and page transform comparison. Tables and browser rendering are checked separately. Matrix tolerance 0.0001 PDF units; not pixel identity or layout/reader acceptance.",
+  "results": [
+    {
+      "label": "words",
+      "baseline": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-marked-boxes.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-grapheme.pdf",
+      "baselineSha256": "807dc1d6af0b9bbf307c118784d24c24c49395cc042c7ec459aa66ae522f83e6",
+      "candidateSha256": "2054db78f96069bde3a6b9eff5131e357cd9b5bc85e9e28ca749f5a002c1dbea",
+      "glyphPaints": 158,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 0.0,
+      "withinTolerance": true
+    },
+    {
+      "label": "arabic",
+      "baseline": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme.pdf",
+      "baselineSha256": "f4d8e32dce11fc3ccd9e4eb2360a9e088d9ae42faabc9720de4b3936ade46551",
+      "candidateSha256": "8bd8f90c5df4066616ec9ec517c3586a21edb0a692648cb20eb356449c8fe76a",
+      "glyphPaints": 135,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 0.0,
+      "withinTolerance": true
+    },
+    {
+      "label": "hebrew",
+      "baseline": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme.pdf",
+      "baselineSha256": "e4a698142b0d87164d5964c6bfa151d308443e9774f880ac3ccd443b7aa78fb0",
+      "candidateSha256": "5d461b9c158907b21c31594b0965f8d5f0b8845b86e1d7cca7bea894715d532f",
+      "glyphPaints": 114,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 0.0,
+      "withinTolerance": true
+    },
+    {
+      "label": "arabic-marked",
+      "baseline": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-marked-boxes-marked.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-grapheme-marked.pdf",
+      "baselineSha256": "5d0110a368df098e9da3ebcbf3fb9f460e6705b2525bc0c610fcf9b6a91d63fd",
+      "candidateSha256": "2b1b3bac077e3fab3a287484a1c3a31fa28cee0aeb61a4b3bb6651c27a443471",
+      "glyphPaints": 126,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 1.1368683772161603e-13,
+      "withinTolerance": true
+    },
+    {
+      "label": "hebrew-marked",
+      "baseline": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-marked-boxes-marked.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-grapheme-marked.pdf",
+      "baselineSha256": "b1f22b3d7ffc71d88cb4ac4726d28ff4d9f67a1ce865756b3956d22560052145",
+      "candidateSha256": "bb1479f79218e38b951450be3ed8e4ed20d1e06357cd1cf3d786a119a3a66ff1",
+      "glyphPaints": 102,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 3.410605131648481e-13,
+      "withinTolerance": true
+    }
+  ]
+}

@@ -1,0 +1,1384 @@
+[
+  {
+    "file": "output/pdf/safari-native-20261011/b-100-repeat.pdf",
+    "sha256": "8fb1402fb6621f171b42164ac5637ad0e19ffaef69bac2af8cb2f73704050688",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      881,
+      1036,
+      1036,
+      447,
+      142
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-100-repeat-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/b-100.pdf",
+    "sha256": "8afd9b4565f2b08e4eb1bc02068b0bfc7e398e3a585c623c379040beef13dec5",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      881,
+      1036,
+      1036,
+      447,
+      142
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/b-101-repeat.pdf",
+    "sha256": "591e9154fd21fd811ddf82d8b798ee2878f46992473bdbdb7659e643ed184752",
+    "pages": 12,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      881,
+      0,
+      1036,
+      0,
+      1036,
+      0,
+      447,
+      0,
+      142,
+      0,
+      31,
+      0
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "Local document acceptance 3 / 5\nVDoc system acceptance 中⽂\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "",
+      "Local document acceptance 4 / 5\nVDoc system acceptance 中⽂\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample.",
+      "",
+      "Local document acceptance 5 / 5",
+      ""
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-101-repeat-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/b-101.pdf",
+    "sha256": "d329348224b5e4b6d89109db43668322eaef22a44e855f23719a088c9a246ed4",
+    "pages": 12,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      881,
+      0,
+      1036,
+      0,
+      1036,
+      0,
+      447,
+      0,
+      142,
+      0,
+      31,
+      0
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "Local document acceptance 3 / 5\nVDoc system acceptance 中⽂\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "",
+      "Local document acceptance 4 / 5\nVDoc system acceptance 中⽂\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample.",
+      "",
+      "Local document acceptance 5 / 5",
+      ""
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-101-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/b-102.pdf",
+    "sha256": "611cd7cb86e68e29066877465a6f9c8db0192e3eeb87495c416beb750f0b81b2",
+    "pages": 12,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      881,
+      0,
+      1004,
+      0,
+      1036,
+      0,
+      447,
+      0,
+      142,
+      0,
+      31,
+      0
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "VDoc system acceptance 中⽂\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "Local document acceptance 2 / 5\nVDoc system acceptance 中⽂\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "",
+      "Local document acceptance 3 / 5\nVDoc system acceptance 中⽂\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "",
+      "Local document acceptance 4 / 5\nVDoc system acceptance 中⽂\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample.",
+      "",
+      "Local document acceptance 5 / 5",
+      ""
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-102-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/b-93.pdf",
+    "sha256": "e118c7946d8f3976eb50af5eb16fb1525b475a80c4ce73b8d2d52f56c0140daf",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      907,
+      1156,
+      1138,
+      348,
+      31
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nVDoc system acceptance 中⽂",
+      "Local document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nVDoc system acceptance 中⽂\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.",
+      "Local document acceptance 3 / 5\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nVDoc system acceptance 中⽂\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "Local document acceptance 4 / 5\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.\nVDoc system acceptance 中⽂\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample.",
+      "Local document acceptance 5 / 5"
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-93-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/b-99.pdf",
+    "sha256": "7600b43b1cd28f7f692ddaa1933af0c4643d84bbcfdc1cd309b4959df3ccd6cf",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      881,
+      1036,
+      1062,
+      473,
+      142
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nVDoc system acceptance 中⽂",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.\nVDoc system acceptance 中⽂",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-99-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/b-search-125-last-page-100.pdf",
+    "sha256": "7cad074abefeb71fc428213f3cd038940f7af787d3081ef164e923bcaa46e109",
+    "pages": 5,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      881,
+      1036,
+      1036,
+      447,
+      142
+    ],
+    "texts": [
+      "VDoc system acceptance 中⽂\nLocal document acceptance 1 / 5\nVDoc core system acceptance\nIME test area: 中⽂输⼊测试.\nVerify Chinese candidate selection and cancellation.\nVerify PDF text, image, repeated header and page numbers.\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 01 — rows 01–02 中⽂ ⽇本語\n ROW 01 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 02 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 02 — rows 03–04 中⽂ ⽇本語 ROW 03 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 04 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 03 — rows 05–06 中⽂ ⽇本語 ROW 05 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 06 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 04 — rows 07–08 中⽂ ⽇本語 ROW 07 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 08 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 2 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 05 — rows 09–10 中⽂ ⽇本語 ROW 09 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 10 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 06 — rows 11–12 中⽂ ⽇本語 ROW 11 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 12 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 07 — rows 13–14 中⽂ ⽇本語 ROW 13 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 14 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 08 — rows 15–16 中⽂ ⽇本語 ROW 15 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 16 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 09 — rows 17–18 中⽂ ⽇本語 ROW 17 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 18 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 10 — rows 19–20 中⽂ ⽇本語 ROW 19 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 20 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 3 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 11 — rows 21–22 中⽂ ⽇本語 ROW 21 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 22 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 12 — rows 23–24 中⽂ ⽇本語 ROW 23 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 24 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 13 — rows 25–26 中⽂ ⽇本語 ROW 25 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 26 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 14 — rows 27–28 中⽂ ⽇本語 ROW 27 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 28 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 15 — rows 29–30 中⽂ ⽇本語 ROW 29 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 30 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 16 — rows 31–32 中⽂ ⽇本語 ROW 31 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 32 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 4 / 5\nGroup 中⽂ Details اﻟﻌرﺑﯾﺔ\nGROUP 17 — rows 33–34 中⽂ ⽇本語 ROW 33 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 34 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nGROUP 18 — rows 35–36 中⽂ ⽇本語 ROW 35 — English 中⽂ اﻟﻌرﺑﯾﺔ\nCheck complete text and cell borders.\nROW 36 — ⽇本語 िहन्दी עברית\nVerify this row appears exactly once.\nTABLE END — all 36 body rows must appear once.",
+      "VDoc system acceptance 中⽂\nLocal document acceptance 5 / 5\nFINAL PAGE CHECK 中⽂\nThis heading must start on a new page. End of acceptance sample."
+    ],
+    "rows": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36"
+    ],
+    "all36OnceInOrder": true,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/b-search-125-last-page-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-full-sheet-100.pdf",
+    "sha256": "9838847b41853035f99842698c700b9cd165dafb43c425f5d8b40a2fce145760",
+    "pages": 2,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      189,
+      189
+    ],
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page."
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-full-sheet-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-full-sheet-101.pdf",
+    "sha256": "2702a32472629bc55abe4cc07946f1ae483b58b690701110b1399bc279bb3dfa",
+    "pages": 6,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      189,
+      0,
+      189,
+      0,
+      0,
+      0
+    ],
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page.",
+      "",
+      "",
+      ""
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-full-sheet-101-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-intrinsic-height-control-100.pdf",
+    "sha256": "3c2ef286442c019f0ec6f7efa07ee7789822f29260ab9e3179bc522156eaab17",
+    "pages": 2,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      189,
+      189
+    ],
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page."
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-intrinsic-height-control-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-intrinsic-height-control-101.pdf",
+    "sha256": "63e89687e011da48df9a1d2439adbebbf9a756f51c2dded1cb2689096d67cde7",
+    "pages": 4,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      189,
+      0,
+      189,
+      0
+    ],
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page.",
+      ""
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-intrinsic-height-control-101-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-plain-control-100.pdf",
+    "sha256": "b386bc9634c6283a8dfb2f7848a5c7fd55ff78a5c78313d3c4dc7619dbd5c110",
+    "pages": 2,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      189,
+      189
+    ],
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page."
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-plain-control-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-plain-control-101.pdf",
+    "sha256": "914efdac308697a8e0e750eeb21feeb3758b75155e1508778b6f88779d055a1f",
+    "pages": 4,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      189,
+      0,
+      189,
+      0
+    ],
+    "texts": [
+      "VDOC SCALE PROBE 1 / 2\nSTART_1 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_1 — No content follows this marker on this logical page.",
+      "",
+      "VDOC SCALE PROBE 2 / 2\nSTART_2 — English 中⽂ اﻟﻌرﺑﯾﺔ ⽇本語\nThis short block should fit on one physical page at either tested scale.\nEND_2 — No content follows this marker on this logical page.",
+      ""
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [
+      2,
+      4
+    ],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-plain-control-101-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-root-clipped-100.pdf",
+    "sha256": "f404ae5406c3a9fcfbd4cd7ae36e69e0f04dc10615174e615dce15812bc7995e",
+    "pages": 1,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      53
+    ],
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text."
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-root-clipped-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-root-clipped-101.pdf",
+    "sha256": "323013e00e8d115a1f75dfd05ca011d02241e8391fa3279041f557f28d44f518",
+    "pages": 4,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      53,
+      0,
+      0,
+      0
+    ],
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text.",
+      "",
+      "",
+      ""
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [
+      2,
+      3,
+      4
+    ],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-root-clipped-101-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-root-narrow-100.pdf",
+    "sha256": "4ac67cf6f70677e1f9062bbf86e6394dc8dc130a51acee5a4950d6b5596a9005",
+    "pages": 1,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      53
+    ],
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text."
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-root-narrow-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-root-narrow-101.pdf",
+    "sha256": "3ed5feb9c142bf1c7ef7fe7980aba76e5a8332ba2c99073ecfcf7cd45480dd45",
+    "pages": 4,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      53,
+      0,
+      0,
+      0
+    ],
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text.",
+      "",
+      "",
+      ""
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [
+      2,
+      3,
+      4
+    ],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-root-narrow-101-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-single-page-control-100.pdf",
+    "sha256": "85fed7bc3273249e64e8205894488bab092908b69c404ce646ec600957d9a3f4",
+    "pages": 1,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      53
+    ],
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text."
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-single-page-control-100-contact.png"
+  },
+  {
+    "file": "output/pdf/safari-native-20261011/diagnostic-single-page-control-101.pdf",
+    "sha256": "ca9e511f4bb8ffe9c4db54704e4b46c28f20fb01a14e1ef6780a8c672797541b",
+    "pages": 2,
+    "mediaBoxes": [
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ],
+      [
+        0.0,
+        0.0,
+        595.0,
+        842.0
+      ]
+    ],
+    "textLengths": [
+      53,
+      0
+    ],
+    "texts": [
+      "ONE PAGE CONTROL\nEnglish 中⽂ العربيةEnd of short text.",
+      ""
+    ],
+    "rows": [],
+    "all36OnceInOrder": null,
+    "whiteOnlyPages": [
+      2
+    ],
+    "contact": "tests/fixtures/safari-pdf-native-20261011/renders/diagnostic-single-page-control-101-contact.png"
+  }
+]

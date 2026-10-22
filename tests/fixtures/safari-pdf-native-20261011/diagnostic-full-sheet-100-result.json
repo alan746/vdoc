@@ -1,0 +1,19 @@
+{
+  "scale": 100,
+  "file": "output/pdf/safari-native-20261011/diagnostic-full-sheet-100.pdf",
+  "nativePageLabel": "All 2 Pages",
+  "sha256": "9838847b41853035f99842698c700b9cd165dafb43c425f5d8b40a2fce145760",
+  "bytes": 41112,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  },
+  "sourceCheck": "Standalone fixed HTML control; no editor snapshot applies"
+}

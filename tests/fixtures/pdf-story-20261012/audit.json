@@ -1,0 +1,137 @@
+{
+  "at": "2026-10-12T01:21:57.087452+00:00",
+  "scope": "QA-only native Story reference, not a browser exporter or formal product change",
+  "files": [
+    {
+      "path": "output/pdf/pdf-story-20261012/arabic.pdf",
+      "sha256": "1cdc410f6b17425f7f6265d2bb3a86da6af14771c9a0962ce3e5d5c5f4f07734"
+    },
+    {
+      "path": "output/pdf/pdf-story-20261012/hebrew.pdf",
+      "sha256": "39c16b4cf0ac4e25e6bbf3cf719a61fad31cc929c5419d1468e48ca0a8bad135"
+    },
+    {
+      "path": "output/pdf/pdf-story-20261012/hindi.pdf",
+      "sha256": "d9602dd973ee4c2114001f4f60313b018fc2fdc554b5884d9c65d35f304d4b0b"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/analysis.json",
+      "sha256": "7335128e19a38a6ded82cccbdf7c2a138c0bae8ea0e1a344cfe844e81a7af846"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/arabic-copy-chrome.png",
+      "sha256": "240c93e88434813054fba2dc453add0e920a55ba172b153f935db235a6ce688d"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/arabic-copy-pdfjs.png",
+      "sha256": "66c21938a424c98887f2a534f6c5902c5e0c567f4054e8d17ad1bb5e87aaf639"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/arabic.html",
+      "sha256": "db00f3f724b9091f9e18fb46fce99a6392c3ed5ccea57c624c56af4eea250dbf"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/arabic.json",
+      "sha256": "cdf5b457b2adcc316dc5cf3811a666ad75e0b1e96f0ef8b91efac5ef34226ec8"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/arabic.png",
+      "sha256": "bfae62246061560f1494783ce94be2513ec9bac884891d1cc9976d51cd930d98"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/check.cjs",
+      "sha256": "ee2de87f583f1835879d9ac7e74cd9cc277a2e192935a794a8b4ef3f65e387f5"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/check.log",
+      "sha256": "05834cd5f98d145a622225cca725d196f105fd1dfd5d7a661d9cad57b7dc771b"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/copy-readers.json",
+      "sha256": "5b2095372dbe49956e0445f8db4ab4aff9860bb2ebe8c8e237f3e4aed7c35df1"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/download.log",
+      "sha256": "60619e33087c74b57dc62e19fcba6c81c8d4d6846f08d5ddf752accc4d835c5c"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/generate.log",
+      "sha256": "3a96ee86faea54b2b5ac6917f35f5462c50f1049c6f8811d303668299303929f"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/generate.py",
+      "sha256": "7b2367f631ad74ddb3b02148dc663022e259afc84bd078e8b9c604be34e894e5"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hebrew-copy-chrome.png",
+      "sha256": "68a64b53e38976be4fea65e39e3f92d2137ad1e6e75407073a4ca56a8b606f25"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hebrew-copy-pdfjs.png",
+      "sha256": "f2b20bbc8349b86766fd3a663abfeb8be0f34c3d5a935923a0aca58602fcba9c"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hebrew.html",
+      "sha256": "6bdd35442b725eaccae11abe79f59abb8545a49268dde814b621fcf5327248ad"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hebrew.json",
+      "sha256": "386126a58a4e75cd50f992d0a9fe14d580cbfe647309492fa53520a304ebbc6f"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hebrew.png",
+      "sha256": "a2b05ed9ddf9fb1976dbef516b3598a7e1bc09a5ae1816b6190a4eca10226a58"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hindi-copy-chrome.png",
+      "sha256": "c036e107354f21f7257534d9c0f5e281f9872921dc7ad9387f14ebb21522e0fb"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hindi-copy-pdfjs.png",
+      "sha256": "88dfcf38757dc2bdf3787461a256862fd5108cf635172394f2ed6154e90bda37"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hindi.html",
+      "sha256": "796782e4abe029368e2dcc8581d0f9192cbba867ad58e294a22bb331bbdeeb1f"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hindi.json",
+      "sha256": "6c2c4926f4204dd6c938afefd59731fb16da8bd38924cce875b7b36c26b34432"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/hindi.png",
+      "sha256": "d8b3c9d02c50c2487d0b8bdc1e851688f4a1dcb9b84fe1aa04727d709596d1ba"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/inputs.json",
+      "sha256": "892accd7b306a03ef80a535811a108bb1e0c3a0d0a6ad8691db92afa62512eb3"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/install.log",
+      "sha256": "4d6c0397d21ce857c43ca86795d26626f4a7f2ff62eaeecc428765dd23e7485a"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/package.json",
+      "sha256": "0286c373f3d99f8a8bcefec24a1923f3612af40151ff714af434eaedfcde6bd4"
+    },
+    {
+      "path": "tests/fixtures/pdf-story-20261012/pypi-metadata.json",
+      "sha256": "295f56603539e1ddbf610ddf79287304b356b6fb41e77cb2d4619ce223ceff73"
+    },
+    {
+      "path": "tmp/pdf-engine-evaluation/pymupdf-1.28.2-cp310-abi3-macosx_11_0_arm64.whl",
+      "sha256": "7113846b35dbf0a033f088e4f4fb543dabeb4b0b12c112966a1ca1ee2d5eacae"
+    }
+  ],
+  "pageRendersViewed": [
+    "hebrew.png",
+    "arabic.png",
+    "hindi.png"
+  ],
+  "newProductPasses": 0,
+  "copyResult": "0/6 cross-reader checks passed",
+  "officialReferences": [
+    "https://pymupdf.readthedocs.io/en/latest/story-class.html",
+    "https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright"
+  ]
+}

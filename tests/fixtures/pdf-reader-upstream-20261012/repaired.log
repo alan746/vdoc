@@ -1,0 +1,4 @@
+{"label":"upstream-td","match":true,"hindiWholeWord":false,"errors":[]}
+{"label":"flow-contextual","error":"page.evaluate: Error: Official copy handler absent\n    at eval (eval at evaluate (:311:30), <anonymous>:9:86)\n    at async <anonymous>:337:30\n    at /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-reader-upstream-20261012/check-demo.cjs:49:32","errors":[]}
+{"label":"flow-fallback-contextual","error":"page.evaluate: Error: Official copy handler absent\n    at eval (eval at evaluate (:311:30), <anonymous>:9:86)\n    at async <anonymous>:337:30\n    at /Users/ph.qian/Desktop/Vdoc/tests/fixtures/pdf-reader-upstream-20261012/check-demo.cjs:49:32","errors":[]}
+{"label":"b-original-fonts-repaired","match":false,"hindiWholeWord":false,"errors":[]}

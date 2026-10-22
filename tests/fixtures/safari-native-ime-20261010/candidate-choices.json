@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "group": "body",
+      "commit": "🀄️",
+      "differentFromPreviouslyObservedDefault": true,
+      "exactUndo": true
+    },
+    {
+      "group": "list",
+      "commit": "🀄️",
+      "differentFromPreviouslyObservedDefault": true,
+      "exactUndo": true
+    },
+    {
+      "group": "table",
+      "commit": "🀄️",
+      "differentFromPreviouslyObservedDefault": true,
+      "exactUndo": true
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "fixture": "base-v1",
+  "report": {
+    "prototypeOnly": true,
+    "pages": 1,
+    "tokens": 34,
+    "uniqueWords": 18,
+    "uniqueClusters": 50,
+    "measurements": [
+      {
+        "text": "Browser",
+        "domWidth": 84.3125,
+        "fontWidth": 84.304,
+        "delta": 0.008499999999997954
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "PDF",
+        "domWidth": 39.890625,
+        "fontWidth": 39.885999999999996,
+        "delta": 0.00462500000000432
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "—",
+        "domWidth": 22,
+        "fontWidth": 22,
+        "delta": 0
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "Hebrew",
+        "domWidth": 79.46875,
+        "fontWidth": 79.464,
+        "delta": 0.004750000000001364
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "words",
+        "domWidth": 62.546875,
+        "fontWidth": 62.546,
+        "delta": 0.0008750000000006253
+      },
+      {
+        "text": "מסמך",
+        "domWidth": 54.703125,
+        "fontWidth": 54.69200000000001,
+        "delta": 0.011124999999992724
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "בדיקת",
+        "domWidth": 59.609375,
+        "fontWidth": 59.598,
+        "delta": 0.011375000000001023
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "עולם",
+        "domWidth": 46.203125,
+        "fontWidth": 46.2,
+        "delta": 0.003124999999997158
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "שלום",
+        "domWidth": 49,
+        "fontWidth": 48.994,
+        "delta": 0.006000000000000227
+      },
+      {
+        "text": "טבלה",
+        "domWidth": 51.8125,
+        "fontWidth": 51.81,
+        "delta": 0.0024999999999977263
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "כתיבה",
+        "domWidth": 57.5625,
+        "fontWidth": 57.552,
+        "delta": 0.010500000000000398
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "עברית",
+        "domWidth": 57.71875,
+        "fontWidth": 57.706,
+        "delta": 0.01274999999999693
+      },
+      {
+        "text": "עולם",
+        "domWidth": 46.203125,
+        "fontWidth": 46.2,
+        "delta": 0.003124999999997158
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "בעברית",
+        "domWidth": 70.296875,
+        "fontWidth": 70.28999999999999,
+        "delta": 0.006875000000007958
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "שלום",
+        "domWidth": 49,
+        "fontWidth": 48.994,
+        "delta": 0.006000000000000227
+      },
+      {
+        "text": "Table",
+        "domWidth": 53.59375,
+        "fontWidth": 53.592,
+        "delta": 0.0017500000000012506
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "cell",
+        "domWidth": 34.5,
+        "fontWidth": 34.496,
+        "delta": 0.003999999999997783
+      },
+      {
+        "text": "עברית",
+        "domWidth": 57.71875,
+        "fontWidth": 57.706,
+        "delta": 0.01274999999999693
+      },
+      {
+        "text": "Different",
+        "domWidth": 90.640625,
+        "fontWidth": 90.64,
+        "delta": 0.0006249999999994316
+      },
+      {
+        "text": " ",
+        "domWidth": 5.953125,
+        "fontWidth": 5.94,
+        "delta": 0.01312499999999961
+      },
+      {
+        "text": "context",
+        "domWidth": 77.734375,
+        "fontWidth": 77.726,
+        "delta": 0.00837500000000091
+      },
+      {
+        "text": "שלום",
+        "domWidth": 49,
+        "fontWidth": 48.994,
+        "delta": 0.006000000000000227
+      }
+    ],
+    "scope": "Regular-weight cluster-level selection, QA single-page layout only. One shaped cluster maps to its full Unicode sequence; no codepoint decomposition. QA only, selection acceptance pending."
+  },
+  "cancelled": true,
+  "checks": [],
+  "sourceUnchanged": true,
+  "sha256": "d33f00b212c665c8772519928ab8596ea8bdab9656b872a8f446fc62001705c8",
+  "sourceText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+  "targets": [
+    {
+      "line": 0,
+      "expected": "Browser",
+      "x": 102.15625,
+      "y": 99.5,
+      "rect": {
+        "x": 60,
+        "y": 85,
+        "width": 84.3125,
+        "height": 29
+      }
+    },
+    {
+      "line": 0,
+      "expected": "words",
+      "x": 340.7578125,
+      "y": 99.5,
+      "rect": {
+        "x": 309.484375,
+        "y": 85,
+        "width": 62.546875,
+        "height": 29
+      }
+    },
+    {
+      "line": 1,
+      "expected": "שלום",
+      "x": 709.5,
+      "y": 161.5,
+      "rect": {
+        "x": 685,
+        "y": 147,
+        "width": 49,
+        "height": 29
+      }
+    },
+    {
+      "line": 1,
+      "expected": "מסמך",
+      "x": 533.9765625,
+      "y": 161.5,
+      "rect": {
+        "x": 506.625,
+        "y": 147,
+        "width": 54.703125,
+        "height": 29
+      }
+    },
+    {
+      "line": 2,
+      "expected": "עברית",
+      "x": 705.140625,
+      "y": 223.5,
+      "rect": {
+        "x": 676.28125,
+        "y": 209,
+        "width": 57.71875,
+        "height": 29
+      }
+    },
+    {
+      "line": 2,
+      "expected": "טבלה",
+      "x": 580.90625,
+      "y": 223.5,
+      "rect": {
+        "x": 555,
+        "y": 209,
+        "width": 51.8125,
+        "height": 29
+      }
+    },
+    {
+      "line": 3,
+      "expected": "שלום",
+      "x": 709.5,
+      "y": 285.5,
+      "rect": {
+        "x": 685,
+        "y": 271,
+        "width": 49,
+        "height": 29
+      }
+    },
+    {
+      "line": 3,
+      "expected": "עולם",
+      "x": 579.6953125,
+      "y": 285.5,
+      "rect": {
+        "x": 556.59375,
+        "y": 271,
+        "width": 46.203125,
+        "height": 29
+      }
+    }
+  ],
+  "requests": [
+    "/",
+    "/runtime.js",
+    "/fontkit.js",
+    "/pdf.js",
+    "/prototype.js",
+    "/hb/index.mjs",
+    "/hb/harfbuzz.js",
+    "/hb/harfbuzz.wasm",
+    "/font.ttf",
+    "/font.ttf"
+  ]
+}

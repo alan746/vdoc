@@ -1,0 +1,27 @@
+[
+  {
+    "name": "arabic-marked",
+    "pages": 1,
+    "text": "Browser PDF — Arabic words\nاﻟﻠُّﻌ\u0000َﻪ\u0000ُ اﻟْﻌَﺮَ\u0000\u0000ِ\u0000\u0000َّﻪ\u0000ُ ﺣ\u0000َﻤِ\u0000\u0000ﻠَﻪ\u0000ٌ\n123ﻣَﺮْﺣَ\u0000\u0000ًﺎ \u0000\u0000ِﺎﻟْﻌَﺎﻟَﻢِ\nاﻟْﻌَﺮَ\u0000\u0000ِ\u0000\u0000َّﻪ\u0000ُ اﻟ\u0000\u0000َّﻌْﻠِ\u0000\u0000ﻢُ اﻟْﻜِ\u0000\u0000َﺎ\u0000\u0000َﻪ\u0000ُ\nTable cellاﻟﻌﺮ\u0000\u0000\u0000\u0000ﻪ\nDifferent contextاﻟ\u0000\u0000ﻌﻠ\u0000\u0000ﻢ"
+  },
+  {
+    "name": "arabic",
+    "pages": 1,
+    "text": "Browser PDF — Arabic words\nاﻟﻠﻌ\u0000ﻪ\u0000 اﻟﻌﺮ\u0000\u0000\u0000\u0000ﻪ\u0000 ﺣ\u0000ﻤ\u0000\u0000ﻠﻪ\nﻣﺮﺣ\u0000\u0000ﺎ \u0000\u0000ﺎﻟﻌﺎﻟﻢ اﻟﺴلام ﻋﻠ\u0000\u0000ﻜﻢ\nاﻟﻌﺮ\u0000\u0000\u0000\u0000ﻪ\u0000 اﻟ\u0000\u0000ﻌﻠ\u0000\u0000ﻢ اﻟﻜ\u0000\u0000ﺎ\u0000\u0000ﻪ\u0000\nTable cellاﻟﻌﺮ\u0000\u0000\u0000\u0000ﻪ\nDifferent contextاﻟ\u0000\u0000ﻌﻠ\u0000\u0000ﻢ"
+  },
+  {
+    "name": "hebrew-marked",
+    "pages": 1,
+    "text": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\n123עִבְרִית כְּתִיבָה \nשָׁלוֹם בְּעִבְרִית עוֹלָם \nTable cellעברית\nDifferent contextשלום"
+  },
+  {
+    "name": "hebrew",
+    "pages": 1,
+    "text": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cellעברית\nDifferent contextשלום"
+  },
+  {
+    "name": "words",
+    "pages": 1,
+    "text": "Browser PDF — local text and vectors\n\u0000 हन्दी \u0000 ह\u0000दी भाषा म\u0000 दस्तावेज़ \u0000 लखना।\nदु\u0000 नया नमस्ते \u0000 शक्षा क्ष\u0000 \u0000 य \u0000 ाथ\u0000ना।\nRepeat \u0000 हन्दी and \u0000 ह\u0000दी with contextual shapes.\nTable cell \u0000 हन्दी भाषा\nDifferent context \u0000 शक्षा \u0000 ाथ\u0000ना"
+  }
+]

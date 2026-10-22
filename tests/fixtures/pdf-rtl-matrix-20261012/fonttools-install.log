@@ -1,0 +1,6 @@
+Collecting fonttools
+  Using cached fonttools-4.66.1-cp312-cp312-macosx_10_13_universal2.whl.metadata (130 kB)
+Using cached fonttools-4.66.1-cp312-cp312-macosx_10_13_universal2.whl (3.1 MB)
+Installing collected packages: fonttools
+Successfully installed fonttools-4.66.1
+WARNING: Target directory /Users/ph.qian/Desktop/Vdoc/tmp/pdf-engine-evaluation/site/bin already exists. Specify --upgrade to force replacement.

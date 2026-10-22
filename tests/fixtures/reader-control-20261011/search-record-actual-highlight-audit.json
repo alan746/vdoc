@@ -1,0 +1,257 @@
+{
+  "scope": "Whole-word PDF plugin text-fragment lookup; not Cmd-F UI, editor search, or character selection. Page-only pixel comparisons exclude asynchronous reader toolbar/thumbnail loading. All five positive screenshots visually inspected. Negative criterion: zero lavender pixels and at most 1/255 per-channel difference from initial page; exact equality also recorded.",
+  "rawMethodCorrection": "Not needed: current report labels the text-fragment method correctly.",
+  "excludedInvalidComparison": "Earlier bidi-runs whole-window comparison excluded; no such comparison used in this run.",
+  "results": [
+    {
+      "label": "words",
+      "pdfSha256": "8d1419442340550e50a9762cb7718ccd1d6a2a2ccbd3f2a14c0fc1f0117dfec9",
+      "query": "हिन्दी",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        365,
+        205,
+        407,
+        228
+      ],
+      "sourceWordScreenBounds": [
+        365.5957711442786,
+        205.0671641791045,
+        406.8997978855722,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        63,
+        147,
+        64,
+        148
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 640,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-words-before.png",
+          "sha256": "1c9714c24c9462b43d13fcf31d4e72370ff375edcf6f983f03ae2cdb11b2ed5b"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-words-match.png",
+          "sha256": "abd68564d60e31c657d1deaf7000371ccba6564eecc1be91d0128d93b13ffa3a"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-words-absent.png",
+          "sha256": "3632abff1c39330acfc096893c25c961d6e1fbd4446524f48b08e956c7d082a3"
+        }
+      ]
+    },
+    {
+      "label": "arabic",
+      "pdfSha256": "f4f6717a21612a6153b1ce6ae9b0356cc315873ba839902c6dbc82b99581556c",
+      "query": "اللغة",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        209,
+        1036,
+        236
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        160,
+        692,
+        161
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 850,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-arabic-before.png",
+          "sha256": "ef9ee096f6aaf4de27251b130320cae782da85d58bf7836e64502692ae8d04c3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-arabic-match.png",
+          "sha256": "aaf2e078c64c6366a320840dc2aacc123f3f6adcfc3c9bea98289ec75ce21ad3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-arabic-absent.png",
+          "sha256": "3aa1ef35d8bb8cd38e4ab36c20a336b9e93115117a3b4132ec500737ff54e666"
+        }
+      ]
+    },
+    {
+      "label": "hebrew",
+      "pdfSha256": "09c1cdac92deb5889353f4930e8f380e2158bc027922828f3de0e5aec5a5a6dc",
+      "query": "שלום",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        210,
+        1036,
+        232
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeExactlyIdentical": true,
+      "maxNegativeChannelDelta": 0,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 821,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-hebrew-before.png",
+          "sha256": "8a093a5cbacc48ce52ca558e06f2f1a987fdba07ac20f39294924481305349a3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-hebrew-match.png",
+          "sha256": "ca63dbe18eb1e63138046a304272148901fc7703f38798404e880aa1ca0cc12d"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-hebrew-absent.png",
+          "sha256": "f1b4e7b708e6befcdc5d496efc9c6eef04e59fdacd182dba54f59983fd9944f2"
+        }
+      ]
+    },
+    {
+      "label": "arabic-marked",
+      "pdfSha256": "5addfb81adcc032433f798c9090b9c660f7a03a215b0af6b146d378233af0440",
+      "query": "اللُّغَةُ",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        996,
+        198,
+        1036,
+        236
+      ],
+      "sourceWordScreenBounds": [
+        995.9324860074627,
+        197.1169154228856,
+        1035.4042288557214,
+        242.8308457711443
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": [
+        691,
+        147,
+        713,
+        161
+      ],
+      "negativeExactlyIdentical": false,
+      "maxNegativeChannelDelta": 1,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 1236,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-arabic-marked-before.png",
+          "sha256": "5ffa0426592936dd72665f68141a925259f76a22f6b0b12afe668b31e9c750b7"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-arabic-marked-match.png",
+          "sha256": "3131673e570fe856b97f9a2f3a2fdebd5a3af85e97a3a8ec2ba81dd5c6cec1c3"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-arabic-marked-absent.png",
+          "sha256": "f3f60c7bc9f6efc2ba0624def86ad92a52cd8b7fba21a68bf05e825b0ad5439f"
+        }
+      ]
+    },
+    {
+      "label": "hebrew-marked",
+      "pdfSha256": "9bcc78cc0746f802724d120cb155f0c8fbe05154cd5195119f60f52fbba262b5",
+      "query": "שָׁלוֹם",
+      "pageCrop": [
+        306,
+        59,
+        1095,
+        1174
+      ],
+      "positiveDifferenceBounds": [
+        987,
+        210,
+        1036,
+        233
+      ],
+      "sourceWordScreenBounds": [
+        986.7089552238806,
+        205.0671641791045,
+        1035.4042288557214,
+        233.88681592039802
+      ],
+      "highlightContainedInTarget": true,
+      "negativeDifferenceBounds": null,
+      "negativeExactlyIdentical": true,
+      "maxNegativeChannelDelta": 0,
+      "highlightPixelCounts": {
+        "before": 0,
+        "match": 862,
+        "absent": 0
+      },
+      "negativeClearsHighlight": true,
+      "screenshots": [
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-hebrew-marked-before.png",
+          "sha256": "7d3014bc6002e6d8c1377bc8af60481d524ee6d522bd5097800e343c1ad6ab7c"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-hebrew-marked-match.png",
+          "sha256": "c295f2a031d71e5c356578e3649f17892182cc2c48ec19e1f97914dd8fc7e8b4"
+        },
+        {
+          "file": "tests/fixtures/reader-control-20261011/search-record-actual-hebrew-marked-absent.png",
+          "sha256": "2a06ff7e23b423d7c82e5b0ba82ce881d6eb35f1c89b16ce07868e6d0d5790fb"
+        }
+      ]
+    }
+  ]
+}

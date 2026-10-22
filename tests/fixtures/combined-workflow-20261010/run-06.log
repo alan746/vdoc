@@ -1,0 +1,3 @@
+F012-F013-created-multilingual {"scope":"Browser keyboard insertion; not system IME","document":{"type":"doc","attrs":{"language":"und","pageSize":"a4","orientation":"portrait","pageMargin":20,"pageColor":"#FFFFFF","header":"","footer":"","pageNumbers":false},"content":[{"type":"paragraph","attrs":{"textAlign":null,"keepWithNext":null,"keepLinesTogether":false,"preventSingleLines":true,"paragraphBorderJoin":false,"paragraphBord
+F014-F015-range-replace-undo-redo {}
+FAILED {"message":"AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(s.document.content.some(n=>n.type==='paragraph'&&texts(n)==='Normal after list'))\n\n    at /Users/ph.qian/Desktop/Vdoc/tmp/combined-workflow/run.cjs:20:880"}

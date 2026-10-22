@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/use-local-pdf.test.ts (3 tests) 31ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  00:21:22
+   Duration  489ms (transform 37ms, setup 11ms, collect 51ms, tests 31ms, environment 269ms, prepare 40ms)
+

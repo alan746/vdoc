@@ -1,0 +1,16 @@
+{
+  "scale": 100,
+  "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/safari-native-20261011/local-production-100.pdf",
+  "bytes": 221980,
+  "sha256": "9764f4df9d3b822e004cb8f9d3f8c0daa967cae95888ff30af9ec84e35e4c8f9",
+  "pdfAction": {
+    "exit": 1,
+    "observedSaveDialog": true,
+    "note": "AX timeout returned after save panel opened; action was not repeated."
+  },
+  "saveAction": {
+    "exit": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

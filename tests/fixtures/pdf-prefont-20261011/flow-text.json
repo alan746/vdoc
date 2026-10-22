@@ -1,0 +1,68 @@
+[
+  {
+    "file": "flow",
+    "pages": 4,
+    "hindiInventory": false,
+    "hindiOrder": false,
+    "actualHindi": 1873,
+    "expectedHindi": 3318,
+    "nulls": 867,
+    "fonts": {
+      "/Type0": 27,
+      "/Type3": 4
+    },
+    "blockMarkers": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "endMarkers": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "file": "flow-contextual",
+    "pages": 4,
+    "hindiInventory": true,
+    "hindiOrder": true,
+    "actualHindi": 3318,
+    "expectedHindi": 3318,
+    "nulls": 0,
+    "fonts": {
+      "/Type0": 143,
+      "/Type3": 4
+    },
+    "blockMarkers": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "endMarkers": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  }
+]

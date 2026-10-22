@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-12T04:56:40.579Z",
+  "browser": "154.0.8037.98",
+  "method": "Actual PDF plugin text-fragment search with positive and absent controls; inspect screenshots. Not Cmd-F UI acceptance.",
+  "results": [
+    {
+      "label": "hindi",
+      "file": "tests/fixtures/pdf-reportlab-20261012/hindi.pdf",
+      "sha256": "e30f4f5206ae2913c10222eb58ab2a45dfb83bd50bdec6e593e09c6a135531fd",
+      "query": "हिन्दी",
+      "target": {
+        "expected": "हिन्दी",
+        "x": 57.08,
+        "y": 126.88999999999999,
+        "width": 34.160000000000004,
+        "line": 1
+      },
+      "geometry": {
+        "rect": {
+          "x": 4.975093399750934,
+          "y": 2.9850560398505603,
+          "width": 789.0498132004981,
+          "height": 1116.4109589041095
+        },
+        "scroller": {
+          "x": 301,
+          "y": 56,
+          "width": 799,
+          "height": 1144
+        },
+        "method": "getPageScreenRect(page){if(!this.documentDimensions_){return{x:0,y:0,width:0,height:0}}if(page>=this.pageDimensions_.length){page=this.pageDimensions_.length-1}const pageDimensions=this.pageDimensions_[page];const insetDimensions=this.getPageInsetDimensions(page);const x=this.twoUpViewEnabled()?pageDimensions.x+PAGE_SHADOW.left:(this.documentDimensions_.width-pageDimensions.width)/2+PAGE_SHADOW.left;const zoom=this.getZoom();const scrollbarWidth=this.documentHasScrollbars().vertical?this.scrollContent_.scrollbarWidth:0;let spaceOnLeft=(this.size.width-scrollbarWidth-this.documentDimensions_.width*zoom)/2;spaceOnLeft=Math.max(spaceOnLeft,0);return{x:x*zoom+spaceOnLeft-this.scrollContent_.scrollLeft,y:insetDimensions.y*zoom-this.scrollContent_.scrollTop,width:insetDimensions.width*zoom,height:insetDimensions.height*zoom}}"
+      },
+      "negativeQuery": "VDOC_ABSENT_854e1ca9",
+      "method": "Actual PDF plugin text-fragment search; screenshot highlights need independent inspection. Not Cmd-F UI acceptance."
+    }
+  ]
+}

@@ -1,0 +1,513 @@
+{
+  "checks": [
+    {
+      "zoom": 75,
+      "position": "start",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 609.5,
+            "height": 34.5,
+            "bottom": 294.75,
+            "y": 260.25,
+            "width": 241.5,
+            "left": 609.5,
+            "top": 260.25,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 34.5,
+            "bottom": 294.75,
+            "y": 260.25,
+            "width": 241.5,
+            "left": 851,
+            "top": 260.25,
+            "right": 1092.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 549,
+        "height": 30,
+        "bottom": 296.25,
+        "y": 266.25,
+        "width": 58,
+        "left": 549,
+        "top": 266.25,
+        "right": 607
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 75,
+      "position": "middle",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 609.5,
+            "height": 34.5,
+            "bottom": 211.9954833984375,
+            "y": 177.4954833984375,
+            "width": 241.5,
+            "left": 609.5,
+            "top": 177.4954833984375,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 34.5,
+            "bottom": 211.9954833984375,
+            "y": 177.4954833984375,
+            "width": 241.5,
+            "left": 851,
+            "top": 177.4954833984375,
+            "right": 1092.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 549,
+        "height": 30,
+        "bottom": 213.484375,
+        "y": 183.484375,
+        "width": 58,
+        "left": 549,
+        "top": 183.484375,
+        "right": 607
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 75,
+      "position": "end",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 609.5,
+            "height": 34.5,
+            "bottom": 211.6422119140625,
+            "y": 177.1422119140625,
+            "width": 241.5,
+            "left": 609.5,
+            "top": 177.1422119140625,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 34.5,
+            "bottom": 211.6422119140625,
+            "y": 177.1422119140625,
+            "width": 241.5,
+            "left": 851,
+            "top": 177.1422119140625,
+            "right": 1092.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 549,
+        "height": 30,
+        "bottom": 213.140625,
+        "y": 183.140625,
+        "width": 58,
+        "left": 549,
+        "top": 183.140625,
+        "right": 607
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 100,
+      "position": "start",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 528.5,
+            "height": 46,
+            "bottom": 264.5,
+            "y": 218.5,
+            "width": 322.5,
+            "left": 528.5,
+            "top": 218.5,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 46,
+            "bottom": 264.5,
+            "y": 218.5,
+            "width": 322.5,
+            "left": 851,
+            "top": 218.5,
+            "right": 1173.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 468,
+        "height": 30,
+        "bottom": 254.5,
+        "y": 224.5,
+        "width": 58,
+        "left": 468,
+        "top": 224.5,
+        "right": 526
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 100,
+      "position": "middle",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 528.5,
+            "height": 46,
+            "bottom": 234.5,
+            "y": 188.5,
+            "width": 322.5,
+            "left": 528.5,
+            "top": 188.5,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 46,
+            "bottom": 234.5,
+            "y": 188.5,
+            "width": 322.5,
+            "left": 851,
+            "top": 188.5,
+            "right": 1173.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 468,
+        "height": 30,
+        "bottom": 224.5,
+        "y": 194.5,
+        "width": 58,
+        "left": 468,
+        "top": 194.5,
+        "right": 526
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 100,
+      "position": "end",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 528.5,
+            "height": 46,
+            "bottom": 234.5,
+            "y": 188.5,
+            "width": 322.5,
+            "left": 528.5,
+            "top": 188.5,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 46,
+            "bottom": 234.5,
+            "y": 188.5,
+            "width": 322.5,
+            "left": 851,
+            "top": 188.5,
+            "right": 1173.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 468,
+        "height": 30,
+        "bottom": 224.5,
+        "y": 194.5,
+        "width": 58,
+        "left": 468,
+        "top": 194.5,
+        "right": 526
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 125,
+      "position": "start",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 447.5,
+            "height": 57.5,
+            "bottom": 287.25,
+            "y": 229.75,
+            "width": 403.5,
+            "left": 447.5,
+            "top": 229.75,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 57.5,
+            "bottom": 287.25,
+            "y": 229.75,
+            "width": 403.5,
+            "left": 851,
+            "top": 229.75,
+            "right": 1254.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 387,
+        "height": 30,
+        "bottom": 265.75,
+        "y": 235.75,
+        "width": 58,
+        "left": 387,
+        "top": 235.75,
+        "right": 445
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 125,
+      "position": "middle",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 447.5,
+            "height": 57.5,
+            "bottom": 255.485595703125,
+            "y": 197.985595703125,
+            "width": 403.5,
+            "left": 447.5,
+            "top": 197.985595703125,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 57.5,
+            "bottom": 255.485595703125,
+            "y": 197.985595703125,
+            "width": 403.5,
+            "left": 851,
+            "top": 197.985595703125,
+            "right": 1254.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 387,
+        "height": 30,
+        "bottom": 233.984375,
+        "y": 203.984375,
+        "width": 58,
+        "left": 387,
+        "top": 203.984375,
+        "right": 445
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    },
+    {
+      "zoom": 125,
+      "position": "end",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 447.5,
+            "height": 57.5,
+            "bottom": 254.544921875,
+            "y": 197.044921875,
+            "width": 403.5,
+            "left": 447.5,
+            "top": 197.044921875,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 57.5,
+            "bottom": 254.544921875,
+            "y": 197.044921875,
+            "width": 403.5,
+            "left": 851,
+            "top": 197.044921875,
+            "right": 1254.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 387,
+        "height": 30,
+        "bottom": 233.03125,
+        "y": 203.03125,
+        "width": 58,
+        "left": 387,
+        "top": 203.03125,
+        "right": 445
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    }
+  ],
+  "state": "passed",
+  "capabilities": {
+    "safari:platformVersion": "26.6.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "26.6.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "25G83",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "reloadFullJSONUnchanged": true,
+  "ownSessionClosed": true
+}

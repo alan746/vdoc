@@ -1,0 +1,26 @@
+[
+  {
+    "file": "installed-textpage.cpp",
+    "url": "https://pdfium.googlesource.com/pdfium/+/2358b16c1947eff67f0732754af6b3c4e1715ff9/core/fpdftext/cpdf_textpage.cpp?format=TEXT",
+    "exit": 0,
+    "bytes": 50966
+  },
+  {
+    "file": "installed-text-test.cpp",
+    "url": "https://pdfium.googlesource.com/pdfium/+/2358b16c1947eff67f0732754af6b3c4e1715ff9/fpdfsdk/fpdf_text_embeddertest.cpp?format=TEXT",
+    "exit": 0,
+    "bytes": 99789
+  },
+  {
+    "file": "installed-plugin.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/154.0.8037.98/pdf/pdf_view_web_plugin.cc?format=TEXT",
+    "exit": 0,
+    "bytes": 116876
+  },
+  {
+    "file": "installed-engine.cc",
+    "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/154.0.8037.98/pdf/pdfium/pdfium_engine.cc?format=TEXT",
+    "exit": 0,
+    "bytes": 207617
+  }
+]

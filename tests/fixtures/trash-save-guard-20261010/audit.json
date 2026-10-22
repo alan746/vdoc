@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-10T19:40:02.494094+00:00",
+  "change": "Reject late document saves, checkpoint creation and version restoration after Trash or missing records within the same IndexedDB transaction.",
+  "changedApplicationFiles": [
+    "lib/editor/document-store.ts"
+  ],
+  "documentId": "85298ac5-6a91-4a48-95ae-b98f4aa7887d",
+  "ui": {
+    "environment": "Codex in-app browser, normal product UI and read-only public read_document",
+    "beforeFix": "Moved QA document to Trash in a second tab; editing the original tab reported Saved locally. Restoring and opening showed Late draft after Trash, confirming the overwrite.",
+    "afterFix": {
+      "saveRejectedWithTrashMessage": true,
+      "draftRemainsEditable": true,
+      "actualBackupDownloaded": true,
+      "restoredOriginalFullDocumentEqualsBaseline": true,
+      "retryAfterRestoreSavedLocally": true,
+      "newSessionAfterReload": true,
+      "reloadedFullDocumentEqualsFailedDraft": true,
+      "actualBeforeAndAfterBackupsTitleAndContentEqual": true
+    },
+    "downloadObservation": "The browser download-event wait timed out, but both exact files were found in Downloads and compared. No inferred download completion."
+  },
+  "tests": {
+    "newRegressions": 8,
+    "beforeFixFailed": 8,
+    "targetedFiles": 7,
+    "targetedTests": 72,
+    "fullFiles": 134,
+    "fullTests": 1907,
+    "typecheck": true,
+    "build": true,
+    "buildAfterTypecheck": true
+  },
+  "nativeProbe": {
+    "window": "VDoc QA isolated WebKit, bf5a4d3c-6c75-4f74-8880-5f1cf8dd0ccd",
+    "bodyCaretConfirmedInScreenshot": true,
+    "candidateObserved": false,
+    "actualText": "zhong appended as ordinary Latin text",
+    "undoRestoredActualDownloadedTitleAndFullContent": true,
+    "boundary": "Not an OS IME pass and not Safari output."
+  },
+  "boundaries": [
+    "No actual browser quota refusal was generated.",
+    "Safari 101% output and old project-plan source pairing remain unresolved.",
+    "Prior crash evidence belongs to its recorded candidate; this storage change needs final affected-path native recheck.",
+    "User now requests foundation work only. Do not enter AI after acceptance without a later instruction."
+  ],
+  "files": [
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/build.log",
+      "sha256": "3f96fea6e7aeddd91854dac2bea8a1da384dcd22b447aeedba311bf6eaa70c58"
+    },
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/full.log",
+      "sha256": "aaf8f14fc1f6e2a720b19396cdf0198592ce124e83a243847a8ad0178a29e8fa"
+    },
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/native-probe-restored.vdoc.json",
+      "sha256": "c190cb0c59863129bb207c50d71b37057b8f9b7b8f603fa2f05a6fc20d619c11"
+    },
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/recovered-draft.vdoc.json",
+      "sha256": "0b86b26c80e10abeadb2ad09617fa6425eeb5eb7068d2c2bccfa34f26d8192d3"
+    },
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/source-manifest.json",
+      "sha256": "00c60a5d5d0097cc381534e41b96a9cac384691c3bdc62ccd6069eab2db0e72b"
+    },
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/targeted.log",
+      "sha256": "c53651c21eac24f8bc7e58b3fc091bd5225fa7c3b74039664fd87f1bdad83a0b"
+    },
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/types.log",
+      "sha256": "62c43c4d1ccdb60bc4783c4e95bff684a9f327e48803351fae38e50d7bb58311"
+    },
+    {
+      "file": "tests/fixtures/trash-save-guard-20261010/unsaved-draft.vdoc.json",
+      "sha256": "ed0e573f4006fa66eac5d309e2c5555a42e1b2bda24351089af056115baeb9d6"
+    }
+  ]
+}

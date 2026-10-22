@@ -1,0 +1,27 @@
+F012-F013-created-multilingual {"scope":"Browser keyboard insertion; not system IME","document":{"type":"doc","attrs":{"language":"und","pageSize":"a4","orientation":"portrait","pageMargin":20,"pageColor":"#FFFFFF","header":"","footer":"","pageNumbers":false},"content":[{"type":"paragraph","attrs":{"textAlign":null,"keepWithNext":null,"keepLinesTogether":false,"preventSingleLines":true,"paragraphBorderJoin":false,"paragraphBord
+F014-F015-range-replace-undo-redo {}
+list-enter-0 {"snapshot":{"schemaVersion":1,"sessionId":"2dfc3b38-b464-4c14-aa8a-bb1425fddaf4","tables":[],"revision":15,"selection":{"from":144,"to":144},"blocks":[{"id":"b_78e80044-69c1-4685-a4c8-aac355d73260","type":"paragraph","text":"Opening anchor English 中文 日本語.","from":1,"to":31},{"id":"b_c82b4f15-3059-46c6-8380-81116eaf0aad","type":"paragraph","text":"Second paragraph replacement remains.","from":33,"
+list-enter-1 {"snapshot":{"schemaVersion":1,"sessionId":"2dfc3b38-b464-4c14-aa8a-bb1425fddaf4","tables":[],"revision":16,"selection":{"from":146,"to":146},"blocks":[{"id":"b_78e80044-69c1-4685-a4c8-aac355d73260","type":"paragraph","text":"Opening anchor English 中文 日本語.","from":1,"to":31},{"id":"b_c82b4f15-3059-46c6-8380-81116eaf0aad","type":"paragraph","text":"Second paragraph replacement remains.","from":33,"
+list-enter-2 {"snapshot":{"schemaVersion":1,"sessionId":"2dfc3b38-b464-4c14-aa8a-bb1425fddaf4","tables":[],"revision":17,"selection":{"from":146,"to":146},"blocks":[{"id":"b_78e80044-69c1-4685-a4c8-aac355d73260","type":"paragraph","text":"Opening anchor English 中文 日本語.","from":1,"to":31},{"id":"b_c82b4f15-3059-46c6-8380-81116eaf0aad","type":"paragraph","text":"Second paragraph replacement remains.","from":33,"
+F016-F017-list-conversion-exit {"document":{"type":"doc","attrs":{"language":"und","pageSize":"a4","orientation":"portrait","pageMargin":20,"pageColor":"#FFFFFF","header":"","footer":"","pageNumbers":false},"content":[{"type":"paragraph","attrs":{"textAlign":null,"keepWithNext":null,"keepLinesTogether":false,"preventSingleLines":true,"paragraphBorderJoin":false,"paragraphBorders":null,"paragraphBackground":null,"indent":0,"inde
+table-insert-selection {"snapshot":{"schemaVersion":1,"sessionId":"2dfc3b38-b464-4c14-aa8a-bb1425fddaf4","tables":[{"id":"b_dfc15391-61dd-46dd-8508-e0aa3f8a4f60","rows":3,"columns":3,"columnDirection":"ltr","pinnedRows":1,"rowBreaks":[{"id":"b_06a18d39-661a-45df-b564-cb31d92968a8","row":0,"allowSplit":false},{"id":"b_a6517da5-dda7-4893-ae59-927f06f17e46","row":1,"allowSplit":false},{"id":"b_1234c1ce-c780-4016-9e14-de537
+F018-ui-table-nine-cells {}
+F019-F020-table-structure-exact-undo-redo {}
+F021-local-image-visible {}
+F022-full-backup {}
+F023-font-size-selected-range {}
+F024-independent-color-highlight-undo {}
+F025-independent-bold-italic-underline {}
+F026-paragraph-alignment {}
+F027-heading-outline {}
+F028-final-match-visible {}
+F029-three-match-navigation {}
+F030-F031-single-all-replace {}
+F032-zoom-search-visible {}
+F033-F034-close-search-edit-undo-save {}
+F035-F037-refresh-home-reopen-export {}
+F038-json-reimport-full-content {}
+F039-F040-docx-roundtrip-text-table-image {}
+production-preview-ready {"scope":"Chromium production preview only, no Safari PDF claim"}
+F042-version-restore {}
+FAILED {"message":"AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    attrs: {\n      footer: '',\n      header: '',\n      language: 'und',\n...\n        attrs: {\n+         blockId: 'b_97bdbcaf-2880-4e35-82e8-e61e4bc4e050',\n-         blockId: 'b_df55684f-169f-4d60-95a3-d3b40657af7e',\n          direction: 'auto',\n          fi

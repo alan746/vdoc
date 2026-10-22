@@ -1,0 +1,174 @@
+
+> vdoc@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+stdout | tests/search-performance.test.ts > keeps long-document search coordinates accurate through local edits, replacement and undo
+SEARCH_PROFILE median=0.53ms max=0.93ms, 2500 mixed paragraphs, 12 local edits
+
+ ✓ tests/search-performance.test.ts (5 tests) 5914ms
+   ✓ keeps long-document search coordinates accurate through local edits, replacement and undo  3134ms
+   ✓ does not reuse results when the query, case option or whole-word option changes  2738ms
+ ✓ tests/file-roundtrip.test.ts (18 tests) 2055ms
+   ✓ retains document language metadata for all 40 language tags in actual Word files  1160ms
+ ✓ tests/backup-import.test.ts (15 tests) 1650ms
+   ✓ reimports a native backup larger than the old limit with embedded images and exact stored content  718ms
+   ✓ uses the same native-backup policy for UTF-8 bytes and JavaScript character lengths  552ms
+   ✓ rejects a damaged large backup before changing the active document or local library  366ms
+ ✓ tests/word-run-format-history.test.ts (12 tests) 1610ms
+ ✓ tests/version-storage.test.ts (5 tests) 1456ms
+   ✓ saves a multilingual checkpoint, restores it, recovers the replaced draft and survives pending autosaves  584ms
+   ✓ rolls back a restore request error without pruning history, then recovers edits made after the failure  310ms
+ ✓ tests/import-storage.test.ts (6 tests) 1479ms
+   ✓ imports a backup with the current identity as an independent document without replacing its latest edits or history  400ms
+   ✓ refuses a listed document that moved to Trash and opens it after restoration without overwriting either document  321ms
+ ✓ tests/word-text-styles.test.ts (24 tests) 1134ms
+ ✓ tests/workspace-restore-session.test.ts (3 tests) 1288ms
+   ✓ opens the restored content in a fresh session even when its saved timestamp is unchanged  917ms
+ ✓ tests/library-search-storage.test.ts (6 tests) 1149ms
+   ✓ updates canonical multilingual search after renaming and opens the latest stored title without changing its body or versions  355ms
+ ✓ tests/table-acceptance.test.ts (37 tests) 1146ms
+   ✓ inserts 30 by 20 cells, preserves backup and undoes exactly  399ms
+ ✓ tests/local-document-import.test.ts (52 tests) 1120ms
+ ✓ tests/format-toolbar.test.ts (22 tests) 1063ms
+ ✓ tests/word-decoration-styles.test.ts (20 tests) 994ms
+ ✓ tests/word-outline-levels.test.ts (13 tests) 963ms
+ ✓ tests/word-list-code.test.ts (13 tests) 834ms
+ ✓ tests/find-panel-live-document.test.ts (49 tests) 973ms
+ ✓ tests/list-style.test.ts (16 tests) 884ms
+ ✓ tests/list-markers.test.ts (16 tests) 828ms
+ ✓ tests/library-actions.test.ts (36 tests) 841ms
+ ✓ tests/word-empty-list-items.test.ts (13 tests) 794ms
+ ✓ tests/workspace-composition.test.ts (18 tests) 785ms
+ ✓ tests/word-blockquotes.test.ts (13 tests) 765ms
+ ✓ tests/word-list-tables.test.ts (9 tests) 762ms
+ ✓ tests/paragraph-line-height.test.ts (25 tests) 759ms
+ ✓ tests/word-spacing-styles.test.ts (12 tests) 754ms
+   ✓ resolves defaults, base/child/sibling styles and direct overrides in body, heading, list and table paragraphs  377ms
+ ✓ tests/word-dividers.test.ts (9 tests) 627ms
+ ✓ tests/word-numbering-inheritance.test.ts (13 tests) 720ms
+ ✓ tests/word-paragraph-styles.test.ts (10 tests) 728ms
+   ✓ preserves inherited layout across heading, body, list and table, with direct zero/off overrides and exact undo  393ms
+ ✓ tests/multilingual.test.ts (100 tests) 717ms
+ ✓ tests/word-list-images.test.ts (9 tests) 687ms
+ ✓ tests/cell-lists.test.ts (23 tests) 649ms
+ ✓ tests/composition-storage.test.ts (7 tests) 665ms
+ ✓ tests/table-drag-interaction.test.ts (10 tests) 542ms
+ ✓ tests/list-numbering.test.ts (20 tests) 652ms
+ ✓ tests/word-export.test.ts (20 tests) 606ms
+ ✓ tests/word-footnotes.test.ts (10 tests) 568ms
+ ✓ tests/paragraph-indent.test.ts (18 tests) 548ms
+ ✓ tests/paragraph-tabs.test.ts (22 tests) 583ms
+ ✓ tests/list-boundaries.test.ts (18 tests) 553ms
+ ✓ tests/cell-numbering.test.ts (16 tests) 527ms
+ ✓ tests/workspace-save-retry.test.ts (7 tests) 517ms
+ ✓ tests/format-copy.test.ts (33 tests) 518ms
+ ✓ tests/paragraph-spacing.test.ts (17 tests) 518ms
+ ✓ tests/word-inline-formatting.test.ts (8 tests) 584ms
+ ✓ tests/cell-continuation.test.ts (13 tests) 524ms
+ ✓ tests/cell-list-style.test.ts (16 tests) 499ms
+ ✓ tests/format-overrides.test.ts (23 tests) 507ms
+ ✓ tests/version-navigation.test.ts (24 tests) 492ms
+ ✓ tests/word-inline-code.test.ts (6 tests) 434ms
+ ✓ tests/word-paragraph-matching.test.ts (5 tests) 455ms
+ ✓ tests/word-code-blocks.test.ts (6 tests) 446ms
+ ✓ tests/paragraph-border-groups.test.ts (16 tests) 450ms
+ ✓ tests/complex-workflow.test.ts (1 test) 439ms
+   ✓ executes and reverses a mixed-language multi-step editing workflow, then preserves the final draft across storage, version restore and Word  438ms
+ ✓ tests/table-properties-dialog.test.ts (10 tests) 389ms
+ ✓ tests/checklist.test.ts (14 tests) 431ms
+ ✓ tests/cell-list-lifting.test.ts (10 tests) 503ms
+ ✓ tests/workspace-import-feedback.test.ts (1 test) 424ms
+   ✓ keeps import details visible across the real home-to-editor remount until dismissed  424ms
+ ✓ tests/list-editing.test.ts (18 tests) 442ms
+ ✓ tests/list-lifting.test.ts (16 tests) 418ms
+ ✓ tests/workspace-recovery-backup.test.ts (4 tests) 419ms
+ ✓ tests/table-padding.test.ts (9 tests) 399ms
+ ✓ tests/print-preview-controls.test.ts (22 tests) 385ms
+stdout | tests/performance.test.ts > edits, formats, undoes and round-trips a 2500-paragraph document without loss
+{"paragraphs":2500,"characters":613890,"loadMs":239,"editMaxMs":15,"editMeanMs":4,"saveAndParseMs":49}
+
+ ✓ tests/performance.test.ts (1 test) 409ms
+   ✓ edits, formats, undoes and round-trips a 2500-paragraph document without loss  408ms
+ ✓ tests/word-merged-formatting.test.ts (4 tests) 398ms
+ ✓ tests/list-root-lifting.test.ts (13 tests) 378ms
+ ✓ tests/core-batch-delivery.test.ts (6 tests) 391ms
+ ✓ tests/paragraph-pagination.test.ts (9 tests) 375ms
+ ✓ tests/import-title-boundary.test.ts (2 tests) 448ms
+   ✓ imports docx filenames without cutting a visible character at the title limit  404ms
+ ✓ tests/color-composition.test.ts (11 tests) 355ms
+ ✓ tests/page-layout-integrity.test.ts (15 tests) 359ms
+ ✓ tests/paragraph-borders.test.ts (15 tests) 352ms
+ ✓ tests/table-headers.test.ts (22 tests) 341ms
+ ✓ tests/search-scroll.test.ts (17 tests) 318ms
+ ✓ tests/table-move.test.ts (21 tests) 335ms
+ ✓ tests/version-restore.test.ts (14 tests) 321ms
+ ✓ tests/paragraph-background.test.ts (10 tests) 305ms
+ ✓ tests/list-conversion.test.ts (20 tests) 311ms
+ ✓ tests/autosave.test.ts (38 tests) 292ms
+ ✓ tests/rich-image-roundtrip.test.ts (4 tests) 295ms
+ ✓ tests/table-resize.test.ts (18 tests) 278ms
+ ✓ tests/preview-table-headers.test.ts (46 tests) 249ms
+ ✓ tests/table-row-break.test.ts (14 tests) 239ms
+ ✓ tests/image-dialog.test.ts (9 tests) 243ms
+ ✓ tests/document-store.test.ts (20 tests) 243ms
+ ✓ tests/autosave-persistence.test.ts (6 tests) 245ms
+ ✓ tests/table-direction.test.ts (15 tests) 246ms
+ ✓ tests/engine.test.ts (23 tests) 235ms
+ ✓ tests/preview-layout.test.ts (32 tests) 236ms
+ ✓ tests/print-preview-page.test.ts (42 tests) 235ms
+ ✓ tests/ruler-interaction.test.ts (11 tests) 214ms
+ ✓ tests/import-feedback.test.ts (6 tests) 216ms
+ ✓ tests/external-operations.test.ts (13 tests) 189ms
+ ✓ tests/foundation.test.ts (13 tests) 190ms
+ ✓ tests/storage-trash-guard.test.ts (8 tests) 183ms
+ ✓ tests/indent-availability.test.ts (13 tests) 189ms
+ ✓ tests/library-create.test.ts (9 tests) 110ms
+ ✓ tests/dialog-composition-editing.test.ts (4 tests) 177ms
+ ✓ tests/paragraph-background-dialog.test.ts (4 tests) 167ms
+ ✓ tests/paragraph-borders-dialog.test.ts (4 tests) 174ms
+ ✓ tests/clipboard-editing.test.ts (6 tests) 161ms
+ ✓ tests/storage-sync-failure.test.ts (9 tests) 154ms
+ ✓ tests/downloaded-files.test.ts (5 tests) 162ms
+ ✓ tests/library-permanent-delete.test.ts (8 tests) 150ms
+ ✓ tests/local-export.test.ts (18 tests) 147ms
+ ✓ tests/paragraph-ruler.test.ts (12 tests) 148ms
+ ✓ tests/word.test.ts (5 tests) 148ms
+ ✓ tests/features.test.ts (8 tests) 144ms
+ ✓ tests/library-trash.test.ts (8 tests) 143ms
+ ✓ tests/back-to-documents.test.ts (10 tests) 137ms
+ ✓ tests/text-acceptance.test.ts (8 tests) 135ms
+ ✓ tests/dialog-composition.test.ts (12 tests) 141ms
+ ✓ tests/library-copy.test.ts (10 tests) 123ms
+ ✓ tests/composition-autosave-integration.test.ts (7 tests) 113ms
+ ✓ tests/storage-connection.test.ts (5 tests) 105ms
+ ✓ tests/document-navigation.test.ts (7 tests) 84ms
+ ✓ tests/preview-table-compaction.test.ts (12 tests) 99ms
+ ✓ tests/plain-text.test.ts (16 tests) 99ms
+ ✓ tests/library-rename.test.ts (8 tests) 103ms
+ ✓ tests/storage-async-failure.test.ts (7 tests) 95ms
+ ✓ tests/legacy-migration.test.ts (7 tests) 87ms
+ ✓ tests/paged-preview.test.ts (33 tests) 89ms
+ ✓ tests/preview-paragraph-borders.test.ts (11 tests) 75ms
+ ✓ tests/preview-table-row-repair.test.ts (18 tests) 71ms
+ ✓ tests/table-header-visibility.test.ts (4 tests) 62ms
+ ✓ tests/backup-table-integrity.test.ts (11 tests) 60ms
+ ✓ tests/text-import.test.ts (19 tests) 48ms
+ ✓ tests/workspace-document-link.test.ts (6 tests) 51ms
+ ✓ tests/word-default-styles.test.ts (1 test) 46ms
+ ✓ tests/preview-page-breaks.test.ts (6 tests) 32ms
+ ✓ tests/preview-margins.test.ts (15 tests) 27ms
+ ✓ tests/preview-final-flow.test.ts (3 tests) 18ms
+ ✓ tests/preview-images.test.ts (10 tests) 14ms
+ ✓ tests/preview-print.test.ts (9 tests) 12ms
+ ✓ tests/preview-navigation.test.ts (6 tests) 9ms
+ ✓ tests/table-auto-scroll.test.ts (14 tests) 6ms
+ ✓ tests/error-message.test.ts (10 tests) 1ms
+
+ Test Files  136 passed (136)
+      Tests  1938 passed (1938)
+   Start at  20:20:22
+   Duration  112.91s (transform 1.16s, setup 551ms, collect 12.19s, tests 65.11s, environment 20.67s, prepare 3.68s)
+

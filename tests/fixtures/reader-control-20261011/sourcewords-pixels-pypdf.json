@@ -1,0 +1,47 @@
+[
+  {
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-sourcewords-marked.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-marked-render.png",
+    "pixelIdentical": true,
+    "bounds": null,
+    "pypdfText": "Browser PDF — Arabic words\nجَمِيلَةٌ الْعَرَبِيَّةُ اللُّغَةُ \n123\nالْكِتَابَةُ التَّعْلِيمُ الْعَرَبِيَّةُ \nTable cellالعربية\nDifferent contextالتعليم"
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-sourcewords.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-render.png",
+    "pixelIdentical": true,
+    "bounds": null,
+    "pypdfText": "Browser PDF — Arabic words\nجميلة العربية اللغة \nعليكم السلام بالعالم مرحبا \nالكتابة التعليم العربية \nTable cellالعربية\nDifferent contextالتعليم"
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-sourcewords-marked.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-marked-render.png",
+    "pixelIdentical": false,
+    "bounds": [
+      685,
+      156,
+      699,
+      295
+    ],
+    "pypdfText": "Browser PDF — Hebrew words\nעוֹלָם שָׁלוֹם \n123\nעוֹלָם בְּעִבְרִית שָׁלוֹם \nTable cellעברית\nDifferent contextשלום"
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-sourcewords.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-render.png",
+    "pixelIdentical": false,
+    "bounds": [
+      555,
+      156,
+      699,
+      295
+    ],
+    "pypdfText": "Browser PDF — Hebrew words\nמסמך בדיקת עולם שלום \nטבלה כתיבה עברית \nעולם בעברית שלום \nTable cellעברית\nDifferent contextשלום"
+  },
+  {
+    "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-sourcewords.pdf",
+    "reference": "tests/fixtures/browser-unicode-20261011/words-unicode-ordered-render.png",
+    "pixelIdentical": true,
+    "bounds": null,
+    "pypdfText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent contextशिक्षा प्रार्थना"
+  }
+]

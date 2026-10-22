@@ -1,0 +1,40 @@
+[
+  {
+    "mode": "ready-stop",
+    "pid": 65639,
+    "url": "http://127.0.0.1:52090",
+    "pageStatus": 200,
+    "capabilityStatus": 200,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "ownedChildren": [
+      65640,
+      65641,
+      65642,
+      65643,
+      65645
+    ],
+    "remainingChildren": [],
+    "workerPort": 52095,
+    "workerPortState": "ECONNREFUSED",
+    "publicPortState": "ECONNREFUSED",
+    "passed": true
+  },
+  {
+    "mode": "startup-cancel",
+    "pid": 65700,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "ownedChildren": [
+      65701,
+      65702,
+      65712
+    ],
+    "remainingChildren": [],
+    "passed": true
+  }
+]

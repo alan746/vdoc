@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-10-10T18:49:57.902510+00:00",
+  "environment": "IAB actual UI, localhost:5173; auxiliary preflight, not final joint signoff",
+  "sourceCopyId": "3e6de4cf-a868-42e8-a658-2975e131f7af",
+  "wordCopyId": "97a39782-8888-4e59-a41f-fbb4c3c53728",
+  "versionLabel": "QA baseline 中文 العربية 2026-10-10",
+  "uiResults": {
+    "activeDocumentChangeRejectedSave": true,
+    "warningBackupDownloadedAndFullContentEqual": true,
+    "reopenedSavedLinkThenRetrySaveSucceeded": true,
+    "namedVersionCreated": true,
+    "operationInsertAppliedOnce": true,
+    "undoRestoredFullContent": true,
+    "redoRestoredFullModifiedContent": true,
+    "namedVersionRestoreFullContentEqual": true,
+    "beforeRestoreRecoveryVersionFullModifiedContentEqual": true,
+    "baselineRestoredAgainAndReloadedFullContentEqual": true,
+    "invalidImportMessage": "This is not a supported VDoc backup.",
+    "invalidImportFullContentAndDocumentIdUnchanged": true,
+    "oldSessionOperationRejected": "STALE: The editing session has changed. Read the document again.",
+    "oldSessionRejectionLeavesFullContentAndRevisionUnchanged": true,
+    "originalProjectSavedVersions": "No saved versions yet."
+  },
+  "downloadChecks": {
+    "restoredTitleAndFullContentEqual": true,
+    "wordTextRunsAndNodeTypesEqual": true,
+    "wordPageAttributesEqual": true,
+    "wordExplicitMarksPreserved": true,
+    "wordTableCellSpansAndWidthsEqual": true,
+    "docxStructure": {
+      "tbl": 1,
+      "tr": 4,
+      "tc": 12
+    },
+    "invalidImportBackupFullContentEqual": true
+  },
+  "wordBoundary": "Inherited Word styles become explicit: Arial/body 16px, bold heading styles, header defaults, RGB color spelling. Heading 19px becomes 19.3333px due to half-point rounding. Not byte/JSON identical, not a rendered Word/PDF visual signoff.",
+  "nativeImeProbe": {
+    "candidateObserved": false,
+    "typedValue": "zhong",
+    "titleRestored": true,
+    "actualDownloadedTitleAndFullContentEqualBaseline": true,
+    "boundary": "Isolated WKWebView control recovered; ordinary key entry is not a system candidate pass."
+  },
+  "quotaEnvironment": "Direct isolated Chrome tab request returned Browser is not available: chrome. No quota writes performed.",
+  "files": [
+    {
+      "path": "tests/fixtures/final-five-20261010/project-plan/before-reactivation.vdoc.json",
+      "bytes": 36150,
+      "sha256": "20450e20f599fed42196e20edacc8f121207dffa1b31d48c59e013eafeb89a8d"
+    },
+    {
+      "path": "tests/fixtures/final-five-20261010/project-plan/after-version-restore.vdoc.json",
+      "bytes": 36150,
+      "sha256": "48dfeb7533cc2658aa509b5aaa33ec54565793f87340158c4722de397baaf343"
+    },
+    {
+      "path": "tests/fixtures/final-five-20261010/project-plan/restored-export.docx",
+      "bytes": 11097,
+      "sha256": "4af51e4baef2671783bfadad8f3c5a8f5cd68ea96db6d1be0136a79dd272a259"
+    },
+    {
+      "path": "tests/fixtures/final-five-20261010/project-plan/word-roundtrip.vdoc.json",
+      "bytes": 46375,
+      "sha256": "60fff56020b376e847478b979168b99b2db8eb307fad12d0c2eb720cb9954df9"
+    },
+    {
+      "path": "tests/fixtures/final-five-20261010/project-plan/after-invalid-import.vdoc.json",
+      "bytes": 46375,
+      "sha256": "16eb877ef7a3acbf1fdccc12f547157efeb01efb8d45a43398b8ad1d033c15d1"
+    },
+    {
+      "path": "tests/fixtures/final-five-20261010/project-plan/invalid-import.vdoc.json",
+      "bytes": 193,
+      "sha256": "1390540a76d02b1b5f2ffeb6b85ee879c7361336f8adf1bfd5b90eaa65796122"
+    }
+  ]
+}

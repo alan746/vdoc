@@ -1,0 +1,19 @@
+{
+  "scale": 100,
+  "file": "output/pdf/safari-native-20261011/diagnostic-single-page-control-100.pdf",
+  "nativePageLabel": "All Pages",
+  "sha256": "85fed7bc3273249e64e8205894488bab092908b69c404ce646ec600957d9a3f4",
+  "bytes": 22267,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  },
+  "sourceCheck": "Standalone fixed HTML control; no editor snapshot applies"
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "label": "words",
+    "sameSize": true,
+    "pixelEqual": true
+  },
+  {
+    "label": "arabic",
+    "sameSize": true,
+    "pixelEqual": true
+  },
+  {
+    "label": "hebrew",
+    "sameSize": true,
+    "pixelEqual": true
+  },
+  {
+    "label": "arabic-marked",
+    "sameSize": true,
+    "pixelEqual": true
+  },
+  {
+    "label": "hebrew-marked",
+    "sameSize": true,
+    "pixelEqual": true
+  },
+  {
+    "label": "arabic-numbers",
+    "sameSize": true,
+    "pixelEqual": true
+  },
+  {
+    "label": "hebrew-numbers",
+    "sameSize": true,
+    "pixelEqual": true
+  }
+]

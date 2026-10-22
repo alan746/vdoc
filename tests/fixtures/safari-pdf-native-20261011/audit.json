@@ -1,0 +1,130 @@
+{
+  "at": "2026-10-11T04:22:35.462740+00:00",
+  "applicationSha256": "0a2386834f95c86adf6c8fd8fafbd0ab5b43ec6f281749da6eaaea9c85cb5ffd",
+  "productCodeChanged": false,
+  "sourceManifest": "tests/fixtures/safari-pinned-paint-20261010/source-manifest.json",
+  "environment": {
+    "windowId": 1713,
+    "url": "http://127.0.0.1:4188/#document=a6a82ab2-513e-4764-a2a5-b7ec48817ee9",
+    "version": "26.6.2"
+  },
+  "scope": "Local single-user VDoc; actual native Safari NSPrintPanel→PDF→Save. No WebDriver PDF endpoint, no AI.",
+  "source": {
+    "fixedFixture": "tests/fixtures/safari-preview/source.vdoc.json",
+    "before": "tests/fixtures/safari-pdf-native-20261011/source-before-scale-matrix.vdoc.json",
+    "after": "tests/fixtures/safari-pdf-native-20261011/source-after-scale-matrix.vdoc.json",
+    "beforeAfterFullContentEqual": true,
+    "fixedFixtureEqualIgnoringImportedBlockIds": true,
+    "renamedIsolatedTitle": "QA Safari PDF native 20261011",
+    "pageAttributes": {
+      "language": "und",
+      "pageSize": "a4",
+      "orientation": "portrait",
+      "pageMargin": 20,
+      "pageColor": "#FFFFFF",
+      "header": "VDoc system acceptance 中文",
+      "footer": "Local document acceptance",
+      "pageNumbers": true
+    }
+  },
+  "pdfCount": 20,
+  "physicalPageCount": 94,
+  "nativeSettingCorrespondence": "tests/fixtures/safari-pdf-native-20261011/native-settings-correspondence.json",
+  "analysis": "tests/fixtures/safari-pdf-native-20261011/pdf-analysis.json",
+  "renderEquivalence": "tests/fixtures/safari-pdf-native-20261011/render-equivalence.json",
+  "newlyVerified": [
+    "S021",
+    "S022",
+    "S023",
+    "S024",
+    "S025",
+    "S026",
+    "S027",
+    "S028",
+    "S029",
+    "S030",
+    "S031",
+    "S032",
+    "S033",
+    "S034",
+    "S035",
+    "S036",
+    "S037",
+    "S040",
+    "S042",
+    "S043",
+    "S044",
+    "S046",
+    "S047",
+    "S048",
+    "S049",
+    "S050",
+    "S061",
+    "S062",
+    "S064",
+    "S065",
+    "S066",
+    "S067",
+    "S068",
+    "S069"
+  ],
+  "failedIds": [
+    "S038",
+    "S039",
+    "S041",
+    "S045",
+    "S059"
+  ],
+  "statusCounts": {
+    "已核验": 187,
+    "组件通过": 58,
+    "用户已确认": 1,
+    "待执行": 63,
+    "阻塞": 5,
+    "未通过": 5,
+    "不适用": 1
+  },
+  "findings": [
+    "100%: three native PDFs, five pages each, all raster pages pixel-identical, all36 body rows once/in order; final page has real heading and paragraph.",
+    "101%: two native PDFs, twelve pages each, pixel-identical; six truly white pages and displaced/clipped footers. 102% has same12-page pattern.",
+    "99% and93% keep5 physical pages but do not preserve logical page layout. 93% produces a footer-only last page.",
+    "No-CSS single page100→1 /101→2; plain two blocks2→4; fixed sheets2→6; intrinsic-height sheets2→4. These bound the diagnosis, do not prove internal Safari root cause or waive requirements.",
+    "Post-PDF native edit/Undo, actual backup download, exact reload, first preview, searchROW36/editor125/previewpage5/native100 all verified.",
+    "New focused Swift accessibility works for native Safari print/save. Same method during trusted Pinyin composition found SCIM but no exposed windows/children/focus; candidate visibility remains unsigned."
+  ],
+  "visualReview": [
+    "100% pages1–5 individually at1100px.",
+    "101% all12 contact sheet plus full blank page2, body/end page9, footer-only page11.",
+    "99%,93%,102% all-page contacts show mixed/clipped boundaries; not approved.",
+    "Combined100% five-page contact reviewed; entire raster equal to baseline; repeated100/101 entire raster equal to originals.",
+    "No-CSS101, plain101, fixed101, intrinsic101 contacts reviewed. Every native PDF rendered; machine-white-only detection is not used to classify gray/background-only pages as content."
+  ],
+  "harnessNotes": [
+    "AXValue without focus did not commit Scaling. Corrected to focus+native keyboard+Tab and assert both field and resulting page count. Initial failed attempt not a101 result.",
+    "Foreground identity guards halted on focus change. Inspected the existing Save dialog before resuming; no blind PDF button retry.",
+    "Two extra root-auto-paper/root-contained diagnostics were prepared but did not run; no claims for them.",
+    "A helper generated an empty resume body; corrected before the pending Save was completed. Native source dialog remained associated with the prior clipped control.",
+    "ASCII query attempts in Pinyin did not match expected field; aborted before printing. Switched temporarily to existing ABC, entered exactROW36, then restored original Pinyin.",
+    "All diagnostic sourceUnchanged fields corrected to null: standalone HTML does not have an editor snapshot.",
+    "PDF parser emitted warnings for some unused xref offsets; Poppler rendered all pages, actual content checks archived. No regenerated/repaired PDF replaced the native outputs."
+  ],
+  "limits": [
+    "No valid non100% repair. S038/S039/S041/S045/S059 failed. S051/S052/S054/S055/S057 remain open.",
+    "Historical exact project-plan source A still missing; old PDFs and later277-character backup are not equivalent sources.",
+    "Native candidate-window pixels/visible content still unavailable, despite real IME edit/cancel and persistence proofs.",
+    "Q signed; I/P/S/F unsigned. Do not report AI ready or reinterpret row count as product completion percentage.",
+    "139 files/1958 tests/typecheck/build are prior candidate evidence, not rerun this batch. --check confirmed unchanged source only."
+  ],
+  "cleanup": {
+    "at": "2026-10-11T04:20:37.816435+00:00",
+    "ownedWindow1713Closed": true,
+    "proxy4188Stopped": true,
+    "pendingCommandRemoved": true,
+    "originalPinyinRestored": true,
+    "nativeScaleRestored": 100,
+    "editorZoomRestored": 100,
+    "documentUnchangedAfterFinalReload": true,
+    "productServer5173Preserved": true,
+    "personalSafariWindowsUntouched": true
+  }
+}

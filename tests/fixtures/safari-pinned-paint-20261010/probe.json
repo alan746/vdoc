@@ -1,0 +1,194 @@
+[
+  {
+    "name": "before",
+    "cells": [
+      {
+        "hits": [
+          {
+            "text": "GROUP 18 — rows 35–36 中文 日本語",
+            "pinned": false
+          },
+          {
+            "text": "GROUP 18 — rows 35–36 中文 日本語",
+            "pinned": false
+          },
+          {
+            "text": "GROUP 18 — rows 35–36 中文 日本語",
+            "pinned": false
+          }
+        ],
+        "text": "Group 中文",
+        "z": "auto",
+        "rect": {
+          "x": 447.5,
+          "height": 57.5,
+          "bottom": 309.544921875,
+          "y": 252.044921875,
+          "width": 403.5,
+          "left": 447.5,
+          "top": 252.044921875,
+          "right": 851
+        },
+        "background": "rgb(242, 245, 250)"
+      },
+      {
+        "hits": [
+          {
+            "text": "ROW 35 — English 中文 العربيةCheck complete text and cell borders.",
+            "pinned": false
+          },
+          {
+            "text": "ROW 35 — English 中文 العربيةCheck complete text and cell borders.",
+            "pinned": false
+          },
+          {
+            "text": "ROW 35 — English 中文 العربيةCheck complete text and cell borders.",
+            "pinned": false
+          }
+        ],
+        "text": "Details العربية",
+        "z": "auto",
+        "rect": {
+          "x": 851,
+          "height": 57.5,
+          "bottom": 309.544921875,
+          "y": 252.044921875,
+          "width": 403.5,
+          "left": 851,
+          "top": 252.044921875,
+          "right": 1254.5
+        },
+        "background": "rgb(242, 245, 250)"
+      }
+    ],
+    "sourceUnchanged": true
+  },
+  {
+    "name": "cell-z",
+    "cells": [
+      {
+        "hits": [
+          {
+            "text": "GROUP 18 — rows 35–36 中文 日本語",
+            "pinned": false
+          },
+          {
+            "text": "GROUP 18 — rows 35–36 中文 日本語",
+            "pinned": false
+          },
+          {
+            "text": "GROUP 18 — rows 35–36 中文 日本語",
+            "pinned": false
+          }
+        ],
+        "text": "Group 中文",
+        "z": "3",
+        "rect": {
+          "x": 447.5,
+          "height": 57.5,
+          "bottom": 309.544921875,
+          "y": 252.044921875,
+          "width": 403.5,
+          "left": 447.5,
+          "top": 252.044921875,
+          "right": 851
+        },
+        "background": "rgb(242, 245, 250)"
+      },
+      {
+        "hits": [
+          {
+            "text": "ROW 35 — English 中文 العربيةCheck complete text and cell borders.",
+            "pinned": false
+          },
+          {
+            "text": "ROW 35 — English 中文 العربيةCheck complete text and cell borders.",
+            "pinned": false
+          },
+          {
+            "text": "ROW 35 — English 中文 العربيةCheck complete text and cell borders.",
+            "pinned": false
+          }
+        ],
+        "text": "Details العربية",
+        "z": "3",
+        "rect": {
+          "x": 851,
+          "height": 57.5,
+          "bottom": 309.544921875,
+          "y": 252.044921875,
+          "width": 403.5,
+          "left": 851,
+          "top": 252.044921875,
+          "right": 1254.5
+        },
+        "background": "rgb(242, 245, 250)"
+      }
+    ],
+    "sourceUnchanged": true
+  },
+  {
+    "name": "cell-transform",
+    "cells": [
+      {
+        "hits": [
+          {
+            "text": "Group 中文",
+            "pinned": true
+          },
+          {
+            "text": "Group 中文",
+            "pinned": true
+          },
+          {
+            "text": "Group 中文",
+            "pinned": true
+          }
+        ],
+        "text": "Group 中文",
+        "z": "3",
+        "rect": {
+          "x": 447.5,
+          "height": 57.5,
+          "bottom": 309.544921875,
+          "y": 252.044921875,
+          "width": 403.5,
+          "left": 447.5,
+          "top": 252.044921875,
+          "right": 851
+        },
+        "background": "rgb(242, 245, 250)"
+      },
+      {
+        "hits": [
+          {
+            "text": "Details العربية",
+            "pinned": true
+          },
+          {
+            "text": "Details العربية",
+            "pinned": true
+          },
+          {
+            "text": "Details العربية",
+            "pinned": true
+          }
+        ],
+        "text": "Details العربية",
+        "z": "3",
+        "rect": {
+          "x": 851,
+          "height": 57.5,
+          "bottom": 309.544921875,
+          "y": 252.044921875,
+          "width": 403.5,
+          "left": 851,
+          "top": 252.044921875,
+          "right": 1254.5
+        },
+        "background": "rgb(242, 245, 250)"
+      }
+    ],
+    "sourceUnchanged": true
+  }
+]

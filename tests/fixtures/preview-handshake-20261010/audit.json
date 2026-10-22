@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-10",
+  "applicationSourceSha256": "c988a64dc6bc790a47b2ae5c64f202b4030a62d721154ace3f2fa2ce9fabd50f",
+  "applicationFiles": 166,
+  "targeted": {
+    "files": 2,
+    "tests": 64,
+    "passed": true,
+    "log": "/tmp/vdoc-handshake-targeted.log"
+  },
+  "full": {
+    "files": 133,
+    "tests": 1899,
+    "passed": true,
+    "log": "/tmp/vdoc-handshake-full.log"
+  },
+  "typecheck": {
+    "passed": true,
+    "log": "/tmp/vdoc-handshake-types.log"
+  },
+  "build": {
+    "passed": true,
+    "afterTypecheck": true,
+    "log": "/tmp/vdoc-handshake-build.log"
+  },
+  "browser": {
+    "inApp": "Original B reloaded; two successful 5-page A4 portrait previews. Page selector 5 contains final heading and ending paragraph.",
+    "safari": "Reloaded and attempted Print. AX says Preparing pages, screenshot says editor; observation inconsistent. Await actual visible state, no native success claimed."
+  },
+  "boundaries": [
+    "Does not prove that missed handshake was the sole Safari stall cause.",
+    "No new 101 percent PDF was produced.",
+    "No real quota rejection or complete OS IME matrix in this change."
+  ]
+}

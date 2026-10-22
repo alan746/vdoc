@@ -1,0 +1,5 @@
+{
+  "file": "browser-download.pdf",
+  "accepted": false,
+  "reason": "Playwright response.body returned the capability JSON despite the POST PDF headers. Initial browser.json verifies source/popup only, not PDF validity. Replaced for acceptance by a real download from the application-created Blob URL: browser-download-verified.pdf, asserted PDF signature and parsed five pages."
+}

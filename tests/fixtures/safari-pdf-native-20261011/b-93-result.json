@@ -1,0 +1,18 @@
+{
+  "scale": 93,
+  "file": "output/pdf/safari-native-20261011/b-93.pdf",
+  "nativePageLabel": "All 5 Pages",
+  "sha256": "e118c7946d8f3976eb50af5eb16fb1525b475a80c4ce73b8d2d52f56c0140daf",
+  "bytes": 97600,
+  "sourceUnchanged": true,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

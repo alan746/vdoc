@@ -1,0 +1,97 @@
+{
+  "at": "20261011T015059Z",
+  "state": "failed",
+  "applicationSha256": "ebafec66b2ccc105e5993878f6a76ed13137f8c99b0c8e459fa5b2a4c9b9f776",
+  "fixtureSha256": "a1c397e5a22a5446c06aae46f84c1d48db1e6f2af7148f6651a8e3e5e8a4245b",
+  "checks": [
+    {
+      "name": "import-content",
+      "passed": true
+    },
+    {
+      "name": "search-100",
+      "passed": true,
+      "geometry": {
+        "match": {
+          "x": 528,
+          "height": 21,
+          "bottom": 530,
+          "y": 509,
+          "width": 187.7406005859375,
+          "left": 528,
+          "top": 509,
+          "right": 715.7406005859375
+        },
+        "status": "1 of 1",
+        "canvas": {
+          "x": 232,
+          "height": 636,
+          "bottom": 837,
+          "y": 201,
+          "width": 1238,
+          "left": 232,
+          "top": 201,
+          "right": 1470
+        },
+        "text": "FINAL PAGE CHECK"
+      }
+    },
+    {
+      "name": "search-125",
+      "passed": true,
+      "geometry": {
+        "match": {
+          "x": 447,
+          "height": 27,
+          "bottom": 533.25,
+          "y": 506.25,
+          "width": 234.67578125,
+          "left": 447,
+          "top": 506.25,
+          "right": 681.67578125
+        },
+        "status": "1 of 1",
+        "canvas": {
+          "x": 232,
+          "height": 636,
+          "bottom": 837,
+          "y": 201,
+          "width": 1238,
+          "left": 232,
+          "top": 201,
+          "right": 1470
+        },
+        "text": "FINAL PAGE CHECK"
+      }
+    }
+  ],
+  "scope": "Fresh isolated Safari browser; preview and saved JSON only",
+  "exclusions": [
+    "System IME candidate UI",
+    "Native Safari print dialog and PDF scales",
+    "Historical project-plan source pairing"
+  ],
+  "capabilities": {
+    "safari:platformVersion": "26.6.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "26.6.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "25G83",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "documentURL": "http://localhost:5173/#document=83b973cb-4d71-442d-855b-d29a5e072f5e",
+  "error": "'NoneType' object is not subscriptable",
+  "ownSessionClosed": true
+}

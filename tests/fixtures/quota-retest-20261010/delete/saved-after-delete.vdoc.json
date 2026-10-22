@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "id": "520425f4-b203-4382-b0e9-c005e51e7f35",
+  "title": "Untitled document",
+  "content": {
+    "type": "doc",
+    "attrs": {
+      "language": "und",
+      "pageSize": "a4",
+      "orientation": "portrait",
+      "pageMargin": 20,
+      "pageColor": "#FFFFFF",
+      "header": "",
+      "footer": "",
+      "pageNumbers": false
+    },
+    "content": [
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_1231b4ef-99d3-42df-a620-a4171b38b335"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "After freeing Trash: 中文 العربية"
+          }
+        ]
+      }
+    ]
+  },
+  "savedAt": "2026-10-10T23:52:45.155Z"
+}

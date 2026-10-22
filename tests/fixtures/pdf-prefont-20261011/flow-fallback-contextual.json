@@ -1,0 +1,4343 @@
+{
+  "input": "output/pdf/pdf-prefont-20261011/flow-fallback.pdf",
+  "output": "output/pdf/pdf-prefont-20261011/flow-fallback-contextual.pdf",
+  "pages": 4,
+  "clusters": [
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 1,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 1,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 1,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 1,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 2,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 2,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 2,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 2,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 3,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 3,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 3,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 3,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 4,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 4,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 4,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 4,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 4,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 4,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    },
+    {
+      "page": 4,
+      "actual": "हि",
+      "previous": "\u0000ह",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "न्दी",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "हिं",
+      "previous": "\u0000ह\u0000",
+      "glyphCount": 3
+    },
+    {
+      "page": 4,
+      "actual": "दी",
+      "previous": "द\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "में",
+      "previous": "म\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ता",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "वे",
+      "previous": "व\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "लि",
+      "previous": "\u0000ल",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "नि",
+      "previous": "\u0000न",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "स्ते",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "शि",
+      "previous": "\u0000श",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "त्रि",
+      "previous": "\u0000\u0000",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "प्रा",
+      "previous": "\u0000ा",
+      "glyphCount": 2
+    },
+    {
+      "page": 4,
+      "actual": "र्थना",
+      "previous": "थ\u0000ना",
+      "glyphCount": 4
+    },
+    {
+      "page": 4,
+      "actual": "ي",
+      "previous": "ﯾ",
+      "glyphCount": 1
+    }
+  ],
+  "inputSha256": "84ef150f866520ded838a6cf4761e38d0c65cc555068c7a7e05c4281cddd05a7",
+  "outputSha256": "7a5441af4f1533aca09c6ad899332eafd9fc5b3f7600460617d343bd05cfb7c9",
+  "productionReady": false,
+  "scope": "Uses existing ActualText only. Context-specific font aliases change Unicode maps, preserving glyph data, advances, layout, and ActualText. Unsupported structures rejected."
+}

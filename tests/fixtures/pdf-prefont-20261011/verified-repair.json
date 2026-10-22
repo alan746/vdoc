@@ -1,0 +1,35 @@
+{
+  "input": "output/pdf/pdf-prefont-20261011/b-early-verified.pdf",
+  "output": "output/pdf/pdf-prefont-20261011/b-early-verified-logical.pdf",
+  "inputSha256": "955d3d01cd052c97c256488f8767d9d13c2e89aa517b6c464c51cc2973c04d7d",
+  "outputSha256": "56dbe9af61deefc59ba9c870111f5b322bc50c9bba513495e89b08becb94ee44",
+  "edits": [
+    {
+      "fontObject": 57,
+      "glyphHex": "050C",
+      "unicode": "ह",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 57,
+      "glyphHex": "00AC",
+      "unicode": "ि",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 57,
+      "glyphHex": "03BD",
+      "unicode": "न",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 57,
+      "glyphHex": "04C5",
+      "unicode": "्दी",
+      "coveredOccurrences": 18
+    }
+  ],
+  "pages": 5,
+  "logicalOrder": true,
+  "scope": "ToUnicode bfchar values derived from existing ActualText. Every changed glyph occurrence must be covered and agree. Rendering operators and font glyph data unchanged. QA only."
+}

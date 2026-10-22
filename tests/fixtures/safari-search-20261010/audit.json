@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "source": "../safari-preview/source.vdoc.json",
+  "download": "after-search.vdoc.json",
+  "sourceSha256": "a1c397e5a22a5446c06aae46f84c1d48db1e6f2af7148f6651a8e3e5e8a4245b",
+  "downloadSha256": "4e84269a5a83192f5eb56bc654c718f0935cc62df066177e34589a2b2538d3f5",
+  "titleAndFullContentEqual": true,
+  "browser": "Safari, authorized independent Private test window",
+  "documentID": "086c8e8e-1529-437a-82e1-7395146ff767",
+  "case": "100% zoom, caret before first heading, Find ROW 36, Next, close Find",
+  "visual": "Window screenshot showed ROW 36 highlighted and fully visible in the viewport; no screenshot file retained.",
+  "relatedEarlierEvidence": "100% and 125% visual checks of A and original B IMe target documented in VALIDATION.md",
+  "imeBoundary": "This backup matches the original source and contains no newly committed 钟; user-confirmed IME result is recorded separately, not a persistence pass."
+}

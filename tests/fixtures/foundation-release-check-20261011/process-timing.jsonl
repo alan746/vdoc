@@ -1,0 +1,7 @@
+{"pid":53848,"ppid":891,"threadId":0,"at":1791765987968.7217,"kind":"process-start"}
+{"pid":53848,"ppid":891,"threadId":0,"at":1791765988144.019,"kind":"process-exit","code":1}
+{"pid":53859,"ppid":891,"threadId":0,"at":1791766009812.6182,"kind":"process-start"}
+{"pid":53859,"ppid":891,"threadId":0,"at":1791766062483.9976,"kind":"process-timer-gap","elapsedMs":6050.251584008336,"cpuUs":{"user":207,"system":22},"memory":{"rss":209502208,"heapTotal":185663488,"heapUsed":80432048,"external":11212216,"arrayBuffers":2412066}}
+{"pid":53859,"ppid":891,"threadId":0,"at":1791766116486.6873,"kind":"process-timer-gap","elapsedMs":6544.046625003219,"cpuUs":{"user":614,"system":176},"memory":{"rss":264634368,"heapTotal":192118784,"heapUsed":88992160,"external":11035317,"arrayBuffers":2103604}}
+{"pid":53859,"ppid":891,"threadId":0,"at":1791766168817.7083,"kind":"process-timer-gap","elapsedMs":5507.999957993627,"cpuUs":{"user":794,"system":161},"memory":{"rss":293404672,"heapTotal":200261632,"heapUsed":96972848,"external":11282786,"arrayBuffers":2518098}}
+{"pid":53859,"ppid":891,"threadId":0,"at":1791766179703.3816,"kind":"process-exit","code":1}

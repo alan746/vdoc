@@ -1,0 +1,20 @@
+[
+  {
+    "label": "hebrew",
+    "file": "output/pdf/pdf-story-20261012/hebrew.pdf",
+    "sourceText": "שלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+    "pages": 1
+  },
+  {
+    "label": "arabic",
+    "file": "output/pdf/pdf-story-20261012/arabic.pdf",
+    "sourceText": "العربية لغة جميلة\nمرحبا بالعالم كتابة مستند",
+    "pages": 1
+  },
+  {
+    "label": "hindi",
+    "file": "output/pdf/pdf-story-20261012/hindi.pdf",
+    "sourceText": "हिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।",
+    "pages": 1
+  }
+]

@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/workspace-composition.test.ts (18 tests) 653ms
+ ✓ tests/native-selection.test.ts (7 tests) 121ms
+ ✓ tests/menu-focus.test.ts (6 tests) 72ms
+
+ Test Files  3 passed (3)
+      Tests  31 passed (31)
+   Start at  20:57:15
+   Duration  2.41s (transform 276ms, setup 19ms, collect 673ms, tests 845ms, environment 540ms, prepare 87ms)
+

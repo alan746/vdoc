@@ -1,0 +1,10 @@
+{
+  "mode": "short",
+  "scale": 100,
+  "exit": -9,
+  "stoppedReason": "2 MB output cap exceeded",
+  "fileExists": true,
+  "bytes": 2314240,
+  "sha256": "e428a84e9f5d1712a4beed358d072fa2c14a88433592708a5888fb88a47d82a9",
+  "incompleteTemporaryOutputRemoved": true
+}

@@ -1,0 +1,71 @@
+{
+  "results": [
+    {
+      "field": "Document title",
+      "case": "cancel",
+      "bodyUnchanged": true,
+      "before": "QA Safari native IME 20261010",
+      "after": "QA Safari native IME 20261010"
+    },
+    {
+      "field": "Document title",
+      "case": "space",
+      "bodyUnchanged": true,
+      "before": "QA Safari native IME 20261010",
+      "after": "QA Safari native IME 20261010中"
+    },
+    {
+      "field": "Document title",
+      "case": "enter",
+      "bodyUnchanged": true,
+      "before": "QA Safari native IME 20261010中",
+      "after": "QA Safari native IME 20261010中ceshi"
+    },
+    {
+      "field": "Document title",
+      "case": "backspace",
+      "bodyUnchanged": true,
+      "before": "QA Safari native IME 20261010中ceshi",
+      "after": "QA Safari native IME 20261010中ceshi中"
+    },
+    {
+      "field": "Document title",
+      "case": "reload",
+      "passed": true
+    },
+    {
+      "field": "Find text",
+      "case": "cancel",
+      "bodyUnchanged": true,
+      "before": "",
+      "after": ""
+    },
+    {
+      "field": "Find text",
+      "case": "space",
+      "bodyUnchanged": true,
+      "before": "",
+      "after": "中"
+    },
+    {
+      "field": "Find text",
+      "case": "enter",
+      "bodyUnchanged": true,
+      "before": "中",
+      "after": "中ceshi"
+    },
+    {
+      "field": "Find text",
+      "case": "backspace",
+      "bodyUnchanged": true,
+      "before": "中ceshi",
+      "after": "中ceshi中"
+    },
+    {
+      "field": "Find text",
+      "case": "reload",
+      "passed": true
+    }
+  ],
+  "allPassed": true
+}

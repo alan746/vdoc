@@ -1,0 +1,17 @@
+
+> vdoc@0.1.0 test
+> vitest run tests/library-permanent-delete.test.ts tests/library-actions.test.ts tests/library-trash.test.ts tests/document-store.test.ts
+
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/library-actions.test.ts (36 tests) 798ms
+ ✓ tests/document-store.test.ts (20 tests) 266ms
+ ✓ tests/library-trash.test.ts (8 tests) 141ms
+ ✓ tests/library-permanent-delete.test.ts (8 tests) 153ms
+
+ Test Files  4 passed (4)
+      Tests  72 passed (72)
+   Start at  19:51:57
+   Duration  3.12s (transform 203ms, setup 23ms, collect 562ms, tests 1.36s, environment 730ms, prepare 120ms)
+

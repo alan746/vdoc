@@ -1,0 +1,81 @@
+{
+  "checks": [
+    {
+      "zoom": 75,
+      "position": "start",
+      "cells": [
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Group 中文",
+          "rect": {
+            "x": 609.5,
+            "height": 34.5,
+            "bottom": 294.75,
+            "y": 260.25,
+            "width": 241.5,
+            "left": 609.5,
+            "top": 260.25,
+            "right": 851
+          }
+        },
+        {
+          "hits": [
+            true,
+            true,
+            true
+          ],
+          "text": "Details العربية",
+          "rect": {
+            "x": 851,
+            "height": 34.5,
+            "bottom": 294.75,
+            "y": 260.25,
+            "width": 241.5,
+            "left": 851,
+            "top": 260.25,
+            "right": 1092.5
+          }
+        }
+      ],
+      "handle": {
+        "x": 549,
+        "height": 30,
+        "bottom": 296.25,
+        "y": 266.25,
+        "width": 58,
+        "left": 549,
+        "top": 266.25,
+        "right": 607
+      },
+      "nativeClickSelection": "Group 中文",
+      "fullJSONUnchanged": true
+    }
+  ],
+  "state": "failed",
+  "capabilities": {
+    "safari:platformVersion": "26.6.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "26.6.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "25G83",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "error": "Timed out: const e=document.querySelector('[aria-label=\"Row 1 actions\"]');return e?.getBoundingClientRect().toJSON() || null",
+  "ownSessionClosed": true
+}

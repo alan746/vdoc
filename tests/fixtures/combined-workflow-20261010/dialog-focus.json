@@ -1,0 +1,263 @@
+{
+  "focus": {
+    "active": "<div contenteditable=\"true\" role=\"textbox\" spellcheck=\"false\" aria-label=\"Document body\" aria-multiline=\"true\" translate=\"no\" class=\"tiptap ProseMirror document-editor ProseMirror-focused\" tabindex=\"0\"><ul data-block-id=\"b_ddf5b744-87d6-44ec-9dc9-04e75cf9ffa9\" style=\"list-style-type: disc;\"><li><p data-keep-lines-together=\"false\" data-prevent-single-lines=\"true\" data-indent-level=\"0\" data-indent-start=\"auto\" data-indent-end=\"0\" data-first-line-indent=\"0\" data-tab-interval=\"48\" dir=\"auto\" data-bl",
+    "selection": {
+      "from": 22,
+      "to": 22
+    },
+    "document": {
+      "type": "doc",
+      "attrs": {
+        "language": "und",
+        "pageSize": "a4",
+        "orientation": "portrait",
+        "pageMargin": 20,
+        "pageColor": "#FFFFFF",
+        "header": "",
+        "footer": "",
+        "pageNumbers": false
+      },
+      "content": [
+        {
+          "type": "bulletList",
+          "attrs": {
+            "blockId": "b_ddf5b744-87d6-44ec-9dc9-04e75cf9ffa9",
+            "bulletText": null,
+            "bulletStyle": "disc"
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "keepWithNext": null,
+                    "keepLinesTogether": false,
+                    "preventSingleLines": true,
+                    "paragraphBorderJoin": false,
+                    "paragraphBorders": null,
+                    "paragraphBackground": null,
+                    "indent": 0,
+                    "indentStart": null,
+                    "indentEnd": 0,
+                    "firstLineIndent": 0,
+                    "tabInterval": 48,
+                    "direction": "auto",
+                    "spaceBefore": null,
+                    "spaceAfter": null,
+                    "lineHeight": null,
+                    "blockId": "b_f91d3746-3b38-45b2-9250-8ffc401a69b4"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "First"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null,
+                    "keepWithNext": null,
+                    "keepLinesTogether": false,
+                    "preventSingleLines": true,
+                    "paragraphBorderJoin": false,
+                    "paragraphBorders": null,
+                    "paragraphBackground": null,
+                    "indent": 0,
+                    "indentStart": null,
+                    "indentEnd": 0,
+                    "firstLineIndent": 0,
+                    "tabInterval": 48,
+                    "direction": "auto",
+                    "spaceBefore": null,
+                    "spaceAfter": null,
+                    "lineHeight": null,
+                    "blockId": "b_ac82aa34-3dc1-45c2-92be-6fe2d7231d33"
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Second"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "keepWithNext": null,
+            "keepLinesTogether": false,
+            "preventSingleLines": true,
+            "paragraphBorderJoin": false,
+            "paragraphBorders": null,
+            "paragraphBackground": null,
+            "indent": 0,
+            "indentStart": 24,
+            "indentEnd": 0,
+            "firstLineIndent": 0,
+            "tabInterval": 48,
+            "direction": "auto",
+            "spaceBefore": null,
+            "spaceAfter": null,
+            "lineHeight": null,
+            "blockId": "b_c023d67c-4c3f-4b89-9c43-e85d4624cce2"
+          }
+        }
+      ]
+    }
+  },
+  "after": {
+    "type": "doc",
+    "attrs": {
+      "language": "und",
+      "pageSize": "a4",
+      "orientation": "portrait",
+      "pageMargin": 20,
+      "pageColor": "#FFFFFF",
+      "header": "",
+      "footer": "",
+      "pageNumbers": false
+    },
+    "content": [
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "b_ddf5b744-87d6-44ec-9dc9-04e75cf9ffa9",
+          "bulletText": null,
+          "bulletStyle": "disc"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "keepWithNext": null,
+                  "keepLinesTogether": false,
+                  "preventSingleLines": true,
+                  "paragraphBorderJoin": false,
+                  "paragraphBorders": null,
+                  "paragraphBackground": null,
+                  "indent": 0,
+                  "indentStart": null,
+                  "indentEnd": 0,
+                  "firstLineIndent": 0,
+                  "tabInterval": 48,
+                  "direction": "auto",
+                  "spaceBefore": null,
+                  "spaceAfter": null,
+                  "lineHeight": null,
+                  "blockId": "b_f91d3746-3b38-45b2-9250-8ffc401a69b4"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "First"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "keepWithNext": null,
+                  "keepLinesTogether": false,
+                  "preventSingleLines": true,
+                  "paragraphBorderJoin": false,
+                  "paragraphBorders": null,
+                  "paragraphBackground": null,
+                  "indent": 0,
+                  "indentStart": null,
+                  "indentEnd": 0,
+                  "firstLineIndent": 0,
+                  "tabInterval": 48,
+                  "direction": "auto",
+                  "spaceBefore": null,
+                  "spaceAfter": null,
+                  "lineHeight": null,
+                  "blockId": "b_ac82aa34-3dc1-45c2-92be-6fe2d7231d33"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Second"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": 24,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_c023d67c-4c3f-4b89-9c43-e85d4624cce2"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Z"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": 24,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_a86f775d-7ef9-4606-9d02-7f7e72b31e22"
+        }
+      }
+    ]
+  }
+}

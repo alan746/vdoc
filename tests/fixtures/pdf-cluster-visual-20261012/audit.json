@@ -1,0 +1,315 @@
+{
+  "at": "2026-10-12T19:58:07.551Z",
+  "productChanged": false,
+  "aiStarted": false,
+  "currentCandidate": "fd601855bbd545ad14fe3a59e1a2138cd7ae61eb1589465d0bcc09f2ddd70011",
+  "change": "RTL whole shaped clusters map to visual Unicode sequence; shaping and glyph paths unchanged against immediate whole-cluster control. Not a production exporter.",
+  "readers": {
+    "chrome": "155.0.8059.39",
+    "pdfjs": "6.5.128 / e1412d3a5 official unmodified demo"
+  },
+  "negativeControl": [
+    {
+      "label": "arabic-marked",
+      "chromeExact": false,
+      "pdfjsExact": false
+    },
+    {
+      "label": "hebrew-marked",
+      "chromeExact": false,
+      "pdfjsExact": false
+    },
+    {
+      "label": "hebrew-numbers",
+      "chromeExact": true,
+      "pdfjsExact": false
+    }
+  ],
+  "results": [
+    {
+      "label": "arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-whole-cluster-visual-155-marked.pdf",
+      "sourceText": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "sha256": "65f1c452debbfdd48113149e60d1cd7b88cf3f679f384d53b09547d1a2e2732a",
+      "chromeExact": false,
+      "chromeCanonical": true,
+      "pdfjsExact": true,
+      "wordProbes": 8,
+      "wordExact": 6,
+      "wordCanonical": 8
+    },
+    {
+      "label": "hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-whole-cluster-visual-155-marked.pdf",
+      "sourceText": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "sha256": "02d6846ff97b753aff34d2e48030d6c0d59a1cf0fc66546358c16915d069b51a",
+      "chromeExact": false,
+      "chromeCanonical": true,
+      "pdfjsExact": true,
+      "wordProbes": 8,
+      "wordExact": 6,
+      "wordCanonical": 8
+    }
+  ],
+  "canonicalDiagnostic": {
+    "standard": "https://www.unicode.org/reports/tr15/tr15-58.html",
+    "controls": 11,
+    "status": "All controls pass. Canonical equivalence is diagnostic; original raw comparisons and G3 criteria unchanged. No NFKC or source mutation."
+  },
+  "search": {
+    "method": "Chrome stock PDF text-fragment API, positive and absent controls; not Cmd-F UI or system clipboard.",
+    "observed": "Both target words visibly highlighted for exact source query; absent queries have no purple highlight. Arabic negative frame differs in position from baseline, so full pixel restoration is false and is not counted as a pass.",
+    "contact": "tests/fixtures/pdf-cluster-visual-20261012/search-contact.png",
+    "pixels": [
+      {
+        "label": "arabic-marked",
+        "roi": [
+          965,
+          177,
+          1135,
+          287
+        ],
+        "positiveChanged": true,
+        "negativeRestoresBaseline": false
+      },
+      {
+        "label": "hebrew-marked",
+        "roi": [
+          956,
+          185,
+          1126,
+          295
+        ],
+        "positiveChanged": true,
+        "negativeRestoresBaseline": true
+      }
+    ]
+  },
+  "visual": {
+    "allFivePagesViewed": true,
+    "priorMarkedBoxesPixelIdentical": false,
+    "mappingOnlyPixelIdentical": [
+      {
+        "label": "arabic",
+        "unicodeOnlyPixelEqual": true
+      },
+      {
+        "label": "hebrew",
+        "unicodeOnlyPixelEqual": true
+      }
+    ]
+  },
+  "limits": [
+    "G3 remains open; no product adapter, mixed fonts/styles/multipage integration or native reprint acceptance.",
+    "Hebrew plus many digits still has wrong word order in official PDF.js.",
+    "Whole-cluster word selection does not prove arbitrary partial selection.",
+    "Do not combine distinct encodings into a supposed passing product.",
+    "G4 native candidate observations and G5 historical original remain unresolved."
+  ],
+  "artifacts": [
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/arabic-marked-baseline.png",
+      "sha256": "6b4734304a8d76b7b1fe699b006cd6437786f4dfab9b6485a588386db2f133bf"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/arabic-unicode-ordered-whole-cluster-page-155-marked-render.png",
+      "sha256": "ae0e6ae2d5ff64df190ae4334a3ef23408113e1f46fc1730898313b921b64679"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/arabic-unicode-ordered-whole-cluster-visual-155-marked-render.png",
+      "sha256": "ae0e6ae2d5ff64df190ae4334a3ef23408113e1f46fc1730898313b921b64679"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/archive.cjs",
+      "sha256": "a4d433ad80b1f04f3164451af06acc8632209d951c3c12cf647b14eaaea8855b"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/canonical-check.cjs",
+      "sha256": "ab6a32260839b8cfe0eb73ac68dfd5a7118d2414c8d2f03207136c9841c7b1df"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/canonical-check.json",
+      "sha256": "0247795b122c1da2a9c36a64fccbec874d22469b8203b25c17855bcc9bc83639"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/chrome.cjs",
+      "sha256": "c6f87b0dcef2041996b0140a4f5a050ac4a04bcf8f95ba55dd4ffacedee41a7f"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/contact.png",
+      "sha256": "327b94a2af3be4cdb23ec0260476f0137b5c14baec4a9158c40dc0db9f8bf745"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/copy-arabic-marked.png",
+      "sha256": "ae1ecd496d931bf9b30c6ee1869129e6e5bd843fdd113eb0f88d8c38d02191b6"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/copy-hebrew-marked.png",
+      "sha256": "fc7a432bb55fd8590e36df39dc91b455fe260d42a621f64b32d3a79ba235bfb4"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/copy.json",
+      "sha256": "4e80bce067a265fffeadc589206a139392aa30936b37bb7ddb5ab9916e87ccd0"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/demo-arabic-marked.png",
+      "sha256": "c98e56e23d6d318383b5cefb461b920163f4ee1fd47e8eff6756dfbf233d0074"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/demo-hebrew-marked.png",
+      "sha256": "80ca29dce97977ca22c0f32ef8419cba921332e6f2909d85386e6e236049d4a4"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/demo-results.json",
+      "sha256": "bcdaaa2a84469494f329cebc74909ded670c815897c142f369b2906e03e0cdc7"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/generate.cjs",
+      "sha256": "e3f90b07fe114dd8659594fd9feb41fd36f63bf282809393c132b876e25c2255"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/hebrew-marked-baseline.png",
+      "sha256": "149e3ea2c2e7afae38915964308c87feb58377f238fbf92c0e6d767bab5f25b8"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/hebrew-numbers-baseline.png",
+      "sha256": "3026c15c2614f718d0c90eff3eac108c54dafce0ea0e4448f58d4ba025044786"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/hebrew-unicode-ordered-whole-cluster-page-155-marked-render.png",
+      "sha256": "91e5ad1222a2fb5cbb7321d278783393ab6a0c3730d5c02c04f736440535a8ee"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/hebrew-unicode-ordered-whole-cluster-page-155-numbers-render.png",
+      "sha256": "a7bfa7c31ba4e328396323b717d922f03c7c8df93d4ca8e76cd3dc8d9938dffd"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/hebrew-unicode-ordered-whole-cluster-visual-155-marked-render.png",
+      "sha256": "91e5ad1222a2fb5cbb7321d278783393ab6a0c3730d5c02c04f736440535a8ee"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/inputs.json",
+      "sha256": "3aa1efe3c8ce0d5c47a4259486f807aae50e192116789368d8dd62320d07515a"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/pdfjs.cjs",
+      "sha256": "366c09f9791f336315b2a7c98aebbdea2b7c253d10b858f01f48509f7c226bba"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/pixels.json",
+      "sha256": "424c2a42ce16292bfebbba79117963a3dfa3808576b004a354c3b24987578a6c"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/prototype.js",
+      "sha256": "dc229a87bcf21b9783d8f4e2d20ea16f17fd3f6ba46d980e40f5482ad4ff899c"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-contact.png",
+      "sha256": "81692f93532cce40542b953f6ee12966b824abc319c205caedefdc4783cdf37a"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-pixels.json",
+      "sha256": "67434598853f3e69c1295429fceeb6cf4c53ec84d48ac118d6a66f9880b41f9f"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-whole-cluster-visual-155-arabic-marked-absent.png",
+      "sha256": "f7239b142623f71f4ddc4591a0e4d39a831f198855e36d9664aad6b0d395348a"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-whole-cluster-visual-155-arabic-marked-before.png",
+      "sha256": "aff76249c10a06efd646ffcdc062e402f5f8a14eb3d4d0be58fd2c47ea54848a"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-whole-cluster-visual-155-arabic-marked-match.png",
+      "sha256": "dfcd0538355d1ac7c80e53164074e51bf9dc2595900bbcde05628ca7fb5ede4f"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-whole-cluster-visual-155-hebrew-marked-absent.png",
+      "sha256": "749840644fab15db6893e2b8ec1807d256959a1ea77a739fad3a4c5d86d882f5"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-whole-cluster-visual-155-hebrew-marked-before.png",
+      "sha256": "8f508e52cbfd56276441c32eb72159264b13a20d7a9016015e0c4615de91b2c5"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search-whole-cluster-visual-155-hebrew-marked-match.png",
+      "sha256": "9bf9f157bb7e8a12a1a94cd66a02ed7805e3fea23a61239a43b5be7042e6f8d4"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search.cjs",
+      "sha256": "06adf40bb0f775ccc99ec029cad0822931e247fcf78e0d659744d57ddc318326"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/search.json",
+      "sha256": "c71ef8c6412a157eec48e2cf876f286bfa985410bb06e0c154d971a694fc1d7a"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/selection-whole-cluster-visual-155-arabic-marked.png",
+      "sha256": "bca5e1f9e05985ade9ff13798439fc375e2b49dc2bcb059f051dbdddd1ae5d06"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/selection-whole-cluster-visual-155-hebrew-marked.png",
+      "sha256": "d9bd56e3ca63dfb4b69f5c994645056cd612a62420fabab718a21dedd8a08321"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/unicode-only-pixels.json",
+      "sha256": "8bceb095f4293eee0360d48145c6e101174e82ed36607ceb5ac831e29bf0b7e4"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/words.cjs",
+      "sha256": "04154d3a0830aedf93ff288767b3b7f0f68418ec981b86b3ea839df1f44db3d4"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-visual-20261012/words.json",
+      "sha256": "902fb369f47f575bf0641c5858c707264a5a59d993d7183aa84ef8909f1852bd"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-current-20261012/prototype.js",
+      "sha256": "31a7f7338abda008937628795334390b03f85efefb0de21544f11805946b765a"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-current-20261012/generate.cjs",
+      "sha256": "6d01a3dad4389129e1d07ab88a53848a6cf6d40bfa17f565db6a00af8429a8a0"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-current-20261012/chrome.cjs",
+      "sha256": "0740c7f25a0f69562cfecd38186dff34f7c1aa43b430129a728dc327c957314a"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-current-20261012/pdfjs.cjs",
+      "sha256": "bc2f286f0fc9fdab5995ced8fb0f95933711bd19e97dac44c4cb17018fd8b431"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-current-20261012/inputs.json",
+      "sha256": "25cf924f0f2b072701eded7c9b47df51fe97e9858df440f23e2caa1af4bcd09c"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-current-20261012/copy.json",
+      "sha256": "efc607cbc1fdbff943c1dcfcc7dd66580e82ca0287b97fe2fd63a7547bb31b64"
+    },
+    {
+      "path": "tests/fixtures/pdf-cluster-current-20261012/demo-results.json",
+      "sha256": "dafb057b0347d935fba09bab414b5ca7f7c2cb97875bb141691b384ab7d44f3e"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-whole-cluster-page-155-marked.pdf",
+      "sha256": "eb7cc50e962f145d665709b7555ca9c158cb58cd3983e45a1e151f3e44593c1c"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-whole-cluster-page-155-marked.pdf",
+      "sha256": "c98ae59f5b14f6949de8ce72eb081190b9ac3888bca5f98171a6101e20e95473"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-whole-cluster-page-155-numbers.pdf",
+      "sha256": "1c39afe49426a82711f0c53aad1e43b3dc7e90962456524cf223dd7c644d3111"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-whole-cluster-visual-155-marked.pdf",
+      "sha256": "65f1c452debbfdd48113149e60d1cd7b88cf3f679f384d53b09547d1a2e2732a"
+    },
+    {
+      "path": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-whole-cluster-visual-155-marked.pdf",
+      "sha256": "02d6846ff97b753aff34d2e48030d6c0d59a1cf0fc66546358c16915d069b51a"
+    }
+  ]
+}

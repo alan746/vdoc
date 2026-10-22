@@ -1,0 +1,10 @@
+F012-F013-created-multilingual {"scope":"Browser keyboard insertion; not system IME","document":{"type":"doc","attrs":{"language":"und","pageSize":"a4","orientation":"portrait","pageMargin":20,"pageColor":"#FFFFFF","header":"","footer":"","pageNumbers":false},"content":[{"type":"paragraph","attrs":{"textAlign":null,"keepWithNext":null,"keepLinesTogether":false,"preventSingleLines":true,"paragraphBorderJoin":false,"paragraphBord
+F014-F015-range-replace-undo-redo {}
+F016-F017-list-conversion-exit {"document":{"type":"doc","attrs":{"language":"und","pageSize":"a4","orientation":"portrait","pageMargin":20,"pageColor":"#FFFFFF","header":"","footer":"","pageNumbers":false},"content":[{"type":"paragraph","attrs":{"textAlign":null,"keepWithNext":null,"keepLinesTogether":false,"preventSingleLines":true,"paragraphBorderJoin":false,"paragraphBorders":null,"paragraphBackground":null,"indent":0,"inde
+table-insert-selection {"snapshot":{"schemaVersion":1,"sessionId":"e9a97d61-c57f-4913-8d17-703a4b1be885","tables":[{"id":"b_f4a458be-9824-476e-ae8f-68d1bc4e423e","rows":3,"columns":3,"columnDirection":"ltr","pinnedRows":1,"rowBreaks":[{"id":"b_bd422b59-d38e-44f8-b23c-78df99d23f50","row":0,"allowSplit":false},{"id":"b_8f617396-83bb-44c8-a2ca-bad5f04fa4bb","row":1,"allowSplit":false},{"id":"b_d39dded0-6207-495c-840f-80f91
+F018-ui-table-nine-cells {}
+F019-F020-table-structure-exact-undo-redo {}
+F021-local-image-visible {}
+F022-full-backup {}
+F023-font-size-selected-range {}
+FAILED {"message":"locator.click: Error: strict mode violation: locator('.color-popover').getByRole('button', { name: 'Apply', exact: true }) resolved to 2 elements:\n    1) <button type=\"submit\">Apply</button> aka locator('#radix-_r_14_').getByRole('button', { name: 'Apply' })\n    2) <button type=\"submit\">Apply</button> aka locator('#radix-_r_15_').getByRole('button', { name: 'Apply' })\n\nCall log

@@ -1,0 +1,6 @@
+
+> vdoc@0.1.0 typecheck
+> tsc --noEmit
+
+tests/fixtures/rapid-native-selection-20261010/native-selection.test.ts(4,32): error TS2307: Cannot find module '../lib/editor/extensions' or its corresponding type declarations.
+tests/fixtures/rapid-native-selection-20261010/native-selection.test.ts(5,39): error TS2307: Cannot find module '../lib/editor/native-selection' or its corresponding type declarations.

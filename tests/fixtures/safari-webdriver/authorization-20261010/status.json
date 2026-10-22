@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-11T01:15:40.130794+00:00",
+  "goalState": "active",
+  "authorization": "User specifically authorized safaridriver --enable; user now reports local administrator authentication completed. Previous approval rejection no longer describes current authorization.",
+  "newProbe": {
+    "httpStatus": 500,
+    "response": {
+      "value": {
+        "error": "session not created",
+        "message": "Could not create a session: You must enable 'Allow remote automation' in the Developer section of Safari Settings to control Safari via WebDriver.",
+        "stacktrace": ""
+      }
+    }
+  },
+  "enableRecheck": "Command still requested Password. Cancelled without supplying credentials; command exited. No password was requested in chat or captured.",
+  "remainingPrerequisite": "Safari currently reports Allow remote automation disabled. Developer checkbox status requested. This is a browser configuration prerequisite, not another approval-review rejection.",
+  "independentWork": {
+    "runner": "tools/native-qa/safari_acceptance.py",
+    "inputCheck": "passed; candidate hashes and fixture parse verified",
+    "browserAcceptance": "not executed; awaiting session availability"
+  },
+  "applicationUnchanged": true,
+  "gateStatus": "No new native acceptance pass; AI not connected"
+}

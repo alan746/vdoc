@@ -1,0 +1,108 @@
+{
+  "scope": "用户确认的七项AI前收官清单；不追加功能对标项目。通过即关闭，最终产品变更只复验受影响项。",
+  "afterCompletion": "进入AI开发",
+  "rows": [
+    {
+      "id": "G1",
+      "name": "标准打印与 PDF",
+      "criteria": "100%预览与输出分页一致；36行各一次，图片/表头/页眉页脚/末页完整",
+      "status": "passed",
+      "evidence": [
+        "tests/fixtures/seven-gates-20261012/current-100-analysis.json",
+        "tests/fixtures/seven-gates-20261012/native/prepare.json",
+        "tests/fixtures/seven-gates-20261012/native/print-tree.json",
+        "tests/fixtures/seven-gates-20261012/native/analysis.json",
+        "tests/fixtures/seven-gates-20261012/native/contact.png"
+      ],
+      "candidate": "9b776134419c9a09076b1d48c5b9d30fe8bca7c33c82b79836fe87f2ba2057f1",
+      "notes": "Chrome QA输出与Safari原生100%输出5页；36行各一次；5份页眉页脚；末页正文存在；源文档全量未变；人工查看全5页。多语言复制另属G3。"
+    },
+    {
+      "id": "G2",
+      "name": "Safari 缩放打印",
+      "criteria": "93/99/100/101/102%已约定比例无异常分片、空白页或丢失；固定PDF替代须完整产品路径",
+      "status": "passed",
+      "evidence": [
+        "tests/fixtures/seven-gates-20261012/native/scale-101.json",
+        "tests/fixtures/seven-gates-20261012/scale-fit/run.json",
+        "tests/fixtures/local-pdf-product-20261012/audit.json",
+        "tests/fixtures/local-pdf-production-20261012/audit.json"
+      ],
+      "notes": "本地dev及npm start生产打印按钮已接入固定PDF；生产Chrome网页实际下载后由原生Safari按93/99/100/101/102%分别保存，全部5页、36行各一次、页眉页脚完整、末页有正文，无空白页/越界；25页人工查看。Safari恢复100%，专属窗口和服务器关闭。需要本机Chrome/Chromium，托管Worker仍回退原生打印；本轮未直接操作Safari网页按钮。G3文字复制单独验收。",
+      "candidate": "76258d84e5baf84433a244aed8a08e9f10c187c7f450763338a53e0f74ab6f3a"
+    },
+    {
+      "id": "G3",
+      "name": "多语言 PDF",
+      "criteria": "既定样本在Chrome/PDF.js显示、搜索、选择、复制符合原文",
+      "status": "running",
+      "evidence": [
+        "tests/fixtures/seven-gates-20261012/native/content-verification.json",
+        "tests/fixtures/seven-gates-20261012/readers/copy-readers.json",
+        "tests/fixtures/pdf-reading-direction-20261012/audit.json",
+        "tests/fixtures/pdf-text-segments-20261012/audit.json",
+        "tests/fixtures/local-pdf-production-20261012/readers/copy-readers.json",
+        "tests/fixtures/local-pdf-fontmap-20261012/audit.json",
+        "tests/fixtures/pdf-reportlab-20261012/audit.json",
+        "tests/fixtures/pdf-libreoffice-20261012/audit.json",
+        "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/audit.json",
+        "tests/fixtures/pdf-reader-source-20261012/audit.json",
+        "tests/fixtures/pdf-reader-upstream-20261012/audit.json",
+        "tests/fixtures/pdf-chrome155-20261012/audit.json"
+      ],
+      "notes": "当前实际Safari PDF在Chrome和官方PDF.js复制均未通过。兼容字符规范化后仍有阿拉伯Yeh替换及印地语字符顺序错误；不得通过修改期望原文掩盖。 新增有界对照：R2L元数据修正希伯来语页顺序，却逆转Chrome英文词序；合并相邻文字串也未解决。四份对照像素保持，但都拒绝采用。未改变阅读器或期望原文。 新产品固定PDF在两阅读器复制也未通过；Noto回退与ReportLab明确塑形对照均拒绝。ReportLab最初未塑形对照的复制成功不能算复杂排版成功，已发现并纠正，详见audit。产品没有引入语义重写。 已补充工具包LibreOffice默认及明确Noto字体六份参考，仍无三语言跨阅读器通过的路径，不接入产品。 本机Chrome版本对应源码确认测试选中文字与普通正文复制共享GetSelectedText，仅换行处理不同；不能将现有错字倒序当作测试误报。未运行更多排列对照，未新增通过项。 用户要求取消空转任务重新排查；该技术缺陷继续开放，不以其他验收证据缺失为停止独立修复的理由。 已验证官方PDF.js 6.5.128/e1412d3a5包含10月6日上游修复；同字节两个长文对照各消除192处印地语错误分割，最小阳性对照通过。旧5.6.205与npm最新6.4.299尚无该修复。产品成品仍缺字，长文混合RTL顺序仍错误，G3未通过；不改原文、比较要求、产品依赖或阅读器源码。 已发现Chrome155的双向排序上游变更，使用官方隔离测试版确认旧希伯来语参考转为通过；仅升级阅读器未解决产品成品。新页面顺序QA变体7份像素全部保持，4/7在Chrome155与PDF.js6.5同时全文复制通过；带音标两例及PDF.js希伯来数字仍失败，未接入产品或签收G3。"
+    },
+    {
+      "id": "G4",
+      "name": "原生输入法",
+      "criteria": "既定7处候选可见、确认取消、保护、保存正常；正文用户确认保留",
+      "status": "blocked",
+      "evidence": [
+        "tests/fixtures/pdf-reader-source-20261012/audit.json",
+        "tests/fixtures/seven-gates-impasse-20261012/audit.json"
+      ],
+      "notes": "系统CGPreflightScreenCaptureAccess仍为false；未伪造七处候选窗画面。已有用户授权不等于OS权限。 最新只读预检仍false；未请求系统权限或截屏。"
+    },
+    {
+      "id": "G5",
+      "name": "历史空白尾页",
+      "criteria": "准确原文与旧PDF版本配对后复验；缺原文须明确阻塞，不捏造通过",
+      "status": "blocked",
+      "evidence": [
+        "tests/fixtures/seven-gates-impasse-20261012/audit.json"
+      ],
+      "notes": "workspace tests/tmp/docs特征词复查未找到对应可编辑原文；既有Desktop/Downloads文件仍与历史版本不一致。 当前Safari标签未通过本地VDoc身份检查，未越界读取其他网页或档案；已有文件哈希复核留档，准确原文仍缺。"
+    },
+    {
+      "id": "G6",
+      "name": "最终版本核心回归",
+      "criteria": "完整回归、类型、构建、关键真实浏览器流程通过",
+      "status": "passed",
+      "evidence": [
+        "tests/fixtures/external-composition-20261012/audit.json",
+        "tests/fixtures/local-pdf-product-20261012/audit.json",
+        "tests/fixtures/local-pdf-production-20261012/audit.json",
+        "tests/fixtures/core-final-candidate-20261012/audit.json",
+        "tests/fixtures/pdf-restart-recheck-20261012/audit.json"
+      ],
+      "notes": "当前候选76258d84核心回归已签收：143文件2033用例均有通过执行。完整运行2029通过，4项因沙箱禁止本地监听未执行断言；修正测试启动错误处理后仅4项在允许回环监听环境补跑通过，首轮退出1和原始日志保留，不冒称单次全绿。类型、生产构建、改动测试lint通过；当前生产构建完成11项真实Chrome编辑/保存/搜索/备份流程及独立PDF按钮下载。源JSON完整不变；PDF5页36行各一次、末页正文完整、无页外文字。当前自有服务/子服务端口关闭；G3/G4/G5仍各自开放，后续产品变更只复验受影响项。 本轮仅两处PDF客户端文件变化；35项受影响回归、类型、lint、构建与真实生产服务重启后同预览导出通过，完整文档未变。2033项全量仍是前一候选证据，不冒称本轮全跑。",
+      "candidate": "fd601855bbd545ad14fe3a59e1a2138cd7ae61eb1589465d0bcc09f2ddd70011"
+    },
+    {
+      "id": "G7",
+      "name": "联合验收与 AI 交接",
+      "criteria": "前六项通过或用户明确延期，同一最终版本归档，然后开始AI开发",
+      "status": "pending",
+      "evidence": []
+    }
+  ],
+  "currentCandidate": "fd601855bbd545ad14fe3a59e1a2138cd7ae61eb1589465d0bcc09f2ddd70011",
+  "executionState": {
+    "state": "manual-reassessment",
+    "automationDeleted": true,
+    "audit": "tests/fixtures/pdf-chrome155-20261012/audit.json",
+    "scopeUnchanged": true,
+    "aiStarted": false,
+    "note": "Concrete QA encoding change and updated-reader evidence; four combined full-copy cases pass, three remain. No AI entry, no automation recreated."
+  }
+}

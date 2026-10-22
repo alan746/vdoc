@@ -1,0 +1,47 @@
+[
+  {
+    "name": "arabic-unicode-ordered-actualtext-marked",
+    "pages": 1,
+    "pixelIdenticalTo": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-marked-render.png",
+    "pixelIdentical": true,
+    "pypdfText": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cellالعربية\nDifferent contextالتعليم",
+    "source": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+    "pypdfMatchCollapsed": false
+  },
+  {
+    "name": "arabic-unicode-ordered-actualtext",
+    "pages": 1,
+    "pixelIdenticalTo": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-render.png",
+    "pixelIdentical": true,
+    "pypdfText": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cellالعربية\nDifferent contextالتعليم",
+    "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+    "pypdfMatchCollapsed": false
+  },
+  {
+    "name": "hebrew-unicode-ordered-actualtext-marked",
+    "pages": 1,
+    "pixelIdenticalTo": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-marked-render.png",
+    "pixelIdentical": true,
+    "pypdfText": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cellעברית\nDifferent contextשלום",
+    "source": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+    "pypdfMatchCollapsed": false
+  },
+  {
+    "name": "hebrew-unicode-ordered-actualtext",
+    "pages": 1,
+    "pixelIdenticalTo": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-render.png",
+    "pixelIdentical": true,
+    "pypdfText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cellעברית\nDifferent contextשלום",
+    "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+    "pypdfMatchCollapsed": false
+  },
+  {
+    "name": "words-unicode-ordered-actualtext",
+    "pages": 1,
+    "pixelIdenticalTo": "tests/fixtures/browser-unicode-20261011/words-unicode-ordered-render.png",
+    "pixelIdentical": true,
+    "pypdfText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent contextशिक्षा प्रार्थना",
+    "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+    "pypdfMatchCollapsed": false
+  }
+]

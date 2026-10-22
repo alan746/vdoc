@@ -1,0 +1,105 @@
+{
+  "at": "2026-10-10T22:51:01.724076+00:00",
+  "applicationSha256": "af39f6a3e23c70959bad740197d0fc96717443a489a341b5053978d7b27118cd",
+  "defect": "Current search match leaves the viewport when editor CSS zoom changes; Next recovers it.",
+  "before": {
+    "environment": "production build, Codex in-app browser",
+    "documentId": "b8770dc0-5331-42da-b7f5-4890d0579ed7",
+    "canvasY": [
+      201,
+      686
+    ],
+    "after100To125MatchY": [
+      1235,
+      1254.5
+    ],
+    "after125To100MatchY": [
+      138.0625,
+      153.5625
+    ]
+  },
+  "after": {
+    "environment": "development build, Codex in-app browser; not Safari",
+    "documentId": "6b7ac893-ff99-42ac-912a-97002a573d56",
+    "canvasY": [
+      201,
+      686
+    ],
+    "after100To125MatchY": [
+      493,
+      512.5
+    ],
+    "after125To100MatchY": [
+      484.265625,
+      499.765625
+    ],
+    "nextButtonUsed": false,
+    "completeDocumentEqualBeforeAndAfter": true,
+    "closeFindReturnsEditorFocus": true,
+    "typingReplacesOnlySelectedMatch": true,
+    "undoRestoresEntireDocument": true
+  },
+  "replacementWorkflowBeforeFix": {
+    "singleReplacementOnlyTargetChanged": true,
+    "singleUndoFullEquality": true,
+    "nextPreviousCounts": [
+      "1 of 18",
+      "2 of 18",
+      "1 of 18"
+    ],
+    "all18ReplacedWithFullStructureEquality": true,
+    "oneUndoRestoresAll": true
+  },
+  "tests": {
+    "oldImplementationFailsNewRegression": true,
+    "targeted": {
+      "files": 3,
+      "tests": 71
+    },
+    "initialFull": {
+      "filesPassed": 132,
+      "filesFailed": 2,
+      "testsPassed": 1909,
+      "testsFailed": 2,
+      "failure": "5-second timeout in file-roundtrip 40 languages and search-performance; no assertion failure",
+      "changedTimeouts": false
+    },
+    "boundedFull": {
+      "command": "npm test -- --maxWorkers=2",
+      "files": 134,
+      "tests": 1911,
+      "exitCode": 0
+    },
+    "typecheck": {
+      "exitCode": 0
+    },
+    "build": {
+      "exitCode": 0,
+      "log": "build.log"
+    }
+  },
+  "limitations": [
+    "No Safari candidate-window, actual PDF or real browser quota acceptance inferred.",
+    "Native WKWebView preview evidence is stored separately."
+  ],
+  "afterProduction": {
+    "environment": "production build, in-app Chromium, not Safari",
+    "documentId": "b8770dc0-5331-42da-b7f5-4890d0579ed7",
+    "canvasY": [
+      201,
+      686
+    ],
+    "after100To125MatchY": [
+      493,
+      512.5
+    ],
+    "after125To100MatchY": [
+      484.0625,
+      499.5625
+    ],
+    "nextButtonUsed": false,
+    "completeDocumentEqualBeforeAndAfter": true,
+    "consoleWarningsErrors": [],
+    "measurementNote": "Two locator.evaluate calls timed out. A fresh DOM snapshot and page-level read-only DOM evaluation succeeded; no disappearance inferred."
+  }
+}

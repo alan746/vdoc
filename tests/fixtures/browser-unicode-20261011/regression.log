@@ -1,0 +1,13 @@
+test_adjacent_table_cells_are_not_a_full_flat_text_pass (__main__.UnicodeEvidence.test_adjacent_table_cells_are_not_a_full_flat_text_pass) ... ok
+test_arabic_diacritic_positions_still_fail_pdfjs (__main__.UnicodeEvidence.test_arabic_diacritic_positions_still_fail_pdfjs) ... ok
+test_basic_rtl_main_paragraphs_agree_in_both_readers (__main__.UnicodeEvidence.test_basic_rtl_main_paragraphs_agree_in_both_readers) ... ok
+test_download_cancel_and_wrap_refusal (__main__.UnicodeEvidence.test_download_cancel_and_wrap_refusal) ... ok
+test_hindi_visible_pixels_unchanged (__main__.UnicodeEvidence.test_hindi_visible_pixels_unchanged) ... ok
+test_hindi_words_and_main_paragraphs_preserve_spaces (__main__.UnicodeEvidence.test_hindi_words_and_main_paragraphs_preserve_spaces) ... ok
+test_mixed_rtl_digits_must_not_be_lost (__main__.UnicodeEvidence.test_mixed_rtl_digits_must_not_be_lost) ... ok
+test_per_block_repositioning_does_not_pass_wrong_word_order (__main__.UnicodeEvidence.test_per_block_repositioning_does_not_pass_wrong_word_order) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.031s
+
+OK

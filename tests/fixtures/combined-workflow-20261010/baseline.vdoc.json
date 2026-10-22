@@ -1,0 +1,790 @@
+{
+  "version": 1,
+  "title": "QA combined workflow 2026-10-10",
+  "content": {
+    "type": "doc",
+    "attrs": {
+      "language": "und",
+      "pageSize": "a4",
+      "orientation": "portrait",
+      "pageMargin": 20,
+      "pageColor": "#FFFFFF",
+      "header": "",
+      "footer": "",
+      "pageNumbers": false
+    },
+    "content": [
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_6d960ae3-fa50-4a49-8b1d-a1c9af12bc7e"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Opening anchor English 中文 日本語."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_dc61302a-be8c-42a4-9202-a2280cfb507b"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Second paragraph replacement remains."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_37570b67-9178-4bad-b4d4-3aafe554a5a6"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "RTL العربية עברית mixed text."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "b_42097bb7-73f9-4712-95a4-df09a687fb22",
+          "bulletText": null,
+          "bulletStyle": "disc"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null,
+                  "keepWithNext": null,
+                  "keepLinesTogether": false,
+                  "preventSingleLines": true,
+                  "paragraphBorderJoin": false,
+                  "paragraphBorders": null,
+                  "paragraphBackground": null,
+                  "indent": 0,
+                  "indentStart": null,
+                  "indentEnd": 0,
+                  "firstLineIndent": 0,
+                  "tabInterval": 48,
+                  "direction": "auto",
+                  "spaceBefore": null,
+                  "spaceAfter": null,
+                  "lineHeight": null,
+                  "blockId": "b_c0a7990c-4428-437c-9bb5-f44f361323b5"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "List first item"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "attrs": {
+                  "blockId": "b_3378e313-a214-4356-982b-d06b89142771",
+                  "bulletText": null,
+                  "bulletStyle": "disc"
+                },
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null,
+                          "keepWithNext": null,
+                          "keepLinesTogether": false,
+                          "preventSingleLines": true,
+                          "paragraphBorderJoin": false,
+                          "paragraphBorders": null,
+                          "paragraphBackground": null,
+                          "indent": 0,
+                          "indentStart": null,
+                          "indentEnd": 0,
+                          "firstLineIndent": 0,
+                          "tabInterval": 48,
+                          "direction": "auto",
+                          "spaceBefore": null,
+                          "spaceAfter": null,
+                          "lineHeight": null,
+                          "blockId": "b_cc764405-730e-42d8-9754-bd54e3ce801c"
+                        },
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "List second item"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_f7a410fc-5ed8-48f1-b4f4-4f38c1c9da75"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Normal after list"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "attrs": {
+          "blockId": "b_1a244ae3-056f-4c1e-93c9-4a8a939c1140",
+          "columnDirection": "ltr",
+          "alignment": "left",
+          "pinnedRows": null
+        },
+        "content": [
+          {
+            "type": "tableRow",
+            "attrs": {
+              "blockId": "b_a6984bfd-8088-4475-bb51-0d787656492b",
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "blockId": "b_3d593f0a-e90e-41e8-b727-239e9daef222",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_6cf15078-a5a6-4651-82bd-548c06787123"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "blockId": "b_134f9081-b0e7-43f0-a0a9-5da8c1b6a231",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_32866ba3-3631-4e60-a3aa-06a653ecfe77"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "blockId": "b_fba340ed-e9a7-4d1d-8eeb-a46f2ef924e1",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_24be56d0-06fb-47b8-bd2c-52b7363892c3"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-2"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "blockId": "b_89a1bd5f-2ac5-4967-9098-16f3242b6637",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_134ae329-89ac-41dc-a655-02dc9d62851d"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-3"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "blockId": "b_84b211e1-e7c6-42a9-969b-d9b4221f454b",
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_d061545c-4705-42c2-809b-f6f851cd5d94",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_2cd19e45-e785-4428-bf4a-0c86546929e6"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-7"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_53b2024e-012f-4b5b-9cfb-ed33e91c6902",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_eafa5880-3227-46f0-a00a-a1e1d7e8e173"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_1ab59b08-d213-411e-bfba-b79c33cb6905",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_da4105fa-c87d-440c-925e-f4b4cacba877"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-8"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_427156c5-f696-443e-b5df-fb3f5321b701",
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_1a22af68-0276-43b5-985f-16ceaf2710a4"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-9"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "attrs": {
+              "blockId": "b_f933542e-2ba8-47cc-b5ba-065628115211",
+              "minHeight": null,
+              "allowSplit": false
+            },
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "blockId": "b_ed9155ad-41df-4800-8f4d-2bbb037439bb",
+                  "colspan": 4,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null,
+                  "backgroundColor": null,
+                  "minHeight": null,
+                  "borderColor": null,
+                  "borderStyle": "solid",
+                  "borderWidth": null,
+                  "padding": null,
+                  "borders": null,
+                  "verticalAlign": "top"
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_c5a87f52-2903-4392-84af-72f4bf3ccdcc"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_b05bf756-c0f8-4dcb-8eaa-cfe81a5bc4ac"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null,
+                      "keepWithNext": null,
+                      "keepLinesTogether": false,
+                      "preventSingleLines": true,
+                      "paragraphBorderJoin": false,
+                      "paragraphBorders": null,
+                      "paragraphBackground": null,
+                      "indent": 0,
+                      "indentStart": null,
+                      "indentEnd": 0,
+                      "firstLineIndent": 0,
+                      "tabInterval": 48,
+                      "direction": "auto",
+                      "spaceBefore": null,
+                      "spaceAfter": null,
+                      "lineHeight": null,
+                      "blockId": "b_e97a0edf-3fb0-406c-8cb1-e45ed344abb8"
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "CELL-6"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_c108d901-edd9-4b48-8b6b-a03d21797058"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "blockId": "b_35453818-82e6-49ec-8de0-282d9c045325",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAABaCAIAAACe4euXAAAA7ElEQVR4nO3SMQ0AIADAMOQgDIkIxAC74WhSATs25tpwNZ4X8C1zkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHCRzkMxBMgfJHKQDiDweoqaw9ZQAAAAASUVORK5CYII=",
+          "alt": "QA local image 中文",
+          "title": null,
+          "width": 180,
+          "height": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null,
+          "keepWithNext": null,
+          "keepLinesTogether": false,
+          "preventSingleLines": true,
+          "paragraphBorderJoin": false,
+          "paragraphBorders": null,
+          "paragraphBackground": null,
+          "indent": 0,
+          "indentStart": null,
+          "indentEnd": 0,
+          "firstLineIndent": 0,
+          "tabInterval": 48,
+          "direction": "auto",
+          "spaceBefore": null,
+          "spaceAfter": null,
+          "lineHeight": null,
+          "blockId": "b_e1dfd3dd-673f-47c4-a717-09a8cb23544c"
+        }
+      }
+    ]
+  },
+  "savedAt": "2026-10-11T00:48:48.584Z"
+}

@@ -1,0 +1,530 @@
+{
+  "at": "2026-10-12T04:55:17.589Z",
+  "browser": "154.0.8037.98",
+  "scope": "Stock Chrome plugin selectAll plus official PDF.js text-layer copy handler for each page. Synthetic ClipboardEvent with isolated in-memory DataTransfer; no system clipboard or native key press. Raw Selection.toString retained separately. Known generated margins are excluded only for a separate body comparison, with occurrence counts retained. Neither raw nor body comparison silently changes Unicode or word order.",
+  "results": [
+    {
+      "label": "hindi",
+      "file": "tests/fixtures/pdf-reportlab-20261012/hindi.pdf",
+      "pdfSha256": "e30f4f5206ae2913c10222eb58ab2a45dfb83bd50bdec6e593e09c6a135531fd",
+      "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+      "chrome": {
+        "selectedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+        "match": true,
+        "expectedLength": 164,
+        "actualLength": 164,
+        "firstDifference": 164,
+        "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "words": [
+          {
+            "expected": "Browser",
+            "x": 448.9553823410832,
+            "y": 134.8181947760396,
+            "width": 62.56,
+            "line": 0,
+            "actual": "Browser",
+            "exact": true
+          },
+          {
+            "expected": "PDF",
+            "x": 515.9250369573982,
+            "y": 134.8181947760396,
+            "width": 29.664,
+            "line": 0,
+            "actual": "PDF",
+            "exact": true
+          },
+          {
+            "expected": "—",
+            "x": 551.8823276441339,
+            "y": 134.8181947760396,
+            "width": 16,
+            "line": 0,
+            "actual": "—",
+            "exact": true
+          },
+          {
+            "expected": "local",
+            "x": 591.1220266093267,
+            "y": 134.8181947760396,
+            "width": 34.592,
+            "line": 0,
+            "actual": "local",
+            "exact": true
+          },
+          {
+            "expected": "text",
+            "x": 639.0473189087488,
+            "y": 134.8181947760396,
+            "width": 29.04,
+            "line": 0,
+            "actual": "text",
+            "exact": true
+          },
+          {
+            "expected": "and",
+            "x": 683.0507727455988,
+            "y": 134.8181947760396,
+            "width": 28.704,
+            "line": 0,
+            "actual": "and",
+            "exact": true
+          },
+          {
+            "expected": "vectors",
+            "x": 744.0524123101734,
+            "y": 134.8181947760396,
+            "width": 54.56,
+            "line": 0,
+            "actual": "vectors",
+            "exact": true
+          },
+          {
+            "expected": "हिन्दी",
+            "x": 430.0389060610133,
+            "y": 228.1082920571571,
+            "width": 34.160000000000004,
+            "line": 1,
+            "actual": "हिन्दी",
+            "exact": true
+          },
+          {
+            "expected": "हिंदी",
+            "x": 475.17201988979974,
+            "y": 228.1082920571571,
+            "width": 25.28,
+            "line": 1,
+            "actual": "हिंदी",
+            "exact": true
+          },
+          {
+            "expected": "भाषा",
+            "x": 516.724324687542,
+            "y": 228.1082920571571,
+            "width": 28.784,
+            "line": 1,
+            "actual": "भाषा",
+            "exact": true
+          },
+          {
+            "expected": "में",
+            "x": 547.8112888052681,
+            "y": 228.1082920571571,
+            "width": 9.568,
+            "line": 1,
+            "actual": "में",
+            "exact": true
+          },
+          {
+            "expected": "दस्तावेज़",
+            "x": 595.257008466604,
+            "y": 228.1082920571571,
+            "width": 53.344,
+            "line": 1,
+            "actual": "दस्तावेज़",
+            "exact": true
+          },
+          {
+            "expected": "लिखना।",
+            "x": 667.7470770057788,
+            "y": 228.1082920571571,
+            "width": 47.168,
+            "line": 1,
+            "actual": "लिखना।",
+            "exact": true
+          },
+          {
+            "expected": "दुनिया",
+            "x": 430.56110737804056,
+            "y": 321.39838933827457,
+            "width": 34.944,
+            "line": 2,
+            "actual": "दुनिया",
+            "exact": true
+          },
+          {
+            "expected": "नमस्ते",
+            "x": 484.9446445370246,
+            "y": 321.39838933827457,
+            "width": 38.384,
+            "line": 2,
+            "actual": "नमस्ते",
+            "exact": true
+          },
+          {
+            "expected": "शिक्षा",
+            "x": 543.1647628006988,
+            "y": 321.39838933827457,
+            "width": 40.704,
+            "line": 2,
+            "actual": "शिक्षा",
+            "exact": true
+          },
+          {
+            "expected": "क्षत्रिय",
+            "x": 609.5376159118398,
+            "y": 321.39838933827457,
+            "width": 50.624,
+            "line": 2,
+            "actual": "क्षत्रिय",
+            "exact": true
+          },
+          {
+            "expected": "प्रार्थना।",
+            "x": 685.8536083859697,
+            "y": 321.39838933827457,
+            "width": 55.632,
+            "line": 2,
+            "actual": "प्रार्थना।",
+            "exact": true
+          },
+          {
+            "expected": "Repeat",
+            "x": 442.315965596022,
+            "y": 414.68848661939205,
+            "width": 52.592,
+            "line": 3,
+            "actual": "Repeat",
+            "exact": true
+          },
+          {
+            "expected": "हिन्दी",
+            "x": 505.64086816288136,
+            "y": 414.68848661939205,
+            "width": 34.160000000000004,
+            "line": 3,
+            "actual": "हिन्दी",
+            "exact": true
+          },
+          {
+            "expected": "and",
+            "x": 553.0546163150115,
+            "y": 414.68848661939205,
+            "width": 28.704,
+            "line": 3,
+            "actual": "and",
+            "exact": true
+          },
+          {
+            "expected": "हिंदी",
+            "x": 594.5536352640775,
+            "y": 414.68848661939205,
+            "width": 25.28,
+            "line": 3,
+            "actual": "हिंदी",
+            "exact": true
+          },
+          {
+            "expected": "with",
+            "x": 638.4931460825158,
+            "y": 414.68848661939205,
+            "width": 32.368,
+            "line": 3,
+            "actual": "with",
+            "exact": true
+          },
+          {
+            "expected": "contextual",
+            "x": 718.4006047574251,
+            "y": 414.68848661939205,
+            "width": 79.28,
+            "line": 3,
+            "actual": "contextual",
+            "exact": true
+          },
+          {
+            "expected": "shapes.",
+            "x": 814.9439053890607,
+            "y": 414.68848661939205,
+            "width": 57.344,
+            "line": 3,
+            "actual": "shapes",
+            "exact": false
+          }
+        ],
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": true,
+          "expectedLength": 164,
+          "actualLength": 164,
+          "firstDifference": 164,
+          "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes."
+        ],
+        "copies": [
+          "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes."
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+        "copiedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+        "match": true,
+        "expectedLength": 164,
+        "actualLength": 164,
+        "firstDifference": 164,
+        "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": true,
+          "expectedLength": 164,
+          "actualLength": 164,
+          "firstDifference": 164,
+          "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        },
+        "words": [
+          {
+            "expected": "Browser",
+            "x": 71.28,
+            "y": 56.889999999999986,
+            "width": 62.56,
+            "line": 0,
+            "actual": "Browser",
+            "exact": true
+          },
+          {
+            "expected": "PDF",
+            "x": 121.55199999999999,
+            "y": 56.889999999999986,
+            "width": 29.664,
+            "line": 0,
+            "actual": "PDF",
+            "exact": true
+          },
+          {
+            "expected": "—",
+            "x": 148.54399999999998,
+            "y": 56.889999999999986,
+            "width": 16,
+            "line": 0,
+            "actual": "—",
+            "exact": true
+          },
+          {
+            "expected": "local",
+            "x": 178,
+            "y": 56.889999999999986,
+            "width": 34.592,
+            "line": 0,
+            "actual": "local",
+            "exact": true
+          },
+          {
+            "expected": "text",
+            "x": 213.97600000000003,
+            "y": 56.889999999999986,
+            "width": 29.04,
+            "line": 0,
+            "actual": "text",
+            "exact": true
+          },
+          {
+            "expected": "and",
+            "x": 247.008,
+            "y": 56.889999999999986,
+            "width": 28.704,
+            "line": 0,
+            "actual": "and",
+            "exact": true
+          },
+          {
+            "expected": "vectors",
+            "x": 292.79999999999995,
+            "y": 56.889999999999986,
+            "width": 54.56,
+            "line": 0,
+            "actual": "vectors",
+            "exact": true
+          },
+          {
+            "expected": "हिन्दी",
+            "x": 57.08,
+            "y": 126.88999999999999,
+            "width": 34.160000000000004,
+            "line": 1,
+            "actual": "हिन्दी",
+            "exact": true
+          },
+          {
+            "expected": "हिंदी",
+            "x": 90.96,
+            "y": 126.88999999999999,
+            "width": 25.28,
+            "line": 1,
+            "actual": "हिंदी",
+            "exact": true
+          },
+          {
+            "expected": "भाषा",
+            "x": 122.152,
+            "y": 126.88999999999999,
+            "width": 28.784,
+            "line": 1,
+            "actual": "भाषा",
+            "exact": true
+          },
+          {
+            "expected": "में",
+            "x": 145.488,
+            "y": 126.88999999999999,
+            "width": 9.568,
+            "line": 1,
+            "actual": " ",
+            "exact": false
+          },
+          {
+            "expected": "दस्तावेज़",
+            "x": 181.104,
+            "y": 126.88999999999999,
+            "width": 53.344,
+            "line": 1,
+            "actual": "दस्तावेज़",
+            "exact": true
+          },
+          {
+            "expected": "लिखना।",
+            "x": 235.52,
+            "y": 126.88999999999999,
+            "width": 47.168,
+            "line": 1,
+            "actual": "लिखना",
+            "exact": false
+          },
+          {
+            "expected": "दुनिया",
+            "x": 57.472,
+            "y": 196.89,
+            "width": 34.944,
+            "line": 2,
+            "actual": "दुनिया",
+            "exact": true
+          },
+          {
+            "expected": "नमस्ते",
+            "x": 98.29599999999999,
+            "y": 196.89,
+            "width": 38.384,
+            "line": 2,
+            "actual": "नमस्ते",
+            "exact": true
+          },
+          {
+            "expected": "शिक्षा",
+            "x": 142,
+            "y": 196.89,
+            "width": 40.704,
+            "line": 2,
+            "actual": "शिक्षा",
+            "exact": true
+          },
+          {
+            "expected": "क्षत्रिय",
+            "x": 191.824,
+            "y": 196.89,
+            "width": 50.624,
+            "line": 2,
+            "actual": "क्षत्रिय",
+            "exact": true
+          },
+          {
+            "expected": "प्रार्थना।",
+            "x": 249.112,
+            "y": 196.89,
+            "width": 55.632,
+            "line": 2,
+            "actual": "प्रार्थना",
+            "exact": false
+          },
+          {
+            "expected": "Repeat",
+            "x": 66.29599999999999,
+            "y": 266.89,
+            "width": 52.592,
+            "line": 3,
+            "actual": "Repeat",
+            "exact": true
+          },
+          {
+            "expected": "हिन्दी",
+            "x": 113.83200000000001,
+            "y": 266.89,
+            "width": 34.160000000000004,
+            "line": 3,
+            "actual": "हिन्दी",
+            "exact": true
+          },
+          {
+            "expected": "and",
+            "x": 149.424,
+            "y": 266.89,
+            "width": 28.704,
+            "line": 3,
+            "actual": "and",
+            "exact": true
+          },
+          {
+            "expected": "हिंदी",
+            "x": 180.57600000000002,
+            "y": 266.89,
+            "width": 25.28,
+            "line": 3,
+            "actual": "हिंदी",
+            "exact": true
+          },
+          {
+            "expected": "with",
+            "x": 213.56,
+            "y": 266.89,
+            "width": 32.368,
+            "line": 3,
+            "actual": "with",
+            "exact": true
+          },
+          {
+            "expected": "contextual",
+            "x": 273.544,
+            "y": 266.89,
+            "width": 79.28,
+            "line": 3,
+            "actual": "contextual",
+            "exact": true
+          },
+          {
+            "expected": "shapes.",
+            "x": 346.016,
+            "y": 266.89,
+            "width": 57.344,
+            "line": 3,
+            "actual": "shapes",
+            "exact": false
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "at": "2026-10-11T18:38:47.299680+00:00",
+  "candidate": "0a2386834f95c86adf6c8fd8fafbd0ab5b43ec6f281749da6eaaea9c85cb5ffd",
+  "productChanged": false,
+  "productionDependenciesChanged": false,
+  "pdfCount": 10,
+  "renderedPages": 10,
+  "readerRuns": [
+    {
+      "file": "tests/fixtures/reader-control-20261011/reader-bidi-runs.json",
+      "sha256": "5c32b10b30b13396f8a9c7cc383d2abe3176afd7b72f0eac05c9af9f638c26d6",
+      "fullTextCases": 5,
+      "fullTextPass": 5,
+      "wordCases": 40,
+      "wordPass": 40
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/reader-cluster-width.json",
+      "sha256": "8a36d114df4ee1063b18bdb73aae5576e3f1403ddcff7764bb36493f3659a1bb",
+      "fullTextCases": 5,
+      "fullTextPass": 3,
+      "wordCases": 40,
+      "wordPass": 32
+    }
+  ],
+  "partialRuns": [
+    {
+      "file": "tests/fixtures/reader-control-20261011/partial-bidi-runs.json",
+      "sha256": "689d85390617eec21462fcc7c1f8cbd8c38feb27cc031bc821ca1005019e1809",
+      "cases": 55,
+      "pass": 48,
+      "sourceRectMaxDelta": 0
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/partial-cluster-width.json",
+      "sha256": "7f3b909b69ed4230b4f9a9e62a11edaab3a1d9df40e0825f24128e3e37aaf23f",
+      "cases": 55,
+      "pass": 44,
+      "sourceRectMaxDelta": 0
+    }
+  ],
+  "search": {
+    "file": "tests/fixtures/reader-control-20261011/search-bidi-runs-highlight-audit.json",
+    "sha256": "29e182a3e13c454720289c365067f16a0f09cccd5fffa87ca2d7032614fa601e",
+    "positiveCases": 5,
+    "positivePass": 5,
+    "absentCases": 5,
+    "absentPass": 5,
+    "scope": "Chrome PDF plugin text-fragment lookup. Not native Cmd-F panel or editor search.",
+    "negativePixelDetail": "No highlight remained. Three pages differ by 1/255 gray value in one or two pixels; two are exactly identical. Toolbar/thumbnail load differences excluded using captured page geometry."
+  },
+  "scope": "Ten QA-only single-page PDFs: five bidi-run semantic records plus five rejected equal-cluster-width controls. No product export integration.",
+  "result": "Bidi-run encoding passes all five actual Chrome full copies and 40 word selections, including marked RTL and digits 123. Five first-word searches highlight correct source geometry. Fine-grained range drag still fails 7/55 despite all 35 Latin controls passing. Width distribution retains pixels but breaks marked RTL full copy and does not fix drag selection; rejected.",
+  "limits": [
+    "Bidi-run encoding is an empirical PDFium experiment, not a general Unicode/production font strategy.",
+    "PDF.js strict collapsed-whitespace equality passes Hindi only: simple RTL loses word separators and marked RTL additionally reorders marks. pypdf RTL disagreement retained.",
+    "Fine-grained dragging still separates marks from letters. No character-selection acceptance.",
+    "No font fallback, styled/multipage VDoc adapter, formal export entry or native Safari reprint signoff.",
+    "Historical source A and native candidate-window visual evidence remain open; Q signed, I/P/S/F unsigned; AI not integrated."
+  ],
+  "renderReview": {
+    "bidiRunReferencePixelIdentical": 4,
+    "bidiRunReferenceCount": 5,
+    "exception": "Unmarked Hebrew differs locally from old reference at [555,156,699,295]. Current full page inspected; not claiming pixel equality.",
+    "clusterWidthPixelIdentical": 5,
+    "clusterWidthReferenceCount": 5,
+    "viewed": "Five positive search screenshots show complete pages; additionally inspected Arabic/Hebrew marked and Hebrew unmarked Poppler renders. Width-control renders are pixel-identical to these bidi-run files."
+  },
+  "artifacts": [
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-bidi-runs.pdf",
+        "sha256": "307126c3daa2291ec7443a2fb70c60bcb86c8216ef5cb57dffc12bdee7af0784"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/words-unicode-ordered-bidi-runs-render.png",
+        "sha256": "c6511ed504970b4c0c17645204b75ffb9dcacb735d8d83f8f1601af38b01499e"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/words-unicode-ordered-bidi-runs-report.json",
+        "sha256": "f993b002835b5f27a5eae028f991d05725e62b9d82790c7d8b88b414b38799e6"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-bidi-runs.pdf",
+        "sha256": "78242fe2b5614076a74e9c67830a229f0562c1ec998eab1a63a5a49c00933062"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-bidi-runs-render.png",
+        "sha256": "90b40cb13568f77f70345c1d2f57362122b93cd0e737687b00ce9bdf6462a903"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-bidi-runs-report.json",
+        "sha256": "9b24c4c4e93ae7e26e18453406addb7dca1e58926da3ae8d534b1df872041158"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-bidi-runs.pdf",
+        "sha256": "8f458d58912ad2852de72f9d13663dfbb91d539d78f119189f0e8c50d6ffd0ea"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-bidi-runs-render.png",
+        "sha256": "986de1dddbad39fa780b3267062a2702b6706bb7f344aa493aaa2179507798bb"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-bidi-runs-report.json",
+        "sha256": "de457ace85142b3219993db5ed0189dc449c1bdabd806fbb1bcd5991d2eb9a94"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-bidi-runs-marked.pdf",
+        "sha256": "18766341cead2c830d2e874d54e43082222d209e3bb32187c2ec3bbdde34d7d1"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-bidi-runs-marked-render.png",
+        "sha256": "7b7b354a7590076a0e850cc59d2938ee27e9bc4e3d82084ff76369293f8269b5"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-bidi-runs-marked-report.json",
+        "sha256": "e4889a06980ad4f42e4a405cd98b53abcc39c4ee99b24ed06c8bdc3f3ec38a4a"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-bidi-runs-marked.pdf",
+        "sha256": "f21dcca98f207e9b844828adc49b1352d6da158adf75187e16e5f0d8004249b2"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-bidi-runs-marked-render.png",
+        "sha256": "bc501150fc37a03c6ce64b721dc4f98e32ec3fb6ebb17ab3c5328a452f401391"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-bidi-runs-marked-report.json",
+        "sha256": "c8df5144bec597e692224495b37f15ae791bb32f86c37c171385d601a8389ab3"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered-cluster-width.pdf",
+        "sha256": "a156aa308d0873f3f601852d64a4a54383e968729749c7e42777a3c9987f1114"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/words-unicode-ordered-cluster-width-render.png",
+        "sha256": "c6511ed504970b4c0c17645204b75ffb9dcacb735d8d83f8f1601af38b01499e"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/words-unicode-ordered-cluster-width-report.json",
+        "sha256": "fc563fe049286bd1f113ab389952c5a19c8bc487cbd2b5bba07fd628a249ffe5"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-cluster-width.pdf",
+        "sha256": "cc87d3cd4e220f76e38bd75c07cadbcd23755a18ab83fb6f2d42f6dcd4052599"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-cluster-width-render.png",
+        "sha256": "90b40cb13568f77f70345c1d2f57362122b93cd0e737687b00ce9bdf6462a903"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-cluster-width-report.json",
+        "sha256": "37515e726c56aeebd3b7752e598cf5a6c53d027fda7b366d168349d1d74b593d"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-cluster-width.pdf",
+        "sha256": "dcca17b0c7874992955a1d8135a65e1dcf09d2a10b817e977368198228c19549"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-cluster-width-render.png",
+        "sha256": "986de1dddbad39fa780b3267062a2702b6706bb7f344aa493aaa2179507798bb"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-cluster-width-report.json",
+        "sha256": "485d8d17e9fb7925036b2ecdb12d823265913445f8b1475c193f81568c1ff4ba"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-cluster-width-marked.pdf",
+        "sha256": "25a715720e9f98b41ef3b2cc554b055633431228caac222b3de3c9a505f29cd9"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/arabic-unicode-ordered-cluster-width-marked-render.png",
+        "sha256": "7b7b354a7590076a0e850cc59d2938ee27e9bc4e3d82084ff76369293f8269b5"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/arabic-unicode-ordered-cluster-width-marked-report.json",
+        "sha256": "e4b146024bbd6e59b160ce17ea8210099e8707d4accc5caa5f229e44167e8e91"
+      }
+    },
+    {
+      "pdf": {
+        "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-cluster-width-marked.pdf",
+        "sha256": "a5d2b7e1c37f8e536b46338678ea3d7982a2dcda6298140f3a373704a1f2020f"
+      },
+      "render": {
+        "file": "tests/fixtures/reader-control-20261011/hebrew-unicode-ordered-cluster-width-marked-render.png",
+        "sha256": "bc501150fc37a03c6ce64b721dc4f98e32ec3fb6ebb17ab3c5328a452f401391"
+      },
+      "sourceReport": {
+        "file": "tests/fixtures/browser-unicode-20261011/hebrew-unicode-ordered-cluster-width-marked-report.json",
+        "sha256": "bbc607d1f3a8bd25fb964e427b9cee26b07b8945a5bff1d8ba54162f62ccc71d"
+      }
+    }
+  ],
+  "regression": {
+    "file": "tests/fixtures/reader-control-20261011/bidi-runs-regressions.log",
+    "sha256": "2886e59b302ee0919d703777e35b2aae1a2c5b4ae8050d01ab0f6b96ffb161d1",
+    "count": 12,
+    "passed": 12,
+    "initialHarnessIssue": "Initial test compared Python tuples to persisted JSON lists; corrected round-trip comparison. Initial log retained. Passing regressions include correct failure detection, not 12 product signoffs."
+  },
+  "observations": [
+    {
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-pdfjs.json",
+      "sha256": "70ae31ea535bb9b5519a4fb96e64cc16971adc2541244a6ce968156e99ef8cf0"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-pixels-pypdf.json",
+      "sha256": "10ea761551d470603524a3301f186383223c908b5b465c633569a866a480379e"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/cluster-width-pixels-pypdf.json",
+      "sha256": "2fb22e308914d9b166f56b97ce2b2f089a41e6e174ff7c6c5b637c4d233f5ec2"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/search-bidi-runs.json",
+      "sha256": "47010ac83fe37aef5291553c9a864b28bf9952dc07b2a3401b5e2355b8a3f732"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/search-bidi-runs-pixels.json",
+      "sha256": "ddf2c93195318896f811bbc51e6c54ba38595ebac6a7bd8fcd2a59a55867a482"
+    },
+    {
+      "file": "tests/fixtures/reader-control-20261011/search-bidi-runs-page-pixels.json",
+      "sha256": "ecfb6bda90b494928253a2b4554c837395fa8749eea5883363ab5270185fe05f"
+    }
+  ],
+  "snapshots": [
+    {
+      "source": "tools/pdf-export/browser-bidi-runs-prototype.js",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/browser-bidi-runs-prototype.js",
+      "sha256": "4c6ea51dbfbc871d2a52e90949bfece4617559c7b28839dba4a4622a5ceba7c0"
+    },
+    {
+      "source": "tools/pdf-export/browser-cluster-width-prototype.js",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/browser-cluster-width-prototype.js",
+      "sha256": "142acfe686d9f1864d10fea1ac1752dd482b0b41b50ff6596cdbf11d0585a023"
+    },
+    {
+      "source": "tools/pdf-export/run-browser-unicode.cjs",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/run-browser-unicode.cjs",
+      "sha256": "4ba21003cd0f1508a2e4a191633d3e2ba3252bd384acbb3ca6d2e0ad58b3606e"
+    },
+    {
+      "source": "tools/pdf-export/check-reader-bidi-runs.cjs",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/check-reader-bidi-runs.cjs",
+      "sha256": "55ddcd4a57a772698ea65617b672b698ccc7b1d6cb164783c8f5941fdfda37ae"
+    },
+    {
+      "source": "tools/pdf-export/check-partial-bidi-runs.cjs",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/check-partial-bidi-runs.cjs",
+      "sha256": "8d1398892bcaa5d6e690019b013bb2fbf3fd93f52c85738fd2a84b046c44f233"
+    },
+    {
+      "source": "tools/pdf-export/check-search-bidi-runs.cjs",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/check-search-bidi-runs.cjs",
+      "sha256": "24935b83916df987a6cf1b0f3f8f9b3eea888c03c6f03fdd52e99f05d9d69579"
+    },
+    {
+      "source": "tools/pdf-export/check-reader-cluster-width.cjs",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/check-reader-cluster-width.cjs",
+      "sha256": "ed39d88dd8fffa775fbe543495e9e342ad690bc12c92003c2bfd335f5fdca843"
+    },
+    {
+      "source": "tools/pdf-export/check-partial-cluster-width.cjs",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/check-partial-cluster-width.cjs",
+      "sha256": "d2035b024788cd0dc06a22ef6282ed98ba05aa4e1d18def1abc8cd31bab05de9"
+    },
+    {
+      "source": "tools/pdf-export/verify-bidi-runs.mjs",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/verify-bidi-runs.mjs",
+      "sha256": "ef30b2ab3cf545e12e996de91caab7162ab2ebb1070ed5c801e998b1e856a7f7"
+    },
+    {
+      "source": "tools/pdf-export/audit-search-bidi-runs.py",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/audit-search-bidi-runs.py",
+      "sha256": "efcc949d2c2dd1888fb73c40d08f0ade2d3be3febe3129d09436c07bb6e8747f"
+    },
+    {
+      "source": "tools/pdf-export/test-bidi-runs.py",
+      "file": "tests/fixtures/reader-control-20261011/bidi-runs-tools/test-bidi-runs.py",
+      "sha256": "f8d5c4319a03b980ad873bd51cf0ab474b167772e97d66c7e6caae73e749bc63"
+    }
+  ],
+  "candidateCheck": "python3 tools/native-qa/safari_acceptance.py --check: Inputs and candidate fingerprint valid. No browser acceptance performed.",
+  "cleanup": "All isolated Chrome runs and temporary fixed-allowlist loopback servers closed in finally; no user Safari window or clipboard access; main 5173 untouched.",
+  "searchMetadataCorrection": "Raw search top-level method incorrectly inherited double-click label; per-row method and actual script use text-fragment search. Raw report retained; current tool label corrected."
+}

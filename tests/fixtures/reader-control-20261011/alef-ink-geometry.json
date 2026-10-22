@@ -1,0 +1,60 @@
+{
+  "scope": "Exact visible glyph path multiset and page transform comparison. Tables and browser rendering are checked separately. Matrix tolerance 0.0001 PDF units; not pixel identity or layout/reader acceptance.",
+  "results": [
+    {
+      "label": "words",
+      "baseline": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-actual.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/words-unicode-ordered-record-alef.pdf",
+      "baselineSha256": "8d1419442340550e50a9762cb7718ccd1d6a2a2ccbd3f2a14c0fc1f0117dfec9",
+      "candidateSha256": "c24a5bfc2e25332f32e59f41099aef794cb9164b69409cd5535ec0da3d762df0",
+      "glyphPaints": 158,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 0.0,
+      "withinTolerance": true
+    },
+    {
+      "label": "arabic",
+      "baseline": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-actual.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-alef.pdf",
+      "baselineSha256": "f4f6717a21612a6153b1ce6ae9b0356cc315873ba839902c6dbc82b99581556c",
+      "candidateSha256": "83a8e3a54b23df9ad4e0761e88f43f8b7ecd941f9047978450380b316187ae3f",
+      "glyphPaints": 135,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 1.7053025658242404e-13,
+      "withinTolerance": true
+    },
+    {
+      "label": "hebrew",
+      "baseline": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-actual.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-alef.pdf",
+      "baselineSha256": "09c1cdac92deb5889353f4930e8f380e2158bc027922828f3de0e5aec5a5a6dc",
+      "candidateSha256": "55e3a667787ee77a172a69f591349900a91bd6ef37f024182039cef2642863fa",
+      "glyphPaints": 114,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 0.0,
+      "withinTolerance": true
+    },
+    {
+      "label": "arabic-marked",
+      "baseline": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-actual-marked.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-record-alef-marked.pdf",
+      "baselineSha256": "5addfb81adcc032433f798c9090b9c660f7a03a215b0af6b146d378233af0440",
+      "candidateSha256": "63dde47ab3e987013654a19bac9ad6ee5b6ed9da477f88076e96212353d904ac",
+      "glyphPaints": 126,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 5.684341886080802e-14,
+      "withinTolerance": true
+    },
+    {
+      "label": "hebrew-marked",
+      "baseline": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-actual-marked.pdf",
+      "candidate": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-record-alef-marked.pdf",
+      "baselineSha256": "9bcc78cc0746f802724d120cb155f0c8fbe05154cd5195119f60f52fbba262b5",
+      "candidateSha256": "3b0c8cdf86050a6c5120d9435d4624ba702f939f07d0aec684b706aa30dfb18f",
+      "glyphPaints": 102,
+      "exactPathMultiset": true,
+      "maxTransformDelta": 0.0,
+      "withinTolerance": true
+    }
+  ]
+}

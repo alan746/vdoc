@@ -1,0 +1,101 @@
+{
+  "at": "20261011T202540Z",
+  "state": "passed-in-stated-scope",
+  "applicationSha256": "5b604cc2a82eb9b9752af5c33c3144e38ef03fff31594f9ef2bba994623450bf",
+  "sourceSha256": "b54a4de6009cb1ecc7163af0327ae4ae2f26db2811e90a4c1365173fa84d2aca",
+  "imageSha256": "c88da3b56792f3a834e013b69a071b4d4616c87e941e1fb8773d96438fbb67e6",
+  "checks": [
+    {
+      "name": "native-helper-hidden-image-return",
+      "passed": true,
+      "hiddenIntervalsMs": [
+        18315
+      ],
+      "defaultBudgetMs": 15000
+    }
+  ],
+  "scope": "Production image wait helper in owned Safari tabs; real visibility events and delayed image decode. Not full VDoc preview or native printing acceptance.",
+  "capabilities": {
+    "safari:platformVersion": "26.6.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "26.6.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "25G83",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "companionType": "tab",
+  "outcome": {
+    "state": "resolved",
+    "width": 300,
+    "height": 150
+  },
+  "events": [
+    {
+      "at": 252,
+      "outcome": {
+        "state": "pending"
+      },
+      "kind": "start",
+      "hidden": false
+    },
+    {
+      "at": 424,
+      "outcome": {
+        "state": "pending"
+      },
+      "kind": "visibility",
+      "hidden": true
+    },
+    {
+      "at": 17713,
+      "outcome": {
+        "state": "resolved",
+        "width": 300,
+        "height": 150
+      },
+      "kind": "resolved",
+      "hidden": true
+    },
+    {
+      "at": 18739,
+      "outcome": {
+        "state": "resolved",
+        "width": 300,
+        "height": 150
+      },
+      "kind": "visibility",
+      "hidden": false
+    }
+  ],
+  "ownSessionClosed": true,
+  "requests": [
+    {
+      "path": "/8b4b47eb2eb54f1db0e81806b4579fbb/probe",
+      "time": 35485.960234458
+    },
+    {
+      "path": "/favicon.ico",
+      "time": 35486.177803791
+    },
+    {
+      "path": "/8b4b47eb2eb54f1db0e81806b4579fbb/image",
+      "time": 35486.213779375
+    },
+    {
+      "path": "/8b4b47eb2eb54f1db0e81806b4579fbb/companion",
+      "time": 35486.391780166
+    }
+  ]
+}

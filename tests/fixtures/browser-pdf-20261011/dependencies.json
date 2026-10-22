@@ -1,0 +1,36 @@
+[
+  {
+    "name": "pdf-lib",
+    "version": "1.17.1",
+    "license": "MIT"
+  },
+  {
+    "name": "pdfjs-dist",
+    "version": "5.6.205",
+    "license": "Apache-2.0"
+  },
+  {
+    "name": "playwright",
+    "version": "1.62.1",
+    "license": "Apache-2.0"
+  },
+  {
+    "name": "regenerator-runtime",
+    "version": "0.13.11",
+    "license": "MIT"
+  },
+  {
+    "name": "@pdf-lib/fontkit",
+    "version": "1.1.1",
+    "license": "MIT",
+    "archive": "tmp/browser-pdf-20261011/pdf-lib-fontkit-1.1.1.tgz",
+    "archiveSha256": "6dd0ae9209fce419b2ed76c97166863167b4df56d75fbe3c7f1d1e6e49c85867"
+  },
+  {
+    "name": "harfbuzzjs",
+    "version": "1.6.3",
+    "license": "MIT",
+    "archive": "tmp/browser-pdf-20261011/harfbuzzjs-1.6.3.tgz",
+    "archiveSha256": "d911e1d8ffe0ba977f6a693d3b9a83941384c8df84087ff5d5e5ec8d1f085b8c"
+  }
+]

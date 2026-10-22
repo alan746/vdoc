@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "field": "body",
+      "case": "native-click-blur-and-undo",
+      "committed": "zhong",
+      "passed": true
+    },
+    {
+      "field": "list",
+      "case": "native-click-blur-and-undo",
+      "committed": "zhong",
+      "passed": true
+    },
+    {
+      "field": "table",
+      "case": "native-click-blur-and-undo",
+      "committed": "zhong",
+      "passed": true
+    },
+    {
+      "field": "Document title",
+      "case": "native-click-blur-and-undo",
+      "committed": "zhong",
+      "passed": true
+    },
+    {
+      "failure": "Command '['osascript', '-l', 'JavaScript', 'tmp/safari-native-fields/keys.js', 'undo']' returned non-zero exit status 1."
+    }
+  ],
+  "allPassed": false
+}

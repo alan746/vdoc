@@ -1,0 +1,117 @@
+{
+  "at": "2026-10-11T20:16:25.023Z",
+  "browser": "154.0.8037.98",
+  "sourceSha256": "b54a4de6009cb1ecc7163af0327ae4ae2f26db2811e90a4c1365173fa84d2aca",
+  "toolSha256": "2afca660e4e7fb4e8be93b8137ef17dc0cede8a51e23f6770855b9ab8473530f",
+  "scope": "Real owned Chrome image loading/decoding with controlled document.hidden and visibilitychange. Not native background-tab/Safari or printing acceptance.",
+  "requests": [
+    {
+      "scenario": "hidden-load",
+      "url": "http://127.0.0.1:4194/"
+    },
+    {
+      "scenario": "hidden-load",
+      "url": "http://127.0.0.1:4194/image.png"
+    },
+    {
+      "scenario": "resume-budget",
+      "url": "http://127.0.0.1:4194/"
+    },
+    {
+      "scenario": "resume-budget",
+      "url": "http://127.0.0.1:4194/image.png"
+    },
+    {
+      "scenario": "hidden-error",
+      "url": "http://127.0.0.1:4194/"
+    },
+    {
+      "scenario": "hidden-error",
+      "url": "http://127.0.0.1:4194/image.png"
+    },
+    {
+      "scenario": "hidden-abort",
+      "url": "http://127.0.0.1:4194/"
+    },
+    {
+      "scenario": "hidden-abort",
+      "url": "http://127.0.0.1:4194/image.png"
+    },
+    {
+      "scenario": "visible-timeout",
+      "url": "http://127.0.0.1:4194/"
+    },
+    {
+      "scenario": "visible-timeout",
+      "url": "http://127.0.0.1:4194/image.png"
+    }
+  ],
+  "results": [
+    {
+      "scenario": "hidden-load",
+      "passed": true,
+      "checks": [
+        {
+          "state": "pending"
+        },
+        {
+          "state": "resolved",
+          "width": 1,
+          "height": 1
+        }
+      ]
+    },
+    {
+      "scenario": "resume-budget",
+      "passed": true,
+      "checks": [
+        {
+          "state": "pending"
+        },
+        {
+          "state": "rejected",
+          "name": "Error",
+          "message": "An image is taking too long to load. Return to editing and check the images before printing."
+        }
+      ]
+    },
+    {
+      "scenario": "hidden-error",
+      "passed": true,
+      "checks": [
+        {
+          "state": "rejected",
+          "name": "Error",
+          "message": "Image 1 could not be loaded. Return to editing and replace it before printing."
+        }
+      ]
+    },
+    {
+      "scenario": "hidden-abort",
+      "passed": true,
+      "checks": [
+        {
+          "state": "rejected",
+          "name": "AbortError",
+          "message": "Preview closed."
+        },
+        {
+          "state": "rejected",
+          "name": "AbortError",
+          "message": "Preview closed."
+        }
+      ]
+    },
+    {
+      "scenario": "visible-timeout",
+      "passed": true,
+      "checks": [
+        {
+          "state": "rejected",
+          "name": "Error",
+          "message": "An image is taking too long to load. Return to editing and check the images before printing."
+        }
+      ]
+    }
+  ]
+}

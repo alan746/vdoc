@@ -1,0 +1,440 @@
+[
+  {
+    "fixture": "B: tests/fixtures/safari-preview/source.vdoc.json",
+    "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/safari-native-20261011/normalized-native-100.pdf",
+    "sha256": "60fdb609b567fcabfacad676e92c1bba66a3b8387663cc769f11d99a74ab65cb",
+    "passed": false,
+    "failures": [
+      "Page 1: hindiCodepointsPreserved",
+      "Page 2: hindiCodepointsPreserved",
+      "Page 3: hindiCodepointsPreserved",
+      "Page 4: hindiCodepointsPreserved"
+    ],
+    "pages": [
+      {
+        "page": 1,
+        "rows": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 2,
+        "rows": [
+          "09",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 3,
+        "rows": [
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 4,
+        "rows": [
+          "33",
+          "34",
+          "35",
+          "36"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 5,
+        "rows": [],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": true,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      }
+    ],
+    "limits": "Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping.",
+    "logicalHindiWords": 0
+  },
+  {
+    "fixture": "B: tests/fixtures/safari-preview/source.vdoc.json",
+    "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/safari-native-20261011/normalized-native-101.pdf",
+    "sha256": "51aaebbc8dae0062ac342d9496169dbcdb441a89d453b95f949c0da8d9400ed2",
+    "passed": false,
+    "failures": [
+      "Page 1: hindiCodepointsPreserved",
+      "Page 2: hindiCodepointsPreserved",
+      "Page 3: hindiCodepointsPreserved",
+      "Page 4: hindiCodepointsPreserved"
+    ],
+    "pages": [
+      {
+        "page": 1,
+        "rows": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 2,
+        "rows": [
+          "09",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 3,
+        "rows": [
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 4,
+        "rows": [
+          "33",
+          "34",
+          "35",
+          "36"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 5,
+        "rows": [],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": true,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      }
+    ],
+    "limits": "Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping.",
+    "logicalHindiWords": 0
+  },
+  {
+    "fixture": "B: tests/fixtures/safari-preview/source.vdoc.json",
+    "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/safari-native-20261011/normalized-native-93.pdf",
+    "sha256": "f79783dd545369f070d0b053df70f678f6ff8ff71fa267e1b075bff623858f6a",
+    "passed": false,
+    "failures": [
+      "Page 1: hindiCodepointsPreserved",
+      "Page 2: hindiCodepointsPreserved",
+      "Page 3: hindiCodepointsPreserved",
+      "Page 4: hindiCodepointsPreserved"
+    ],
+    "pages": [
+      {
+        "page": 1,
+        "rows": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 2,
+        "rows": [
+          "09",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 3,
+        "rows": [
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 4,
+        "rows": [
+          "33",
+          "34",
+          "35",
+          "36"
+        ],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": false,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      },
+      {
+        "page": 5,
+        "rows": [],
+        "checks": {
+          "rowsOnExpectedPage": true,
+          "headerOnce": true,
+          "footerOnce": true,
+          "pageNumberOnce": true,
+          "finalHeadingOnLastPage": true,
+          "finalBodyOnLastPage": true,
+          "tableEndOnFourthPage": true,
+          "selectableText": true,
+          "hindiCodepointsPreserved": true,
+          "noUnmappedCharacters": true,
+          "imagePresentOnFirstPage": true,
+          "noTextOutsidePage": true
+        }
+      }
+    ],
+    "limits": "Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping.",
+    "logicalHindiWords": 0
+  }
+]

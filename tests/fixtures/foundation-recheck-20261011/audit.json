@@ -1,0 +1,192 @@
+{
+  "at": "2026-10-11T21:11:07.933845+00:00",
+  "applicationSha256": "d4d031f5f51cec43eeb87ad40ae5dddb2745ee878a86fb9f30cbab0562dfccdf",
+  "scope": "Foundation regression plus late Paged.js cleanup after unmount; no native IME visibility or PDF scaling signoff",
+  "productChange": "Capture the pending Previewer and reclaim resources after its promise settles if the component has unmounted, for both normal and compacted layouts.",
+  "validation": {
+    "beforeChangeFullSuite": {
+      "files": 139,
+      "tests": 1969,
+      "passed": true,
+      "candidate": "0f63bebda54eef27f2beaf8bb2a476988d02ff966557f1e18d37887c70b26141"
+    },
+    "newRegressionBeforeFix": {
+      "failed": 2,
+      "reason": "Late styles remain connected after close on both resolve and reject"
+    },
+    "afterChangeRelatedSuite": {
+      "tests": 87,
+      "passed": true
+    },
+    "typecheck": "passed",
+    "eslint": "passed",
+    "realChrome": {
+      "scope": "Real Paged.js deferred beforePreview on the actual React component; controlled close while pending, no native print or IME",
+      "browser": "154.0.8037.98",
+      "checks": [
+        {
+          "reject": false,
+          "styles": 0,
+          "styleConnected": false,
+          "hostChildren": 0,
+          "statuses": [],
+          "stopped": true
+        },
+        {
+          "reject": true,
+          "styles": 0,
+          "styleConnected": false,
+          "hostChildren": 0,
+          "statuses": [],
+          "stopped": true
+        }
+      ],
+      "passed": true
+    },
+    "safariReport": "tests/fixtures/safari-webdriver/20261011T210841Z/report.json",
+    "safariLastPageVisual": "Viewed; final heading and paragraph present. This is preview, not native printed PDF.",
+    "servedSource": {
+      "url": "http://localhost:5173/app/print-preview/page.tsx",
+      "sourceExactlyMatches": true,
+      "sha256": "5d9d8908d3ae28cfde1247eab54a614aae945dac7b3b09826884c8abb785869e"
+    }
+  },
+  "harnessFailures": [
+    "Initial browser script waited for hidden import input to be visible. Changed to attached.",
+    "ReactDOM and React Vite interop required default exports; two failed attempts retained.",
+    "First after-fix unit run found two obsolete cleanup call-count assertions; updated to include final cleanup after settlement. No behavior assertion removed."
+  ],
+  "boundaries": [
+    "Chrome QA deliberately holds the real beforePreview hook; success branch clears the cancellation guard to force a late successful layout. This is controlled lifecycle coverage, not a normal end-user workflow.",
+    "Safari uses its own WebDriver session and QA copy; no personal windows inspected.",
+    "CGPreflightScreenCaptureAccess still false; no permission requested or image capture attempted. Seven candidate-window rows remain pending.",
+    "No PDF generation, text-selection fix, non-100% native print fix or original source pairing in this run.",
+    "The baseline full suite predates the one-file fix; only the affected 87 tests and browser workflows were rerun on the new candidate."
+  ],
+  "files": [
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/after-tests-final.log",
+      "sha256": "68e0c1ba28560875ec54845c7557ca854c7076d5af36834e033f273ce3212406"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/after-tests.log",
+      "sha256": "475fd4d10d471c88a59cda6efdc6923d6765dc246560d0461a0b5d32426af154"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/before-tests.log",
+      "sha256": "e4a7615609d2afb713a429a4e6beb83ffd0bce0b574d539e589997692bc96a3a"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-cleanup.cjs",
+      "sha256": "8b9e76a8c145cd4d8fa9b55a22d3186c7dea0a04ce15bed88377d852711d5b6c"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-cleanup.first.cjs",
+      "sha256": "139a3cfd8465fbae46489c509452f695f7921b0bf7f42b37c077848c28d7c1cc"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-cleanup.second.cjs",
+      "sha256": "1e741388247ef70723c301c052491f9a672cf58795dce942edebbda565dead5d"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-cleanup.third.cjs",
+      "sha256": "e735ca93ae08f5bc438c351af41c23ceec6bbc6bb5889f82789635e8c9ddd5e8"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-report.first.json",
+      "sha256": "1f440ef1bbd25fe6341c2657fb2dd4873e2f04b3254c933eca47332a5cffb1ad"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-report.json",
+      "sha256": "726b1e124903358d4eddf6a4b14ec3566602b82fd023e395a172f70303ebbef6"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-report.second.json",
+      "sha256": "7134bb3f586af0cdf16fd45d552281c13f1177591db5b7878b8e580e189e1301"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/browser-late-report.third.json",
+      "sha256": "4950bb4efe323842c86569d2c40f2b8bf96d4dd5fe5b881bed267cf6219ecb2c"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/capture-capability.json",
+      "sha256": "2a9e3de962a81caef18e4afb64b1b90fd4d18100d551ae827b39272cdab1c0e6"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/full-tests.log",
+      "sha256": "c44809e422d5ce79201a72bea00ed077a89499e5dfaf69d5951c8c05fa1a71bc"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/page.tsx.after",
+      "sha256": "5d9d8908d3ae28cfde1247eab54a614aae945dac7b3b09826884c8abb785869e"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/page.tsx.before",
+      "sha256": "051f7d7c96245bd1a9c012f1089195951c0789c530b03c94ed89ce1b44c58e95"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/print-preview-page.test.ts.after",
+      "sha256": "e113a83e24642f8b14134cc70600d6e46b1d21dbb2919056609bc3e2e6f84926"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/safari-run.log",
+      "sha256": "d2d3127a490b1f32751eb33ef26c45032b86f4ee3146e1a1b986b80a2a24fa1d"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/served-source-check.json",
+      "sha256": "a44339ee33a4959528ddd051f029334ece9f2f7779fbb290f691c36c84a09a11"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/source-manifest.json",
+      "sha256": "97107bf82681b633c8dfd26380e2eae6740ed77b4bd06d1187c81958feecfb64"
+    },
+    {
+      "file": "tests/fixtures/foundation-recheck-20261011/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/driver.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/imported-document.json",
+      "sha256": "38c8f863929b8e39095b899defb540e0c4ee5912fc46ba5447a8872f6d2e76e0"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/last-page.png",
+      "sha256": "e605404a2126089844db10a1ebe952422b278dd7a9396749a1d2f43420f5f714"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/preview-1.png",
+      "sha256": "6165b50f2786cc6b087e41e3424a5c0d24c51296c45f6444708f8f5d5aba43a8"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/preview-2.png",
+      "sha256": "6165b50f2786cc6b087e41e3424a5c0d24c51296c45f6444708f8f5d5aba43a8"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/preview-3.png",
+      "sha256": "6165b50f2786cc6b087e41e3424a5c0d24c51296c45f6444708f8f5d5aba43a8"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/reloaded-document.json",
+      "sha256": "38c8f863929b8e39095b899defb540e0c4ee5912fc46ba5447a8872f6d2e76e0"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/report.json",
+      "sha256": "8e6fa4ed2150f4bb2e1a75f7d2331d3ca5e217e13907f241800a0160d3179854"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/search-100.png",
+      "sha256": "aac50d9a322c0e85337036fecf6f275b1588196e5a732a1e1d3f960a157f72fb"
+    },
+    {
+      "file": "tests/fixtures/safari-webdriver/20261011T210841Z/search-125.png",
+      "sha256": "ee39c5eb73bc937b45c0bb6a7a74185108e9f124015cc631845144a46dd460e4"
+    }
+  ]
+}

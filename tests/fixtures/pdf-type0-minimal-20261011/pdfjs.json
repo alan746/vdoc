@@ -1,0 +1,509 @@
+{
+  "at": "2026-10-11T20:49:15.807Z",
+  "browser": "154.0.8037.98",
+  "scope": "Official PDF.js PDFPageView canvas/text layer; DOM Range full selection read through Selection.toString, no clipboard or Ctrl-C event. Separate from PDFium plugin and raw getTextContent concatenation. Not an arbitrary third-party viewer or assistive-technology signoff.",
+  "requests": [
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/",
+    "/pdf_viewer.css",
+    "/pdf.mjs",
+    "/pdf_viewer.mjs",
+    "/pdf.worker.mjs",
+    "/images/loading-icon.gif"
+  ],
+  "results": [
+    {
+      "label": "hebrew-source-visual",
+      "mode": "source-visual",
+      "file": "output/pdf/type0-minimal-20261011/hebrew-source-visual.pdf",
+      "pdfSha256": "f071fa48b88d94384cfb15cc4a770156e915e823c6d37e5e82a611fdcfb12df5",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "selectedText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+      "textContent": "QA embedded font 123שלוםעולםבדיקתמסמךעבריתכתיבהטבלה",
+      "rawText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 109.390625,
+            "width": 237.83172607421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלום",
+          "dir": "rtl",
+          "rect": {
+            "x": 703.96875,
+            "y": 171.390625,
+            "width": 49.0064697265625,
+            "height": 22
+          }
+        },
+        {
+          "text": "עולם",
+          "dir": "rtl",
+          "rect": {
+            "x": 651.8125,
+            "y": 171.390625,
+            "width": 46.21142578125,
+            "height": 22
+          }
+        },
+        {
+          "text": "בדיקת",
+          "dir": "rtl",
+          "rect": {
+            "x": 586.3125,
+            "y": 171.390625,
+            "width": 59.603759765625,
+            "height": 22
+          }
+        },
+        {
+          "text": "מסמך",
+          "dir": "rtl",
+          "rect": {
+            "x": 525.640625,
+            "y": 171.390625,
+            "width": 54.70330810546875,
+            "height": 22
+          }
+        },
+        {
+          "text": "עברית",
+          "dir": "rtl",
+          "rect": {
+            "x": 695.234375,
+            "y": 233.375,
+            "width": 57.7078857421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "כתיבה",
+          "dir": "rtl",
+          "rect": {
+            "x": 631.71875,
+            "y": 233.375,
+            "width": 57.55291748046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "טבלה",
+          "dir": "rtl",
+          "rect": {
+            "x": 574,
+            "y": 233.375,
+            "width": 51.81561279296875,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": false,
+      "rawMatchCollapsed": false,
+      "screenshot": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-hebrew-source-visual.png",
+      "errors": []
+    },
+    {
+      "label": "hebrew-source-logical",
+      "mode": "source-logical",
+      "file": "output/pdf/type0-minimal-20261011/hebrew-source-logical.pdf",
+      "pdfSha256": "50ecfc24c0b9fbac9fc381c4912b8212f064d345f5df97d0abf335b2b91a1227",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "selectedText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+      "textContent": "QA embedded font 123שלוםעולםבדיקתמסמךעבריתכתיבהטבלה",
+      "rawText": "QA embedded font 123\nשלוםעולםבדיקתמסמך\nעבריתכתיבהטבלה",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 109.390625,
+            "width": 237.83172607421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ש",
+          "dir": "rtl",
+          "rect": {
+            "x": 736.921875,
+            "y": 171.390625,
+            "width": 15.765625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ל",
+          "dir": "rtl",
+          "rect": {
+            "x": 725.40625,
+            "y": 171.390625,
+            "width": 11.734375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ו",
+          "dir": "rtl",
+          "rect": {
+            "x": 718.828125,
+            "y": 171.390625,
+            "width": 7.046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ם",
+          "dir": "rtl",
+          "rect": {
+            "x": 703.96875,
+            "y": 171.390625,
+            "width": 15.421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ע",
+          "dir": "rtl",
+          "rect": {
+            "x": 685,
+            "y": 171.390625,
+            "width": 13.21875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ו",
+          "dir": "rtl",
+          "rect": {
+            "x": 678.328125,
+            "y": 171.390625,
+            "width": 7.046875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ל",
+          "dir": "rtl",
+          "rect": {
+            "x": 666.890625,
+            "y": 171.390625,
+            "width": 11.734375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ם",
+          "dir": "rtl",
+          "rect": {
+            "x": 651.8125,
+            "y": 171.390625,
+            "width": 15.421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ב",
+          "dir": "rtl",
+          "rect": {
+            "x": 633.3125,
+            "y": 171.390625,
+            "width": 12.390625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ד",
+          "dir": "rtl",
+          "rect": {
+            "x": 621.640625,
+            "y": 171.390625,
+            "width": 11.03125,
+            "height": 22
+          }
+        },
+        {
+          "text": "י",
+          "dir": "rtl",
+          "rect": {
+            "x": 615.125,
+            "y": 171.390625,
+            "width": 6.984375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ק",
+          "dir": "rtl",
+          "rect": {
+            "x": 601.3125,
+            "y": 171.390625,
+            "width": 14.65625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ת",
+          "dir": "rtl",
+          "rect": {
+            "x": 586.3125,
+            "y": 171.390625,
+            "width": 15.265625,
+            "height": 22
+          }
+        },
+        {
+          "text": "מ",
+          "dir": "rtl",
+          "rect": {
+            "x": 565.8125,
+            "y": 171.390625,
+            "width": 15.234375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ס",
+          "dir": "rtl",
+          "rect": {
+            "x": 552.15625,
+            "y": 171.390625,
+            "width": 14.625,
+            "height": 22
+          }
+        },
+        {
+          "text": "מ",
+          "dir": "rtl",
+          "rect": {
+            "x": 537.640625,
+            "y": 171.390625,
+            "width": 15.234375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ך",
+          "dir": "rtl",
+          "rect": {
+            "x": 525.640625,
+            "y": 171.390625,
+            "width": 11.625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ע",
+          "dir": "rtl",
+          "rect": {
+            "x": 739.9375,
+            "y": 233.375,
+            "width": 13.21875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ב",
+          "dir": "rtl",
+          "rect": {
+            "x": 727.3125,
+            "y": 233.375,
+            "width": 12.390625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ר",
+          "dir": "rtl",
+          "rect": {
+            "x": 716.359375,
+            "y": 233.375,
+            "width": 11.21875,
+            "height": 22
+          }
+        },
+        {
+          "text": "י",
+          "dir": "rtl",
+          "rect": {
+            "x": 709.9375,
+            "y": 233.375,
+            "width": 6.984375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ת",
+          "dir": "rtl",
+          "rect": {
+            "x": 695.234375,
+            "y": 233.375,
+            "width": 15.265625,
+            "height": 22
+          }
+        },
+        {
+          "text": "כ",
+          "dir": "rtl",
+          "rect": {
+            "x": 678.015625,
+            "y": 233.375,
+            "width": 12.59375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ת",
+          "dir": "rtl",
+          "rect": {
+            "x": 662.921875,
+            "y": 233.375,
+            "width": 15.265625,
+            "height": 22
+          }
+        },
+        {
+          "text": "י",
+          "dir": "rtl",
+          "rect": {
+            "x": 656.734375,
+            "y": 233.375,
+            "width": 6.984375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ב",
+          "dir": "rtl",
+          "rect": {
+            "x": 645.53125,
+            "y": 233.375,
+            "width": 12.390625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ה",
+          "dir": "rtl",
+          "rect": {
+            "x": 631.71875,
+            "y": 233.375,
+            "width": 15.671875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ט",
+          "dir": "rtl",
+          "rect": {
+            "x": 611.875,
+            "y": 233.375,
+            "width": 14.171875,
+            "height": 22
+          }
+        },
+        {
+          "text": "ב",
+          "dir": "rtl",
+          "rect": {
+            "x": 599.25,
+            "y": 233.375,
+            "width": 12.390625,
+            "height": 22
+          }
+        },
+        {
+          "text": "ל",
+          "dir": "rtl",
+          "rect": {
+            "x": 587.8125,
+            "y": 233.375,
+            "width": 11.734375,
+            "height": 22
+          }
+        },
+        {
+          "text": "ה",
+          "dir": "rtl",
+          "rect": {
+            "x": 574,
+            "y": 233.375,
+            "width": 15.671875,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": false,
+      "rawMatchCollapsed": false,
+      "screenshot": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-hebrew-source-logical.png",
+      "errors": []
+    },
+    {
+      "label": "hebrew-page-visual",
+      "mode": "page-visual",
+      "file": "output/pdf/type0-minimal-20261011/hebrew-page-visual.pdf",
+      "pdfSha256": "9d7d17c4677c2de46e59c7c24c03bc50eeeea62bf7684f8469664ab19658cb4c",
+      "source": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "selectedText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "textContent": "QA embedded font 123שלום עולם בדיקת מסמךעברית כתיבה טבלה",
+      "rawText": "QA embedded font 123\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה",
+      "spans": [
+        {
+          "text": "QA embedded font 123",
+          "dir": "ltr",
+          "rect": {
+            "x": 79.015625,
+            "y": 109.390625,
+            "width": 237.83172607421875,
+            "height": 22
+          }
+        },
+        {
+          "text": "שלום עולם בדיקת מסמך",
+          "dir": "rtl",
+          "rect": {
+            "x": 525.640625,
+            "y": 171.390625,
+            "width": 227.37091064453125,
+            "height": 22
+          }
+        },
+        {
+          "text": "עברית כתיבה טבלה",
+          "dir": "rtl",
+          "rect": {
+            "x": 574,
+            "y": 233.375,
+            "width": 178.99005126953125,
+            "height": 22
+          }
+        }
+      ],
+      "pages": 1,
+      "version": "5.6.205",
+      "matchCollapsed": true,
+      "rawMatchCollapsed": true,
+      "screenshot": "tests/fixtures/pdf-type0-minimal-20261011/pdfjs-hebrew-page-visual.png",
+      "errors": []
+    }
+  ]
+}

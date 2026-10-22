@@ -1,0 +1,16 @@
+{
+  "scale": 102,
+  "file": "/Users/ph.qian/Desktop/Vdoc/output/pdf/safari-native-20261011/local-production-102.pdf",
+  "bytes": 231523,
+  "sha256": "3fa2dd4268b1af0c06b5b9dd472ecc33e9bfa45e34cc05e1a3c2ca8297626c2c",
+  "pdfAction": {
+    "exit": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "exit": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

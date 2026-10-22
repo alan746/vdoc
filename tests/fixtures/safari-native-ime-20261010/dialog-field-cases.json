@@ -1,0 +1,8 @@
+{
+  "results": [
+    {
+      "failure": "Command '['osascript', '-l', 'JavaScript', 'tmp/safari-native-bridge/keys.js']' returned non-zero exit status 1."
+    }
+  ],
+  "allPassed": false
+}

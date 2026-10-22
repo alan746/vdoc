@@ -1,0 +1,66 @@
+{
+  "sourceText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+  "sourceUnchanged": true,
+  "sha256": "b1f3916a63c459a94587c4c946db09c89fc096d6f343aee83429441b68934933",
+  "measurements": [
+    {
+      "text": "Browser PDF — Hebrew words",
+      "domWidth": 312.03125,
+      "fontWidth": 311.96,
+      "delta": 0.07125000000002046
+    },
+    {
+      "text": "שלום עולם בדיקת מסמך",
+      "domWidth": 227.375,
+      "fontWidth": 227.30399999999997,
+      "delta": 0.07100000000002638
+    },
+    {
+      "text": "עברית כתיבה טבלה",
+      "domWidth": 179,
+      "fontWidth": 178.948,
+      "delta": 0.05200000000002092
+    },
+    {
+      "text": "שלום בעברית עולם",
+      "domWidth": 177.40625,
+      "fontWidth": 177.364,
+      "delta": 0.04224999999996726
+    },
+    {
+      "text": "Table cell",
+      "domWidth": 94.046875,
+      "fontWidth": 94.028,
+      "delta": 0.018874999999994202
+    },
+    {
+      "text": "עברית",
+      "domWidth": 57.71875,
+      "fontWidth": 57.705999999999996,
+      "delta": 0.01274999999998272
+    },
+    {
+      "text": "Different context",
+      "domWidth": 174.328125,
+      "fontWidth": 174.306,
+      "delta": 0.022124999999988404
+    },
+    {
+      "text": "שלום",
+      "domWidth": 49,
+      "fontWidth": 48.994,
+      "delta": 0.005999999999971806
+    }
+  ],
+  "fullRun": true,
+  "engine": "pdfkit@0.20.2",
+  "download": {
+    "sha256": "b1f3916a63c459a94587c4c946db09c89fc096d6f343aee83429441b68934933"
+  },
+  "requests": [
+    "/",
+    "/pdfkit.js",
+    "/font.ttf",
+    "/font.ttf"
+  ]
+}

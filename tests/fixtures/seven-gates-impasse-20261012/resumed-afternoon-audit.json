@@ -1,0 +1,52 @@
+{
+  "resumedTurns": [
+    {
+      "at": "2026-10-12T18:33:34.802981+00:00",
+      "resumedGoalTurn": 1,
+      "previousGoalTurnClassification": "no progress: prior resumed audit ended with unchanged mandatory evidence blockers; intervening heartbeats were also no progress.",
+      "currentTurnClassification": "no progress: renewed external checks found no changed prerequisites.",
+      "checks": {
+        "newVdocRelatedDesktopDownloadsFilesSince": "2026-10-12T05:43:02Z",
+        "newFiles": [],
+        "CGPreflightScreenCaptureAccess": false,
+        "currentSafariTab": "Not an identified local VDoc target; no page content or other windows accessed."
+      },
+      "decisionRequested": "Keep G4/G5 as pre-AI hard gates, or explicitly defer these two evidence-dependent gates; G3 defect remains unwaived. Text-only scope question, no request for credentials or file upload through the question tool.",
+      "decisionReceived": false,
+      "requiredBlocker": "G4 candidate visibility and G5 exact historical source absent; no scope change authorized.",
+      "G3": "Open technical defect; no previously rejected implementation promoted.",
+      "newPasses": 0,
+      "aiStarted": false
+    },
+    {
+      "at": "2026-10-12T18:34:12.325022+00:00",
+      "resumedGoalTurn": 2,
+      "previousGoalTurnClassification": "no progress: renewed source/permission/current-tab checks found the same blockers; scope question submitted but unanswered.",
+      "currentTurnClassification": "no progress: authoritative ledger unchanged and no user decision or new evidence received.",
+      "decisionReceived": false,
+      "requiredBlocker": "G4 native candidate observations and G5 exact historical source unavailable; requested deferral not authorized. G3 remains unresolved independently.",
+      "noLiveJobAwaited": true,
+      "actionsNotRepeated": [
+        "Permission probes",
+        "Safari access",
+        "Full regression",
+        "Rejected PDF variants",
+        "Scope question"
+      ],
+      "newPasses": 0,
+      "aiStarted": false
+    },
+    {
+      "at": "2026-10-12T18:34:42.348164+00:00",
+      "resumedGoalTurn": 3,
+      "previousGoalTurnClassification": "no progress: same required evidence absent and scope question unanswered.",
+      "currentTurnClassification": "no progress: current goal/ledger and prior observations confirm unchanged blockers; no user response or new evidence in the continuation.",
+      "decisionReceived": false,
+      "requiredBlocker": "G4 candidate visibility and G5 exact historical source remain unavailable, with no authorization to defer. G3 remains unresolved separately.",
+      "blockedThresholdMet": true,
+      "noLiveJobAwaited": true,
+      "newPasses": 0,
+      "aiStarted": false
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+Header cancel passed
+Header space passed
+Header enter passed
+Header backspace passed
+Header commit/reload passed
+Version name cancel passed
+Version name space passed
+Traceback (most recent call last):
+  File "/Users/ph.qian/Desktop/Vdoc/tmp/safari-native-bridge/dialog-fields.py", line 12, in <module>
+    command('focus-field',name=field);before=state();prior=before['fields'][field];keys(*codes);candidate=state();assert any(e['type']=='compositionupdate' and e['trusted'] and e.get('target')==field for e in candidate['events']);keys(*ending);after=state();assert field in after['fields'],'IME submitted/closed the dialog';assert any(e['type']=='compositionend' and e['trusted'] for e in after['events']);assert after['snapshot']['document']==before['snapshot']['document'],'Candidate prematurely changed body';assert after['versions']==before['versions'],'Candidate created a version'
+                                                                                                                                                                                                                                      ^^^^^^^^^^^^^
+  File "/Users/ph.qian/Desktop/Vdoc/tmp/safari-native-bridge/helpers.py", line 16, in keys
+    subprocess.run(['osascript','-l','JavaScript',str(p/'keys.js'),*map(str,codes)],check=True,capture_output=True);time.sleep(.7)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['osascript', '-l', 'JavaScript', 'tmp/safari-native-bridge/keys.js', '36']' returned non-zero exit status 1.

@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 /Users/ph.qian/Desktop/Vdoc
+
+ ✓ tests/list-markers.test.ts (16 tests) 840ms
+ ✓ tests/preview-layout.test.ts (32 tests) 233ms
+
+ Test Files  2 passed (2)
+      Tests  48 passed (48)
+   Start at  20:20:09
+   Duration  2.16s (transform 203ms, setup 16ms, collect 346ms, tests 1.07s, environment 419ms, prepare 64ms)
+

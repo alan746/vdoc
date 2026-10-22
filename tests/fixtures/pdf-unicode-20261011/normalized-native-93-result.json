@@ -1,0 +1,18 @@
+{
+  "scale": 93,
+  "file": "output/pdf/safari-native-20261011/normalized-native-93.pdf",
+  "nativePageLabel": "All 5 Pages",
+  "sha256": "f79783dd545369f070d0b053df70f678f6ff8ff71fa267e1b075bff623858f6a",
+  "bytes": 195838,
+  "sourceUnchanged": null,
+  "pdfButtonAction": {
+    "returncode": 1,
+    "stdout": "AX action result: -25204\n",
+    "stderr": ""
+  },
+  "saveAction": {
+    "returncode": 0,
+    "stdout": "AX action result: 0\n",
+    "stderr": ""
+  }
+}

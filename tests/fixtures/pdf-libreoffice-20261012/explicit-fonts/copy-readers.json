@@ -1,0 +1,214 @@
+{
+  "at": "2026-10-12T05:11:42.128Z",
+  "browser": "154.0.8037.98",
+  "scope": "Stock Chrome plugin selectAll plus official PDF.js text-layer copy handler for each page. Synthetic ClipboardEvent with isolated in-memory DataTransfer; no system clipboard or native key press. Raw Selection.toString retained separately. Known generated margins are excluded only for a separate body comparison, with occurrence counts retained. Neither raw nor body comparison silently changes Unicode or word order.",
+  "results": [
+    {
+      "label": "words",
+      "file": "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/words.pdf",
+      "pdfSha256": "2c59ad6cf0ca5344df65ae1b4e6ede29ac30554ad748d23a5824ee78fd4ad7f6",
+      "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+      "chrome": {
+        "selectedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा मेंदस्तावेज़ लिखना।\nदुनिया नमस्तेशिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+        "match": false,
+        "expectedLength": 164,
+        "actualLength": 162,
+        "firstDifference": 58,
+        "expectedContext": "PDF — local text and vectors हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "actualContext": "PDF — local text and vectors हिन्दी हिंदी भाषा मेंदस्तावेज़ लिखना। दुनिया नमस्तेशिक्षा क्षत्रिय प्रार्थना। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 164,
+          "actualLength": 162,
+          "firstDifference": 58,
+          "expectedContext": "PDF — local text and vectors हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "actualContext": "PDF — local text and vectors हिन्दी हिंदी भाषा मेंदस्तावेज़ लिखना। दुनिया नमस्तेशिक्षा क्षत्रिय प्रार्थना। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "Browser PDF — local text and vectors\nहि\u0015न् दी\u0018 हिं \u0015\u001a दी\u0018 भा\u001cषा\u001c में \u001f दीस् ता\u001cवे#ज़ लि&खना\u001c।दु\nनिनाया\u001c नामेंस् ता# लि-क्षा\u001c क्षा नि/या प्रा \u001cर्थ 2 ना\u001c।\nRepeat हि\u0015न् दी\u0018 and हिं \u0015\u001a दी\u0018 with contextual shapes."
+        ],
+        "copies": [
+          "Browser PDF — local text and vectors\nहि\u0015न् दी\u0018 हिं \u0015\u001a दी\u0018 भा\u001cषा\u001c में \u001f दीस् ता\u001cवे#ज़ लि&खना\u001c।दु\nनिनाया\u001c नामेंस् ता# लि-क्षा\u001c क्षा नि/या प्रा \u001cर्थ 2 ना\u001c।\nRepeat हि\u0015न् दी\u0018 and हिं \u0015\u001a दी\u0018 with contextual shapes."
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "Browser PDF — local text and vectors\nहि\u0015न् दी\u0018 हिं \u0015\u001a दी\u0018 भा\u001cषा\u001c में \u001f दीस् ता\u001cवे#ज़ लि&खना\u001c।दु\nनिनाया\u001c नामेंस् ता# लि-क्षा\u001c क्षा नि/या प्रा \u001cर्थ 2 ना\u001c।\nRepeat हि\u0015न् दी\u0018 and हिं \u0015\u001a दी\u0018 with contextual shapes.",
+        "copiedText": "Browser PDF — local text and vectors\nहि\u0015न् दी\u0018 हिं \u0015\u001a दी\u0018 भा\u001cषा\u001c में \u001f दीस् ता\u001cवे#ज़ लि&खना\u001c।दु\nनिनाया\u001c नामेंस् ता# लि-क्षा\u001c क्षा नि/या प्रा \u001cर्थ 2 ना\u001c।\nRepeat हि\u0015न् दी\u0018 and हिं \u0015\u001a दी\u0018 with contextual shapes.",
+        "match": false,
+        "expectedLength": 164,
+        "actualLength": 208,
+        "firstDifference": 39,
+        "expectedContext": "Browser PDF — local text and vectors हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "actualContext": "Browser PDF — local text and vectors हि\u0015न् दी\u0018 हिं \u0015\u001a दी\u0018 भा\u001cषा\u001c में \u001f दीस् ता\u001cवे#ज़ लि&खना\u001c।दु निनाया\u001c नामेंस् ता# लि-क्षा\u001c क्षा नि/या प्रा \u001cर्थ 2 ना\u001c। Repeat हि\u0015न् दी\u0018 and हिं \u0015\u001a दी\u0018 with contextua",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 164,
+          "actualLength": 208,
+          "firstDifference": 39,
+          "expectedContext": "Browser PDF — local text and vectors हिन्दी हिंदी भाषा में दस्तावेज़ लिखना। दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "actualContext": "Browser PDF — local text and vectors हि\u0015न् दी\u0018 हिं \u0015\u001a दी\u0018 भा\u001cषा\u001c में \u001f दीस् ता\u001cवे#ज़ लि&खना\u001c।दु निनाया\u001c नामेंस् ता# लि-क्षा\u001c क्षा नि/या प्रा \u001cर्थ 2 ना\u001c। Repeat हि\u0015न् दी\u0018 and हिं \u0015\u001a दी\u0018 with contextua",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      }
+    },
+    {
+      "label": "arabic",
+      "file": "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/arabic.pdf",
+      "pdfSha256": "ff0eae7b0390f78649fd53340a1d8fcf5343281fb34f97727a71113bb998a3ec",
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة",
+      "chrome": {
+        "selectedText": "Browser PDF — Arabic words\nةليمج ةيبرعلا ةغللا\nعليكم السلام بالعالم مرحبا\nةباتكلا التعليم ةيبرعلا",
+        "match": false,
+        "expectedLength": 97,
+        "actualLength": 97,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللغة العربية جميلة مرحبا بالعالم السلام عليكم العربية التعليم الكتابة",
+        "actualContext": "Browser PDF — Arabic words ةليمج ةيبرعلا ةغللا عليكم السلام بالعالم مرحبا ةباتكلا التعليم ةيبرعلا",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 97,
+          "actualLength": 97,
+          "firstDifference": 27,
+          "expectedContext": "Browser PDF — Arabic words اللغة العربية جميلة مرحبا بالعالم السلام عليكم العربية التعليم الكتابة",
+          "actualContext": "Browser PDF — Arabic words ةليمج ةيبرعلا ةغللا عليكم السلام بالعالم مرحبا ةباتكلا التعليم ةيبرعلا",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "Browser PDF — Arabic words\n\u0012\nةل\u0015يم \u0018 ج \u0012 ة\u0015 ي\u0018 بالعر \u0012 ة \u001f عالل\nكم\u0015 يالعالم السلام عل\u0018 ب ا\u0018بجمر\n\u0012\nة\u0018 با\u0012يم الك\u0015 يعل\u0012 يال \u0012 ة\u0015 ي\u0018بالعر"
+        ],
+        "copies": [
+          "Browser PDF — Arabic words\n\u0012\nةل\u0015يم \u0018 ج \u0012 ة\u0015 ي\u0018 بالعر \u0012 ة \u001f عالل\nكم\u0015 يالعالم السلام عل\u0018 ب ا\u0018بجمر\n\u0012\nة\u0018 با\u0012يم الك\u0015 يعل\u0012 يال \u0012 ة\u0015 ي\u0018بالعر"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "Browser PDF — Arabic words\n\u0012\nةل\u0015يم \u0018 ج \u0012 ة\u0015 ي\u0018 بالعر \u0012 ة \u001f عالل\nكم\u0015 يالعالم السلام عل\u0018 ب ا\u0018بجمر\n\u0012\nة\u0018 با\u0012يم الك\u0015 يعل\u0012 يال \u0012 ة\u0015 ي\u0018بالعر",
+        "copiedText": "Browser PDF — Arabic words\n\u0012\nةل\u0015يم \u0018 ج \u0012 ة\u0015 ي\u0018 بالعر \u0012 ة \u001f عالل\nكم\u0015 يالعالم السلام عل\u0018 ب ا\u0018بجمر\n\u0012\nة\u0018 با\u0012يم الك\u0015 يعل\u0012 يال \u0012 ة\u0015 ي\u0018بالعر",
+        "match": false,
+        "expectedLength": 97,
+        "actualLength": 133,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Arabic words اللغة العربية جميلة مرحبا بالعالم السلام عليكم العربية التعليم الكتابة",
+        "actualContext": "Browser PDF — Arabic words \u0012 ةل\u0015يم \u0018 ج \u0012 ة\u0015 ي\u0018 بالعر \u0012 ة \u001f عالل كم\u0015 يالعالم السلام عل\u0018 ب ا\u0018بجمر \u0012 ة\u0018 با\u0012يم الك\u0015 يعل\u0012 يال \u0012 ة\u0015 ي\u0018بالعر",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 97,
+          "actualLength": 133,
+          "firstDifference": 27,
+          "expectedContext": "Browser PDF — Arabic words اللغة العربية جميلة مرحبا بالعالم السلام عليكم العربية التعليم الكتابة",
+          "actualContext": "Browser PDF — Arabic words \u0012 ةل\u0015يم \u0018 ج \u0012 ة\u0015 ي\u0018 بالعر \u0012 ة \u001f عالل كم\u0015 يالعالم السلام عل\u0018 ب ا\u0018بجمر \u0012 ة\u0018 با\u0012يم الك\u0015 يعل\u0012 يال \u0012 ة\u0015 ي\u0018بالعر",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      }
+    },
+    {
+      "label": "hebrew",
+      "file": "tests/fixtures/pdf-libreoffice-20261012/explicit-fonts/hebrew.pdf",
+      "pdfSha256": "08e5f5c9468b41cbf4e9c79e0216a9cf19b442f3f237d0026d984fe2081089ec",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם",
+      "chrome": {
+        "selectedText": "Browser PDF — Hebrew words\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nעולם בעברית שלום",
+        "match": false,
+        "expectedLength": 81,
+        "actualLength": 81,
+        "firstDifference": 27,
+        "expectedContext": "Browser PDF — Hebrew words שלום עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם",
+        "actualContext": "Browser PDF — Hebrew words מסמך בדיקת עולם שלום טבלה כתיבה עברית עולם בעברית שלום",
+        "sameNonWhitespace": false,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": false,
+          "expectedLength": 81,
+          "actualLength": 81,
+          "firstDifference": 27,
+          "expectedContext": "Browser PDF — Hebrew words שלום עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם",
+          "actualContext": "Browser PDF — Hebrew words מסמך בדיקת עולם שלום טבלה כתיבה עברית עולם בעברית שלום",
+          "sameNonWhitespace": false,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם"
+        ],
+        "copies": [
+          "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם"
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם",
+        "copiedText": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם",
+        "match": true,
+        "expectedLength": 81,
+        "actualLength": 81,
+        "firstDifference": 81,
+        "expectedContext": " עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם",
+        "actualContext": " עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": true,
+          "expectedLength": 81,
+          "actualLength": 81,
+          "firstDifference": 81,
+          "expectedContext": " עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם",
+          "actualContext": " עולם בדיקת מסמך עברית כתיבה טבלה שלום בעברית עולם",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      }
+    }
+  ]
+}

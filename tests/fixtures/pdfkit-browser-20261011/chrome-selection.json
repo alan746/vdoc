@@ -1,0 +1,133 @@
+{
+  "at": "2026-10-11T17:50:04.616Z",
+  "browser": "154.0.8037.98",
+  "method": "Loaded local PDF in actual Chrome PDF viewer; selectAll/getSelectedText via its plugin controller. Not a system clipboard or AX-empty pass.",
+  "results": [
+    {
+      "label": "unicode-words",
+      "file": "output/pdf/browser-unicode-20261011/words-unicode-ordered.pdf",
+      "sha256": "5e7db49a06fa0e75c6e6fd91c5c16c9f7d11043f0028e8d8eb079ea46d066a46",
+      "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+      "selectedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना",
+      "matchCollapsed": true,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "unicode-arabic",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered.pdf",
+      "sha256": "79082ddb567ec550c2f88ccc1e15c25088b46d72f6408e14abca08054f93678f",
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nجميلة العربية اللغة\nعليكم السلام بالعالم مرحبا\nالكتابة التعليم العربية\nTable cell العربية\nDifferent context التعليم",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "unicode-hebrew",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered.pdf",
+      "sha256": "d6182a8c4cba9443405a512d5e680f386502c5277df9490d82e92c8a09b121dd",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nעולם בעברית שלום\nTable cell עברית\nDifferent context שלום",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "unicode-arabic-marked",
+      "file": "output/pdf/browser-unicode-20261011/arabic-unicode-ordered-marked.pdf",
+      "sha256": "4be8dc5ad272ce4407839c63494c05a15735c6d202475bd9a54b4be4751fc590",
+      "source": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nٌةَيلِمَج ُةَّيِبَرَعْال ُةَغُّالل\n123 ِمَالَعْالِب اًبَحْرَم\nُةَابَتِكْال ُيمِلْعَّالت ُةَّيِبَرَعْال\nTable cell العربية\nDifferent context التعليم",
+      "matchCollapsed": false,
+      "sourceDigits": [
+        "123"
+      ],
+      "selectedDigits": [
+        "123"
+      ]
+    },
+    {
+      "label": "unicode-hebrew-marked",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-marked.pdf",
+      "sha256": "d16bf89b8f422d46df67be156cf8013e87ab0fc7a73c837782bf3b0ec8f7b052",
+      "source": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nםָלֹעו םֹלוָׁש\n123 הָיבִתְּכ יתִרְבִע\nםָלֹעו יתִרְבִעְּב םֹלוָׁש\nTable cell עברית\nDifferent context שלום",
+      "matchCollapsed": false,
+      "sourceDigits": [
+        "123"
+      ],
+      "selectedDigits": [
+        "123"
+      ]
+    },
+    {
+      "label": "pdfkit-words",
+      "file": "output/pdf/pdfkit-browser-20261011/words-full-run.pdf",
+      "sha256": "ea8454e61a9cde0ec3f25f3c6f35df5c50bfc4262c57d8882be5a15c622b12cf",
+      "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+      "selectedText": "Browser PDF — local text and vectors\nिहन्दी िहंदी भाषा में दस्तावेज़ िलखना।\nदुिनया नमस्ते िशक्षा क्षित्रय प्राथर्ना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell िहन्दी भाषा\nDifferent context िशक्षा प्राथर्ना",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "pdfkit-arabic",
+      "file": "output/pdf/pdfkit-browser-20261011/arabic-full-run.pdf",
+      "sha256": "88fc81a4a89299f2ebc433674cca12b5b51cdd9288e805ddbd5a137327bc2fab",
+      "source": "Browser PDF — Arabic words\nاللغة العربية جميلة\nمرحبا بالعالم السلام عليكم\nالعربية التعليم الكتابة\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nلة\u0012 مي\u0015 ج \u0018 ة\u0012ي\u0015ب\u0018الغر ة\u0012 اللغ\u001f\nعليكم السلام الغالم \u0015 ب ا \u0018 جب\u0018 مر\nة\u0012 اب\u0018 الكي م \u0012 غلي\u0015 الي \u0012 ة\u0012ي\u0015ب\u0018الغر\nTable cell ة\u0012ي\u0015ب\u0018الغر\nDifferent context غليم\u0015 الي\n\u0012",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "pdfkit-hebrew",
+      "file": "output/pdf/pdfkit-browser-20261011/hebrew-full-run.pdf",
+      "sha256": "b1f3916a63c459a94587c4c946db09c89fc096d6f343aee83429441b68934933",
+      "source": "Browser PDF — Hebrew words\nשלום עולם בדיקת מסמך\nעברית כתיבה טבלה\nשלום בעברית עולם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nמסמך בדיקת עולם שלום\nטבלה כתיבה עברית\nעולם בעברית שלום\nTable cell עברית\nDifferent context שלום",
+      "matchCollapsed": false,
+      "sourceDigits": [],
+      "selectedDigits": []
+    },
+    {
+      "label": "pdfkit-arabic-marked",
+      "file": "output/pdf/pdfkit-browser-20261011/arabic-marked-full-run.pdf",
+      "sha256": "e38177150ed7e59ea979e8e16bca89c7854fc0c4d182eacd0c0bec105ae4a18b",
+      "source": "Browser PDF — Arabic words\nاللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ\nمَرْحَبًا بِالْعَالَمِ 123\nالْعَرَبِيَّةُ التَّعْلِيمُ الْكِتَابَةُ\nTable cell\tالعربية\nDifferent context\tالتعليم",
+      "selectedText": "Browser PDF — Arabic words\nٌة\u0013\nَ\nيل\u0017مِ ج َ\u001b\nُة\u0013 َّي\u0017\nِ\nب\u001bَغرَ\nْ\nال ُة\u0013 َغ%\nّ\nُ\nالل\n321 مِ\nَ\nغالَ\nْ\nالِ\nب ا \u001b\nً\nب\u001b جَ رْ مَ\nُة\u0013َاب\u001b َي\u0013كِ\nْ\nال مُي\u0017لِغْ\nَّالي \u0013\nُة\u0013 َّي\u0017\nِ\nب\u001bَغرَ\nْ\nال\nTable cell ة\u0013ي\u0017ب\u001bالغر\nDifferent context غليم\u0017 الي\n\u0013",
+      "matchCollapsed": false,
+      "sourceDigits": [
+        "123"
+      ],
+      "selectedDigits": [
+        "321"
+      ]
+    },
+    {
+      "label": "pdfkit-hebrew-marked",
+      "file": "output/pdf/pdfkit-browser-20261011/hebrew-marked-full-run.pdf",
+      "sha256": "ca08af66e15d6fcace43b57efe741e714073563fe3c7e4d3bfa3b02f38aabef0",
+      "source": "Browser PDF — Hebrew words\nשָׁלוֹם עוֹלָם\nעִבְרִית כְּתִיבָה 123\nשָׁלוֹם בְּעִבְרִית עוֹלָם\nTable cell\tעברית\nDifferent context\tשלום",
+      "selectedText": "Browser PDF — Hebrew words\nלםָ עו ם ֹ וֹ שלָ ׁ\n321 בהָ תיִ כ תְּ ריִבְ עִ\nלםָ עו ת ֹ ריִבְ עִ ב םְּ וֹ שלָ ׁ\nTable cell עברית\nDifferent context שלום",
+      "matchCollapsed": false,
+      "sourceDigits": [
+        "123"
+      ],
+      "selectedDigits": [
+        "321"
+      ]
+    },
+    {
+      "label": "cluster-hindi",
+      "file": "output/pdf/browser-pdf-20261011/words-cluster-contiguous.pdf",
+      "sha256": "aa83f780e4710d491f2c4fc2140fe8261caa171a9080c8fb7a896c4be1df8147",
+      "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell\tहिन्दी भाषा\nDifferent context\tशिक्षा प्रार्थना",
+      "selectedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.\nTable cell हिन्दी भाषा\nDifferent context शिक्षा प्रार्थना",
+      "matchCollapsed": true,
+      "sourceDigits": [],
+      "selectedDigits": []
+    }
+  ]
+}

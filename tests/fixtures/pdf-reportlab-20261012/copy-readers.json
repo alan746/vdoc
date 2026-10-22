@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-12T04:53:51.572Z",
+  "browser": "154.0.8037.98",
+  "scope": "Stock Chrome plugin selectAll plus official PDF.js text-layer copy handler for each page. Synthetic ClipboardEvent with isolated in-memory DataTransfer; no system clipboard or native key press. Raw Selection.toString retained separately. Known generated margins are excluded only for a separate body comparison, with occurrence counts retained. Neither raw nor body comparison silently changes Unicode or word order.",
+  "results": [
+    {
+      "label": "hindi",
+      "file": "tests/fixtures/pdf-reportlab-20261012/hindi.pdf",
+      "pdfSha256": "e30f4f5206ae2913c10222eb58ab2a45dfb83bd50bdec6e593e09c6a135531fd",
+      "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+      "chrome": {
+        "selectedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+        "match": true,
+        "expectedLength": 164,
+        "actualLength": 164,
+        "firstDifference": 164,
+        "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": true,
+          "expectedLength": 164,
+          "actualLength": 164,
+          "firstDifference": 164,
+          "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      },
+      "pdfjs": {
+        "pages": [
+          "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes."
+        ],
+        "copies": [
+          "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes."
+        ],
+        "copyEvents": [
+          {
+            "isTrusted": false,
+            "defaultPrevented": true,
+            "types": [
+              "text/plain"
+            ]
+          }
+        ],
+        "version": "5.6.205",
+        "selectedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+        "copiedText": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes.",
+        "match": true,
+        "expectedLength": 164,
+        "actualLength": 164,
+        "firstDifference": 164,
+        "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+        "sameNonWhitespace": true,
+        "nulls": 0,
+        "body": {
+          "removedHeaders": [],
+          "removedFooters": [],
+          "match": true,
+          "expectedLength": 164,
+          "actualLength": 164,
+          "firstDifference": 164,
+          "expectedContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "actualContext": "ा। Repeat हिन्दी and हिंदी with contextual shapes.",
+          "sameNonWhitespace": true,
+          "nulls": 0
+        }
+      }
+    }
+  ]
+}

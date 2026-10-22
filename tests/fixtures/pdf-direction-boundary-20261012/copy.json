@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-12T19:55:08.764Z",
+  "scope": "Official Chrome for Testing with disposable profile; stock plugin selectAll/getSelectedText, not OS clipboard. Existing PDFs unchanged.",
+  "results": [
+    {
+      "label": "hebrew-numbers",
+      "file": "output/pdf/browser-unicode-20261011/hebrew-unicode-ordered-direction-boundary-155-numbers.pdf",
+      "sha256": "fb303305deef715dab8a31ea58273b0cf40e4f890a0211d7e8fba7a9fd43c1ee",
+      "expected": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell\tעברית\nDifferent context\tשלום",
+      "actual": "Browser PDF — Hebrew numbers\nשלום 0123456789\nמספר 9876543210 בעברית\nעברית 1234567890\nTable cell עברית\nDifferent context שלום",
+      "full": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 124,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      },
+      "body": {
+        "exactCollapsedMatch": true,
+        "firstDifference": 124,
+        "expectedContext": "l עברית Different context שלום",
+        "actualContext": "l עברית Different context שלום"
+      }
+    }
+  ],
+  "version": "155.0.8059.39"
+}

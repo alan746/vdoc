@@ -1,0 +1,47 @@
+{
+  "input": "output/pdf/safari-fixed-pdf-20261011/prototype-b-font.pdf",
+  "output": "output/pdf/pdf-font-20261011/sangam-logical.pdf",
+  "inputSha256": "de15deb1b5eb2d7fe66420af6911cacd0df9f9e2792efdb33a5ba824f252544b",
+  "outputSha256": "e4e27614e5c76f92f8ff67c7a7f93ef28fbdd4cb2c3e51f8327e90a1a0ed44b4",
+  "edits": [
+    {
+      "fontObject": 56,
+      "glyphHex": "03F3",
+      "unicode": "ي",
+      "coveredOccurrences": 4
+    },
+    {
+      "fontObject": 70,
+      "glyphHex": "03F3",
+      "unicode": "ي",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 93,
+      "glyphHex": "050C",
+      "unicode": "ह",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 93,
+      "glyphHex": "00AC",
+      "unicode": "ि",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 93,
+      "glyphHex": "03BD",
+      "unicode": "न",
+      "coveredOccurrences": 18
+    },
+    {
+      "fontObject": 93,
+      "glyphHex": "04C5",
+      "unicode": "्दी",
+      "coveredOccurrences": 18
+    }
+  ],
+  "pages": 5,
+  "logicalOrder": true,
+  "scope": "ToUnicode bfchar values derived from existing ActualText. Every changed glyph occurrence must be covered and agree. Rendering operators and font glyph data unchanged. QA only."
+}
