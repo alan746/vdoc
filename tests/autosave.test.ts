@@ -3,6 +3,8 @@ import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 import { startAutosave } from '../lib/composition/autosave';
 import { documentNavigation } from '../lib/usecases/document-navigation';
+import { changeInAnotherTab } from './support/fake-document-changes';
+vi.mock('../lib/infrastructure/persistence/document-change-channel', () => import('./support/fake-document-changes'));
 const calls = vi.hoisted(() => ({ save: vi.fn() }));
 vi.mock('../lib/infrastructure/persistence/document-store', () => ({ saveDocument: calls.save, STORAGE_KEY: 'vdoc.document.v1' }));
 let editor: Editor, controller: ReturnType<typeof startAutosave>, title: string;
@@ -46,7 +48,7 @@ it('resaves after composition cancellation even when no document update event fi
 });
 it('keeps paused storage warnings through composition changes without attempting another write', async () => {
   const compose = composingInput(); await tick(); await complete();
-  window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.document.v1' }));
+  changeInAnotherTab('current');
   const count = report.mock.calls.length; compose(true); compose(false); await tick();
   expect(calls.save).toHaveBeenCalledOnce(); expect(leaving()).toBe(true);
   expect(report.mock.calls.slice(count).every(([status, warning]) => status === 'Autosave paused' && warning === undefined)).toBe(true);
@@ -85,7 +87,7 @@ it('retains a save failure until another successful save and permits retry', asy
   expect(report).toHaveBeenLastCalledWith('Saved locally', '');
 });
 it('does not clear a conflict warning when an older save finishes successfully', async () => {
-  await tick(); window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.document.v1' })); await complete(); await tick();
+  await tick(); changeInAnotherTab('current'); await complete(); await tick();
   expect(blocked.current).toBe(true); expect(savedReports()).toHaveLength(0); expect(calls.save).toHaveBeenCalledOnce();
   expect(report.mock.calls.some(([status, warning]) => status === 'Autosave paused' && warning?.includes('another tab'))).toBe(true);
   expect(report.mock.calls.some(([, warning]) => warning === '')).toBe(false);
@@ -215,7 +217,7 @@ it('does not warn for selection-only changes or an edit undone before any write 
   editor.commands.insertContent('Temporary ');editor.commands.undo();expect(leaving()).toBe(false);
 });
 it('keeps blocked drafts guarded without attempting a write',async()=>{
-  await tick();await complete();window.dispatchEvent(new StorageEvent('storage',{key:'vdoc.document.v1'}));
+  await tick();await complete();changeInAnotherTab('current');
   expect(leaving()).toBe(true);expect(calls.save).toHaveBeenCalledOnce();
 });
 it('removes the leave guard on disposal and ignores late save completion',async()=>{
@@ -241,10 +243,19 @@ it('does not acknowledge an autosave while another reading operation may still w
   navigation.release(); await tick(); await complete(1); expect(savedReports()).toHaveLength(1);
 });
 it('keeps paused status and recovery warnings through a read-only version listing', async () => {
-  await tick(); await complete(); window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.document.v1' }));
+  await tick(); await complete(); changeInAnotherTab('current');
   const count = report.mock.calls.length, navigation = documentNavigation(editor);
   navigation.acquire(); expect(report).toHaveBeenLastCalledWith('Autosave paused', undefined);
   navigation.release(); await tick(); expect(calls.save).toHaveBeenCalledOnce();
   expect(report.mock.calls.slice(count).every(([status, warning]) => status === 'Autosave paused' && warning === undefined)).toBe(true);
   expect(leaving()).toBe(true);
+});
+it('vdoc#69: pauses on a write from another tab through the repository port, and stops listening after dispose', async () => {
+  changeInAnotherTab('another-document');
+  expect(report).not.toHaveBeenCalledWith('Autosave paused', expect.stringContaining('another tab'));
+  changeInAnotherTab('current');
+  expect(report).toHaveBeenCalledWith('Autosave paused', expect.stringContaining('another tab'));
+  report.mockClear(); controller.dispose();
+  changeInAnotherTab('current');
+  expect(report).not.toHaveBeenCalled();
 });

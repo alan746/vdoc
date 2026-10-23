@@ -8,6 +8,7 @@ export function createInMemoryRepositories() {
   const meta = new Map<string, LibraryMetadata>();
   const history: DocumentVersion[] = [];
   let active: string | null = null;
+  const watchers = new Map<string, Set<() => void>>();
   let sequence = 0;
   const now = () => new Date().toISOString();
   const clone = <T>(value: T): T => structuredClone(value);
@@ -27,7 +28,11 @@ export function createInMemoryRepositories() {
   const metadataFor = (id: string): LibraryMetadata => ({ id, parentId: null, starred: false, ...meta.get(id) });
 
   const documents: DocumentRepository = {
-    changeKey: 'vdoc.memory.document',
+    watchExternalChanges(documentId, listener) {
+      const set = watchers.get(documentId) ?? new Set();
+      set.add(listener); watchers.set(documentId, set);
+      return () => { set.delete(listener); };
+    },
     async select(id) {
       if (!docs.has(id)) throw new Error('This document is not available in this browser. Open a document from your library or import a backup.');
       if (meta.get(id)?.trash) throw new Error('This document is in Trash. Restore it from your library before opening it.');
@@ -122,5 +127,7 @@ export function createInMemoryRepositories() {
       return clone(restored);
     },
   };
-  return { documents, library, versions };
+  /** Simulates another tab writing `documentId`. */
+  const changeInAnotherTab = (documentId: string) => { for (const listener of [...(watchers.get(documentId) ?? [])]) listener(); };
+  return { documents, library, versions, changeInAnotherTab };
 }

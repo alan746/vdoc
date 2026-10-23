@@ -1,5 +1,6 @@
 import type { SavedDocument, DocumentVersion, VersionSnapshot } from '../../domain/entities/document';
 import { parseDocument } from './storage';
+import { documentChanges } from './document-change-channel';
 import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction } from './indexed-db';
 import { summary, withWritableDocument } from './document-records';
@@ -82,6 +83,7 @@ export async function restoreVersion(key: string, current: SavedDocument): Promi
     } catch (error) { abort(error); }
   };
   try { await done; } catch (error) { throw failure || error; }
+  documentChanges.announce(previous.id);
   return restored!;
 }
 

@@ -1,5 +1,6 @@
 import { openDatabase, transactionDone, requestResult, writeTransaction } from './indexed-db';
 import { parseDocument } from './storage';
+import { documentChanges } from './document-change-channel';
 import { truncateGraphemePrefix } from '../../domain/text/unicode';
 import type { DocumentDraft, DocumentSummary, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../../domain/entities/document';
 import type { LibraryItemPatch } from '../../usecases/ports';
@@ -56,6 +57,7 @@ export async function createLibraryDocument(document: DocumentDraft, parentId: s
     tx.objectStore('libraryMetadata').add({ id: data.id, parentId, starred: false });
     tx.objectStore('settings').put(data.id, 'active');
   }, true);
+  documentChanges.announce(data.id);
   return data;
 }
 export async function createFolder(title: string, parentId: string | null) {
@@ -68,7 +70,7 @@ export async function createFolder(title: string, parentId: string | null) {
   return folder.id;
 }
 export async function updateLibraryItem(id: string, patch: LibraryItemPatch) {
-  let updated: LibraryMetadata | undefined;
+  let updated: LibraryMetadata | undefined, renamedDocument = false;
   await changeLibrary((items, tx, abort) => {
     const item = items.find(entry => entry.id === id);
     if (!item) throw new Error('This item no longer exists.');
@@ -89,6 +91,7 @@ export async function updateLibraryItem(id: string, patch: LibraryItemPatch) {
             const document = { ...request.result, title, savedAt: new Date().toISOString() };
             tx.objectStore('documents').put(document);
             tx.objectStore('summaries').put({ id, title, savedAt: document.savedAt });
+            renamedDocument = true;
           } catch (error) { abort(error); }
         };
       }
@@ -129,6 +132,9 @@ export async function updateLibraryItem(id: string, patch: LibraryItemPatch) {
     putMetadata(tx, meta);
     updated = meta;
   });
+  // Renaming rewrites the document record; trash changes only touch metadata,
+  // which saving already refuses to write over.
+  if (renamedDocument) documentChanges.announce(id);
   return updated!;
 }
 export async function copyLibraryDocument(id: string) {
@@ -150,6 +156,7 @@ export async function copyLibraryDocument(id: string) {
       } catch (error) { abort(error); }
     };
   });
+  documentChanges.announce(copy!.id);
   return copy!;
 }
 
@@ -174,4 +181,5 @@ export async function deleteTrashedDocument(id: string, expected: Trash) {
     if (active.result === id) tx.objectStore('settings').delete('active');
   }, error => { failure = error; tx.abort(); });
   try { await done; } catch (error) { throw failure || error; }
+  documentChanges.announce(id);
 }

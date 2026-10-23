@@ -13,8 +13,8 @@ export type LibraryItemPatch = { title?: string; parentId?: string | null; starr
 
 /** Documents: the active document plus reads and writes by id. */
 export interface DocumentRepository {
-  /** Storage-event key that signals another tab changed the stored document. */
-  readonly changeKey: string;
+  /** Calls `listener` when another tab (not this one) writes this document. Returns an unsubscribe. */
+  watchExternalChanges(documentId: string, listener: () => void): () => void;
   /** Opens a document by id (links, library) and makes it active. */
   select(id: string): Promise<SavedDocument>;
   /** Reads the active document, or a specific one when `requestedId` is given. */
@@ -25,7 +25,7 @@ export interface DocumentRepository {
 }
 
 /** Persistence used by autosave. */
-export type DocumentWriter = Pick<DocumentRepository, 'changeKey' | 'save'>;
+export type DocumentWriter = Pick<DocumentRepository, 'watchExternalChanges' | 'save'>;
 
 /** Library organisation: folders, stars, trash. */
 export interface LibraryRepository {

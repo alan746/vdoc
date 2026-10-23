@@ -100,8 +100,7 @@ function runAutosave(writer: DocumentWriter, editor: Editor, documentId: string,
   };
   const visibility = () => { if (document.visibilityState === 'hidden') void flush(); };
   const pagehide = () => { void flush(); };
-  const conflict = (event: StorageEvent) => {
-    if (event.key !== writer.changeKey) return;
+  const conflict = () => {
     options.blocked.current = true; reset(); requested = false; updateUnloadGuard();
     report('Autosave paused', 'This document was updated in another tab. Download a backup of your current changes before refreshing.');
   };
@@ -133,12 +132,12 @@ function runAutosave(writer: DocumentWriter, editor: Editor, documentId: string,
   editor.on('update', schedule);
   document.addEventListener('visibilitychange', visibility);
   window.addEventListener('pagehide', pagehide);
-  window.addEventListener('storage', conflict);
+  const unwatchExternalChanges = writer.watchExternalChanges(documentId, conflict);
   schedule();
   return { schedule, flush, dispose: () => {
     disposed = true; updateUnloadGuard(); reset(); unsubscribe(); unsubscribeComposition?.(); editor.off('update', schedule);
     document.removeEventListener('visibilitychange', visibility);
     window.removeEventListener('pagehide', pagehide);
-    window.removeEventListener('storage', conflict);
+    unwatchExternalChanges();
   } };
 }

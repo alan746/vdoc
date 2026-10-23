@@ -5,6 +5,8 @@ import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 import { readDocumentImport } from '../lib/composition/import-file';
 import VdocWorkspace from '../components/editor/workspace';
+import { changeInAnotherTab } from './support/fake-document-changes';
+vi.mock('../lib/infrastructure/persistence/document-change-channel', () => import('./support/fake-document-changes'));
 
 const calls = vi.hoisted(() => ({ save: vi.fn(), success: vi.fn(), error: vi.fn() }));
 let editor: Editor, root: Root, mount: HTMLDivElement;
@@ -64,7 +66,7 @@ async function readDownloadedBackup() {
 it.each(['failed', 'paused', 'saving'])('exports the latest recoverable draft through the warning button while storage is %s', async mode => {
   await changeDraft();
   let finishSaving: (() => void) | undefined;
-  if (mode === 'paused') act(() => window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.document.v1' })));
+  if (mode === 'paused') act(() => changeInAnotherTab('recovery-backup'));
   if (mode === 'saving') {
     calls.save.mockImplementationOnce(() => new Promise<void>(resolve => { finishSaving = resolve; }));
     await act(async () => vi.advanceTimersByTimeAsync(450)); expect(retry()?.disabled).toBe(true);

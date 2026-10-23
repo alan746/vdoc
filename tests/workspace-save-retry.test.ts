@@ -5,6 +5,8 @@ import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 import { documentNavigation } from '../lib/usecases/document-navigation';
 import VdocWorkspace from '../components/editor/workspace';
+import { changeInAnotherTab } from './support/fake-document-changes';
+vi.mock('../lib/infrastructure/persistence/document-change-channel', () => import('./support/fake-document-changes'));
 
 const calls = vi.hoisted(() => ({ save: vi.fn() }));
 let editor: Editor, root: Root, mount: HTMLDivElement;
@@ -59,7 +61,7 @@ it('coalesces double clicks into one pending retry', async () => {
   await finish(1); await act(async () => vi.advanceTimersByTimeAsync(5000)); expect(calls.save).toHaveBeenCalledTimes(2);
 });
 it('hides retry on a conflict and keeps the backup action available', async () => {
-  act(() => window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.document.v1' })));
+  act(() => changeInAnotherTab('retry-qa'));
   expect(retry()).toBeUndefined(); expect(warning()?.textContent).toContain('another tab');
   const backup = Array.from(mount.querySelectorAll('button')).find(button => button.textContent === 'Download backup');
   expect(backup?.disabled).toBe(false);
@@ -67,7 +69,7 @@ it('hides retry on a conflict and keeps the backup action available', async () =
 });
 it('does not let an in-flight retry clear a newer conflict warning', async () => {
   act(() => retry()!.click());
-  act(() => window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.document.v1' })));
+  act(() => changeInAnotherTab('retry-qa'));
   await finish(1); expect(retry()).toBeUndefined(); expect(warning()?.textContent).toContain('another tab');
   expect(mount.textContent).not.toContain('Saved locally');
 });

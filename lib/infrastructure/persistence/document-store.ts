@@ -1,5 +1,6 @@
 import type { JSONContent } from '@tiptap/core';
 import { parseDocument, STORAGE_KEY } from './storage';
+import { documentChanges } from './document-change-channel';
 import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import type { DocumentDraft, DocumentSummary, SavedDocument } from '../../domain/entities/document';
 import type { ActiveDocumentRead } from '../../usecases/ports';
@@ -103,12 +104,14 @@ export async function saveDocument(title: string, content: JSONContent, id: stri
     tx.objectStore('documents').put(data); tx.objectStore('summaries').put(summary(data)); tx.objectStore('settings').put(id, 'active');
   }, error => { failure = error; tx.abort(); });
   try { await done; } catch (error) { throw failure || error; }
+  documentChanges.announce(id);
   return data;
 }
 export async function archiveDocument(document: DocumentDraft) {
   const db = await database(), data: SavedDocument = { ...document, id: document.id || crypto.randomUUID() };
   const tx = writeTransaction(db, ['documents', 'summaries']), done = completed(tx);
   await commitWrites(tx, done, () => { tx.objectStore('documents').put(data); tx.objectStore('summaries').put(summary(data)); });
+  documentChanges.announce(data.id);
   return data;
 }
 export async function listDocuments(): Promise<DocumentSummary[]> {
@@ -123,5 +126,6 @@ export async function activateDocument(document: DocumentDraft) {
   const db = await database(), data: SavedDocument = { ...document, id: document.id || crypto.randomUUID() };
   const tx = writeTransaction(db, ['documents', 'summaries', 'settings']), done = completed(tx);
   await commitWrites(tx, done, () => { tx.objectStore('documents').put(data); tx.objectStore('summaries').put(summary(data)); tx.objectStore('settings').put(data.id, 'active'); });
+  documentChanges.announce(data.id);
   return data;
 }
