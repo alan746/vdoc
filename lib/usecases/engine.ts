@@ -36,11 +36,15 @@ export class DocumentEngine {
     this.blocks.update(editor.state.doc);
     this.handleTransaction = ({ transaction, appendedTransactions = [] }) => {
       this.turnHistory.record(transaction, appendedTransactions);
-      if (transaction.docChanged) { this.revision++; this.blocks.update(editor.state.doc); }
-      // Appended transactions (stable IDs, trailing node) change the document too.
-      const mappings = [transaction, ...appendedTransactions].filter(tr => tr.docChanged).map(tr => tr.mapping);
-      if (mappings.length) {
-        const map = (bookmark: SelectionBookmark) => mappings.reduce((current, mapping) => current.map(mapping), bookmark);
+      // Appended transactions (stable IDs, reference sync, list numbering) change
+      // the document too, even when the dispatched one did not. One definition of
+      // "the document changed" feeds the revision, the index and the bookmarks;
+      // the revision advances once per dispatch, however many steps it held.
+      const changed = [transaction, ...appendedTransactions].filter(tr => tr.docChanged);
+      if (changed.length) {
+        this.revision++;
+        this.blocks.update(editor.state.doc);
+        const map = (bookmark: SelectionBookmark) => changed.reduce((current, tr) => current.map(tr.mapping), bookmark);
         if (this.bookmark) this.bookmark = map(this.bookmark);
         for (const anchor of this.anchors) anchor.bookmark = map(anchor.bookmark);
       }

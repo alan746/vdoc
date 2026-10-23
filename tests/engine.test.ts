@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { CellSelection } from '@tiptap/pm/tables';
+import { EditorState } from '@tiptap/pm/state';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 import { readSavedDocument, saveDocument, STORAGE_KEY } from '../lib/infrastructure/persistence/storage';
@@ -233,5 +234,46 @@ describe('local persistence', () => {
       expect(readSavedDocument().error).toBeDefined();
       expect(localStorage.getItem(STORAGE_KEY)).toBe(raw);
     }
+  });
+});
+
+describe('revision (vdoc#58)', () => {
+  // A document whose second paragraph carries the first one's blockId. Installed
+  // without a transaction, so no plugin has repaired it yet.
+  const installDuplicateIds = () => {
+    const [first] = engine.snapshot().blocks;
+    const doc = editor.schema.nodeFromJSON({ type: 'doc', content: [
+      { type: 'paragraph', attrs: { blockId: first.id }, content: [{ type: 'text', text: 'one' }] },
+      { type: 'paragraph', attrs: { blockId: first.id }, content: [{ type: 'text', text: 'two' }] },
+    ] });
+    editor.view.updateState(EditorState.create({ doc, plugins: editor.state.plugins }));
+  };
+
+  it('advances once when only an appended transaction changed the document', () => {
+    installDuplicateIds();
+    const before = engine.revision, doc = editor.state.doc;
+    const dispatched = editor.state.tr.setMeta('normalizeIds', true);
+    editor.view.dispatch(dispatched);
+    expect(dispatched.docChanged).toBe(false);
+    expect(editor.state.doc.eq(doc)).toBe(false);
+    expect(engine.revision).toBe(before + 1);
+    const ids = engine.snapshot().blocks.map(block => block.id);
+    expect(new Set(ids).size).toBe(2);
+    const stale = engine.execute({ target: { kind: 'range', from: 1, to: 4 }, expectedRevision: before, operations: [{ type: 'text.style', style: { bold: true } }] });
+    expect(stale).toMatchObject({ ok: false, code: 'STALE' });
+  });
+
+  it('does not advance for a selection-only or meta-only transaction', () => {
+    const before = engine.revision;
+    editor.commands.setTextSelection(3);
+    editor.view.dispatch(editor.state.tr.setMeta('normalizeIds', true));
+    editor.view.dispatch(editor.state.tr.setMeta('unrelated', true));
+    expect(engine.revision).toBe(before);
+  });
+
+  it('advances once per dispatch, not once per changed transaction', () => {
+    const before = engine.revision;
+    editor.commands.insertContentAt(1, '<p>new block</p>');
+    expect(engine.revision).toBe(before + 1);
   });
 });
