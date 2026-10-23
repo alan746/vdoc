@@ -96,6 +96,13 @@ export const vrtAdapter: RealtimePort = {
           session.on('ready', () => publish('connected')),
           session.on('reconnecting', () => publish('reconnecting')),
           session.on('error', event => {
+            // A recoverable provider/turn failure leaves the SDK session usable.
+            // Closing here would DELETE the voice session and prevent retrying
+            // the next instruction. Auth, audio and quota failures remain fatal.
+            if (event.code === 'AGENT_ERROR' && event.recoverable && !renewalError) {
+              publish(session?.connected ? 'connected' : 'connecting', 'The assistant could not complete that instruction. Try again.');
+              return;
+            }
             const quota = ['QUOTA_EXCEEDED', 'QUOTA_EXHAUSTED', 'INSUFFICIENT_QUOTA'].includes(event.code);
             const message = renewalError || (quota ? 'Voice quota is exhausted. Contact the site administrator about your allowance.' : event.code === 'RATE_LIMITED' ? 'Voice request limit reached. Wait before reconnecting.' : event.code === 'AUDIO_FAILED' ? 'Audio could not start. Check your microphone and browser audio settings, then reconnect.' : 'The assistant connection failed. Check your connection and reconnect.');
             fail(message);

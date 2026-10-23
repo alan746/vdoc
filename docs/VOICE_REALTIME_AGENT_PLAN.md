@@ -8,11 +8,13 @@
 
 以下接入约定取代本文早期草案中自建 WebSocket 协议、队列和 epoch gate 的建议。
 
-- 使用 npm 的 `@vrealtime/client@0.1.0`，仅 `lib/infrastructure/realtime/vrt-adapter.ts` 导入 SDK。应用不维护 seq、ack、重放队列或另一个 epoch gate。
+- 使用 npm 的 `@vrealtime/client@0.2.0`，仅 `lib/infrastructure/realtime/vrt-adapter.ts` 导入 SDK。应用不维护 seq、ack、重放队列或另一个 epoch gate。
 - `lib/composition/realtime.ts` 为每个编辑器会话接线，`RealtimeControls` 在文档切换、返回文档库和卸载时关闭会话。SDK 的 `ClientSession` 在握手前即可持有和关闭，避免 `connect()` Promise 尚未完成时无法取消连接。
 - `lib/usecases/realtime-executor.ts` 在 SDK 的 `run()` 内校验可信上下文，最多等待 IME 5 秒；等待后重新检查取消、文档绑定和版本，通过同步 `executeAgent` / `undoTurn` 提交。
 - #29 已在主分支提供选择性轮次撤销；接入层提供 `undo_turn`，新连接的服务器 call/turn ID 映射到独立的本地 ID，恢复连接复用映射，防止新会话的 `turn-1` 与旧历史混合。
 - 当前提供文字指令、可选麦克风、Stop/Esc 和断开入口。未实现 #33 的活动时间线和 #35 的渐进预览；工具参数增量不会直接写入正文。
+
+2026-10-19 SDK 升级说明：下方 2026-10-16／17 的条目保留当时的实施记录；其中“tool-stream 未定稿／未实现”的协议状态已被 0.2.0 取代。SDK 已提供生命周期事件和能力协商，但 VDoc 的渐进预览 UI 仍未实现。当前协议与验证范围以 `REALTIME_PROTOCOL.md` 为准。
 
 ### #35 准备：fake adapter 与协议 fixtures（2026-10-16）
 
