@@ -12,14 +12,14 @@ import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-na
 import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
 import { documents as documentRepository, library as libraryRepository } from '@/lib/composition/repositories';
-import { type LibraryEntry, type LibraryItem, type SavedDocument, blankDocument, documentTitle, UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
+import { type DocumentSummary, type LibraryItem, type SavedDocument, blankDocument, documentTitle, UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
 
 function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>) {
   const names: string[] = [], visited = new Set([document.id]);
   let parent = document.parentId;
   while (parent) {
     const folder = items.get(parent);
-    if (visited.has(parent) || !folder || folder.kind !== 'folder' || folder.trashedAt) {
+    if (visited.has(parent) || !folder || folder.kind !== 'folder' || folder.trash) {
       return ['Unavailable folder', ...names].join(' / ');
     }
     visited.add(parent); names.unshift(folder.title); parent = folder.parentId;
@@ -29,7 +29,7 @@ function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>
 
 export function LocalDocuments({ wordExportBusy = false, editor, title, blocked, documentId, onOpen, capture, exportDoc, onLanguage, onPrint }: { wordExportBusy?: boolean; onPrint: () => void; onLanguage: () => void; documentId: string; capture: () => void; exportDoc: (format: 'json' | 'html' | 'docx' | 'txt') => void; editor: Editor; title: string; blocked: SaveBlock; onOpen: (document: SavedDocument) => void }) {
   const [open, setOpen] = useState(false);
-  const [documents, setDocuments] = useState<(LibraryEntry & { location: string })[]>([]);
+  const [documents, setDocuments] = useState<(DocumentSummary & { location: string })[]>([]);
   const { navigation, busy } = useDocumentNavigation(editor);
   const file = useRef<HTMLInputElement>(null);
   const mounted = useRef(true), current = useRef({ title, blocked });
@@ -72,7 +72,7 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
     // autofocus must not interrupt a candidate started during either await.
     protectInput();
     const byId = new Map(library.map(item => [item.id, item]));
-    setDocuments(library.filter(item => item.kind === 'document' && !item.trashedAt)
+    setDocuments(library.filter(item => item.kind === 'document' && !item.trash)
       .sort((a, b) => b.savedAt.localeCompare(a.savedAt))
       .map(item => ({ ...item, location: documentLocation(item, byId) })));
     setOpen(true);

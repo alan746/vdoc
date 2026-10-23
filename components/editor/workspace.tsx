@@ -44,6 +44,7 @@ import { documentNavigation } from '@/lib/usecases/document-navigation';
 import { InsertTableDialog, EditorToolbar, Menu, type Run } from './toolbar';
 import { documents } from '@/lib/composition/repositories';
 import { type SavedDocument, UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
+import type { ActiveDocumentRead } from '@/lib/usecases/ports';
 
 declare global { interface Window { vdoc?: { execute: DocumentEngine['execute']; snapshot: DocumentEngine['snapshot']; undo: () => OperationResult; redo: () => OperationResult }; } }
 
@@ -218,7 +219,7 @@ function Workspace({ saved, recoveryError, onOpen, onHome }: { saved: SavedDocum
 }
 
 export default function VdocWorkspace() {
-  const [loaded, setLoaded] = useState<{ data: SavedDocument | null; error?: string } | null>(null);
+  const [loaded, setLoaded] = useState<ActiveDocumentRead | null>(null);
   const [home, setHome] = useState(true);
   // A save timestamp is metadata, not a unique editor-session identity. Every
   // successful open/restore must discard the previous editor and undo history.

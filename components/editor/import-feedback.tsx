@@ -1,6 +1,6 @@
 'use client';
 import { toast } from 'sonner';
-import type { DocumentImport } from '@/lib/domain/entities/document';
+import type { DocumentImport } from '@/lib/usecases/ports';
 
 // Both entry points report only after the imported document has opened successfully.
 export function notifyDocumentImport(result: DocumentImport) {

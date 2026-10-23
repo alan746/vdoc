@@ -89,11 +89,11 @@ async function seedFullHistory() {
 it('saves a multilingual checkpoint, restores it, recovers the replaced draft and survives pending autosaves', async () => {
   await show(); await name('Baseline 中文 العربية'); await submit();
   const baseline = editor.getJSON(), entries = await versionStore.listVersions(initial.id!);
-  expect(entries).toHaveLength(1); expect(entries[0].document.content).toEqual(baseline);
+  expect(entries).toHaveLength(1); expect(entries[0].snapshot.content).toEqual(baseline);
   await edit('Latest 日本語 '); const latest = editor.getJSON();
   await restore('Baseline 中文 العربية'); expect(generation).toBe(1); expect(editor.getJSON()).toEqual(baseline);
   await autosaveSettled(); expect(await savedContent()).toEqual(baseline);
-  expect((await versionStore.listVersions(initial.id!))[0].document.content).toEqual(latest);
+  expect((await versionStore.listVersions(initial.id!))[0].snapshot.content).toEqual(latest);
   await show(); await restore('Before restoring a version'); expect(generation).toBe(2);
   expect(editor.getJSON()).toEqual(latest); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
   expect((await store.listDocuments())[0].title).toBe(initial.title); expect(messages.error).not.toHaveBeenCalled();
@@ -110,7 +110,7 @@ it('keeps the name and all 40 versions when checkpoint storage aborts, then save
   expect(document.querySelector<HTMLInputElement>('form input')!.value).toBe('Retry 中文'); expect(editor.isEditable).toBe(true);
   expect(messages.error).toHaveBeenCalledOnce(); await edit('Newest retry العربية '); const latest = editor.getJSON(); await submit();
   const after = await versionStore.listVersions(initial.id!); expect(after).toHaveLength(40);
-  expect(after[0]).toMatchObject({ label: 'Retry 中文', document: { content: latest } }); expect(after.slice(1)).toEqual(before.slice(0, 39));
+  expect(after[0]).toMatchObject({ label: 'Retry 中文', snapshot: { content: latest } }); expect(after.slice(1)).toEqual(before.slice(0, 39));
   expect(document.querySelector<HTMLInputElement>('form input')!.value).toBe(''); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
 });
 it('rolls back a restore request error without pruning history, then recovers edits made after the failure', async () => {
@@ -126,7 +126,7 @@ it('rolls back a restore request error without pruning history, then recovers ed
   expect(await versionStore.listVersions(initial.id!)).toEqual(before); expect(await savedContent()).toEqual(draft); expect(messages.error).toHaveBeenCalledOnce();
   await edit('After failure 日本語 '); const latest = editor.getJSON(); await restore('Baseline 0');
   expect(generation).toBe(1); expect(editor.getJSON()).toEqual(initial.content);
-  const after = await versionStore.listVersions(initial.id!); expect(after).toHaveLength(40); expect(after[0].document.content).toEqual(latest);
+  const after = await versionStore.listVersions(initial.id!); expect(after).toHaveLength(40); expect(after[0].snapshot.content).toEqual(latest);
   await show(); await restore('Before restoring a version'); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
 });
 it('keeps the checkpoint at its requested snapshot while later typing is eventually saved as the current draft', async () => {
@@ -137,7 +137,7 @@ it('keeps the checkpoint at its requested snapshot while later typing is eventua
   await submit(false); await edit('Typed while saving 中文 '); const latest = editor.getJSON();
   await submit(false); // A second event before the first commit must not create another version.
   await act(async () => finish()); await settle();
-  const entries = await versionStore.listVersions(initial.id!); expect(entries).toHaveLength(1); expect(entries[0].document.content).toEqual(baseline);
+  const entries = await versionStore.listVersions(initial.id!); expect(entries).toHaveLength(1); expect(entries[0].snapshot.content).toEqual(baseline);
   expect(editor.getJSON()).toEqual(latest); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
 });
 it('ignores an old autosave completion after restoration remounts the editor', async () => {
@@ -150,6 +150,6 @@ it('ignores an old autosave completion after restoration remounts the editor', a
   await restore('Baseline'); expect(generation).toBe(1); const restored = editor.getJSON();
   await act(async () => { finish(); await pending; }); await autosaveSettled();
   expect(editor.getJSON()).toEqual(restored); expect(await savedContent()).toEqual(initial.content);
-  expect((await versionStore.listVersions(initial.id!))[0].document.content).toEqual(draft);
+  expect((await versionStore.listVersions(initial.id!))[0].snapshot.content).toEqual(draft);
   expect(messages.error).not.toHaveBeenCalled();
 });

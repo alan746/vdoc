@@ -17,7 +17,7 @@ it('restores the oldest of 40 checkpoints and can recover the exact work it repl
   const restored = await versionStore.restoreVersion(first.key, current);
   expect(restored.title).toBe('Original'); expect((await store.readSavedDocument()).data!.content).toEqual(restored.content);
   const versions = await versionStore.listVersions(current.id!); expect(versions).toHaveLength(40);
-  expect(versions[0].label).toBe('Before restoring a version'); expect(versions[0].document.title).toBe('Latest title');
+  expect(versions[0].label).toBe('Before restoring a version'); expect(versions[0].snapshot.title).toBe('Latest title');
   const recovered = await versionStore.restoreVersion(versions[0].key, restored);
   expect(recovered.title).toBe(current.title); expect(recovered.content).toEqual((await store.openArchivedDocument(current.id!)).content);
   expect(recovered.content.content![0].content![0].text).toBe('Latest 日本語');
@@ -38,7 +38,8 @@ it('rolls back recovery checkpoint and retention pruning when the document write
 it('rejects a version whose embedded document identity disagrees with its index', async () => {
   const { store, versionStore, idb, first, current } = await fixture(); const db = await idb.openDatabase();
   const tx = db.transaction('versions', 'readwrite'), done = idb.transactionDone(tx);
-  tx.objectStore('versions').put({ ...first, document: { ...first.document, id: 'another-document' } }); await done;
+  // Rows written before snapshots embedded the whole document, including its id.
+  tx.objectStore('versions').put({ ...first, document: { version: 1, id: 'another-document', ...first.snapshot, savedAt: first.createdAt } }); await done;
   const before = await versionStore.listVersions(current.id!);
   await expect(versionStore.restoreVersion(first.key, current)).rejects.toThrow('different document');
   expect(await versionStore.listVersions(current.id!)).toEqual(before); expect((await store.readSavedDocument()).data!.id).toBe(current.id);
@@ -85,11 +86,11 @@ it.each([
   ] }] }],
 ] as const)('rejects a stored version with %s without altering current data or pruning history, then recovers after repair', async (_, badContent) => {
   const { store, versionStore, idb, first, current } = await fixture(40), db = await idb.openDatabase();
-  const replace = async (document: unknown) => {
+  const replace = async (snapshot: unknown) => {
     const tx = db.transaction('versions', 'readwrite'), done = idb.transactionDone(tx);
-    tx.objectStore('versions').put({ ...first, document }); await done;
+    tx.objectStore('versions').put({ ...first, snapshot }); await done;
   };
-  await replace({ ...first.document, content: badContent });
+  await replace({ ...first.snapshot, content: badContent });
   const versions = await versionStore.listVersions(current.id!), summaries = await store.listDocuments();
   const previous = await store.openArchivedDocument(current.id!);
   await expect(versionStore.restoreVersion(first.key, current)).rejects.toThrow();
@@ -97,10 +98,10 @@ it.each([
   expect(await store.openArchivedDocument(current.id!)).toEqual(previous);
   expect(await store.listDocuments()).toEqual(summaries);
   expect((await store.readSavedDocument()).data!.id).toBe(current.id);
-  await replace(first.document);
+  await replace(first.snapshot);
   const restored = await versionStore.restoreVersion(first.key, current), after = await versionStore.listVersions(current.id!);
-  expect(restored.title).toBe(first.document.title); expect(after).toHaveLength(40);
-  expect(after[0].document.content).toEqual(previous.content);
+  expect(restored.title).toBe(first.snapshot.title); expect(after).toHaveLength(40);
+  expect(after[0].snapshot.content).toEqual(previous.content);
   expect((await versionStore.restoreVersion(after[0].key, restored)).content).toEqual(previous.content);
 });
 
@@ -113,8 +114,8 @@ it('does not change the current document if the selected checkpoint was deleted 
   expect(await versionStore.listVersions(current.id!)).toEqual(before);
   expect(await store.openArchivedDocument(current.id!)).toEqual(previous);
   const restored = await versionStore.restoreVersion(before[0].key, current);
-  expect(restored.title).toBe(before[0].document.title);
-  expect((await versionStore.listVersions(current.id!))[0].document.content).toEqual(previous.content);
+  expect(restored.title).toBe(before[0].snapshot.title);
+  expect((await versionStore.listVersions(current.id!))[0].snapshot.content).toEqual(previous.content);
 });
 
 it.each(['versions', 'documents', 'summaries', 'settings'])('rolls back all restoration writes if %s.put throws, then succeeds once on retry', async target => {
@@ -134,5 +135,18 @@ it.each(['versions', 'documents', 'summaries', 'settings'])('rolls back all rest
   await versionStore.restoreVersion(first.key, current);
   const after = await versionStore.listVersions(current.id!);
   expect(after).toHaveLength(40); expect(after.slice(1)).toEqual(versions.slice(0, 39));
-  expect(after[0].label).toBe('Before restoring a version'); expect(after[0].document.content).toEqual(previous.content);
+  expect(after[0].label).toBe('Before restoring a version'); expect(after[0].snapshot.content).toEqual(previous.content);
+});
+it('lists and restores checkpoints stored before snapshots, which embed the whole document and may lack a sequence', async () => {
+  const { store, versionStore, idb, original, first, current } = await fixture(); const db = await idb.openDatabase();
+  const legacy = { key: 'legacy-checkpoint', documentId: original.id, label: 'Legacy 中文', createdAt: '2020-01-01T00:00:00.000Z', document: { ...original, title: 'Legacy title' } };
+  const tx = db.transaction('versions', 'readwrite'), done = idb.transactionDone(tx);
+  tx.objectStore('versions').put(legacy); await done;
+  const versions = await versionStore.listVersions(current.id);
+  expect(versions.map(version => version.key)).toEqual([first.key, legacy.key]);
+  expect(versions[1]).toEqual({ key: legacy.key, documentId: original.id, label: legacy.label, createdAt: legacy.createdAt, sequence: 0, snapshot: { title: 'Legacy title', content: original.content } });
+  const restored = await versionStore.restoreVersion(legacy.key, current);
+  expect(restored).toMatchObject({ id: current.id, title: 'Legacy title', content: original.content });
+  expect((await store.readSavedDocument()).data!.title).toBe('Legacy title');
+  expect((await versionStore.listVersions(current.id))[0]).toMatchObject({ label: 'Before restoring a version', sequence: 2, snapshot: { title: current.title } });
 });

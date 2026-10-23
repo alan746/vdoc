@@ -54,7 +54,7 @@ it('rejects a damaged saved version without changing the current document or pru
   const first = await versionStore.saveVersion(original, 'First');
   for (let i = 1; i < 40; i++) await versionStore.saveVersion(original, `Version ${i}`);
   const db = await idb.openDatabase(), tx = db.transaction('versions', 'readwrite'), done = idb.transactionDone(tx);
-  tx.objectStore('versions').put({ ...first, document: { ...original, content: document(missing()).content } }); await done;
+  tx.objectStore('versions').put({ ...first, snapshot: { ...first.snapshot, content: document(missing()).content } }); await done;
   const before = await versionStore.listVersions(original.id);
   await expect(versionStore.restoreVersion(first.key, original)).rejects.toThrow('invalid table structure');
   expect(await versionStore.listVersions(original.id)).toEqual(before);

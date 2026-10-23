@@ -1,17 +1,21 @@
 import { openDatabase, transactionDone, requestResult, writeTransaction } from './indexed-db';
 import { parseDocument } from './storage';
 import { truncateGraphemePrefix } from '../../domain/text/unicode';
-import type { LibraryItem, SavedDocument } from '../../domain/entities/document';
-import { verifiedStoredDocument, withDocumentRecord } from './document-records';
-type Metadata = { id: string; parentId: string | null; starred: boolean; trashedAt?: string; trashGroup?: string };
+import type { DocumentDraft, DocumentSummary, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../../domain/entities/document';
+import type { LibraryItemPatch } from '../../usecases/ports';
+import { metadataFromRecord, metadataToRecord, verifiedStoredDocument, withDocumentRecord, type MetadataRecord } from './document-records';
+const libraryItems = (documents: DocumentSummary[], folders: DocumentSummary[], records: MetadataRecord[]): LibraryItem[] => {
+  const byId = new Map(records.map(record => [record.id, metadataFromRecord(record)]));
+  return [...documents.map(doc => ({ ...doc, kind: 'document' as const })), ...folders.map(folder => ({ ...folder, kind: 'folder' as const }))]
+    .map(item => ({ ...item, parentId: null, starred: false, ...byId.get(item.id) }));
+};
 export async function listLibrary(): Promise<LibraryItem[]> {
   const db = await openDatabase();
   const tx = db.transaction(['summaries', 'folders', 'libraryMetadata']);
   const [documents, folders, metadata] = await Promise.all([
     requestResult(tx.objectStore('summaries').getAll()), requestResult(tx.objectStore('folders').getAll()), requestResult(tx.objectStore('libraryMetadata').getAll()),
   ]);
-  const byId = new Map<string, Metadata>(metadata.map(item => [item.id, item]));
-  return [...documents.map(doc => ({ ...doc, kind: 'document' as const })), ...folders.map(folder => ({ ...folder, kind: 'folder' as const }))].map(item => ({ ...item, parentId: null, starred: false, ...byId.get(item.id) }));
+  return libraryItems(documents, folders, metadata);
 }
 const cleanName = (name: string) => {
   const value = name.trim();
@@ -31,21 +35,20 @@ async function changeLibrary(action: (items: LibraryItem[], tx: IDBTransaction, 
   const metadata = tx.objectStore('libraryMetadata').getAll();
   metadata.onsuccess = () => {
     try {
-      const byId = new Map<string, Metadata>(metadata.result.map(item => [item.id, item]));
-      const items: LibraryItem[] = [...summaries.result.map(doc => ({ ...doc, kind: 'document' })), ...folders.result.map(folder => ({ ...folder, kind: 'folder' }))].map(item => ({ ...item, parentId: null, starred: false, ...byId.get(item.id) }));
-      action(items, tx, abort);
+      action(libraryItems(summaries.result, folders.result, metadata.result), tx, abort);
     } catch (error) { abort(error); }
   };
   try { await done; } catch (error) { throw failure || error; }
 }
 function validParent(items: LibraryItem[], parentId: string | null) {
-  if (parentId && !items.some(item => item.id === parentId && item.kind === 'folder' && !item.trashedAt)) throw new Error('The destination folder is unavailable.');
+  if (parentId && !items.some(item => item.id === parentId && item.kind === 'folder' && !item.trash)) throw new Error('The destination folder is unavailable.');
 }
-const metadataFor = (item: LibraryItem): Metadata => ({ id: item.id, parentId: item.parentId, starred: item.starred, ...(item.trashedAt ? { trashedAt: item.trashedAt, trashGroup: item.trashGroup } : {}) });
+const metadataFor = (item: LibraryItem): LibraryMetadata => ({ id: item.id, parentId: item.parentId, starred: item.starred, ...(item.trash ? { trash: item.trash } : {}) });
+const putMetadata = (tx: IDBTransaction, metadata: LibraryMetadata) => tx.objectStore('libraryMetadata').put(metadataToRecord(metadata));
 // Homepage creation and import are one operation: either a complete document is
 // added to its destination and activated, or all four records remain unchanged.
-export async function createLibraryDocument(document: SavedDocument, parentId: string | null) {
-  const data = { ...parseDocument(JSON.stringify(document)), id: crypto.randomUUID(), savedAt: new Date().toISOString() };
+export async function createLibraryDocument(document: DocumentDraft, parentId: string | null) {
+  const data: SavedDocument = { ...parseDocument(JSON.stringify(document)), id: crypto.randomUUID(), savedAt: new Date().toISOString() };
   await changeLibrary((items, tx) => {
     validParent(items, parentId);
     tx.objectStore('documents').add(data);
@@ -64,14 +67,14 @@ export async function createFolder(title: string, parentId: string | null) {
   });
   return folder.id;
 }
-export async function updateLibraryItem(id: string, patch: { title?: string; parentId?: string | null; starred?: boolean; trash?: boolean; expectedTrashGroup?: string }) {
-  let updated: Metadata | undefined;
+export async function updateLibraryItem(id: string, patch: LibraryItemPatch) {
+  let updated: LibraryMetadata | undefined;
   await changeLibrary((items, tx, abort) => {
     const item = items.find(entry => entry.id === id);
     if (!item) throw new Error('This item no longer exists.');
     // Toast actions can outlive a restore and a later trip to Trash. Match the
     // committed operation in this transaction before applying any undo changes.
-    if (patch.expectedTrashGroup !== undefined && (!item.trashedAt || item.trashGroup !== patch.expectedTrashGroup)) throw new Error('This item changed after it was moved to Trash. Open Trash to review its current state.');
+    if (patch.expectedTrashGroup !== undefined && (!item.trash || item.trash.group !== patch.expectedTrashGroup)) throw new Error('This item changed after it was moved to Trash. Open Trash to review its current state.');
     const meta = metadataFor(item);
     if (patch.title !== undefined) {
       const title = cleanName(patch.title);
@@ -108,33 +111,33 @@ export async function updateLibraryItem(id: string, patch: { title?: string; par
     };
     // Repeating the same request must not replace the recovery group: children
     // already in Trash would otherwise keep the old group and fail to restore.
-    if (patch.trash === true && !item.trashedAt) {
-      const ids = descendants(id), trashGroup = crypto.randomUUID(), trashedAt = new Date().toISOString();
-      for (const entry of items) if (ids.has(entry.id) && !entry.trashedAt) tx.objectStore('libraryMetadata').put({ ...metadataFor(entry), trashedAt, trashGroup });
-      meta.trashedAt = trashedAt; meta.trashGroup = trashGroup;
-    } else if (patch.trash === false && item.trashedAt) {
+    if (patch.trash === true && !item.trash) {
+      const ids = descendants(id), trash: Trash = { at: new Date().toISOString(), group: crypto.randomUUID() };
+      for (const entry of items) if (ids.has(entry.id) && !entry.trash) putMetadata(tx, { ...metadataFor(entry), trash });
+      meta.trash = trash;
+    } else if (patch.trash === false && item.trash) {
       const ids = descendants(id);
       // Restore only the descendants removed with this folder. Previously
       // discarded items must remain in Trash.
-      for (const entry of items) if (entry.id !== id && ids.has(entry.id) && item.trashGroup && entry.trashGroup === item.trashGroup) {
-        const restored = metadataFor(entry); delete restored.trashedAt; delete restored.trashGroup;
-        tx.objectStore('libraryMetadata').put(restored);
+      for (const entry of items) if (entry.id !== id && ids.has(entry.id) && item.trash.group && entry.trash?.group === item.trash.group) {
+        const restored = metadataFor(entry); delete restored.trash;
+        putMetadata(tx, restored);
       }
-      delete meta.trashedAt; delete meta.trashGroup;
-      if (meta.parentId && !items.some(entry => entry.id === meta.parentId && !entry.trashedAt)) meta.parentId = null;
+      delete meta.trash;
+      if (meta.parentId && !items.some(entry => entry.id === meta.parentId && !entry.trash)) meta.parentId = null;
     }
-    tx.objectStore('libraryMetadata').put(meta);
+    putMetadata(tx, meta);
     updated = meta;
   });
   return updated!;
 }
 export async function copyLibraryDocument(id: string) {
-  let copy: SavedDocument & { id: string } | undefined;
+  let copy: SavedDocument | undefined;
   // Content, summary and folder membership must commit together. A failed copy
   // must not leave a new document in Workspace after reporting an error.
   await changeLibrary((items, tx, abort) => {
     const item = items.find(entry => entry.id === id && entry.kind === 'document');
-    if (!item || item.trashedAt) throw new Error('Restore the document before copying it.');
+    if (!item || item.trash) throw new Error('Restore the document before copying it.');
     validParent(items, item.parentId);
     const request = tx.objectStore('documents').get(id);
     request.onsuccess = () => {
@@ -151,7 +154,7 @@ export async function copyLibraryDocument(id: string) {
 }
 
 /** Delete one confirmed Trash document and its checkpoints in one commit. */
-export async function deleteTrashedDocument(id: string, expected: { trashedAt: string; trashGroup?: string }) {
+export async function deleteTrashedDocument(id: string, expected: Trash) {
   const db = await openDatabase();
   const tx = writeTransaction(db, ['documents', 'summaries', 'libraryMetadata', 'versions', 'settings']);
   const done = transactionDone(tx);
@@ -160,7 +163,8 @@ export async function deleteTrashedDocument(id: string, expected: { trashedAt: s
   const versions = tx.objectStore('versions').index('documentId').getAllKeys(id);
   withDocumentRecord(tx, id, (document, current) => {
     if (!document) throw new Error('This document no longer exists.');
-    if (!expected.trashedAt || !current?.trashedAt || current.trashedAt !== expected.trashedAt || current.trashGroup !== expected.trashGroup) {
+    const trash = current && metadataFromRecord(current).trash;
+    if (!expected.at || !trash || trash.at !== expected.at || trash.group !== expected.group) {
       throw new Error('This document changed since you opened Trash. Cancel and review it again before deleting.');
     }
     tx.objectStore('documents').delete(id);

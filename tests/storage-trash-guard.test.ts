@@ -10,7 +10,7 @@ async function fixture() {
   const original = await store.activateDocument(parseDocument(JSON.stringify({ version: 1, id: 'trash-guard', title: 'Preserved 中文', savedAt: '2026-10-10T00:00:00.000Z',
     content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Original العربية' }] }] } }))); 
   const version = await versionStore.saveVersion(original, 'Keep checkpoint');
-  const draft = parseDocument(JSON.stringify({ ...original, title: 'Unsaved draft', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Late draft 日本語' }] }] } }));
+  const draft = { ...parseDocument(JSON.stringify({ ...original, title: 'Unsaved draft', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Late draft 日本語' }] }] } })), id: original.id };
   return { store, versionStore, idb, library, original, version, draft };
 }
 
@@ -28,7 +28,7 @@ it.each(['save', 'checkpoint', 'restore'] as const)('rejects late %s after Trash
   await library.updateLibraryItem(original.id, { trash: false });
   await expect(run()).resolves.toBeDefined();
   if (action === 'save') expect((await store.openArchivedDocument(original.id)).content).toEqual(draft.content);
-  if (action === 'checkpoint') expect((await versionStore.listVersions(original.id))[0].document.content).toEqual(draft.content);
+  if (action === 'checkpoint') expect((await versionStore.listVersions(original.id))[0].snapshot.content).toEqual(draft.content);
 });
 
 it('blocks saving a descendant when its parent folder is moved to Trash', async () => {

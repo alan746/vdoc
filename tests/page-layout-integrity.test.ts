@@ -57,7 +57,7 @@ it('rejects restoring a version with invalid margins without changing current wo
   const current = await store.activateDocument(parseDocument(JSON.stringify(backup())));
   const version = await versionStore.saveVersion(current, 'Before edits');
   const db = await idb.openDatabase(), tx = db.transaction('versions', 'readwrite'), done = idb.transactionDone(tx);
-  tx.objectStore('versions').put({ ...version, document: { ...current, content: backup({ pageMargin: 200 }).content } }); await done;
+  tx.objectStore('versions').put({ ...version, snapshot: { ...version.snapshot, content: backup({ pageMargin: 200 }).content } }); await done;
   const history = await versionStore.listVersions(current.id);
   await expect(versionStore.restoreVersion(version.key, current)).rejects.toThrow(/margin/i);
   expect(await versionStore.listVersions(current.id)).toEqual(history); expect((await store.readSavedDocument()).data).toEqual(current);

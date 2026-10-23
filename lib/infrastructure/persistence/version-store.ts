@@ -1,24 +1,30 @@
-import type { SavedDocument, DocumentVersion } from '../../domain/entities/document';
+import type { SavedDocument, DocumentVersion, VersionSnapshot } from '../../domain/entities/document';
 import { parseDocument } from './storage';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction } from './indexed-db';
 import { summary, withWritableDocument } from './document-records';
 
-const newestVersionFirst = (a: DocumentVersion, b: DocumentVersion) => (b.sequence || 0) - (a.sequence || 0) || b.createdAt.localeCompare(a.createdAt);
+/** A `versions` row. Rows written before snapshots existed hold the whole document and may lack a sequence. */
+type VersionRecord = Omit<DocumentVersion, 'sequence' | 'snapshot'> & { sequence?: number; snapshot?: VersionSnapshot; document?: SavedDocument };
+const versionFromRecord = ({ document, snapshot, sequence, ...version }: VersionRecord): DocumentVersion =>
+  ({ ...version, sequence: sequence ?? 0, snapshot: snapshot ?? { title: document!.title, content: document!.content } });
+const snapshotOf = ({ title, content }: SavedDocument): VersionSnapshot => ({ title, content });
+const nextSequence = (entries: DocumentVersion[]) => Math.max(0, ...entries.map(entry => entry.sequence)) + 1;
+const newestVersionFirst = (a: DocumentVersion, b: DocumentVersion) => b.sequence - a.sequence || b.createdAt.localeCompare(a.createdAt);
+const versionsNewestFirst = (records: VersionRecord[]) => records.map(versionFromRecord).sort(newestVersionFirst);
 export async function saveVersion(document: SavedDocument, label: string): Promise<DocumentVersion> {
-  if (!document.id) throw new Error('Save the document before creating a version.');
   const db = await database();
   const tx = writeTransaction(db, ['versions', 'documents', 'libraryMetadata']), done = completed(tx), store = tx.objectStore('versions');
-  const version: DocumentVersion = { key: crypto.randomUUID(), documentId: document.id, label: label.trim() || 'Saved version', createdAt: new Date().toISOString(), document };
+  const version: DocumentVersion = { key: crypto.randomUUID(), documentId: document.id, label: label.trim() || 'Saved version', createdAt: new Date().toISOString(), sequence: 0, snapshot: snapshotOf(document) };
   let failure: unknown;
   const abort = (error: unknown) => { failure = error; tx.abort(); };
   withWritableDocument(tx, document.id, () => {
-    const request = store.index('documentId').getAll(document.id!);
+    const request = store.index('documentId').getAll(document.id);
     request.onsuccess = () => {
       try {
-        const entries = (request.result as DocumentVersion[]).sort(newestVersionFirst);
+        const entries = versionsNewestFirst(request.result);
         // Allocate order within this write transaction, independent of clock precision
         // or clock changes. Always keep the version the user just saved.
-        version.sequence = Math.max(0, ...entries.map(entry => entry.sequence || 0)) + 1;
+        version.sequence = nextSequence(entries);
         store.put(version);
         for (const old of entries.slice(39)) store.delete(old.key);
       } catch (error) { abort(error); }
@@ -29,13 +35,13 @@ export async function saveVersion(document: SavedDocument, label: string): Promi
 }
 export async function listVersions(documentId: string): Promise<DocumentVersion[]> {
   const db = await database();
-  const versions = await result(db.transaction('versions').objectStore('versions').index('documentId').getAll(documentId));
-  return versions.sort(newestVersionFirst);
+  return versionsNewestFirst(await result(db.transaction('versions').objectStore('versions').index('documentId').getAll(documentId)));
 }
 export async function restoreVersion(key: string, current: SavedDocument): Promise<SavedDocument> {
   const db = await database();
-  const previous = parseDocument(JSON.stringify(current), Infinity);
-  if (!previous.id) throw new Error('Save the current document before restoring a version.');
+  const parsed = parseDocument(JSON.stringify(current), Infinity);
+  if (!parsed.id) throw new Error('Save the current document before restoring a version.');
+  const previous: SavedDocument = { ...parsed, id: parsed.id };
   // The recovery checkpoint, retention pruning and restored document must
   // commit together. A failed restore must not consume an older checkpoint.
   const tx = writeTransaction(db, ['versions', 'documents', 'summaries', 'settings', 'libraryMetadata']), done = completed(tx);
@@ -44,12 +50,13 @@ export async function restoreVersion(key: string, current: SavedDocument): Promi
   const request = tx.objectStore('versions').get(key);
   request.onsuccess = () => {
     try {
-      const version: DocumentVersion | undefined = request.result;
-      if (!version || version.documentId !== previous.id) throw new Error('This version is not available for the current document.');
-      const valid = parseDocument(JSON.stringify(version.document), Infinity);
-      if (valid.id !== previous.id) throw new Error('This version contains a different document. The current document has not been changed.');
-      restored = { ...valid, savedAt: new Date().toISOString() };
-      withWritableDocument(tx, previous.id!, () => {
+      const record: VersionRecord | undefined = request.result;
+      if (!record || record.documentId !== previous.id) throw new Error('This version is not available for the current document.');
+      if (record.document && record.document.id !== previous.id) throw new Error('This version contains a different document. The current document has not been changed.');
+      const { snapshot } = versionFromRecord(record), savedAt = new Date().toISOString();
+      // Validate the checkpoint as a full document before it replaces the current one.
+      restored = { ...parseDocument(JSON.stringify({ version: 1, id: previous.id, title: snapshot.title, content: snapshot.content, savedAt }), Infinity), id: previous.id, savedAt };
+      withWritableDocument(tx, previous.id, () => {
         const active = tx.objectStore('settings').get('active');
         active.onsuccess = () => {
           if (active.result !== previous.id) { abort(new Error('The active document changed. Reopen this document before restoring a version.')); return; }
@@ -57,9 +64,9 @@ export async function restoreVersion(key: string, current: SavedDocument): Promi
           const all = versions.index('documentId').getAll(previous.id);
           all.onsuccess = () => {
             try {
-              const entries = (all.result as DocumentVersion[]).sort(newestVersionFirst);
-              const backup: DocumentVersion = { key: crypto.randomUUID(), documentId: previous.id!, label: 'Before restoring a version',
-                createdAt: new Date().toISOString(), sequence: Math.max(0, ...entries.map(entry => entry.sequence || 0)) + 1, document: previous };
+              const entries = versionsNewestFirst(all.result);
+              const backup: DocumentVersion = { key: crypto.randomUUID(), documentId: previous.id, label: 'Before restoring a version',
+                createdAt: new Date().toISOString(), sequence: nextSequence(entries), snapshot: snapshotOf(previous) };
               versions.put(backup);
               for (const old of entries.slice(39)) versions.delete(old.key);
               tx.objectStore('documents').put(restored!);

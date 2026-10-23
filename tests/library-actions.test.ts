@@ -123,7 +123,7 @@ async function moveExistingToTrash() {
 it('binds the Undo toast to the committed trash operation and reports a stale undo without success',async()=>{
  let finish!:(value:unknown)=>void;calls.update.mockImplementationOnce(()=>new Promise(resolve=>{finish=resolve;}));
  await moveExistingToTrash();expect(calls.success).not.toHaveBeenCalled();
- await act(async()=>finish({id:'existing',trashGroup:'committed-group'}));
+ await act(async()=>finish({id:'existing',trash:{at:'2026-10-10T12:00:00Z',group:'committed-group'}}));
  const undo=calls.success.mock.calls[0][1].action;expect(undo.label).toBe('Undo');
  calls.update.mockRejectedValueOnce(new Error('This item changed after it was moved to Trash.'));
  await act(async()=>undo.onClick());
@@ -132,7 +132,7 @@ it('binds the Undo toast to the committed trash operation and reports a stale un
 });
 it('does not display a late Undo toast after leaving the library',async()=>{
  let finish!:(value:unknown)=>void;calls.update.mockImplementationOnce(()=>new Promise(resolve=>{finish=resolve;}));
- await moveExistingToTrash();act(()=>root.unmount());await act(async()=>finish({id:'existing',trashGroup:'committed-group'}));
+ await moveExistingToTrash();act(()=>root.unmount());await act(async()=>finish({id:'existing',trash:{at:'2026-10-10T12:00:00Z',group:'committed-group'}}));
  expect(calls.success).not.toHaveBeenCalled();
 });
 it('keeps the rename dialog and entered title after failure, then permits retry',async()=>{
@@ -166,7 +166,7 @@ it.each([
  calls.list.mockResolvedValue([
   {...base,id:'folder',title:'Café folder 中文',kind:'folder',starred:true},
   {...base,id:'doc',title:'Café doc العربية',kind:'document',parentId:'folder'},
-  {...base,id:'discarded',title:'Café discarded 日本語',kind:'document',trashedAt:'2026-10-09T00:00:00.000Z'},
+  {...base,id:'discarded',title:'Café discarded 日本語',kind:'document',trash:{at:'2026-10-09T00:00:00.000Z'}},
  ]);
  sessionStorage.setItem('vdoc.library.view', JSON.stringify({scope,parentId:null,query:'',sort:'name',view:'grid'}));
  await act(async () => root.render(createElement(LibraryHome,{key:`search-${scope}`,onOpen})));
@@ -263,7 +263,7 @@ it('does not reopen or notify when a read retry finishes after leaving the libra
 it('blocks an earlier Undo callback until the failed list refresh recovers',async()=>{
  let finish!:(value:unknown)=>void;calls.update.mockImplementationOnce(()=>new Promise(resolve=>{finish=resolve;}));
  await moveExistingToTrash();calls.list.mockRejectedValueOnce(new Error('Read unavailable'));
- await act(async()=>finish({id:'existing',trashGroup:'committed-group'}));
+ await act(async()=>finish({id:'existing',trash:{at:'2026-10-10T12:00:00Z',group:'committed-group'}}));
  const undo=calls.success.mock.calls[0][1].action;
  await act(async()=>undo.onClick());expect(calls.update).toHaveBeenCalledOnce();
  await act(async()=>retryLoading()!.click());
@@ -273,7 +273,7 @@ it('blocks an earlier Undo callback until the failed list refresh recovers',asyn
 
 async function confirmTrashDelete() {
  sessionStorage.setItem('vdoc.library.view',JSON.stringify({scope:'trash',parentId:null,query:'',sort:'modified',view:'grid'}));
- calls.list.mockResolvedValue([{id:'discarded',title:'Discard me',kind:'document',parentId:null,starred:false,savedAt:'2026-10-10T12:00:00Z',trashedAt:'2026-10-10T12:01:00Z',trashGroup:'confirmed-group'}]);
+ calls.list.mockResolvedValue([{id:'discarded',title:'Discard me',kind:'document',parentId:null,starred:false,savedAt:'2026-10-10T12:00:00Z',trash:{at:'2026-10-10T12:01:00Z',group:'confirmed-group'}}]);
  await act(async()=>root.render(createElement(LibraryHome,{key:'trash-library',onOpen})));
  await act(async()=>mount.querySelector('[aria-label="Actions for Discard me"]')!.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true})));
  const action=Array.from(document.querySelectorAll<HTMLElement>('[role="menuitem"]')).find(n=>n.textContent==='Delete permanently')!;await act(async()=>action.click());
@@ -285,7 +285,7 @@ it('requires explicit confirmation, names the document and defaults focus to Can
 });
 it('binds deletion to the confirmed Trash state and prevents double submission',async()=>{
  const dialog=await confirmTrashDelete();let finish!:()=>void;calls.remove.mockImplementation(()=>new Promise<void>(resolve=>{finish=resolve;}));const button=Array.from(dialog.querySelectorAll('button')).find(b=>b.textContent==='Delete permanently')!;
- await act(async()=>{button.click();button.click();});expect(calls.remove).toHaveBeenCalledExactlyOnceWith('discarded',{trashedAt:'2026-10-10T12:01:00Z',trashGroup:'confirmed-group'});expect(calls.success).not.toHaveBeenCalled();
+ await act(async()=>{button.click();button.click();});expect(calls.remove).toHaveBeenCalledExactlyOnceWith('discarded',{at:'2026-10-10T12:01:00Z',group:'confirmed-group'});expect(calls.success).not.toHaveBeenCalled();
  await act(async()=>finish());expect(calls.success).toHaveBeenCalledWith('Document permanently deleted');
 });
 it('keeps a failed deletion confirmation open with an error and no success notification',async()=>{

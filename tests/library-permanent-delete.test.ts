@@ -11,7 +11,7 @@ async function setup() {
  const b=await lib.createLibraryDocument({version:1,title:'Keep',content,savedAt:''},null);
  const vb=await versionStore.saveVersion(b,'Keep checkpoint');
  const trash=await lib.updateLibraryItem(a.id,{trash:true});
- return {store, versionStore, idb,lib,a,b,va,vb,expected:{trashedAt:trash.trashedAt!,trashGroup:trash.trashGroup}};
+ return {store, versionStore, idb,lib,a,b,va,vb,expected:trash.trash!};
 }
 async function all(idb:typeof import('../lib/infrastructure/persistence/indexed-db')) {
  const db=await idb.openDatabase(),names=Array.from(db.objectStoreNames),tx=db.transaction(names);
@@ -31,7 +31,7 @@ it.each(['restored','retrashed','wrong-group'] as const)('rejects stale confirma
  const {idb,lib,a,expected}=await setup();
  if(mode!=='wrong-group')await lib.updateLibraryItem(a.id,{trash:false});
  if(mode==='retrashed')await lib.updateLibraryItem(a.id,{trash:true});
- if(mode==='wrong-group')expected.trashGroup='not-the-confirmed-operation';
+ if(mode==='wrong-group')expected.group='not-the-confirmed-operation';
  const before=await all(idb);await expect(lib.deleteTrashedDocument(a.id,expected)).rejects.toThrow('changed');expect(await all(idb)).toEqual(before);
 });
 it('rolls back earlier removals when a checkpoint deletion throws and allows a clean retry',async()=>{
@@ -41,7 +41,7 @@ it('rolls back earlier removals when a checkpoint deletion throws and allows a c
 });
 it('rejects folder deletion and leaves its descendants untouched',async()=>{
  const {idb,lib}=await setup();const folder=await lib.createFolder('Folder',null);await lib.createLibraryDocument({version:1,title:'Child',content,savedAt:''},folder);const meta=await lib.updateLibraryItem(folder,{trash:true}),before=await all(idb);
- await expect(lib.deleteTrashedDocument(folder,{trashedAt:meta.trashedAt!,trashGroup:meta.trashGroup})).rejects.toThrow('no longer exists');expect(await all(idb)).toEqual(before);
+ await expect(lib.deleteTrashedDocument(folder,meta.trash!)).rejects.toThrow('no longer exists');expect(await all(idb)).toEqual(before);
 });
 it('does not let a stale editor or checkpoint recreate a permanently deleted document',async()=>{
  const {store, versionStore, idb,lib,a,expected}=await setup();await lib.deleteTrashedDocument(a.id,expected);const before=await all(idb);

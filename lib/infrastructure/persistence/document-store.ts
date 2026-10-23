@@ -1,8 +1,9 @@
 import type { JSONContent } from '@tiptap/core';
 import { parseDocument, STORAGE_KEY } from './storage';
-import type { SavedDocument, LibraryEntry } from '../../domain/entities/document';
+import type { DocumentDraft, DocumentSummary, SavedDocument } from '../../domain/entities/document';
+import type { ActiveDocumentRead } from '../../usecases/ports';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction, commitWrites } from './indexed-db';
-import { summary, withDocumentRecord, withWritableDocument } from './document-records';
+import { summary, verifiedStoredDocument, withDocumentRecord, withWritableDocument } from './document-records';
 
 
 async function migrateLegacy(db: IDBDatabase) {
@@ -21,10 +22,10 @@ async function migrateLegacy(db: IDBDatabase) {
       const entries = new Map<string, SavedDocument>();
       let current: SavedDocument | undefined;
       if (raw) {
-        try { current = parseDocument(raw); current.id ||= crypto.randomUUID(); entries.set(current.id, current); }
+        try { const parsed = parseDocument(raw); current = { ...parsed, id: parsed.id || crypto.randomUUID() }; entries.set(current.id, current); }
         catch (error) { if (!active.result) throw error; }
       }
-      let legacy: LibraryEntry[] = [];
+      let legacy: DocumentSummary[] = [];
       try { const parsed = JSON.parse(localStorage.getItem('vdoc.library.v1') || '[]'); if (Array.isArray(parsed)) legacy = parsed; }
       catch { /* Retain the original index for recovery. */ }
       for (const entry of legacy) {
@@ -32,14 +33,14 @@ async function migrateLegacy(db: IDBDatabase) {
         const archived = localStorage.getItem(`vdoc.archive.${entry.id}`);
         if (archived) {
           try {
-            const document = parseDocument(archived); document.id ||= entry.id;
+            const parsed = parseDocument(archived), document = { ...parsed, id: parsed.id || entry.id };
             // The current draft takes precedence over an older archive copy.
             if (!entries.has(document.id)) entries.set(document.id, document);
           } catch { /* Retain the original archive for recovery. */ }
         }
       }
       for (const entry of entries.values()) {
-        const existing = tx.objectStore('documents').get(entry.id!);
+        const existing = tx.objectStore('documents').get(entry.id);
         existing.onsuccess = () => {
           try {
             if (existing.result) return;
@@ -63,8 +64,9 @@ async function readLinkedDocument(db: IDBDatabase, id: string): Promise<SavedDoc
   withDocumentRecord(tx, id, (document, metadata) => {
     if (!document) throw new Error('This document is not available in this browser. Open a document from your library or import a backup.');
     if (metadata?.trashedAt) throw new Error('This document is in Trash. Restore it from your library before opening it.');
-    data = parseDocument(JSON.stringify(document), Infinity);
-    if (data.id !== id) throw new Error('The document link does not match the saved document. The original data has been preserved.');
+    const parsed = parseDocument(JSON.stringify(document), Infinity);
+    if (parsed.id !== id) throw new Error('The document link does not match the saved document. The original data has been preserved.');
+    data = { ...parsed, id };
     tx.objectStore('settings').put(id, 'active');
   }, error => { failure = error; tx.abort(); });
   try { await done; } catch (error) { throw failure || error; }
@@ -75,7 +77,7 @@ async function readLinkedDocument(db: IDBDatabase, id: string): Promise<SavedDoc
 export async function selectDocument(id: string): Promise<SavedDocument> {
   return readLinkedDocument(await database(), id);
 }
-export async function readSavedDocument(requestedId?: string): Promise<{ data: SavedDocument | null; error?: string }> {
+export async function readSavedDocument(requestedId?: string): Promise<ActiveDocumentRead> {
   try {
     const db = await database(); await migrateLegacy(db);
     if (requestedId !== undefined) return { data: await readLinkedDocument(db, requestedId) };
@@ -83,7 +85,7 @@ export async function readSavedDocument(requestedId?: string): Promise<{ data: S
     if (!id) return { data: null };
     const doc = await result(db.transaction('documents').objectStore('documents').get(id));
     if (!doc) throw new Error('Missing document.');
-    return { data: parseDocument(JSON.stringify(doc), Infinity) };
+    return { data: verifiedStoredDocument(doc, id) };
   } catch (error) { return { data: null, error: requestedId !== undefined && error instanceof Error
     ? `Could not open the document link. ${error.message}`
     : 'The local document could not be opened. Autosave is paused. The original data is preserved; open another document or import a backup.' }; }
@@ -102,23 +104,22 @@ export async function saveDocument(title: string, content: JSONContent, id: stri
   try { await done; } catch (error) { throw failure || error; }
   return data;
 }
-export async function archiveDocument(document: SavedDocument) {
-  const db = await database(), data = { ...document, id: document.id || crypto.randomUUID() };
+export async function archiveDocument(document: DocumentDraft) {
+  const db = await database(), data: SavedDocument = { ...document, id: document.id || crypto.randomUUID() };
   const tx = writeTransaction(db, ['documents', 'summaries']), done = completed(tx);
   await commitWrites(tx, done, () => { tx.objectStore('documents').put(data); tx.objectStore('summaries').put(summary(data)); });
   return data;
 }
-export async function listDocuments(): Promise<LibraryEntry[]> {
+export async function listDocuments(): Promise<DocumentSummary[]> {
   const db = await database(); const records = await result(db.transaction('summaries').objectStore('summaries').getAll());
   return records.sort((a, b) => b.savedAt.localeCompare(a.savedAt));
 }
 export async function openArchivedDocument(id: string): Promise<SavedDocument> {
   const db = await database(); const document = await result(db.transaction('documents').objectStore('documents').get(id));
-  if (!document) throw new Error('The local document no longer exists.');
-  return parseDocument(JSON.stringify(document), Infinity);
+  return verifiedStoredDocument(document, id);
 }
-export async function activateDocument(document: SavedDocument) {
-  const db = await database(), data = { ...document, id: document.id || crypto.randomUUID() };
+export async function activateDocument(document: DocumentDraft) {
+  const db = await database(), data: SavedDocument = { ...document, id: document.id || crypto.randomUUID() };
   const tx = writeTransaction(db, ['documents', 'summaries', 'settings']), done = completed(tx);
   await commitWrites(tx, done, () => { tx.objectStore('documents').put(data); tx.objectStore('summaries').put(summary(data)); tx.objectStore('settings').put(data.id, 'active'); });
   return data;

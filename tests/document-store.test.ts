@@ -56,7 +56,7 @@ it('restores a saved version and preserves the work it replaces', async () => {
   expect(restored.title).toBe('Original');
   expect(restored.content.content![0].content![0].text).toBe('Keep my document');
   const saved = await versionStore.listVersions(original.id);
-  expect(saved.find(v=>v.label==='Before restoring a version')!.document.title).toBe('Revised');
+  expect(saved.find(v=>v.label==='Before restoring a version')!.snapshot.title).toBe('Revised');
   await expect(versionStore.restoreVersion(version.key, {...changed,id:'another-document'})).rejects.toThrow('current document');
 });
 it('keeps the newest 40 versions even when saves share the same millisecond', async()=>{
@@ -85,9 +85,9 @@ it('organizes existing documents without losing contents or folder membership on
   await expect(library.updateLibraryItem(doc.id, {parentId:'missing'})).rejects.toThrow('unavailable');
   await expect(library.createFolder('   ', null)).rejects.toThrow('name');
   await library.updateLibraryItem(parent,{trash:true});
-  expect((await library.listLibrary()).every(item=>Boolean(item.trashedAt))).toBe(true);
+  expect((await library.listLibrary()).every(item=>Boolean(item.trash))).toBe(true);
   await library.updateLibraryItem(parent,{trash:false});
-  expect((await library.listLibrary()).every(item=>!item.trashedAt)).toBe(true);
+  expect((await library.listLibrary()).every(item=>!item.trash)).toBe(true);
 });
 it('copies rich content independently and restores trash to a valid destination', async () => {
   const store = await import('../lib/infrastructure/persistence/document-store');
@@ -107,7 +107,7 @@ it('copies rich content independently and restores trash to a valid destination'
   await expect(library.copyLibraryDocument(doc.id)).rejects.toThrow('Restore');
   await library.updateLibraryItem(doc.id,{trash:false});
   expect((await library.listLibrary()).find(item=>item.id===doc.id)).toMatchObject({parentId:null,starred:true});
-  expect((await library.listLibrary()).find(item=>item.id===doc.id)?.trashedAt).toBeUndefined();
+  expect((await library.listLibrary()).find(item=>item.id===doc.id)?.trash).toBeUndefined();
   expect((await store.openArchivedDocument(doc.id)).content.content![0].content![0].text).toBe('Keep my document');
 });
 it('upgrades a version 2 database while retaining existing documents and versions', async () => {
@@ -136,8 +136,8 @@ it('restores a folder subtree without reviving documents trashed earlier',async(
   await library.updateLibraryItem(root,{trash:true});
   await library.updateLibraryItem(root,{trash:false});
   const items=await library.listLibrary();
-  expect(items.find(item=>item.id==='already-trashed')?.trashedAt).toBeTruthy();
-  expect(items.find(item=>item.id==='with-folder')?.trashedAt).toBeUndefined();
+  expect(items.find(item=>item.id==='already-trashed')?.trash).toBeTruthy();
+  expect(items.find(item=>item.id==='with-folder')?.trash).toBeUndefined();
   expect(items.find(item=>item.id==='with-folder')?.parentId).toBe(child);
   expect(items.find(item=>item.id===child)?.parentId).toBe(root);
 });
@@ -170,7 +170,7 @@ it('does not reopen or restore a trashed document through its old link', async (
   await library.updateLibraryItem(trashed.id, { trash: true });
   expect((await store.readSavedDocument(trashed.id)).error).toContain('in Trash');
   expect((await store.readSavedDocument()).data?.id).toBe(active.id);
-  expect((await library.listLibrary()).find(item => item.id === trashed.id)?.trashedAt).toBeTruthy();
+  expect((await library.listLibrary()).find(item => item.id === trashed.id)?.trash).toBeTruthy();
   await library.updateLibraryItem(trashed.id, { trash: false });
   expect((await store.readSavedDocument(trashed.id)).data).toEqual(parseDocument(JSON.stringify(trashed)));
 });
@@ -237,7 +237,7 @@ it('does not select a document trashed since its library entry was displayed',as
  await library.updateLibraryItem(existing.id,{trash:true});
  await expect(store.selectDocument(existing.id)).rejects.toThrow('in Trash');
  expect((await store.readSavedDocument()).data!.id).toBe(current.id);
- expect((await library.listLibrary()).find(item=>item.id===existing.id)?.trashedAt).toBeTruthy();
+ expect((await library.listLibrary()).find(item=>item.id===existing.id)?.trash).toBeTruthy();
 });
 it('rolls back selection failure and leaves both documents unchanged',async()=>{
  const store=await import('../lib/infrastructure/persistence/document-store');

@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { SavedDocument } from '../lib/domain/entities/document';
+import type { DocumentDraft, SavedDocument, VersionSnapshot } from '../lib/domain/entities/document';
 import type { DocumentRepository, LibraryRepository, VersionRepository } from '../lib/usecases/ports';
 import { createInMemoryRepositories } from './support/in-memory-repositories';
 
@@ -14,8 +14,8 @@ const implementations: [string, () => Promise<Repositories>][] = [
   }],
   ['in-memory', async () => createInMemoryRepositories()],
 ];
-const doc = (text: string, title = 'Doc 中文'): SavedDocument => ({ version: 1, title, savedAt: '2026-10-14T00:00:00.000Z', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text }] }] } });
-const text = (document: SavedDocument | null) => JSON.stringify(document?.content).match(/"text":"([^"]*)"/)?.[1];
+const doc = (text: string, title = 'Doc 中文'): DocumentDraft => ({ version: 1, title, savedAt: '2026-10-14T00:00:00.000Z', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text }] }] } });
+const text = (document: SavedDocument | VersionSnapshot | null) => JSON.stringify(document?.content).match(/"text":"([^"]*)"/)?.[1];
 
 // One behavioural contract for every persistence implementation: a new backend
 // is ready to wire into lib/composition when it passes this suite.
@@ -49,13 +49,13 @@ describe.each(implementations)('persistence contract: %s', (_name, create) => {
     const created = await repo.library.createDocument(doc('body'), root);
     await repo.library.update(root, { trash: true });
     const trashed = await repo.library.list();
-    const group = trashed.find(item => item.id === root)!.trashGroup;
+    const group = trashed.find(item => item.id === root)!.trash?.group;
     expect(group).toBeTruthy();
-    expect(trashed.find(item => item.id === created.id)?.trashGroup).toBe(group);
+    expect(trashed.find(item => item.id === created.id)?.trash?.group).toBe(group);
     await expect(repo.documents.save('x', doc('x').content, created.id)).rejects.toThrow('Trash');
     await expect(repo.documents.select(created.id)).rejects.toThrow('Trash');
     await repo.library.update(root, { trash: false });
-    expect((await repo.library.list()).every(item => !item.trashedAt)).toBe(true);
+    expect((await repo.library.list()).every(item => !item.trash)).toBe(true);
   });
 
   it('copies documents and only deletes trashed ones matching the expected trash state', async () => {
@@ -64,9 +64,9 @@ describe.each(implementations)('persistence contract: %s', (_name, create) => {
     expect(copy).toMatchObject({ title: 'Copy of Plan' });
     expect(copy.id).not.toBe(created.id);
     await repo.versions.save(created, 'checkpoint');
-    const { trashedAt, trashGroup } = await repo.library.update(created.id, { trash: true });
-    await expect(repo.library.deleteTrashed(created.id, { trashedAt: '2000-01-01T00:00:00.000Z', trashGroup })).rejects.toThrow('changed since');
-    await repo.library.deleteTrashed(created.id, { trashedAt: trashedAt!, trashGroup });
+    const trash = (await repo.library.update(created.id, { trash: true })).trash!;
+    await expect(repo.library.deleteTrashed(created.id, { ...trash, at: '2000-01-01T00:00:00.000Z' })).rejects.toThrow('changed since');
+    await repo.library.deleteTrashed(created.id, trash);
     expect((await repo.library.list()).map(item => item.id)).toEqual([copy.id]);
     expect(await repo.versions.list(created.id)).toEqual([]);
   });
@@ -83,6 +83,6 @@ describe.each(implementations)('persistence contract: %s', (_name, create) => {
     expect(text((await repo.documents.readActive()).data)).toBe('v1');
     const after = await repo.versions.list(created.id);
     expect(after.map(version => version.label)).toContain('Before restoring a version');
-    expect(text(after.find(version => version.label === 'Before restoring a version')!.document)).toBe('v2');
+    expect(text(after.find(version => version.label === 'Before restoring a version')!.snapshot)).toBe('v2');
   });
 });

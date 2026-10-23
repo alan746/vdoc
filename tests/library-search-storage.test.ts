@@ -71,7 +71,7 @@ async function select(label: string, value: string) {
 const search = (value: string) => input('Search documents and folders', value);
 async function unchanged() {
   expect((await store.openArchivedDocument(original.id!)).content).toEqual(original.content);
-  expect((await versionStore.listVersions(original.id!))[0].document).toEqual(original);
+  expect((await versionStore.listVersions(original.id!))[0].snapshot).toEqual({ title: original.title, content: original.content });
   expect(notices.error).not.toHaveBeenCalled();
 }
 it('updates canonical multilingual search after renaming and opens the latest stored title without changing its body or versions', async () => {

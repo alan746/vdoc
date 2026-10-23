@@ -18,15 +18,15 @@ it.each(['root', 'child'] as const)('keeps the original recovery group when an a
   await library.updateLibraryItem(target === 'root' ? root : child, { trash: true });
   expect(await library.listLibrary()).toEqual(before);
   await library.updateLibraryItem(root, { trash: false });
-  const restored = await library.listLibrary(); expect(restored.every(item => !item.trashedAt && !item.trashGroup)).toBe(true);
+  const restored = await library.listLibrary(); expect(restored.every(item => !item.trash)).toBe(true);
   expect(restored.find(item => item.id === child)?.parentId).toBe(root);
   expect(restored.find(item => item.id === 'nested-document')).toMatchObject({ parentId: child, starred: true });
 });
 it('serializes repeated trash requests and restores the entire subtree', async () => {
   const { library, root } = await fixture();
   await Promise.all([library.updateLibraryItem(root, { trash: true }), library.updateLibraryItem(root, { trash: true })]);
-  const trashed = await library.listLibrary(); expect(new Set(trashed.map(item => item.trashGroup)).size).toBe(1);
-  await library.updateLibraryItem(root, { trash: false }); expect((await library.listLibrary()).every(item => !item.trashedAt)).toBe(true);
+  const trashed = await library.listLibrary(); expect(new Set(trashed.map(item => item.trash?.group)).size).toBe(1);
+  await library.updateLibraryItem(root, { trash: false }); expect((await library.listLibrary()).every(item => !item.trash)).toBe(true);
 });
 it('does not revive an earlier discarded document and preserves its content and version history', async () => {
   const { store, versionStore, library, root, document } = await fixture();
@@ -43,10 +43,10 @@ it('restores a child folder with its document to Workspace while its parent rema
   const { library, root, child, document } = await fixture();
   await library.updateLibraryItem(root, { trash: true }); await library.updateLibraryItem(child, { trash: false });
   const partial = await library.listLibrary();
-  expect(partial.find(item => item.id === root)?.trashedAt).toBeTruthy();
+  expect(partial.find(item => item.id === root)?.trash).toBeTruthy();
   expect(partial.find(item => item.id === child)).toMatchObject({ parentId: null });
   expect(partial.find(item => item.id === document.id)).toMatchObject({ parentId: child, starred: true });
-  expect(partial.filter(item => item.id !== root).every(item => !item.trashedAt)).toBe(true);
+  expect(partial.filter(item => item.id !== root).every(item => !item.trash)).toBe(true);
   await library.updateLibraryItem(child, { trash: false }); expect(await library.listLibrary()).toEqual(partial);
   await library.updateLibraryItem(root, { trash: false });
   expect((await library.listLibrary()).find(item => item.id === child)?.parentId).toBeNull();
@@ -54,7 +54,7 @@ it('restores a child folder with its document to Workspace while its parent rema
 it('rolls back every descendant when restore fails, then restores once on retry', async () => {
   const { store, versionStore, library, root, document } = await fixture();
   const moved = await library.updateLibraryItem(root, { trash: true }); const before = await library.listLibrary();
-  const undo = { trash: false, expectedTrashGroup: moved.trashGroup };
+  const undo = { trash: false, expectedTrashGroup: moved.trash?.group };
   const original = await store.openArchivedDocument(document.id), versions = await versionStore.listVersions(document.id);
   const put = IDBObjectStore.prototype.put;
   const failure = vi.spyOn(IDBObjectStore.prototype, 'put').mockImplementation(function(this: IDBObjectStore, value, key) {
@@ -65,27 +65,36 @@ it('rolls back every descendant when restore fails, then restores once on retry'
   await expect(library.updateLibraryItem(root, undo)).rejects.toThrow(); failure.mockRestore();
   expect(await library.listLibrary()).toEqual(before); expect(await store.openArchivedDocument(document.id)).toEqual(original);
   expect(await versionStore.listVersions(document.id)).toEqual(versions);
-  await library.updateLibraryItem(root, undo); expect((await library.listLibrary()).every(item => !item.trashedAt)).toBe(true);
+  await library.updateLibraryItem(root, undo); expect((await library.listLibrary()).every(item => !item.trash)).toBe(true);
 });
 it('rejects an old Undo after a folder has been restored and moved to Trash again', async () => {
   const { library, root } = await fixture();
   const moved = await library.updateLibraryItem(root, { trash: true });
-  const firstGroup = (await library.listLibrary()).find(item => item.id === root)!.trashGroup!;
-  expect(moved.trashGroup).toBe(firstGroup);
+  const firstGroup = (await library.listLibrary()).find(item => item.id === root)!.trash!.group!;
+  expect(moved.trash?.group).toBe(firstGroup);
   await library.updateLibraryItem(root, { trash: false });
   await library.updateLibraryItem(root, { trash: true }); const later = await library.listLibrary();
-  const secondGroup = later.find(item => item.id === root)!.trashGroup!; expect(secondGroup).not.toBe(firstGroup);
+  const secondGroup = later.find(item => item.id === root)!.trash!.group!; expect(secondGroup).not.toBe(firstGroup);
   const oldUndo = { trash: false, expectedTrashGroup: firstGroup };
   await expect(library.updateLibraryItem(root, oldUndo)).rejects.toThrow('changed');
   expect(await library.listLibrary()).toEqual(later);
   const currentUndo = { trash: false, expectedTrashGroup: secondGroup };
-  await library.updateLibraryItem(root, currentUndo); expect((await library.listLibrary()).every(item => !item.trashedAt)).toBe(true);
+  await library.updateLibraryItem(root, currentUndo); expect((await library.listLibrary()).every(item => !item.trash)).toBe(true);
 });
 it('does not apply an old Undo to an item that has already been restored and moved elsewhere', async () => {
   const { library, root, document } = await fixture();
   await library.updateLibraryItem(document.id, { trash: true });
-  const group = (await library.listLibrary()).find(item => item.id === document.id)!.trashGroup!;
+  const group = (await library.listLibrary()).find(item => item.id === document.id)!.trash!.group!;
   await library.updateLibraryItem(document.id, { trash: false, parentId: root }); const before = await library.listLibrary();
   const undo = { trash: false, expectedTrashGroup: group };
   await expect(library.updateLibraryItem(document.id, undo)).rejects.toThrow('changed'); expect(await library.listLibrary()).toEqual(before);
+});
+it('keeps flat trash fields in storage while exposing them as one trash value', async () => {
+  const library = await import('../lib/infrastructure/persistence/library-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
+  const id = await library.createFolder('Stored 中文', null);
+  const moved = await library.updateLibraryItem(id, { trash: true });
+  const db = await idb.openDatabase();
+  const record = await idb.requestResult(db.transaction('libraryMetadata').objectStore('libraryMetadata').get(id));
+  expect(record).toEqual({ id, parentId: null, starred: false, trashedAt: moved.trash!.at, trashGroup: moved.trash!.group });
+  expect((await library.listLibrary()).find(item => item.id === id)?.trash).toEqual(moved.trash);
 });

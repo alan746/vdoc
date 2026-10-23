@@ -1,11 +1,18 @@
-import type { LibraryMetadata, SavedDocument } from '../../domain/entities/document';
+import type { DocumentSummary, LibraryMetadata, SavedDocument } from '../../domain/entities/document';
 import { parseDocument } from './storage';
 
 // Shared record helpers for stores that read or write document rows.
-export const summary = (doc: SavedDocument) => ({ id: doc.id!, title: doc.title, savedAt: doc.savedAt });
+export const summary = (doc: SavedDocument): DocumentSummary => ({ id: doc.id, title: doc.title, savedAt: doc.savedAt });
+
+/** Shape of a `libraryMetadata` row. Stored rows keep flat trash fields; the domain uses `LibraryMetadata.trash`. */
+export type MetadataRecord = { id: string; parentId: string | null; starred: boolean; trashedAt?: string; trashGroup?: string };
+export const metadataFromRecord = ({ id, parentId, starred, trashedAt, trashGroup }: MetadataRecord): LibraryMetadata =>
+  ({ id, parentId, starred, ...(trashedAt ? { trash: { at: trashedAt, ...(trashGroup ? { group: trashGroup } : {}) } } : {}) });
+export const metadataToRecord = ({ id, parentId, starred, trash }: LibraryMetadata): MetadataRecord =>
+  ({ id, parentId, starred, ...(trash ? { trashedAt: trash.at, ...(trash.group ? { trashGroup: trash.group } : {}) } : {}) });
 
 /** Requests a document row and its library metadata in `tx`; `handle` runs once both are read. Errors thrown by `handle` go to `fail`. */
-export function withDocumentRecord(tx: IDBTransaction, id: string, handle: (document: SavedDocument | undefined, metadata: LibraryMetadata | undefined) => void, fail: (error: unknown) => void) {
+export function withDocumentRecord(tx: IDBTransaction, id: string, handle: (document: SavedDocument | undefined, metadata: MetadataRecord | undefined) => void, fail: (error: unknown) => void) {
   const document = tx.objectStore('documents').get(id);
   const metadata = tx.objectStore('libraryMetadata').get(id);
   metadata.onsuccess = () => {
@@ -29,5 +36,5 @@ export function verifiedStoredDocument(stored: unknown, id: string): SavedDocume
   if (!stored) throw new Error('The local document no longer exists.');
   const document = parseDocument(JSON.stringify(stored));
   if (document.id !== id) throw new Error('The saved document identity does not match. The original data has been preserved.');
-  return document;
+  return { ...document, id };
 }

@@ -1,9 +1,9 @@
-import type { DocumentVersion, LibraryItem, LibraryMetadata, SavedDocument, StoredDocument } from '../../lib/domain/entities/document';
+import type { DocumentVersion, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../../lib/domain/entities/document';
 import type { DocumentRepository, LibraryRepository, VersionRepository } from '../../lib/usecases/ports';
 
 /** Process-local implementation of the persistence ports, used to prove use cases and contracts are storage-agnostic. */
 export function createInMemoryRepositories() {
-  const docs = new Map<string, StoredDocument>();
+  const docs = new Map<string, SavedDocument>();
   const folders = new Map<string, { id: string; title: string; savedAt: string }>();
   const meta = new Map<string, LibraryMetadata>();
   const history: DocumentVersion[] = [];
@@ -17,7 +17,7 @@ export function createInMemoryRepositories() {
   ].map(item => ({ ...item, parentId: null, starred: false, ...meta.get(item.id) }));
   const writable = (id: string) => {
     if (!docs.has(id)) throw new Error('The local document no longer exists. Download a backup of your changes.');
-    if (meta.get(id)?.trashedAt) throw new Error('This document is in Trash. Restore it from your library before saving, or download a backup of your changes.');
+    if (meta.get(id)?.trash) throw new Error('This document is in Trash. Restore it from your library before saving, or download a backup of your changes.');
   };
   const descendants = (root: string) => {
     const ids = new Set([root]); let changed = true;
@@ -30,7 +30,7 @@ export function createInMemoryRepositories() {
     changeKey: 'vdoc.memory.document',
     async select(id) {
       if (!docs.has(id)) throw new Error('This document is not available in this browser. Open a document from your library or import a backup.');
-      if (meta.get(id)?.trashedAt) throw new Error('This document is in Trash. Restore it from your library before opening it.');
+      if (meta.get(id)?.trash) throw new Error('This document is in Trash. Restore it from your library before opening it.');
       active = id; return clone(docs.get(id)!);
     },
     async readActive(requestedId) {
@@ -63,7 +63,7 @@ export function createInMemoryRepositories() {
     async update(id, patch) {
       const item = items().find(entry => entry.id === id);
       if (!item) throw new Error('This item no longer exists.');
-      if (patch.expectedTrashGroup !== undefined && (!item.trashedAt || item.trashGroup !== patch.expectedTrashGroup)) throw new Error('This item changed after it was moved to Trash. Open Trash to review its current state.');
+      if (patch.expectedTrashGroup !== undefined && (!item.trash || item.trash.group !== patch.expectedTrashGroup)) throw new Error('This item changed after it was moved to Trash. Open Trash to review its current state.');
       const next = metadataFor(id);
       if (patch.title !== undefined) {
         if (item.kind === 'folder') folders.set(id, { id, title: patch.title.trim(), savedAt: now() });
@@ -75,21 +75,21 @@ export function createInMemoryRepositories() {
         next.parentId = patch.parentId;
       }
       if (patch.starred !== undefined) next.starred = patch.starred;
-      if (patch.trash === true && !item.trashedAt) {
-        const trashedAt = now(), trashGroup = crypto.randomUUID();
-        for (const entry of items()) if (descendants(id).has(entry.id) && !entry.trashedAt) meta.set(entry.id, { ...metadataFor(entry.id), trashedAt, trashGroup });
-        Object.assign(next, { trashedAt, trashGroup });
-      } else if (patch.trash === false && item.trashedAt) {
-        for (const entry of items()) if (entry.id !== id && descendants(id).has(entry.id) && entry.trashGroup === item.trashGroup) {
-          const restored = metadataFor(entry.id); delete restored.trashedAt; delete restored.trashGroup; meta.set(entry.id, restored);
+      if (patch.trash === true && !item.trash) {
+        const trash: Trash = { at: now(), group: crypto.randomUUID() };
+        for (const entry of items()) if (descendants(id).has(entry.id) && !entry.trash) meta.set(entry.id, { ...metadataFor(entry.id), trash });
+        next.trash = trash;
+      } else if (patch.trash === false && item.trash) {
+        for (const entry of items()) if (entry.id !== id && descendants(id).has(entry.id) && entry.trash?.group === item.trash.group) {
+          const restored = metadataFor(entry.id); delete restored.trash; meta.set(entry.id, restored);
         }
-        delete next.trashedAt; delete next.trashGroup;
+        delete next.trash;
       }
       meta.set(id, next); return clone(next);
     },
     async copy(id) {
       const original = docs.get(id);
-      if (!original || meta.get(id)?.trashedAt) throw new Error('Restore the document before copying it.');
+      if (!original || meta.get(id)?.trash) throw new Error('Restore the document before copying it.');
       const copy = { ...clone(original), id: crypto.randomUUID(), title: `Copy of ${original.title}`, savedAt: now() };
       docs.set(copy.id, copy); meta.set(copy.id, { id: copy.id, parentId: metadataFor(id).parentId, starred: false });
       return clone(copy);
@@ -97,29 +97,27 @@ export function createInMemoryRepositories() {
     async deleteTrashed(id, expected) {
       const current = meta.get(id);
       if (!docs.has(id)) throw new Error('This document no longer exists.');
-      if (!current?.trashedAt || current.trashedAt !== expected.trashedAt || current.trashGroup !== expected.trashGroup) throw new Error('This document changed since you opened Trash. Cancel and review it again before deleting.');
+      if (!current?.trash || current.trash.at !== expected.at || current.trash.group !== expected.group) throw new Error('This document changed since you opened Trash. Cancel and review it again before deleting.');
       docs.delete(id); meta.delete(id);
       for (let i = history.length - 1; i >= 0; i--) if (history[i].documentId === id) history.splice(i, 1);
       if (active === id) active = null;
     },
   };
 
-  const newestFirst = (a: DocumentVersion, b: DocumentVersion) => (b.sequence || 0) - (a.sequence || 0);
+  const newestFirst = (a: DocumentVersion, b: DocumentVersion) => b.sequence - a.sequence;
   const versions: VersionRepository = {
     async save(document: SavedDocument, label) {
-      if (!document.id) throw new Error('Save the document before creating a version.');
       writable(document.id);
-      const version = { key: crypto.randomUUID(), documentId: document.id, label: label.trim() || 'Saved version', createdAt: now(), sequence: ++sequence, document: clone(document) };
+      const version = { key: crypto.randomUUID(), documentId: document.id, label: label.trim() || 'Saved version', createdAt: now(), sequence: ++sequence, snapshot: { title: document.title, content: clone(document.content) } };
       history.push(version); return clone(version);
     },
     async list(documentId) { return clone(history.filter(v => v.documentId === documentId).sort(newestFirst)); },
     async restore(key, current) {
-      if (!current.id) throw new Error('Save the current document before restoring a version.');
       const version = history.find(v => v.key === key);
       if (!version || version.documentId !== current.id) throw new Error('This version is not available for the current document.');
       writable(current.id);
-      history.push({ key: crypto.randomUUID(), documentId: current.id, label: 'Before restoring a version', createdAt: now(), sequence: ++sequence, document: clone(current) });
-      const restored = { ...clone(version.document), id: current.id, savedAt: now() };
+      history.push({ key: crypto.randomUUID(), documentId: current.id, label: 'Before restoring a version', createdAt: now(), sequence: ++sequence, snapshot: { title: current.title, content: clone(current.content) } });
+      const restored = { ...clone(current), ...clone(version.snapshot), savedAt: now() };
       docs.set(current.id, restored); active = current.id;
       return clone(restored);
     },

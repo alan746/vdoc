@@ -202,7 +202,7 @@ it('distinguishes same-name same-time documents by folder and opens the chosen i
   {id:'folder-b',title:'العربية',kind:'folder',parentId:'folder-a',savedAt},
   {id:'copy-a',title:'Same title',kind:'document',parentId:'folder-a',savedAt},
   {id:'copy-b',title:'Same title',kind:'document',parentId:'folder-b',savedAt},
-  {id:'trashed-copy',title:'Same title',kind:'document',parentId:null,savedAt,trashedAt:savedAt},
+  {id:'trashed-copy',title:'Same title',kind:'document',parentId:null,savedAt,trash:{at:savedAt}},
  ]);
  await clickItem('Open local document');
  const choices=Array.from(document.querySelectorAll<HTMLButtonElement>('.local-documents button'));
@@ -226,7 +226,7 @@ it.each(['missing','cycle','trashed'])('does not mislabel a %s parent path as th
  const savedAt='2026-10-08T00:00:00.000Z';
  calls.list.mockResolvedValue([
   {id:'orphan',title:'Preserved document',kind:'document',parentId:'parent',savedAt},
-  ...(kind==='missing'?[]:[{id:'parent',title:'Folder',kind:'folder',parentId:kind==='cycle'?'parent':null,savedAt,...(kind==='trashed'?{trashedAt:savedAt}:{})}]),
+  ...(kind==='missing'?[]:[{id:'parent',title:'Folder',kind:'folder',parentId:kind==='cycle'?'parent':null,savedAt,...(kind==='trashed'?{trash:{at:savedAt}}:{})}]),
  ]);
  await clickItem('Open local document');
  const choice=document.querySelector<HTMLButtonElement>('.local-documents button')!;
