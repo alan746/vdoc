@@ -110,3 +110,26 @@
 4. **暂不做**：云端文档存储、多设备同步、共享与多人协作。产品验证后另行立项；届时存储后端经 `lib/composition/repositories.ts` 替换，新实现须通过 `tests/persistence-contract.test.ts`。
 
 隐私口径：用户可见地提示哪些内容会发送给模型服务；未发起 AI 指令时不上传任何文档内容。部署位置（现有 Cloudflare Worker 配置或其他）在 AI 阶段启动时确定。
+
+### 文档与 AI 解耦
+
+文档端与 AI 端以工具契约解耦，而不是以服务器划分：文档状态、撤销与版本校验在浏览器的 DocumentEngine 中，AI 端不接触 ProseMirror、IndexedDB 或界面。
+
+- **文档端契约**：沿用 `lib/usecases/browser-tools.ts` 已定义的 `read_document` 与 `apply_document_operations`；参数以 `externalRequestSchema`（zod）为唯一来源，生成 JSON Schema 作为模型工具定义。契约变化须同步 [操作接口](OPERATIONS.md) 并保持向后兼容。
+- **AI 服务**：持有密钥、管理会话与计费，把模型供应商的工具调用翻译为上述契约，经同一连接发回浏览器执行，并把执行结果（成功、校验失败、版本过期）回传给模型。不直接修改文档。
+- **供应商适配器**：每家模型/语音服务一个适配器，实现同一内部接口（建立会话、发送音频或文字、接收转写、接收工具调用、回传工具结果、打断/取消）。更换或并行接入供应商只新增适配器，文档端不改。
+- 将来做云端存储时，可再拆出独立文档服务；契约保持不变。
+
+### 语音阶段：Boson Higgs Realtime（首选候选）
+
+首个语音适配器采用 Boson AI 的 [Higgs Realtime](https://docs.boson.ai/models/higgs-realtime/overview)：WebSocket 双向实时会话，内置流式转写（Higgs STT）、服务端/语义断句与打断、函数调用，可只输出文字；协议兼容 OpenAI Realtime API。浏览器以 AI 服务签发的短期 client secret 连接，密钥不下发。
+
+接入前先做独立的小规模验证（不改正式代码），通过后再定为正式方案：
+
+1. 中文（含中英混说）转写准确率与端到端延迟；
+2. 典型口述指令（如“把第二段加粗”“在表格后插一行”）能否正确调用 `apply_document_operations`，过期版本被拒后能否重读重试；
+3. 打断与取消：用户中途改口时停止当前回复且不执行未确认操作；
+4. 价格、并发与 API 权限申请；
+5. 浏览器端麦克风采集为 24 kHz 16-bit 单声道 PCM 的兼容性（当前未提供 WebRTC）。
+
+任一项不满足时保留适配器接口，换用其他供应商。文字指令阶段与语音阶段共用同一工具契约。
