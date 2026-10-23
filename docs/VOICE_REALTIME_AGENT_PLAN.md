@@ -71,7 +71,7 @@
 
 实现范围限定在不依赖 vRT 尚未定稿的 tool-stream 协议的部分；完整协议面见 [`REALTIME_PROTOCOL.md`](REALTIME_PROTOCOL.md)。
 
-- [`lib/editor/realtime/agent-activity.ts`](../lib/editor/realtime/agent-activity.ts)：纯视图 ProseMirror decoration（`highlightChangedBlocks`/`setAgentPresence`/`clearAgentActivity`），和 `search-highlights.ts` 同一模式，不写入文档/历史/导出。改动块渐隐高亮约 1.5 秒；presence 标记随最近一次提交移动，断开/卸载清空。
+- [`lib/editor/realtime/agent-activity.ts`](../lib/editor/realtime/agent-activity.ts)：纯视图 ProseMirror decoration，`attachAgentActivity(editor)` 在运行期注册插件并返回 `highlight`/`setPresence`/`clear`/`dispose` 句柄，和 `search-highlights.ts` 同一模式，不写入文档/历史/导出。（最初版本只导出了一个 Extension 却没有注册到应用编辑器里，生产环境不显示任何装饰，已修复并补了集成测试。）改动块渐隐高亮约 1.5 秒；presence 标记随最近一次提交移动，断开/卸载清空。
 - [`components/editor/realtime/use-agent-activity.ts`](../components/editor/realtime/use-agent-activity.ts)：订阅 `engine.onApplied`（仅 agent 来源）驱动上述 decoration，并按 `turnId` 把 `engine.records` 分组供时间线渲染；返回的 `undoTurn(turnId)` 直接调用 `engine.undoTurn`，不经实时执行器（撤销是引擎通用能力，不需要可信 agent 身份）。
 - [`components/editor/realtime/activity-timeline.tsx`](../components/editor/realtime/activity-timeline.tsx)：按 turn 分组的历史列表 + "Undo turn" 按钮，失败时 toast 提示，不静默吞错误。
 - `RealtimeControls` 在 `status !== 'disconnected'` 时渲染时间线；Esc/Stop/连接状态文案是已有行为，未改动。

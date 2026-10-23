@@ -1,78 +1,127 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { AgentActivity, clearAgentActivity, highlightChangedBlocks, setAgentPresence } from '../lib/editor/realtime/agent-activity';
+import { attachAgentActivity, findBlockRange, type AgentActivity } from '../lib/editor/realtime/agent-activity';
 
-let editor: Editor;
+// The editor is built from the production extension set only: the activity
+// plugins must work when registered at runtime, as the app does.
+let editor: Editor, activity: AgentActivity;
 beforeEach(async () => {
-  editor = new Editor({ extensions: [...createExtensions(), AgentActivity], content: '<p>first</p><p>second</p><p>third</p>' });
+  editor = new Editor({ extensions: createExtensions(), content: '<p>first</p><p>second</p><p>third</p>' });
   await new Promise(resolve => setTimeout(resolve, 0));
+  activity = attachAgentActivity(editor, { highlightMs: 1500 });
 });
-afterEach(() => { editor.destroy(); vi.useRealTimers(); });
+afterEach(() => { activity.dispose(); editor.destroy(); vi.useRealTimers(); });
 const blockIds = () => { const ids: string[] = []; editor.state.doc.descendants(node => { if (node.attrs.blockId && node.isTextblock) ids.push(node.attrs.blockId); }); return ids; };
+const highlighted = () => [...editor.view.dom.querySelectorAll('.vdoc-agent-highlight')].map(node => node.textContent);
+const present = () => [...editor.view.dom.querySelectorAll('.vdoc-agent-presence')].map(node => node.textContent);
+
+it('registers its plugins at runtime on an editor built without them', () => {
+  const [first] = blockIds();
+  activity.highlight([first]);
+  expect(highlighted()).toEqual(['first']);
+});
 
 it('highlights the changed blocks and clears itself after the duration, without touching the document', () => {
   vi.useFakeTimers();
   const before = editor.getJSON();
   const [first, , third] = blockIds();
-  highlightChangedBlocks(editor, [first, third], 1500);
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-highlight')).toHaveLength(2);
-  expect(editor.getJSON()).toEqual(before);
+  activity.highlight([first, third]);
+  expect(highlighted()).toEqual(['first', 'third']);
   vi.advanceTimersByTime(1500);
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-highlight')).toHaveLength(0);
+  expect(highlighted()).toEqual([]);
   expect(editor.getJSON()).toEqual(before);
 });
 
 it('maps the highlight through a later edit instead of losing it', () => {
   vi.useFakeTimers();
   const [, second] = blockIds();
-  highlightChangedBlocks(editor, [second], 1500);
+  activity.highlight([second]);
   editor.commands.insertContentAt(0, 'X');
-  expect(editor.view.dom.querySelector('.vdoc-agent-highlight')?.textContent).toBe('second');
-  vi.advanceTimersByTime(1500);
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-highlight')).toHaveLength(0);
+  expect(highlighted()).toEqual(['second']);
 });
 
-it('does not let an older highlight’s timeout clear a newer one', () => {
+it('restarts the clear timer for a newer highlight instead of letting the old timer clear it', () => {
   vi.useFakeTimers();
   const [first, second] = blockIds();
-  highlightChangedBlocks(editor, [first], 1000);
+  activity.highlight([first]);
+  vi.advanceTimersByTime(1000);
+  activity.highlight([second]);
+  vi.advanceTimersByTime(1000);
+  expect(highlighted()).toEqual(['second']);
   vi.advanceTimersByTime(500);
-  highlightChangedBlocks(editor, [second], 1000);
-  vi.advanceTimersByTime(500); // first call's timer fires now; must not clear second's highlight
-  expect(editor.view.dom.querySelector('.vdoc-agent-highlight')?.textContent).toBe('second');
-  vi.advanceTimersByTime(500); // second call's own timer
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-highlight')).toHaveLength(0);
+  expect(highlighted()).toEqual([]);
 });
 
-it('ignores unknown block IDs without throwing or changing the document', () => {
-  const before = editor.getJSON();
-  expect(() => highlightChangedBlocks(editor, ['missing-id'])).not.toThrow();
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-highlight')).toHaveLength(0);
-  expect(editor.getJSON()).toEqual(before);
+it('ignores unknown block IDs without dispatching anything', () => {
+  const dispatch = vi.spyOn(editor.view, 'dispatch');
+  activity.highlight(['missing-id']);
+  activity.setPresence('missing-id');
+  expect(dispatch).not.toHaveBeenCalled();
 });
 
-it('sets a presence marker on one block at a time and clears it', () => {
+it('does not dispatch a transaction to clear decorations that are already empty', () => {
+  const dispatch = vi.spyOn(editor.view, 'dispatch');
+  activity.clear();
+  activity.setPresence(null);
+  expect(dispatch).not.toHaveBeenCalled();
+});
+
+it('keeps one presence marker, moves it, and clears it', () => {
   const [first, second] = blockIds();
-  setAgentPresence(editor, first);
-  expect(editor.view.dom.querySelector('.vdoc-agent-presence')?.textContent).toBe('first');
-  setAgentPresence(editor, second);
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-presence')).toHaveLength(1);
-  expect(editor.view.dom.querySelector('.vdoc-agent-presence')?.textContent).toBe('second');
-  setAgentPresence(editor, null);
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-presence')).toHaveLength(0);
+  activity.setPresence(first);
+  expect(present()).toEqual(['first']);
+  activity.setPresence(second);
+  expect(present()).toEqual(['second']);
+  activity.setPresence(null);
+  expect(present()).toEqual([]);
 });
 
-it('clearAgentActivity removes both the highlight and the presence marker', () => {
+it('clear() removes the highlight, the presence marker and the pending timer in one transaction', () => {
+  vi.useFakeTimers();
   const [first] = blockIds();
-  highlightChangedBlocks(editor, [first]);
-  setAgentPresence(editor, first);
-  clearAgentActivity(editor);
-  expect(editor.view.dom.querySelectorAll('.vdoc-agent-highlight, .vdoc-agent-presence')).toHaveLength(0);
+  activity.highlight([first]); activity.setPresence(first);
+  const dispatch = vi.spyOn(editor.view, 'dispatch');
+  activity.clear();
+  expect(dispatch).toHaveBeenCalledTimes(1);
+  expect(highlighted()).toEqual([]); expect(present()).toEqual([]);
+  vi.advanceTimersByTime(5000);
+  expect(dispatch).toHaveBeenCalledTimes(1);
 });
 
-it('does nothing on a destroyed editor', () => {
+it('dispose() unregisters the plugins, removes decorations and makes the handle inert', () => {
+  vi.useFakeTimers();
+  const [first] = blockIds();
+  const pluginCount = editor.state.plugins.length;
+  activity.highlight([first]); activity.setPresence(first);
+  activity.dispose();
+  expect(editor.state.plugins).toHaveLength(pluginCount - 2);
+  expect(highlighted()).toEqual([]); expect(present()).toEqual([]);
+  expect(() => { activity.highlight([first]); vi.advanceTimersByTime(5000); }).not.toThrow();
+  expect(highlighted()).toEqual([]);
+});
+
+it('two attachments on one editor stay independent when one is disposed', () => {
+  const [first, second] = blockIds();
+  const other = attachAgentActivity(editor);
+  other.setPresence(second);
+  activity.setPresence(first);
+  activity.dispose();
+  expect(present()).toEqual(['second']);
+  other.dispose();
+});
+
+it('is safe on a destroyed editor', () => {
   const [first] = blockIds();
   editor.destroy();
-  expect(() => { highlightChangedBlocks(editor, [first]); setAgentPresence(editor, first); clearAgentActivity(editor); }).not.toThrow();
+  expect(() => { activity.highlight([first]); activity.setPresence(first); activity.clear(); activity.dispose(); }).not.toThrow();
+  expect(() => attachAgentActivity(editor).dispose()).not.toThrow();
+});
+
+it('findBlockRange returns the node range or undefined', () => {
+  const [second] = blockIds().slice(1);
+  const range = findBlockRange(editor.state.doc, second)!;
+  expect(editor.state.doc.nodeAt(range.from)?.attrs.blockId).toBe(second);
+  expect(range.to - range.from).toBe(editor.state.doc.nodeAt(range.from)!.nodeSize);
+  expect(findBlockRange(editor.state.doc, 'missing')).toBeUndefined();
 });

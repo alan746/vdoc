@@ -1,8 +1,8 @@
 'use client';
-import { useCallback, useEffect, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import type { OperationRecord } from '@/lib/domain/entities/operation';
-import { clearAgentActivity, highlightChangedBlocks, setAgentPresence } from '@/lib/editor/realtime/agent-activity';
+import { attachAgentActivity, type AgentActivity } from '@/lib/editor/realtime/agent-activity';
 
 export type AgentTurn = { turnId: string; actor: string; time: number; count: number };
 
@@ -18,25 +18,33 @@ function groupTurns(records: readonly OperationRecord[]): AgentTurn[] {
   return [...turns.values()];
 }
 
-/** vdoc#33: drives the view-only AgentActivity decorations from committed
- *  agent edits while `active`, and derives the turn-grouped history for the
- *  timeline. Clears decorations on disconnect/unmount so a closed
- *  connection leaves no stray highlight or presence marker. */
+/** vdoc#33: attaches the view-only activity decorations to the editor for as
+ *  long as the realtime controls are mounted (i.e. the adapter is enabled),
+ *  drives them from committed agent edits while `active`, and derives the
+ *  turn-grouped history for the timeline. */
 export function useAgentActivity(engine: DocumentEngine, active: boolean) {
   const subscribe = useCallback((notify: () => void) => engine.subscribe(notify), [engine]);
   const getRecords = useCallback(() => engine.records, [engine]);
   const records = useSyncExternalStore(subscribe, getRecords, getRecords);
+  const activity = useRef<AgentActivity | null>(null);
+  // Registered once per editor session rather than per connection: plugin
+  // registration reconfigures the editor state, which must not happen while
+  // the user may be typing (e.g. when a connection drops mid-composition).
   useEffect(() => {
-    if (!active) { clearAgentActivity(engine.editor); return; }
+    const attached = attachAgentActivity(engine.editor);
+    activity.current = attached;
+    return () => { attached.dispose(); if (activity.current === attached) activity.current = null; };
+  }, [engine]);
+  useEffect(() => {
+    const current = activity.current;
+    if (!current) return;
+    if (!active) { current.clear(); return; }
     return engine.onApplied(event => {
       if (event.source !== 'agent' || !event.changedBlockIds.length) return;
-      highlightChangedBlocks(engine.editor, event.changedBlockIds);
-      setAgentPresence(engine.editor, event.changedBlockIds[event.changedBlockIds.length - 1]);
+      current.highlight(event.changedBlockIds);
+      current.setPresence(event.changedBlockIds[event.changedBlockIds.length - 1]);
     });
   }, [engine, active]);
-  // Guarantee a clear on unmount even if it happens while still active (the
-  // effect above's own cleanup only unsubscribes, it does not clear).
-  useEffect(() => () => clearAgentActivity(engine.editor), [engine]);
   const undoTurn = useCallback((turnId: string) => engine.undoTurn(turnId, { actor: 'user-interface', turnId: crypto.randomUUID() }), [engine]);
   return { turns: groupTurns(records), undoTurn };
 }

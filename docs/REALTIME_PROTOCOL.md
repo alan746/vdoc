@@ -33,10 +33,13 @@ interface RealtimePort { open(options: { config, docId, sessionId, tools, signal
 
 纯视图层 ProseMirror decoration，不写入文档、不进历史、不进导出——和 `lib/editor/search/search-highlights.ts` 同一个模式（`DecorationSet` + `addToHistory:false`）：
 
-- `highlightChangedBlocks(editor, changedBlockIds)`：每次成功提交后对受影响块做约 1.5 秒渐隐高亮；按 per-editor 序号防止旧调用的清除计时器打断新调用的高亮。
-- `setAgentPresence(editor, blockId | null)`：标记 agent 最近修改的块，随下一次提交移动，断开时清空。
-- `clearAgentActivity(editor)`：断开/卸载时清空两者。
+- `attachAgentActivity(editor, { locate?, highlightMs? })`：**运行期注册**两个 decoration 插件（不在基础扩展集里，因为实时功能是可选的），返回句柄：
+  - `highlight(blockIds)`：约 1.5 秒渐隐高亮；新高亮会取消旧的清除计时器，不会被旧计时器误清。
+  - `setPresence(blockId | null)`：标记 agent 正在处理的块。
+  - `clear()`：一次 transaction 清空两者；本来就空时不派发 transaction。
+  - `dispose()`：卸载插件（装饰随之消失），句柄此后为空操作。
+  - 每次 attach 用独立的插件 key 名——Tiptap 的 `unregisterPlugin` 按前缀匹配，共用名字会误删别的实例。
 
-驱动方：`components/editor/realtime/use-agent-activity.ts` 的 `useAgentActivity(engine, active)`——`active` 为真时订阅 `engine.onApplied`（只处理 `source==='agent'` 且 `changedBlockIds` 非空的事件），`active` 变为假或组件卸载时清空；同时从 `engine.records` 按 `turnId` 分组，返回给 `components/editor/realtime/activity-timeline.tsx` 渲染"按轮次分组的历史 + Undo turn"。`RealtimeControls`（`components/editor/realtime-controls.tsx`）在 `status !== 'disconnected'` 时渲染这个时间线；`Undo turn` 按钮直接调用 `engine.undoTurn(turnId, origin)`，不经过实时执行器（它是普通引擎能力，任何调用方都能用，和语音/模型路径无关）。
+驱动方：`components/editor/realtime/use-agent-activity.ts` 的 `useAgentActivity(engine, active)`——挂载时 attach、卸载时 dispose（注册只在编辑器会话开始时做一次，避免在用户打字/组字时重配编辑器 state）；`active` 为真时订阅 `engine.onApplied`（只处理 `source==='agent'` 且 `changedBlockIds` 非空的事件），`active` 变为假时 `clear()`；同时从 `engine.records` 按 `turnId` 分组，返回给 `components/editor/realtime/activity-timeline.tsx` 渲染"按轮次分组的历史 + Undo turn"。`RealtimeControls`（`components/editor/realtime-controls.tsx`）在 `status !== 'disconnected'` 时渲染这个时间线；`Undo turn` 按钮直接调用 `engine.undoTurn(turnId, origin)`，不经过实时执行器（它是普通引擎能力，任何调用方都能用，和语音/模型路径无关）。
 
 **没做、不要当作已完成**：`tool.call.delta` 的流式 ghost 预览（vdoc#35 任务3、vRT#22 的 tool-stream 协议都还没定稿）；能力协商（vdoc#35 任务7）；presence 标记目前等同于"最近一次提交影响的最后一个块"，不是真正的逐 token 流式位置。

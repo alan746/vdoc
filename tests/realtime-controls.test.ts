@@ -40,3 +40,26 @@ it('closes on document switch, library/unmount and explicit disconnect', async (
   await click('Connect assistant'); await click('Disconnect assistant'); expect(calls.close).toHaveBeenCalledTimes(2);
   await click('Connect assistant'); await act(async () => root.render(null)); expect(calls.close).toHaveBeenCalledTimes(3);
 });
+it('vdoc#33: an agent commit highlights its block in the live editor and lists the turn', async () => {
+  await render(); await click('Connect assistant');
+  const s = engine.snapshot(), id = s.blocks[0].id;
+  await act(async () => { engine.executeAgent({ expectedSessionId: s.sessionId, expectedRevision: s.revision, target: { kind: 'block', id }, operations: [{ type: 'text.replace', text: 'AI' }] }, { actor: 'agent', turnId: 'turn-1' }); });
+  expect(editor.view.dom.querySelector('.vdoc-agent-highlight')?.textContent).toBe('AI');
+  expect(editor.view.dom.querySelector('.vdoc-agent-presence')?.textContent).toBe('AI');
+  expect(mount.querySelector('[aria-label="Assistant edit history"]')?.textContent).toContain('Undo turn');
+});
+it('vdoc#33: disconnecting clears the decorations and unmounting unregisters the plugins', async () => {
+  const pluginCount = editor.state.plugins.length;
+  await render(); expect(editor.state.plugins.length).toBe(pluginCount + 2);
+  await click('Connect assistant');
+  const s = engine.snapshot();
+  await act(async () => { engine.executeAgent({ expectedSessionId: s.sessionId, expectedRevision: s.revision, target: { kind: 'block', id: s.blocks[0].id }, operations: [{ type: 'text.replace', text: 'AI' }] }, { actor: 'agent', turnId: 'turn-1' }); });
+  await click('Disconnect assistant');
+  expect(editor.view.dom.querySelectorAll('.vdoc-agent-highlight, .vdoc-agent-presence')).toHaveLength(0);
+  await act(async () => root.render(null));
+  expect(editor.state.plugins.length).toBe(pluginCount);
+});
+it('vdoc#33: registers nothing when the adapter is disabled', async () => {
+  calls.enabled = false; const pluginCount = editor.state.plugins.length;
+  await render(); expect(editor.state.plugins.length).toBe(pluginCount);
+});
