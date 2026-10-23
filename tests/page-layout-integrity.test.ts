@@ -43,22 +43,22 @@ it.each([
   expect(imported.content.attrs).toMatchObject(attrs); expect(doc).toEqual(original);
 });
 it('rejects opening a stored document with invalid page settings and keeps its raw data and previous selection', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const current = await store.activateDocument({ ...parseDocument(JSON.stringify(backup())), id: 'healthy-layout' });
   const damaged = { ...current, id: 'bad-layout', content: backup({ pageSize: 'a3' }).content };
   await store.archiveDocument(damaged);
   expect((await store.readSavedDocument(damaged.id)).error).toBeTruthy();
   expect((await store.readSavedDocument()).data).toEqual(current);
-  const db = await store.openDatabase();
-  expect(await store.requestResult(db.transaction('documents').objectStore('documents').get(damaged.id))).toEqual(damaged);
+  const db = await idb.openDatabase();
+  expect(await idb.requestResult(db.transaction('documents').objectStore('documents').get(damaged.id))).toEqual(damaged);
 });
 it('rejects restoring a version with invalid margins without changing current work or checkpoint history', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const current = await store.activateDocument(parseDocument(JSON.stringify(backup())));
-  const version = await store.saveVersion(current, 'Before edits');
-  const db = await store.openDatabase(), tx = db.transaction('versions', 'readwrite'), done = store.transactionDone(tx);
+  const version = await versionStore.saveVersion(current, 'Before edits');
+  const db = await idb.openDatabase(), tx = db.transaction('versions', 'readwrite'), done = idb.transactionDone(tx);
   tx.objectStore('versions').put({ ...version, document: { ...current, content: backup({ pageMargin: 200 }).content } }); await done;
-  const history = await store.listVersions(current.id);
-  await expect(store.restoreVersion(version.key, current)).rejects.toThrow(/margin/i);
-  expect(await store.listVersions(current.id)).toEqual(history); expect((await store.readSavedDocument()).data).toEqual(current);
+  const history = await versionStore.listVersions(current.id);
+  await expect(versionStore.restoreVersion(version.key, current)).rejects.toThrow(/margin/i);
+  expect(await versionStore.listVersions(current.id)).toEqual(history); expect((await store.readSavedDocument()).data).toEqual(current);
 });

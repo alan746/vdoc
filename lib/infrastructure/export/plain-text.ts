@@ -1,6 +1,6 @@
 import type { Node } from '@tiptap/pm/model';
 import { TableMap } from '@tiptap/pm/tables';
-import { bulletGlyphs } from '../../editor/list/list-style';
+import { bulletGlyphs } from '../../domain/rules/list-styles';
 
 function counter(value: number, type: unknown): string {
   if ((type === 'a' || type === 'A') && value > 0) {

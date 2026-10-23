@@ -7,7 +7,6 @@ export const STORAGE_KEY = 'vdoc.document.v1';
 const INDEX_KEY = 'vdoc.library.v1';
 const archiveKey = (id: string) => `vdoc.archive.${id}`;
 import type { SavedDocument, LibraryEntry } from '../../domain/entities/document';
-export type { SavedDocument, LibraryEntry } from '../../domain/entities/document';
 let schema: ReturnType<typeof getSchema> | undefined;
 // Native backups follow the same size policy as saved documents. Conversion
 // callers can supply their own bound; structural validation always runs.

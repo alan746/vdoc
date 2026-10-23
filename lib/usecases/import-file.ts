@@ -1,7 +1,6 @@
 import type { DocumentImport, SavedDocument } from '../domain/entities/document';
 import { truncateGraphemePrefix } from '../domain/text/unicode';
 import type { FileImporter } from './ports';
-export type { DocumentImport } from '../domain/entities/document';
 
 /** Binds the import use case to format strategies; see lib/composition/import-file for the app wiring. */
 export function createDocumentImport(importers: readonly FileImporter[]) {

@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import { CellSelection } from '@tiptap/pm/tables';
-import { MAX_LIST_START, canRestartNumbering, validListStart, cellRestartOverflows } from '@/lib/editor/list/list-numbering';
+import { MAX_LIST_START, validListStart } from '@/lib/domain/rules/list-numbering';
+import { canRestartNumbering, cellRestartOverflows } from '@/lib/editor/list/list-numbering';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 

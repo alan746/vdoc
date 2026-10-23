@@ -1,9 +1,10 @@
 import { wordLineSpacing } from '../../editor/paragraph/paragraph-line-height';
-import { paragraphSides, paragraphBorderEdges, type ParagraphBorders } from '../../editor/paragraph/paragraph-borders';
-import { bulletGlyphs } from '../../editor/list/list-style';
+import { paragraphSides, paragraphBorderEdges, type ParagraphBorders } from '../../domain/rules/paragraph-borders';
+import { bulletGlyphs } from '../../domain/rules/list-styles';
 import { absoluteFontPixels } from '../../domain/text/font-size';
 import { wordParagraphIndent } from '../../editor/paragraph/paragraph-indent';
-import { DEFAULT_TAB_INTERVAL, wordTabPositions } from '../../editor/paragraph/paragraph-tabs';
+import { DEFAULT_TAB_INTERVAL } from '../../domain/rules/tab-interval';
+import { wordTabPositions } from '../../editor/paragraph/paragraph-tabs';
 import { cellBorder, borderSides } from '../../editor/table/table-borders';
 import { canonicalLanguage } from '../../domain/text/language';
 import type { JSONContent } from '@tiptap/core';

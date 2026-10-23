@@ -1,5 +1,4 @@
 import { validNumberAffix, validBulletText } from '../../domain/rules/list-markers';
-export { validNumberAffix, validBulletText };
 export const markerCssString = (value: string) => '"' + Array.from(value, c => `\\${c.codePointAt(0)!.toString(16)} `).join('') + '"';
 export const LIST_MARKER_CSS = `ol[data-number-prefix] > li::marker{content:var(--vdoc-prefix) counter(list-item,var(--vdoc-counter-style)) var(--vdoc-suffix) " "}ul[data-bullet-text] > li::marker{content:var(--vdoc-bullet) " "}`;
 

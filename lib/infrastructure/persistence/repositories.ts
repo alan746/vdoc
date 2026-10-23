@@ -1,5 +1,6 @@
 import type { DocumentRepository, LibraryRepository, VersionRepository } from '../../usecases/ports';
 import * as documents from './document-store';
+import { STORAGE_KEY } from './storage';
 import * as library from './library-store';
 import * as versions from './version-store';
 
@@ -7,7 +8,7 @@ import * as versions from './version-store';
 // time, so a store module is only touched when the operation runs.
 
 export const indexedDbDocuments: DocumentRepository = {
-  get changeKey() { return documents.STORAGE_KEY; },
+  get changeKey() { return STORAGE_KEY; },
   select: id => documents.selectDocument(id),
   readActive: requestedId => documents.readSavedDocument(requestedId),
   save: (title, content, documentId) => documents.saveDocument(title, content, documentId),

@@ -7,8 +7,6 @@ import {colorToHex} from '../../domain/text/color';
 import {absoluteFontPixels} from '../../domain/text/font-size';
 
 import { textFormatSchema, type TextFormat } from '../../domain/rules/text-format';
-export { textFormatSchema };
-export type { TextFormat };
 const names=['formatOverride','bold','italic','underline','strike','textStyle','highlight','superscript','subscript'];
 
 /** Cell selection ranges are not necessarily in document order. */

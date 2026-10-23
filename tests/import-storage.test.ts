@@ -5,12 +5,14 @@ import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import type { SavedDocument } from '../lib/infrastructure/persistence/storage';
+import type { SavedDocument } from '../lib/domain/entities/document';
 import type { startAutosave } from '../lib/composition/autosave';
 
 const messages = vi.hoisted(() => ({ error: vi.fn(), info: vi.fn() }));
 vi.mock('sonner', () => ({ toast: messages }));
 let store: typeof import('../lib/infrastructure/persistence/document-store');
+let versionStore: typeof import('../lib/infrastructure/persistence/version-store');
+let idb: typeof import('../lib/infrastructure/persistence/indexed-db');
 let library: typeof import('../lib/infrastructure/persistence/library-store');
 let autosave: typeof import('../lib/composition/autosave');
 let LocalDocuments: typeof import('../components/editor/local-documents').LocalDocuments;
@@ -36,7 +38,7 @@ function Harness() {
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); vi.resetModules(); localStorage.clear(); globalThis.indexedDB = new IDBFactory();
   messages.error.mockReset(); messages.info.mockReset(); report.mockReset();
-  store = await import('../lib/infrastructure/persistence/document-store'); library = await import('../lib/infrastructure/persistence/library-store');
+  store = await import('../lib/infrastructure/persistence/document-store'); versionStore = await import('../lib/infrastructure/persistence/version-store'); idb = await import('../lib/infrastructure/persistence/indexed-db'); library = await import('../lib/infrastructure/persistence/library-store');
   autosave = await import('../lib/composition/autosave'); LocalDocuments = (await import('../components/editor/local-documents')).LocalDocuments;
   navigation = (await import('../lib/usecases/document-navigation')).documentNavigation;
   const source = new Editor({ extensions: createExtensions(), content: '<h2>Original 中文</h2><p>日本語 العربية café 👩‍💻</p><ol start="7"><li>Keep numbering</li></ol><table><tr><td rowspan="2"><p>Merged</p></td><td><p>A</p></td></tr><tr><td><p>B</p></td></tr></table>' });
@@ -66,13 +68,13 @@ async function menuItem(name: string) {
   await act(async () => item.click()); await settle();
 }
 it('imports a backup with the current identity as an independent document without replacing its latest edits or history', async () => {
-  const checkpoint = await store.saveVersion(initial, 'Keep original history');
+  const checkpoint = await versionStore.saveVersion(initial, 'Keep original history');
   await edit('Latest source edits '); const latest = editor.getJSON(); await choose();
   expect(generation).toBe(1); expect(activeId).not.toBe(initial.id); const importedId = activeId;
   expect(editor.getJSON()).toEqual(initial.content); await saved();
   expect((await store.openArchivedDocument(initial.id!)).content).toEqual(latest);
   expect((await store.readSavedDocument()).data).toMatchObject({ id: importedId, title: 'Imported 中文 العربية', content: initial.content });
-  expect(await store.listVersions(initial.id!)).toEqual([checkpoint]); expect(await store.listVersions(importedId)).toEqual([]);
+  expect(await versionStore.listVersions(initial.id!)).toEqual([checkpoint]); expect(await versionStore.listVersions(importedId)).toEqual([]);
   expect(await store.listDocuments()).toHaveLength(2);
   await edit('Independent new edits '); await saved(); expect((await store.openArchivedDocument(initial.id!)).content).toEqual(latest);
   expect(messages.error).not.toHaveBeenCalled();
@@ -100,7 +102,7 @@ it.each(['original save', 'import activation'] as const)('keeps the draft and cr
   await choose(); failure.mockRestore();
   expect(generation).toBe(0); expect(activeId).toBe(initial.id); expect(editor.isEditable).toBe(true); expect(editor.getJSON()).toEqual(draft);
   expect((await store.readSavedDocument()).data!.id).toBe(initial.id); expect(await store.listDocuments()).toHaveLength(1);
-  const db = await store.openDatabase(); expect(await store.requestResult(db.transaction('documents').objectStore('documents').getAllKeys())).toEqual([initial.id]);
+  const db = await idb.openDatabase(); expect(await idb.requestResult(db.transaction('documents').objectStore('documents').getAllKeys())).toEqual([initial.id]);
   expect((await store.openArchivedDocument(initial.id!)).content).toEqual(stage === 'original save' ? before.content : draft);
   expect(messages.error).toHaveBeenCalledOnce(); await edit('Retry newest العربية '); const latest = editor.getJSON(); await choose(); await saved();
   expect(generation).toBe(1); expect(await store.listDocuments()).toHaveLength(2); expect((await store.openArchivedDocument(initial.id!)).content).toEqual(latest);

@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core';
 import JSZip from 'jszip';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { type ParagraphBorderOperation } from '../lib/editor/paragraph/paragraph-borders';
+import type { ParagraphBorderOperation } from '../lib/domain/rules/paragraph-borders';
 import { parseDocument } from '../lib/infrastructure/persistence/storage';
 import { exportWord, importWord } from '../lib/infrastructure/word/word';
 import { exportHTML } from '../lib/infrastructure/export/html-export';

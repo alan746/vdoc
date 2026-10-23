@@ -4,7 +4,6 @@ import { selectedParagraphs } from './paragraph-selection';
 import { paragraphIndent } from './paragraph-indent';
 
 import { DEFAULT_TAB_INTERVAL, validTabInterval } from '../../domain/rules/tab-interval';
-export { DEFAULT_TAB_INTERVAL, validTabInterval };
 export const preserveTabWhitespace = (el: HTMLElement) => el.hasAttribute('data-tab-interval') || /pre/.test(el.style.whiteSpace) ? null : false;
 export function tabIntervalAttribute() {
   return {

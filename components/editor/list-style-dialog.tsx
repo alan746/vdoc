@@ -3,8 +3,10 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { Editor } from '@tiptap/core';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import type { Operation } from '@/lib/domain/entities/operation';
-import { bulletStyles, orderedStyles, currentListStyle, listStyleTargets, type ListStyle } from '@/lib/editor/list/list-style';
-import { validNumberAffix, validBulletText, markerCssString } from '@/lib/editor/list/list-markers';
+import { bulletStyles, orderedStyles, type ListStyle } from '@/lib/domain/rules/list-styles';
+import { currentListStyle, listStyleTargets } from '@/lib/editor/list/list-style';
+import { validNumberAffix, validBulletText } from '@/lib/domain/rules/list-markers';
+import { markerCssString } from '@/lib/editor/list/list-markers';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 

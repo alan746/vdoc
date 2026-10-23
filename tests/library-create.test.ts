@@ -1,19 +1,20 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { parseDocument, type SavedDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import type { SavedDocument } from '../lib/domain/entities/document';
 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
 const imported: SavedDocument = { version: 1, id: 'current', title: 'Imported 中文', savedAt: '2026-10-05T12:00:00.000Z', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'العربية 👩‍💻 日本語', marks: [{ type: 'bold' }, { type: 'highlight', attrs: { color: '#FEF08A' } }] }] }] } };
 async function fixture() {
-  const store = await import('../lib/infrastructure/persistence/document-store'), library = await import('../lib/infrastructure/persistence/library-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), idb = await import('../lib/infrastructure/persistence/indexed-db'), library = await import('../lib/infrastructure/persistence/library-store');
   const current = await store.activateDocument({ ...parseDocument(JSON.stringify(imported)), title: 'Current', id: 'current' });
   const folder = await library.createFolder('Folder', null);
-  const db = await store.openDatabase();
+  const db = await idb.openDatabase();
   const snapshot = async () => {
     const tx = db.transaction(['documents', 'summaries', 'libraryMetadata', 'settings']);
-    return Promise.all(['documents', 'summaries', 'libraryMetadata', 'settings'].map(name => store.requestResult(tx.objectStore(name).getAll())));
+    return Promise.all(['documents', 'summaries', 'libraryMetadata', 'settings'].map(name => idb.requestResult(tx.objectStore(name).getAll())));
   };
   return { store, library, current, folder, snapshot };
 }

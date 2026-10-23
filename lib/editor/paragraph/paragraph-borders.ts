@@ -3,9 +3,7 @@ import type { Editor } from '@tiptap/core';
 import { colorToHex } from '../../domain/text/color';
 import { selectedParagraphs } from './paragraph-selection';
 
-import { paragraphSides, paragraphBorderEdges, paragraphBorderDefaults, paragraphBordersSchema, paragraphBorderOperationSchema, emptyBorderValues, patchParagraphBorders, type ParagraphBorders, type ParagraphBorderOperation, type BorderValues } from '../../domain/rules/paragraph-borders';
-export { paragraphSides, paragraphBorderEdges, paragraphBorderDefaults, paragraphBordersSchema, paragraphBorderOperationSchema, emptyBorderValues, patchParagraphBorders };
-export type { ParagraphBorders, ParagraphBorderOperation, BorderValues };
+import { paragraphSides, paragraphBorderEdges, paragraphBorderDefaults, paragraphBordersSchema, emptyBorderValues, type ParagraphBorders, type ParagraphBorderOperation, type BorderValues } from '../../domain/rules/paragraph-borders';
 export function selectedParagraphBorders(editor: Editor): BorderValues {
   const values = {...emptyBorderValues};
   const borders = selectedParagraphs(editor.state.doc,editor.state.selection).map(({node})=>(node.attrs.paragraphBorders || {}) as ParagraphBorders);

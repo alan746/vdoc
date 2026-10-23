@@ -7,8 +7,7 @@ import type { Node, ResolvedPos } from '@tiptap/pm/model';
 import { NodeSelection, Plugin, TextSelection, type Selection, type Transaction } from '@tiptap/pm/state';
 import { AddMarkStep, RemoveMarkStep, ReplaceStep } from '@tiptap/pm/transform';
 
-import { MAX_LIST_START, validListStart } from '../../domain/rules/list-numbering';
-export { MAX_LIST_START, validListStart };
+import { validListStart } from '../../domain/rules/list-numbering';
 const startOf = (node: Node) => validListStart(node.attrs.start) ? node.attrs.start : 1;
 type ListContext = { node: Node; pos: number; itemIndex: number; previous: Node | null };
 

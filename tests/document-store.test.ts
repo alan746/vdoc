@@ -48,24 +48,24 @@ it('preserves damaged legacy data and allows a separate imported document', asyn
   expect(localStorage.getItem(STORAGE_KEY)).toBe('{damaged');
 });
 it('restores a saved version and preserves the work it replaces', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store');
   const original = await store.activateDocument({version:1,id:'version-test',title:'Original',content,savedAt:new Date().toISOString()});
-  const version = await store.saveVersion(original, 'First draft');
+  const version = await versionStore.saveVersion(original, 'First draft');
   const changed = await store.saveDocument('Revised', {type:'doc',content:[{type:'paragraph',content:[{type:'text',text:'New work'}]}]}, original.id);
-  const restored = await store.restoreVersion(version.key, changed);
+  const restored = await versionStore.restoreVersion(version.key, changed);
   expect(restored.title).toBe('Original');
   expect(restored.content.content![0].content![0].text).toBe('Keep my document');
-  const saved = await store.listVersions(original.id);
+  const saved = await versionStore.listVersions(original.id);
   expect(saved.find(v=>v.label==='Before restoring a version')!.document.title).toBe('Revised');
-  await expect(store.restoreVersion(version.key, {...changed,id:'another-document'})).rejects.toThrow('current document');
+  await expect(versionStore.restoreVersion(version.key, {...changed,id:'another-document'})).rejects.toThrow('current document');
 });
 it('keeps the newest 40 versions even when saves share the same millisecond', async()=>{
-  const store=await import('../lib/infrastructure/persistence/document-store');
+  const store=await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store');
   const document=await store.activateDocument({version:1,id:'retention-test',title:'Version retention',content,savedAt:new Date().toISOString()});
   vi.useFakeTimers({toFake:['Date']}); vi.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
   try {
-    for(let i=0;i<45;i++)await store.saveVersion({...document,title:`Revision ${i}`},`Revision ${i}`);
-    const versions=await store.listVersions(document.id);
+    for(let i=0;i<45;i++)await versionStore.saveVersion({...document,title:`Revision ${i}`},`Revision ${i}`);
+    const versions=await versionStore.listVersions(document.id);
     expect(versions).toHaveLength(40);
     expect(versions.map(v=>v.label)).toEqual(Array.from({length:40},(_,i)=>`Revision ${44-i}`));
   } finally { vi.useRealTimers(); }
@@ -121,9 +121,9 @@ it('upgrades a version 2 database while retaining existing documents and version
   tx.objectStore('documents').put(oldDoc);tx.objectStore('summaries').put({id:oldDoc.id,title:oldDoc.title,savedAt:oldDoc.savedAt});
   tx.objectStore('versions').put({key:'previous-version',documentId:oldDoc.id,document:oldDoc,label:'Before upgrade',createdAt:oldDoc.savedAt});
   await new Promise<void>((resolve,reject)=>{tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);});request.result.close();
-  const store=await import('../lib/infrastructure/persistence/document-store');const library=await import('../lib/infrastructure/persistence/library-store');
+  const store=await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store');const library=await import('../lib/infrastructure/persistence/library-store');
   expect((await library.listLibrary())[0]).toMatchObject({id:'pre-upgrade',kind:'document',parentId:null,starred:false});
-  expect((await store.listVersions(oldDoc.id))[0].label).toBe('Before upgrade');
+  expect((await versionStore.listVersions(oldDoc.id))[0].label).toBe('Before upgrade');
   await library.createFolder('After upgrade',null);
   expect((await store.openArchivedDocument(oldDoc.id)).title).toBe('Before upgrade');
 });
@@ -143,16 +143,16 @@ it('restores a folder subtree without reviving documents trashed earlier',async(
 });
 
 it('opens an explicit saved document instead of the last active one without rewriting either document', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const first = await store.archiveDocument({ version: 1, id: 'link-first', title: 'First 中文', content, savedAt: '2026-01-01T00:00:00.000Z' });
   const second = await store.activateDocument({ ...first, id: 'last-active', title: 'Second' });
   expect(await store.readSavedDocument(first.id)).toEqual({ data: parseDocument(JSON.stringify(first)) });
   expect((await store.readSavedDocument()).data?.id).toBe(first.id);
   expect(await store.openArchivedDocument(first.id)).toEqual(parseDocument(JSON.stringify(first)));
   expect(await store.openArchivedDocument(second.id)).toEqual(parseDocument(JSON.stringify(second)));
-  const db = await store.openDatabase();
-  expect(await store.requestResult(db.transaction('documents').objectStore('documents').get(first.id))).toEqual(first);
-  expect(await store.requestResult(db.transaction('documents').objectStore('documents').get(second.id))).toEqual(second);
+  const db = await idb.openDatabase();
+  expect(await idb.requestResult(db.transaction('documents').objectStore('documents').get(first.id))).toEqual(first);
+  expect(await idb.requestResult(db.transaction('documents').objectStore('documents').get(second.id))).toEqual(second);
   await store.saveDocument('First edited', content, first.id);
   expect((await store.openArchivedDocument(second.id)).title).toBe('Second');
 });
@@ -175,22 +175,22 @@ it('does not reopen or restore a trashed document through its old link', async (
   expect((await store.readSavedDocument(trashed.id)).data).toEqual(parseDocument(JSON.stringify(trashed)));
 });
 it('preserves corrupt linked data and the previous active document', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const active = await store.activateDocument({ version: 1, id: 'healthy', title: 'Healthy', content, savedAt: new Date().toISOString() });
   const corrupt = { id: 'corrupt', version: 999, content: { type: 'unknown' } };
-  const db = await store.openDatabase(); const tx = db.transaction('documents', 'readwrite'); const done = store.transactionDone(tx);
+  const db = await idb.openDatabase(); const tx = db.transaction('documents', 'readwrite'); const done = idb.transactionDone(tx);
   tx.objectStore('documents').put(corrupt); await done;
   expect((await store.readSavedDocument('corrupt')).error).toBeTruthy();
   expect((await store.readSavedDocument()).data).toEqual(parseDocument(JSON.stringify(active)));
-  expect(await store.requestResult(db.transaction('documents').objectStore('documents').get('corrupt'))).toEqual(corrupt);
+  expect(await idb.requestResult(db.transaction('documents').objectStore('documents').get('corrupt'))).toEqual(corrupt);
 });
 it('rolls back linked activation if local storage cannot commit it', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const linked = await store.archiveDocument({ version: 1, id: 'linked', title: 'Linked', content, savedAt: new Date().toISOString() });
   const active = await store.activateDocument({ ...linked, id: 'previous' });
   // Finish migration before injecting a failure into the activation transaction.
   await store.readSavedDocument();
-  const db = await store.openDatabase(); const original = db.transaction.bind(db);
+  const db = await idb.openDatabase(); const original = db.transaction.bind(db);
   const spy = vi.spyOn(db, 'transaction').mockImplementation(((names: string | string[], mode?: IDBTransactionMode) => {
     const tx = original(names, mode);
     if (mode === 'readwrite' && Array.isArray(names) && names.includes('libraryMetadata')) {

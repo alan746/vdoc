@@ -49,26 +49,26 @@ it.each(['tests/fixtures/safari-preview/source.vdoc.json', 'tests/fixtures/local
   expect(parseDocument(raw).content).toEqual(schema.nodeFromJSON(source.content).toJSON());
 });
 it('rejects a damaged saved version without changing the current document or pruning checkpoints', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const original = await store.activateDocument({ ...parseDocument(JSON.stringify(document(table(row(cell('Current 中文')))))), id: 'keep-table' });
-  const first = await store.saveVersion(original, 'First');
-  for (let i = 1; i < 40; i++) await store.saveVersion(original, `Version ${i}`);
-  const db = await store.openDatabase(), tx = db.transaction('versions', 'readwrite'), done = store.transactionDone(tx);
+  const first = await versionStore.saveVersion(original, 'First');
+  for (let i = 1; i < 40; i++) await versionStore.saveVersion(original, `Version ${i}`);
+  const db = await idb.openDatabase(), tx = db.transaction('versions', 'readwrite'), done = idb.transactionDone(tx);
   tx.objectStore('versions').put({ ...first, document: { ...original, content: document(missing()).content } }); await done;
-  const before = await store.listVersions(original.id);
-  await expect(store.restoreVersion(first.key, original)).rejects.toThrow('invalid table structure');
-  expect(await store.listVersions(original.id)).toEqual(before);
+  const before = await versionStore.listVersions(original.id);
+  await expect(versionStore.restoreVersion(first.key, original)).rejects.toThrow('invalid table structure');
+  expect(await versionStore.listVersions(original.id)).toEqual(before);
   expect((await store.readSavedDocument()).data).toEqual(original);
   expect((await store.listDocuments())[0].title).toBe(original.title);
 });
 it('keeps corrupt stored table data intact and leaves the active document unchanged on a failed link open', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const original = await store.activateDocument({ ...parseDocument(JSON.stringify(document(table(row(cell('Current')))))), id: 'keep-current' });
   const corrupt = { ...document(missing()), id: 'corrupt-table' };
   await store.archiveDocument(corrupt);
   const opened = await store.readSavedDocument(corrupt.id);
   expect(opened.data).toBeNull(); expect(opened.error).toContain('invalid table structure');
   expect((await store.readSavedDocument()).data).toEqual(original);
-  const db = await store.openDatabase();
-  expect(await store.requestResult(db.transaction('documents').objectStore('documents').get(corrupt.id))).toEqual(corrupt);
+  const db = await idb.openDatabase();
+  expect(await idb.requestResult(db.transaction('documents').objectStore('documents').get(corrupt.id))).toEqual(corrupt);
 });

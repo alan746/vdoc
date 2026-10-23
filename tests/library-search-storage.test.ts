@@ -3,11 +3,12 @@ import { IDBFactory } from 'fake-indexeddb';
 import { act, createElement } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import type { SavedDocument } from '../lib/infrastructure/persistence/storage';
+import type { SavedDocument } from '../lib/domain/entities/document';
 
 const notices = vi.hoisted(() => ({ success: vi.fn(), error: vi.fn() }));
 vi.mock('sonner', () => ({ toast: notices }));
 let store: typeof import('../lib/infrastructure/persistence/document-store');
+let versionStore: typeof import('../lib/infrastructure/persistence/version-store');
 let library: typeof import('../lib/infrastructure/persistence/library-store');
 let LibraryHome: typeof import('../components/editor/library-home').LibraryHome;
 let root: Root, mount: HTMLDivElement, onOpen: ReturnType<typeof vi.fn>;
@@ -17,7 +18,7 @@ const body = { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'te
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); vi.resetModules(); localStorage.clear(); sessionStorage.clear(); globalThis.indexedDB = new IDBFactory();
   notices.success.mockReset(); notices.error.mockReset(); onOpen = vi.fn();
-  store = await import('../lib/infrastructure/persistence/document-store'); library = await import('../lib/infrastructure/persistence/library-store');
+  store = await import('../lib/infrastructure/persistence/document-store'); versionStore = await import('../lib/infrastructure/persistence/version-store'); library = await import('../lib/infrastructure/persistence/library-store');
   LibraryHome = (await import('../components/editor/library-home')).LibraryHome;
   parent = await library.createFolder('Projects 中文', null); child = await library.createFolder('Café folder', parent);
   destination = await library.createFolder('Destination 日本語', null);
@@ -25,7 +26,7 @@ beforeEach(async () => {
   original = await store.openArchivedDocument(original.id!);
   await library.updateLibraryItem(original.id!, { parentId: child });
   await store.archiveDocument({ ...original, id: 'search-other', title: 'Café 10 日本語', savedAt: '2026-01-01T00:00:00.000Z' });
-  await store.saveVersion(original, 'Keep history');
+  await versionStore.saveVersion(original, 'Keep history');
   mount = document.createElement('div'); document.body.appendChild(mount); root = createRoot(mount);
   await remount('initial');
 });
@@ -70,7 +71,7 @@ async function select(label: string, value: string) {
 const search = (value: string) => input('Search documents and folders', value);
 async function unchanged() {
   expect((await store.openArchivedDocument(original.id!)).content).toEqual(original.content);
-  expect((await store.listVersions(original.id!))[0].document).toEqual(original);
+  expect((await versionStore.listVersions(original.id!))[0].document).toEqual(original);
   expect(notices.error).not.toHaveBeenCalled();
 }
 it('updates canonical multilingual search after renaming and opens the latest stored title without changing its body or versions', async () => {

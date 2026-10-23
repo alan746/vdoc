@@ -5,12 +5,12 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
 async function fixture() {
-  const store = await import('../lib/infrastructure/persistence/document-store'), library = await import('../lib/infrastructure/persistence/library-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store'), library = await import('../lib/infrastructure/persistence/library-store');
   const root = await library.createFolder('Root 中文', null), child = await library.createFolder('Child العربية', root);
   const document = await store.archiveDocument({ version: 1, id: 'nested-document', title: '日本語 document', savedAt: '2026-10-05T12:00:00.000Z', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: '中文 العربية 👩‍💻', marks: [{ type: 'bold' }] }] }] } });
   await library.updateLibraryItem(document.id, { parentId: child, starred: true });
-  await store.saveVersion(document, 'Before trash');
-  return { store, library, root, child, document };
+  await versionStore.saveVersion(document, 'Before trash');
+  return { store, versionStore, library, root, child, document };
 }
 it.each(['root', 'child'] as const)('keeps the original recovery group when an already trashed %s receives another trash request', async target => {
   const { library, root, child } = await fixture();
@@ -29,15 +29,15 @@ it('serializes repeated trash requests and restores the entire subtree', async (
   await library.updateLibraryItem(root, { trash: false }); expect((await library.listLibrary()).every(item => !item.trashedAt)).toBe(true);
 });
 it('does not revive an earlier discarded document and preserves its content and version history', async () => {
-  const { store, library, root, document } = await fixture();
-  const original = await store.openArchivedDocument(document.id), versions = await store.listVersions(document.id);
+  const { store, versionStore, library, root, document } = await fixture();
+  const original = await store.openArchivedDocument(document.id), versions = await versionStore.listVersions(document.id);
   await library.updateLibraryItem(document.id, { trash: true });
   const discarded = (await library.listLibrary()).find(item => item.id === document.id)!;
   await library.updateLibraryItem(root, { trash: true }); await library.updateLibraryItem(root, { trash: true });
   await library.updateLibraryItem(root, { trash: false });
   expect((await library.listLibrary()).find(item => item.id === document.id)).toEqual(discarded);
   expect(await store.openArchivedDocument(document.id)).toEqual(original);
-  expect(await store.listVersions(document.id)).toEqual(versions);
+  expect(await versionStore.listVersions(document.id)).toEqual(versions);
 });
 it('restores a child folder with its document to Workspace while its parent remains in Trash', async () => {
   const { library, root, child, document } = await fixture();
@@ -52,10 +52,10 @@ it('restores a child folder with its document to Workspace while its parent rema
   expect((await library.listLibrary()).find(item => item.id === child)?.parentId).toBeNull();
 });
 it('rolls back every descendant when restore fails, then restores once on retry', async () => {
-  const { store, library, root, document } = await fixture();
+  const { store, versionStore, library, root, document } = await fixture();
   const moved = await library.updateLibraryItem(root, { trash: true }); const before = await library.listLibrary();
   const undo = { trash: false, expectedTrashGroup: moved.trashGroup };
-  const original = await store.openArchivedDocument(document.id), versions = await store.listVersions(document.id);
+  const original = await store.openArchivedDocument(document.id), versions = await versionStore.listVersions(document.id);
   const put = IDBObjectStore.prototype.put;
   const failure = vi.spyOn(IDBObjectStore.prototype, 'put').mockImplementation(function(this: IDBObjectStore, value, key) {
     const request = key === undefined ? put.call(this, value) : put.call(this, value, key);
@@ -64,7 +64,7 @@ it('rolls back every descendant when restore fails, then restores once on retry'
   });
   await expect(library.updateLibraryItem(root, undo)).rejects.toThrow(); failure.mockRestore();
   expect(await library.listLibrary()).toEqual(before); expect(await store.openArchivedDocument(document.id)).toEqual(original);
-  expect(await store.listVersions(document.id)).toEqual(versions);
+  expect(await versionStore.listVersions(document.id)).toEqual(versions);
   await library.updateLibraryItem(root, undo); expect((await library.listLibrary()).every(item => !item.trashedAt)).toBe(true);
 });
 it('rejects an old Undo after a folder has been restored and moved to Trash again', async () => {

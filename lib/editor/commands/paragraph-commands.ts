@@ -1,4 +1,4 @@
-import { patchParagraphBorders } from '../paragraph/paragraph-borders';
+import { patchParagraphBorders } from '../../domain/rules/paragraph-borders';
 import { selectedParagraphs } from '../paragraph/paragraph-selection';
 import { paragraphIndent, stepParagraphIndent } from '../paragraph/paragraph-indent';
 import { adjustRulerIndent } from '../paragraph/paragraph-ruler';

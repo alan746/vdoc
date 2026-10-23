@@ -4,11 +4,11 @@ import { wordParagraphProperties, restoreParagraphSpacing } from './word-paragra
 import { restoreParagraphFlags, restoreParagraphIndent } from './word-paragraph-layout';
 import { restoreParagraphDecoration, wordAttributes, wordShading } from './word-decoration';
 import { canonicalLanguage } from '../../domain/text/language';
-import { validNumberAffix, validBulletText } from '../../editor/list/list-markers';
-import { bulletGlyphs, orderedStyle } from '../../editor/list/list-style';
-import { validListStart } from '../../editor/list/list-numbering';
+import { validNumberAffix, validBulletText } from '../../domain/rules/list-markers';
+import { bulletGlyphs, orderedStyle } from '../../domain/rules/list-styles';
+import { validListStart } from '../../domain/rules/list-numbering';
 import JSZip from 'jszip';
-import { DEFAULT_TAB_INTERVAL, validTabInterval } from '../../editor/paragraph/paragraph-tabs';
+import { DEFAULT_TAB_INTERVAL, validTabInterval } from '../../domain/rules/tab-interval';
 const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 const elements = (parent: Element | Document, name: string) => Array.from(parent.getElementsByTagNameNS(W, name));
 const attr = (el: Element | null | undefined, name = 'val') => el?.getAttributeNS(W, name) || undefined;

@@ -1,7 +1,8 @@
 import { beforeEach, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as docx from 'docx';
-import { readDocumentImport, type DocumentImport } from '../lib/composition/import-file';
+import { readDocumentImport } from '../lib/composition/import-file';
+import type { DocumentImport } from '../lib/domain/entities/document';
 import { exportWord } from '../lib/infrastructure/word/word';
 import { notifyDocumentImport } from '../components/editor/import-feedback';
 

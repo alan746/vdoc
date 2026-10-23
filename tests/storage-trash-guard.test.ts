@@ -5,30 +5,30 @@ import { parseDocument } from '../lib/infrastructure/persistence/storage';
 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 async function fixture() {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const library = await import('../lib/infrastructure/persistence/library-store');
   const original = await store.activateDocument(parseDocument(JSON.stringify({ version: 1, id: 'trash-guard', title: 'Preserved 中文', savedAt: '2026-10-10T00:00:00.000Z',
     content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Original العربية' }] }] } }))); 
-  const version = await store.saveVersion(original, 'Keep checkpoint');
+  const version = await versionStore.saveVersion(original, 'Keep checkpoint');
   const draft = parseDocument(JSON.stringify({ ...original, title: 'Unsaved draft', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Late draft 日本語' }] }] } }));
-  return { store, library, original, version, draft };
+  return { store, versionStore, idb, library, original, version, draft };
 }
 
 it.each(['save', 'checkpoint', 'restore'] as const)('rejects late %s after Trash without changing the document, summaries or versions, then retries after restore', async action => {
-  const { store, library, original, version, draft } = await fixture();
+  const { store, versionStore, library, original, version, draft } = await fixture();
   await library.updateLibraryItem(original.id, { trash: true });
-  const summaries = await store.listDocuments(), versions = await store.listVersions(original.id), items = await library.listLibrary();
+  const summaries = await store.listDocuments(), versions = await versionStore.listVersions(original.id), items = await library.listLibrary();
   const run = () => action === 'save' ? store.saveDocument(draft.title, draft.content, original.id)
-    : action === 'checkpoint' ? store.saveVersion(draft, 'Late checkpoint') : store.restoreVersion(version.key, draft);
+    : action === 'checkpoint' ? versionStore.saveVersion(draft, 'Late checkpoint') : versionStore.restoreVersion(version.key, draft);
   await expect(run()).rejects.toThrow('Trash');
   expect(await store.openArchivedDocument(original.id)).toEqual(original);
   expect(await store.listDocuments()).toEqual(summaries);
-  expect(await store.listVersions(original.id)).toEqual(versions);
+  expect(await versionStore.listVersions(original.id)).toEqual(versions);
   expect(await library.listLibrary()).toEqual(items);
   await library.updateLibraryItem(original.id, { trash: false });
   await expect(run()).resolves.toBeDefined();
   if (action === 'save') expect((await store.openArchivedDocument(original.id)).content).toEqual(draft.content);
-  if (action === 'checkpoint') expect((await store.listVersions(original.id))[0].document.content).toEqual(draft.content);
+  if (action === 'checkpoint') expect((await versionStore.listVersions(original.id))[0].document.content).toEqual(draft.content);
 });
 
 it('blocks saving a descendant when its parent folder is moved to Trash', async () => {
@@ -44,17 +44,17 @@ it('blocks saving a descendant when its parent folder is moved to Trash', async 
 });
 
 it.each(['save', 'checkpoint', 'restore'] as const)('does not recreate a missing document during late %s', async action => {
-  const { store, original, version, draft } = await fixture();
-  const db = await store.openDatabase(), tx = db.transaction(['documents', 'summaries'], 'readwrite');
-  const done = store.transactionDone(tx);
+  const { store, versionStore, idb, original, version, draft } = await fixture();
+  const db = await idb.openDatabase(), tx = db.transaction(['documents', 'summaries'], 'readwrite');
+  const done = idb.transactionDone(tx);
   tx.objectStore('documents').delete(original.id); tx.objectStore('summaries').delete(original.id); await done;
-  const versions = await store.listVersions(original.id);
+  const versions = await versionStore.listVersions(original.id);
   const run = () => action === 'save' ? store.saveDocument(draft.title, draft.content, original.id)
-    : action === 'checkpoint' ? store.saveVersion(draft, 'Late') : store.restoreVersion(version.key, draft);
+    : action === 'checkpoint' ? versionStore.saveVersion(draft, 'Late') : versionStore.restoreVersion(version.key, draft);
   await expect(run()).rejects.toThrow('no longer exists');
   expect(await store.listDocuments()).toEqual([]);
   await expect(store.openArchivedDocument(original.id)).rejects.toThrow();
-  expect(await store.listVersions(original.id)).toEqual(versions);
+  expect(await versionStore.listVersions(original.id)).toEqual(versions);
 });
 
 it('keeps a rejected editor draft and its unload guard, then saves it after restoring the document', async () => {

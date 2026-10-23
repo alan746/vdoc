@@ -5,12 +5,13 @@ import { createRoot, type Root } from 'react-dom/client';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
-import type { SavedDocument } from '../lib/infrastructure/persistence/storage';
+import type { SavedDocument } from '../lib/domain/entities/document';
 import type { startAutosave } from '../lib/composition/autosave';
 
 const messages = vi.hoisted(() => ({ error: vi.fn(), success: vi.fn() }));
 vi.mock('sonner', () => ({ toast: messages }));
 let store: typeof import('../lib/infrastructure/persistence/document-store');
+let versionStore: typeof import('../lib/infrastructure/persistence/version-store');
 let autosave: typeof import('../lib/composition/autosave');
 let VersionHistory: typeof import('../components/editor/version-history').VersionHistory;
 let navigation: typeof import('../lib/usecases/document-navigation').documentNavigation;
@@ -45,7 +46,7 @@ function Harness() {
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); vi.resetModules(); localStorage.clear(); globalThis.indexedDB = new IDBFactory();
   messages.error.mockReset(); messages.success.mockReset(); report.mockReset();
-  store = await import('../lib/infrastructure/persistence/document-store'); autosave = await import('../lib/composition/autosave');
+  store = await import('../lib/infrastructure/persistence/document-store'); versionStore = await import('../lib/infrastructure/persistence/version-store'); autosave = await import('../lib/composition/autosave');
   VersionHistory = (await import('../components/editor/version-history')).VersionHistory;
   navigation = (await import('../lib/usecases/document-navigation')).documentNavigation;
   initial = await store.activateDocument({ version: 1, id: 'version-storage', title: 'Version 中文', content: mixed, savedAt: new Date().toISOString() });
@@ -82,17 +83,17 @@ async function autosaveSettled() {
   });
 }
 async function seedFullHistory() {
-  for (let i = 0; i < 40; i++) await store.saveVersion(initial, `Baseline ${i}`);
-  return store.listVersions(initial.id!);
+  for (let i = 0; i < 40; i++) await versionStore.saveVersion(initial, `Baseline ${i}`);
+  return versionStore.listVersions(initial.id!);
 }
 it('saves a multilingual checkpoint, restores it, recovers the replaced draft and survives pending autosaves', async () => {
   await show(); await name('Baseline 中文 العربية'); await submit();
-  const baseline = editor.getJSON(), entries = await store.listVersions(initial.id!);
+  const baseline = editor.getJSON(), entries = await versionStore.listVersions(initial.id!);
   expect(entries).toHaveLength(1); expect(entries[0].document.content).toEqual(baseline);
   await edit('Latest 日本語 '); const latest = editor.getJSON();
   await restore('Baseline 中文 العربية'); expect(generation).toBe(1); expect(editor.getJSON()).toEqual(baseline);
   await autosaveSettled(); expect(await savedContent()).toEqual(baseline);
-  expect((await store.listVersions(initial.id!))[0].document.content).toEqual(latest);
+  expect((await versionStore.listVersions(initial.id!))[0].document.content).toEqual(latest);
   await show(); await restore('Before restoring a version'); expect(generation).toBe(2);
   expect(editor.getJSON()).toEqual(latest); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
   expect((await store.listDocuments())[0].title).toBe(initial.title); expect(messages.error).not.toHaveBeenCalled();
@@ -105,10 +106,10 @@ it('keeps the name and all 40 versions when checkpoint storage aborts, then save
     return key === undefined ? put.call(this, value) : put.call(this, value, key);
   });
   await submit(); failure.mockRestore();
-  expect(await store.listVersions(initial.id!)).toEqual(before); expect(await savedContent()).toEqual(editor.getJSON());
+  expect(await versionStore.listVersions(initial.id!)).toEqual(before); expect(await savedContent()).toEqual(editor.getJSON());
   expect(document.querySelector<HTMLInputElement>('form input')!.value).toBe('Retry 中文'); expect(editor.isEditable).toBe(true);
   expect(messages.error).toHaveBeenCalledOnce(); await edit('Newest retry العربية '); const latest = editor.getJSON(); await submit();
-  const after = await store.listVersions(initial.id!); expect(after).toHaveLength(40);
+  const after = await versionStore.listVersions(initial.id!); expect(after).toHaveLength(40);
   expect(after[0]).toMatchObject({ label: 'Retry 中文', document: { content: latest } }); expect(after.slice(1)).toEqual(before.slice(0, 39));
   expect(document.querySelector<HTMLInputElement>('form input')!.value).toBe(''); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
 });
@@ -122,10 +123,10 @@ it('rolls back a restore request error without pruning history, then recovers ed
   });
   await restore('Baseline 0'); failure.mockRestore();
   expect(generation).toBe(0); expect(editor.getJSON()).toEqual(draft); expect(editor.isEditable).toBe(true);
-  expect(await store.listVersions(initial.id!)).toEqual(before); expect(await savedContent()).toEqual(draft); expect(messages.error).toHaveBeenCalledOnce();
+  expect(await versionStore.listVersions(initial.id!)).toEqual(before); expect(await savedContent()).toEqual(draft); expect(messages.error).toHaveBeenCalledOnce();
   await edit('After failure 日本語 '); const latest = editor.getJSON(); await restore('Baseline 0');
   expect(generation).toBe(1); expect(editor.getJSON()).toEqual(initial.content);
-  const after = await store.listVersions(initial.id!); expect(after).toHaveLength(40); expect(after[0].document.content).toEqual(latest);
+  const after = await versionStore.listVersions(initial.id!); expect(after).toHaveLength(40); expect(after[0].document.content).toEqual(latest);
   await show(); await restore('Before restoring a version'); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
 });
 it('keeps the checkpoint at its requested snapshot while later typing is eventually saved as the current draft', async () => {
@@ -136,11 +137,11 @@ it('keeps the checkpoint at its requested snapshot while later typing is eventua
   await submit(false); await edit('Typed while saving 中文 '); const latest = editor.getJSON();
   await submit(false); // A second event before the first commit must not create another version.
   await act(async () => finish()); await settle();
-  const entries = await store.listVersions(initial.id!); expect(entries).toHaveLength(1); expect(entries[0].document.content).toEqual(baseline);
+  const entries = await versionStore.listVersions(initial.id!); expect(entries).toHaveLength(1); expect(entries[0].document.content).toEqual(baseline);
   expect(editor.getJSON()).toEqual(latest); await autosaveSettled(); expect(await savedContent()).toEqual(latest);
 });
 it('ignores an old autosave completion after restoration remounts the editor', async () => {
-  await store.saveVersion(initial, 'Baseline'); await show(); await edit('Old callback draft '); const draft = editor.getJSON();
+  await versionStore.saveVersion(initial, 'Baseline'); await show(); await edit('Old callback draft '); const draft = editor.getJSON();
   const save = store.saveDocument; let finish!: () => void, written!: () => void;
   const gate = new Promise<void>(resolve => { finish = resolve; }), committed = new Promise<void>(resolve => { written = resolve; });
   vi.spyOn(store, 'saveDocument').mockImplementationOnce(async (...args) => { const data = await save(...args); written(); await gate; return data; });
@@ -149,6 +150,6 @@ it('ignores an old autosave completion after restoration remounts the editor', a
   await restore('Baseline'); expect(generation).toBe(1); const restored = editor.getJSON();
   await act(async () => { finish(); await pending; }); await autosaveSettled();
   expect(editor.getJSON()).toEqual(restored); expect(await savedContent()).toEqual(initial.content);
-  expect((await store.listVersions(initial.id!))[0].document.content).toEqual(draft);
+  expect((await versionStore.listVersions(initial.id!))[0].document.content).toEqual(draft);
   expect(messages.error).not.toHaveBeenCalled();
 });

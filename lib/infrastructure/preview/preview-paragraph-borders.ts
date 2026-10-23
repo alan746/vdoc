@@ -1,4 +1,4 @@
-import { paragraphBordersSchema, type ParagraphBorders } from '../../editor/paragraph/paragraph-borders';
+import { paragraphBordersSchema, type ParagraphBorders } from '../../domain/rules/paragraph-borders';
 
 const selector = 'p[data-paragraph-borders],h1[data-paragraph-borders],h2[data-paragraph-borders],h3[data-paragraph-borders],h4[data-paragraph-borders],h5[data-paragraph-borders],h6[data-paragraph-borders]';
 function borders(node: Element): ParagraphBorders | null {

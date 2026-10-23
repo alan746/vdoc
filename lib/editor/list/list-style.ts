@@ -6,9 +6,7 @@ import { BulletList } from '@tiptap/extension-list';
 import type { Node, ResolvedPos } from '@tiptap/pm/model';
 import { NodeSelection, TextSelection, type Selection, type Transaction } from '@tiptap/pm/state';
 
-import { orderedStyles, bulletStyles, listStyles, htmlNumberTypes, orderedStyle, orderedType, bulletGlyphs, type ListStyle } from '../../domain/rules/list-styles';
-export { orderedStyles, bulletStyles, listStyles, htmlNumberTypes, orderedStyle, orderedType, bulletGlyphs };
-export type { ListStyle };
+import { orderedStyles, bulletStyles, htmlNumberTypes, orderedStyle, orderedType, type ListStyle } from '../../domain/rules/list-styles';
 
 export function numberTypeAttribute() {
   return {

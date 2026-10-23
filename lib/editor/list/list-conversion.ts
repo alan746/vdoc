@@ -3,7 +3,7 @@ import { toggleCellLists } from './cell-lists';
 import { Extension, commands as coreCommands, getNodeType, type CommandProps } from '@tiptap/core';
 import { Fragment, type Node, type NodeType, type ResolvedPos } from '@tiptap/pm/model';
 import { AllSelection, NodeSelection, TextSelection, type Selection } from '@tiptap/pm/state';
-import { validListStart } from './list-numbering';
+import { validListStart } from '../../domain/rules/list-numbering';
 
 const isList = (node: Node) => ['orderedList','bulletList','taskList'].includes(node.type.name);
 function listAt($pos: ResolvedPos) {

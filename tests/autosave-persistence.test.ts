@@ -49,10 +49,10 @@ it('cannot overwrite the active document if it changes before the typing deadlin
 });
 
 it('keeps a failed draft and saves it on retry after the storage connection closes', async () => {
-  const store = await import('../lib/infrastructure/persistence/document-store');
+  const store = await import('../lib/infrastructure/persistence/document-store'), idb = await import('../lib/infrastructure/persistence/indexed-db');
   const { startAutosave } = await import('../lib/composition/autosave');
   const original = await store.activateDocument({ version: 1, id: 'reconnect-draft', title: 'Original', content: editor.getJSON(), savedAt: new Date().toISOString() });
-  const db = await store.openDatabase();
+  const db = await idb.openDatabase();
   const closed = new Promise<void>(resolve => db.addEventListener('close', () => resolve(), { once: true }));
   const put = IDBObjectStore.prototype.put;
   const failure = vi.spyOn(IDBObjectStore.prototype, 'put').mockImplementation(function(this: IDBObjectStore, value, key) {

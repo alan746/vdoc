@@ -1,4 +1,4 @@
-import { paragraphBorderEdges, type ParagraphBorders } from '../../editor/paragraph/paragraph-borders';
+import { paragraphBorderEdges, type ParagraphBorders } from '../../domain/rules/paragraph-borders';
 import type { WordParagraphProperties } from './word-paragraph-spacing';
 import type { WordAttributes, WordTheme } from './word-theme';
 const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';

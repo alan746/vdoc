@@ -4,7 +4,8 @@ import type { Editor } from '@tiptap/core';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { toast } from 'sonner';
-import { emptyBorderValues, paragraphBorderChanges, paragraphBorderEdges, selectedParagraphBorders, type BorderValues } from '@/lib/editor/paragraph/paragraph-borders';
+import { emptyBorderValues, paragraphBorderEdges, type BorderValues } from '@/lib/domain/rules/paragraph-borders';
+import { selectedParagraphBorders, paragraphBorderChanges } from '@/lib/editor/paragraph/paragraph-borders';
 
 export function ParagraphBordersDialog({open,close,editor,engine}:{open:boolean;close:()=>void;editor:Editor;engine:DocumentEngine}) {
   const initial=useRef<BorderValues>(emptyBorderValues);

@@ -14,9 +14,9 @@ function seed(id?: string) {
   return { ...localStorage };
 }
 async function snapshot() {
-  const store = await import('../lib/infrastructure/persistence/document-store'), db = await store.openDatabase();
+  const idb = await import('../lib/infrastructure/persistence/indexed-db'), db = await idb.openDatabase();
   const tx = db.transaction(['documents', 'summaries', 'settings']);
-  return Promise.all(['documents', 'summaries', 'settings'].map(name => store.requestResult(tx.objectStore(name).getAll())));
+  return Promise.all(['documents', 'summaries', 'settings'].map(name => idb.requestResult(tx.objectStore(name).getAll())));
 }
 it.each(['documents', 'summaries', 'settings'])('rolls back the entire migration when %s fails and imports once on retry', async target => {
   const originals = seed(); const store = await import('../lib/infrastructure/persistence/document-store');
@@ -46,12 +46,12 @@ it('does not duplicate ID-less current documents when startup migration runs con
   expect(await store.listDocuments()).toHaveLength(2);
 });
 it('preserves newer stored content and its active selection while migrating other legacy documents', async () => {
-  const originals = seed('current'); const store = await import('../lib/infrastructure/persistence/document-store');
+  const originals = seed('current'); const store = await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store');
   const latest = await store.activateDocument({ ...legacyDocument('current'), version: 1, title: 'Latest stored title' });
   const existing = await store.openArchivedDocument(latest.id);
-  const version = await store.saveVersion(latest, 'Keep version');
+  const version = await versionStore.saveVersion(latest, 'Keep version');
   expect((await store.readSavedDocument()).data).toEqual(existing);
-  expect(await store.listDocuments()).toHaveLength(2); expect(await store.listVersions(latest.id)).toEqual([version]);
+  expect(await store.listDocuments()).toHaveLength(2); expect(await versionStore.listVersions(latest.id)).toEqual([version]);
   expect({ ...localStorage }).toEqual(originals);
 });
 it('prefers the current draft when the legacy archive lists the same document more than once', async () => {

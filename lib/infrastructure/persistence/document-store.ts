@@ -1,13 +1,8 @@
 import type { JSONContent } from '@tiptap/core';
-import { parseDocument, STORAGE_KEY, type SavedDocument, type LibraryEntry } from './storage';
+import { parseDocument, STORAGE_KEY } from './storage';
+import type { SavedDocument, LibraryEntry } from '../../domain/entities/document';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction, commitWrites } from './indexed-db';
 import { summary, withWritableDocument } from './document-records';
-export { STORAGE_KEY } from './storage';
-export type { SavedDocument, LibraryEntry } from './storage';
-// Connection primitives and version history are separate modules; re-exported for existing callers.
-export { openDatabase, requestResult, transactionDone, writeTransaction } from './indexed-db';
-export { saveVersion, listVersions, restoreVersion } from './version-store';
-export type { DocumentVersion } from '../../domain/entities/document';
 
 
 async function migrateLegacy(db: IDBDatabase) {

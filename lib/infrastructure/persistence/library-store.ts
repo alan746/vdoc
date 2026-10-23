@@ -1,8 +1,8 @@
 import { openDatabase, transactionDone, requestResult, writeTransaction } from './indexed-db';
-import { parseDocument, type SavedDocument } from './storage';
+import { parseDocument } from './storage';
+import type { SavedDocument } from '../../domain/entities/document';
 import { truncateGraphemePrefix } from '../../domain/text/unicode';
 import type { LibraryItem } from '../../domain/entities/document';
-export type { LibraryItem } from '../../domain/entities/document';
 type Metadata = { id: string; parentId: string | null; starred: boolean; trashedAt?: string; trashGroup?: string };
 export async function listLibrary(): Promise<LibraryItem[]> {
   const db = await openDatabase();

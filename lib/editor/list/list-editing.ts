@@ -1,6 +1,6 @@
 import { Extension, getNodeType, type CommandProps, type Editor } from '@tiptap/core';
 import { Fragment, NodeRange, Slice, type Node, type NodeType, type ResolvedPos } from '@tiptap/pm/model';
-import { validListStart } from './list-numbering';
+import { validListStart } from '../../domain/rules/list-numbering';
 import { liftCellLists, selectedCellLists } from './cell-lists';
 import { CellSelection } from '@tiptap/pm/tables';
 import { selectedParagraphs } from '../paragraph/paragraph-selection';
