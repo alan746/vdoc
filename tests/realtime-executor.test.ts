@@ -1,0 +1,103 @@
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+import { Editor } from '@tiptap/core';
+import { createExtensions } from '../lib/editor/extensions';
+import { DocumentEngine } from '../lib/usecases/engine';
+import { createRealtimeExecutor } from '../lib/usecases/realtime-executor';
+import { documentNavigation } from '../lib/usecases/document-navigation';
+import type { RealtimeToolContext } from '../lib/usecases/ports';
+
+let editor: Editor, engine: DocumentEngine, lifetime: AbortController, call: AbortController;
+let current: { docId: string; sessionId: string } | null, composing: boolean;
+let executor: ReturnType<typeof createRealtimeExecutor>;
+const context = (callId = 'call-1', turnId = 'turn-1'): RealtimeToolContext => ({ callId, turnId, epoch: 1, signal: call.signal });
+const request = (text = 'AI') => {
+  const s = engine.snapshot();
+  return { expectedSessionId: s.sessionId, expectedRevision: s.revision,
+    target: { kind: 'text', blockId: s.blocks[0].id, start: 0, end: s.blocks[0].text.length }, operations: [{ type: 'text.replace', text }] };
+};
+beforeEach(async () => {
+  editor = new Editor({ extensions: createExtensions(), content: '<p>hello</p><p>second</p>' });
+  await new Promise(resolve => setTimeout(resolve, 0));
+  engine = new DocumentEngine(editor); lifetime = new AbortController(); call = new AbortController();
+  current = { docId: 'doc-1', sessionId: engine.sessionId }; composing = false;
+  documentNavigation(editor).registerCompositionGuard(() => composing);
+  executor = createRealtimeExecutor(engine, { docId: 'doc-1', actor: 'trusted-agent', signal: lifetime.signal, currentDocument: () => current, compositionTimeoutMs: 100 });
+});
+afterEach(() => { lifetime.abort(); engine.destroy(); editor.destroy(); vi.useRealTimers(); });
+
+it('uses trusted execution context and retains structured read/commit results', async () => {
+  const userSelection = editor.state.selection.toJSON();
+  expect(await executor.apply(request(), context())).toMatchObject({ ok: true, id: 'call-1' });
+  expect(engine.records[0]).toMatchObject({ source: 'agent', actor: 'trusted-agent', turnId: 'turn-1' });
+  expect(editor.state.selection.toJSON()).toEqual(userSelection);
+  expect(executor.read(context('read'))).toMatchObject({ docId: 'doc-1', agentEdits: [{ turnId: 'turn-1' }] });
+});
+it.each(['actor', 'turnId', 'id', 'source'])('rejects a model-supplied %s', async key => {
+  const before = editor.getJSON();
+  expect(await executor.apply({ ...request(), [key]: 'spoof' }, context())).toMatchObject({ ok: false, code: 'INVALID' });
+  expect(editor.getJSON()).toEqual(before);
+});
+it('deduplicates commits and refuses changed arguments under the same call ID', async () => {
+  const input = request(); const first = await executor.apply(input, context());
+  expect(await executor.apply(input, context())).toEqual(first);
+  expect(engine.records).toHaveLength(1);
+  expect(await executor.apply(request('other'), context())).toMatchObject({ code: 'DUPLICATE' });
+});
+it('aborts before writing', async () => {
+  call.abort(); expect(await executor.apply(request(), context())).toMatchObject({ code: 'INTERRUPTED' });
+  expect(editor.getText()).toContain('hello');
+});
+it('waits for composition and commits once after it ends', async () => {
+  vi.useFakeTimers(); composing = true;
+  const pending = executor.apply(request(), context());
+  expect(engine.records).toHaveLength(0);
+  composing = false; await vi.advanceTimersByTimeAsync(20);
+  expect(await pending).toMatchObject({ ok: true }); expect(engine.records).toHaveLength(1);
+});
+it.each(['call', 'lifetime'])('cancels during composition via %s signal', async which => {
+  vi.useFakeTimers(); composing = true;
+  const pending = executor.apply(request(), context());
+  (which === 'call' ? call : lifetime).abort();
+  expect(await pending).toMatchObject({ code: 'INTERRUPTED' });
+  composing = false; await vi.advanceTimersByTimeAsync(200); expect(engine.records).toHaveLength(0);
+});
+it('rechecks cancellation after the composition wait resolves, before continuation', async () => {
+  vi.useFakeTimers(); composing = true;
+  const pending = executor.apply(request(), context());
+  composing = false; vi.advanceTimersByTime(20); call.abort();
+  expect(await pending).toMatchObject({ code: 'INTERRUPTED' }); expect(engine.records).toHaveLength(0);
+});
+it('rejects a document switch during composition', async () => {
+  vi.useFakeTimers(); composing = true;
+  const pending = executor.apply(request(), context());
+  current = { docId: 'other-doc', sessionId: engine.sessionId }; await vi.advanceTimersByTimeAsync(20);
+  expect(await pending).toMatchObject({ code: 'UNAVAILABLE' }); expect(engine.records).toHaveLength(0);
+});
+it('times out bounded composition without a write', async () => {
+  vi.useFakeTimers(); composing = true; const pending = executor.apply(request(), context());
+  await vi.advanceTimersByTimeAsync(100);
+  expect(await pending).toMatchObject({ code: 'TIMEOUT' }); expect(engine.records).toHaveLength(0);
+});
+it('revalidates version after composition instead of updating stale preconditions', async () => {
+  vi.useFakeTimers(); composing = true; const pending = executor.apply(request(), context());
+  composing = false; editor.commands.insertContent('user'); await vi.advanceTimersByTimeAsync(20);
+  expect(await pending).toMatchObject({ code: 'STALE' }); expect(engine.records).toHaveLength(0);
+});
+it.each(['STALE', 'TARGET', 'INVALID', 'UNAVAILABLE'] as const)('preserves engine %s failure', async code => {
+  vi.spyOn(engine, 'executeAgent').mockReturnValue({ ok: false, code, id: 'call-1', revision: 0, error: 'reason' });
+  expect(await executor.apply(request(), context())).toMatchObject({ ok: false, code, error: 'reason' });
+});
+it('supports versioned, idempotent per-turn undo over unrelated typing', async () => {
+  await executor.apply(request(), context());
+  editor.commands.setTextSelection(engine.snapshot().blocks[1].from + 6); editor.commands.insertContent('!');
+  const args = { targetTurnId: 'turn-1', expectedSessionId: engine.sessionId, expectedRevision: engine.revision };
+  const result = await executor.undo(args, context('undo-1', 'undo-turn'));
+  expect(result.ok).toBe(true); expect(engine.snapshot().blocks.map(b => b.text)).toEqual(['hello', 'second!']);
+  expect(await executor.undo(args, context('undo-1', 'undo-turn'))).toEqual(result);
+  expect(engine.history('undo', 'keyboard').ok).toBe(true); expect(engine.snapshot().blocks[1].text).toBe('second');
+});
+it('rejects stale undo without removing committed edits', async () => {
+  await executor.apply(request(), context());
+  expect(await executor.undo({ targetTurnId: 'turn-1', expectedSessionId: engine.sessionId, expectedRevision: 0 }, context('u', 'u'))).toMatchObject({ code: 'STALE' });
+  expect(engine.snapshot().blocks[0].text).toBe('AI');
+});

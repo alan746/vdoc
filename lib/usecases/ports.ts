@@ -68,3 +68,31 @@ export type ExportPayload = { blob: Blob; notices?: readonly ExportNotice[] };
 export interface FileExporter<Source = DocumentExportSource> {
   write(source: Source, options?: FileExportOptions): ExportPayload | Promise<ExportPayload>;
 }
+
+/** App-owned realtime boundary; only infrastructure imports the provider SDK. */
+export interface RealtimeToolContext {
+  signal: AbortSignal; callId: string; turnId: string; epoch: number;
+}
+export interface RealtimeTool {
+  description: string;
+  parameters: { readonly [key: string]: unknown };
+  run(input: unknown, context: RealtimeToolContext): unknown;
+}
+export type RealtimeStatus = 'disconnected' | 'connecting' | 'connected' | 'reconnecting' | 'error';
+export interface RealtimeConnection {
+  interrupt(reason?: 'user' | 'keyboard'): void;
+  sendText(text: string): void;
+  close(): void;
+}
+export interface RealtimeConfig {
+  url: string;
+  tokenUrl: string;
+  audio?: boolean;
+}
+export interface RealtimePort {
+  open(options: {
+    config: RealtimeConfig; docId: string; sessionId: string;
+    tools: Record<string, RealtimeTool>; signal: AbortSignal;
+    onStatus(status: RealtimeStatus, message?: string): void;
+  }): RealtimeConnection;
+}

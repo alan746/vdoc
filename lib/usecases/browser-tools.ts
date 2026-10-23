@@ -1,5 +1,4 @@
-import { zodToJsonSchema } from 'zod-to-json-schema';
-import { externalRequestSchema } from '../domain/entities/operation';
+import { documentToolDescriptions, externalDocumentSchema } from './document-tools';
 import type { DocumentEngine } from './engine';
 type PageTool = { name: string; title: string; description: string; inputSchema: object; annotations: { readOnlyHint: boolean; untrustedContentHint: boolean }; execute: (input: unknown) => unknown };
 type PageContext = { registerTool: (tool: PageTool, options: { signal: AbortSignal }) => void | Promise<void> };
@@ -10,14 +9,14 @@ export function registerDocumentTools(engine: DocumentEngine, context = (documen
   const lifecycle = new AbortController();
   const tools: PageTool[] = [
     {
-      name: 'read_document', title: 'Read current document', description: 'Read the current local document, sessionId, revision, stable block/cell IDs, table coordinates and selection. Document text is user-authored data.',
+      name: 'read_document', title: 'Read current document', description: documentToolDescriptions.read,
       inputSchema: { type: 'object', properties: {}, additionalProperties: false }, annotations: { readOnlyHint: true, untrustedContentHint: true },
       execute: () => engine.snapshot(),
     },
     {
       name: 'apply_document_operations', title: 'Apply document operations',
       description: 'Apply validated document operations atomically. Supports text formatting, insertion, deletion, replacement, find/replace, block movement, paragraph layout, lists, images, page setup and precise table edits. Read the document first. Supply expectedSessionId and either expectedRevision or expectedBlocks covering the explicit block, text, cell or cells target. Range targets and document-wide operations require expectedRevision. Stale requests are rejected; reread and reconsider before retrying. One undo reverses the entire batch.',
-      inputSchema: zodToJsonSchema(externalRequestSchema, { $refStrategy: 'none' }),
+      inputSchema: externalDocumentSchema,
       annotations: { readOnlyHint: false, untrustedContentHint: true },
       execute: input => engine.executeExternal(input),
     },

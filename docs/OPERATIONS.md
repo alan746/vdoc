@@ -465,3 +465,16 @@ startAutosave以performance.now记录pendingSince；每次调度取min(450ms, ma
 Agent 编辑在目标位置执行后，把用户原来的选区（经本次映射）和待输入样式（stored marks）放回，不聚焦编辑器，也不清除工具栏对话框保存的选区书签。用户可以在 agent 修改其他段落时继续输入。
 
 `window.vdoc` 与 WebMCP 仍走 `executeExternal`：携带 `source: 'agent'`、`actor` 或 `turnId` 一律 INVALID；内部 `execute` 中只有 agent 来源可以且必须携带 actor 与 turn，且不接受隐式 selection 目标。
+
+
+## Realtime document tools
+
+The optional vRT integration offers `read_document`, `apply_document_operations`, and `undo_turn`. The browser-standard bridge retains its existing API-origin behavior. Shared metadata/schema bindings live in `lib/usecases/document-tools.ts`; only the infrastructure adapter imports the vRT SDK.
+
+Writing tools execute only inside SDK `run()` callbacks. The model supplies an explicit target and the session/revision or block-version preconditions it read; it cannot supply `id`, `source`, `actor`, or the executing `turnId`. The connection maps trusted SDK call/turn IDs to connection-scoped local IDs, stable across resume. `read_document` includes recent `agentEdits` with these turn IDs for `undo_turn`.
+
+`undo_turn` takes `{ targetTurnId, expectedSessionId, expectedRevision }`. The new undo origin is supplied by the connection, and the existing selective history preserves unrelated typing. A retry of a successful call returns its prior result. Reusing an ID with different arguments returns `DUPLICATE`. Successful IDs are retained for the connection lifetime; after 10,000 successful calls, new writes require a new connection rather than silently forgetting IDs.
+
+Composition waits are bounded to five seconds and honor both call cancellation and document teardown. After waiting, the executor rechecks cancellation and document identity; the synchronous engine validates live version preconditions. No await separates that final check and the write. `STALE`, `TARGET`, `INVALID`, `UNAVAILABLE` and other operation failures remain structured `{ ok: false, code, error, revision, id }` tool outputs; these are document-level failures inside a successfully transported SDK result, not invented wire failure codes. The agent should reread and replan after `STALE`.
+
+Stop/Esc call the SDK interrupt immediately. Escape is left to open dialogs/menus and active IME composition. Stopping leaves committed edits intact; `undo_turn` is the explicit reversal path. Document switch, return to the library and unmount cancel pending work and close the SDK session, including a pending handshake.

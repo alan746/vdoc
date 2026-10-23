@@ -4,6 +4,34 @@
 
 现状基础：[`DocumentEngine.executeExternal`](../lib/usecases/engine.ts) 已具备 zod 校验的 50+ operation、稳定 block/cell ID 定位、session/revision 防过期、批量原子执行（一次撤销）、op id 幂等；[`browser-tools.ts`](../lib/usecases/browser-tools.ts) 已暴露 `read_document` / `apply_document_operations`。本方案在其上叠加语音层与实时层，并改造引擎以适应持续写入、可被打断的 agent。
 
+## 已落地：vRT 客户端接入（2026-10-16）
+
+以下接入约定取代本文早期草案中自建 WebSocket 协议、队列和 epoch gate 的建议。
+
+- 使用 npm 的 `@vrealtime/client@0.1.0`，仅 `lib/infrastructure/realtime/vrt-adapter.ts` 导入 SDK。应用不维护 seq、ack、重放队列或另一个 epoch gate。
+- `lib/composition/realtime.ts` 为每个编辑器会话接线，`RealtimeControls` 在文档切换、返回文档库和卸载时关闭会话。SDK 的 `ClientSession` 在握手前即可持有和关闭，避免 `connect()` Promise 尚未完成时无法取消连接。
+- `lib/usecases/realtime-executor.ts` 在 SDK 的 `run()` 内校验可信上下文，最多等待 IME 5 秒；等待后重新检查取消、文档绑定和版本，通过同步 `executeAgent` / `undoTurn` 提交。
+- #29 已在主分支提供选择性轮次撤销；接入层提供 `undo_turn`，新连接的服务器 call/turn ID 映射到独立的本地 ID，恢复连接复用映射，防止新会话的 `turn-1` 与旧历史混合。
+- 当前提供文字指令、可选麦克风、Stop/Esc 和断开入口。未实现 #33 的活动时间线和 #35 的渐进预览；工具参数增量不会直接写入正文。
+
+### 本地启用与服务端契约
+
+默认关闭，不读取 URL 参数或文档内容中的连接配置。在应用来源的浏览器开发者工具中明确设置后刷新：
+
+```js
+localStorage.setItem('vdoc.realtime.v1', JSON.stringify({
+  url: 'ws://localhost:8790',
+  tokenUrl: '/api/realtime-token',
+  audio: false,
+}));
+```
+
+在编辑器点击 **Connect assistant**，输入文字指令；配置 `audio: true` 后按钮改为 **Connect voice assistant**，仅点击后申请麦克风。连接期间显示麦克风状态。配置只接受 `wss://` 或回环地址的 `ws://`，拒绝 URL 凭据、查询参数和 fragment。禁用时删除本地键并刷新。
+
+`tokenUrl` 是部署方提供的**同源**鉴权端点；本提交不创建匿名签发 token 的接口。SDK 每次连接或重连调用 auth 函数，适配器 POST `{ docId, sessionId }`，端点基于现有用户身份和文档权限返回 `{ token: "短期令牌" }`。服务端必须验证该令牌并将连接限制在指定文档；不能信任客户端传来的 docId 本身就是授权。令牌不进入配置、URL 或日志，文档内容在模型调用读取工具后才返回。
+
+未配置服务端/鉴权端点时，连接会失败但普通编辑仍可使用。实时语音服务和真实模型的端到端验证需要部署方的地址与凭据；本地自动测试使用 fake SDK 和真实 DocumentEngine。
+
 ## 0. 核心决策：tool 在浏览器执行
 
 文档是 local-first（IndexedDB，引擎在浏览器），且语音控制意味着用户必然在页面前。因此：
