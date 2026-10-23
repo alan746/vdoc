@@ -22,6 +22,8 @@ import { applyFromDialog } from './apply-from-dialog';
 
 export function FindPanel({ editor, engine, close, focusRequest = 0, zoom = 100 }: { editor: Editor; engine: DocumentEngine; close: () => void; focusRequest?: number; zoom?: number }) {
   const composition = useInputComposition();
+  // A stable callback; effects depend on it rather than on the per-render object.
+  const { hasComposition } = composition;
   const scrollFrame = useRef(0);
   const previousZoom = useRef(zoom);
   const findInput = useRef<HTMLInputElement>(null);
@@ -30,14 +32,14 @@ export function FindPanel({ editor, engine, close, focusRequest = 0, zoom = 100 
     // A menu's focus scope is still active during the selecting render. Wait
     // until it closes before focusing; ordinary document updates do not refocus.
     const frame = requestAnimationFrame(() => {
-      if (editor.isDestroyed || editor.view.composing || composition.hasComposition()) return;
+      if (editor.isDestroyed || editor.view.composing || hasComposition()) return;
       findInput.current?.focus({ preventScroll: true }); findInput.current?.select();
     });
     const cancel = () => cancelAnimationFrame(frame);
     document.addEventListener('pointerdown', cancel, { once: true, capture: true });
     document.addEventListener('keydown', cancel, { once: true, capture: true });
     return () => { cancel(); document.removeEventListener('pointerdown', cancel, true); document.removeEventListener('keydown', cancel, true); };
-  }, [focusRequest, editor, composition.hasComposition]);
+  }, [focusRequest, editor, hasComposition]);
   const [query, setQuery] = useState(''), [replacement, setReplacement] = useState('');
   const [sensitive, setSensitive] = useState(false), [wholeWord, setWholeWord] = useState(false), [index, setIndex] = useState(0);
   // The workspace throttles its own renders. Search ranges must instead track
@@ -53,26 +55,26 @@ export function FindPanel({ editor, engine, close, focusRequest = 0, zoom = 100 
     const document = editor.state.doc;
     // Recheck after the browser has applied input focus and panel layout.
     scrollFrame.current = requestAnimationFrame(() => {
-      if (!editor.isDestroyed && editor.state.doc === document && !editor.view.composing && !composition.hasComposition()) revealSearchMatch(editor, from);
+      if (!editor.isDestroyed && editor.state.doc === document && !editor.view.composing && !hasComposition()) revealSearchMatch(editor, from);
     });
-  }, [editor, composition.hasComposition]);
+  }, [editor, hasComposition]);
   useLayoutEffect(() => { highlightSearchMatches(editor, matches, currentIndex); }, [editor, matches, currentIndex]);
   useLayoutEffect(() => {
     if (previousZoom.current === zoom) return;
     previousZoom.current = zoom;
     // CSS zoom changes the match's screen position without a document update.
     // Keep that match visible without restarting search or moving input focus.
-    if (editor.isDestroyed || editor.state.doc !== searchDocument || editor.view.composing || composition.hasComposition()) return;
+    if (editor.isDestroyed || editor.state.doc !== searchDocument || editor.view.composing || hasComposition()) return;
     const match = matches[currentIndex];
     if (match) reveal(match.from);
-  }, [zoom, editor, searchDocument, matches, currentIndex, composition.hasComposition, reveal]);
+  }, [zoom, editor, searchDocument, matches, currentIndex, hasComposition, reveal]);
   useEffect(() => () => {
     cancelAnimationFrame(scrollFrame.current);
     highlightSearchMatches(editor, [], -1);
   }, [editor]);
   // Moves the editor selection to a match; the caller owns the index state.
   const selectMatch = (position: number, explicit: boolean) => {
-    if (editor.view.composing || (explicit && composition.hasComposition())) return false;
+    if (editor.view.composing || (explicit && hasComposition())) return false;
     if (!matches.length || editor.state.doc !== searchDocument) return false;
     highlightSearchMatches(editor, matches, position);
     engine.clearSelectionBookmark(); editor.commands.setTextSelection(matches[position]); reveal(matches[position].from);
@@ -88,7 +90,7 @@ export function FindPanel({ editor, engine, close, focusRequest = 0, zoom = 100 
   const inputReady = () => {
     // Button activation is not always preceded by blur/compositionend. Keep
     // candidate text local until the input method has finished committing it.
-    if (!composition.hasComposition()) return true;
+    if (!hasComposition()) return true;
     toast.error('Finish composing your text before replacing or closing search.');
     return false;
   };

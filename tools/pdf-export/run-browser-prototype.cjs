@@ -1,4 +1,4 @@
-const fs=require('node:fs/promises'),path=require('node:path');
+const fs=require('node:fs/promises');
 const runtime='/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';const {chromium}=require(runtime+'/playwright');
 const safety=process.env.VDOC_QA_SAFETY==='1';const cluster=process.argv[3]==='cluster';const variant=process.argv[2]||'words';const tag=variant+(cluster?'-cluster-contiguous':'')+(safety?'-safety':'');if(!['words','arabic','hebrew'].includes(variant))throw Error('Unknown variant');
 const samples=variant==='arabic'?['Browser PDF — Arabic words','اللغة العربية جميلة','مرحبا بالعالم السلام عليكم','العربية التعليم الكتابة']:variant==='hebrew'?['Browser PDF — Hebrew words','שלום עולם בדיקת מסמך','עברית כתיבה טבלה','שלום בעברית עולם']: ['Browser PDF — local text and vectors','हिन्दी हिंदी भाषा में दस्तावेज़ लिखना।','दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।','Repeat हिन्दी and हिंदी with contextual shapes.'];

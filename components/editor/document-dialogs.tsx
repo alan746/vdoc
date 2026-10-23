@@ -49,7 +49,10 @@ function ImageForm({ close, editor, engine, read: { reader, generation, cancel: 
   };
   return <><DialogTitle>{editing ? 'Image properties' : 'Insert image'}</DialogTitle><DialogDescription>Images are embedded in your local document. PNG, JPEG, GIF and WebP up to 2 MB.</DialogDescription><form className="properties-form" onSubmit={e => { e.preventDefault(); if (reader.current || loading || (!editing && !src)) return; applyFromDialog(engine, [src ? { type: 'image.insert', src, alt, width } : { type: 'image.update', alt, width }], closeDialog); }}>
     {!editing && <label className="wide-field">Choose image<input type="file" accept="image/png,image/jpeg,image/gif,image/webp" onChange={e => { const file = e.target.files?.[0]; e.target.value = ''; if (file) void chooseImage(file); }} /></label>}
-    <label className="wide-field">Alternative text<input value={alt} maxLength={500} onChange={e => { altEdited.current = true; setAlt(e.target.value); }} /></label><label>Width (px)<input type="number" min="40" max="1200" value={width} onChange={e => setWidth(+e.target.value)} /></label>{src && <img className="image-preview" src={src} alt={alt} />}<button className="export-button" type="submit" disabled={loading || (!editing && !src)}>{editing ? 'Apply' : 'Insert image'}</button>
+    <label className="wide-field">Alternative text<input value={alt} maxLength={500} onChange={e => { altEdited.current = true; setAlt(e.target.value); }} /></label><label>Width (px)<input type="number" min="40" max="1200" value={width} onChange={e => setWidth(+e.target.value)} /></label>
+    {/* eslint-disable-next-line @next/next/no-img-element -- a local data-URL preview, which next/image cannot optimise */}
+    {src && <img className="image-preview" src={src} alt={alt} />}
+    <button className="export-button" type="submit" disabled={loading || (!editing && !src)}>{editing ? 'Apply' : 'Insert image'}</button>
   </form></>;
 }
 

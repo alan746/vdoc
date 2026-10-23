@@ -8,7 +8,6 @@ const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets = ['words','arabic','hebrew','arabic-marked','hebrew-marked'].map(label=>({label,directory:'browser-unicode-20261011',name:label.replace('-marked','')+'-unicode-ordered-'+encoding+(label.endsWith('-marked')?'-marked':'')}));
 const destination = `tests/fixtures/reader-control-20261011/search-${encoding}.json`;
-const collapse = value => value.replace(/\s+/gu, ' ').trim();
 
 (async () => {
   try { await fs.access(destination); throw Error('Refuse overwrite selection evidence'); }

@@ -6,7 +6,6 @@ const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets = ['words','arabic','hebrew'].flatMap(script => [false,true].map(actual => ({label:script+(actual?'-actualtext':'-original'),directory:'browser-unicode-20261011',name:script+'-unicode-ordered'+(actual?'-actualtext':'')})));
 const destination = 'tests/fixtures/pdfkit-browser-20261011/chrome-word-selection-offset.json';
-const collapse = value => value.replace(/\s+/gu, ' ').trim();
 
 (async () => {
   try { await fs.access(destination); throw Error('Refuse overwrite selection evidence'); }

@@ -29,7 +29,9 @@ export function usePreparedExport(editor: Editor | null, title: string) {
   }, [editor, currentTitle]);
   useEffect(() => {
     mounted.current = true; pending.current = false;
-    return () => { mounted.current = false; generation.current++; pending.current = false; release(); };
+    // A counter, not a DOM ref: bumping it invalidates work still in flight.
+    const counter = generation;
+    return () => { mounted.current = false; counter.current++; pending.current = false; release(); };
   }, [editor, release]);
   useEffect(() => {
     editor?.on('update', refreshSnapshotStatus);

@@ -6,7 +6,6 @@ const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets = ['words','arabic','hebrew','arabic-marked','hebrew-marked'].map(label=>({label,directory:'browser-unicode-20261011',name:label.replace('-marked','')+'-unicode-ordered-cluster-width'+(label.endsWith('-marked')?'-marked':'')}));
 const destination = 'tests/fixtures/reader-control-20261011/partial-cluster-width.json';
-const collapse = value => value.replace(/\s+/gu, ' ').trim();
 
 async function measureSource(context, file) {
   const variant=file.label.split('-')[0];

@@ -4,7 +4,7 @@
 window.buildUnicodePdf = async function ({fontBytes, root, signal, actualText = false}) {
  if(![false,true,'word','line','string'].includes(actualText))throw Error('Unknown QA encoding mode');
  const fail=()=>{if(signal?.aborted)throw new DOMException('Export cancelled','AbortError');};fail();
- const {PDFDocument,PDFName,PDFHexString,beginText,endText,setFontAndSize,setTextMatrix,showText,rgb}=PDFLib;
+ const {PDFDocument,PDFName,PDFHexString,beginText,endText,setFontAndSize,setTextMatrix,rgb}=PDFLib;
  const font=fontkit.create(new Uint8Array(fontBytes)),hbFont=new hb.Font(new hb.Face(new hb.Blob(fontBytes))),pdf=await PDFDocument.create();
  const rect=root.getBoundingClientRect(),page=pdf.addPage([rect.width*.75,rect.height*.75]),ctx=pdf.context;
  const tokens=[...root.querySelectorAll('.token')];if(tokens.length>2000)throw Error('QA token bound exceeded');

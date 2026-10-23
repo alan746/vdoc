@@ -25,7 +25,7 @@ const collapse=s=>s.replace(/\s+/gu,' ').trim();
      globalThis.pdfjsLib=await import('/pdf.mjs');pdfjsLib.GlobalWorkerOptions.workerSrc='/pdf.worker.mjs';
      const {PDFPageView,EventBus}=await import('/pdf_viewer.mjs');
      const doc=await pdfjsLib.getDocument({data:new Uint8Array(bytes),useSystemFonts:false}).promise;const pdfPage=await doc.getPage(1);const bus=new EventBus();
-     const rendered=new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error('PDF.js text layer timeout')),15000);bus.on('textlayerrendered',event=>{clearTimeout(timeout);event.error?reject(event.error):resolve();});});
+     const rendered=new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error('PDF.js text layer timeout')),15000);bus.on('textlayerrendered',event=>{clearTimeout(timeout);if(event.error)reject(event.error);else resolve();});});
      const view=new PDFPageView({container:document.querySelector('#viewer'),id:1,scale:1,defaultViewport:pdfPage.getViewport({scale:1}),eventBus:bus,textLayerMode:1,annotationMode:0});view.setPdfPage(pdfPage);await view.draw();await rendered;await document.fonts.ready;
      const layer=view.textLayer.div;const selection=getSelection();selection.removeAllRanges();const range=document.createRange();range.selectNodeContents(layer);selection.addRange(range);
      const selectedText=selection.toString();const textContent=layer.textContent;const raw=await pdfPage.getTextContent();

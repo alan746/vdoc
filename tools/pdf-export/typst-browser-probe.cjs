@@ -1,5 +1,5 @@
 // Isolated feasibility test, not a VDoc dependency or production export adapter.
-const fs=require('node:fs/promises'),crypto=require('node:crypto'),path=require('node:path');
+const fs=require('node:fs/promises'),crypto=require('node:crypto');
 const {chromium}=require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const fix='tests/fixtures/typst-browser-20261011',out='output/pdf/typst-browser-20261011';
 const cases=[{label:'hebrew',font:'Hebrew',lang:'he',lines:['שלום עולם בדיקת מסמך','עברית כתיבה טבלה','שָׁלוֹם עוֹלָם 123']},{label:'arabic',font:'Arabic',lang:'ar',lines:['اللغة العربية جميلة','مرحبا بالعالم السلام عليكم','اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ 123']},{label:'hindi',font:'Devanagari',lang:'hi',lines:['हिन्दी हिंदी भाषा में दस्तावेज़ लिखना।','दुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।','हिन्दी भाषा 123']}];

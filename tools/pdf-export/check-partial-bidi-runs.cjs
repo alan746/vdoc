@@ -20,7 +20,6 @@ if(evidenceTag&&!stable)throw Error('Focused evidence requires explicit focus');
 const evidenceSuffix=evidenceTag?'-'+evidenceTag:'';
 const targets = (numberCases?['arabic','hebrew']:['words','arabic','hebrew','arabic-marked','hebrew-marked']).map(label=>({label,directory:encoding==='native-control'?'reader-control-20261011':'browser-unicode-20261011',name:encoding==='native-control'?label:label.replace('-marked','')+'-unicode-ordered-'+encoding+(label.endsWith('-marked')?'-marked':'')+numberTag}));
 const destination = `tests/fixtures/reader-control-20261011/partial-${encoding}${wide?'-wide-standards':stable?'-stable':''}${insetTag}${numberTag}${evidenceSuffix}.json`;
-const collapse = value => value.replace(/\s+/gu, ' ').trim();
 
 async function measureSource(context, file) {
   const variant=file.label.split('-')[0];

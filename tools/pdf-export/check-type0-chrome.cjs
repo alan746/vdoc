@@ -1,5 +1,3 @@
-const numberCases=process.env.VDOC_QA_NUMBER_CASES==='1';
-const numberTag=numberCases?'-numbers':'';
 const encoding=process.env.VDOC_QA_READER_VARIANT||'bidi-runs';
 if(!['record-leading-space','record-space-map','record-token-boundary','bidi-runs','whole-cluster','cluster-actual','local-clusters','record-actual','record-rtl','record-boxes','record-alef','record-digits','record-flow','record-number-tail','record-marked-boxes','record-mark-advance','record-space-bounds','record-grapheme'].includes(encoding))throw Error('Unknown QA reader variant');
 // Read actual PDFium selection from a fresh, isolated Chrome PDF viewer.

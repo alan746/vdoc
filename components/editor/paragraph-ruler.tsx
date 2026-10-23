@@ -1,6 +1,7 @@
 'use client';
 import { selectedParagraphs } from '@/lib/editor/paragraph/paragraph-selection';
 import { useEffect, useId, useRef, useState } from 'react';
+import { useLatest } from './use-latest';
 import type { Editor } from '@tiptap/core';
 import { toast } from 'sonner';
 import type { DocumentEngine } from '@/lib/usecases/engine';
@@ -32,9 +33,11 @@ export function ParagraphRuler({ editor, engine, zoom }: { editor: Editor; engin
     });
     return paragraphs.length ? { paragraphs, scale } : null;
   }
+  // The listeners below live as long as the editor; they measure with the latest render's closure.
+  const latest = useLatest({ measure });
   useEffect(() => {
     let frame = 0;
-    const update = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => setLayout(measure())); };
+    const update = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => setLayout(latest.current.measure())); };
     const transaction = () => { cancel.current?.(); update(); };
     const resize = () => { cancel.current?.(); update(); };
     editor.on('transaction', transaction);
@@ -45,7 +48,7 @@ export function ParagraphRuler({ editor, engine, zoom }: { editor: Editor; engin
     document.addEventListener('scroll', resize, true);
     update();
     return () => { cancel.current?.(); cancelAnimationFrame(frame); editor.off('transaction', transaction); observer.disconnect(); window.removeEventListener('resize', resize); document.removeEventListener('scroll', resize, true); };
-  }, [editor, engine, zoom]);
+  }, [editor, engine, zoom, latest]);
 
   function bounds(current: Layout, handle: RulerHandle) {
     const values = current.paragraphs.map(p => rulerDeltaBounds(p.value, p.width, handle));

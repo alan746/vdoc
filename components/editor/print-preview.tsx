@@ -4,6 +4,7 @@ import type { JSONContent } from '@tiptap/core';
 import { isCompositionKey } from '@/lib/editor/keyboard-composition';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useLocalPdf } from './use-local-pdf';
+import { useLatest } from './use-latest';
 export type PrintSnapshot = { title: string; html: string; content: JSONContent };
 export function PrintPreview({ snapshot, close }: { snapshot: PrintSnapshot; close: () => void }) {
   const [attempt, setAttempt] = useState(0);
@@ -48,6 +49,9 @@ function PrintPreviewSession({ snapshot, close, retry }: { snapshot: PrintSnapsh
     return () => window.removeEventListener('keydown', keyboard, true);
   }, [requestPrint]);
   const send = () => frame.current?.contentWindow?.postMessage({type:'vdoc-preview-render',token,snapshot},window.location.origin);
+  // The handshake lives for one snapshot and token; a parent re-render must not
+  // restart it, but its handlers still call the latest send and close.
+  const latest = useLatest({ send, close });
   useEffect(() => {
     // Either the frame load or its first ready message can precede the other
     // side's listener. Retry only a small handshake until receipt is confirmed.
@@ -59,9 +63,9 @@ function PrintPreviewSession({ snapshot, close, retry }: { snapshot: PrintSnapsh
     };
     const handler = (event: MessageEvent) => {
       if (event.source !== frame.current?.contentWindow || event.origin !== window.location.origin) return;
-      if (event.data?.type === 'vdoc-preview-ready' && !accepted && !stopped) send();
+      if (event.data?.type === 'vdoc-preview-ready' && !accepted && !stopped) latest.current.send();
       if (event.data?.type === 'vdoc-preview-accepted' && event.data.token === token) { accepted = true; stopProbe(); }
-      if (event.data?.type === 'vdoc-preview-close' && event.data.token === token) close();
+      if (event.data?.type === 'vdoc-preview-close' && event.data.token === token) latest.current.close();
       if (event.data?.type === 'vdoc-preview-status' && event.data.token === token) { accepted = true; stopProbe(); setStatus({...event.data,currentPage:1}); }
       if (event.data?.type === 'vdoc-preview-print-result' && event.data.token === token) setPrintError(event.data.error || '');
       if (event.data?.type === 'vdoc-preview-current-page' && event.data.token === token) {
@@ -95,6 +99,6 @@ function PrintPreviewSession({ snapshot, close, retry }: { snapshot: PrintSnapsh
     document.addEventListener('visibilitychange',visibility);
     resume();
     return () => { stopped = true; stopProbe(); window.removeEventListener('message',handler); document.removeEventListener('visibilitychange',visibility); pause(); };
-  }, [snapshot,token]);
+  }, [snapshot,token,latest]);
   return <Dialog open onOpenChange={open=>{if(!open)close();}}><DialogContent className="print-preview-dialog"><div className="print-preview-heading"><div><DialogTitle>Page preview</DialogTitle><DialogDescription>Read-only preview. Return to editing to make changes.</DialogDescription></div><button className="export-button" disabled={status.state!=='ready' || localPdf.preparing} onClick={requestPrint}>{localPdf.preparing ? 'Preparing PDF…' : 'Print / Save PDF'}</button></div><div className="print-preview-controls">{status.state === 'ready' && <label>Go to page<select aria-label="Go to page" value={status.currentPage || 1} onChange={e=>{const page=Number(e.target.value);setStatus(current=>({...current,currentPage:page}));frame.current?.contentWindow?.postMessage({type:'vdoc-preview-page',token,page},window.location.origin);}}>{Array.from({length:status.pages || 0},(_,i)=><option key={i} value={i+1}>{i+1}</option>)}</select></label>}<p role="status" className="print-preview-status">{status.state==='loading'?'Preparing pages…':status.state==='ready'?`${status.pages} ${status.pages === 1 ? 'page' : 'pages'} · ${snapshot.content.attrs?.pageSize === 'letter'?'Letter':'A4'} · ${snapshot.content.attrs?.orientation || 'portrait'}${status.fittedTables ? ' · Wide tables fitted to page; original widths unchanged.' : ''}`:status.error}</p></div>{status.state === 'ready' && localPdf.available && <p className="print-preview-status">Your PDF opens in a new tab with fixed pages. Print or save it using the PDF viewer’s controls.</p>}{status.state === 'ready' && !localPdf.available && <p className="print-preview-status">To match this preview, use 100% scale and {snapshot.content.attrs?.pageSize === 'letter' ? 'Letter' : 'A4'} {snapshot.content.attrs?.orientation === 'landscape' ? 'landscape' : 'portrait'} in the print dialog. Other scales may change page breaks.</p>}{printError && <p role="alert" className="print-preview-status">{printError}</p>}{printError && localPdf.available && !localPdf.preparing && <button className="print-preview-return" onClick={() => { setPrintError(''); frame.current?.contentWindow?.postMessage({type:'vdoc-preview-print',token},window.location.origin); }}>Use browser printing (100% scale)</button>}{status.state === 'error' && <button className="print-preview-return" onClick={retry}>Retry preview</button>}{status.state !== 'error' && <iframe ref={frame} src="/print-preview" title="Paginated document preview" onLoad={send} />}<button className="print-preview-return" onClick={close}>Return to editing</button></DialogContent></Dialog>;
 }

@@ -20,7 +20,7 @@ const clusterWidth=process.env.VDOC_QA_CLUSTER_WIDTH==='1';
 const bidiRuns=process.env.VDOC_QA_BIDI_RUNS==='1';
 const sourcewords=process.env.VDOC_QA_SOURCEWORDS==='1';
 const logical=process.env.VDOC_QA_LOGICAL==='1';
-const fs=require('node:fs/promises'),path=require('node:path');
+const fs=require('node:fs/promises');
 const runtime='/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';const {chromium}=require(runtime+'/playwright');
 const actualText=['word','line','string'].includes(process.env.VDOC_QA_ACTUAL_TEXT)?process.env.VDOC_QA_ACTUAL_TEXT:process.env.VDOC_QA_ACTUAL_TEXT==='1';const marked=process.env.VDOC_QA_MARKED==='1';
 if([recordLeadingSpace,recordSpaceMap,recordTokenBoundary,recordGrapheme,recordSpaceBounds,recordMarkAdvance,recordMarkedBoxes,recordNumberTail,recordFlow,recordDigits,recordAlef,recordBoxes,recordRtl,recordActual,localClusters,clusterActual,wholeCluster,clusterWidth,bidiRuns,sourcewords,logical,!!actualText].filter(Boolean).length>1)throw Error('Choose one diagnostic encoding mode');
