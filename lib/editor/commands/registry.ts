@@ -1,21 +1,32 @@
 import type { CommandProps } from '@tiptap/core';
 import type { Operation } from '../../domain/entities/operation';
-import type { HandlerMap, OperationHandler, OperationType } from './types';
+import type { CommandContext, HandlerMap, OperationHandler, OperationType } from './types';
 import { editorBundle } from '../feature-list';
 
 // Keep compile-time coverage of every validated Operation after feature composition.
 export const operationHandlers: Readonly<HandlerMap<OperationType>> = editorBundle.commands;
 
-export function applyOperation(op: Operation, props: CommandProps): boolean {
+/** Built once per request, not per operation. Tiptap's chainable state refreshes
+ *  its cached doc/selection when `tr` is read, so every command call reads it
+ *  first; the wrappers are created lazily and reused for the whole batch. */
+export function commandContext(props: CommandProps): CommandContext {
   const { state } = props;
-  void state.tr;
-  // Tiptap's chainable state refreshes its cached doc/selection when `tr` is read.
-  // Refresh before every command, including several commands within one operation.
+  const wrapped = new Map<PropertyKey, unknown>();
   const c = new Proxy(props.commands, {
     get(target, key: keyof CommandProps['commands']) {
-      const command = target[key];
-      return (...args: unknown[]) => { void state.tr; return Reflect.apply(command, target, args); };
+      let command = wrapped.get(key);
+      if (!command) {
+        command = (...args: unknown[]) => { void state.tr; return Reflect.apply(target[key], target, args); };
+        wrapped.set(key, command);
+      }
+      return command;
     },
   });
-  return (operationHandlers[op.type] as OperationHandler<typeof op.type>)(op as never, { state, c });
+  return { state, c };
+}
+
+export function applyOperation(op: Operation, context: CommandContext): boolean {
+  // Handlers may read state.doc/selection before their first command call.
+  void context.state.tr;
+  return (operationHandlers[op.type] as OperationHandler<typeof op.type>)(op as never, context);
 }

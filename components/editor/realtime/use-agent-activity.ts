@@ -31,7 +31,7 @@ export function useAgentActivity(engine: DocumentEngine, active: boolean) {
   // registration reconfigures the editor state, which must not happen while
   // the user may be typing (e.g. when a connection drops mid-composition).
   useEffect(() => {
-    const attached = attachAgentActivity(engine.editor);
+    const attached = attachAgentActivity(engine.editor, { locate: id => engine.locateBlock(id) });
     activity.current = attached;
     return () => { attached.dispose(); if (activity.current === attached) activity.current = null; };
   }, [engine]);

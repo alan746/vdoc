@@ -1,6 +1,16 @@
+import type { Node } from '@tiptap/pm/model';
 import { canonicalLanguage } from '../../domain/text/language';
 import type { Operation } from '../../domain/entities/operation';
 import { operationFields, type HandlerMap } from '../commands/types';
+
+/** A top-level block by ID in the document being edited. Deliberately not the
+ *  engine's BlockIndex: inside a batch, earlier operations have already changed
+ *  `state.doc`, so positions indexed before the batch would be stale. */
+function findTopLevelBlock(doc: Node, id: string | null): { pos: number; node: Node } | undefined {
+  if (id === null) return undefined;
+  for (let index = 0, pos = 0; index < doc.childCount; pos += doc.child(index).nodeSize, index++)
+    if (doc.child(index).attrs.blockId === id) return { pos, node: doc.child(index) };
+}
 
 type InsertBlock = Extract<Operation, { type: 'block.insert' }>['block'];
 const textContent = (text: string) => text ? [{ type: 'text', text }] : [];
@@ -19,25 +29,19 @@ function insertContent(block: InsertBlock): object {
 
 export const documentCommands = {
   'block.insert': (op, { state, c }) => {
-    let destination = op.beforeId === null ? state.doc.content.size : -1;
-    state.doc.forEach((node, pos) => { if (node.attrs.blockId === op.beforeId) destination = pos; });
-    return destination >= 0 && c.insertContentAt(destination, insertContent(op.block));
+    const destination = op.beforeId === null ? state.doc.content.size : findTopLevelBlock(state.doc, op.beforeId)?.pos;
+    return destination !== undefined && c.insertContentAt(destination, insertContent(op.block));
   },
   'block.delete': (op, { state }) => {
-    let found: { pos: number; size: number } | undefined;
-    state.doc.forEach((node, pos) => { if (node.attrs.blockId === op.id) found = { pos, size: node.nodeSize }; });
+    const found = findTopLevelBlock(state.doc, op.id);
     if (!found) return false;
-    state.tr.delete(found.pos, found.pos + found.size);
+    state.tr.delete(found.pos, found.pos + found.node.nodeSize);
     return true;
   },
   'block.move': (op, { state }) => {
-    let source: { pos: number; node: import('@tiptap/pm/model').Node } | undefined;
-    let destination = op.beforeId === null ? state.doc.content.size : -1;
-    state.doc.forEach((node, pos) => {
-      if (node.attrs.blockId === op.id) source = { pos, node };
-      if (node.attrs.blockId === op.beforeId) destination = pos;
-    });
-    if (!source || destination < 0 || op.id === op.beforeId) return false;
+    const source = findTopLevelBlock(state.doc, op.id);
+    const destination = op.beforeId === null ? state.doc.content.size : findTopLevelBlock(state.doc, op.beforeId)?.pos;
+    if (!source || destination === undefined || op.id === op.beforeId) return false;
     const { pos, node } = source;
     const tr = state.tr;
     tr.delete(pos, pos + node.nodeSize);

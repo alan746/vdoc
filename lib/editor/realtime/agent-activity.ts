@@ -2,8 +2,9 @@ import type { Editor } from '@tiptap/core';
 import { Plugin, PluginKey } from '@tiptap/pm/state';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
 import type { Node } from '@tiptap/pm/model';
+import type { BlockRange } from '../document/block-index';
 
-export type BlockRange = { from: number; to: number };
+export type { BlockRange };
 /** Resolves a block ID to its current document range, or undefined if it no longer exists. */
 export type BlockLocator = (blockId: string) => BlockRange | undefined;
 

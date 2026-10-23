@@ -13,6 +13,8 @@ interface RealtimePort { open(options: { config, docId, sessionId, tools, signal
 
 `lib/infrastructure/realtime/vrt-adapter.ts` 是唯一导入 `@vrealtime/client` 的文件，把上面的契约接到真实 SDK；`tests/support/fake-vrt-adapter.ts` 是本地开发/测试用的假实现，不经网络。两者都实现同一个 `RealtimePort`，`lib/composition/realtime.ts` 的 `openDocumentRealtime(options, port)` 通过依赖注入切换。
 
+`createRealtimeExecutor` 只依赖 `RealtimeEngine` 这个窄接口（`lib/usecases/realtime-executor.ts`，vdoc#43）：会话 ID、版本、记录、`canEdit()`、`isComposing()`、提交/撤销、快照/大纲/按 ID 读取、`hasBlock`、`anchorSelection`、`onApplied`。接口里**没有** Tiptap `editor`，`DocumentEngine` 按结构满足它，测试可以直接传普通对象（`tests/realtime-engine-port.test.ts`）。
+
 工具的 `run()` 由 SDK 在模型发出完整参数的 `tool_call` 后调用；SDK 负责顺序、epoch 和取消信号本身，`run()` 内部只做：取消检查、文档/会话绑定检查、IME 等待、幂等去重、实际提交（见 `lib/usecases/realtime-executor.ts`）。**参数增量/流式预览不是这个契约的一部分**——vRT 的 `tool.call.delta` / `tool-stream` 能力还在提案阶段（austinchennn/vRT#22），没有对应的 `RealtimeTool` 钩子。
 
 ## 文档工具目录（`lib/usecases/document-tools.ts`）
@@ -23,9 +25,11 @@ interface RealtimePort { open(options: { config, docId, sessionId, tools, signal
 |---|---|---|---|
 | `read_document` | 是 | 否 | 完整文档读取（snapshot；实时连接下附带 `docId`、`agentEdits`） |
 | `read_blocks` | 是 | 否 | 按最多 200 个 ID 读取指定块/表格的完整内容 |
-| `get_context` | 是 | 是 | 大纲、按语音轮次冻结的选区、最近 agent 修改（`recentEdits`，#35 任务1） |
+| `get_context` | 是 | 是 | 大纲、按语音轮次冻结的选区（随文档修改映射的 anchor，不受光标移动影响）、最近 agent 修改（`recentEdits`，#35 任务1） |
 | `apply_document_operations` | 否 | 是（实时侧） | 原子提交操作；WebMCP 走 `executeExternal`（`api` 来源），实时走可信执行器的 `executeAgent` |
 | `undo_turn` | 否 | 是 | 按 turn 撤销，保留无关的用户/其他轮次修改（复用 #29） |
+
+读取成本（vdoc#40）：`read_blocks`、`get_context` 的大纲和 `recentEdits` 存活检查都查询引擎的 `BlockIndex`（每次文档变更后重建一次的 id→{节点, 位置, 版本} 表），代价与请求的块数成正比，不随文档大小增长；只有 `read_document` 仍是完整快照（它本来就要返回整份文档）。
 
 `get_context` 和 `undo_turn` 需要 `actor`/`turnId` 身份，`lib/usecases/browser-tools.ts`（WebMCP 桥）不注册这两个；`@vrealtime/client` 通过 `realtimeDocumentTools(executor)` 拿到全部五个。
 

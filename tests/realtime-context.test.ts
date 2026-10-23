@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, expect, it } from 'vitest';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
@@ -95,4 +95,48 @@ it('gates read_blocks through the same checks as apply/undo', () => {
   expect(executor.readBlocks({ ids: ['x'] }, { ...context(), signal: cancelled.signal })).toMatchObject({ code: 'INTERRUPTED' });
   lifetime.abort();
   expect(executor.readBlocks({ ids: ['x'] }, context())).toMatchObject({ code: 'INTERRUPTED' });
+});
+
+const textOf = (selection: { from: number; to: number }) => editor.state.doc.textBetween(selection.from, selection.to);
+const selectInside = (text: string, start: number, end: number) => {
+  const block = engine.snapshot().blocks.find(entry => entry.text === text)!;
+  editor.commands.setTextSelection({ from: block.from + start, to: block.from + end });
+};
+
+it('vdoc#44: a frozen turn selection follows its content when the same turn’s own edit shifts it', async () => {
+  selectInside('second', 1, 3);
+  const frozen = ok<ContextOk>(executor.getContext(context('read-1', 'turn-A'))).selection;
+  expect(textOf(frozen)).toBe('ec');
+  const s = engine.snapshot();
+  expect(await executor.apply({ expectedSessionId: s.sessionId, expectedRevision: s.revision, target: { kind: 'block', id: s.blocks[0].id }, operations: [{ type: 'block.insert', beforeId: s.blocks[0].id, block: { kind: 'paragraph', text: 'inserted first' } }] }, context('edit-1', 'turn-A'))).toMatchObject({ ok: true });
+  const after = ok<ContextOk>(executor.getContext(context('read-2', 'turn-A'))).selection;
+  expect(after.from).toBeGreaterThan(frozen.from);
+  expect(textOf(after)).toBe('ec');
+});
+
+it('vdoc#44: a frozen turn selection also follows user typing before it, but not cursor movement', () => {
+  selectInside('second', 1, 3);
+  executor.getContext(context('read-1', 'turn-A'));
+  editor.commands.insertContentAt(1, 'typed ');
+  editor.commands.setTextSelection(1);
+  expect(textOf(ok<ContextOk>(executor.getContext(context('read-2', 'turn-A'))).selection)).toBe('ec');
+});
+
+it('vdoc#44: evicts only the oldest-started turn past the limit, re-capturing it if it returns', () => {
+  selectInside('hello', 0, 2);
+  executor.getContext(context('r0', 'turn-0'));
+  selectInside('second', 0, 3);
+  for (let turn = 1; turn <= 64; turn++) executor.getContext(context(`r${turn}`, `turn-${turn}`));
+  expect(textOf(ok<ContextOk>(executor.getContext(context('again', 'turn-0'))).selection)).toBe('sec');
+  expect(textOf(ok<ContextOk>(executor.getContext(context('recent', 'turn-64'))).selection)).toBe('sec');
+});
+
+it('vdoc#44: releases every anchor when the connection lifetime ends', () => {
+  const releases: ReturnType<typeof vi.fn>[] = [];
+  const original = engine.anchorSelection.bind(engine);
+  vi.spyOn(engine, 'anchorSelection').mockImplementation(() => { const anchor = original(); const release = vi.fn(anchor.release); releases.push(release); return { ...anchor, release }; });
+  executor.getContext(context('r1', 'turn-1')); executor.getContext(context('r2', 'turn-2'));
+  lifetime.abort();
+  expect(releases).toHaveLength(2);
+  expect(releases.every(release => release.mock.calls.length === 1)).toBe(true);
 });

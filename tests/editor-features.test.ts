@@ -88,3 +88,13 @@ it('uses feature rules in the actual backup parser before schema normalization',
   const backup = { version: 1, title: 'Invalid', content: { type: 'doc', content: [{ type: 'paragraph', attrs: { tabInterval: 0 } }] } };
   expect(() => parseDocument(JSON.stringify(backup))).toThrow('invalid tab interval');
 });
+
+it('vdoc#42: builds one command context per request and reuses its command wrappers', async () => {
+  const { Editor } = await import('@tiptap/core');
+  const { commandContext } = await import('../lib/editor/commands/registry');
+  const editor = new Editor({ extensions: createExtensions(), content: '<p>a</p>' });
+  let first: unknown, second: unknown;
+  editor.chain().command(props => { const context = commandContext(props); first = context.c.insertContent; second = context.c.insertContent; return true; }).run();
+  expect(first).toBe(second);
+  editor.destroy();
+});

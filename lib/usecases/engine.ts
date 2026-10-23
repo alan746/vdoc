@@ -5,12 +5,15 @@ import type { SelectionBookmark } from '@tiptap/pm/state';
 import { Mark } from '@tiptap/pm/model';
 import { closeHistory, undoDepth, redoDepth } from '@tiptap/pm/history';
 import { agentRequestSchema, externalRequestSchema, requestSchema, operationLabel, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
-import { applyOperation } from '../editor/commands/registry';
+import { applyOperation, commandContext } from '../editor/commands/registry';
 import { resolveTargetSelection } from '../editor/commands/target-selection';
 import { documentSnapshot, documentOutline, readBlocks } from '../editor/document-snapshot';
-import { BlockVersions } from '../editor/document/block-version';
+import { BlockIndex, type BlockRange } from '../editor/document/block-index';
 import { changedBlockIds } from '../editor/document/changed-blocks';
 import { SelectiveUndoHistory } from '../editor/document/selective-undo';
+
+/** A selection captured now and kept mapped through every later document change until released. */
+export type SelectionAnchor = { resolve(): { from: number; to: number }; release(): void };
 
 /** Single synchronous writer for programmatic edits. Native typing remains in ProseMirror. */
 export class DocumentEngine {
@@ -19,21 +22,28 @@ export class DocumentEngine {
   revision = 0;
   records: OperationRecord[] = [];
   private bookmark: SelectionBookmark | null = null;
+  private anchors = new Set<{ bookmark: SelectionBookmark }>();
   private results = new Map<string, { signature: string; result: OperationResult }>();
   private listeners = new Set<() => void>();
   private appliedListeners = new Set<(event: AppliedChange) => void>();
-  private blockVersions = new BlockVersions();
+  private blocks = new BlockIndex();
   private turnHistory: SelectiveUndoHistory;
   private clearBookmarkOnInput = () => { this.bookmark = null; };
   private handleTransaction: (event: { transaction: import('@tiptap/pm/state').Transaction; appendedTransactions?: import('@tiptap/pm/state').Transaction[] }) => void;
 
   constructor(readonly editor: Editor, options: { undoStepLimit?: number } = {}) {
     this.turnHistory = new SelectiveUndoHistory(options.undoStepLimit);
-    this.blockVersions.update(editor.state.doc);
+    this.blocks.update(editor.state.doc);
     this.handleTransaction = ({ transaction, appendedTransactions = [] }) => {
       this.turnHistory.record(transaction, appendedTransactions);
-      if (transaction.docChanged) { this.revision++; this.blockVersions.update(editor.state.doc); }
-      if (this.bookmark) this.bookmark = this.bookmark.map(transaction.mapping);
+      if (transaction.docChanged) { this.revision++; this.blocks.update(editor.state.doc); }
+      // Appended transactions (stable IDs, trailing node) change the document too.
+      const mappings = [transaction, ...appendedTransactions].filter(tr => tr.docChanged).map(tr => tr.mapping);
+      if (mappings.length) {
+        const map = (bookmark: SelectionBookmark) => mappings.reduce((current, mapping) => current.map(mapping), bookmark);
+        if (this.bookmark) this.bookmark = map(this.bookmark);
+        for (const anchor of this.anchors) anchor.bookmark = map(anchor.bookmark);
+      }
       for (const listener of this.listeners) listener();
     };
     editor.on('transaction', this.handleTransaction);
@@ -49,10 +59,24 @@ export class DocumentEngine {
     this.editor.view.dom.removeEventListener('keydown', this.clearBookmarkOnInput);
     this.listeners.clear();
     this.appliedListeners.clear();
+    this.anchors.clear();
     this.turnHistory.clear();
   }
   captureSelection() { this.bookmark = this.editor.state.selection.getBookmark(); }
+  /** The user's current selection, kept pointing at the same content through later edits (agent or user) until released. */
+  anchorSelection(): SelectionAnchor {
+    const anchor = { bookmark: this.editor.state.selection.getBookmark() };
+    this.anchors.add(anchor);
+    return {
+      resolve: () => { const selection = anchor.bookmark.resolve(this.editor.state.doc); return { from: selection.from, to: selection.to }; },
+      release: () => { this.anchors.delete(anchor); },
+    };
+  }
   clearSelectionBookmark() { this.bookmark = null; }
+  /** Programmatic edits are possible: the engine and editor are alive and the editor is editable. */
+  canEdit() { return !this.disposed && !this.editor.isDestroyed && this.editor.isEditable; }
+  /** The document body or a registered workspace field (title, find, dialogs) is mid IME composition. */
+  isComposing() { return documentNavigation(this.editor).isComposing(); }
   get canUndo() { return undoDepth(this.editor.state) > 0; }
   get canRedo() { return redoDepth(this.editor.state) > 0; }
 
@@ -77,23 +101,22 @@ export class DocumentEngine {
     const fail = (code: OperationResult['code'], error: string): OperationResult => ({ ok: false, id, revision: this.revision, code, error });
     if (!parsed.success) return fail('INVALID', parsed.error.issues[0]?.message ?? 'Invalid operation parameters.');
     const request = parsed.data;
-    if (this.disposed || this.editor.isDestroyed || !this.editor.isEditable) return fail('UNAVAILABLE', 'The document is not editable.');
+    if (!this.canEdit()) return fail('UNAVAILABLE', 'The document is not editable.');
     if (request.expectedSessionId !== undefined && request.expectedSessionId !== this.sessionId) return fail('STALE', 'The editing session has changed. Read the document again.');
     const signature = JSON.stringify(request);
     const prior = this.results.get(id);
     if (prior) return prior.signature === signature ? prior.result : fail('DUPLICATE', 'An operation ID cannot be reused for a different request.');
-    if (this.editor.isDestroyed || !this.editor.isEditable) return fail('UNAVAILABLE', 'The document is not editable.');
     // Workspace fields (title, find, dialog inputs) compose outside ProseMirror.
     // Share their registered guards with navigation so programmatic edits cannot
     // bypass the protection just because the document body is not composing.
-    if (documentNavigation(this.editor).isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
+    if (this.isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
     if (request.expectedRevision !== undefined && request.expectedRevision !== this.revision) return fail('STALE', 'The document has changed. Read the target again.');
     if (request.expectedBlocks !== undefined) {
       if (request.expectedRevision === undefined && request.operations.some(op => op.type.startsWith('document.') || op.type === 'text.findReplace' || op.type === 'block.move' || op.type === 'block.insert' || op.type === 'block.delete')) return fail('STALE', 'Document-wide operations require a document revision.');
       const target = request.target;
       const targetId = target.kind === 'block' ? target.id : target.kind === 'text' ? target.blockId : target.kind === 'cell' || target.kind === 'cells' ? target.tableId : undefined;
       if (request.expectedRevision === undefined && (!targetId || !request.expectedBlocks.some(block => block.id === targetId))) return fail('STALE', 'Block versions must cover the target.');
-      if (request.expectedBlocks.some(block => this.blockVersions.get(block.id) !== block.version)) return fail('STALE', 'A target block has changed. Read it again.');
+      if (request.expectedBlocks.some(block => this.index().version(block.id) !== block.version)) return fail('STALE', 'A target block has changed. Read it again.');
     }
     if (request.target.kind === 'range' && request.expectedRevision === undefined) return fail('STALE', 'An explicit range requires a document revision.');
     if (request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
@@ -122,8 +145,9 @@ export class DocumentEngine {
       tr.setMeta('vdoc', { id, source: request.source, actor: request.actor, turnId: request.turnId });
       if (agent) tr.setMeta('addToHistory', false);
       try {
+        const context = commandContext(props);
         for (const operation of request.operations) {
-          if (!applyOperation(operation, props)) { error = (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
+          if (!applyOperation(operation, context)) { error = (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
         }
         // The agent edits beside the user, not through the user's cursor.
         if (agent && !error) tr.setSelection(userSelection.map(tr.doc, tr.mapping)).setStoredMarks(userMarks);
@@ -157,8 +181,8 @@ export class DocumentEngine {
 
   history(action: 'undo' | 'redo', source = 'toolbar'): OperationResult {
     const id = crypto.randomUUID();
-    if (this.disposed || this.editor.isDestroyed || !this.editor.isEditable) return { ok: false, id, revision: this.revision, code: 'UNAVAILABLE', error: 'The document is not editable.' };
-    if (documentNavigation(this.editor).isComposing()) return { ok: false, id, revision: this.revision, code: 'COMPOSING', error: 'Finish the current text composition first.' };
+    if (!this.canEdit()) return { ok: false, id, revision: this.revision, code: 'UNAVAILABLE', error: 'The document is not editable.' };
+    if (this.isComposing()) return { ok: false, id, revision: this.revision, code: 'COMPOSING', error: 'Finish the current text composition first.' };
     this.bookmark = null;
     const ok = this.editor.commands[action]();
     if (ok) {
@@ -172,10 +196,10 @@ export class DocumentEngine {
   undoTurn(turnId: string, origin: AgentOrigin): OperationResult {
     const id = crypto.randomUUID();
     const fail = (code: OperationResult['code'], error: string): OperationResult => ({ ok: false, id, revision: this.revision, code, error });
-    if (this.disposed || this.editor.isDestroyed || !this.editor.isEditable) return fail('UNAVAILABLE', 'The document is not editable.');
+    if (!this.canEdit()) return fail('UNAVAILABLE', 'The document is not editable.');
     if (typeof turnId !== 'string' || !turnId || !origin || typeof origin.actor !== 'string' || !origin.actor || origin.actor.length > 128 || typeof origin.turnId !== 'string' || !origin.turnId || origin.turnId.length > 128) return fail('INVALID', 'Undo needs an actor and a new turn ID.');
     const undoOrigin = { actor: origin.actor, turnId: origin.turnId };
-    if (documentNavigation(this.editor).isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
+    if (this.isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
     const before = this.editor.state.doc;
     const plan = this.turnHistory.prepare(this.editor.state, turnId, origin.turnId);
     if (!plan.ok) return fail('UNAVAILABLE', plan.error);
@@ -195,9 +219,19 @@ export class DocumentEngine {
     return result;
   }
 
-  snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision, this.blockVersions); }
-  outline() { return documentOutline(this.editor); }
-  readBlocks(ids: readonly string[]) { return readBlocks(this.editor, this.blockVersions, ids); }
+  snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision, this.index()); }
+  outline() { return documentOutline(this.index()); }
+  readBlocks(ids: readonly string[]) { return readBlocks(this.index(), ids); }
+  hasBlock(id: string) { return this.index().has(id); }
+  /** Current range of a block in the live document, without walking it. */
+  locateBlock(id: string): BlockRange | undefined { return this.index().range(id); }
+  // Every document change dispatched through the editor updates the index in
+  // handleTransaction. A state replaced without a transaction (updateState)
+  // would not, so readers re-index on mismatch instead of returning stale positions.
+  private index() {
+    if (!this.blocks.describes(this.editor.state.doc)) this.blocks.update(this.editor.state.doc);
+    return this.blocks;
+  }
   private record(id: string, label: string, source: string, count: number, origin?: AgentOrigin) {
     this.records = [{ id, label, source, time: Date.now(), revision: this.revision, count, ...origin }, ...this.records].slice(0, 60);
     for (const listener of this.listeners) listener();

@@ -27,7 +27,7 @@
 新增 `get_context` 工具（独立于 `read_document`，见下方 #30 条目），返回：
 
 - `outline`：标题列表 `{ id, level, text }[]`（[`documentOutline`](../lib/editor/document-snapshot.ts)），用于解析“在项目规划标题下面”一类指代。
-- `selection`：按 `turnId` 冻结——同一语音轮次内多次读取返回首次读取时的选区，光标移动不重新解释目标；新 `turnId` 重新捕获当前选区。冻结表仅存在于单次连接的内存中，随 `createRealtimeExecutor` 的 `signal` 中止清理，不做跨连接持久化。
+- `selection`：按 `turnId` 冻结——同一语音轮次内多次读取返回首次读取时的选区，光标移动不重新解释目标；新 `turnId` 重新捕获当前选区。冻结的是引擎维护的 `SelectionAnchor`（`engine.anchorSelection()`），会随之后的文档修改（包括本轮 agent 自己的修改）映射，始终指向同一段内容——最初版本存的是原始位置，任何前面的插入都会让它指错，已修复（vdoc#44）。每个连接最多保留 64 个轮次，超出时只淘汰最早开始的轮次并释放其 anchor；连接结束时全部释放。
 - `recentEdits`：最近成功提交的 agent 轮次（`{ id, turnId, actor, revision, affectedBlockIds }`，最多 20 条），`affectedBlockIds` 在每次读取时与当前文档重新比对，引用已删除的块会被过滤掉；只统计 `source: 'agent'` 的事件，用户或工具栏编辑不计入。
 
 新增 `read_blocks({ ids })` 工具：按最多 200 个块/表格 ID 返回完整内容（文字、表格网格与单元格），不要求读取整份文档；未知 ID 直接省略，不报错。与其余工具共用 `check()`（取消、文档/会话绑定、可编辑性）。

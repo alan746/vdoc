@@ -11,7 +11,8 @@ const markup = (node: Node) => {
   return JSON.stringify([node.type.name, attrs, node.marks.map(mark => mark.toJSON())]);
 };
 
-function indexBlocks(doc: Node): Map<string, BlockEntry> {
+/** Indexes the blocks under top-level children [from, to), except shared ones. */
+function indexBlocks(doc: Node, from: number, to: number, skip: ReadonlySet<Node>): Map<string, BlockEntry> {
   const entries = new Map<string, BlockEntry>();
   const visit = (node: Node, tables: readonly string[], context: string) => {
     const id = node.attrs.blockId;
@@ -21,7 +22,7 @@ function indexBlocks(doc: Node): Map<string, BlockEntry> {
     node.forEach(child => { if (!child.isText) visit(child, ancestors, parentContext); });
   };
   // Document attributes are reported separately, not as changes to every block.
-  doc.forEach(child => visit(child, [], ''));
+  for (let index = from; index < to; index++) { const child = doc.child(index); if (!skip.has(child)) visit(child, [], ''); }
   return entries;
 }
 
@@ -45,8 +46,22 @@ function ownContent(node: Node): string {
 
 /** Pure before/after projection, run after stable-ID normalization. No UI or engine dependency. */
 export function changedBlockIds(before: Node, after: Node): string[] {
-  if (before.eq(after)) return [];
-  const oldBlocks = indexBlocks(before), newBlocks = indexBlocks(after);
+  if (before === after) return [];
+  // ProseMirror reuses unchanged subtrees by reference. A top-level node that
+  // is the same object in both documents holds the same blocks with the same
+  // context ('' at top level) and the same table ancestry, so none of its
+  // blocks can be reported: skip it on both sides. First trim the identical
+  // prefix and suffix with pointer comparisons (no allocation; a typical edit
+  // leaves a window of one or two children), then skip nodes that are shared
+  // but moved inside the window. A node that moved between top level and a
+  // nested position is top-level in only one document and is still compared.
+  let start = 0, endBefore = before.childCount, endAfter = after.childCount;
+  while (start < endBefore && start < endAfter && before.child(start) === after.child(start)) start++;
+  while (endBefore > start && endAfter > start && before.child(endBefore - 1) === after.child(endAfter - 1)) { endBefore--; endAfter--; }
+  const windowBefore = new Set<Node>(), shared = new Set<Node>();
+  for (let index = start; index < endBefore; index++) windowBefore.add(before.child(index));
+  for (let index = start; index < endAfter; index++) if (windowBefore.has(after.child(index))) shared.add(after.child(index));
+  const oldBlocks = indexBlocks(before, start, endBefore, shared), newBlocks = indexBlocks(after, start, endAfter, shared);
   const ids = new Set([...oldBlocks.keys(), ...newBlocks.keys()]);
   const structuralTables = new Set<string>();
   for (const id of ids) {
