@@ -67,6 +67,23 @@ describe('unified document operations', () => {
     expect(editor.getJSON()).toEqual(before);
     expect(engine.execute({ ...request, operations: [{ type: 'text.insert', text: 'two' }] }).code).toBe('DUPLICATE');
   });
+  it('applies a request without an ID again instead of answering from the retry cache (vdoc#61)', () => {
+    const request = { operations: [{ type: 'text.insert', text: 'again' }] };
+    const first = engine.execute(request), second = engine.execute(request);
+    expect(first.ok && second.ok).toBe(true);
+    expect(second.id).not.toBe(first.id);
+    expect(editor.getText().match(/again/g)).toHaveLength(2);
+  });
+  it('keeps a constant-size key, not the payload, for a retryable request (vdoc#61)', () => {
+    const text = 'x'.repeat(100_000);
+    const request = { id: 'large-1', operations: [{ type: 'text.insert', text }] };
+    const first = engine.execute(request);
+    expect(engine.execute(request)).toEqual(first);
+    expect(engine.execute({ ...request, operations: [{ type: 'text.insert', text: text.slice(1) + 'y' }] }).code).toBe('DUPLICATE');
+    const cached = (engine as unknown as { results: Map<string, { signature: string }> }).results;
+    expect([...cached.keys()]).toEqual(['large-1']);
+    expect(cached.get('large-1')!.signature.length).toBeLessThan(40);
+  });
   it('keeps separate toolbar operations as separate undo steps', () => {
     engine.execute({ ...range(), operations: [{ type: 'text.style', style: { bold: true } }] });
     engine.execute({ ...range(), operations: [{ type: 'text.style', style: { underline: true } }] });

@@ -11,6 +11,7 @@ import { documentSnapshot, documentOutline, readBlocks } from '../editor/documen
 import { BlockIndex, type BlockRange } from '../editor/document/block-index';
 import { changedBlockIds } from '../editor/document/changed-blocks';
 import { SelectiveUndoHistory } from '../editor/document/selective-undo';
+import { requestSignature } from '../shared/request-signature';
 
 /** A selection captured now and kept mapped through every later document change until released. */
 export type SelectionAnchor = { resolve(): { from: number; to: number }; release(): void };
@@ -107,8 +108,10 @@ export class DocumentEngine {
     const request = parsed.data;
     if (!this.canEdit()) return fail('UNAVAILABLE', 'The document is not editable.');
     if (request.expectedSessionId !== undefined && request.expectedSessionId !== this.sessionId) return fail('STALE', 'The editing session has changed. Read the document again.');
-    const signature = JSON.stringify(request);
-    const prior = this.results.get(id);
+    // Only a caller-supplied ID can be retried, so only those requests are
+    // remembered; a generated ID is unknown to the caller until it is returned.
+    const signature = request.id === undefined ? undefined : requestSignature(request);
+    const prior = signature === undefined ? undefined : this.results.get(id);
     if (prior) return prior.signature === signature ? prior.result : fail('DUPLICATE', 'An operation ID cannot be reused for a different request.');
     // Workspace fields (title, find, dialog inputs) compose outside ProseMirror.
     // Share their registered guards with navigation so programmatic edits cannot
@@ -172,8 +175,10 @@ export class DocumentEngine {
     if (this.revision !== beforeRevision || (!agent && !Mark.sameSet(beforeMarks, afterMarks)))
       this.record(id, label, request.source, request.operations.length, agent ? { actor: request.actor!, turnId: request.turnId! } : undefined);
     const result = { ok: true, id, revision: this.revision };
-    this.results.set(id, { signature, result });
-    if (this.results.size > 200) this.results.delete(this.results.keys().next().value!);
+    if (signature !== undefined) {
+      this.results.set(id, { signature, result });
+      if (this.results.size > 200) this.results.delete(this.results.keys().next().value!);
+    }
     const documentChanged = !beforeDocument.eq(this.editor.state.doc);
     if (this.appliedListeners.size && (documentChanged || (!agent && !Mark.sameSet(beforeMarks, afterMarks)))) {
       const event: AppliedChange = Object.freeze({ id, label, source: request.source, ...(agent ? { actor: request.actor, turnId: request.turnId } : {}), revision: result.revision,
