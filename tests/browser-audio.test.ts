@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { prepareBrowserAudio } from '../lib/infrastructure/realtime/browser-audio';
+import { prepareBrowserAudio, microphoneLevel } from '../lib/infrastructure/realtime/browser-audio';
 
 const contexts: FakeAudioContext[] = [];
 class FakeAudioContext {
@@ -10,16 +10,18 @@ class FakeAudioContext {
   createMediaStreamSource = vi.fn(() => this.source);
   constructor() { contexts.push(this); }
 }
+const worklets: FakeWorklet[] = [];
 class FakeWorklet {
-  port = { onmessage: null }; disconnect = vi.fn();
+  constructor() { worklets.push(this); }
+  port: { onmessage: ((event: { data: ArrayBuffer }) => void) | null } = { onmessage: null }; disconnect = vi.fn();
 }
 let stream: MediaStream, track: MediaStreamTrack, getUserMedia: ReturnType<typeof vi.fn>;
 let lifetime: AbortController;
-const states = vi.fn(), failure = vi.fn();
+const states = vi.fn(), failure = vi.fn(), levels = vi.fn();
 const createSpeaker = vi.fn(async () => ({ enqueue: vi.fn(), flush: vi.fn(async () => ({})), close: vi.fn(async () => {}) }));
-const prepare = () => prepareBrowserAudio({ signal: lifetime.signal, resampler: 'class Resampler {}', createSpeaker, onMicrophone: states, onFailure: failure });
+const prepare = () => prepareBrowserAudio({ signal: lifetime.signal, resampler: 'class Resampler {}', createSpeaker, onMicrophone: states, onFailure: failure, onInputLevel: levels });
 beforeEach(() => {
-  contexts.length = 0; states.mockClear(); failure.mockClear(); createSpeaker.mockClear(); lifetime = new AbortController();
+  worklets.length = 0; levels.mockClear(); contexts.length = 0; states.mockClear(); failure.mockClear(); createSpeaker.mockClear(); lifetime = new AbortController();
   track = Object.assign(new EventTarget(), { stop: vi.fn() }) as unknown as MediaStreamTrack;
   stream = { getTracks: () => [track], getAudioTracks: () => [track] } as unknown as MediaStream;
   getUserMedia = vi.fn(async () => stream);
@@ -63,4 +65,31 @@ it('notifies the connection when the microphone is revoked or unplugged', async 
 it('explains insecure or unsupported browser contexts before requesting the microphone', async () => {
   vi.stubGlobal('isSecureContext', false);
   await expect(prepare()).rejects.toThrow('HTTPS'); expect(getUserMedia).not.toHaveBeenCalled();
+});
+
+it('measures captured audio, preserves PCM delivery, and stops level updates on disconnect', async () => {
+  const audio = await prepare(); const send = vi.fn();
+  await audio.input({}, send);
+  const loud = new Int16Array(480).fill(8192).buffer;
+  const handler = worklets[0].port.onmessage!;
+  for (let i = 0; i < 3; i++) handler({ data: loud });
+  expect(send).toHaveBeenCalledTimes(3);
+  expect(send).toHaveBeenLastCalledWith(new Uint8Array(loud));
+  expect(levels).toHaveBeenCalledOnce(); expect(levels.mock.calls[0][0]).toBeGreaterThan(0.9);
+  for (let i = 0; i < 3; i++) handler({ data: new ArrayBuffer(960) });
+  expect(levels).toHaveBeenLastCalledWith(0);
+  await audio.stop(); const count = levels.mock.calls.length;
+  handler({ data: loud });
+  expect(levels).toHaveBeenCalledTimes(count); expect(send).toHaveBeenCalledTimes(6);
+});
+it('maps silence, quiet speech and loud input monotonically, respecting PCM offsets', () => {
+  const pcm = (amplitude: number) => new Uint8Array(new Int16Array(480).fill(amplitude).buffer);
+  expect(microphoneLevel(pcm(0))).toBe(0);
+  expect(microphoneLevel(pcm(10))).toBe(0);
+  expect(microphoneLevel(pcm(500))).toBeGreaterThan(0);
+  expect(microphoneLevel(pcm(500))).toBeLessThan(microphoneLevel(pcm(4000)));
+  expect(microphoneLevel(pcm(32767))).toBe(1);
+  expect(microphoneLevel(new Uint8Array())).toBe(0);
+  const buffer = pcm(4000); buffer.fill(0, 100);
+  expect(microphoneLevel(buffer.subarray(100))).toBe(0);
 });

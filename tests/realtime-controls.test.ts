@@ -164,3 +164,19 @@ it('sends the selected speech language and ignores late transcripts after discon
   await act(async () => oldActivity({ type: 'transcript', role: 'user', itemId: 'late', text: 'old document', final: true }));
   expect(mount.textContent).not.toContain('old document');
 });
+
+it('moves the waveform only with captured input, clears on disconnect, and ignores stale input', async () => {
+  await render(); await click('Connect voice assistant');
+  const options = calls.open.mock.calls[0][0];
+  const heights = () => [...mount.querySelectorAll<HTMLElement>('.voice-wave span')].map(bar => bar.style.height);
+  expect(heights().every(height => height === '3px')).toBe(true);
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'speaking', turnId: 't1' }));
+  expect(heights().every(height => height === '3px')).toBe(true);
+  await act(async () => options.onInputLevel(1));
+  expect(heights().at(-1)).toBe('24px');
+  await act(async () => options.onInputLevel(0));
+  expect(heights().at(-2)).toBe('24px'); expect(heights().at(-1)).toBe('3px');
+  await click('Disconnect assistant');
+  await act(async () => options.onInputLevel(1));
+  expect(heights().every(height => height === '3px')).toBe(true);
+});

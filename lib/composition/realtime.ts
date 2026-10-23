@@ -23,6 +23,7 @@ export function openDocumentRealtime(options: {
   onStatus: (status: RealtimeStatus, message?: string) => void;
   onActivity?: (activity: RealtimeActivity) => void;
   onMicrophone?: Parameters<RealtimePort['open']>[0]['onMicrophone'];
+  onInputLevel?: Parameters<RealtimePort['open']>[0]['onInputLevel'];
 }, port: RealtimePort = vrtAdapter) {
   const { engine, docId, config, onStatus, onActivity } = options;
   const lifecycle = new AbortController();
@@ -52,6 +53,6 @@ export function openDocumentRealtime(options: {
     documentId: docId, title: (options.title || UNTITLED_DOCUMENT).slice(0, 120),
     language: language && language !== 'und' ? new Intl.Locale(language).baseName : 'en-US', vocabulary: config.vocabulary ?? [],
   },
-    tools, signal: lifecycle.signal, onStatus, onActivity, onMicrophone: options.onMicrophone });
+    tools, signal: lifecycle.signal, onStatus, onActivity, onMicrophone: options.onMicrophone, onInputLevel: options.onInputLevel });
   return { ...connection, close() { lifecycle.abort(); connection.close(); } };
 }

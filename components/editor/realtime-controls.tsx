@@ -20,6 +20,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const [accessError, setAccessError] = useState('');
   const [attempt, setAttempt] = useState(0);
   const [microphone, setMicrophone] = useState<MicrophoneStatus>('off');
+  const [levels, setLevels] = useState<number[]>(() => Array(24).fill(0));
   const generation = useRef<symbol | null>(null);
   const starting = useRef(false);
   useEffect(() => {
@@ -59,7 +60,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const disconnect = () => {
     generation.current = null; starting.current = false;
     connection.current?.close(); connection.current = null;
-    setStatus('disconnected'); setMessage(''); setTurn('idle'); setMicrophone('off'); setHeard(''); setToolFeedback('');
+    setStatus('disconnected'); setMessage(''); setTurn('idle'); setMicrophone('off'); setLevels(Array(24).fill(0)); setHeard(''); setToolFeedback('');
   };
   const connect = () => {
     if (!config || starting.current) return;
@@ -72,8 +73,9 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
           if (current !== generation.current) return;
           setStatus(next); setMessage(detail ?? '');
           if (next !== 'connected') { setTurn('idle'); setToolFeedback(''); }
-          if (next === 'error' || next === 'disconnected') { starting.current = false; setMicrophone('off'); }
+          if (next === 'error' || next === 'disconnected') { starting.current = false; setMicrophone('off'); setLevels(Array(24).fill(0)); }
         },
+        onInputLevel: level => { if (current === generation.current) setLevels(previous => [...previous.slice(1), level]); },
         onMicrophone: state => { if (current === generation.current) setMicrophone(state); },
         onActivity: activity => {
           if (current !== generation.current) return;
@@ -98,11 +100,12 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
     ready: 'Microphone allowed · Connecting…', on: 'Microphone on', error: 'Microphone unavailable',
   };
   const statusLabel = checking ? 'Checking voice availability…' : status === 'connected' ? ['Assistant connected', turnLabels[turn]].filter(Boolean).join(' · ') : status === 'reconnecting' ? 'Assistant reconnecting…' : status === 'connecting' ? 'Assistant connecting…' : status === 'error' ? 'Assistant connection failed' : 'Assistant disconnected';
+  const wave = microphone === 'on' ? 'listening' : 'off';
   const hint = !cloud ? 'Voice editing is available in your cloud workspace.' : active ? heard || 'Speak naturally. Try “Add a three-row table.”' : 'Say it. See it on the page.';
   return <section aria-label="Document assistant" className="voice-dock" data-active={active}>
     <div className="voice-bar">
       <div className={`voice-symbol ${microphone === 'on' ? 'voice-symbol-on' : ''}`} aria-hidden="true">{microphone === 'on' ? <AudioLines size={23} /> : <Mic size={23} />}</div>
-      <div className="voice-copy"><div className="voice-title"><strong>Talk to your document</strong><span className={`voice-state voice-state-${status}`} role="status">{statusLabel}</span></div><p className="voice-hint" title={hint}>{hint}</p></div>
+      <div className="voice-copy"><div className="voice-title"><strong>Talk to your document</strong><span className={`voice-state voice-state-${status}`} role="status">{statusLabel}</span></div><div className="voice-caption"><div className="voice-wave" data-state={wave} aria-hidden="true">{levels.map((level, index) => <span key={index} style={{ height: `${3 + level * 21}px` }} />)}</div><p className="voice-hint" title={hint}>{hint}</p></div></div>
       <div className="voice-actions">
         {!active && <label className="voice-language"><span className="sr-only">Voice language</span><select aria-label="Voice language" value={language} onChange={event => setLanguage(event.target.value)} disabled={checking}><option value="auto">Document language</option><option value="zh-CN">中文</option><option value="en-US">English</option></select></label>}
         {!active && <button type="button" className="voice-connect" disabled={!config || checking} onClick={connect}><Mic size={16} />{status === 'error' ? 'Retry voice connection' : 'Connect voice assistant'}</button>}

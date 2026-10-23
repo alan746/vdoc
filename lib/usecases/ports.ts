@@ -116,5 +116,6 @@ export interface RealtimePort {
     onStatus(status: RealtimeStatus, message?: string): void;
     onActivity?(activity: RealtimeActivity): void;
     onMicrophone?(status: MicrophoneStatus): void;
+    onInputLevel?(level: number): void;
   }): RealtimeConnection;
 }

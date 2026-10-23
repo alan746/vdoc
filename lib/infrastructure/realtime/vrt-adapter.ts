@@ -20,7 +20,7 @@ export function validateRealtimeConfig(input: RealtimeConfig, pageOrigin: string
 }
 
 export const vrtAdapter: RealtimePort = {
-  open({ config: input, context: inputContext, tools, signal, onStatus, onActivity, onMicrophone }) {
+  open({ config: input, context: inputContext, tools, signal, onStatus, onActivity, onMicrophone, onInputLevel }) {
     const config = validateRealtimeConfig(input, window.location.origin);
     const context = voiceDocumentContextSchema.parse(inputContext);
     let closed = false, ended = false;
@@ -47,6 +47,7 @@ export const vrtAdapter: RealtimePort = {
       if (closed) return;
       closed = true; grantLifetime.abort(); audioLifetime.abort();
       onMicrophone?.('off');
+      onInputLevel?.(0);
       signal.removeEventListener('abort', close); off.forEach(unsubscribe => unsubscribe());
       session?.interrupt();
       void session?.close().catch(() => {});
@@ -58,6 +59,7 @@ export const vrtAdapter: RealtimePort = {
       try {
         const audio = config.audio ? await prepareBrowserAudio({
           signal: audioLifetime.signal, resampler: CaptureResampler.toString(), createSpeaker,
+          onInputLevel: level => { if (!closed) onInputLevel?.(level); },
           onMicrophone: state => { if (!closed) onMicrophone?.(state); }, onFailure: fail,
         }) : undefined;
         if (closed) return;

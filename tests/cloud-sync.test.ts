@@ -142,3 +142,18 @@ describe('cloud workspace through the real document API and PostgreSQL engine', 
   });
 
 });
+
+it('calls the default browser fetch with the global receiver, not the repository instance', async () => {
+  const original = globalThis.fetch;
+  let requested = false;
+  globalThis.fetch = async function (this: unknown, input, init) {
+    if (this !== globalThis) throw new TypeError('Illegal invocation');
+    requested = true;
+    expect(input).toBe('/api/library');
+    expect(new Headers(init?.headers).get('x-vdoc-account')).toBe('browser-binding');
+    return Response.json({ items: [], nextCursor: null });
+  };
+  const repo = new CloudRepositories('browser-binding', undefined, new IDBFactory());
+  try { expect(await repo.library.list()).toEqual([]); expect(requested).toBe(true); }
+  finally { globalThis.fetch = original; await repo.cache.close(); }
+});

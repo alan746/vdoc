@@ -390,6 +390,13 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 .voice-state-connected { color:#477238; }
 .voice-state-error { color:#a14435; }
 .voice-hint { margin:5px 0 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#727b6c; font-size:12px; }
+.voice-caption { display:flex; align-items:center; gap:12px; margin-top:5px; min-height:26px; }
+.voice-caption .voice-hint { margin:0; flex:1; min-width:0; }
+.voice-wave { display:flex; align-items:center; justify-content:center; gap:3px; width:141px; max-width:40%; height:26px; flex-shrink:0; color:#b1baa7; }
+.voice-wave span { width:3px; height:3px; border-radius:3px; background:currentColor; flex-shrink:1; }
+.voice-wave[data-state="listening"] { color:#637e4c; }
+.voice-wave span { transition:height 60ms linear; }
+@media (prefers-reduced-motion:reduce) { .voice-wave span { transition:none; } }
 .voice-actions { display:flex; align-items:center; flex-shrink:0; gap:8px; }
 .voice-actions button { display:flex; align-items:center; justify-content:center; gap:7px; min-height:40px; padding:9px 12px; border-radius:11px; cursor:pointer; font-weight:500; }
 .voice-actions button:disabled { opacity:.45; cursor:not-allowed; }

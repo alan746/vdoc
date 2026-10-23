@@ -38,7 +38,7 @@ export class CloudRepositories {
   private stopped = false;
   private blocked = false;
   private state: SyncState = { status: 'idle', pending: 0, conflicts: [], message: '' };
-  constructor(readonly owner: string, private fetcher: typeof fetch = fetch, factory?: IDBFactory) {
+  constructor(readonly owner: string, private fetcher: typeof fetch = (input, init) => globalThis.fetch(input, init), factory?: IDBFactory) {
     this.cache = new CloudCache(owner, factory);
     this.changes = createDocumentChanges(undefined, `vdoc.cloud.${owner}`);
     this.documents = {
