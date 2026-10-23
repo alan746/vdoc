@@ -85,7 +85,9 @@ SDK 早已发出 `state` / `tool.call` / `tool.result` / `interrupted` 事件（
 
 ### 正式语音入口与服务端契约
 
-编辑器直接显示 **Connect voice assistant**，不再读取或要求设置 `vdoc.realtime.v2`。本地文档显示登录、云工作区和备份导入指引；登录后的云文档通过只读 `GET /api/voice-sessions?documentId=…` 校验归属与部署配置，不创建会话、不请求麦克风。
+编辑器正文滚动区下方固定显示语音栏 **Connect voice assistant**，不再读取或要求设置 `vdoc.realtime.v2`。本地文档显示登录、云工作区和备份导入指引；登录后的云文档通过只读 `GET /api/voice-sessions?documentId=…` 校验归属与部署配置，不创建会话、不请求麦克风。
+
+语音栏没有聊天窗口或文字发送框。连接前可选择文档语言、中文或英文；连接后保持实时会话，显示最新一句用户转写（不插入正文）、轮次状态和工具执行结果。只有编辑工具返回成功才显示 Document updated，读取成功显示 Document checked；失败显示失败提示。Recent edits 中保留按轮次撤销，Stop/Esc 只中断当前回复，Disconnect 关闭麦克风。电脑和手机均将语音栏置于正文之外，打印时隐藏。
 
 用户必须登录，打开属于当前账户且不在回收站内的云文档，并保持联网；站点需已配置语音服务。麦克风需要 HTTPS（本机 localhost 例外）及浏览器音频支持。点击连接后显示权限等待、设备错误、连接中、已连接、自动重连和失败状态，支持取消、重试、断开及 Stop/Esc。取消或切换文档会释放媒体资源，迟到的麦克风授权也会立即停止。
 

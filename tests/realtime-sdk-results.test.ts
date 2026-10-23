@@ -78,7 +78,7 @@ it('sends a failed deletion as ok:false with the field path, and marks UI activi
   expect(result).toMatchObject({ ok: false, code: 'FAILED', message: expect.stringContaining('INVALID: operations[0].id: Required') });
   expect(result).toMatchObject({ message: expect.stringContaining('This call did NOT apply an edit.') });
   expect(result).not.toHaveProperty('output');
-  expect(activities).toContainEqual({ type: 'result', callId: 'call-1', ok: false });
+  expect(activities).toContainEqual(expect.objectContaining({ type: 'result', callId: 'call-1', ok: false, code: 'FAILED' }));
   expect(editor.getJSON()).toEqual(before); expect(engine.revision).toBe(revision);
 });
 
@@ -102,5 +102,5 @@ it('routes synchronous read validation errors through the same SDK failure chann
   expect(await call('read_blocks', { ids: [] })).toMatchObject({
     ok: false, code: 'FAILED', message: expect.stringContaining('INVALID: ids:'),
   });
-  expect(activities).toContainEqual({ type: 'result', callId: 'call-1', ok: false });
+  expect(activities).toContainEqual(expect.objectContaining({ type: 'result', callId: 'call-1', ok: false, code: 'FAILED' }));
 });

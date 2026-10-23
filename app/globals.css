@@ -378,14 +378,58 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 .print-preview-controls label { display:flex; align-items:center; gap:8px; font-size:13px; }
 .print-preview-controls select { padding:3px 8px; border:1px solid #c8d0df; border-radius:4px; background:white; }
 
-.realtime-controls { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:8px 20px; border-bottom:1px solid var(--border); font-size:13px; }
-.realtime-connection { display:flex; align-items:center; flex-wrap:wrap; gap:8px 12px; width:100%; }
-.realtime-controls .realtime-note, .realtime-controls .realtime-error { margin:0; flex-basis:100%; line-height:1.5; }
-.realtime-note { color:var(--muted-foreground); }
-.realtime-controls a { text-decoration:underline; text-underline-offset:3px; }
-.realtime-error { color:var(--destructive); }
-.realtime-controls form { display:flex; gap:8px; flex:1; }
-.realtime-controls input { flex:1; min-width:150px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; }
+/* Voice stays below the scrolling document; it never covers the writing surface. */
+.voice-dock { position:relative; flex-shrink:0; padding:12px max(20px, calc((100% - 1020px) / 2)); background:#fafbf8; border-top:1px solid #dce1d5; box-shadow:0 -4px 20px #27332405; color:#2c3628; font-size:12px; }
+.voice-bar { display:flex; align-items:center; gap:14px; }
+.voice-symbol { width:44px; height:44px; flex-shrink:0; display:grid; place-items:center; color:#62734d; border:1px solid #dce3d2; background:#edf1e7; border-radius:15px; }
+.voice-symbol-on { color:#fff; background:#536642; border-color:#536642; box-shadow:0 0 0 5px #637b4c12; }
+.voice-copy { flex:1; min-width:0; }
+.voice-title { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.voice-title strong { font-size:14px; font-weight:600; letter-spacing:-.2px; }
+.voice-state { font-size:10px; color:#6a7465; }
+.voice-state-connected { color:#477238; }
+.voice-state-error { color:#a14435; }
+.voice-hint { margin:5px 0 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#727b6c; font-size:12px; }
+.voice-actions { display:flex; align-items:center; flex-shrink:0; gap:8px; }
+.voice-actions button { display:flex; align-items:center; justify-content:center; gap:7px; min-height:40px; padding:9px 12px; border-radius:11px; cursor:pointer; font-weight:500; }
+.voice-actions button:disabled { opacity:.45; cursor:not-allowed; }
+.voice-connect { background:#35472d; color:#fff; border:1px solid #35472d; }
+.voice-connect:not(:disabled):hover { background:#495d3e; }
+.voice-stop { background:#edf0e7; border:1px solid #dce1d5; }
+.voice-disconnect { background:transparent; border:1px solid #dce1d5; color:#66705e; }
+.voice-stop:not(:disabled):hover,.voice-disconnect:hover { background:#e2e7d9; }
+.voice-language select { max-width:140px; min-height:40px; border:1px solid #dce1d5; border-radius:10px; background:transparent; padding:5px 7px; color:#66705e; font-size:11px; }
+.voice-underbar { display:flex; align-items:center; flex-wrap:wrap; gap:6px 15px; margin-top:8px; font-size:10px; color:#7d8577; }
+.voice-microphone { display:flex; align-items:center; gap:5px; }
+.voice-microphone > span { width:5px; height:5px; border-radius:50%; background:#a7ada1; }
+.voice-microphone > .voice-live-dot { background:#5a853d; }
+.voice-tool-feedback { color:#4e6f39; }
+.voice-tool-error { color:#a14435; }
+.voice-dock a { text-decoration:underline; text-underline-offset:3px; }
+.voice-underbar summary { display:flex; align-items:center; gap:4px; cursor:pointer; list-style:none; min-height:24px; }
+.voice-underbar summary::-webkit-details-marker { display:none; }
+.voice-details { margin-left:auto; }
+.voice-details-body { position:absolute; z-index:35; bottom:calc(100% + 8px); right:20px; width:min(360px, calc(100% - 40px)); max-height:180px; overflow:auto; background:#fff; border:1px solid #dce1d5; border-radius:12px; padding:16px; box-shadow:0 10px 35px #28362015; font-size:12px; line-height:1.6; color:#59644f; }
+.voice-edits .voice-details-body:empty::after { content:"No assistant edits in this session."; }
+.voice-error { display:flex; align-items:center; gap:8px; margin-top:8px; padding:8px 10px; border-radius:8px; background:#fff1e9; color:#923f2e; line-height:1.5; }
+.voice-error > svg { flex-shrink:0; }
+.voice-error button { text-decoration:underline; cursor:pointer; flex-shrink:0; }
+.voice-dock button:focus-visible,.voice-dock select:focus-visible,.voice-dock summary:focus-visible,.voice-dock a:focus-visible { outline:2px solid #637b4c; outline-offset:3px; }
+@media (max-width:760px) {
+  .voice-dock { padding:10px 14px max(8px, env(safe-area-inset-bottom)); }
+  .voice-bar { gap:10px; flex-wrap:wrap; }
+  .voice-symbol { width:36px; height:36px; border-radius:12px; }
+  .voice-copy { min-width:calc(100% - 48px); }
+  .voice-title { gap:4px 9px; }
+  .voice-title strong { font-size:13px; }
+  .voice-actions { width:100%; }
+  .voice-connect { flex:1; }
+  .voice-language select { max-width:125px; }
+  .voice-stop,.voice-disconnect { flex:1; }
+  .voice-underbar { gap:3px 10px; margin-top:5px; }
+  .voice-error { flex-wrap:wrap; }
+}
+@media print { .voice-dock { display:none !important; } }
 
 /* vdoc#33: view-only agent activity decorations and turn timeline. */
 .vdoc-agent-highlight { animation: vdoc-agent-highlight-fade 1.5s ease-out forwards; }

@@ -1,6 +1,7 @@
 'use client';
 /* Workspace links intentionally reload account-scoped repositories. */
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Mic, MicOff, Square, X, ChevronDown, AudioLines } from 'lucide-react';
 import { openDocumentRealtime, loadRealtimeConfig, VoiceConnectionError } from '@/lib/composition/realtime';
 import { isCloudWorkspace } from '@/lib/composition/repositories';
 import type { DocumentEngine } from '@/lib/usecases/engine';
@@ -11,9 +12,7 @@ import { ActivityTimeline } from './realtime/activity-timeline';
 
 const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking', acting: 'Editing' };
 
-/** Connection controls with turn state, Stop/Esc, and the vdoc#33 turn-grouped
- *  activity timeline. Streamed argument previews are separate work: the SDK
- *  emits tool.preview, but its payload is not specified yet (vRT#22). */
+/** Persistent voice dock. Speech edits use the existing authenticated tool path. */
 export function RealtimeControls({ engine, docId, title }: { engine: DocumentEngine; docId: string; title?: string }) {
   const [cloud] = useState(isCloudWorkspace);
   const [config, setConfig] = useState<RealtimeConfig | null>(null);
@@ -38,7 +37,10 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   }, [cloud, docId, attempt]);
   const [status, setStatus] = useState<RealtimeStatus>('disconnected');
   const [message, setMessage] = useState('');
-  const [text, setText] = useState('');
+  const [heard, setHeard] = useState('');
+  const [toolFeedback, setToolFeedback] = useState('');
+  const [toolFailed, setToolFailed] = useState(false);
+  const [language, setLanguage] = useState('auto');
   const [turn, setTurn] = useState<RealtimeTurnState>('idle');
   const connection = useRef<RealtimeConnection | null>(null);
   const activityListeners = useRef(new Set<(activity: RealtimeActivity) => void>());
@@ -57,26 +59,32 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const disconnect = () => {
     generation.current = null; starting.current = false;
     connection.current?.close(); connection.current = null;
-    setStatus('disconnected'); setMessage(''); setTurn('idle'); setMicrophone('off');
+    setStatus('disconnected'); setMessage(''); setTurn('idle'); setMicrophone('off'); setHeard(''); setToolFeedback('');
   };
   const connect = () => {
     if (!config || starting.current) return;
     const current = Symbol(); generation.current = current;
     connection.current?.close(); starting.current = true;
-    setStatus('connecting'); setMessage(''); setTurn('idle');
+    setStatus('connecting'); setMessage(''); setTurn('idle'); setHeard(''); setToolFeedback(''); setToolFailed(false);
     try {
-      connection.current = openDocumentRealtime({ engine, docId, title, config,
+      connection.current = openDocumentRealtime({ engine, docId, title, config: language === 'auto' ? config : { ...config, language },
         onStatus: (next, detail) => {
           if (current !== generation.current) return;
           setStatus(next); setMessage(detail ?? '');
-          if (next !== 'connected') setTurn('idle');
+          if (next !== 'connected') { setTurn('idle'); setToolFeedback(''); }
           if (next === 'error' || next === 'disconnected') { starting.current = false; setMicrophone('off'); }
         },
         onMicrophone: state => { if (current === generation.current) setMicrophone(state); },
         onActivity: activity => {
           if (current !== generation.current) return;
           if (activity.type === 'turn') setTurn(activity.state);
-          else if (activity.type === 'interrupted') setTurn('idle');
+          else if (activity.type === 'interrupted') { setTurn('idle'); setToolFeedback('Stopped. You can keep speaking.'); setToolFailed(false); }
+          else if (activity.type === 'transcript' && activity.role === 'user') setHeard(activity.text.slice(-300));
+          else if (activity.type === 'call') { setToolFeedback('Working on your request…'); setToolFailed(false); }
+          else if (activity.type === 'result') {
+            setToolFailed(!activity.ok);
+            setToolFeedback(activity.ok ? (activity.name === 'apply_document_operations' ? 'Document updated' : activity.name === 'undo_turn' ? 'Assistant edit undone' : 'Document checked') : `Couldn’t complete that action.${activity.code ? ` (${activity.code})` : ''} Please try again.`);
+          }
           for (const listener of activityListeners.current) listener(activity);
         } });
     } catch {
@@ -89,27 +97,28 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
     off: 'Microphone off', requesting: 'Waiting for microphone permission… Allow access in your browser.',
     ready: 'Microphone allowed · Connecting…', on: 'Microphone on', error: 'Microphone unavailable',
   };
-  return <section aria-label="Document assistant" className="realtime-controls">
-    <div className="realtime-connection">
-      <strong>Voice assistant</strong>
-      <span role="status">{checking ? 'Checking voice availability…' : status === 'connected' ? ['Assistant connected', turnLabels[turn]].filter(Boolean).join(' · ') : status === 'reconnecting' ? 'Assistant reconnecting…' : status === 'connecting' ? 'Assistant connecting…' : status === 'error' ? 'Assistant connection failed' : 'Assistant disconnected'}</span>
-      <span aria-live="polite">{microphoneLabels[microphone]}</span>
-      {!active && <button type="button" className="secondary-button" disabled={!config || checking} onClick={connect}>{status === 'error' ? 'Retry voice connection' : 'Connect voice assistant'}</button>}
-      {active && <>
-        <button type="button" className="quiet-button" disabled={status !== 'connected'} onClick={() => connection.current?.interrupt()}>Stop assistant</button>
-        <button type="button" className="quiet-button" onClick={disconnect}>{status === 'connecting' ? 'Cancel connection' : 'Disconnect assistant'}</button>
-      </>}
+  const statusLabel = checking ? 'Checking voice availability…' : status === 'connected' ? ['Assistant connected', turnLabels[turn]].filter(Boolean).join(' · ') : status === 'reconnecting' ? 'Assistant reconnecting…' : status === 'connecting' ? 'Assistant connecting…' : status === 'error' ? 'Assistant connection failed' : 'Assistant disconnected';
+  const hint = !cloud ? 'Voice editing is available in your cloud workspace.' : active ? heard || 'Speak naturally. Try “Add a three-row table.”' : 'Say it. See it on the page.';
+  return <section aria-label="Document assistant" className="voice-dock" data-active={active}>
+    <div className="voice-bar">
+      <div className={`voice-symbol ${microphone === 'on' ? 'voice-symbol-on' : ''}`} aria-hidden="true">{microphone === 'on' ? <AudioLines size={23} /> : <Mic size={23} />}</div>
+      <div className="voice-copy"><div className="voice-title"><strong>Talk to your document</strong><span className={`voice-state voice-state-${status}`} role="status">{statusLabel}</span></div><p className="voice-hint" title={hint}>{hint}</p></div>
+      <div className="voice-actions">
+        {!active && <label className="voice-language"><span className="sr-only">Voice language</span><select aria-label="Voice language" value={language} onChange={event => setLanguage(event.target.value)} disabled={checking}><option value="auto">Document language</option><option value="zh-CN">中文</option><option value="en-US">English</option></select></label>}
+        {!active && <button type="button" className="voice-connect" disabled={!config || checking} onClick={connect}><Mic size={16} />{status === 'error' ? 'Retry voice connection' : 'Connect voice assistant'}</button>}
+        {active && <>
+          <button type="button" className="voice-stop" disabled={status !== 'connected'} onClick={() => connection.current?.interrupt()} title="Stop the current response (Esc). The microphone stays connected."><Square size={14} />Stop assistant</button>
+          <button type="button" className="voice-disconnect" onClick={disconnect}><MicOff size={16} /><span>{status === 'connecting' ? 'Cancel connection' : 'Disconnect assistant'}</span></button>
+        </>}
+      </div>
     </div>
-    <p className="realtime-note">Voice requires a signed-in account, an internet connection, and a cloud document you own that is outside Trash. Microphone access starts only when you connect.</p>
-    {!cloud && <p className="realtime-note">This is a local document. <a href="/account">Sign in</a>, then <a href="/cloud">open the cloud workspace</a>. To use this document there, export a backup and import it into the cloud workspace; local documents are not uploaded automatically.</p>}
-    {cloud && <p className="realtime-note">Voice quota is checked by the service when connecting and during use. Remaining allowance is currently unavailable. <a href="/account">Account</a></p>}
-    {(accessError || message) && <p role="alert" className="realtime-error">{accessError || message} {accessError && <button type="button" className="quiet-button" disabled={checking} onClick={() => { setChecking(true); setAccessError(''); setAttempt(value => value + 1); }}>Retry availability check</button>}</p>}
-    {config && <>
-      <form onSubmit={event => { event.preventDefault(); if (text.trim() && status === 'connected') { connection.current?.sendText(text.trim()); setText(''); } }}>
-        <input aria-label="Assistant instruction" value={text} onChange={event => setText(event.target.value)} disabled={status !== 'connected'} placeholder="Ask to edit this document" />
-        <button type="submit" className="quiet-button" disabled={status !== 'connected' || !text.trim()}>Send</button>
-      </form>
-      <ActivityTimeline engine={engine} active={active} subscribeActivity={subscribeActivity} />
-    </>}
+    <div className="voice-underbar">
+      <span className="voice-microphone" aria-live="polite"><span className={microphone === 'on' ? 'voice-live-dot' : ''} />{microphoneLabels[microphone]}</span>
+      {toolFeedback && <span className={toolFailed ? 'voice-tool-error' : 'voice-tool-feedback'} role={toolFailed ? 'alert' : 'status'}>{toolFeedback}</span>}
+      {!cloud && <span>This is a local document. <a href="/account">Open your account</a> to use cloud voice editing.</span>}
+      {config && <details className="voice-edits"><summary>Recent edits <ChevronDown size={12} /></summary><div className="voice-details-body"><ActivityTimeline engine={engine} active={active} subscribeActivity={subscribeActivity} /></div></details>}
+      <details className="voice-details"><summary>About voice <ChevronDown size={12} /></summary><div className="voice-details-body">Connect once, then speak naturally across multiple turns. Stop interrupts the assistant’s current action; Disconnect turns off the microphone. Voice requires a signed-in account and a cloud document you own outside Trash. Usage limits apply; remaining allowance is not yet shown. Local documents are not uploaded automatically.</div></details>
+    </div>
+    {(accessError || message) && <div role="alert" className="voice-error"><X size={15} /><span>{accessError || message}</span>{accessError && <button type="button" disabled={checking} onClick={() => { setConfig(null); setChecking(true); setAccessError(''); setAttempt(value => value + 1); }}>Retry availability check</button>}</div>}
   </section>;
 }

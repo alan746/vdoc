@@ -12,7 +12,7 @@ const calls = vi.hoisted(() => ({ interrupt: vi.fn(), close: vi.fn(), open: vi.f
 vi.mock('../lib/composition/realtime', () => ({
   VoiceConnectionError: class extends Error {},
   loadRealtimeConfig: (...args: unknown[]) => calls.load(...args),
-  openDocumentRealtime: (options: { onStatus: (state: RealtimeStatus, message?: string) => void; onMicrophone?: (status: MicrophoneStatus) => void; onActivity?: (activity: unknown) => void }) => { calls.open(); calls.onStatus = options.onStatus; calls.onMicrophone = options.onMicrophone; calls.onActivity = options.onActivity; options.onStatus('connected'); return { interrupt: calls.interrupt, close: calls.close, sendText: vi.fn() }; },
+  openDocumentRealtime: (options: { onStatus: (state: RealtimeStatus, message?: string) => void; onMicrophone?: (status: MicrophoneStatus) => void; onActivity?: (activity: unknown) => void }) => { calls.open(options); calls.onStatus = options.onStatus; calls.onMicrophone = options.onMicrophone; calls.onActivity = options.onActivity; options.onStatus('connected'); return { interrupt: calls.interrupt, close: calls.close, sendText: vi.fn() }; },
 }));
 vi.mock('../lib/composition/repositories', () => ({ isCloudWorkspace: () => calls.enabled }));
 let editor: Editor, engine: DocumentEngine, root: Root, mount: HTMLDivElement;
@@ -128,4 +128,39 @@ it('cancels permission/connection and ignores late status callbacks', async () =
   expect(calls.close).toHaveBeenCalledOnce();
   await act(async () => { oldStatus('connected'); oldMic('on'); });
   expect(mount.textContent).toContain('Assistant disconnected'); expect(mount.textContent).toContain('Microphone off');
+});
+
+it('keeps voice interaction inline without a typed chat form, and displays recognized speech', async () => {
+  await render();
+  expect(mount.querySelector('form, input, textarea, [role="dialog"]')).toBeNull();
+  await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'transcript', role: 'user', itemId: 'speech-1', text: '加一个三行四列的表格', final: true }));
+  expect(mount.querySelector('.voice-hint')!.textContent).toBe('加一个三行四列的表格');
+  await act(async () => calls.onActivity!({ type: 'transcript', role: 'agent', itemId: 'reply-1', text: '已完成', final: true }));
+  expect(mount.querySelector('.voice-hint')!.textContent).toBe('加一个三行四列的表格');
+  await click('Disconnect assistant');
+  expect(mount.textContent).not.toContain('加一个三行四列的表格');
+});
+it('only claims a document update after the editing tool reports success', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'call', callId: 'c1', name: 'apply_document_operations', arguments: {} }));
+  expect(mount.textContent).not.toContain('Document updated');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'c1', name: 'apply_document_operations', ok: false, code: 'FAILED' }));
+  expect(mount.querySelector('[role="alert"]')!.textContent).toContain('Couldn’t complete');
+  expect(mount.textContent).not.toContain('Document updated');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'c2', name: 'read_document', ok: true }));
+  expect(mount.textContent).toContain('Document checked');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'c3', name: 'apply_document_operations', ok: true }));
+  expect(mount.textContent).toContain('Document updated');
+});
+it('sends the selected speech language and ignores late transcripts after disconnect', async () => {
+  await render();
+  const select = mount.querySelector('select')!;
+  await act(async () => { select.value = 'zh-CN'; select.dispatchEvent(new Event('change', { bubbles: true })); });
+  await click('Connect voice assistant');
+  expect(calls.open).toHaveBeenLastCalledWith(expect.objectContaining({ config: expect.objectContaining({ language: 'zh-CN', audio: true }) }));
+  const oldActivity = calls.onActivity!;
+  await click('Disconnect assistant');
+  await act(async () => oldActivity({ type: 'transcript', role: 'user', itemId: 'late', text: 'old document', final: true }));
+  expect(mount.textContent).not.toContain('old document');
 });

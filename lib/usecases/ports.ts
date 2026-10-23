@@ -92,9 +92,10 @@ export type RealtimeTurnState = 'idle' | 'listening' | 'thinking' | 'speaking' |
  *  model output and untrusted; call/result IDs are the provider's, used only
  *  to pair a call with its result. */
 export type RealtimeActivity =
+  | { type: 'transcript'; role: 'user' | 'agent'; itemId: string; text: string; final: boolean }
   | { type: 'turn'; state: RealtimeTurnState; turnId: string }
   | { type: 'call'; callId: string; name: string; arguments: unknown }
-  | { type: 'result'; callId: string; ok: boolean }
+  | { type: 'result'; callId: string; ok: boolean; name?: string; code?: string; message?: string }
   | { type: 'interrupted' };
 export interface RealtimeConnection {
   interrupt(reason?: 'user' | 'keyboard'): void;

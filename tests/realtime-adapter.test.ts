@@ -125,11 +125,13 @@ it('forwards Stop/Esc, text and activity events, and ends a terminally closed se
   expect(session.interrupt).toHaveBeenCalledWith('keyboard'); expect(session.sendText).toHaveBeenCalledWith('hello');
   session.handlers.state({ state: 'acting', turnId: 'turn-1' });
   session.handlers['tool.call']({ callId: 'call', name: 'apply', arguments: {} });
-  session.handlers['tool.result']({ callId: 'call', result: { ok: false } });
+  session.handlers.transcript({ role: 'user', itemId: 'speech-1', text: '加一个表格', final: true });
+  session.handlers['tool.result']({ callId: 'call', name: 'apply', result: { ok: false, code: 'FAILED', message: 'Invalid operation' } });
   session.handlers.interrupted();
   expect(onActivity.mock.calls.map(call => call[0])).toEqual([
     { type: 'turn', state: 'acting', turnId: 'turn-1' }, { type: 'call', callId: 'call', name: 'apply', arguments: {} },
-    { type: 'result', callId: 'call', ok: false }, { type: 'interrupted' },
+    { type: 'transcript', role: 'user', itemId: 'speech-1', text: '加一个表格', final: true },
+    { type: 'result', callId: 'call', name: 'apply', ok: false, code: 'FAILED', message: 'Invalid operation' }, { type: 'interrupted' },
   ]);
   session.handlers.closed();
   expect(fetchMock).toHaveBeenLastCalledWith(`${location.origin}/api/voice-sessions/voice-1`, expect.objectContaining({ method: 'DELETE' }));

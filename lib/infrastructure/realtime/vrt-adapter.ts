@@ -102,8 +102,10 @@ export const vrtAdapter: RealtimePort = {
           }),
           session.on('closed', () => { publish('disconnected'); close(); }),
           session.on('state', event => report({ type: 'turn', state: event.state, turnId: event.turnId })),
+          session.on('transcript', event => report({ type: 'transcript', role: event.role, itemId: event.itemId, text: event.text, final: event.final })),
           session.on('tool.call', event => report({ type: 'call', callId: event.callId, name: event.name, arguments: event.arguments })),
-          session.on('tool.result', event => report({ type: 'result', callId: event.callId, ok: event.result.ok })),
+          session.on('tool.result', event => report({ type: 'result', callId: event.callId, name: event.name, ok: event.result.ok,
+            ...(!event.result.ok ? { code: event.result.code, message: event.result.message.slice(0, 1000) } : {}) })),
           session.on('interrupted', () => report({ type: 'interrupted' })),
         );
         await session.start();
