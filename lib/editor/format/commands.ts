@@ -1,9 +1,9 @@
 import { setEffectiveFormat, effectiveFormatActive } from './format-overrides';
 import { applyTextFormat } from './format-copy';
-import type { HandlerMap } from '../commands/types';
+import { defineHandlers } from '../commands/types';
 
 /** Inline text and formatting operations. */
-export const textCommands = {
+export const textCommands = defineHandlers({
   'format.apply': (op, { state }) => applyTextFormat(state.tr,op.format),
   'text.style': (op, { state, c }) => {
     const s = op.style;
@@ -45,4 +45,4 @@ export const textCommands = {
 
   'link.set': (op, { c }) => c.setLink({ href: op.href }),
   'link.unset': (_op, { c }) => c.unsetLink(),
-} satisfies HandlerMap<'format.apply' | 'text.style' | 'text.toggle' | 'text.insert' | 'text.clear' | 'text.delete' | 'text.replace' | 'link.set' | 'link.unset'>;
+});

@@ -1,7 +1,7 @@
 import { NodeSelection } from '@tiptap/pm/state';
-import { operationFields, type HandlerMap } from '../commands/types';
+import { defineHandlers, operationFields } from '../commands/types';
 
-export const blockCommands = {
+export const blockCommands = defineHandlers({
   'image.insert': (op, { c }) => c.setImage({ src: op.src, alt: op.alt, width: op.width }),
   'image.update': (op, { state, c }) => {
     if (!(state.selection instanceof NodeSelection) || state.selection.node.type.name !== 'image') return false;
@@ -18,4 +18,4 @@ export const blockCommands = {
   'block.toc': (_op, { c }) => c.insertContent({ type: 'tableOfContents' }),
   'block.pageBreak': (_op, { c }) => c.insertContent({ type: 'pageBreak' }),
 
-} satisfies HandlerMap<'image.insert' | 'image.update' | 'footnote.update' | 'footnote.insert' | 'block.toc' | 'block.pageBreak'>;
+});

@@ -2,10 +2,10 @@ import { patchParagraphBorders } from '../../domain/rules/paragraph-borders';
 import { selectedParagraphs } from './paragraph-selection';
 import { paragraphIndent, stepParagraphIndent } from './paragraph-indent';
 import { adjustRulerIndent } from './paragraph-ruler';
-import type { HandlerMap } from '../commands/types';
+import { defineHandlers } from '../commands/types';
 
 /** Paragraph style, borders and indentation operations. */
-export const paragraphCommands = {
+export const paragraphCommands = defineHandlers({
   'paragraph.border': (op, { state }) => {
     const tr=state.tr, paragraphs=selectedParagraphs(tr.doc,tr.selection);
     if(!paragraphs.length) return false;
@@ -58,4 +58,4 @@ export const paragraphCommands = {
       if(next!==current)tr.setNodeMarkup(pos,undefined,{...node.attrs,indentStart:next});
     } return true;
   },
-} satisfies HandlerMap<'paragraph.border' | 'paragraph.style' | 'paragraph.adjustIndent' | 'paragraph.indent'>;
+});

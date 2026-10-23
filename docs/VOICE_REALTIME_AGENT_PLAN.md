@@ -79,6 +79,10 @@
 
 **没做、不要当作已完成**：`tool.call.delta` 流式 ghost 预览（任务3的核心，依赖 vRT 还没实现的 tool-stream 能力）；presence 不是逐 token 跟随，只是"最近一次提交影响的块"；没有做 `tools/realtime-mock`（issue 测试小节提到的手工浏览器联调脚手架，本次未创建，手工验证留给真实部署环境）。
 
+### #33 后续：轮次状态与提前显示目标（2026-10-17）
+
+SDK 早已发出 `state` / `tool.call` / `tool.result` / `interrupted` 事件（之前误以为没有）。现在 `RealtimePort.onActivity` 把它们转发给 UI：状态条显示 Listening / Thinking / Speaking / Editing；presence 在调用到达时就标到目标块，提交后换成实际改动的块，失败或中断时清除；时间线每一轮显示操作名称。仍不处理 `tool.preview`（payload 未定稿）。详见 [`REALTIME_PROTOCOL.md`](REALTIME_PROTOCOL.md)。
+
 ### 本地启用与服务端契约
 
 默认关闭，不读取 URL 参数或文档内容中的连接配置。在应用来源的浏览器开发者工具中明确设置后刷新：

@@ -6,10 +6,10 @@ import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 import { documentNavigation } from '../lib/usecases/document-navigation';
 import { RealtimeControls } from '../components/editor/realtime-controls';
-const calls = vi.hoisted(() => ({ interrupt: vi.fn(), close: vi.fn(), open: vi.fn(), enabled: true }));
+const calls = vi.hoisted(() => ({ interrupt: vi.fn(), close: vi.fn(), open: vi.fn(), enabled: true, onActivity: undefined as undefined | ((activity: unknown) => void) }));
 vi.mock('../lib/composition/realtime', () => ({
   readRealtimeConfig: () => calls.enabled ? { url: 'ws://localhost:8790', tokenUrl: '/token' } : null,
-  openDocumentRealtime: (options: { onStatus: (state: string) => void }) => { calls.open(); options.onStatus('connected'); return { interrupt: calls.interrupt, close: calls.close, sendText: vi.fn() }; },
+  openDocumentRealtime: (options: { onStatus: (state: string) => void; onActivity?: (activity: unknown) => void }) => { calls.open(); calls.onActivity = options.onActivity; options.onStatus('connected'); return { interrupt: calls.interrupt, close: calls.close, sendText: vi.fn() }; },
 }));
 let editor: Editor, engine: DocumentEngine, root: Root, mount: HTMLDivElement;
 const render = (docId = 'doc') => act(async () => root.render(createElement(RealtimeControls, { key: docId, engine, docId })));
@@ -62,4 +62,34 @@ it('vdoc#33: disconnecting clears the decorations and unmounting unregisters the
 it('vdoc#33: registers nothing when the adapter is disabled', async () => {
   calls.enabled = false; const pluginCount = editor.state.plugins.length;
   await render(); expect(editor.state.plugins.length).toBe(pluginCount);
+});
+it('vdoc#33: shows the provider turn state next to the connection status', async () => {
+  await render(); await click('Connect assistant');
+  const status = () => mount.querySelector('[role="status"]')!.textContent;
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'thinking', turnId: 't1' }));
+  expect(status()).toBe('Assistant connected · Thinking');
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'acting', turnId: 't1' }));
+  expect(status()).toBe('Assistant connected · Editing');
+  await act(async () => calls.onActivity!({ type: 'interrupted' }));
+  expect(status()).toBe('Assistant connected');
+});
+it('vdoc#33: marks a call’s target block when the call arrives, before it commits, and clears it if the call fails', async () => {
+  await render(); await click('Connect assistant');
+  const id = engine.snapshot().blocks[0].id, presence = () => editor.view.dom.querySelector('.vdoc-agent-presence')?.textContent;
+  await act(async () => calls.onActivity!({ type: 'call', callId: 'c1', name: 'apply_document_operations', arguments: { target: { kind: 'block', id } } }));
+  expect(presence()).toBe('hello');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'c1', ok: false }));
+  expect(presence()).toBeUndefined();
+});
+it('vdoc#33: ignores call arguments that do not name a live block', async () => {
+  await render(); await click('Connect assistant');
+  for (const args of ['text', null, { target: 'b' }, { target: { kind: 'block', id: 'missing' } }, { target: { kind: 'selection' } }])
+    await act(async () => calls.onActivity!({ type: 'call', callId: 'c', name: 'apply_document_operations', arguments: args }));
+  expect(editor.view.dom.querySelector('.vdoc-agent-presence')).toBeNull();
+});
+it('vdoc#33: labels each turn in the timeline with what it did', async () => {
+  await render(); await click('Connect assistant');
+  const s = engine.snapshot();
+  await act(async () => { engine.executeAgent({ expectedSessionId: s.sessionId, expectedRevision: s.revision, target: { kind: 'block', id: s.blocks[0].id }, operations: [{ type: 'text.replace', text: 'AI' }] }, { actor: 'agent', turnId: 'turn-1' }); });
+  expect(mount.querySelector('[aria-label="Assistant edit history"]')?.textContent).toContain('Replace text');
 });

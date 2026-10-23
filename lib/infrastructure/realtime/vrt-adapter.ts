@@ -1,5 +1,5 @@
 import { ClientSession } from '@vrealtime/client';
-import type { RealtimeConfig, RealtimePort } from '../../usecases/ports';
+import type { RealtimeActivity, RealtimeConfig, RealtimePort } from '../../usecases/ports';
 
 const loopback = (host: string) => host === 'localhost' || host === '[::1]' || /^127(?:\.\d{1,3}){3}$/.test(host);
 /** Configuration is supplied locally, never derived from a document or link. */
@@ -14,11 +14,12 @@ export function validateRealtimeConfig(config: RealtimeConfig, pageOrigin: strin
 }
 
 export const vrtAdapter: RealtimePort = {
-  open({ config: input, docId, sessionId, tools, signal, onStatus }) {
+  open({ config: input, docId, sessionId, tools, signal, onStatus, onActivity }) {
     const config = validateRealtimeConfig(input, window.location.origin);
     let closed = false;
     const tokenLifetime = new AbortController();
     const publish: typeof onStatus = (...args) => { if (!closed) onStatus(...args); };
+    const report = (activity: RealtimeActivity) => { if (!closed) onActivity?.(activity); };
     // Keep the handle before handshake completion so unmount cancels even a
     // stalled handshake. This is the same SDK session used by connect().
     const session = new ClientSession(config.url, {
@@ -45,6 +46,10 @@ export const vrtAdapter: RealtimePort = {
       session.on('reconnecting', () => publish('reconnecting')),
       session.on('error', () => publish('error', 'The assistant connection failed. Editing remains available.')),
       session.on('closed', () => publish('disconnected')),
+      session.on('state', event => report({ type: 'turn', state: event.state, turnId: event.turnId })),
+      session.on('tool.call', event => report({ type: 'call', callId: event.callId, name: event.name, arguments: event.arguments })),
+      session.on('tool.result', event => report({ type: 'result', callId: event.callId, ok: event.result.ok })),
+      session.on('interrupted', () => report({ type: 'interrupted' })),
     ];
     const close = () => {
       if (closed) return;

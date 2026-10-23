@@ -98,3 +98,13 @@ it('vdoc#42: builds one command context per request and reuses its command wrapp
   expect(first).toBe(second);
   editor.destroy();
 });
+
+it('vdoc#41: defineHandlers infers handled types from keys and keeps each op narrowly typed (checked by tsc)', async () => {
+  const { defineHandlers } = await import('../lib/editor/commands/types');
+  const handlers = defineHandlers({
+    'text.insert': op => op.text.length > 0,
+    // @ts-expect-error `text.replace` operations have no `level`; this fails tsc if `op` ever widens
+    'text.replace': op => op.level === 1,
+  });
+  expect(Object.keys(handlers)).toEqual(['text.insert', 'text.replace']);
+});

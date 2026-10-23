@@ -71,7 +71,12 @@ export interface FileExporter<Source = DocumentExportSource> {
 
 /** App-owned realtime boundary; only infrastructure imports the provider SDK. */
 export interface RealtimeToolContext {
-  signal: AbortSignal; callId: string; turnId: string; epoch: number;
+  /** Aborted by the SDK when this call's epoch closes (interrupt or disconnect). */
+  signal: AbortSignal; callId: string; turnId: string;
+  /** Informational. @vrealtime/client 0.1.0 never starts a call from a closed
+   *  epoch and aborts `signal` for a running one, so vdoc checks `signal`, not
+   *  this (verified from SDK source, see docs/REALTIME_PROTOCOL.md). */
+  epoch: number;
 }
 export interface RealtimeTool {
   description: string;
@@ -79,6 +84,16 @@ export interface RealtimeTool {
   run(input: unknown, context: RealtimeToolContext): unknown;
 }
 export type RealtimeStatus = 'disconnected' | 'connecting' | 'connected' | 'reconnecting' | 'error';
+export type RealtimeTurnState = 'idle' | 'listening' | 'thinking' | 'speaking' | 'acting';
+/** Display-only signals from the provider, for status and activity UI. Never a
+ *  write path: edits happen only inside RealtimeTool.run(). `arguments` is
+ *  model output and untrusted; call/result IDs are the provider's, used only
+ *  to pair a call with its result. */
+export type RealtimeActivity =
+  | { type: 'turn'; state: RealtimeTurnState; turnId: string }
+  | { type: 'call'; callId: string; name: string; arguments: unknown }
+  | { type: 'result'; callId: string; ok: boolean }
+  | { type: 'interrupted' };
 export interface RealtimeConnection {
   interrupt(reason?: 'user' | 'keyboard'): void;
   sendText(text: string): void;
@@ -94,5 +109,6 @@ export interface RealtimePort {
     config: RealtimeConfig; docId: string; sessionId: string;
     tools: Record<string, RealtimeTool>; signal: AbortSignal;
     onStatus(status: RealtimeStatus, message?: string): void;
+    onActivity?(activity: RealtimeActivity): void;
   }): RealtimeConnection;
 }

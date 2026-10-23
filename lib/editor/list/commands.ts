@@ -4,10 +4,10 @@ import { liftCellLists } from './cell-lists';
 import { changeListStyle, changeListMarker } from './list-style';
 import { changeListNumbering } from './list-numbering';
 import { CellSelection } from '@tiptap/pm/tables';
-import type { HandlerMap } from '../commands/types';
+import { defineHandlers } from '../commands/types';
 
 /** List and checklist operations. */
-export const listCommands = {
+export const listCommands = defineHandlers({
   'list.checklistStyle': (op, { state }) => changeChecklistStyle(state.tr, op.strikeCompleted),
   'list.marker': (op, { state }) => changeListMarker(state.tr, op),
   'list.style': (op, { state }) => changeListStyle(state.tr, op.style),
@@ -19,4 +19,4 @@ export const listCommands = {
     const type = selectedListItemType(state.selection);
     return !!type && (op.direction === 'in' ? c.sinkListItem(type) : c.liftListItem(type));
   },
-} satisfies HandlerMap<'list.checklistStyle' | 'list.marker' | 'list.style' | 'list.restart' | 'list.continue' | 'list.toggle' | 'list.indent'>;
+});

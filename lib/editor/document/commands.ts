@@ -1,7 +1,7 @@
 import type { Node } from '@tiptap/pm/model';
 import { canonicalLanguage } from '../../domain/text/language';
 import type { Operation } from '../../domain/entities/operation';
-import { operationFields, type HandlerMap } from '../commands/types';
+import { defineHandlers, operationFields } from '../commands/types';
 
 /** A top-level block by ID in the document being edited. Deliberately not the
  *  engine's BlockIndex: inside a batch, earlier operations have already changed
@@ -27,7 +27,7 @@ function insertContent(block: InsertBlock): object {
   return { type: 'table', content: rows };
 }
 
-export const documentCommands = {
+export const documentCommands = defineHandlers({
   'block.insert': (op, { state, c }) => {
     const destination = op.beforeId === null ? state.doc.content.size : findTopLevelBlock(state.doc, op.beforeId)?.pos;
     return destination !== undefined && c.insertContentAt(destination, insertContent(op.block));
@@ -57,4 +57,4 @@ export const documentCommands = {
   'block.code': (_op, { c }) => c.toggleCodeBlock(),
   'block.quote': (_op, { c }) => c.toggleBlockquote(),
   'block.rule': (_op, { c }) => c.setHorizontalRule(),
-} satisfies HandlerMap<'block.move' | 'document.language' | 'document.layout' | 'block.code' | 'block.quote' | 'block.rule' | 'block.insert' | 'block.delete'>;
+});

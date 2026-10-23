@@ -63,3 +63,20 @@ it('keeps SDK imports inside the infrastructure adapter', () => {
   const imports = ['app', 'components', 'lib'].flatMap(files).filter(file => /from ['"]@vrealtime\//.test(readFileSync(file, 'utf8')));
   expect(imports).toEqual(['lib/infrastructure/realtime/vrt-adapter.ts']);
 });
+it('forwards provider turn state, calls, results and interrupts as display-only activity, until closed', () => {
+  const onActivity = vi.fn(), lifetime = new AbortController();
+  vrtAdapter.open({ config, docId: 'doc-1', sessionId: 'edit-1', tools: {}, signal: lifetime.signal, onStatus: vi.fn(), onActivity });
+  const handlers = fake.sessions[0].handlers;
+  handlers.state({ state: 'thinking', turnId: 't1', epoch: 1 });
+  handlers['tool.call']({ callId: 'c1', name: 'apply_document_operations', arguments: { a: 1 }, turnId: 't1', epoch: 1 });
+  handlers['tool.result']({ callId: 'c1', name: 'apply_document_operations', turnId: 't1', epoch: 1, result: { ok: false, code: 'INTERRUPTED', message: 'x' } });
+  handlers.interrupted({ epoch: 1, source: 'local' });
+  expect(onActivity.mock.calls.map(call => call[0])).toEqual([
+    { type: 'turn', state: 'thinking', turnId: 't1' },
+    { type: 'call', callId: 'c1', name: 'apply_document_operations', arguments: { a: 1 } },
+    { type: 'result', callId: 'c1', ok: false },
+    { type: 'interrupted' },
+  ]);
+  lifetime.abort();
+  expect(fake.sessions[0].handlers.state).toBeUndefined();
+});

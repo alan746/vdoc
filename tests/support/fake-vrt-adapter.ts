@@ -1,4 +1,4 @@
-import type { RealtimePort, RealtimeToolContext } from '../../lib/usecases/ports';
+import type { RealtimeActivity, RealtimePort, RealtimeToolContext } from '../../lib/usecases/ports';
 
 /** One simulated connection: lets a test drive the status lifecycle and invoke
  *  registered tools the way the real @vrealtime/client SDK would once it has
@@ -12,6 +12,8 @@ export type FakeRealtimeSession = {
   reconnect(): void;
   fail(message: string): void;
   disconnectFromServer(): void;
+  /** Delivers a provider activity event (turn state, call, result, interrupt). */
+  activity(event: RealtimeActivity): void;
 };
 
 /** Stand-in for @vrealtime/client, used to exercise lib/composition/realtime.ts
@@ -21,7 +23,7 @@ export type FakeRealtimeSession = {
 export function createFakeVrtAdapter(): { port: RealtimePort; sessions: FakeRealtimeSession[] } {
   const sessions: FakeRealtimeSession[] = [];
   const port: RealtimePort = {
-    open({ tools, signal, onStatus }) {
+    open({ tools, signal, onStatus, onActivity }) {
       let closed = false;
       const publish: typeof onStatus = (...args) => { if (!closed) onStatus(...args); };
       const close = () => { closed = true; };
@@ -39,6 +41,7 @@ export function createFakeVrtAdapter(): { port: RealtimePort; sessions: FakeReal
         reconnect() { if (!closed) { publish('reconnecting'); publish('connected'); } },
         fail(message) { publish('error', message); },
         disconnectFromServer() { publish('disconnected'); },
+        activity(event) { if (!closed) onActivity?.(event); },
       };
       sessions.push(session);
       return { interrupt() {}, sendText() {}, close };

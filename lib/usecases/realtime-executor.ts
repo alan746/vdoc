@@ -37,7 +37,9 @@ export interface RealtimeEngine {
   onApplied(listener: (event: AppliedChange) => void): () => void;
 }
 
-/** Document checks inside SDK run(). The SDK owns ordering, epochs and results. */
+/** Document checks inside SDK run(). The SDK owns ordering, epochs and results:
+ *  it never starts a call from a closed epoch and aborts a running call's
+ *  signal, which check() and the composition wait observe (vdoc#47). */
 export function createRealtimeExecutor(engine: RealtimeEngine, options: {
   docId: string; actor: string; currentDocument: () => { docId: string; sessionId: string } | null;
   signal: AbortSignal; compositionTimeoutMs?: number;

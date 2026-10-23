@@ -2,7 +2,7 @@ import { vrtAdapter, validateRealtimeConfig } from '../infrastructure/realtime/v
 import { createRealtimeExecutor } from '../usecases/realtime-executor';
 import { realtimeDocumentTools } from '../usecases/document-tools';
 import type { DocumentEngine } from '../usecases/engine';
-import type { RealtimeConfig, RealtimePort, RealtimeStatus } from '../usecases/ports';
+import type { RealtimeActivity, RealtimeConfig, RealtimePort, RealtimeStatus } from '../usecases/ports';
 
 export const REALTIME_CONFIG_KEY = 'vdoc.realtime.v1';
 /** Explicit local configuration only; document URLs and imported content cannot enable it. */
@@ -18,8 +18,9 @@ export function readRealtimeConfig(): RealtimeConfig | null {
 export function openDocumentRealtime(options: {
   engine: DocumentEngine; docId: string; config: RealtimeConfig;
   onStatus: (status: RealtimeStatus, message?: string) => void;
+  onActivity?: (activity: RealtimeActivity) => void;
 }, port: RealtimePort = vrtAdapter) {
-  const { engine, docId, config, onStatus } = options;
+  const { engine, docId, config, onStatus, onActivity } = options;
   const lifecycle = new AbortController();
   const executor = createRealtimeExecutor(engine, {
     docId, actor: 'realtime-assistant', signal: lifecycle.signal,
@@ -40,6 +41,6 @@ export function openDocumentRealtime(options: {
     }),
   }]));
   const connection = port.open({ config, docId, sessionId: engine.sessionId,
-    tools, signal: lifecycle.signal, onStatus });
+    tools, signal: lifecycle.signal, onStatus, onActivity });
   return { ...connection, close() { lifecycle.abort(); connection.close(); } };
 }

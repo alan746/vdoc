@@ -5,7 +5,7 @@ import { subdivideCell } from './table-split';
 import { CellSelection, TableMap, selectedRect } from '@tiptap/pm/tables';
 import type { Node } from '@tiptap/pm/model';
 import type { Transaction } from '@tiptap/pm/state';
-import { operationFields, type HandlerMap } from '../commands/types';
+import { defineHandlers, operationFields } from '../commands/types';
 
 type Rect = ReturnType<typeof selectedRect>;
 type Attrs = Record<string, unknown>;
@@ -23,7 +23,7 @@ function patchSelectedCells(tr: Transaction, rect: Rect, patch: Attrs) {
 }
 
 /** Table structure, layout and styling operations. */
-export const tableCommands = {
+export const tableCommands = defineHandlers({
   'table.border': (op, { state }) => {
     const rect = selectedRect(state);
     const changes = tableBorderChanges(rect.table, rect, op.scope, {color:op.color,width:op.width,style:op.style});
@@ -161,4 +161,4 @@ export const tableCommands = {
     patchSelectedCells(state.tr, selectedRect(state), { backgroundColor: op.color });
     return true;
   },
-} satisfies HandlerMap<'table.border' | 'table.pinRows' | 'table.direction' | 'table.rowBreak' | 'table.layout' | 'table.rowHeight' | 'table.columnWidth' | 'table.distributeRows' | 'table.style' | 'table.split' | 'table.widths' | 'table.move' | 'table.sort' | 'table.insert' | 'table.edit' | 'table.background'>;
+});
