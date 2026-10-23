@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import { previewSource } from '../lib/infrastructure/preview/paged-preview';
-import { previewPageBreakMismatch } from '../lib/infrastructure/preview/preview-page-breaks';
+import { PREVIEW_PAGE_BREAK_CSS, previewPageBreakMismatch } from '../lib/infrastructure/preview/preview-page-breaks';
 const parse = (html: string) => { const root = document.createElement('div'); root.innerHTML = html; return root; };
 const page = (html: string) => `<div class="pagedjs_page">${html}</div>`;
 const source = () => parse(previewSource('Break QA', '<p>Before 中文</p><div class="page-break"><span>Page break</span></div><h2>After العربية</h2>', { type: 'doc' }).html);
@@ -33,4 +33,23 @@ it('keeps boundary markers and enforces an explicit break before following conte
   expect(parse(result.html).querySelectorAll('.page-break')).toHaveLength(2);
   expect(result.css).toContain('.page-break + * { break-before:page; }');
   expect(previewPageBreakMismatch(parse(result.html),parse(page(result.html)))).toBeNull();
+});
+it('overrides exported break-after so each boundary has only one forced break', () => {
+  const html = '<p>Page one</p><div class="page-break"></div><p style="orphans:2;widows:2">Page two</p><div class="page-break"></div><p>Page three</p>';
+  const style = document.createElement('style');
+  // jsdom cannot parse the full preview stylesheet's nested @page margin boxes.
+  // Exercise this adapter's override in isolation; the browser test covers the
+  // complete exported stylesheet and physical pagination.
+  style.textContent = `.page-break { break-after:page; }${PREVIEW_PAGE_BREAK_CSS}`;
+  const root = parse(html);
+  document.head.appendChild(style);
+  document.body.appendChild(root);
+  try {
+    for (const marker of root.querySelectorAll('.page-break')) {
+      expect(getComputedStyle(marker).breakAfter).toBe('auto');
+      expect(getComputedStyle(marker.nextElementSibling!).breakBefore).toBe('page');
+    }
+  } finally {
+    style.remove(); root.remove();
+  }
 });

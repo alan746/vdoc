@@ -2,7 +2,7 @@ import type { JSONContent } from '@tiptap/core';
 import { exportHTML } from '../export/html-export';
 import { fitPreviewTables, previewPageWidth } from './preview-layout';
 import { preparePreviewParagraphBorders } from './preview-paragraph-borders';
-import { preparePreviewPageBreaks } from './preview-page-breaks';
+import { preparePreviewPageBreaks, PREVIEW_PAGE_BREAK_CSS } from './preview-page-breaks';
 import { HEX_COLOR } from '../../domain/text/color';
 
 const cssText = (text: unknown) => '"' + String(text || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r\n|\r|\n/g, '\\A ') + '"';
@@ -38,8 +38,7 @@ export function previewSource(title: string, html: string, content: JSONContent)
     p { margin:10px 0; orphans:2; widows:2; overflow-wrap:break-word; } td p,th p { margin:0; } h1,h2,h3,h4,h5,h6 { break-after:avoid; }
     table { table-layout:fixed; font-size:14px; } td,th { overflow-wrap:anywhere; } .tableWrapper { margin:16px 0; overflow:visible; }
     tr { break-inside:avoid; } thead { break-inside:avoid; }
-    .page-break { break-after:page; height:0; margin:0; border:0; } .page-break span { display:none; }
-    .page-break + * { break-before:page; }
+    ${PREVIEW_PAGE_BREAK_CSS}
     .pagedjs_page { background:${HEX_COLOR.test(attrs.pageColor || '') ? attrs.pageColor : '#fff'}; }
     a { color:#405ad6; text-decoration:underline; } img { max-width:100%; }
   `;
