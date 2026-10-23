@@ -76,13 +76,20 @@ export const operationSchema = z.discriminatedUnion('type', [
 
 export const requestSchema = z.object({
   id: z.string().min(1).max(128).optional(),
-  source: z.enum(['toolbar', 'keyboard', 'api']).default('api'),
+  source: z.enum(['toolbar', 'keyboard', 'api', 'agent']).default('api'),
   label: z.string().max(100).optional(),
+  /** Agent origin only: who asked for the edit and which turn it belongs to. */
+  actor: z.string().min(1).max(128).optional(),
+  turnId: z.string().min(1).max(128).optional(),
   expectedSessionId: z.string().min(1).max(128).optional(),
   expectedRevision: z.number().int().min(0).optional(),
   target: targetSchema.default({ kind: 'selection' }),
   operations: z.array(operationSchema).min(1).max(100),
 }).strict().superRefine((request, ctx) => {
+  if (request.source === 'agent') {
+    if (!request.actor || !request.turnId) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['source'], message: 'Agent requests need an actor and a turn.' });
+    if (request.target.kind === 'selection') ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['target'], message: 'Agent requests need an explicit target.' });
+  } else if (request.actor !== undefined || request.turnId !== undefined) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['source'], message: 'Only agent requests carry an actor or turn.' });
   request.operations.forEach((op, i) => {
     if (op.type === 'paragraph.border' && Object.keys(op).length === 1) ctx.addIssue({code:z.ZodIssueCode.custom,path:['operations',i],message:'Specify at least one paragraph border setting.'});
     if (op.type === 'paragraph.style' && op.paragraphBackground === undefined && op.tabInterval === undefined && !op.direction && op.level === undefined && !op.align && !op.lineHeight && op.indent === undefined && op.indentStart === undefined && op.indentEnd === undefined && op.firstLineIndent === undefined && op.spaceBefore === undefined && op.spaceAfter === undefined && op.keepWithNext === undefined && op.keepLinesTogether === undefined && op.preventSingleLines === undefined) {
@@ -92,18 +99,22 @@ export const requestSchema = z.object({
 });
 
 /** Async/external callers must read first and bind edits to that exact session and revision. */
-export const externalRequestSchema = requestSchema.innerType().extend({
+export const externalRequestSchema = requestSchema.innerType().omit({ actor: true, turnId: true }).extend({
   source: z.literal('api').default('api'),
   expectedSessionId: z.string().min(1).max(128),
   expectedRevision: z.number().int().min(0),
   target: z.union([targetSchema.options[1], targetSchema.options[2], targetSchema.options[3], targetSchema.options[4]]),
 });
 
+/** Agent callers follow the external rules; the engine supplies source, actor and turn. */
+export const agentRequestSchema = externalRequestSchema.omit({ source: true });
+export type AgentOrigin = { actor: string; turnId: string };
+
 export type Operation = z.infer<typeof operationSchema>;
 export type Target = z.infer<typeof targetSchema>;
 export type OperationRequest = z.input<typeof requestSchema>;
 export type OperationResult = { ok: boolean; revision: number; id: string; error?: string; code?: 'INVALID' | 'STALE' | 'TARGET' | 'UNAVAILABLE' | 'COMPOSING' | 'DUPLICATE'; };
-export type OperationRecord = { id: string; label: string; source: string; time: number; revision: number; count: number };
+export type OperationRecord = { id: string; label: string; source: string; time: number; revision: number; count: number; actor?: string; turnId?: string };
 
 export function operationLabel(op: Operation): string {
   const labels: Record<Operation['type'], string> = {

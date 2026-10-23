@@ -443,3 +443,11 @@ Word导入在Mammoth转换前对主文档XML的w:cr做等价w:br规范化，原�
 ## 自动保存最长等待（2026-10-03，第四十八轮）
 
 startAutosave以performance.now记录pendingSince；每次调度取min(450ms, max(0, 2000ms - 已等待时间))，持续输入不重置pendingSince。实际写入开始时开启下一批计时，慢写入期间到期请求只记录待处理，完成后保存最新快照；失败重试重置截止以避免快速循环。导航committing、恢复／冲突保护及dispose清除截止。快照一致性使用正文Node.eq及标题判断。文档schema、统一操作接口不变；不保证操作系统终止、主线程阻塞或磁盘迟缓时在2秒内完成持久化。
+
+## Agent 来源（2026-10-15，#26）
+
+`engine.executeAgent(input, { actor, turnId })` 供自动化调用方（后续的实时适配层）使用。输入遵循外部调用规则（必填 `expectedSessionId`、版本前置条件和明确目标），但不得自带 `source`；引擎写入 `source: 'agent'`、`actor` 与 `turnId`，并标记到事务 meta `vdoc` 和操作记录。
+
+Agent 编辑在目标位置执行后，把用户原来的选区（经本次映射）和待输入样式（stored marks）放回，不聚焦编辑器，也不清除工具栏对话框保存的选区书签。用户可以在 agent 修改其他段落时继续输入。
+
+`window.vdoc` 与 WebMCP 仍走 `executeExternal`：携带 `source: 'agent'`、`actor` 或 `turnId` 一律 INVALID；内部 `execute` 中只有 agent 来源可以且必须携带 actor 与 turn，且不接受隐式 selection 目标。

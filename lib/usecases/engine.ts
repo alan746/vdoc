@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/core';
 import type { SelectionBookmark } from '@tiptap/pm/state';
 import { Mark } from '@tiptap/pm/model';
 import { closeHistory, undoDepth, redoDepth } from '@tiptap/pm/history';
-import { externalRequestSchema, requestSchema, operationLabel, type OperationRecord, type OperationResult } from '../domain/entities/operation';
+import { agentRequestSchema, externalRequestSchema, requestSchema, operationLabel, type AgentOrigin, type OperationRecord, type OperationResult } from '../domain/entities/operation';
 import { applyOperation } from '../editor/commands/registry';
 import { resolveTargetSelection } from '../editor/commands/target-selection';
 import { documentSnapshot } from '../editor/document-snapshot';
@@ -50,6 +50,13 @@ export class DocumentEngine {
     return this.execute(parsed.data);
   }
 
+  /** Automated callers: external rules plus an agent origin. The user's selection, stored marks, focus and toolbar bookmark stay as they were. */
+  executeAgent(input: unknown, origin: AgentOrigin): OperationResult {
+    const parsed = agentRequestSchema.safeParse(input);
+    if (!parsed.success) return { ok: false, id: crypto.randomUUID(), revision: this.revision, code: 'INVALID', error: parsed.error.issues[0]?.message || 'Read the document and supply session, revision, and an explicit target.' };
+    return this.execute({ ...parsed.data, source: 'agent', actor: origin.actor, turnId: origin.turnId });
+  }
+
   execute(input: unknown): OperationResult {
     const parsed = requestSchema.safeParse(input);
     const id = parsed.success ? parsed.data.id ?? crypto.randomUUID() : crypto.randomUUID();
@@ -70,7 +77,9 @@ export class DocumentEngine {
     if (request.target.kind === 'range' && request.expectedRevision === undefined) return fail('STALE', 'An explicit range requires a document revision.');
     if (request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
 
-    let selection = this.editor.state.selection;
+    const agent = request.source === 'agent';
+    const userSelection = this.editor.state.selection, userMarks = this.editor.state.storedMarks;
+    let selection = userSelection;
     try {
       if (request.target.kind === 'selection' && request.source === 'toolbar' && this.bookmark) selection = this.bookmark.resolve(this.editor.state.doc);
       const resolved = resolveTargetSelection(request.target, this.editor.state.doc, selection);
@@ -88,11 +97,13 @@ export class DocumentEngine {
       closeHistory(tr);
       // Re-setting an unchanged cursor clears the user's active typing marks.
       if (!tr.selection.eq(selection)) tr.setSelection(selection);
-      tr.setMeta('vdoc', { id, source: request.source });
+      tr.setMeta('vdoc', { id, source: request.source, actor: request.actor, turnId: request.turnId });
       try {
         for (const operation of request.operations) {
           if (!applyOperation(operation, props)) { error = (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
         }
+        // The agent edits beside the user, not through the user's cursor.
+        if (agent && !error) tr.setSelection(userSelection.map(tr.doc, tr.mapping)).setStoredMarks(userMarks);
         tr.doc.check();
       } catch { error = 'The operation could not be completed. The document is unchanged.'; }
       if (error) tr.setMeta('preventDispatch', true);
@@ -102,12 +113,12 @@ export class DocumentEngine {
 
     // Separate this command from subsequent native typing / commands.
     this.editor.view.dispatch(closeHistory(this.editor.state.tr));
-    this.bookmark = null;
-    if (request.source !== 'api') this.editor.view.focus();
+    if (!agent) this.bookmark = null;
+    if (request.source === 'toolbar' || request.source === 'keyboard') this.editor.view.focus();
     const afterSelection = this.editor.state.selection;
     const afterMarks = afterSelection.empty ? this.editor.state.storedMarks ?? afterSelection.$from.marks() : [];
-    if (this.revision !== beforeRevision || !Mark.sameSet(beforeMarks, afterMarks))
-      this.record(id, request.label ?? request.operations.map(operationLabel).join(' · '), request.source, request.operations.length);
+    if (this.revision !== beforeRevision || (!agent && !Mark.sameSet(beforeMarks, afterMarks)))
+      this.record(id, request.label ?? request.operations.map(operationLabel).join(' · '), request.source, request.operations.length, agent ? { actor: request.actor!, turnId: request.turnId! } : undefined);
     const result = { ok: true, id, revision: this.revision };
     this.results.set(id, { signature, result });
     if (this.results.size > 200) this.results.delete(this.results.keys().next().value!);
@@ -129,8 +140,8 @@ export class DocumentEngine {
   }
 
   snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision); }
-  private record(id: string, label: string, source: string, count: number) {
-    this.records = [{ id, label, source, time: Date.now(), revision: this.revision, count }, ...this.records].slice(0, 60);
+  private record(id: string, label: string, source: string, count: number, origin?: AgentOrigin) {
+    this.records = [{ id, label, source, time: Date.now(), revision: this.revision, count, ...origin }, ...this.records].slice(0, 60);
     for (const listener of this.listeners) listener();
   }
 }
