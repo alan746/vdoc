@@ -84,3 +84,21 @@ File：文档库、导入、导出、打印。Edit：查找替换和撤销。Ins
 新增格式时，在基础设施层实现 `FileImporter` 和/或 `FileExporter`，然后添加一条注册记录即可，不需要修改菜单或增加按格式 id 分支。导入大小限制由条目声明；原生备份继续使用备份解析器自己的限制。导出策略接收快照并返回 Blob，可同步或异步，不操作编辑器或下载链接。
 
 文档导出可选直接下载（`delivery: 'download'`）或异步准备后提供下载链接（`delivery: 'prepared'`，支持继续编辑、重新生成和释放 URL）。PDF 声明为 `kind: 'paginated'`，先进入既有预览流程，再导出完成分页的快照；本地服务不可用时仍使用原有浏览器打印回退。`tests/file-format-registry.test.ts` 验证菜单、筛选、往返和新增格式扩展，`tests/export-file.test.ts` 验证原序列化字节/Blob 透传与取消、失败行为。
+
+## Editor feature 模块
+
+编辑器功能在 `lib/editor/<feature>/` 内组织。每个目录的 `index.ts` 导出满足 `EditorFeature` 的对象：
+
+- `extensions`：节点、标记与插件；通过参数接收快捷键、表格尺寸等运行时回调。
+- `commands`：该功能的操作处理器。统一 dispatcher 保留事务刷新语义；重复处理器会报错，遗漏现有 `Operation` 的处理器会导致类型检查失败。
+- `css`：可选样式，由工作区统一挂载。页面布局和通用 UI 样式仍在 `app/globals.css`。
+- `validation`：可选的 JSON 节点校验规则；`validateDocument` 在 schema 检查之后执行表格网格等结构校验。
+- `blockIdTypes`：需要稳定块 ID 的节点名，新节点无需修改公共 ID 插件。
+
+新增功能后，只需将其 feature 对象加入 `lib/editor/feature-list.ts` 的 `editorFeatures`。扩展、命令、样式和备份校验都从这一列表生成，不再维护各自的功能清单。`document/` 提供基础文档与编辑能力；`keyboard/` 负责跨功能快捷键路由；列表、表格、段落、格式、查找和嵌入块各自拥有实现。
+
+`order` 在扩展、CSS、节点校验三条链中分别按升序排序，同值保留声明顺序。现有序号保留重构前的 schema 排名、插件优先级、CSS 级联及首个报错顺序；新增项可使用间隔中的序号，不必重新编号其他模块。原 StarterKit 的子扩展按原顺序归入所属模块，避免格式标记和列表键位隐式注册在基础文档中。
+
+领域层的 `validateDocumentTree` 只负责结构检查和树遍历，通过参数接收规则，**不导入 editor**。公共 `Operation` 数据协议及其参数 schema 仍属于 domain；实现这些操作的处理器位于对应 feature。新增公共操作时，应同时扩展领域协议和所属 feature 的处理器。表格的 ProseMirror 网格验证由 table feature 提供，持久化层只执行统一校验流程。
+
+`tests/support/editor-schema-baseline.json` 固定重构前的展开扩展顺序、schema 和命令集合；`tests/editor-features.test.ts` 同时覆盖单列表启用/禁用、重复注册、稳定 ID、备份校验和首错顺序。改动功能后运行 `npm test`、`npm run typecheck`、`npm run build`。

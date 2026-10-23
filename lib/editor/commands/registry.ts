@@ -1,15 +1,10 @@
 import type { CommandProps } from '@tiptap/core';
 import type { Operation } from '../../domain/entities/operation';
 import type { HandlerMap, OperationHandler, OperationType } from './types';
-import { textCommands } from './text-commands';
-import { tableCommands } from './table-commands';
-import { paragraphCommands } from './paragraph-commands';
-import { listCommands } from './list-commands';
-import { blockCommands } from './block-commands';
+import { editorBundle } from '../feature-list';
 
-// Command registry: adding an operation means adding one handler to its family
-// module. The mapped type makes a missing handler a compile error.
-const handlers: HandlerMap<OperationType> = { ...textCommands, ...tableCommands, ...paragraphCommands, ...listCommands, ...blockCommands };
+// Keep compile-time coverage of every validated Operation after feature composition.
+export const operationHandlers: Readonly<HandlerMap<OperationType>> = editorBundle.commands;
 
 export function applyOperation(op: Operation, props: CommandProps): boolean {
   const { state } = props;
@@ -22,5 +17,5 @@ export function applyOperation(op: Operation, props: CommandProps): boolean {
       return (...args: unknown[]) => { void state.tr; return Reflect.apply(command, target, args); };
     },
   });
-  return (handlers[op.type] as OperationHandler<typeof op.type>)(op as never, { state, c });
+  return (operationHandlers[op.type] as OperationHandler<typeof op.type>)(op as never, { state, c });
 }

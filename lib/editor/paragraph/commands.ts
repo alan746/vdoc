@@ -1,8 +1,8 @@
 import { patchParagraphBorders } from '../../domain/rules/paragraph-borders';
-import { selectedParagraphs } from '../paragraph/paragraph-selection';
-import { paragraphIndent, stepParagraphIndent } from '../paragraph/paragraph-indent';
-import { adjustRulerIndent } from '../paragraph/paragraph-ruler';
-import type { HandlerMap } from './types';
+import { selectedParagraphs } from './paragraph-selection';
+import { paragraphIndent, stepParagraphIndent } from './paragraph-indent';
+import { adjustRulerIndent } from './paragraph-ruler';
+import type { HandlerMap } from '../commands/types';
 
 /** Paragraph style, borders and indentation operations. */
 export const paragraphCommands = {

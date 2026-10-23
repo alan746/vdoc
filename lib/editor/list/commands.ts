@@ -1,10 +1,10 @@
-import { changeChecklistStyle } from '../list/checklist';
-import { selectedListItemType } from '../list/list-editing';
-import { liftCellLists } from '../list/cell-lists';
-import { changeListStyle, changeListMarker } from '../list/list-style';
-import { changeListNumbering } from '../list/list-numbering';
+import { changeChecklistStyle } from './checklist';
+import { selectedListItemType } from './list-editing';
+import { liftCellLists } from './cell-lists';
+import { changeListStyle, changeListMarker } from './list-style';
+import { changeListNumbering } from './list-numbering';
 import { CellSelection } from '@tiptap/pm/tables';
-import type { HandlerMap } from './types';
+import type { HandlerMap } from '../commands/types';
 
 /** List and checklist operations. */
 export const listCommands = {

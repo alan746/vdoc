@@ -1,11 +1,11 @@
-import { reorderedTable } from '../table/table-move';
-import { tableBorderChanges } from '../table/table-borders';
-import { completePinnedBoundary, pinnedRowCount } from '../table/table-headers';
-import { subdivideCell } from '../table/table-split';
+import { reorderedTable } from './table-move';
+import { tableBorderChanges } from './table-borders';
+import { completePinnedBoundary, pinnedRowCount } from './table-headers';
+import { subdivideCell } from './table-split';
 import { CellSelection, TableMap, selectedRect } from '@tiptap/pm/tables';
 import type { Node } from '@tiptap/pm/model';
 import type { Transaction } from '@tiptap/pm/state';
-import { operationFields, type HandlerMap } from './types';
+import { operationFields, type HandlerMap } from '../commands/types';
 
 type Rect = ReturnType<typeof selectedRect>;
 type Attrs = Record<string, unknown>;

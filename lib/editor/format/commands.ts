@@ -1,7 +1,6 @@
-import { setEffectiveFormat, effectiveFormatActive } from '../format/format-overrides';
-import { applyTextFormat } from '../format/format-copy';
-import { findMatches } from '../search/search';
-import type { HandlerMap } from './types';
+import { setEffectiveFormat, effectiveFormatActive } from './format-overrides';
+import { applyTextFormat } from './format-copy';
+import type { HandlerMap } from '../commands/types';
 
 /** Inline text and formatting operations. */
 export const textCommands = {
@@ -43,10 +42,7 @@ export const textCommands = {
     state.tr.insertText(op.text, from, to);
     return true;
   },
-  'text.findReplace': (op, { state }) => {
-    const matches = findMatches(state.doc, op.query, op.caseSensitive, op.wholeWord);
-    if (!matches.length) return false;
-    for (const { from, to } of matches.reverse()) state.tr.insertText(op.replacement, from, to);
-    return true;
-  },
-} satisfies HandlerMap<'format.apply' | 'text.style' | 'text.toggle' | 'text.insert' | 'text.clear' | 'text.delete' | 'text.replace' | 'text.findReplace'>;
+
+  'link.set': (op, { c }) => c.setLink({ href: op.href }),
+  'link.unset': (_op, { c }) => c.unsetLink(),
+} satisfies HandlerMap<'format.apply' | 'text.style' | 'text.toggle' | 'text.insert' | 'text.clear' | 'text.delete' | 'text.replace' | 'link.set' | 'link.unset'>;

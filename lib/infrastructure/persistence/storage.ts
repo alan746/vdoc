@@ -1,7 +1,6 @@
 import { getSchema, type JSONContent } from '@tiptap/core';
-import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../../editor/extensions';
-import { completePinnedBoundary } from '../../editor/table/table-headers';
+import { editorBundle } from '../../editor/feature-list';
 import { parseDocumentEnvelope, validateDocumentTree } from '../../domain/rules/document-validation';
 import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 export const STORAGE_KEY = 'vdoc.document.v1';
@@ -13,17 +12,10 @@ let schema: ReturnType<typeof getSchema> | undefined;
 // callers can supply their own bound; structural validation always runs.
 export function parseDocument(raw: string, maxLength = Infinity): DocumentDraft {
   const value = parseDocumentEnvelope(raw, maxLength);
-  validateDocumentTree(value.content);
+  validateDocumentTree(value.content, editorBundle.validation);
   schema ??= getSchema(createExtensions());
   const node = schema.nodeFromJSON(value.content); node.check();
-  node.descendants(table => {
-    if (table.type.name !== 'table') return;
-    // Node.check validates cell attributes/content, not the occupied grid. Do
-    // not let the editor silently repair a damaged backup or saved version.
-    // Legacy partial column widths are layout hints, not missing/overlapping cells.
-    if (TableMap.get(table).problems?.some(problem => problem.type !== 'colwidth mismatch')) throw new Error('The document contains an invalid table structure. Cells are missing, overlapping, or extend beyond the table.');
-    if (table.attrs.pinnedRows != null && completePinnedBoundary(table, table.attrs.pinnedRows) !== table.attrs.pinnedRows) throw new Error('The pinned header boundary splits a merged cell.');
-  });
+  editorBundle.validateDocument(node);
   return { version: CURRENT_DOCUMENT_VERSION, ...(typeof value.id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(value.id) ? { id: value.id } : {}), title: value.title, content: node.toJSON(), savedAt: typeof value.savedAt === 'string' ? value.savedAt : new Date().toISOString() };
 }
 export function readSavedDocument(): { data: DocumentDraft | null; error?: string } {
