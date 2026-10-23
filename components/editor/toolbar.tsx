@@ -6,7 +6,6 @@ import {absoluteFontPixels} from '@/lib/domain/text/font-size';
 import { useEffect, useRef, useState } from 'react';
 import { restoreEditorFocusAfterMenu } from '@/lib/editor/menu-focus';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { toast } from 'sonner';
 import type { Editor } from '@tiptap/core';
 import { Copy, ClipboardPaste, AlignLeft, AlignCenter, AlignRight, AlignJustify, ArrowDownToLine, Bold, Check, ChevronDown, ChevronsUpDown, Highlighter, Italic, Link2, List, ListOrdered, Minus, Plus, Printer, Redo2, RemoveFormatting, Strikethrough, Table2, Underline, Undo2, Type } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
@@ -17,6 +16,7 @@ import { selectedCellListType } from '@/lib/editor/list/cell-lists';
 import { listStyleContext } from '@/lib/editor/list/list-style';
 import { colorToHex } from '@/lib/domain/text/color';
 import type { Operation } from '@/lib/domain/entities/operation';
+import { applyFromDialog } from './apply-from-dialog';
 
 export type Run = (operation: Operation | Operation[], label?: string) => void;
 const palette = ['#222F43', '#68778D', '#FFFFFF', '#E65656', '#E99132', '#F0C34A', '#48A881', '#4485D1', '#7965BD', '#D06898'];
@@ -49,8 +49,7 @@ export function InsertTableDialog({ engine, open, close }: { engine: DocumentEng
   const [size, setSize] = useState([3, 3]);
   const [rows, setRows] = useState(3), [cols, setCols] = useState(3), [header, setHeader] = useState(true);
   const insert = (rows: number, cols: number) => {
-    const result = engine.execute({source:'toolbar',label:`Insert ${rows} × ${cols} table`,operations:[{type:'table.insert',rows,cols,header}]});
-    if (result.ok) close(); else toast.error(result.error);
+    applyFromDialog(engine, [{type:'table.insert',rows,cols,header}], close, `Insert ${rows} × ${cols} table`);
   };
   return <Dialog open={open} onOpenChange={value=>{if(!value) close();}}><DialogContent className="vdoc-dialog table-insert-dialog" onCloseAutoFocus={e=>{e.preventDefault();engine.editor.view.focus();}}><DialogTitle>Insert table</DialogTitle><DialogDescription>Choose a size from the grid, or enter up to 30 rows and 20 columns.</DialogDescription>
     <p aria-live="polite">{size[1]} {size[1]===1?'row':'rows'} × {size[0]} {size[0]===1?'column':'columns'}</p>

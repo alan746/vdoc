@@ -9,6 +9,8 @@ import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
 import { documents, library } from '@/lib/composition/repositories';
 import { type LibraryItem, type SavedDocument, blankDocument } from '@/lib/domain/entities/document';
+import { useMounted } from './use-mounted';
+import { DocumentImportInput } from './document-import-input';
 
 type Scope = 'files' | 'recent' | 'starred' | 'trash';
 type LibraryPreferences = { scope: Scope; parentId: string | null; query: string; sort: string; view: 'grid' | 'list' };
@@ -25,8 +27,7 @@ export function LibraryHome({ onOpen, recoveryError }: { onOpen: (document: Save
   const [error, setError] = useState(''), [actionError, setActionError] = useState(''), [busy, setBusy] = useState(false);
   const pending = useRef(false);
   const libraryUnavailable = useRef(true);
-  const mounted = useRef(true);
-  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const mounted = useMounted();
   const [scope, setScope] = useState<Scope>(preferences.scope), [parentId, setParentId] = useState<string | null>(preferences.parentId);
   const [query, setQuery] = useState(preferences.query), [sort, setSort] = useState(preferences.sort), [view, setView] = useState<'grid' | 'list'>(preferences.view);
   const [action, setAction] = useState<Action | null>(null), [name, setName] = useState(''), [destination, setDestination] = useState('');
@@ -125,13 +126,10 @@ export function LibraryHome({ onOpen, recoveryError }: { onOpen: (document: Save
       {action?.kind === 'move' ? <select aria-label="Destination folder" value={destination} onChange={e => setDestination(e.target.value)}><option value="">Workspace</option>{items.filter(canMoveTo).map(folder => <option value={folder.id} key={folder.id}>{folderPath(folder)}</option>)}</select> : <input aria-label={action?.kind === 'folder' ? 'Folder name' : 'New name'} autoFocus required maxLength={120} value={name} onChange={e => setName(e.target.value)} />}
       <div className="dialog-actions"><button type="button" className="secondary-button" disabled={busy} onClick={() => setAction(null)}>Cancel</button><button type="submit" className="export-button" disabled={busy || (action?.kind !== 'move' && !name.trim())}>{action?.kind === 'folder' ? 'Create folder' : action?.kind === 'move' ? 'Move here' : 'Save name'}</button></div></form></DialogContent></Dialog>
     <Dialog open={Boolean(deleteTarget)} onOpenChange={open => { if (!open && !busy) setDeleteTarget(null); }}><DialogContent className="vdoc-dialog" onOpenAutoFocus={event => { event.preventDefault(); cancelDelete.current?.focus(); }}><DialogTitle>Delete document permanently?</DialogTitle><DialogDescription>“{deleteTarget?.title}” and all its saved versions will be removed from this browser. This cannot be undone. Keep an exported backup if you need this document later.</DialogDescription>{actionError && <p role="alert" className="library-error">{actionError}</p>}<div className="dialog-actions"><button ref={cancelDelete} type="button" className="secondary-button" disabled={busy} onClick={() => setDeleteTarget(null)}>Cancel</button><button type="button" className="export-button" disabled={busy} onClick={() => { const target = deleteTarget; const trash = target?.trash; if (!target || !trash) return; void perform(async () => { await library.deleteTrashed(target.id, trash); if (!mounted.current) return; setDeleteTarget(null); toast.success('Document permanently deleted'); }); }}>Delete permanently</button></div></DialogContent></Dialog>
-    <input type="file" hidden ref={file} accept=".json,.docx,.txt" disabled={busy || loading || Boolean(error)} aria-label="Import file into library" onChange={e => {
-      const selected = e.target.files?.[0]; e.target.value = '';
-      if (selected) void perform(async () => {
-        const imported = await readDocumentImport(selected); if (!mounted.current) return;
-        const active = await library.createDocument(imported.document, scope === 'files' ? parentId : null); if (!mounted.current) return;
-        onOpen(active); notifyDocumentImport(imported);
-      });
-    }} />
+    <DocumentImportInput inputRef={file} disabled={busy || loading || Boolean(error)} label="Import file into library" onFile={selected => void perform(async () => {
+      const imported = await readDocumentImport(selected); if (!mounted.current) return;
+      const active = await library.createDocument(imported.document, scope === 'files' ? parentId : null); if (!mounted.current) return;
+      onOpen(active); notifyDocumentImport(imported);
+    })} />
   </div>;
 }

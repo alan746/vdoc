@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/core';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import { checklistTargets } from '@/lib/editor/list/checklist';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
-import { toast } from 'sonner';
+import { applyFromDialog } from './apply-from-dialog';
 
 export function ChecklistDialog({open,close,editor,engine}:{open:boolean;close:()=>void;editor:Editor;engine:DocumentEngine}) {
   const [strike,setStrike]=useState('true'), initial=useRef('true');
@@ -14,8 +14,7 @@ export function ChecklistDialog({open,close,editor,engine}:{open:boolean;close:(
     <DialogTitle>Checklist options</DialogTitle><DialogDescription>{targets.length>1?'Applies to checklists in selected cells. Nested checklists and unselected cells keep their settings. Mixed values stay unchanged unless edited.':'Applies to this checklist. Nested checklists keep their own setting.'}</DialogDescription>
     <form className="properties-form" onSubmit={event=>{
       event.preventDefault();if(strike==='mixed' || strike===initial.current){close();return;}
-      const result=engine.execute({source:'toolbar',operations:[{type:'list.checklistStyle',strikeCompleted:strike==='true'}]});
-      if(result.ok)close();else toast.error(result.error);
+      applyFromDialog(engine, [{type:'list.checklistStyle',strikeCompleted:strike==='true'}], close);
     }}>
       <label className="wide-field">Completed items<select value={strike} onChange={event=>setStrike(event.target.value)}>{initial.current==='mixed' && <option value="mixed">Mixed — keep unchanged</option>}<option value="true">Strike through completed items</option><option value="false">Keep completed text unchanged</option></select></label>
       {strike==='mixed' ? <p className="wide-field">Choose a display mode to preview completed items.</p> : <div className="wide-field checklist-preview" aria-label="Checklist preview"><div><input type="checkbox" checked={false} disabled aria-label="Incomplete example" /><span>Item to complete</span></div><div><input type="checkbox" checked disabled aria-label="Completed example" /><span style={strike==='true'?{textDecoration:'line-through',color:'#7d899b'}:undefined}>Completed item</span></div></div>}

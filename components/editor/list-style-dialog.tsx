@@ -8,7 +8,7 @@ import { currentListStyle, listStyleTargets } from '@/lib/editor/list/list-style
 import { validNumberAffix, validBulletText } from '@/lib/domain/rules/list-markers';
 import { markerCssString } from '@/lib/editor/list/list-markers';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
-import { toast } from 'sonner';
+import { applyFromDialog } from './apply-from-dialog';
 
 type MarkerStyle = ListStyle | 'custom' | 'mixed';
 type Values = {style:MarkerStyle; prefix:string|null; suffix:string|null; bullet:string|null};
@@ -44,7 +44,7 @@ export function ListStyleDialog({open, close, editor, engine}: {open:boolean; cl
       if(ordered && (prefixChanged || suffixChanged))operations.push({type:'list.marker',...(prefixChanged?{prefix:prefix!}:{}),...(suffixChanged?{suffix:suffix!}:{})});
       if(customBullet && bullet!==null && (style!==initial.current.style || bullet!==initial.current.bullet))operations.push({type:'list.marker',bullet});
       if(!operations.length){close();return;}
-      const result=engine.execute({source:'toolbar',operations});if(result.ok)close();else toast.error(result.error);
+      applyFromDialog(engine, operations, close);
     }}>
       <label className="wide-field">Marker style<select value={style} onChange={event=>{const next=event.target.value as MarkerStyle;setValues(v=>({...v,style:next,...(next==='custom' && v.bullet===null?{bullet:'★'}:{})}));}}>{initial.current.style==='mixed' && <option value="mixed">{labels.mixed}</option>}{options.map(value=><option key={value} value={value}>{labels[value]}</option>)}</select></label>
       {ordered && <><label>Before number<input value={prefix??''} placeholder={prefix===null?'Mixed — keep unchanged':undefined} maxLength={64} onChange={event=>setValues(v=>({...v,prefix:event.target.value}))} /></label><label>After number<input value={suffix??''} placeholder={suffix===null?'Mixed — keep unchanged':undefined} maxLength={64} onChange={event=>setValues(v=>({...v,suffix:event.target.value}))} /></label><button className="quiet-button wide-field" type="button" onClick={()=>setValues(v=>({...v,prefix:'',suffix:'.'}))}>Reset prefix and suffix</button></>}

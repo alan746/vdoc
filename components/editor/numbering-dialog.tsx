@@ -6,7 +6,7 @@ import { CellSelection } from '@tiptap/pm/tables';
 import { MAX_LIST_START, validListStart } from '@/lib/domain/rules/list-numbering';
 import { canRestartNumbering, cellRestartOverflows } from '@/lib/editor/list/list-numbering';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
-import { toast } from 'sonner';
+import { applyFromDialog } from './apply-from-dialog';
 
 export function NumberingDialog({ open, close, editor, engine }: { open: boolean; close: () => void; editor: Editor; engine: DocumentEngine }) {
   const [start, setStart] = useState('1');
@@ -20,8 +20,7 @@ export function NumberingDialog({ open, close, editor, engine }: { open: boolean
     <form className="properties-form" onSubmit={event => {
       event.preventDefault();
       if (!valid || overflow) return;
-      const result = engine.execute({ source: 'toolbar', operations: [{ type: 'list.restart', start: Number(start) }] });
-      if (result.ok) close(); else toast.error(result.error);
+      applyFromDialog(engine, [{ type: 'list.restart', start: Number(start) }], close);
     }}>
       <label className="wide-field">Start at<input autoFocus required type="number" min="0" max={MAX_LIST_START} step="1" value={start} onChange={event => setStart(event.target.value)} /></label>
       {overflow && <p className="wide-field" role="alert">A continued section would exceed the maximum start number. Choose a lower starting number.</p>}

@@ -6,6 +6,7 @@ import type { DocumentEngine } from '@/lib/usecases/engine';
 import { cellBorder, tableBorderChanges, type BorderScope } from '@/lib/editor/table/table-borders';
 import { colorToHex } from '@/lib/domain/text/color';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { applyFromDialog } from './apply-from-dialog';
 
 export function TableBordersDialog({ engine, open, close }: { engine: DocumentEngine; open: boolean; close: () => void }) {
   const [scope, setScope] = useState<BorderScope>('all');
@@ -20,8 +21,7 @@ export function TableBordersDialog({ engine, open, close }: { engine: DocumentEn
       e.preventDefault(); const rect=selectedRect(engine.editor.state), changes=tableBorderChanges(rect.table,rect,scope,{color,width,style});
       if(!changes){toast.error('This border touches part of a merged cell. Expand the selection or unmerge it first.');return;}
       if(!changes.size){toast.error('Select two or more adjacent cells to change inner borders.');return;}
-      const result=engine.execute({source:'toolbar',operations:[{type:'table.border',scope,color,width,style}]});
-      if(result.ok)close();else toast.error(result.error);
+      applyFromDialog(engine, [{type:'table.border',scope,color,width,style}], close);
     }}>
       <label>Apply to<select value={scope} onChange={e=>setScope(e.target.value as BorderScope)}>{(['all','outer','inner','top','right','bottom','left'] as const).map(value=><option key={value} value={value}>{value==='all'?'All borders':value==='outer'?'Outer border':value==='inner'?'Inner borders':`${value[0].toUpperCase()}${value.slice(1)} border`}</option>)}</select></label>
       <label>Border width (px)<input type="number" min="0" max="8" step="1" value={width} onChange={e=>setWidth(+e.target.value)} /></label>

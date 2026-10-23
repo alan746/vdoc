@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { FolderOpen, FilePlus2, Upload, ArrowDownToLine, Printer } from 'lucide-react';
 import { toast } from 'sonner';
@@ -13,6 +13,8 @@ import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
 import { documents as documentRepository, library as libraryRepository } from '@/lib/composition/repositories';
 import { type DocumentSummary, type LibraryItem, type SavedDocument, blankDocument, documentTitle, UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
+import { useMounted } from './use-mounted';
+import { DocumentImportInput } from './document-import-input';
 
 function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>) {
   const names: string[] = [], visited = new Set([document.id]);
@@ -32,9 +34,8 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
   const [documents, setDocuments] = useState<(DocumentSummary & { location: string })[]>([]);
   const { navigation, busy } = useDocumentNavigation(editor);
   const file = useRef<HTMLInputElement>(null);
-  const mounted = useRef(true), current = useRef({ title, blocked });
+  const mounted = useMounted(), current = useRef({ title, blocked });
   current.current = { title, blocked };
-  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   const perform = async (work: () => Promise<void>, fallback = 'The document could not be opened.') => {
     // A ref closes the same-event gap before React commits disabled controls.
     if (!mounted.current || !navigation!.acquire()) return;
@@ -83,12 +84,10 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
     <DropdownMenuItem disabled={busy} onSelect={() => file.current?.click()}><Upload />Import document</DropdownMenuItem>
     <DropdownMenuItem onSelect={onLanguage}>Language…</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={() => exportDoc('json')}><ArrowDownToLine />Download VDoc backup</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('html')}><ArrowDownToLine />Download HTML</DropdownMenuItem><DropdownMenuItem disabled={wordExportBusy} onSelect={() => exportDoc('docx')}><ArrowDownToLine />{wordExportBusy ? 'Preparing Word…' : 'Download Word (.docx)'}</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('txt')}><ArrowDownToLine />Download plain text</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={onPrint}><Printer />Print / Save as PDF</DropdownMenuItem></Menu>
     <span role="status" className="sr-only">{busy ? 'Opening local file…' : ''}</span>
-    <input ref={file} type="file" accept=".json,.docx,.txt" hidden disabled={busy} aria-label="Import document file" onChange={e => {
-      const selected = e.target.files?.[0]; e.target.value = ''; if (!selected) return;
-      void perform(async () => { const imported = await readDocumentImport(selected);
-        if (!mounted.current) return;
-        await load({ ...imported.document, id: crypto.randomUUID() }, () => notifyDocumentImport(imported)); }, 'This document could not be read.');
-    }} />
+    <DocumentImportInput inputRef={file} disabled={busy} label="Import document file" onFile={selected => void perform(async () => {
+      const imported = await readDocumentImport(selected); if (!mounted.current) return;
+      await load({ ...imported.document, id: crypto.randomUUID() }, () => notifyDocumentImport(imported));
+    }, 'This document could not be read.')} />
     <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>Documents on this device</DialogTitle><DialogDescription>Your documents stay in this browser. Download backups to keep a separate copy.</DialogDescription><div className="local-documents" aria-busy={busy}>{documents.map(doc => <button key={doc.id} disabled={busy} aria-current={doc.id === documentId ? 'true' : undefined} onClick={() => perform(async () => { await load(doc.id); }, 'This saved document could not be opened.')}><strong>{doc.title || UNTITLED_DOCUMENT}</strong><span>{doc.location}</span><span>{new Date(doc.savedAt).toLocaleString()}{doc.id === documentId ? ' · Current document' : ''}</span></button>)}{!documents.length && <p>No saved documents yet.</p>}</div></DialogContent></Dialog>
   </>;
 }

@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { toast } from 'sonner';
 import { emptyBorderValues, paragraphBorderEdges, type BorderValues } from '@/lib/domain/rules/paragraph-borders';
 import { selectedParagraphBorders, paragraphBorderChanges } from '@/lib/editor/paragraph/paragraph-borders';
+import { applyFromDialog } from './apply-from-dialog';
 
 export function ParagraphBordersDialog({open,close,editor,engine}:{open:boolean;close:()=>void;editor:Editor;engine:DocumentEngine}) {
   const initial=useRef<BorderValues>(emptyBorderValues);
@@ -15,7 +15,7 @@ export function ParagraphBordersDialog({open,close,editor,engine}:{open:boolean;
     <form className="properties-form" onSubmit={event=>{
       event.preventDefault();const operation=paragraphBorderChanges(initial.current,value);
       if(!operation){close();return;}
-      const result=engine.execute({source:'toolbar',operations:[operation]});if(result.ok)close();else toast.error(result.error);
+      applyFromDialog(engine, [operation], close);
     }}>
       {([...paragraphBorderEdges,'join'] as const).map(side=><label key={side}>{side==='join'?'Join matching adjacent paragraphs':side==='between'?'Between paragraphs':side[0].toUpperCase()+side.slice(1)+' border'}<select aria-label={`${side==='join'?'Join matching adjacent paragraphs':side==='between'?'Between paragraphs':side[0].toUpperCase()+side.slice(1)+' border'}`} value={value[side]===null?'mixed':String(value[side])} onChange={event=>setValue(current=>({...current,[side]:event.target.value==='mixed'?null:event.target.value==='true'}))}>
         {initial.current[side]===null&&<option value="mixed">Mixed — keep existing</option>}<option value="true">On</option><option value="false">Off</option>

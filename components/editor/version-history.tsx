@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { toast } from 'sonner';
 import { actionErrorMessage } from '@/lib/shared/error-message';
@@ -8,15 +8,15 @@ import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-na
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { documents as documentRepository, versions as versionRepository } from '@/lib/composition/repositories';
 import { type DocumentVersion, type SavedDocument, documentTitle } from '@/lib/domain/entities/document';
+import { useMounted } from './use-mounted';
 
 export function VersionHistory({ editor, title, documentId, onOpen, blocked = false }: { editor: Editor; title: string; documentId: string; onOpen: (doc: SavedDocument) => void; blocked?: SaveBlock }) {
   const [open, setOpen] = useState(false), [versions, setVersions] = useState<DocumentVersion[]>([]), [label, setLabel] = useState('');
   const [readError, setReadError] = useState('');
   const versionsUnavailable = useRef(true);
   const { navigation, busy } = useDocumentNavigation(editor);
-  const mounted = useRef(true), currentTitle = useRef(title); currentTitle.current = title;
+  const mounted = useMounted(), currentTitle = useRef(title); currentTitle.current = title;
   const currentBlocked = useRef(blocked); currentBlocked.current = blocked;
-  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   const ensureWritable = () => { assertAutosaveActive(currentBlocked.current); };
   const ensureInputFinished = () => {
     if (navigation!.isComposing()) throw new Error('Finish composing your text before using saved versions.');

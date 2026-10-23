@@ -1,7 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { captureLocalPdf, requestLocalPdf, requestLocalPdfToken } from '@/lib/infrastructure/pdf/local-pdf';
-import type { LocalPdfSnapshot } from '@/lib/infrastructure/pdf/local-pdf';
+import { captureLocalPdf, requestLocalPdf, requestLocalPdfToken, type LocalPdfSnapshot } from '@/lib/composition/local-pdf';
 
 export function useLocalPdf({ getDocument, details, onError }: {
   getDocument: () => Document | null;

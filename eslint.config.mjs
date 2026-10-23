@@ -22,8 +22,8 @@ const eslintConfig = defineConfig([
       // A leading underscore marks an intentionally unused binding (callback parameters, destructured omissions).
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_" }],
       // React Compiler readiness rules. The compiler is not enabled, and the editor relies on the
-      // "latest ref" pattern for IME/autosave safety; keep these visible as warnings until the UI
-      // refactor (Q-cell2/vdoc#1) migrates those components.
+      // "latest ref" pattern for IME/autosave safety; keep these visible as warnings until those
+      // components move off that pattern.
       "react-hooks/refs": "warn",
       "react-hooks/set-state-in-effect": "warn",
       "react-hooks/globals": "warn",
@@ -53,10 +53,10 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    // UI reaches storage only through the repositories in lib/composition (Q-cell2/vdoc#2).
+    // UI reaches storage, file formats, preview rendering and PDF only through lib/composition (Q-cell2/vdoc#1, #2).
     files: ["components/**/*.{ts,tsx}", "app/**/*.{ts,tsx}"],
     rules: {
-      "no-restricted-imports": ["error", { patterns: [{ group: ["**/infrastructure/persistence/**", "@/lib/infrastructure/persistence/**"], message: "Use the repositories from @/lib/composition/repositories." }] }],
+      "no-restricted-imports": ["error", { patterns: [{ group: ["**/infrastructure/**", "@/lib/infrastructure/**"], message: "UI must not import infrastructure; use the bindings in @/lib/composition." }] }],
     },
   },
   {
