@@ -17,6 +17,7 @@ const CHANNEL_NAME = 'vdoc.documents';
 const FALLBACK_KEY = 'vdoc.documents.changed';
 
 export function createDocumentChanges(tabId?: string, channelName = CHANNEL_NAME): DocumentChanges {
+  const fallbackKey = channelName === CHANNEL_NAME ? FALLBACK_KEY : `${channelName}.changed`;
   // This singleton is also imported by Worker SSR. Generate its per-tab identity
   // only when browser persistence starts using it, never during module loading.
   const identity = () => tabId ??= crypto.randomUUID();
@@ -34,7 +35,7 @@ export function createDocumentChanges(tabId?: string, channelName = CHANNEL_NAME
       const notice: Notice = { documentId, tabId: identity() };
       const target = open();
       if (target) { target.postMessage(notice); return; }
-      try { localStorage.setItem(FALLBACK_KEY, JSON.stringify({ ...notice, at: Date.now() })); }
+      try { localStorage.setItem(fallbackKey, JSON.stringify({ ...notice, at: Date.now() })); }
       catch { /* Storage is unavailable; there is no other way to reach other tabs. */ }
     },
     watch(documentId, listener) {
@@ -47,7 +48,7 @@ export function createDocumentChanges(tabId?: string, channelName = CHANNEL_NAME
         return () => target.removeEventListener('message', onMessage);
       }
       const onStorage = (event: StorageEvent) => {
-        if (event.key !== FALLBACK_KEY || !event.newValue) return;
+        if (event.key !== fallbackKey || !event.newValue) return;
         try { deliver(JSON.parse(event.newValue)); } catch { /* A malformed record is not a notice. */ }
       };
       window.addEventListener('storage', onStorage);

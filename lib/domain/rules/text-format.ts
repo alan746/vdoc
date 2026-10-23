@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { HEX_COLOR } from '../text/color';
 
 const color=z.string().regex(HEX_COLOR).nullable();

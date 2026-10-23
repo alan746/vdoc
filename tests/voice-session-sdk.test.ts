@@ -29,16 +29,17 @@ class Socket extends EventTarget {
     this.dispatchEvent(new CloseEvent('close', { code, reason }));
   }
 }
+let transportId = 'doc-1';
 let connection: RealtimeConnection;
 let upstream: ReturnType<typeof vi.fn>;
 const context = { documentId: 'doc-1', title: 'Project plan', language: 'en-US', vocabulary: ['VDoc'] };
 beforeEach(() => {
-  sockets.length = 0;
+  sockets.length = 0; transportId = 'doc-1';
   vi.stubGlobal('WebSocket', Socket);
   upstream = vi.fn(async (url: string, init: RequestInit) => {
     if (init.method === 'DELETE') return new Response(null, { status: 204 });
     if (url.endsWith('/grants')) return Response.json({ token: 'renewed-grant', expiresAt: Date.now() + 60000 });
-    return Response.json({ documentId: 'doc-1', sessionId: 'voice-1', realtimePath: '/v1/documents/doc-1/voice-sessions/voice-1/realtime', grant: { token: 'initial-grant', expiresAt: Date.now() + 60000 } });
+    return Response.json({ documentId: transportId, sessionId: 'voice-1', realtimePath: `/v1/documents/${transportId}/voice-sessions/voice-1/realtime`, grant: { token: 'initial-grant', expiresAt: Date.now() + 60000 } });
   });
   vi.stubGlobal('fetch', vi.fn((url: string, init: RequestInit) => {
     const route = new URL(url).pathname;
@@ -48,27 +49,28 @@ beforeEach(() => {
     const request = new Request(url, { ...wireInit, headers: { ...init.headers, Origin: location.origin } });
     return proxyVoiceSession(request, action, action === 'create' ? undefined : route.split('/')[3], {
       getUser: async () => ({ userId: 'user-1' }), serverUrl: 'https://voice.example', clientKey: 'server-only-client-key-24-characters',
-      documentAccess: JSON.stringify({ 'user-1': ['doc-1'] }), fetch: upstream,
+      authorizeDocument: async () => transportId, fetch: upstream,
     });
   }));
 });
 afterEach(() => { connection?.close(); vi.unstubAllGlobals(); });
 
-it('creates once, authenticates the real SDK, renews on reconnect and deletes the voice session on close', async () => {
+it.each(['doc-1', 'u_owner_scoped_document'])('authenticates the real SDK, reconnects and closes with transport document %s', async id => {
+  transportId = id;
   const onStatus = vi.fn();
   connection = vrtAdapter.open({ config: { url: 'wss://voice.example', sessionsUrl: '/api/voice-sessions' }, context, tools: {}, signal: new AbortController().signal, onStatus });
   await vi.waitFor(() => expect(onStatus).toHaveBeenCalledWith('connected'));
-  expect(sockets[0].url).toBe('wss://voice.example/v1/documents/doc-1/voice-sessions/voice-1/realtime');
-  expect(sockets[0].sent[0]).toMatchObject({ type: 'hello', auth: 'initial-grant', context });
+  expect(sockets[0].url).toBe(`wss://voice.example/v1/documents/${transportId}/voice-sessions/voice-1/realtime`);
+  expect(sockets[0].sent[0]).toMatchObject({ type: 'hello', auth: 'initial-grant', context: { ...context, documentId: transportId } });
   expect(upstream).toHaveBeenCalledTimes(1);
   sockets[0].close(1006, 'temporary disconnect');
   await vi.waitFor(() => expect(onStatus.mock.calls.filter(([status]) => status === 'connected')).toHaveLength(2));
   expect(sockets[1].url).toBe(sockets[0].url);
   expect(sockets[1].sent[0]).toMatchObject({ type: 'hello', auth: 'renewed-grant', sessionId: 'sdk-transport-1' });
-  expect(upstream).toHaveBeenLastCalledWith('https://voice.example/v1/documents/doc-1/voice-sessions/voice-1/grants', expect.any(Object));
+  expect(upstream).toHaveBeenLastCalledWith(`https://voice.example/v1/documents/${transportId}/voice-sessions/voice-1/grants`, expect.any(Object));
   expect(upstream.mock.calls.filter(([, init]) => init.method === 'DELETE')).toHaveLength(0);
   connection.close();
-  await vi.waitFor(() => expect(upstream).toHaveBeenLastCalledWith('https://voice.example/v1/documents/doc-1/voice-sessions/voice-1', expect.objectContaining({ method: 'DELETE' })));
+  await vi.waitFor(() => expect(upstream).toHaveBeenLastCalledWith(`https://voice.example/v1/documents/${transportId}/voice-sessions/voice-1`, expect.objectContaining({ method: 'DELETE' })));
   expect(upstream).toHaveBeenCalledTimes(3);
   const browserMessages = JSON.stringify(sockets.flatMap(socket => socket.sent));
   expect(browserMessages).not.toContain('server-only-client-key');

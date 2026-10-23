@@ -1,4 +1,5 @@
 'use client';
+import { isCloudWorkspace } from '@/lib/composition/repositories';
 import { useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { FolderOpen, FilePlus2, Upload } from 'lucide-react';
@@ -90,6 +91,6 @@ export function LocalDocuments({ exportBusy = false, editor, title, blocked, doc
       const imported = await readDocumentImport(selected); if (!mounted.current) return;
       await load({ ...imported.document, id: crypto.randomUUID() }, () => notifyDocumentImport(imported));
     }, 'This document could not be read.')} />
-    <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>Documents on this device</DialogTitle><DialogDescription>Your documents stay in this browser. Download backups to keep a separate copy.</DialogDescription><div className="local-documents" aria-busy={busy}>{documents.map(doc => <button key={doc.id} disabled={busy} aria-current={doc.id === documentId ? 'true' : undefined} onClick={() => perform(async () => { await load(doc.id); }, 'This saved document could not be opened.')}><strong>{doc.title || UNTITLED_DOCUMENT}</strong><span>{doc.location}</span><span>{new Date(doc.savedAt).toLocaleString()}{doc.id === documentId ? ' · Current document' : ''}</span></button>)}{!documents.length && <p>No saved documents yet.</p>}</div></DialogContent></Dialog>
+    <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>{isCloudWorkspace() ? "Cloud documents" : "Documents on this device"}</DialogTitle><DialogDescription>{isCloudWorkspace() ? "Documents in your account. Check sync status before switching devices." : "Your documents stay in this browser. Download backups to keep a separate copy."}</DialogDescription><div className="local-documents" aria-busy={busy}>{documents.map(doc => <button key={doc.id} disabled={busy} aria-current={doc.id === documentId ? 'true' : undefined} onClick={() => perform(async () => { await load(doc.id); }, 'This saved document could not be opened.')}><strong>{doc.title || UNTITLED_DOCUMENT}</strong><span>{doc.location}</span><span>{new Date(doc.savedAt).toLocaleString()}{doc.id === documentId ? ' · Current document' : ''}</span></button>)}{!documents.length && <p>No saved documents yet.</p>}</div></DialogContent></Dialog>
   </>;
 }

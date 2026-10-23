@@ -96,3 +96,14 @@ it('preserves safe upstream status categories and hides network error details', 
   vi.mocked(deps.fetch).mockRejectedValueOnce(new Error(key));
   const result = await run('grant'); expect(result.status).toBe(502); expect(await result.text()).not.toContain(key);
 });
+
+it.each(['create', 'grant', 'end'] as const)('fails closed on missing database ownership for %s', async action => {
+  deps.authorizeDocument = vi.fn(async () => null);
+  expect((await run(action)).status).toBe(403);
+  expect(deps.fetch).not.toHaveBeenCalled();
+  deps.authorizeDocument = vi.fn(async () => { throw new Error('postgres://private'); });
+  const result = await run(action);
+  expect(result.status).toBe(503);
+  expect(await result.text()).not.toContain('postgres:');
+  expect(deps.fetch).not.toHaveBeenCalled();
+});

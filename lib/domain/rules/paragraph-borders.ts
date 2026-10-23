@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { HEX_COLOR } from '../text/color';
 
 export const paragraphSides = ['top','right','bottom','left'] as const;

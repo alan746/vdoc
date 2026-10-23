@@ -1,7 +1,7 @@
 import type { JSONContent } from '@tiptap/core';
 import type { VoiceDocumentContext } from '../domain/entities/voice-session';
 import type { Node } from '@tiptap/pm/model';
-import type { DocumentDraft, DocumentVersion, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../domain/entities/document';
+import type { DocumentDraft, DocumentVersionSummary, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../domain/entities/document';
 
 /** Result of opening the active document; `error` means storage exists but could not be read. */
 export type ActiveDocumentRead = { data: SavedDocument | null; error?: undefined } | { data: null; error: string };
@@ -42,8 +42,8 @@ export interface LibraryRepository {
 
 /** Named checkpoints of a document. */
 export interface VersionRepository {
-  save(document: SavedDocument, label: string): Promise<DocumentVersion>;
-  list(documentId: string): Promise<DocumentVersion[]>;
+  save(document: SavedDocument, label: string): Promise<DocumentVersionSummary>;
+  list(documentId: string): Promise<DocumentVersionSummary[]>;
   /** Restores a checkpoint over `current`, keeping a backup of `current` as a version. */
   restore(key: string, current: SavedDocument): Promise<SavedDocument>;
 }

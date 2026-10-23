@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 // vdoc-server's document/session identifiers are URL path segments.
 export const voiceResourceIdSchema = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/)
@@ -13,6 +13,7 @@ export type VoiceDocumentContext = z.infer<typeof voiceDocumentContextSchema>;
 export const voiceGrantSchema = z.object({ token: z.string().trim().min(1).max(16384), expiresAt: z.number().int().positive() });
 export const createdVoiceSessionSchema = z.object({
   documentId: voiceResourceIdSchema, sessionId: voiceResourceIdSchema,
+  transportDocumentId: voiceResourceIdSchema.optional(),
   grant: voiceGrantSchema, realtimePath: z.string().min(1).max(1024),
 });
 export const voiceDocumentRequestSchema = z.object({ documentId: voiceResourceIdSchema }).strict();

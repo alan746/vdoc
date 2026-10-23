@@ -61,7 +61,7 @@ export default defineConfig(async () => {
       localPdf({ enabled: !managedLinux }),
       bundleReport({ enabled: process.env.ANALYZE === "1" }),
       vinext(),
-      sites({ mockAuth: !managedLinux }),
+      sites({ mockAuth: false }),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         inspectorPort: false,

@@ -15,6 +15,8 @@ export type LibraryItem = DocumentSummary & LibraryMetadata & { kind: 'document'
 /** Content captured by a version checkpoint. Identity comes from `DocumentVersion.documentId`. */
 export type VersionSnapshot = { title: string; content: JSONContent };
 export type DocumentVersion = { key: string; documentId: string; label: string; createdAt: string; sequence: number; snapshot: VersionSnapshot };
+/** History lists need metadata; snapshots are restored by the repository. */
+export type DocumentVersionSummary = Omit<DocumentVersion, 'snapshot'>;
 
 /** Title used whenever a document has no name. */
 export const UNTITLED_DOCUMENT = 'Untitled document';

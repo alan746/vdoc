@@ -1,5 +1,5 @@
 import { paragraphBorderOperationSchema } from '../rules/paragraph-borders';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { canonicalLanguage } from '../text/language';
 import { validNumberAffix, validBulletText } from '../rules/list-markers';
 import { listStyles } from '../rules/list-styles';

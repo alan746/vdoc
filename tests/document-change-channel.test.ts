@@ -71,7 +71,7 @@ it('stops notifying after unsubscribe', async () => {
 
 it('falls back to a localStorage record and storage events without BroadcastChannel', () => {
   vi.stubGlobal('BroadcastChannel', undefined);
-  const writer = tab('tab-1'), reader = tab('tab-2'), listener = vi.fn();
+  const writer = createDocumentChanges('tab-1'), reader = createDocumentChanges('tab-2'), listener = vi.fn();
   reader.watch('doc-a', listener);
   writer.announce('doc-a');
   const record = localStorage.getItem('vdoc.documents.changed')!;
@@ -82,4 +82,14 @@ it('falls back to a localStorage record and storage events without BroadcastChan
   window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.documents.changed', newValue: JSON.stringify({ documentId: 'doc-a', tabId: 'tab-2' }) }));
   window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.documents.changed', newValue: '{not json' }));
   expect(listener).toHaveBeenCalledTimes(1);
+});
+
+it('keeps account-specific fallback notices separate', () => {
+  vi.stubGlobal('BroadcastChannel', undefined);
+  const alice = createDocumentChanges('writer', 'vdoc.cloud.alice');
+  const bob = createDocumentChanges('reader', 'vdoc.cloud.bob');
+  const listener = vi.fn(); const stop = bob.watch('same-id', listener);
+  alice.announce('same-id');
+  window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.cloud.alice.changed', newValue: localStorage.getItem('vdoc.cloud.alice.changed') }));
+  expect(listener).not.toHaveBeenCalled(); stop();
 });

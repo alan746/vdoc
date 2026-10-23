@@ -1,5 +1,5 @@
 import { ClientSession } from '@vrealtime/client';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { createdVoiceSessionSchema, voiceDocumentContextSchema, voiceGrantSchema, voiceLanguageSchema, voiceRealtimePath, voiceResourceIdSchema, voiceVocabularySchema } from '../../domain/entities/voice-session';
 import type { RealtimeActivity, RealtimeConfig, RealtimePort } from '../../usecases/ports';
 
@@ -61,11 +61,11 @@ export const vrtAdapter: RealtimePort = {
         }
         if (closed) { endVoiceSession(); return; }
         const created = createdVoiceSessionSchema.parse(raw);
-        if (created.documentId !== context.documentId || created.realtimePath !== voiceRealtimePath(context.documentId, created.sessionId))
+        if (created.documentId !== context.documentId || created.realtimePath !== voiceRealtimePath(created.transportDocumentId ?? context.documentId, created.sessionId))
           throw new Error('The voice session returned a mismatched connection path.');
         let initialGrant: typeof created.grant | undefined = created.grant;
         session = new ClientSession(new URL(created.realtimePath, config.url).href, {
-          tools, context,
+          tools, context: { ...context, documentId: created.transportDocumentId ?? context.documentId },
           audio: config.audio ? { input: 'mic', output: 'speaker' } : false,
           auth: async () => {
             if (closed || signal.aborted) throw new Error('Document session closed.');

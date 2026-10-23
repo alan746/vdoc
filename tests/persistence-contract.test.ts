@@ -83,6 +83,7 @@ describe.each(implementations)('persistence contract: %s', (_name, create) => {
     expect(text((await repo.documents.readActive()).data)).toBe('v1');
     const after = await repo.versions.list(created.id);
     expect(after.map(version => version.label)).toContain('Before restoring a version');
-    expect(text(after.find(version => version.label === 'Before restoring a version')!.snapshot)).toBe('v2');
+    const backup = after.find(version => version.label === 'Before restoring a version')!;
+    expect(text(await repo.versions.restore(backup.key, restored))).toBe('v2');
   });
 });

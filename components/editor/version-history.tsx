@@ -6,13 +6,13 @@ import { actionErrorMessage } from '@/lib/shared/error-message';
 import { useDocumentNavigation } from './use-document-navigation';
 import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-navigation';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { documents as documentRepository, versions as versionRepository } from '@/lib/composition/repositories';
-import { type DocumentVersion, type SavedDocument, documentTitle } from '@/lib/domain/entities/document';
+import { documents as documentRepository, versions as versionRepository, isCloudWorkspace } from '@/lib/composition/repositories';
+import { type DocumentVersionSummary, type SavedDocument, documentTitle } from '@/lib/domain/entities/document';
 import { useMounted } from './use-mounted';
 import { useLatest } from './use-latest';
 
 export function VersionHistory({ editor, title, documentId, onOpen, blocked = false }: { editor: Editor; title: string; documentId: string; onOpen: (doc: SavedDocument) => void; blocked?: SaveBlock }) {
-  const [open, setOpen] = useState(false), [versions, setVersions] = useState<DocumentVersion[]>([]), [label, setLabel] = useState('');
+  const [open, setOpen] = useState(false), [versions, setVersions] = useState<DocumentVersionSummary[]>([]), [label, setLabel] = useState('');
   const [readError, setReadError] = useState('');
   const versionsUnavailable = useRef(true);
   const { navigation, busy } = useDocumentNavigation(editor);
@@ -41,7 +41,7 @@ export function VersionHistory({ editor, title, documentId, onOpen, blocked = fa
     } catch { if (mounted.current) setReadError(message); }
   };
   return <><button className="secondary-button" disabled={busy} onClick={() => perform(async () => { ensureInputFinished(); setOpen(true); setReadError(''); await refreshVersions(); })}>Saved versions</button>
-    <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>Saved versions</DialogTitle><DialogDescription>Keep up to 40 checkpoints for this document on this device. Restoring also saves a copy of your current work.</DialogDescription>
+    <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>Saved versions</DialogTitle><DialogDescription>{isCloudWorkspace() ? "Keep up to 200 checkpoints in your account. Restoring also saves a copy of your current work." : "Keep up to 40 checkpoints for this document on this device. Restoring also saves a copy of your current work."}</DialogDescription>
       {readError && <div role="alert" className="library-error"><span>{readError}</span><button type="button" className="secondary-button" disabled={busy} onClick={() => perform(() => refreshVersions(readError))}>Retry loading</button></div>}
       <form onSubmit={e => { e.preventDefault(); void perform(async () => { if (versionsUnavailable.current) return; const saved = await current(); if (!mounted.current) return; await versionRepository.save(saved, label); if (!mounted.current) return; setLabel(''); await refreshVersions('Your version was saved, but the version list could not be refreshed. Retry loading to see the latest versions.'); }); }}><label>Version name<input value={label} disabled={busy || Boolean(readError)} onChange={e => setLabel(e.target.value)} maxLength={120} placeholder="Before final edits" /></label><button className="export-button" disabled={busy || Boolean(readError)}>Save current version</button></form>
       <div className="local-documents" aria-busy={busy}>{versions.map(v => <button disabled={busy || Boolean(readError)} key={v.key} onClick={() => perform(async () => { if (versionsUnavailable.current) return; navigation!.freeze(); const saved = await current(); if (!mounted.current) return; const doc = await versionRepository.restore(v.key, saved); if (!mounted.current) return; ensureWritable(); setOpen(false); onOpen(doc); toast.success('Version restored. Previous work is saved in version history.'); })}><strong>{v.label}</strong><span>{new Date(v.createdAt).toLocaleString()} · Restore</span></button>)}{!versions.length && !busy && !readError && <p>No saved versions yet.</p>}</div>

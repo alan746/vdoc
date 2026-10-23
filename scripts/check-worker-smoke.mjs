@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { checkWorkerAsset } from './check-worker-asset.mjs';
 
 // Run the built app in workerd, where module-scope I/O restrictions differ from
 // Node/jsdom. A browser can recover from an SSR error while HTTP still says 500.
@@ -32,23 +33,29 @@ try {
     worker.stderr.on('data', receive);
   });
   const assets = new Set();
-  for (const path of ['/', '/print-preview']) {
+  for (const path of ['/', '/print-preview', '/account', '/cloud']) {
     const response = await fetch(new URL(path, origin), { signal: AbortSignal.timeout(10_000) });
     assert.equal(response.status, 200, `${path} must return HTTP 200`);
     assert.match(response.headers.get('content-type') ?? '', /text\/html/);
     const html = await response.text();
     assert.doesNotMatch(html, /id="__next_error__"/, `${path} must not render an error shell`);
-    assert.ok(html.includes(path === '/' ? 'Opening workspace' : 'preview-pages'), `${path} must render its initial UI`);
+    assert.ok(html.includes(path === '/' ? 'Opening workspace' : path === '/account' ? 'Your account' : path === '/cloud' ? 'Opening cloud workspace' : 'preview-pages'), `${path} must render its initial UI`);
     for (const match of html.matchAll(/(?:src|href)="([^\"]+)"/g)) {
       if (match[1].startsWith('/_next/static/')) assets.add(match[1]);
     }
     console.log(`PASS ${path}: HTTP 200 and expected server-rendered UI`);
   }
+  const account = await fetch(new URL('/api/account', origin), { signal: AbortSignal.timeout(10_000) });
+  assert.equal(account.status, 200);
+  assert.deepEqual(await account.json(), { configured: false, user: null });
+  assert.match(account.headers.get('cache-control'), /no-store/);
+  const signIn = await fetch(new URL('/api/auth/sign-in/social', origin), { method: 'POST', headers: { origin, 'content-type': 'application/json' }, body: JSON.stringify({ provider: 'google' }), signal: AbortSignal.timeout(10_000) });
+  await signIn.text();
+  assert.equal(signIn.status, 503, 'Unconfigured authentication must fail closed');
+  console.log('PASS authentication fails closed without production credentials');
   assert.ok(assets.size > 0, 'The rendered pages must reference client assets');
   for (const path of assets) {
-    const response = await fetch(new URL(path, origin), { signal: AbortSignal.timeout(10_000) });
-    assert.equal(response.status, 200, `${path} must load`);
-    assert.ok((await response.arrayBuffer()).byteLength > 0, `${path} must not be empty`);
+    await checkWorkerAsset(new URL(path, origin));
   }
   console.log(`PASS ${assets.size} referenced client assets`);
 } catch (error) {

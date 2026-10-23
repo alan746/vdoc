@@ -16,9 +16,12 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:worker": "node scripts/check-worker-smoke.mjs",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "db:migrate": "node scripts/migrate-neon.mjs"
   },
   "dependencies": {
+    "@better-auth/drizzle-adapter": "1.7.10",
+    "@neondatabase/serverless": "1.2.0",
     "@tiptap/core": "^3.0.0",
     "@tiptap/extension-blockquote": "3.31.3",
     "@tiptap/extension-bold": "3.31.3",
@@ -47,6 +50,7 @@
     "@tiptap/pm": "^3.0.0",
     "@tiptap/react": "^3.0.0",
     "@vrealtime/client": "^0.1.0",
+    "better-auth": "1.7.10",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "docx": "^9.8.1",
@@ -61,12 +65,13 @@
     "react-dom": "19.2.6",
     "sonner": "^2.0.8",
     "tailwind-merge": "3.6.0",
-    "zod": "^3.25.76",
+    "zod": "4.6.7",
     "zod-to-json-schema": "^3.25.2"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
     "@cloudflare/workers-types": "4.20260515.1",
+    "@electric-sql/pglite": "0.5.10",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",

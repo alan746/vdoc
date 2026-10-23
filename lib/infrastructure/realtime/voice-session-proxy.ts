@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { createdVoiceSessionSchema, voiceDocumentRequestSchema, voiceGrantSchema, voiceRealtimePath, voiceResourceIdSchema } from '../../domain/entities/voice-session';
 
 export type VoiceSessionAction = 'create' | 'grant' | 'end';
@@ -6,6 +6,8 @@ export type VoiceSessionProxyDependencies = {
   getUser(): Promise<{ userId: string } | null>;
   /** Trusted Worker bindings, never values supplied by a browser. */
   serverUrl?: string; clientKey?: string; documentAccess?: string;
+  /** Returns an owner-scoped transport ID only for an active, owned document. */
+  authorizeDocument?(userId: string, documentId: string): Promise<string | null>;
   fetch: typeof fetch;
 };
 const accessSchema = z.record(z.array(voiceResourceIdSchema));
@@ -13,13 +15,13 @@ const response = (body: unknown, status: number) => Response.json(body, { status
 const failure = (status: number, code: string, message: string) => response({ error: { code, message } }, status);
 
 function configuration(deps: VoiceSessionProxyDependencies) {
-  if (!deps.serverUrl || !deps.clientKey || !deps.documentAccess) throw new Error('Voice sessions are not configured.');
+  if (!deps.serverUrl || !deps.clientKey || (!deps.documentAccess && !deps.authorizeDocument)) throw new Error('Voice sessions are not configured.');
   const url = new URL(deps.serverUrl);
   const local = url.hostname === 'localhost' || url.hostname === '[::1]' || /^127(?:\.\d{1,3}){3}$/.test(url.hostname);
   if (url.username || url.password || url.search || url.hash || url.pathname !== '/' || !(url.protocol === 'https:' || (url.protocol === 'http:' && local)))
     throw new Error('Invalid voice service origin.');
   if (deps.clientKey.length < 24 || /\s/.test(deps.clientKey)) throw new Error('Invalid client key.');
-  return { origin: url.origin, key: deps.clientKey, access: accessSchema.parse(JSON.parse(deps.documentAccess)) };
+  return { origin: url.origin, key: deps.clientKey, access: deps.authorizeDocument ? null : accessSchema.parse(JSON.parse(deps.documentAccess!)) };
 }
 
 /** Bound the stream before JSON parsing, including requests without Content-Length. */
@@ -43,9 +45,7 @@ async function readBody(request: Request): Promise<unknown> {
   return JSON.parse(new TextDecoder().decode(bytes));
 }
 
-/** App-side authorization is checked for every create, renew and end request.
- * Local-only documents have no server ownership table; the explicit Worker
- * access list is the initial authorization source, never first-caller claims. */
+/** Reauthorize every create, renew and end request against document ownership. */
 export async function proxyVoiceSession(request: Request, action: VoiceSessionAction, sessionId: string | undefined, deps: VoiceSessionProxyDependencies): Promise<Response> {
   if (request.method !== (action === 'end' ? 'DELETE' : 'POST')) return failure(405, 'METHOD_NOT_ALLOWED', 'Unsupported method.');
   if (request.headers.get('origin') !== new URL(request.url).origin || request.headers.get('sec-fetch-site') === 'cross-site')
@@ -62,12 +62,20 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
   let config: ReturnType<typeof configuration>;
   try { config = configuration(deps); }
   catch { return failure(503, 'VOICE_NOT_CONFIGURED', 'Voice sessions are not configured.'); }
-  if (!Object.hasOwn(config.access, user.userId) || !config.access[user.userId].includes(documentId))
+  let transportDocumentId = documentId;
+  if (deps.authorizeDocument) {
+    try {
+      const authorized = await deps.authorizeDocument(user.userId, documentId);
+      if (!authorized) return failure(403, 'DOCUMENT_ACCESS_DENIED', 'You do not have voice access to this document.');
+      transportDocumentId = voiceResourceIdSchema.parse(authorized);
+    } catch { return failure(503, 'STORAGE_UNAVAILABLE', 'Document access could not be verified.'); }
+  } else if (!config.access || !Object.hasOwn(config.access, user.userId) || !config.access[user.userId].includes(documentId)) {
     return failure(403, 'DOCUMENT_ACCESS_DENIED', 'You do not have voice access to this document.');
+  }
 
   // The document ID is reauthorized on every request and remains part of the
   // upstream session path. A session ID cannot be used to escape its document.
-  const base = `/v1/documents/${encodeURIComponent(documentId)}/voice-sessions`;
+  const base = `/v1/documents/${encodeURIComponent(transportDocumentId)}/voice-sessions`;
   const path = action === 'create' ? base : `${base}/${encodeURIComponent(sessionId!)}${action === 'grant' ? '/grants' : ''}`;
   try {
     const upstream = await deps.fetch(`${config.origin}${path}`, {
@@ -85,8 +93,8 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
     const raw: unknown = await upstream.json();
     if (action === 'grant') return response(voiceGrantSchema.parse(raw), 201);
     const created = createdVoiceSessionSchema.parse(raw);
-    if (created.documentId !== documentId || created.realtimePath !== voiceRealtimePath(documentId, created.sessionId))
+    if (created.documentId !== transportDocumentId || created.realtimePath !== voiceRealtimePath(transportDocumentId, created.sessionId))
       throw new Error('Mismatched voice session.');
-    return response(created, 201);
+    return response({ ...created, documentId, ...(transportDocumentId !== documentId ? { transportDocumentId } : {}) }, 201);
   } catch { return failure(502, 'VOICE_SERVICE_ERROR', 'The voice service could not complete the request.'); }
 }

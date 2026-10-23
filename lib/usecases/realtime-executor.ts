@@ -1,7 +1,7 @@
 import type { SelectionAnchor } from './engine';
 import { agentRequestSchema, operationSchema, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
 import type { BlockRead, DocumentSnapshot, OutlineEntry } from '../editor/document-snapshot';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import type { RealtimeToolContext } from './ports';
 import { requestSignature } from '../shared/request-signature';
 

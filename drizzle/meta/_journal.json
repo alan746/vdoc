@@ -1,5 +1,13 @@
 {
   "version": "7",
-  "dialect": "sqlite",
-  "entries": []
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792305172375,
+      "tag": "0000_neon_foundation",
+      "breakpoints": true
+    }
+  ]
 }
