@@ -7,7 +7,7 @@ import type { RealtimePort, RealtimeToolContext } from '../lib/usecases/ports';
 let editor: Editor, engine: DocumentEngine;
 let sessions: Parameters<RealtimePort['open']>[0][];
 const port: RealtimePort = { open(options) { sessions.push(options); return { interrupt() {}, sendText() {}, close() {} }; } };
-const open = (docId = 'doc') => openDocumentRealtime({ docId, engine, config: { url: 'ws://localhost:8790', tokenUrl: '/token' }, onStatus() {} }, port);
+const open = (docId = 'doc') => openDocumentRealtime({ docId, engine, config: { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions' }, onStatus() {} }, port);
 const ctx: RealtimeToolContext = { callId: 'call-1', turnId: 'turn-1', epoch: 1, signal: new AbortController().signal };
 const args = (text: string) => ({ expectedSessionId: engine.sessionId, expectedRevision: engine.revision, target: { kind: 'block', id: engine.snapshot().blocks[0].id }, operations: [{ type: 'text.replace', text }] });
 beforeEach(async () => {
@@ -15,6 +15,19 @@ beforeEach(async () => {
   await new Promise(resolve => setTimeout(resolve, 0)); engine = new DocumentEngine(editor);
 });
 afterEach(() => { engine.destroy(); editor.destroy(); });
+it('sends the current title, document language and vocabulary without the editing session ID', () => {
+  editor.commands.command(({ tr }) => { tr.setDocAttribute('language', 'fr-CA'); return true; });
+  const connection = openDocumentRealtime({ engine, docId: 'doc', title: 'Current title', config: { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions', vocabulary: ['VDoc'] }, onStatus() {} }, port);
+  expect(sessions[0].context).toEqual({ documentId: 'doc', title: 'Current title', language: 'fr-CA', vocabulary: ['VDoc'] });
+  expect(sessions[0]).not.toHaveProperty('sessionId');
+  connection.close();
+});
+it('defaults an unspecified document language to English and accepts an explicit voice preference', () => {
+  const first = open();
+  expect(sessions[0].context.language).toBe('en-US'); first.close();
+  const second = openDocumentRealtime({ engine, docId: 'doc', config: { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions', language: 'zh-CN' }, onStatus() {} }, port);
+  expect(sessions[1].context.language).toBe('zh-CN'); second.close();
+});
 it('does not merge reused server turn IDs across fresh connections', async () => {
   const first = open(); await sessions[0].tools.apply_document_operations.run(args('first'), ctx);
   const firstTurn = engine.records[0].turnId; first.close();

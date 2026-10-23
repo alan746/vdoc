@@ -8,10 +8,46 @@
 interface RealtimeToolContext { signal: AbortSignal; callId: string; turnId: string; epoch: number; }
 interface RealtimeTool { description: string; parameters: object; run(input: unknown, context: RealtimeToolContext): unknown; }
 interface RealtimeConnection { interrupt(reason?: 'user' | 'keyboard'): void; sendText(text: string): void; close(): void; }
-interface RealtimePort { open(options: { config, docId, sessionId, tools, signal, onStatus }): RealtimeConnection; }
+interface RealtimePort { open(options: { config, context: { documentId, title, language, vocabulary }, tools, signal, onStatus, onActivity? }): RealtimeConnection; }
 ```
 
 `lib/infrastructure/realtime/vrt-adapter.ts` 是唯一导入 `@vrealtime/client` 的文件，把上面的契约接到真实 SDK；`tests/support/fake-vrt-adapter.ts` 是本地开发/测试用的假实现，不经网络。两者都实现同一个 `RealtimePort`，`lib/composition/realtime.ts` 的 `openDocumentRealtime(options, port)` 通过依赖注入切换。
+
+## 语音会话与 Worker 鉴权
+
+浏览器配置使用 `vdoc.realtime.v2`，字段为 `{ url, sessionsUrl, audio?, language?, vocabulary? }`。`url` 只填语音服务 origin（生产为 `wss://voice.example.com`，本地可用回环 `ws://`），`sessionsUrl` 为同源 `/api/voice-sessions`。旧 `vdoc.realtime.v1` / `tokenUrl` 配置不自动迁移，需按下方约定重新配置，避免把旧的固定 WebSocket 会话地址当成服务 origin。
+
+三个同源 Worker 接口都接收 JSON `{ documentId }`，都先验证同源请求、登录用户和文档授权，再携带 Worker secret 中的 client key 请求 vdoc-server：
+
+| VDoc 接口 | 上游路径 |
+|---|---|
+| `POST /api/voice-sessions` | `POST /v1/documents/{documentId}/voice-sessions` |
+| `POST /api/voice-sessions/{id}/grants` | `POST /v1/documents/{documentId}/voice-sessions/{id}/grants` |
+| `DELETE /api/voice-sessions/{id}` | `DELETE /v1/documents/{documentId}/voice-sessions/{id}` |
+
+这里的 `{id}` 是 **语音会话 ID**。编辑器 `engine.sessionId` 只用于本地操作校验，留在 executor 内，不发往上述接口或 `hello.context`；SDK 自己用于重连的会话 ID 也不用于这些 HTTP 路径。
+
+客户端先创建语音会话，校验响应的 `documentId`、`sessionId` 和完整 `realtimePath`，再构造 SDK。路径必须精确对应本次文档和语音会话，不接受跨源地址、查询参数或其他会话路径。首次 `auth()` 使用创建响应中的 `grant.token`；若它已经过期或距过期不足一秒，则先续发。之后每次 `auth()` 都重新调用 `/grants`，响应是 `{ token, expiresAt }`，不能复用之前的短期凭证。
+
+`hello.context` 只包含 `{ documentId, title, language, vocabulary }`。标题取点击连接时的当前标题；语言优先用配置中的显式偏好，否则用文档语言，未指定（`und`）时为 `en-US`；词汇表默认 `[]`，最多 50 个、每个最多 40 字符。文档正文仍由工具读取，不在创建会话时上传。
+
+关闭或文档卸载立即停止 SDK、取消续发请求，并以独立的清理信号发送一次 `DELETE`。创建请求有 15 秒上限，关闭时允许它返回，以便删除迟到的已创建会话，且绝不启动迟到的 SDK。清理请求使用 `keepalive`；网络中断或页面进程被终止时不能保证 DELETE 到达，最终仍由服务端会话时限回收。永久关闭的 SDK 会话也会触发清理；自动续连期间不结束语音会话。
+
+### 服务端配置与权限来源
+
+当前文档只存于 IndexedDB，没有服务端文档归属表。本次采用 **显式服务端授权清单**，不把浏览器提交的 `documentId` 或第一次请求当作所有权证明，也不自动创建权限。
+
+Worker 需要配置：
+
+- `VDOC_SERVER_URL`：上游 HTTP origin，如 `https://voice.example.com`；与浏览器的 WebSocket origin 对应。
+- `VDOC_SERVER_CLIENT_KEY`：Worker **secret**，值为 vdoc-server 的 `VDOC_SERVER_CLIENTS` 中一个已注册 client 的 key，至少 24 字符；不是整个 `clientId:key,…` 字符串。
+- `VDOC_VOICE_DOCUMENT_ACCESS`：Worker **secret**，JSON 格式 `{"authenticated-user-id":["document-id-1","document-id-2"]}`。管理员将实际登录用户 ID 与本地文档 ID 配对后授权。每次创建、续发和结束都重新检查；未配置、配置无效或没有对应权限时拒绝请求。该清单只授权语音会话访问，不改变本地文档存储和共享模型。
+
+身份来自现有 `getChatGPTUser()`。生产部署必须经过可信的登录网关，由网关注入并覆盖 `oai-authenticated-user-*` 头，禁止客户端绕过网关直接伪造这些头访问 Worker。本地开发沿用项目的登录模拟（`/signin-with-chatgpt?return_to=/`），不能把开发模拟用于生产。需要动态权限管理时，可在代理的授权边界替换此清单，不能改为默认放行。
+
+通过部署平台的 Worker secret 管理配置上述两个 secret；本地可放入已被 gitignore 排除的 `.dev.vars`。不要使用 `NEXT_PUBLIC_*`、localStorage、URL 或客户端构建变量保存 client key。响应禁用缓存，代理不转发上游错误正文、Cookie 或认证头。部署前还需在 vdoc-server 配置允许的 VDoc 浏览器来源。
+
+本次协议核对依据：`austinchennn/vdoc-server` 的 `voice-session-controller.ts`、`document-context.ts` 和 `principal.ts`。本仓库测试覆盖代理权限、创建/续发/清理和 SDK 重连；部署真实地址与 secret 后仍需真实模型端到端验收。
 
 `createRealtimeExecutor` 只依赖 `RealtimeEngine` 这个窄接口（`lib/usecases/realtime-executor.ts`，vdoc#43）：会话 ID、版本、记录、`canEdit()`、`isComposing()`、提交/撤销、快照/大纲/按 ID 读取、`hasBlock`、`anchorSelection`、`onApplied`。接口里**没有** Tiptap `editor`，`DocumentEngine` 按结构满足它，测试可以直接传普通对象（`tests/realtime-engine-port.test.ts`）。
 

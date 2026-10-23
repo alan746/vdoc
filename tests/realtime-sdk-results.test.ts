@@ -41,12 +41,16 @@ const activities: RealtimeActivity[] = [];
 beforeEach(async () => {
   sockets.length = 0;
   vi.stubGlobal('WebSocket', FakeSocket);
-  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => ({ token: 'test-grant' }) })));
+  vi.stubGlobal('fetch', vi.fn(async (_url: string, init: RequestInit) => init.method === 'DELETE' ? { ok: true } : ({
+    ok: true, json: async () => ({ documentId: 'doc', sessionId: 'voice-session',
+      realtimePath: '/v1/documents/doc/voice-sessions/voice-session/realtime',
+      grant: { token: 'test-grant', expiresAt: Date.now() + 60000 } }),
+  })));
   editor = new Editor({ extensions: createExtensions(), content: '<p>hello</p><p>second</p>' });
   await new Promise(resolve => setTimeout(resolve, 0));
   engine = new DocumentEngine(editor); activities.length = 0;
   const onStatus = vi.fn();
-  connection = openDocumentRealtime({ engine, docId: 'doc', config: { url: 'ws://localhost:8790', tokenUrl: '/token' }, onStatus, onActivity: event => activities.push(event) });
+  connection = openDocumentRealtime({ engine, docId: 'doc', config: { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions' }, onStatus, onActivity: event => activities.push(event) });
   await vi.waitFor(() => expect(onStatus).toHaveBeenCalledWith('connected'));
 });
 afterEach(() => { connection?.close(); engine?.destroy(); editor?.destroy(); vi.unstubAllGlobals(); });

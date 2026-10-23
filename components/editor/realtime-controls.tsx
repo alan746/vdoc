@@ -12,7 +12,7 @@ const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Li
 /** Connection controls with turn state, Stop/Esc, and the vdoc#33 turn-grouped
  *  activity timeline. Streamed argument previews are separate work: the SDK
  *  emits tool.preview, but its payload is not specified yet (vRT#22). */
-export function RealtimeControls({ engine, docId }: { engine: DocumentEngine; docId: string }) {
+export function RealtimeControls({ engine, docId, title }: { engine: DocumentEngine; docId: string; title?: string }) {
   const [config] = useState<RealtimeConfig | null>(() => { try { return readRealtimeConfig(); } catch { return null; } });
   const [status, setStatus] = useState<RealtimeStatus>('disconnected');
   const [message, setMessage] = useState('');
@@ -36,7 +36,7 @@ export function RealtimeControls({ engine, docId }: { engine: DocumentEngine; do
   const connect = () => {
     connection.current?.close();
     try {
-      connection.current = openDocumentRealtime({ engine, docId, config,
+      connection.current = openDocumentRealtime({ engine, docId, title, config,
         onStatus: (next, detail) => { setStatus(next); setMessage(detail ?? ''); if (next !== 'connected') setTurn('idle'); },
         onActivity: activity => {
           if (activity.type === 'turn') setTurn(activity.state);

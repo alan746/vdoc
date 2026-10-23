@@ -3,20 +3,23 @@ import { createRealtimeExecutor } from '../usecases/realtime-executor';
 import { realtimeDocumentTools } from '../usecases/document-tools';
 import type { DocumentEngine } from '../usecases/engine';
 import type { RealtimeActivity, RealtimeConfig, RealtimePort, RealtimeStatus } from '../usecases/ports';
+import { UNTITLED_DOCUMENT } from '../domain/entities/document';
+import { canonicalLanguage } from '../domain/text/language';
 
-export const REALTIME_CONFIG_KEY = 'vdoc.realtime.v1';
+export const REALTIME_CONFIG_KEY = 'vdoc.realtime.v2';
 /** Explicit local configuration only; document URLs and imported content cannot enable it. */
 export function readRealtimeConfig(): RealtimeConfig | null {
   const raw = window.localStorage.getItem(REALTIME_CONFIG_KEY);
   if (!raw) return null;
   const value: unknown = JSON.parse(raw);
-  if (!value || typeof value !== 'object' || !('url' in value) || typeof value.url !== 'string' || !('tokenUrl' in value) || typeof value.tokenUrl !== 'string')
+  if (!value || typeof value !== 'object' || !('url' in value) || typeof value.url !== 'string' || !('sessionsUrl' in value) || typeof value.sessionsUrl !== 'string')
     throw new Error('Invalid assistant configuration.');
-  return validateRealtimeConfig({ url: value.url, tokenUrl: value.tokenUrl, audio: 'audio' in value && value.audio === true }, window.location.origin);
+  return validateRealtimeConfig(value as RealtimeConfig, window.location.origin);
 }
 
 export function openDocumentRealtime(options: {
   engine: DocumentEngine; docId: string; config: RealtimeConfig;
+  title?: string;
   onStatus: (status: RealtimeStatus, message?: string) => void;
   onActivity?: (activity: RealtimeActivity) => void;
 }, port: RealtimePort = vrtAdapter) {
@@ -43,7 +46,11 @@ export function openDocumentRealtime(options: {
       ...context, callId: localId(callIds, context.callId), turnId: localId(turnIds, context.turnId),
     }),
   }]));
-  const connection = port.open({ config, docId, sessionId: engine.sessionId,
+  const language = canonicalLanguage(config.language ?? engine.editor.state.doc.attrs.language);
+  const connection = port.open({ config, context: {
+    documentId: docId, title: (options.title || UNTITLED_DOCUMENT).slice(0, 120),
+    language: language && language !== 'und' ? new Intl.Locale(language).baseName : 'en-US', vocabulary: config.vocabulary ?? [],
+  },
     tools, signal: lifecycle.signal, onStatus, onActivity });
   return { ...connection, close() { lifecycle.abort(); connection.close(); } };
 }

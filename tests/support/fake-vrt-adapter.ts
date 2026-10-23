@@ -6,6 +6,7 @@ import type { RealtimeActivity, RealtimePort, RealtimeToolContext } from '../../
  *  (tracked by vdoc#35 and austinchennn/vRT#22) so this fake only covers the
  *  full-arguments call path those issues already rely on. */
 export type FakeRealtimeSession = {
+  readonly context: Parameters<RealtimePort['open']>[0]['context'];
   readonly tools: Record<string, { description: string; parameters: unknown; run(input: unknown, context: RealtimeToolContext): unknown }>;
   readonly closed: boolean;
   call(name: string, input: unknown, context: RealtimeToolContext): unknown;
@@ -23,7 +24,7 @@ export type FakeRealtimeSession = {
 export function createFakeVrtAdapter(): { port: RealtimePort; sessions: FakeRealtimeSession[] } {
   const sessions: FakeRealtimeSession[] = [];
   const port: RealtimePort = {
-    open({ tools, signal, onStatus, onActivity }) {
+    open({ tools, context, signal, onStatus, onActivity }) {
       let closed = false;
       const publish: typeof onStatus = (...args) => { if (!closed) onStatus(...args); };
       const close = () => { closed = true; };
@@ -31,6 +32,7 @@ export function createFakeVrtAdapter(): { port: RealtimePort; sessions: FakeReal
       if (signal.aborted) close();
       else { publish('connecting'); publish('connected'); }
       const session: FakeRealtimeSession = {
+        context,
         tools,
         get closed() { return closed; },
         call(name, input, context) {

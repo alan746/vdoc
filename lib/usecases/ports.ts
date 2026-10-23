@@ -1,4 +1,5 @@
 import type { JSONContent } from '@tiptap/core';
+import type { VoiceDocumentContext } from '../domain/entities/voice-session';
 import type { Node } from '@tiptap/pm/model';
 import type { DocumentDraft, DocumentVersion, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../domain/entities/document';
 
@@ -101,12 +102,14 @@ export interface RealtimeConnection {
 }
 export interface RealtimeConfig {
   url: string;
-  tokenUrl: string;
+  sessionsUrl: string;
   audio?: boolean;
+  language?: string;
+  vocabulary?: string[];
 }
 export interface RealtimePort {
   open(options: {
-    config: RealtimeConfig; docId: string; sessionId: string;
+    config: RealtimeConfig; context: VoiceDocumentContext;
     tools: Record<string, RealtimeTool>; signal: AbortSignal;
     onStatus(status: RealtimeStatus, message?: string): void;
     onActivity?(activity: RealtimeActivity): void;

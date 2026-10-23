@@ -8,7 +8,7 @@ import { documentNavigation } from '../lib/usecases/document-navigation';
 import { RealtimeControls } from '../components/editor/realtime-controls';
 const calls = vi.hoisted(() => ({ interrupt: vi.fn(), close: vi.fn(), open: vi.fn(), enabled: true, onActivity: undefined as undefined | ((activity: unknown) => void) }));
 vi.mock('../lib/composition/realtime', () => ({
-  readRealtimeConfig: () => calls.enabled ? { url: 'ws://localhost:8790', tokenUrl: '/token' } : null,
+  readRealtimeConfig: () => calls.enabled ? { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions' } : null,
   openDocumentRealtime: (options: { onStatus: (state: string) => void; onActivity?: (activity: unknown) => void }) => { calls.open(); calls.onActivity = options.onActivity; options.onStatus('connected'); return { interrupt: calls.interrupt, close: calls.close, sendText: vi.fn() }; },
 }));
 let editor: Editor, engine: DocumentEngine, root: Root, mount: HTMLDivElement;

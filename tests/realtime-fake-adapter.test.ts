@@ -15,7 +15,7 @@ let editor: Editor, engine: DocumentEngine;
 let adapter: ReturnType<typeof createFakeVrtAdapter>;
 const statuses: { status: string; message?: string }[] = [];
 const open = (docId = 'doc') => openDocumentRealtime(
-  { docId, engine, config: { url: 'ws://localhost:8790', tokenUrl: '/token' }, onStatus: (status, message) => statuses.push({ status, message }) },
+  { docId, engine, config: { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions' }, onStatus: (status, message) => statuses.push({ status, message }) },
   adapter.port,
 );
 beforeEach(async () => {

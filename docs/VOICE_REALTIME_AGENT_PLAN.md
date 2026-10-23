@@ -88,16 +88,18 @@ SDK 早已发出 `state` / `tool.call` / `tool.result` / `interrupted` 事件（
 默认关闭，不读取 URL 参数或文档内容中的连接配置。在应用来源的浏览器开发者工具中明确设置后刷新：
 
 ```js
-localStorage.setItem('vdoc.realtime.v1', JSON.stringify({
+localStorage.setItem('vdoc.realtime.v2', JSON.stringify({
   url: 'ws://localhost:8790',
-  tokenUrl: '/api/realtime-token',
+  sessionsUrl: '/api/voice-sessions',
   audio: false,
+  language: 'en-US',
+  vocabulary: [],
 }));
 ```
 
 在编辑器点击 **Connect assistant**，输入文字指令；配置 `audio: true` 后按钮改为 **Connect voice assistant**，仅点击后申请麦克风。连接期间显示麦克风状态。配置只接受 `wss://` 或回环地址的 `ws://`，拒绝 URL 凭据、查询参数和 fragment。禁用时删除本地键并刷新。
 
-`tokenUrl` 是部署方提供的**同源**鉴权端点；本提交不创建匿名签发 token 的接口。SDK 每次连接或重连调用 auth 函数，适配器 POST `{ docId, sessionId }`，端点基于现有用户身份和文档权限返回 `{ token: "短期令牌" }`。服务端必须验证该令牌并将连接限制在指定文档；不能信任客户端传来的 docId 本身就是授权。令牌不进入配置、URL 或日志，文档内容在模型调用读取工具后才返回。
+`sessionsUrl` 是本仓库提供的**同源**语音会话接口，POST `{ documentId }` 创建会话并取得 `sessionId`、`realtimePath`、`grant`。Worker 检查登录身份和显式文档授权清单后，才以服务端 secret 请求 vdoc-server。客户端首次使用 `grant.token`，每次续连调用 `/{sessionId}/grants` 换新凭证，关闭时 DELETE 结束会话。浏览器配置中的 `url` 只填语音服务 origin，连接路径来自已验证的创建响应。编辑器会话 ID 与语音会话 ID 分开使用。部署配置、权限来源、旧配置迁移和生命周期细节见 [`REALTIME_PROTOCOL.md`](REALTIME_PROTOCOL.md#语音会话与-worker-鉴权)。
 
 未配置服务端/鉴权端点时，连接会失败但普通编辑仍可使用。实时语音服务和真实模型的端到端验证需要部署方的地址与凭据；本地自动测试使用 fake SDK 和真实 DocumentEngine。
 
