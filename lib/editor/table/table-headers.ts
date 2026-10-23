@@ -1,8 +1,9 @@
 import type { Node } from '@tiptap/pm/model';
-import { Plugin } from '@tiptap/pm/state';
+import { Plugin, PluginKey, type EditorState } from '@tiptap/pm/state';
 import { isHistoryTransaction } from '@tiptap/pm/history';
 import { TableMap } from '@tiptap/pm/tables';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
+import { everyStep, isTypingStep } from '../transaction-steps';
 
 /** Old documents protected leading th rows during sorting. Keep that default
  * until the user explicitly pins/unpins; zero is distinct from legacy null. */
@@ -45,16 +46,47 @@ export function pinnedHeaderViewport(canvas: Element | null, win: Window) {
   return { top, height: Math.max(0, (bounds?.bottom ?? win.innerHeight) - top) };
 }
 
+/** Calls `visit` for every table, without descending into textblocks or atoms. */
+function forEachTable(doc: Node, visit: (table: Node, pos: number) => void) {
+  doc.descendants((node, pos) => {
+    if (node.type.name === 'table') visit(node, pos);
+    return !node.isTextblock && !node.isAtom;
+  });
+}
+
+function pinnedRowDecorations(doc: Node): DecorationSet {
+  const decorations: Decoration[] = [];
+  forEachTable(doc, (table, pos) => {
+    const count = pinnedRowCount(table);
+    table.forEach((row, offset, index) => {
+      if (index < count) decorations.push(Decoration.node(pos + 1 + offset, pos + 1 + offset + row.nodeSize, { class: 'vdoc-pinned-row' }));
+    });
+  });
+  return DecorationSet.create(doc, decorations);
+}
+
+export const tableHeadersKey = new PluginKey<DecorationSet>('vdocTableHeaders');
+
 export function tableHeadersPlugin() {
-  return new Plugin({
+  return new Plugin<DecorationSet>({
+    key: tableHeadersKey,
+    // Typing inside a cell cannot change a table's rows, row IDs, spans or pin
+    // count, so the decorations only need mapping; anything else rebuilds them.
+    state: {
+      init: (_, state: EditorState) => pinnedRowDecorations(state.doc),
+      apply: (tr, previous) => !tr.docChanged ? previous
+        : everyStep([tr], isTypingStep) ? previous.map(tr.mapping, tr.doc)
+        : pinnedRowDecorations(tr.doc),
+    },
     appendTransaction(transactions, oldState, state) {
       if (!transactions.some(tr => tr.docChanged) || transactions.some(isHistoryTransaction)) return null;
+      // Explicit pin commands use setNodeMarkup, which is not a typing step.
+      if (everyStep(transactions, isTypingStep)) return null;
       const previous = new Map<string, Node>();
       const explicit = new Set(transactions.flatMap(tr => tr.getMeta('vdocPinnedRows') || []));
-      oldState.doc.descendants(node => { if (node.type.name === 'table' && node.attrs.blockId) previous.set(node.attrs.blockId, node); });
+      forEachTable(oldState.doc, table => { if (table.attrs.blockId) previous.set(table.attrs.blockId, table); });
       const tr = state.tr;
-      state.doc.descendants((table, pos) => {
-        if (table.type.name !== 'table') return;
+      forEachTable(state.doc, (table, pos) => {
         let count = pinnedRowCount(table);
         const old = previous.get(table.attrs.blockId);
         // Explicit pin commands and history already carry their chosen count.
@@ -75,17 +107,7 @@ export function tableHeadersPlugin() {
       return tr.docChanged ? tr : null;
     },
     props: {
-      decorations(state) {
-        const decorations: Decoration[] = [];
-        state.doc.descendants((table, pos) => {
-          if (table.type.name !== 'table') return;
-          const count = pinnedRowCount(table);
-          table.forEach((row, offset, index) => {
-            if (index < count) decorations.push(Decoration.node(pos + 1 + offset, pos + 1 + offset + row.nodeSize, { class: 'vdoc-pinned-row' }));
-          });
-        });
-        return DecorationSet.create(state.doc, decorations);
-      },
+      decorations: state => tableHeadersKey.getState(state),
     },
     view(view) {
       const win = view.dom.ownerDocument.defaultView!;

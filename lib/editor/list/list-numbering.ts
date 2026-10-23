@@ -5,7 +5,7 @@ import { numberTypeAttribute } from './list-style';
 import { OrderedList } from '@tiptap/extension-list';
 import type { Node, ResolvedPos } from '@tiptap/pm/model';
 import { NodeSelection, Plugin, TextSelection, type Selection, type Transaction } from '@tiptap/pm/state';
-import { isInlineReplace, isMarkStep } from '../transaction-steps';
+import { everyStep, isTypingStep } from '../transaction-steps';
 
 import { validListStart } from '../../domain/rules/list-numbering';
 const startOf = (node: Node) => validListStart(node.attrs.start) ? node.attrs.start : 1;
@@ -138,9 +138,7 @@ export const VdocOrderedList = OrderedList.extend({
       appendTransaction(transactions, _old, state) {
         if (!transactions.some(t => t.docChanged || t.getMeta('normalizeIds'))) return null;
         // Ordinary typing and marks cannot change the number of list items.
-        if (!transactions.some(t => t.getMeta('normalizeIds')) && transactions.every(t => t.steps.every((step, i) => {
-          return isMarkStep(step) || isInlineReplace(step, t.docs[i]);
-        }))) return null;
+        if (!transactions.some(t => t.getMeta('normalizeIds')) && everyStep(transactions, isTypingStep)) return null;
         const tr = state.tr;
         const visit = (parent: Node, base: number) => {
           let previousEnd: number | null = null;

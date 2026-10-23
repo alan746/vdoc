@@ -1,7 +1,7 @@
 import { Extension } from '@tiptap/core';
 import { Plugin } from '@tiptap/pm/state';
 import { Mapping, AttrStep, DocAttrStep } from '@tiptap/pm/transform';
-import { isInlineReplace, isMarkStep } from '../transaction-steps';
+import { everyStep, isTypingStep } from '../transaction-steps';
 
 export const StableIds = Extension.create<{ types: string[] }>({
   name: 'stableIds',
@@ -23,10 +23,9 @@ export const StableIds = Extension.create<{ types: string[] }>({
         if (!transactions.some(t => t.docChanged || t.getMeta('normalizeIds'))) return null;
         // Text and mark edits cannot introduce or duplicate block IDs. Avoid a full
         // document traversal on every keystroke in a long document.
-        if (!transactions.some(t => t.getMeta('normalizeIds')) && transactions.every(t => t.steps.every((step, i) => {
-          if (isMarkStep(step) || step instanceof AttrStep || step instanceof DocAttrStep) return true;
-          return isInlineReplace(step, t.docs[i]);
-        }))) return null;
+        // Attribute steps are harmless here too: they cannot add or duplicate an ID.
+        if (!transactions.some(t => t.getMeta('normalizeIds')) &&
+          everyStep(transactions, (step, doc) => isTypingStep(step, doc) || step instanceof AttrStep || step instanceof DocAttrStep)) return null;
         const mapping = new Mapping();
         transactions.forEach(transaction => mapping.appendMapping(transaction.mapping));
         const originals = new Map<string, number>();
