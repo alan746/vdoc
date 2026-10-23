@@ -3,7 +3,7 @@ import {Editor,type JSONContent} from '@tiptap/core';
 import JSZip from 'jszip';
 import {createExtensions} from '../lib/editor/extensions';
 import {DocumentEngine} from '../lib/usecases/engine';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {exportWord,importWord} from '../lib/infrastructure/word/word';
 import {previewSource} from '../lib/infrastructure/preview/paged-preview';
 import { markerCssString } from '../lib/editor/list/list-markers';

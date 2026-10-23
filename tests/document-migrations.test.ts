@@ -1,7 +1,7 @@
 import {describe,expect,it} from 'vitest';
 import {CURRENT_DOCUMENT_VERSION,documentMigrations,migrateDocument,type DocumentMigration} from '../lib/domain/rules/document-migrations';
 import {parseDocumentEnvelope} from '../lib/domain/rules/document-validation';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 
 const v1=()=>({version:1,title:'Report',savedAt:'2026-10-02T12:00:00.000Z',content:{type:'doc',content:[{type:'paragraph',content:[{type:'text',text:'Body 中文'}]}]}});
 // Sample v1→v2 upgrade: renames `title` to `name`.

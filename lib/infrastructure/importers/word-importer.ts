@@ -1,6 +1,6 @@
 import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import type { FileImporter } from '../../usecases/ports';
-import { parseDocument } from '../persistence/storage';
+import { parseDocument } from '../persistence/document-codec';
 
 export const wordImporter: FileImporter = {
   accepts: file => /\.docx$/i.test(file.name),

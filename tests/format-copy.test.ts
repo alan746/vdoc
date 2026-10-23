@@ -6,7 +6,7 @@ import {DocumentEngine} from '../lib/usecases/engine';
 import {colorToHex} from '../lib/domain/text/color';
 import { copyTextFormat, canPasteTextFormat } from '../lib/editor/format/format-copy';
 import type { TextFormat } from '../lib/domain/rules/text-format';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {exportWord,importWord} from '../lib/infrastructure/word/word';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 let editor:Editor,engine:DocumentEngine,clipboard:TextFormat|null;

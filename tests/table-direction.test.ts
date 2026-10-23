@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core';
 import { CellSelection, TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { cellBorder } from '../lib/editor/table/table-borders';
 import { columnDelta } from '../lib/editor/table/table-direction';
 let editor: Editor, engine: DocumentEngine;

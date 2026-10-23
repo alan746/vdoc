@@ -4,7 +4,7 @@ import { TableMap } from '@tiptap/pm/tables';
 import { undoDepth } from '@tiptap/pm/history';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 
 let editor: Editor, engine: DocumentEngine;
 const fixture = '<table><tr style="height:60px"><th colspan="2" colwidth="100,150">标题 العربية</th></tr><tr style="height:70px"><td rowspan="2" colwidth="100" style="height:130px">日本語</td><td colwidth="150" style="height:70px">한국어</td></tr><tr style="height:60px"><td colwidth="150">हिन्दी</td></tr></table>';

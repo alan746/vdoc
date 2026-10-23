@@ -112,7 +112,7 @@ it('keeps the full long title inside a backup even when its download name is sho
     const reader = new FileReader(); reader.onload = () => resolve(reader.result as string); reader.onerror = reject;
     reader.readAsText(createUrl.mock.calls[0][0]);
   });
-  const { parseDocument } = await import('../lib/infrastructure/persistence/storage');
+  const { parseDocument } = await import('../lib/infrastructure/persistence/document-codec');
   const restored = parseDocument(payload);
   expect(restored.title).toBe(title); expect(restored.content).toEqual(before);
 });

@@ -7,7 +7,7 @@ import { colorToHex } from '../lib/domain/text/color';
 import { cellBorder, borderSides } from '../lib/editor/table/table-borders';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { distributeColumnWidths, tableColumnWidths, tablePropertyOperations, type CellProperties } from '../lib/editor/table/table-properties';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async()=>{editor=new Editor({extensions:createExtensions(),content:'<p>Before</p>'});await new Promise(r=>setTimeout(r,0));engine=new DocumentEngine(editor);});

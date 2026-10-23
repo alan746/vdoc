@@ -3,7 +3,7 @@ import * as d from 'docx';
 import JSZip from 'jszip';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { exportWord, importWord } from '../lib/infrastructure/word/word';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';

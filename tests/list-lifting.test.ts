@@ -2,7 +2,7 @@ import {afterEach,beforeEach,expect,it,vi} from 'vitest';
 import {Editor} from '@tiptap/core';
 import {CellSelection,TableMap} from '@tiptap/pm/tables';
 import {indentCommandType} from '../lib/editor/list/list-editing';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {exportWord,importWord} from '../lib/infrastructure/word/word';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 import {createExtensions} from '../lib/editor/extensions';

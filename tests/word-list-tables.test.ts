@@ -2,7 +2,7 @@ import { expect, it, vi } from 'vitest';
 import { Editor, type JSONContent } from '@tiptap/core';
 import JSZip from 'jszip';
 import { exportWord, importWord } from '../lib/infrastructure/word/word';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));

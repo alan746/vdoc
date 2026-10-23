@@ -4,11 +4,17 @@ import { CellSelection } from '@tiptap/pm/tables';
 import { EditorState } from '@tiptap/pm/state';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { readSavedDocument, saveDocument, STORAGE_KEY } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
+import 'fake-indexeddb/auto';
+import { IDBFactory } from 'fake-indexeddb';
+const LEGACY_DOCUMENT_KEY = 'vdoc.document.v1';
+let store: typeof import('../lib/infrastructure/persistence/document-store');
 
 let editor: Editor;
 let engine: DocumentEngine;
 beforeEach(async () => {
+  localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules();
+  store = await import('../lib/infrastructure/persistence/document-store');
   const el = document.createElement('div'); document.body.appendChild(el);
   editor = new Editor({ element: el, extensions: createExtensions(), content: '<p>Hello world</p><p>Second paragraph</p>' });
   await new Promise(resolve => setTimeout(resolve, 0));
@@ -152,7 +158,7 @@ describe('unified document operations', () => {
 });
 
 describe('font and highlight formatting', () => {
-  it('combines font, size, color and highlight only on the selected text and restores them from storage', () => {
+  it('combines font, size, color and highlight only on the selected text and restores them from storage', async () => {
     expect(engine.execute({ ...range(), operations: [{ type: 'text.style', style: {
       fontFamily: 'Georgia', fontSize: 24, color: '#E65656', highlight: '#D8EFDE', underline: true,
     } }] }).ok).toBe(true);
@@ -164,8 +170,8 @@ describe('font and highlight formatting', () => {
       ]) },
       { type: 'text', text: ' world' },
     ]);
-    saveDocument('Styled document', content);
-    const restored = new Editor({ extensions: createExtensions(), content: readSavedDocument().data!.content });
+    await store.activateDocument({ version: 1, id: 'styled', title: 'Styled document', content: content, savedAt: '2026-10-17T00:00:00.000Z' });
+    const restored = new Editor({ extensions: createExtensions(), content: (await store.readSavedDocument()).data!.content });
     try {
       expect(restored.getJSON()).toEqual(content);
       expect(restored.getHTML()).toContain('font-family: Georgia');
@@ -232,24 +238,24 @@ describe('table transactions', () => {
 });
 
 describe('local persistence', () => {
-  it('does not rewrite an unchanged document and trigger spurious cross-tab conflicts', () => {
-    const saved = saveDocument('test', editor.getJSON());
-    const write = vi.spyOn(Storage.prototype, 'setItem');
-    expect(saveDocument('test', editor.getJSON())).toEqual(saved);
+  it('round-trips an unchanged saved document without writing or triggering cross-tab conflicts', async () => {
+    const saved = await store.activateDocument({ version: 1, id: 'unchanged', title: 'test', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' });
+    const write = vi.spyOn(IDBObjectStore.prototype, 'put');
+    expect(parseDocument(JSON.stringify(saved))).toEqual(saved);
     expect(write).not.toHaveBeenCalled();
   });
-  it('round trips structured content and title', () => {
-    saveDocument('测试项目', editor.getJSON());
-    const restored = readSavedDocument();
+  it('round trips structured content and title', async () => {
+    await store.activateDocument({ version: 1, id: 'roundtrip', title: '测试项目', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' });
+    const restored = await store.readSavedDocument();
     expect(restored.error).toBeUndefined();
     expect(restored.data?.title).toBe('测试项目');
     expect(restored.data?.content).toEqual(editor.getJSON());
   });
-  it('does not overwrite a damaged or incompatible saved document', () => {
+  it('does not overwrite a damaged or incompatible saved document', async () => {
     for (const raw of ['{invalid', JSON.stringify({ version: 99, title: 'future', content: { type: 'doc' } })]) {
-      localStorage.setItem(STORAGE_KEY, raw);
-      expect(readSavedDocument().error).toBeDefined();
-      expect(localStorage.getItem(STORAGE_KEY)).toBe(raw);
+      localStorage.setItem(LEGACY_DOCUMENT_KEY, raw);
+      expect((await store.readSavedDocument()).error).toBeDefined();
+      expect(localStorage.getItem(LEGACY_DOCUMENT_KEY)).toBe(raw);
     }
   });
 });

@@ -3,9 +3,14 @@ import { Editor } from '@tiptap/core';
 import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { activateDocument, archiveDocument, listDocuments, openArchivedDocument, parseDocument, readSavedDocument, saveDocument, STORAGE_KEY } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
+import 'fake-indexeddb/auto';
+import { IDBFactory } from 'fake-indexeddb';
+let store: typeof import('../lib/infrastructure/persistence/document-store');
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => {
+  localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules();
+  store = await import('../lib/infrastructure/persistence/document-store');
   editor = new Editor({ extensions: createExtensions(), content: '<p>First paragraph</p><p>Second paragraph</p><p>Third paragraph</p>' });
   await new Promise(r => setTimeout(r, 0)); engine = new DocumentEngine(editor);
 });
@@ -66,7 +71,7 @@ describe('foundation acceptance', () => {
       { type: 'table.style', borderColor: '#222F43', borderWidth: 2, padding: 8, verticalAlign: 'top' },
     ] }).ok).toBe(true);
     expect(tableNode().firstChild!.child(1).attrs).toMatchObject({ colwidth: [180], padding: 8, verticalAlign: 'top' });
-    const saved = saveDocument('Table', editor.getJSON());
+    const saved = { version: 1, title: 'Table', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' };
     expect(parseDocument(JSON.stringify(saved)).content).toEqual(editor.getJSON());
   });
   it('restores structured HTML pasted into the editor including table spans and rich text', () => {
@@ -75,25 +80,26 @@ describe('foundation acceptance', () => {
     expect(editor.getHTML()).toContain('<strong>Copied</strong>');
     expect(TableMap.get(tableNode()).problems).toBeNull();
   });
-  it('preserves previous documents when creating, importing and reopening local documents', () => {
-    const first = saveDocument('Original', editor.getJSON()); archiveDocument(first);
-    const second = activateDocument({ ...first, id: crypto.randomUUID(), title: 'Imported copy' });
-    expect(listDocuments()).toHaveLength(2);
-    expect(readSavedDocument().data!.title).toBe('Imported copy');
-    activateDocument(openArchivedDocument(first.id!));
-    expect(readSavedDocument().data!.content).toEqual(first.content);
-    expect(openArchivedDocument(second.id!).title).toBe('Imported copy');
+  it('preserves previous documents when creating, importing and reopening local documents', async () => {
+    const first = await store.activateDocument({ version: 1, id: 'original', title: 'Original', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' }); await store.archiveDocument(first);
+    const second = await store.activateDocument({ ...first, id: crypto.randomUUID(), title: 'Imported copy' });
+    expect(await store.listDocuments()).toHaveLength(2);
+    expect((await store.readSavedDocument()).data!.title).toBe('Imported copy');
+    await store.activateDocument(await store.openArchivedDocument(first.id!));
+    expect((await store.readSavedDocument()).data!.content).toEqual(first.content);
+    expect((await store.openArchivedDocument(second.id!)).title).toBe('Imported copy');
   });
-  it('rejects damaged and unsafe backups before changing storage', () => {
-    const before = saveDocument('Original', editor.getJSON());
+  it('rejects damaged and unsafe backups before changing storage', async () => {
+    const before = await store.activateDocument({ version: 1, id: 'original', title: 'Original', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' });
     for (const raw of ['{}', '{bad', JSON.stringify({ ...before, content: { type: 'doc', content: [{ type: 'unknown' }] } }), JSON.stringify({ ...before, content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'link', marks: [{ type: 'link', attrs: { href: 'javascript:alert(1)' } }] }] }] } })]) expect(() => parseDocument(raw)).toThrow();
-    expect(readSavedDocument().data!.content).toEqual(before.content);
+    expect((await store.readSavedDocument()).data!.content).toEqual(before.content);
   });
-  it('leaves the current document intact if storage is full', () => {
-    const before = saveDocument('Original', editor.getJSON());
-    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('Quota exceeded', 'QuotaExceededError'); });
-    expect(() => activateDocument({ ...before, id: crypto.randomUUID(), title: 'New' })).toThrow();
-    expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!).title).toBe('Original');
+  it('leaves the current document intact if storage is full', async () => {
+    const before = await store.activateDocument({ version: 1, id: 'original', title: 'Original', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' });
+    vi.spyOn(IDBObjectStore.prototype, 'put').mockImplementation(() => { throw new DOMException('Quota exceeded', 'QuotaExceededError'); });
+    await expect(store.activateDocument({ ...before, id: crypto.randomUUID(), title: 'New' })).rejects.toThrow();
+    vi.restoreAllMocks();
+    expect((await store.readSavedDocument()).data!.title).toBe('Original');
   });
 });
 it('subdivides an ordinary cell without losing neighboring cells and undoes the grid expansion', () => {

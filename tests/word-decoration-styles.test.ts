@@ -6,7 +6,7 @@ import JSZip from 'jszip';
 import { importWord, exportWord } from '../lib/infrastructure/word/word';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { previewSource } from '../lib/infrastructure/preview/paged-preview';
 import { colorToHex } from '../lib/domain/text/color';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));

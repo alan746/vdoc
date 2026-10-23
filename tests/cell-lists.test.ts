@@ -5,7 +5,7 @@ import {createExtensions} from '../lib/editor/extensions';
 import {graphemeCount,selectionGraphemeCount} from '../lib/domain/text/unicode';
 import {selectedCellListType} from '../lib/editor/list/cell-lists';
 import {DocumentEngine} from '../lib/usecases/engine';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {exportWord,importWord} from '../lib/infrastructure/word/word';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 let editor:Editor,engine:DocumentEngine;

@@ -6,7 +6,7 @@ import {createExtensions} from '../lib/editor/extensions';
 import {DocumentEngine} from '../lib/usecases/engine';
 import {effectiveFormatActive} from '../lib/editor/format/format-overrides';
 import {copyTextFormat} from '../lib/editor/format/format-copy';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {exportWord,importWord} from '../lib/infrastructure/word/word';
 import {exportHTML} from '../lib/infrastructure/export/html-export';
 import {previewSource} from '../lib/infrastructure/preview/paged-preview';

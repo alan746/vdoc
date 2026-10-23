@@ -1,5 +1,5 @@
 import type { FileImporter } from '../../usecases/ports';
-import { parseDocument } from '../persistence/storage';
+import { parseDocument } from '../persistence/document-codec';
 
 /** Native JSON backup; the registry gates supported extensions before decoding. */
 export const backupImporter: FileImporter = {

@@ -3,7 +3,7 @@ import { Editor, type JSONContent } from '@tiptap/core';
 import * as d from 'docx';
 import JSZip from 'jszip';
 import { createExtensions } from '../lib/editor/extensions';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { exportWord, importWord } from '../lib/infrastructure/word/word';
 import { restoreWordFormatting } from '../lib/infrastructure/word/word-import-formatting';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));

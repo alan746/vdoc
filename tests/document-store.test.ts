@@ -1,7 +1,8 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { beforeEach, expect, it, vi } from 'vitest';
-import { STORAGE_KEY, parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
+const LEGACY_DOCUMENT_KEY = 'vdoc.document.v1';
 const content = { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Keep my document' }] }] };
 beforeEach(async () => {
   // Isolate the database connection between tests; each test uses fresh IDs.
@@ -29,7 +30,7 @@ it('round trips rich document backup content through IndexedDB', async () => {
 it('migrates the original document and library without deleting the recovery source', async () => {
   const current = { version: 1, id: 'legacy-current', title: 'Original', content, savedAt: new Date().toISOString() };
   const archived = { ...current, id: 'legacy-archive', title: 'Archived' };
-  const raw = JSON.stringify(current); localStorage.setItem(STORAGE_KEY, raw);
+  const raw = JSON.stringify(current); localStorage.setItem(LEGACY_DOCUMENT_KEY, raw);
   localStorage.setItem('vdoc.library.v1', JSON.stringify([{ id: archived.id, title: archived.title, savedAt: archived.savedAt }]));
   localStorage.setItem('vdoc.archive.legacy-archive', JSON.stringify(archived));
   const store = await import('../lib/infrastructure/persistence/document-store');
@@ -37,15 +38,15 @@ it('migrates the original document and library without deleting the recovery sou
   expect((await store.listDocuments()).map(d => d.title).sort()).toEqual(['Archived','Original']);
   await store.saveDocument('Edited original', content, 'legacy-current');
   expect((await store.readSavedDocument()).data!.title).toBe('Edited original');
-  expect(localStorage.getItem(STORAGE_KEY)).toBe(raw);
+  expect(localStorage.getItem(LEGACY_DOCUMENT_KEY)).toBe(raw);
 });
 it('preserves damaged legacy data and allows a separate imported document', async () => {
-  localStorage.setItem(STORAGE_KEY, '{damaged');
+  localStorage.setItem(LEGACY_DOCUMENT_KEY, '{damaged');
   const store = await import('../lib/infrastructure/persistence/document-store');
   expect((await store.readSavedDocument()).error).toBeDefined();
   await store.activateDocument({version:1,id:'recovered',title:'Recovered',content,savedAt:new Date().toISOString()});
   expect((await store.readSavedDocument()).data!.title).toBe('Recovered');
-  expect(localStorage.getItem(STORAGE_KEY)).toBe('{damaged');
+  expect(localStorage.getItem(LEGACY_DOCUMENT_KEY)).toBe('{damaged');
 });
 it('restores a saved version and preserves the work it replaces', async () => {
   const store = await import('../lib/infrastructure/persistence/document-store'), versionStore = await import('../lib/infrastructure/persistence/version-store');
@@ -208,7 +209,7 @@ it('rolls back linked activation if local storage cannot commit it', async () =>
 it('resolves a document link after migrating the legacy archive', async () => {
   const current = { version: 1, id: 'legacy-current', title: 'Original', content, savedAt: new Date().toISOString() };
   const archived = { ...current, id: 'legacy-linked', title: 'Linked legacy' };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+  localStorage.setItem(LEGACY_DOCUMENT_KEY, JSON.stringify(current));
   localStorage.setItem('vdoc.library.v1', JSON.stringify([{ id: archived.id, title: archived.title, savedAt: archived.savedAt }]));
   localStorage.setItem(`vdoc.archive.${archived.id}`, JSON.stringify(archived));
   const store = await import('../lib/infrastructure/persistence/document-store');

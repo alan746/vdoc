@@ -4,7 +4,7 @@ import {CellSelection,TableMap} from '@tiptap/pm/tables';
 import {NodeSelection} from '@tiptap/pm/state';
 import {createExtensions} from '../lib/editor/extensions';
 import {exportWord,importWord} from '../lib/infrastructure/word/word';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 import {DocumentEngine} from '../lib/usecases/engine';
 let editor:Editor,engine:DocumentEngine;

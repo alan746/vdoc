@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
-import { parseDocument, saveDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 it('edits, formats, undoes and round-trips a 2500-paragraph document without loss', async () => {
   const content = { type: 'doc', content: Array.from({ length: 2500 }, (_, i) => ({ type: 'paragraph', attrs: { blockId: `load_${i}` }, content: [{ type: 'text', text: `Paragraph ${i}: ${'A realistic long document with editable text. '.repeat(5)}` }] })) };
   const start = performance.now();
@@ -19,10 +19,10 @@ it('edits, formats, undoes and round-trips a 2500-paragraph document without los
     }
     for (let i = 0; i < 20; i++) engine.history('undo', 'api');
     expect(editor.getJSON()).toEqual(before);
-    const saveStart = performance.now(); const saved = saveDocument('Load test', editor.getJSON());
+    const saveStart = performance.now(); const saved = { version: 1, title: 'Load test', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' };
     const restored = parseDocument(JSON.stringify(saved));
     expect(restored.content).toEqual(before);
-    console.info(JSON.stringify({ paragraphs: 2500, characters: editor.state.doc.textContent.length, loadMs: Math.round(loadMs), editMaxMs: Math.round(Math.max(...times)), editMeanMs: Math.round(times.reduce((a,b)=>a+b,0)/times.length), saveAndParseMs: Math.round(performance.now()-saveStart) }));
+    console.info(JSON.stringify({ paragraphs: 2500, characters: editor.state.doc.textContent.length, loadMs: Math.round(loadMs), editMaxMs: Math.round(Math.max(...times)), editMeanMs: Math.round(times.reduce((a,b)=>a+b,0)/times.length), serializeAndParseMs: Math.round(performance.now()-saveStart) }));
     expect(Math.max(...times)).toBeLessThan(1000);
-  } finally { engine.destroy(); editor.destroy(); localStorage.clear(); }
+  } finally { engine.destroy(); editor.destroy(); }
 }, 20000);

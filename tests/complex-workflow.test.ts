@@ -5,7 +5,7 @@ import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 import type { OperationRequest } from '../lib/domain/entities/operation';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { activateDocument, saveDocument, openArchivedDocument } from '../lib/infrastructure/persistence/document-store';
 import { saveVersion, restoreVersion } from '../lib/infrastructure/persistence/version-store';
 import { exportWord, importWord } from '../lib/infrastructure/word/word';

@@ -1,5 +1,5 @@
 import { openDatabase, transactionDone, requestResult, writeTransaction } from './indexed-db';
-import { parseDocument } from './storage';
+import { parseDocument } from './document-codec';
 import { documentChanges } from './document-change-channel';
 import { truncateGraphemePrefix } from '../../domain/text/unicode';
 import type { DocumentDraft, DocumentSummary, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../../domain/entities/document';

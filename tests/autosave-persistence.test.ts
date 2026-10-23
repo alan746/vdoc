@@ -99,7 +99,7 @@ it.each(['synchronous quota error', 'asynchronous summary failure'])('backs up t
   const store = await import('../lib/infrastructure/persistence/document-store');
   const { startAutosave } = await import('../lib/composition/autosave');
   const { exportLocalDocument } = await import('../components/editor/local-export');
-  const { parseDocument } = await import('../lib/infrastructure/persistence/storage');
+  const { parseDocument } = await import('../lib/infrastructure/persistence/document-codec');
   const original = await store.activateDocument({ version: 1, id: 'backup-recovery', title: 'Original', content: editor.getJSON(), savedAt: new Date().toISOString() });
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'performance'] });
   let title = original.title, settle: (() => void) | undefined;

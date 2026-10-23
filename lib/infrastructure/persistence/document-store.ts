@@ -1,5 +1,5 @@
 import type { JSONContent } from '@tiptap/core';
-import { parseDocument, STORAGE_KEY } from './storage';
+import { parseDocument } from './document-codec';
 import { documentChanges } from './document-change-channel';
 import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import type { DocumentDraft, DocumentSummary, SavedDocument } from '../../domain/entities/document';
@@ -7,6 +7,10 @@ import type { ActiveDocumentRead } from '../../usecases/ports';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction, commitWrites } from './indexed-db';
 import { summary, verifiedStoredDocument, withDocumentRecord, withWritableDocument } from './document-records';
 
+
+const LEGACY_DOCUMENT_KEY = 'vdoc.document.v1';
+const LEGACY_LIBRARY_KEY = 'vdoc.library.v1';
+const legacyArchiveKey = (id: string) => `vdoc.archive.${id}`;
 
 async function migrateLegacy(db: IDBDatabase) {
   if (await result(db.transaction('settings').objectStore('settings').get('legacyMigrated'))) return;
@@ -20,7 +24,7 @@ async function migrateLegacy(db: IDBDatabase) {
   active.onsuccess = () => {
     try {
       if (migrated.result) return;
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(LEGACY_DOCUMENT_KEY);
       const entries = new Map<string, SavedDocument>();
       let current: SavedDocument | undefined;
       if (raw) {
@@ -28,11 +32,11 @@ async function migrateLegacy(db: IDBDatabase) {
         catch (error) { if (!active.result) throw error; }
       }
       let legacy: DocumentSummary[] = [];
-      try { const parsed = JSON.parse(localStorage.getItem('vdoc.library.v1') || '[]'); if (Array.isArray(parsed)) legacy = parsed; }
+      try { const parsed = JSON.parse(localStorage.getItem(LEGACY_LIBRARY_KEY) || '[]'); if (Array.isArray(parsed)) legacy = parsed; }
       catch { /* Retain the original index for recovery. */ }
       for (const entry of legacy) {
         if (!entry || typeof entry.id !== 'string' || !entry.id) continue;
-        const archived = localStorage.getItem(`vdoc.archive.${entry.id}`);
+        const archived = localStorage.getItem(legacyArchiveKey(entry.id));
         if (archived) {
           try {
             const parsed = parseDocument(archived), document = { ...parsed, id: parsed.id || entry.id };

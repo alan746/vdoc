@@ -2,7 +2,7 @@ import {afterEach,beforeEach,expect,it,vi} from 'vitest';
 import {Editor} from '@tiptap/core';
 import {createExtensions} from '../lib/editor/extensions';
 import {DocumentEngine} from '../lib/usecases/engine';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {exportWord,importWord} from '../lib/infrastructure/word/word';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 let editor:Editor,engine:DocumentEngine;

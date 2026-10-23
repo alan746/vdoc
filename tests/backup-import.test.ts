@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto';
 import {IDBFactory} from 'fake-indexeddb';
 import {beforeEach,expect,it,vi} from 'vitest';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {importDocumentFile} from '../lib/composition/import-file';
 
 beforeEach(()=>{localStorage.clear();globalThis.indexedDB=new IDBFactory();vi.resetModules();});

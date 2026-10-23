@@ -3,7 +3,7 @@ import type { JSONContent } from '@tiptap/core';
 import * as d from 'docx';
 import JSZip from 'jszip';
 import { importWord, exportWord } from '../lib/infrastructure/word/word';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 vi.mock('mammoth',()=>vi.importActual('mammoth/mammoth.browser.js'));
 const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 const bytes=(blob:Blob)=>new Promise<ArrayBuffer>((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result as ArrayBuffer);r.onerror=reject;r.readAsArrayBuffer(blob);});

@@ -1,5 +1,5 @@
 import type { SavedDocument, DocumentVersion, VersionSnapshot } from '../../domain/entities/document';
-import { parseDocument } from './storage';
+import { parseDocument } from './document-codec';
 import { documentChanges } from './document-change-channel';
 import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction } from './indexed-db';

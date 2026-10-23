@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { beforeEach, expect, it, vi } from 'vitest';
 import JSZip from 'jszip';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { exportHTML } from '../lib/infrastructure/export/html-export';
 import { previewSource } from '../lib/infrastructure/preview/paged-preview';
 import { previewPageWidth } from '../lib/infrastructure/preview/preview-layout';

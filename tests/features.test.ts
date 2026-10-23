@@ -3,10 +3,10 @@ import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 import { findMatches } from '../lib/editor/search/search';
-import { parseDocument, saveDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 let editor: Editor, engine: DocumentEngine;
 beforeEach(async () => { editor = new Editor({ extensions: createExtensions(), content: '<p>Apple <strong>ap</strong>ple pineapple APPLE</p><p>中文文字</p>' }); await new Promise(r=>setTimeout(r,0)); engine = new DocumentEngine(editor); });
-afterEach(() => { engine.destroy(); editor.destroy(); localStorage.clear(); });
+afterEach(() => { engine.destroy(); editor.destroy(); });
 it('finds across formatting marks, honors case/word boundaries and replaces atomically', () => {
   expect(findMatches(editor.state.doc, 'apple')).toHaveLength(4);
   expect(findMatches(editor.state.doc, 'apple', false, true)).toHaveLength(3);
@@ -44,7 +44,7 @@ it('creates an interactive checklist, preserves check state and undoes conversio
   expect(editor.getHTML()).toContain('data-type="taskList"');
   editor.commands.updateAttributes('taskItem',{checked:true});
   expect(editor.getHTML()).toContain('data-checked="true"');
-  const saved = saveDocument('Checklist',editor.getJSON());expect(parseDocument(JSON.stringify(saved)).content).toEqual(saved.content);
+  const saved = { version: 1, title: 'Checklist', content: editor.getJSON(), savedAt: '2026-10-17T00:00:00.000Z' };expect(parseDocument(JSON.stringify(saved)).content).toEqual(saved.content);
 });
 it('saves page setup and explicit breaks, and rejects external image sources', () => {
   expect(engine.execute({operations:[{type:'document.layout',pageSize:'letter',orientation:'landscape',pageMargin:15,pageColor:'#FFF0AD'},{type:'block.pageBreak'}]}).ok).toBe(true);

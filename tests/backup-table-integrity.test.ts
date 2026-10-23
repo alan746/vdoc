@@ -5,7 +5,7 @@ import { beforeEach, expect, it, vi } from 'vitest';
 import { getSchema, type JSONContent } from '@tiptap/core';
 import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../lib/editor/extensions';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 
 const schema = getSchema(createExtensions());
 const cell = (text: string, attrs = {}): JSONContent => ({ type: 'tableCell', attrs, content: [{ type: 'paragraph', content: [{ type: 'text', text, marks: [{ type: 'bold' }] }] }] });

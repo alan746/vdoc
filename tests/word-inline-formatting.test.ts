@@ -2,7 +2,7 @@ import { expect, it, vi } from 'vitest';
 import type { JSONContent } from '@tiptap/core';
 import { exportWord, importWord } from '../lib/infrastructure/word/word';
 import { colorToHex } from '../lib/domain/text/color';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import * as docx from 'docx';
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 const bytes = (blob: Blob) => new Promise<ArrayBuffer>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result as ArrayBuffer); reader.onerror = reject; reader.readAsArrayBuffer(blob); });

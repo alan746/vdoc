@@ -127,7 +127,7 @@ it('backs up the final candidate draft after a storage abort, then retries the n
   const { exportLocalDocument } = await import('../components/editor/local-export');
   expect(exportLocalDocument(editor, currentTitle, 'json')).toBe(true);
   const raw = await new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result as string); reader.onerror = reject; reader.readAsText(blob!); });
-  const backup = (await import('../lib/infrastructure/persistence/storage')).parseDocument(raw);
+  const backup = (await import('../lib/infrastructure/persistence/document-codec')).parseDocument(raw);
   expect(backup.title).toBe(currentTitle); expect(backup.content).toEqual(draft);
   const leaving = new Event('beforeunload', { cancelable: true }); window.dispatchEvent(leaving); expect(leaving.defaultPrevented).toBe(true);
   await vi.waitFor(() => expect(report.mock.lastCall![0]).toBe('Save failed. Download a backup.'));

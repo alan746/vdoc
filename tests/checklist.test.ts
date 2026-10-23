@@ -5,7 +5,7 @@ import JSZip from 'jszip';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 import { checklistContext } from '../lib/editor/list/checklist';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import { exportHTML } from '../lib/infrastructure/export/html-export';
 import { previewSource } from '../lib/infrastructure/preview/paged-preview';
 import { exportWord, importWord } from '../lib/infrastructure/word/word';

@@ -1,14 +1,14 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { STORAGE_KEY } from '../lib/infrastructure/persistence/storage';
 
 beforeEach(() => { localStorage.clear(); globalThis.indexedDB = new IDBFactory(); vi.resetModules(); });
 afterEach(() => vi.restoreAllMocks());
+const LEGACY_DOCUMENT_KEY = 'vdoc.document.v1';
 const content = { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: '中文 العربية 👩‍💻', marks: [{ type: 'bold' }] }] }] };
 const legacyDocument = (id?: string) => ({ version: 1, ...(id ? { id } : {}), title: id || 'Original without ID', content, savedAt: '2026-10-05T12:00:00.000Z' });
 function seed(id?: string) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(legacyDocument(id)));
+  localStorage.setItem(LEGACY_DOCUMENT_KEY, JSON.stringify(legacyDocument(id)));
   localStorage.setItem('vdoc.library.v1', JSON.stringify([{ id: 'archive', title: 'Archive' }]));
   localStorage.setItem('vdoc.archive.archive', JSON.stringify(legacyDocument('archive')));
   return { ...localStorage };
@@ -56,7 +56,7 @@ it('preserves newer stored content and its active selection while migrating othe
 });
 it('prefers the current draft when the legacy archive lists the same document more than once', async () => {
   seed('archive');
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...legacyDocument('archive'), title: 'Current draft', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Latest 中文' }] }] } }));
+  localStorage.setItem(LEGACY_DOCUMENT_KEY, JSON.stringify({ ...legacyDocument('archive'), title: 'Current draft', content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Latest 中文' }] }] } }));
   localStorage.setItem('vdoc.library.v1', JSON.stringify([{ id: 'archive' }, { id: 'archive' }]));
   const originals = { ...localStorage }, store = await import('../lib/infrastructure/persistence/document-store');
   const current = await store.readSavedDocument();

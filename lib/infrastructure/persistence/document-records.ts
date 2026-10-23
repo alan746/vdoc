@@ -1,5 +1,5 @@
 import type { DocumentSummary, LibraryMetadata, SavedDocument } from '../../domain/entities/document';
-import { parseDocument } from './storage';
+import { parseDocument } from './document-codec';
 
 // Shared record helpers for stores that read or write document rows.
 export const summary = (doc: SavedDocument): DocumentSummary => ({ id: doc.id, title: doc.title, savedAt: doc.savedAt });

@@ -7,7 +7,7 @@ import type { EditorFeature } from '../lib/editor/feature';
 import { operationHandlers } from '../lib/editor/commands/registry';
 import { operationSchema } from '../lib/domain/entities/operation';
 import { validateDocumentTree } from '../lib/domain/rules/document-validation';
-import { parseDocument } from '../lib/infrastructure/persistence/storage';
+import { parseDocument } from '../lib/infrastructure/persistence/document-codec';
 import baseline from './support/editor-schema-baseline.json';
 
 it('preserves the pre-refactor extension order, compiled schema, attributes and operation handler set', () => {

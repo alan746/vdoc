@@ -1,7 +1,7 @@
 import {afterEach,beforeEach,expect,it} from 'vitest';
 import {Editor,type JSONContent} from '@tiptap/core';
 import {NodeSelection} from '@tiptap/pm/state';
-import {parseDocument} from '../lib/infrastructure/persistence/storage';
+import {parseDocument} from '../lib/infrastructure/persistence/document-codec';
 import {createExtensions} from '../lib/editor/extensions';
 import {DocumentEngine} from '../lib/usecases/engine';
 let editor:Editor,engine:DocumentEngine;
