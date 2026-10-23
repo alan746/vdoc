@@ -1,14 +1,15 @@
 import { Extension } from '@tiptap/core';
-import { Plugin } from '@tiptap/pm/state';
+import { Plugin, PluginKey } from '@tiptap/pm/state';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
-import { AddMarkStep, RemoveMarkStep, ReplaceStep } from '@tiptap/pm/transform';
 import type { Node } from '@tiptap/pm/model';
 import { paragraphBorderGroupKey } from './paragraph-borders';
+import { everyStep, isTypingStep } from '../transaction-steps';
 
 export const PARAGRAPH_BORDER_GROUP_CSS = `
 [data-vdoc-border-next="true"] { margin-bottom:0!important; border-bottom:0!important; }
 [data-vdoc-border-prev="true"] { margin-top:0!important; border-top:var(--vdoc-between-border,0 solid transparent)!important; padding-top:var(--vdoc-between-padding,var(--vdoc-border-top-padding,0px))!important; }
 `;
+export const paragraphBorderGroupsKey=new PluginKey<DecorationSet>('paragraphBorderGroups');
 const paragraph = (node:Node|undefined) => node && ['paragraph','heading'].includes(node.type.name);
 function decorations(doc:Node) {
   const items:Decoration[]=[];
@@ -26,16 +27,11 @@ function decorations(doc:Node) {
 export const ParagraphBorderGroups = Extension.create({
   name:'paragraphBorderGroups',
   addProseMirrorPlugins(){return [new Plugin<DecorationSet>({
+    key:paragraphBorderGroupsKey,
     state:{init:(_,state)=>decorations(state.doc),apply:(tr,current)=>{
       if(!tr.docChanged)return current;
-      const inlineOnly=tr.steps.every((step,index)=>{
-        if(step instanceof AddMarkStep||step instanceof RemoveMarkStep)return true;
-        if(!(step instanceof ReplaceStep))return false;
-        const from=tr.docs[index].resolve(step.from),to=tr.docs[index].resolve(step.to);
-        if(!from.parent.inlineContent||!from.sameParent(to))return false;
-        let inline=true;step.slice.content.forEach(node=>{if(!node.isInline)inline=false;});return inline;
-      });
-      return inlineOnly?current.map(tr.mapping,tr.doc):decorations(tr.doc);
+      // Groups depend only on paragraph attributes and siblings, which typing cannot change.
+      return everyStep([tr],isTypingStep)?current.map(tr.mapping,tr.doc):decorations(tr.doc);
     }},
     props:{decorations(state){return this.getState(state);}},
   })];},
