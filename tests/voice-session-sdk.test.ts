@@ -84,6 +84,9 @@ it.each(['doc-1', 'u_owner_scoped_document'])('authenticates the real SDK, recon
   connection.close();
   await vi.waitFor(() => expect(upstream).toHaveBeenLastCalledWith(`https://voice.example/v1/documents/${transportId}/voice-sessions/voice-1`, expect.objectContaining({ method: 'DELETE' })));
   expect(upstream).toHaveBeenCalledTimes(3);
+  const upstreamHeaders = upstream.mock.calls.map(([, init]) => new Headers(init.headers));
+  expect(upstreamHeaders.map(headers => headers.get('x-vdoc-user-id'))).toEqual(['user-1', 'user-1', 'user-1']);
+  expect(new Set(upstreamHeaders.map(headers => headers.get('x-request-id'))).size).toBe(3);
   const browserMessages = JSON.stringify(sockets.flatMap(socket => socket.sent));
   expect(browserMessages).not.toContain('server-only-client-key');
   expect(browserMessages).not.toContain('documentSessionId');

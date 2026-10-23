@@ -2,8 +2,19 @@
 export class VoiceConnectionError extends Error {}
 
 export async function voiceRequestError(response: Response): Promise<VoiceConnectionError> {
-  const data = await response.json().catch(() => null) as { error?: { code?: string } } | null;
+  const data = await response.json().catch(() => null) as { error?: { code?: string; quotaKind?: string; retryAfterSeconds?: number } } | null;
   const code = data?.error?.code;
+  const seconds = data?.error?.retryAfterSeconds;
+  const retry = typeof seconds === 'number' && Number.isSafeInteger(seconds) && seconds > 0 ? ` Try again in ${seconds} ${seconds === 1 ? 'second' : 'seconds'}.` : '';
+  if (response.status === 503 && code === 'QUOTA_UNAVAILABLE') return new VoiceConnectionError('Voice limits could not be checked. Try again later.' + retry);
+  if (response.status === 429 && code === 'QUOTA_EXCEEDED') {
+    const kind = data?.error?.quotaKind;
+    const message = kind === 'concurrency'
+      ? 'Too many voice sessions are open for your account. Disconnect another session, then retry.'
+      : kind === 'rate' ? 'Your account has reached its hourly voice session limit. Wait before starting another session.'
+        : 'Your account has reached a voice session limit. Wait before retrying.';
+    return new VoiceConnectionError(message + retry);
+  }
   const messages: Record<string, string> = {
     VOICE_NOT_CONFIGURED: 'Voice is not available on this site yet. Contact the site administrator.',
     AUTH_UNAVAILABLE: 'Sign-in is temporarily unavailable. Try again later.',

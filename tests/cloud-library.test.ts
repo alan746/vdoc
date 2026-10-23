@@ -4,6 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { applyMigrations } from '../scripts/neon-migrations.mjs';
 import { handleLibraryRequest, type LibraryDependencies } from '../lib/infrastructure/cloud-library/http';
 import { type CloudItem, type SqlClient } from '../lib/infrastructure/cloud-library/store';
+import { proxyVoiceSession } from '../lib/infrastructure/realtime/voice-session-proxy';
 import { authorizeVoiceDocument } from '../lib/infrastructure/cloud-library/voice-access';
 
 const pg = new PGlite();
@@ -118,6 +119,43 @@ describe('authenticated Neon document API', () => {
     expect(await authorizeVoiceDocument(pg as SqlClient, 'bob', 'alice-only')).toBeNull();
     expect(await authorizeVoiceDocument(pg as SqlClient, 'alice', 'discarded')).toBeNull();
     expect(await authorizeVoiceDocument(pg as SqlClient, 'alice', 'parent')).toBeNull();
+  });
+  it('sends the live account and its own cloud room on every voice lifecycle request', async () => {
+    for (const owner of ['alice', 'bob']) await put(owner, doc('voice-imported-id'));
+    const calls: { user: string | null; requestId: string | null; url: string }[] = [];
+    const key = 'server-only-voice-application-key';
+    for (const owner of ['alice', 'bob']) {
+      const transport = await authorizeVoiceDocument(pg as SqlClient, owner, 'voice-imported-id');
+      for (const action of ['create', 'grant', 'end'] as const) {
+        const result = await proxyVoiceSession(new Request(`${origin}/api/voice-sessions`, {
+          method: action === 'end' ? 'DELETE' : 'POST',
+          headers: { origin, 'content-type': 'application/json', 'x-vdoc-user-id': owner === 'alice' ? 'bob' : 'alice', 'x-request-id': 'forged-id' },
+          body: JSON.stringify({ documentId: 'voice-imported-id' }),
+        }), action, action === 'create' ? undefined : `${owner}-voice`, {
+          getUser: async () => ({ userId: owner }), serverUrl: 'https://voice.example', clientKey: key,
+          authorizeDocument: (userId, id) => authorizeVoiceDocument(pg as SqlClient, userId, id),
+          fetch: async (input, init) => {
+            const headers = new Headers(init?.headers);
+            expect(headers.get('authorization')).toBe(`Bearer ${key}`);
+            calls.push({ user: headers.get('x-vdoc-user-id'), requestId: headers.get('x-request-id'), url: String(input) });
+            if (action === 'end') return new Response(null, { status: 204 });
+            const grant = { token: 'short-lived-grant', expiresAt: Date.now() + 60000 };
+            return Response.json(action === 'grant' ? grant : { documentId: transport, sessionId: `${owner}-voice`, grant, realtimePath: `/v1/documents/${transport}/voice-sessions/${owner}-voice/realtime` }, { status: 201 });
+          },
+        });
+        expect(result.status).toBe(action === 'end' ? 204 : 201);
+        const body = await result.text();
+        expect(body).not.toContain(key);
+        expect(body).not.toContain('forged-id');
+      }
+    }
+    expect(calls.map(call => call.user)).toEqual(['alice', 'alice', 'alice', 'bob', 'bob', 'bob']);
+    expect(new Set(calls.map(call => call.requestId)).size).toBe(6);
+    const rooms = calls.map(call => call.url.split('/')[5]);
+    expect(new Set(rooms.slice(0, 3)).size).toBe(1);
+    expect(new Set(rooms.slice(3)).size).toBe(1);
+    expect(rooms[0]).not.toBe(rooms[3]);
+    await pg.query('delete from library_item where id=$1', ['voice-imported-id']);
   });
   it('permanently removes document contents and versions while retaining a non-resurrectable tombstone', async () => {
     expect((await call('alice', { action: 'delete', id: 'same-id', expectedRevision: 4 })).status).toBe(409);

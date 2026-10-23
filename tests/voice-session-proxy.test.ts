@@ -48,7 +48,7 @@ it('forwards creation with only the server key and returns only the public sessi
   expect(result.status).toBe(201); expect(result.headers.get('cache-control')).toBe('no-store');
   expect(await result.json()).toEqual(created);
   expect(deps.fetch).toHaveBeenCalledWith('https://voice.example/v1/documents/doc-1/voice-sessions', expect.objectContaining({
-    method: 'POST', headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+    method: 'POST', headers: { Authorization: `Bearer ${key}`, 'X-Vdoc-User-Id': 'user-1', 'X-Request-Id': expect.stringMatching(/^[0-9a-f-]{36}$/), 'Content-Type': 'application/json' },
     body: '{}', redirect: 'error', cache: 'no-store',
   }));
   const headers = vi.mocked(deps.fetch).mock.calls[0][1]!.headers;
@@ -69,7 +69,7 @@ it.each(['../doc-2', '.', '..', 'x/y', 'x?key=secret', ''])('rejects unsafe docu
   expect(deps.fetch).not.toHaveBeenCalled();
 });
 it('rejects injected user IDs, upstream URLs and credentials in the body', async () => {
-  for (const property of ['userId', 'serverUrl', 'clientKey', 'sessionId']) {
+  for (const property of ['userId', 'clientId', 'principalId', 'quotaSubject', 'serverUrl', 'clientKey', 'sessionId']) {
     expect((await run('create', makeRequest('create', { documentId: 'doc-1', [property]: 'spoofed' }))).status).toBe(400);
   }
   expect(deps.fetch).not.toHaveBeenCalled();
@@ -132,4 +132,91 @@ it.each([402, 429])('preserves quota/limit HTTP %s without exposing upstream det
   vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ secret: key }, { status }));
   const result = await run('create');
   expect(result.status).toBe(status); expect(await result.text()).not.toContain(key);
+});
+
+it.each(['create', 'grant', 'end'] as const)('derives trusted user identity and a fresh request ID for %s despite forged browser headers', async action => {
+  const request = makeRequest(action, { documentId: 'doc-1' }, {
+    Authorization: 'Bearer browser-controlled-key', Cookie: 'private-session',
+    'X-Vdoc-User-Id': 'user-2', 'X-Request-Id': 'browser-controlled-id', 'X-Client-Id': 'other-app',
+  });
+  const result = await run(action, request);
+  expect(result.status).toBe(action === 'end' ? 204 : 201);
+  const headers = new Headers(vi.mocked(deps.fetch).mock.calls[0][1]!.headers);
+  expect(headers.get('authorization')).toBe(`Bearer ${key}`);
+  expect(headers.get('x-vdoc-user-id')).toBe('user-1');
+  expect(headers.get('x-request-id')).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+  for (const name of ['cookie', 'x-client-id']) expect(headers.has(name)).toBe(false);
+  const body = await result.text();
+  for (const secret of [key, 'browser-controlled-key', 'private-session', 'browser-controlled-id']) expect(body).not.toContain(secret);
+});
+
+it('keeps the same verified user across lifecycle calls but generates independent tracing IDs', async () => {
+  await run('create'); await run('grant'); await run('end');
+  const headers = vi.mocked(deps.fetch).mock.calls.map(([, init]) => new Headers(init!.headers));
+  expect(headers.map(header => header.get('x-vdoc-user-id'))).toEqual(['user-1', 'user-1', 'user-1']);
+  expect(new Set(headers.map(header => header.get('x-request-id'))).size).toBe(3);
+});
+
+it.each(['', ' leading-space', 'trailing-space ', 'a\nb', 'a\rb', 'trailing\n', 'trailing\r', '姓名', '/another', 'x'.repeat(129)])('rejects an invalid verified user ID before upstream I/O: %j', async userId => {
+  deps.getUser = async () => ({ userId });
+  for (const action of ['create', 'grant', 'end'] as const) expect((await run(action)).status).toBe(401);
+  expect(deps.fetch).not.toHaveBeenCalled();
+});
+
+it.each(['concurrency', 'rate'] as const)('forwards only safe typed %s quota metadata and Retry-After', async quotaKind => {
+  vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({
+    code: 'QUOTA_EXCEEDED', status: 429, quotaKind, retryAfterSeconds: 42,
+    detail: `private ${key}`, clientId: 'internal-app', userId: 'other-user', token: key,
+  }, { status: 429, headers: { 'Retry-After': '99', 'Set-Cookie': 'secret=1', Authorization: key } }));
+  const result = await run('create');
+  expect(result.status).toBe(429);
+  expect(result.headers.get('retry-after')).toBe('42');
+  expect(result.headers.get('cache-control')).toBe('no-store');
+  expect(await result.json()).toEqual({ error: { code: 'QUOTA_EXCEEDED', message: 'Your voice session limit has been reached.', quotaKind, retryAfterSeconds: 42 } });
+  expect(result.headers.has('set-cookie')).toBe(false); expect(result.headers.has('authorization')).toBe(false);
+});
+
+it('retains a safe numeric Retry-After when the quota response omits the optional JSON retry value', async () => {
+  vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ code: 'QUOTA_EXCEEDED', quotaKind: 'rate' }, { status: 429, headers: { 'Retry-After': '60' } }));
+  const result = await run('grant');
+  expect(result.headers.get('retry-after')).toBe('60');
+  expect(await result.json()).toMatchObject({ error: { code: 'QUOTA_EXCEEDED', retryAfterSeconds: 60 } });
+});
+
+it.each([0, -1, 1.5, '30', null, Number.MAX_SAFE_INTEGER + 1])('drops invalid JSON quota fields and unsafe Retry-After: %j', async retryAfterSeconds => {
+  vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ code: 'QUOTA_EXCEEDED', quotaKind: key, retryAfterSeconds }, { status: 429, headers: { 'Retry-After': 'Wed, 21 Oct 2099 07:28:00 GMT' } }));
+  const result = await run('create');
+  expect(result.headers.has('retry-after')).toBe(false);
+  expect(await result.json()).toEqual({ error: { code: 'QUOTA_EXCEEDED', message: 'Your voice session limit has been reached.' } });
+});
+
+it('maps a quota store failure without exposing backend details and does not turn other errors into quota errors', async () => {
+  vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ code: 'QUOTA_UNAVAILABLE', detail: key, retryAfterSeconds: 60 }, { status: 503 }));
+  const unavailable = await run('create');
+  expect(unavailable.status).toBe(503);
+  expect(unavailable.headers.get('retry-after')).toBe('60');
+  expect(await unavailable.json()).toEqual({ error: { code: 'QUOTA_UNAVAILABLE', message: 'Voice limits could not be checked. Try again later.', retryAfterSeconds: 60 } });
+  for (const [status, code] of [[503, 'QUOTA_EXCEEDED'], [429, 'QUOTA_UNAVAILABLE'], [429, 'UNKNOWN']] as const) {
+    vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ code, detail: key }, { status }));
+    const result = await run('create');
+    expect(result.status).toBe(status);
+    expect(await result.json()).toMatchObject({ error: { code: 'VOICE_SERVICE_ERROR' } });
+  }
+});
+
+it('bounds malformed or oversized quota problems and preserves only the safe status', async () => {
+  for (const body of ['{', JSON.stringify({ code: 'QUOTA_EXCEEDED', detail: key.repeat(200) })]) {
+    vi.mocked(deps.fetch).mockResolvedValueOnce(new Response(body, { status: 429 }));
+    const result = await run('create');
+    expect(result.status).toBe(429);
+    expect(await result.json()).toMatchObject({ error: { code: 'VOICE_SERVICE_ERROR' } });
+  }
+});
+
+it('passes a quota outage retry hint using the same safe JSON and header rules', async () => {
+  vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ code: 'QUOTA_UNAVAILABLE', detail: key }, { status: 503, headers: { 'Retry-After': '1' } }));
+  const result = await run('grant');
+  expect(result.status).toBe(503);
+  expect(result.headers.get('retry-after')).toBe('1');
+  expect(await result.json()).toEqual({ error: { code: 'QUOTA_UNAVAILABLE', message: 'Voice limits could not be checked. Try again later.', retryAfterSeconds: 1 } });
 });

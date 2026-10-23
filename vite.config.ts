@@ -18,6 +18,9 @@ const managedLinux = readExecutionProfile() === "managed-linux";
 const localBindingConfig = {
   main: "vinext/server/fetch-handler",
   compatibility_flags: ["nodejs_compat"],
+  // Production credentials and endpoints are configured in the Cloudflare dashboard.
+  // Keep its plain variables when Workers Builds redeploys generated Wrangler config.
+  keep_vars: true,
   d1_databases: d1
     ? [
         {

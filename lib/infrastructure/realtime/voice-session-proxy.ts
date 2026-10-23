@@ -11,7 +11,8 @@ export type VoiceSessionProxyDependencies = {
   fetch: typeof fetch;
 };
 const accessSchema = z.record(z.array(voiceResourceIdSchema));
-const response = (body: unknown, status: number) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
+const validUserId = (value: unknown): value is string => typeof value === 'string' && value.length >= 1 && value.length <= 128 && /^[A-Za-z0-9]/.test(value) && !/[^A-Za-z0-9._:-]/.test(value);
+const response = (body: unknown, status: number, headers: Record<string, string> = {}) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store', ...headers } });
 const failure = (status: number, code: string, message: string) => response({ error: { code, message } }, status);
 
 function configuration(deps: VoiceSessionProxyDependencies) {
@@ -25,7 +26,7 @@ function configuration(deps: VoiceSessionProxyDependencies) {
 }
 
 /** Bound the stream before JSON parsing, including requests without Content-Length. */
-async function readBody(request: Request): Promise<unknown> {
+async function readBody(request: Pick<Request, 'body'>): Promise<unknown> {
   if (!request.body) return null;
   const reader = request.body.getReader();
   const chunks: Uint8Array[] = [];
@@ -52,7 +53,7 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
   if ((origin !== new URL(request.url).origin && !(action === 'check' && !origin)) || request.headers.get('sec-fetch-site') === 'cross-site')
     return failure(403, 'ORIGIN_DENIED', 'Use the application’s same-origin voice endpoint.');
   const user = await deps.getUser();
-  if (!user) return failure(401, 'SIGN_IN_REQUIRED', 'Sign in to use the voice assistant.');
+  if (!user || !validUserId(user.userId)) return failure(401, 'SIGN_IN_REQUIRED', 'Sign in to use the voice assistant.');
   if (action !== 'create' && action !== 'check' && !voiceResourceIdSchema.safeParse(sessionId).success)
     return failure(400, 'INVALID_SESSION', 'Invalid voice session ID.');
   if (action !== 'check' && request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json')
@@ -88,11 +89,13 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
   try {
     const upstream = await deps.fetch(`${config.origin}${path}`, {
       method: action === 'end' ? 'DELETE' : 'POST',
-      headers: { Authorization: `Bearer ${config.key}`, ...(action === 'create' ? { 'Content-Type': 'application/json' } : {}) },
+      headers: { Authorization: `Bearer ${config.key}`, 'X-Vdoc-User-Id': user.userId, 'X-Request-Id': crypto.randomUUID(), ...(action === 'create' ? { 'Content-Type': 'application/json' } : {}) },
       ...(action === 'create' ? { body: '{}' } : {}),
       cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(10000),
     });
     if (!upstream.ok) {
+      const quota = await quotaFailure(upstream);
+      if (quota) return quota;
       const status = [402, 404, 409, 429, 503].includes(upstream.status) ? upstream.status : 502;
       // Never echo an upstream error body or authentication headers.
       return failure(status, 'VOICE_SERVICE_ERROR', 'The voice service could not complete the request.');
@@ -105,4 +108,31 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
       throw new Error('Mismatched voice session.');
     return response({ ...created, documentId, ...(transportDocumentId !== documentId ? { transportDocumentId } : {}) }, 201);
   } catch { return failure(502, 'VOICE_SERVICE_ERROR', 'The voice service could not complete the request.'); }
+}
+
+const positiveSeconds = (value: unknown): value is number => typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
+
+/** Only stable, typed quota fields cross the service boundary; details never do. */
+async function quotaFailure(upstream: Response): Promise<Response | undefined> {
+  if (upstream.status !== 429 && upstream.status !== 503) return undefined;
+  let problem: Record<string, unknown>;
+  try {
+    const raw = await readBody(upstream);
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return undefined;
+    problem = raw as Record<string, unknown>;
+  } catch { return undefined; }
+  const retryHeader = upstream.headers.get('retry-after');
+  const headerSeconds = retryHeader && /^\d{1,16}$/.test(retryHeader) ? Number(retryHeader) : undefined;
+  const retryAfterSeconds = positiveSeconds(problem.retryAfterSeconds) ? problem.retryAfterSeconds : positiveSeconds(headerSeconds) ? headerSeconds : undefined;
+  const retryFields = retryAfterSeconds ? { retryAfterSeconds } : {};
+  const retryHeaders: Record<string, string> = retryAfterSeconds ? { 'Retry-After': String(retryAfterSeconds) } : {};
+  if (upstream.status === 503 && problem.code === 'QUOTA_UNAVAILABLE') {
+    return response({ error: { code: 'QUOTA_UNAVAILABLE', message: 'Voice limits could not be checked. Try again later.', ...retryFields } }, 503, retryHeaders);
+  }
+  if (upstream.status !== 429 || problem.code !== 'QUOTA_EXCEEDED') return undefined;
+  const quotaKind = problem.quotaKind === 'concurrency' || problem.quotaKind === 'rate' ? problem.quotaKind : undefined;
+  return response({ error: {
+    code: 'QUOTA_EXCEEDED', message: 'Your voice session limit has been reached.',
+    ...(quotaKind ? { quotaKind } : {}), ...retryFields,
+  } }, 429, retryHeaders);
 }

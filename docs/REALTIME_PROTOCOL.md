@@ -21,7 +21,7 @@ interface RealtimePort { open(options: { config, context: { documentId, title, l
 
 现有后端没有剩余配额查询契约，界面明确显示余额不可查询，不展示虚构的分钟数或重置时间。创建/续发的 HTTP 402、429 和 SDK 配额错误会显示额度或限流说明；401、403、409、503 等分别提供登录、云文档条件或重试指引。只映射允许的错误类型，不展示上游错误正文。终止错误关闭连接且保留提示，不被后续 closed/ready 覆盖。
 
-三个同源 Worker 接口都接收 JSON `{ documentId }`，都先验证同源请求、登录用户和文档授权，再携带 Worker secret 中的 client key 请求 vdoc-server：
+三个同源 Worker 接口都接收 JSON `{ documentId }`，都先验证同源请求、登录用户和文档授权，再由 Worker 构造应用凭据、可信用户和请求追踪头请求 vdoc-server：
 
 | VDoc 接口 | 上游路径 |
 |---|---|
@@ -49,7 +49,39 @@ Worker 需要配置：
 
 通过部署平台的 Worker secret 管理配置凭据；本地可放入已被 gitignore 排除的 `.dev.vars`。不要使用 `NEXT_PUBLIC_*`、localStorage、URL 或客户端构建变量保存 client key。响应禁用缓存，代理不转发上游错误正文、Cookie 或认证头。部署前还需在 vdoc-server 配置允许的 VDoc 浏览器来源。普通本地编辑不依赖这些服务；现有本地文档需导出备份后导入云工作区，不会自动上传。
 
-本次协议核对依据：`austinchennn/vdoc-server` 的 `voice-session-controller.ts`、`document-context.ts` 和 `principal.ts`。本仓库测试覆盖代理权限、创建/续发/清理和 SDK 重连；部署真实地址与 secret 后仍需真实模型端到端验收。
+### 可信用户协议与配额错误
+
+所有 create、grant 和 end 上游请求都使用同一构造边界：
+
+| HTTP 头 | 来源与规则 |
+|---|---|
+| `Authorization: Bearer <app-key>` | 仅来自 Worker secret `VDOC_SERVER_CLIENT_KEY`。vdoc-server 验证该 key 后确定 `clientId`，不接受浏览器指定应用。 |
+| `X-Vdoc-User-Id` | 仅来自当前请求的 `getRequestUser()`；它读取 Better Auth 登录会话并实时校验 Neon session，不能用邮箱、昵称或文档 ID 替代。ID 必须满足 `[A-Za-z0-9][A-Za-z0-9._:-]{0,127}`，无效 ID 以 401 拒绝。 |
+| `X-Request-Id` | 每次上游请求重新生成 `crypto.randomUUID()`，用于关联 BFF 与后端审计，不能作为认证凭据。 |
+
+浏览器只提交严格的 `{ documentId }`，额外 `userId`、`clientId`、`principalId`、`quotaSubject` 等字段会被拒绝。浏览器的同名身份/追踪头、Authorization 和 Cookie 均不会转发；Worker 使用新建的 headers 发送上述三项。HTTPS 中已验证的应用凭据让后端信任应用在自身命名空间声明的用户，`X-Vdoc-User-Id` 单独出现不能取得信任。不要把应用 key 下发浏览器，也不要让不可信调用方持有该 key。
+
+生产组合根在每次创建、续发和结束前重新检查当前用户对云文档的所有权。`transportDocumentId` 保留 owner + document 哈希房间隔离，后端以 `(clientId, userId)` 派生的稳定主体计数；因此同一账户打开多个文档或标签页共享并发/频率限制，不同账户相同的导入文档 ID 不会占用同一房间或额度。用户声明不替代文档授权；sessionId 也不能替代原用户与文档绑定。浏览器仍只获得短期会话 grant，其用户/文档/语音会话绑定由后端签名与持久会话关联校验；不依赖握手中的用户声明。
+
+当前限制计量的是同时开放的语音会话数与滚动一小时内新建的会话数，单位分别为 session 和 session/hour，不是模型 token、余额或音频计费。小时窗口为最近 3,600 秒，无时区和午夜重置；续发、重连或打断不新扣一次会话。正常结束释放并发占用，已计入的小时次数保留至窗口到期；未送达的清理最终由服务端会话时限与配额租约回收。具体上下限由 vdoc-server 配置，界面不会显示未经查询的剩余额度。配额存储不可用时拒绝新增消耗，结束清理仍应完成。
+
+vdoc-server 的 RFC 9457 problem 使用顶层 `code`、`quotaKind`、`retryAfterSeconds`。BFF 仅在相符的 HTTP 状态下白名单转译为本地结构：
+
+| 上游状态/码 | 浏览器响应 |
+|---|---|
+| `429 QUOTA_EXCEEDED` | `{ error: { code: "QUOTA_EXCEEDED", message, quotaKind?, retryAfterSeconds? } }`；`quotaKind` 仅允许 `concurrency` 或 `rate`，用于区分关闭其他会话与等待小时窗口。 |
+| `503 QUOTA_UNAVAILABLE` | `{ error: { code: "QUOTA_UNAVAILABLE", message, retryAfterSeconds? } }`，提示暂时无法检查语音限制。 |
+
+`retryAfterSeconds` 必须是正的安全整数，单位为秒；若 JSON 未提供有效值，可使用仅含十进制正整数的 `Retry-After`。响应中的 JSON 与 `Retry-After` 使用同一规范化数值。无效/缺失字段会被丢弃，不猜测重置时间。错误体最多读取 4 KiB，未知字段、上游 detail/message、认证头和 Cookie 不返回浏览器。未知 429/503 保留原状态并使用应用自己的通用错误。上游 404 继续映射为会话已不可用；服务间凭据的 401/403 仍作为上游服务故障处理，不让浏览器误以为其登录身份失效。
+
+### 上线顺序与旧会话
+
+1. 先部署支持可信用户与用户配额的 vdoc-server，并配置同一应用 key；再部署本次 vdoc BFF。生产地址与 key 必须通过部署平台绑定，代码示例不包含真实凭据。
+2. 切换前结束已有语音连接，让用户重新连接。旧应用级会话和历史计数无法可靠归属某个人，不能迁移成个人用量；新 BFF 不会以共享应用身份尝试续发旧会话，所有新调用都带当前用户。
+3. 用独立测试账户 A/B 检查创建、跨文档并发、额度拒绝、续发、结束和审计中的 requestId；配额故障恢复后再恢复新增连接。任何兼容模式必须由后端显式限制，不能静默共享个人额度。
+4. 回滚需同时检查两端身份契约；若回滚 BFF 会重新发出无用户请求，应先暂时停用语音（撤下 `VDOC_SERVER_URL` 或对应应用 key），避免恢复共享身份。不要撤销登录或文档 ACL。
+
+配置与核验步骤、自动化结果及未实际验证项目记录在 [可信用户接入验证报告](VOICE_USER_IDENTITY_VALIDATION.md)。本次只准备代码与部署说明，没有写入生产 secret、部署 Worker 或调用付费模型。
 
 `createRealtimeExecutor` 只依赖 `RealtimeEngine` 这个窄接口（`lib/usecases/realtime-executor.ts`，vdoc#43）：会话 ID、版本、记录、`canEdit()`、`isComposing()`、提交/撤销、快照/大纲/按 ID 读取、`hasBlock`、`anchorSelection`、`onApplied`。接口里**没有** Tiptap `editor`，`DocumentEngine` 按结构满足它，测试可以直接传普通对象（`tests/realtime-engine-port.test.ts`）。
 
