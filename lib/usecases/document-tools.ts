@@ -31,7 +31,7 @@ export const documentToolCatalog = [
   },
   {
     name: 'apply_document_operations', readOnly: false,
-    description: 'Apply validated document operations atomically. Supports text formatting, insertion, deletion, replacement, find/replace, block move/insert/delete, paragraph layout, lists, images, page setup and precise table edits. Read the document first. Supply expectedSessionId and either expectedRevision or expectedBlocks covering the explicit block, text, cell or cells target. Range targets and document-wide operations require expectedRevision. On STALE, reread and replan before retrying. One undo reverses the entire batch. Do not supply actor, turnId, source or operation IDs — the caller supplies those.',
+    description: 'Apply validated document operations atomically. Supports text formatting, insertion, deletion, replacement, find/replace, block move/insert/delete, paragraph layout, lists, images, page setup and precise table edits. Read the document first. Supply expectedSessionId and either expectedRevision or expectedBlocks covering the explicit block, text, cell or cells target. Range targets and document-wide operations require expectedRevision. Use text.style with bold:true or italic:true to enable those styles, false to disable them; supply only requested style fields to preserve font, size and color. Use text.toggle only to invert a style. For block.delete, operations[i].id is required even when target.id is the same. On STALE, reread and replan before retrying. If the tool reports an error or ok:false, tell the user this call failed; never claim the edit succeeded. One undo reverses the entire batch. Do not supply request-level id, actor, turnId or source — the caller supplies those. Block IDs inside operations are still required where specified.',
     parameters: zodToJsonSchema(realtimeApplySchema, { $refStrategy: 'none' }),
   },
   {
@@ -45,12 +45,27 @@ function catalogEntry(name: (typeof documentToolCatalog)[number]['name']) {
   return documentToolCatalog.find(entry => entry.name === name)!;
 }
 
+/** @vrealtime/client 0.1.0 treats every normal return as transport success.
+ * Throw only at this boundary; executor/API results remain structured. The
+ * SDK reports FAILED and preserves Error.message, not custom error codes. */
+function realtimeResult<T>(result: T, readOnly: boolean): T {
+  if (result && typeof result === 'object' && 'ok' in result && result.ok === false) {
+    const code = 'code' in result && typeof result.code === 'string' ? result.code : 'FAILED';
+    const detail = 'error' in result && typeof result.error === 'string' ? result.error : 'The tool could not complete the request.';
+    const effect = readOnly ? 'The read failed.' : 'This call did NOT apply an edit.';
+    const recovery = code === 'STALE' ? ' Read the document again and replan before retrying.'
+      : code === 'DUPLICATE' ? ' An earlier call with this ID may already have succeeded; read the document before replanning.' : '';
+    throw new Error(`${code}: ${detail} ${effect} Tell the user this call failed; do not claim it succeeded.${recovery}`);
+  }
+  return result;
+}
+
 export function realtimeDocumentTools(executor: ReturnType<typeof createRealtimeExecutor>): Record<string, RealtimeTool> {
   return {
-    read_document: { ...catalogEntry('read_document'), run: (_input, context) => executor.read(context) },
-    read_blocks: { ...catalogEntry('read_blocks'), run: executor.readBlocks },
-    get_context: { ...catalogEntry('get_context'), run: (_input, context) => executor.getContext(context) },
-    apply_document_operations: { ...catalogEntry('apply_document_operations'), run: executor.apply },
-    undo_turn: { ...catalogEntry('undo_turn'), run: executor.undo },
+    read_document: { ...catalogEntry('read_document'), run: (_input, context) => realtimeResult(executor.read(context), true) },
+    read_blocks: { ...catalogEntry('read_blocks'), run: (input, context) => realtimeResult(executor.readBlocks(input, context), true) },
+    get_context: { ...catalogEntry('get_context'), run: (_input, context) => realtimeResult(executor.getContext(context), true) },
+    apply_document_operations: { ...catalogEntry('apply_document_operations'), run: async (input, context) => realtimeResult(await executor.apply(input, context), false) },
+    undo_turn: { ...catalogEntry('undo_turn'), run: async (input, context) => realtimeResult(await executor.undo(input, context), false) },
   };
 }

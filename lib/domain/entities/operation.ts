@@ -26,8 +26,8 @@ export const operationSchema = z.discriminatedUnion('type', [
     fontFamily: z.enum(['Arial', 'Georgia', 'Times New Roman', 'Noto Sans SC', 'monospace']).optional(),
     fontSize: z.number().int().min(8).max(96).optional(),
     script: z.enum(['normal', 'superscript', 'subscript']).optional(),
-  }).strict().refine(s => Object.keys(s).length > 0, 'Specify at least one text style.') }).strict(),
-  z.object({ type: z.literal('text.toggle'), mark: z.enum(['bold', 'italic', 'underline', 'strike', 'superscript', 'subscript']) }).strict(),
+  }).strict().refine(s => Object.keys(s).length > 0, 'Specify at least one text style.') }).strict().describe('Set only the supplied styles; omitted styles are preserved. To make text bold or italic use bold:true or italic:true; use false to remove that style. For color or font size, supply only the requested fields.'),
+  z.object({ type: z.literal('text.toggle'), mark: z.enum(['bold', 'italic', 'underline', 'strike', 'superscript', 'subscript']) }).strict().describe('Invert one style. Use only when the user asks to toggle it; to enable or disable a style explicitly, use text.style.'),
   z.object({ type: z.literal('text.insert'), text: z.string().min(1).max(100000) }).strict(),
   z.object({ type: z.literal('text.clear') }).strict(),
   z.object({ type: z.literal('text.delete') }).strict(),
@@ -82,7 +82,7 @@ export const operationSchema = z.discriminatedUnion('type', [
       rowsText: z.array(z.array(z.string().max(1000)).max(20)).max(30).optional(),
     }).strict(),
   ]) }).strict(),
-  z.object({ type: z.literal('block.delete'), id: z.string().min(1) }).strict(),
+  z.object({ type: z.literal('block.delete'), id: z.string().min(1).describe('Required ID of the top-level block to delete, taken from a document read. Supply it even if target.id contains the same ID.') }).strict().describe('Delete the top-level block identified by this operation\'s id. The request target does not fill in this required id.'),
 ]);
 
 export const requestSchema = z.object({

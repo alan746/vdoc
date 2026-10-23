@@ -39,8 +39,7 @@ it('connects, applies an operation, and reports affected state through read_docu
 it('vdoc#35: a manual edit that moves the revision makes a pinned-revision call stale', async () => {
   const connection = open(); const session = adapter.sessions[0];
   editor.commands.insertContent('!');
-  const result = await session.call('apply_document_operations', staleRevisionRequest(engine, 'AI'), toolContext());
-  expect(result).toMatchObject({ ok: false, code: 'STALE' });
+  await expect(session.call('apply_document_operations', staleRevisionRequest(engine, 'AI'), toolContext())).rejects.toThrow('STALE:');
   expect(engine.snapshot().blocks[0].text).not.toBe('AI');
   connection.close();
 });
@@ -67,7 +66,6 @@ it('surfaces a server-initiated reconnect and disconnect without touching the do
 it('rejects calls that arrive after the connection has closed', async () => {
   const first = open('first'); const session = adapter.sessions[0];
   first.close();
-  const result = await session.call('apply_document_operations', replaceFirstBlockRequest(engine, 'late'), toolContext());
-  expect(result).toMatchObject({ code: 'INTERRUPTED' });
+  await expect(session.call('apply_document_operations', replaceFirstBlockRequest(engine, 'late'), toolContext())).rejects.toThrow('INTERRUPTED:');
   expect(engine.snapshot().blocks[0].text).toBe('hello');
 });

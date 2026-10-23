@@ -33,6 +33,6 @@ it('keeps the same IDs on SDK replay and exposes them for undo', async () => {
 it('rejects calls retained by an old connection after a document switch', async () => {
   const first = open('first'); const input = args('late'); first.close(); const next = open('next');
   expect(sessions[0].signal.aborted).toBe(true);
-  expect(await sessions[0].tools.apply_document_operations.run(input, ctx)).toMatchObject({ code: 'INTERRUPTED' });
+  await expect(sessions[0].tools.apply_document_operations.run(input, ctx)).rejects.toThrow('INTERRUPTED:');
   expect(engine.snapshot().blocks[0].text).toBe('hello'); next.close();
 });

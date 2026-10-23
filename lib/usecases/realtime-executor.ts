@@ -1,17 +1,34 @@
 import type { SelectionAnchor } from './engine';
-import { agentRequestSchema, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
+import { agentRequestSchema, operationSchema, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
 import type { BlockRead, DocumentSnapshot, OutlineEntry } from '../editor/document-snapshot';
 import { z } from 'zod';
 import type { RealtimeToolContext } from './ports';
 import { requestSignature } from '../shared/request-signature';
 
-export const realtimeApplySchema = agentRequestSchema.omit({ id: true });
+// Format paste replaces all character formatting. Keep it available to the
+// editor/API, but exclude it from both the realtime schema and runtime parser.
+const realtimeOperationSchema = z.discriminatedUnion('type', [
+  operationSchema.options[0],
+  ...operationSchema.options.slice(1).filter(option => option.shape.type.value !== 'format.apply'),
+]);
+export const realtimeApplySchema = agentRequestSchema.omit({ id: true }).extend({
+  operations: z.array(realtimeOperationSchema).min(1).max(100),
+});
 export const realtimeUndoSchema = z.object({
   targetTurnId: z.string().min(1).max(128),
   expectedSessionId: z.string().min(1).max(128),
   expectedRevision: z.number().int().min(0),
 }).strict();
 export const realtimeReadBlocksSchema = z.object({ ids: z.array(z.string().min(1).max(128)).min(1).max(200) }).strict();
+
+/** Preserve the field path so the caller can repair a rejected request. */
+function invalidArguments(error: z.ZodError) {
+  const issue = error.issues[0];
+  if (!issue) return 'Invalid arguments.';
+  const path = issue.path.reduce<string>((text, part) => typeof part === 'number'
+    ? `${text}[${part}]` : `${text}${text ? '.' : ''}${part}`, '');
+  return `${path || 'arguments'}: ${issue.message}`;
+}
 /** Frozen turn selections kept per connection; only the latest turn is normally in use. */
 const FROZEN_TURN_LIMIT = 64;
 /** A past agent turn's affected blocks, re-checked against the live document
@@ -117,7 +134,7 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
     write: (args: T, origin: AgentOrigin) => WriteResult) {
     const invalid = check(context); if (invalid) return invalid;
     const parsed = schema.safeParse(input);
-    if (!parsed.success) return failure(context.callId, 'INVALID', parsed.error.issues[0]?.message ?? 'Invalid arguments.');
+    if (!parsed.success) return failure(context.callId, 'INVALID', invalidArguments(parsed.error));
     const signature = requestSignature({ tool, input: parsed.data, turnId: context.turnId });
     const previous = completed.get(context.callId);
     if (previous) return previous.signature === signature ? previous.result : failure(context.callId, 'DUPLICATE', 'Call ID reused with different arguments.');
@@ -163,7 +180,7 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
     readBlocks(input: unknown, context: RealtimeToolContext) {
       const invalid = check(context); if (invalid) return invalid;
       const parsed = realtimeReadBlocksSchema.safeParse(input);
-      if (!parsed.success) return failure(context.callId, 'INVALID', parsed.error.issues[0]?.message ?? 'Invalid arguments.');
+      if (!parsed.success) return failure(context.callId, 'INVALID', invalidArguments(parsed.error));
       return { docId: options.docId, sessionId, revision: engine.revision, ...engine.readBlocks(parsed.data.ids) };
     },
     apply,
