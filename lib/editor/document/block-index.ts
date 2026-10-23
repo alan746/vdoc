@@ -4,9 +4,11 @@ export type IndexedBlock = { readonly node: Node; readonly pos: number; readonly
 export type BlockRange = { from: number; to: number };
 
 /**
- * One pass over the document per change, shared by every reader that needs a
- * block by ID: its session-local version (moving an unchanged block does not
+ * Describes the last document a reader indexed. One pass is shared by readers
+ * that need a block by ID: its session-local version (moving an unchanged block does not
  * invalidate it), its current position, and the headings in document order.
+ * Versions compare content with the previous update, not intervening transactions:
+ * an edit and exact revert without an update in between retains the version.
  *
  * Positions are only valid for the document passed to the last update(). Do
  * not use them inside a command batch: earlier operations in the same

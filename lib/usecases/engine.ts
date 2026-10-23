@@ -39,12 +39,11 @@ export class DocumentEngine {
       this.turnHistory.record(transaction, appendedTransactions);
       // Appended transactions (stable IDs, reference sync, list numbering) change
       // the document too, even when the dispatched one did not. One definition of
-      // "the document changed" feeds the revision, the index and the bookmarks;
+      // "the document changed" feeds the revision and the bookmarks;
       // the revision advances once per dispatch, however many steps it held.
       const changed = [transaction, ...appendedTransactions].filter(tr => tr.docChanged);
       if (changed.length) {
         this.revision++;
-        this.blocks.update(editor.state.doc);
         const map = (bookmark: SelectionBookmark) => changed.reduce((current, tr) => current.map(tr.mapping), bookmark);
         if (this.bookmark) this.bookmark = map(this.bookmark);
         for (const anchor of this.anchors) anchor.bookmark = map(anchor.bookmark);
@@ -234,9 +233,9 @@ export class DocumentEngine {
   hasBlock(id: string) { return this.index().has(id); }
   /** Current range of a block in the live document, without walking it. */
   locateBlock(id: string): BlockRange | undefined { return this.index().range(id); }
-  // Every document change dispatched through the editor updates the index in
-  // handleTransaction. A state replaced without a transaction (updateState)
-  // would not, so readers re-index on mismatch instead of returning stale positions.
+  // Rebuild on the first read of a changed document, including updateState
+  // replacements. All readers share it until the document changes again.
+  // Block versions compare content with the last indexed read, not every edit.
   private index() {
     if (!this.blocks.describes(this.editor.state.doc)) this.blocks.update(this.editor.state.doc);
     return this.blocks;

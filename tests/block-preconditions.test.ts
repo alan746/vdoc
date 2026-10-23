@@ -36,8 +36,22 @@ it.each(['text', 'marks', 'attributes'] as const)('rejects a stale block after %
   expect(editor.getJSON()).toEqual(before);
 });
 
-it('does not recycle a version when content is changed and restored', () => {
+it('accepts a content precondition after an edit and exact revert with no intervening read', () => {
   const input = request();
+  editor.commands.insertContent('x'); editor.commands.undo();
+  expect(engine.executeExternal(input).ok).toBe(true);
+});
+
+it('does not recycle a version after the changed content has been observed', () => {
+  const input = request();
+  editor.commands.insertContent('x');
+  expect(engine.snapshot().blocks[0].version).not.toBe(input.expectedBlocks[0].version);
+  editor.commands.undo();
+  expect(engine.executeExternal(input).code).toBe('STALE');
+});
+
+it('still rejects a strict revision after an unread edit and exact revert', () => {
+  const input = { ...request(), expectedRevision: engine.revision };
   editor.commands.insertContent('x'); editor.commands.undo();
   expect(engine.executeExternal(input).code).toBe('STALE');
 });

@@ -1,12 +1,13 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import { EditorState } from '@tiptap/pm/state';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 import { changedBlockIds } from '../lib/editor/document/changed-blocks';
 import { naiveChangedBlockIds } from './support/naive-changed-blocks';
+import { BlockIndex } from '../lib/editor/document/block-index';
 
-// vdoc#40: one block index per document change, shared by every reader, and a
+// vdoc#40/#59: one block index per document read, shared by every reader, and a
 // changedBlockIds that skips subtrees ProseMirror shares between documents.
 
 let editor: Editor, engine: DocumentEngine;
@@ -15,12 +16,57 @@ const open = async (content: string) => {
   await new Promise(resolve => setTimeout(resolve, 0));
   engine = new DocumentEngine(editor);
 };
-afterEach(() => { engine.destroy(); editor.destroy(); });
+afterEach(() => { engine.destroy(); editor.destroy(); vi.restoreAllMocks(); });
 const ids = () => engine.snapshot().blocks.map(block => block.id);
 const at = (s = engine.snapshot()) => ({ expectedSessionId: s.sessionId, expectedRevision: s.revision });
 
 describe('block index', () => {
   beforeEach(() => open('<h1>Title</h1><p>one</p><p>two</p><h2>Sub</h2><p>three</p>'));
+
+  it.each(['snapshot', 'outline', 'readBlocks', 'hasBlock', 'locateBlock'] as const)('defers repeated typing until %s reads, then shares that rebuild', reader => {
+    const before = engine.snapshot(), id = before.blocks[0].id;
+    const update = vi.spyOn(BlockIndex.prototype, 'update');
+    for (let i = 0; i < 25; i++) editor.commands.insertContent('x');
+    expect(update).not.toHaveBeenCalled();
+    expect(engine.revision).toBe(before.revision + 25);
+    if (reader === 'snapshot') engine.snapshot();
+    else if (reader === 'outline') engine.outline();
+    else if (reader === 'readBlocks') engine.readBlocks([id]);
+    else engine[reader](id);
+    expect(update).toHaveBeenCalledOnce();
+    expect(update).toHaveBeenLastCalledWith(editor.state.doc);
+    engine.snapshot(); engine.outline(); engine.readBlocks([id]); engine.hasBlock(id); engine.locateBlock(id);
+    expect(update).toHaveBeenCalledOnce();
+    editor.commands.insertContent('y');
+    expect(update).toHaveBeenCalledOnce();
+    expect(engine.readBlocks([id]).blocks[0].text).toContain('y');
+    expect(update).toHaveBeenCalledTimes(2);
+  });
+
+  it('rebuilds before checking block preconditions even when nobody has read since typing', () => {
+    const before = engine.snapshot(), block = before.blocks[0];
+    const update = vi.spyOn(BlockIndex.prototype, 'update');
+    editor.commands.insertContent('x');
+    expect(update).not.toHaveBeenCalled();
+    const result = engine.executeExternal({ expectedSessionId: before.sessionId,
+      expectedBlocks: [{ id: block.id, version: block.version }], target: { kind: 'block', id: block.id },
+      operations: [{ type: 'text.replace', text: 'Must not overwrite the new content' }],
+    });
+    expect(result.code).toBe('STALE');
+    expect(update).toHaveBeenCalledOnce();
+    expect(editor.state.doc.firstChild!.textContent).toBe('xTitle');
+  });
+
+  it('keeps a content version after an unread edit-and-revert but bumps a change that remains', () => {
+    const original = editor.state.doc, before = engine.snapshot();
+    editor.commands.insertContent('x'); editor.commands.undo();
+    expect(editor.state.doc.eq(original)).toBe(true);
+    const restored = engine.snapshot();
+    expect(restored.blocks[0].version).toBe(before.blocks[0].version);
+    expect(restored.revision).toBe(before.revision + 2);
+    editor.commands.insertContent('y');
+    expect(engine.snapshot().blocks[0].version).toBeGreaterThan(before.blocks[0].version);
+  });
 
   it('keeps every indexed position pointing at its own block through edits', () => {
     const check = () => editor.state.doc.descendants((node, pos) => {
