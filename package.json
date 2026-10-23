@@ -49,7 +49,7 @@
     "@tiptap/extensions": "3.31.3",
     "@tiptap/pm": "^3.0.0",
     "@tiptap/react": "^3.0.0",
-    "@vrealtime/client": "^0.1.0",
+    "@vrealtime/client": "0.2.0",
     "better-auth": "1.7.10",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
