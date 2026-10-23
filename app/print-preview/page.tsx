@@ -78,6 +78,19 @@ export default function PrintPreviewPage() {
         if (disposed || !host.current) return;
         let pages = 0;
         let pageCount=0, bottomReserve=0;
+        // One paginator pass: render, wait for images, then audit that the
+        // complete text stream of `expected` survived. Null once disposed.
+        const paginate = async (html: string, css: string, expected: HTMLElement) => {
+          preview = new Previewer();
+          preview.chunker.hooks.renderNode.register(repeatTableHeaders);
+          preview.chunker.hooks.beforePageLayout.register(() => { if (disposed || ++pages > 200) throw new Error('This preview exceeds 200 pages or cannot safely paginate this layout.'); });
+          const flow = await renderLayout(preview, html, css);
+          if (disposed) return null;
+          await waitForPreviewImages(host.current!, resources.signal);
+          if (disposed) return null;
+          if (!previewTextMatches(expected, host.current!)) throw new Error('Some text could not be paginated reliably. Return to editing or export Word instead.');
+          return flow;
+        };
         // Final table reflow can differ slightly from the paginator's measuring
         // columns. Repaginate once with real breathing room, keeping the same
         // physical paper size and strict final overflow checks.
@@ -86,16 +99,10 @@ export default function PrintPreviewPage() {
           const css=source.css + (bottomReserve ? `
 .pagedjs_pagebox > .pagedjs_area > .pagedjs_page_content { height: calc(100% - var(--pagedjs-footnotes-height) - ${bottomReserve}px) !important; }` : '');
           for(let attempt=0;attempt<2;attempt++) {
-            preview = new Previewer();
-            preview.chunker.hooks.renderNode.register(repeatTableHeaders);
-            preview.chunker.hooks.beforePageLayout.register(() => { if (disposed || ++pages > 200) throw new Error('This preview exceeds 200 pages or cannot safely paginate this layout.'); });
-            const flow = await renderLayout(preview, renderHTML, css);
-            if (disposed) return;
-            await waitForPreviewImages(host.current!, resources.signal);
-            if (disposed) return;
             // Audit the paginator's complete stream before moving intact cell
             // content into parallel columns (which changes page traversal order).
-            if (!previewTextMatches(original, host.current!)) throw new Error('Some text could not be paginated reliably. Return to editing or export Word instead.');
+            const flow = await paginate(renderHTML, css, original);
+            if (!flow) return;
             const retry=repairPreviewTableRows(original,host.current!);
             if(retry.length&&attempt===0) {
               renderHTML=startPreviewRowsOnNewPage(source.html,retry);
@@ -106,13 +113,9 @@ export default function PrintPreviewPage() {
           const compacted=compactPreviewTables(original,host.current!);
           if(compacted) {
             const compactSource=document.createElement('div');compactSource.innerHTML=compacted;
-            stopLayout();preview=new Previewer();
-            preview.chunker.hooks.renderNode.register(repeatTableHeaders);
-            preview.chunker.hooks.beforePageLayout.register(()=>{if(disposed||++pages>200)throw new Error('This preview exceeds 200 pages or cannot safely paginate this layout.');});
-            const flow=await renderLayout(preview,compacted,css);
-            if(disposed)return;
-            await waitForPreviewImages(host.current!,resources.signal);if(disposed)return;
-            if(!previewTextMatches(compactSource,host.current!))throw new Error('Some text could not be paginated reliably. Return to editing or export Word instead.');
+            stopLayout();
+            const flow=await paginate(compacted,css,compactSource);
+            if(!flow)return;
             pageCount=flow.total;
           }
           finalizePreviewFlow(host.current!);

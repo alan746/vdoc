@@ -7,6 +7,7 @@ import { actionErrorMessage } from '@/lib/shared/error-message';
 import { useDocumentNavigation } from './use-document-navigation';
 import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-navigation';
 import { documents } from '@/lib/composition/repositories';
+import { documentTitle } from '@/lib/domain/entities/document';
 
 export function BackToDocuments({ editor, title, documentId, blocked, onHome }: {
   editor: Editor; title: string; documentId: string; blocked: SaveBlock; onHome: () => void;
@@ -25,7 +26,7 @@ export function BackToDocuments({ editor, title, documentId, blocked, onHome }: 
       while (mounted.current && !editor.isDestroyed) {
         assertAutosaveActive(current.current.blocked);
         if (navigation!.isComposing()) throw new Error('Finish composing your text before returning to documents.');
-        const savedTitle = current.current.title.trim() || 'Untitled document';
+        const savedTitle = documentTitle(current.current.title);
         const savedContent = editor.state.doc;
         await documents.save(savedTitle, savedContent.toJSON(), documentId);
         if (!mounted.current || editor.isDestroyed) return;
@@ -33,7 +34,7 @@ export function BackToDocuments({ editor, title, documentId, blocked, onHome }: 
         // during a slow save. Never navigate with a superseded snapshot.
         assertAutosaveActive(current.current.blocked);
         if (navigation!.isComposing()) throw new Error('Finish composing your text before returning to documents.');
-        if (savedContent !== editor.state.doc || savedTitle !== (current.current.title.trim() || 'Untitled document')) continue;
+        if (savedContent !== editor.state.doc || savedTitle !== (documentTitle(current.current.title))) continue;
         current.current.onHome();
         return;
       }

@@ -23,7 +23,8 @@ import Superscript from '@tiptap/extension-superscript';
 import Subscript from '@tiptap/extension-subscript';
 import Placeholder from '@tiptap/extension-placeholder';
 import { Plugin } from '@tiptap/pm/state';
-import { Mapping, ReplaceStep, AddMarkStep, RemoveMarkStep, AttrStep, DocAttrStep } from '@tiptap/pm/transform';
+import { Mapping, AttrStep, DocAttrStep } from '@tiptap/pm/transform';
+import { isInlineReplace, isMarkStep } from './transaction-steps';
 import type { Operation } from '../domain/entities/operation';
 import { paginationAttributes } from './paragraph/paragraph-pagination';
 import { indentAttributes } from './paragraph/paragraph-indent';
@@ -55,12 +56,8 @@ export const StableIds = Extension.create({
         // Text and mark edits cannot introduce or duplicate block IDs. Avoid a full
         // document traversal on every keystroke in a long document.
         if (!transactions.some(t => t.getMeta('normalizeIds')) && transactions.every(t => t.steps.every((step, i) => {
-          if (step instanceof AddMarkStep || step instanceof RemoveMarkStep || step instanceof AttrStep || step instanceof DocAttrStep) return true;
-          if (!(step instanceof ReplaceStep)) return false;
-          const doc = t.docs[i];
-          if (!doc.resolve(step.from).sameParent(doc.resolve(step.to))) return false;
-          let inline = true; step.slice.content.forEach(node => { if (!node.isInline) inline = false; });
-          return inline;
+          if (isMarkStep(step) || step instanceof AttrStep || step instanceof DocAttrStep) return true;
+          return isInlineReplace(step, t.docs[i]);
         }))) return null;
         const mapping = new Mapping();
         transactions.forEach(transaction => mapping.appendMapping(transaction.mapping));

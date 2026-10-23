@@ -1,11 +1,9 @@
 import { restoreWordLineSpacing } from '../../editor/paragraph/paragraph-line-height';
+import { W, child, attr, warn } from './ooxml';
 
-const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 type Spacing = Record<string, string>;
 type PropertyName = 'spacing' | 'ind' | 'jc' | 'bidi' | 'keepNext' | 'keepLines' | 'widowControl' | 'shd' | 'outlineLvl';
 export type WordParagraphProperties = Partial<Record<PropertyName, Spacing>> & { numbering?: { numId?: string; ilvl?: string }; borders?: Partial<Record<'top' | 'right' | 'bottom' | 'left' | 'between' | 'bar', Spacing>> };
-const child = (node: Element | null | undefined, name: string) => node ? Array.from(node.children).find(el => el.namespaceURI === W && el.localName === name) : undefined;
-const attr = (node: Element | undefined, name: string) => node?.getAttributeNS(W, name) ?? undefined;
 function properties(node: Element | undefined): WordParagraphProperties {
   const result: WordParagraphProperties = {};
   const numbering = child(node, 'numPr');
@@ -41,7 +39,6 @@ function merge(base: WordParagraphProperties, next: WordParagraphProperties): Wo
   if (next.numbering) result.numbering = { ...base.numbering, ...next.numbering };
   return result;
 }
-const warn = (warnings: string[], message: string) => { if (!warnings.includes(message)) warnings.push(message); };
 
 /** Resolve supported layout: defaults < basedOn chain < selected style < direct pPr. */
 export function wordParagraphProperties(styles: Document | null, warnings: string[]) {

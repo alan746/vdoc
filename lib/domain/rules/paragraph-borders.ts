@@ -1,9 +1,10 @@
 import { z } from 'zod';
+import { HEX_COLOR } from '../text/color';
 
 export const paragraphSides = ['top','right','bottom','left'] as const;
 export const paragraphBorderEdges = [...paragraphSides, 'between'] as const;
 export const paragraphBorderDefaults = { color:'#334155', width:1, style:'solid' as const, padding:6 };
-const edgeSchema = z.object({color:z.string().regex(/^#[0-9a-fA-F]{6}$/),width:z.number().positive().max(8),style:z.enum(['solid','dashed','dotted']),padding:z.number().int().min(0).max(31)}).strict();
+const edgeSchema = z.object({color:z.string().regex(HEX_COLOR),width:z.number().positive().max(8),style:z.enum(['solid','dashed','dotted']),padding:z.number().int().min(0).max(31)}).strict();
 export const paragraphBordersSchema = z.object({top:edgeSchema.optional(),right:edgeSchema.optional(),bottom:edgeSchema.optional(),left:edgeSchema.optional(),between:edgeSchema.optional()}).strict();
 export const paragraphBorderOperationSchema = z.object({type:z.literal('paragraph.border'),top:z.boolean().optional(),right:z.boolean().optional(),bottom:z.boolean().optional(),left:z.boolean().optional(),between:z.boolean().optional(),join:z.boolean().optional(),color:edgeSchema.shape.color.optional(),width:edgeSchema.shape.width.optional(),style:edgeSchema.shape.style.optional(),padding:edgeSchema.shape.padding.optional()}).strict();
 export type ParagraphBorders = z.infer<typeof paragraphBordersSchema>;

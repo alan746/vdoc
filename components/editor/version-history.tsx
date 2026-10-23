@@ -7,7 +7,7 @@ import { useDocumentNavigation } from './use-document-navigation';
 import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-navigation';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { documents as documentRepository, versions as versionRepository } from '@/lib/composition/repositories';
-import type { DocumentVersion, SavedDocument } from '@/lib/domain/entities/document';
+import { type DocumentVersion, type SavedDocument, documentTitle } from '@/lib/domain/entities/document';
 
 export function VersionHistory({ editor, title, documentId, onOpen, blocked = false }: { editor: Editor; title: string; documentId: string; onOpen: (doc: SavedDocument) => void; blocked?: SaveBlock }) {
   const [open, setOpen] = useState(false), [versions, setVersions] = useState<DocumentVersion[]>([]), [label, setLabel] = useState('');
@@ -24,7 +24,7 @@ export function VersionHistory({ editor, title, documentId, onOpen, blocked = fa
   const current = async () => {
     ensureWritable();
     ensureInputFinished();
-    const saved = await documentRepository.save(currentTitle.current.trim() || 'Untitled document', editor.getJSON(), documentId);
+    const saved = await documentRepository.save(documentTitle(currentTitle.current), editor.getJSON(), documentId);
     ensureWritable();
     // A slow save can finish after another field starts a candidate. Do not
     // create a checkpoint or replace the visible draft until input completes.

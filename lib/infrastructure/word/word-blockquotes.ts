@@ -1,7 +1,6 @@
 import JSZip from 'jszip';
+import { W, child } from './ooxml';
 
-const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
-const child = (parent: Element, name: string) => Array.from(parent.children).find(n => n.namespaceURI === W && n.localName === name);
 
 /** Convert our Word content-control boundaries into temporary Mammoth markers.
  * The downloaded file contains no marker paragraphs. Formatting is restored

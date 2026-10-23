@@ -5,8 +5,9 @@ import { validNumberAffix, validBulletText } from '../rules/list-markers';
 import { listStyles } from '../rules/list-styles';
 import { MAX_LIST_START } from '../rules/list-numbering';
 import { textFormatSchema } from '../rules/text-format';
+import { HEX_COLOR } from '../text/color';
 
-const color = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Use a six-digit hexadecimal color.');
+const color = z.string().regex(HEX_COLOR, 'Use a six-digit hexadecimal color.');
 export const targetSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('selection') }).strict(),
   z.object({ kind: z.literal('range'), from: z.number().int().min(0), to: z.number().int().min(0) }).strict(),

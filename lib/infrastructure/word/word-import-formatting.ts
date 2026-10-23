@@ -9,11 +9,11 @@ import { bulletGlyphs, orderedStyle } from '../../domain/rules/list-styles';
 import { validListStart } from '../../domain/rules/list-numbering';
 import JSZip from 'jszip';
 import { DEFAULT_TAB_INTERVAL, validTabInterval } from '../../domain/rules/tab-interval';
-const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+import { W, child, attr as ooxmlAttr } from './ooxml';
 const elements = (parent: Element | Document, name: string) => Array.from(parent.getElementsByTagNameNS(W, name));
-const attr = (el: Element | null | undefined, name = 'val') => el?.getAttributeNS(W, name) || undefined;
+// Here an empty attribute counts as absent.
+const attr = (el: Element | null | undefined, name = 'val') => ooxmlAttr(el, name) || undefined;
 const first = (parent: Element | undefined, name: string) => parent ? elements(parent, name)[0] : undefined;
-const child = (parent: Element | undefined, name: string) => parent ? Array.from(parent.children).find(node => node.namespaceURI === W && node.localName === name) : undefined;
 const validHex = (value: string | undefined) => value && /^[\da-f]{6}$/i.test(value) ? `#${value}` : undefined;
 const wordText = (el: Element) => Array.from(el.getElementsByTagNameNS(W, '*')).map(n => n.localName === 't' ? n.textContent || '' : n.localName === 'tab' && n.parentElement?.localName === 'r' ? '\t' : '').join('');
 

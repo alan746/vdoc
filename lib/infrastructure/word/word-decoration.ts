@@ -1,9 +1,8 @@
 import { paragraphBorderEdges, type ParagraphBorders } from '../../domain/rules/paragraph-borders';
 import type { WordParagraphProperties } from './word-paragraph-spacing';
 import type { WordAttributes, WordTheme } from './word-theme';
-const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+import { W, warn } from './ooxml';
 export const wordAttributes = (element?: Element): WordAttributes | undefined => element ? Object.fromEntries(Array.from(element.attributes).filter(a => a.namespaceURI === W).map(a => [a.localName, a.value])) : undefined;
-const warn = (warnings: string[], message: string) => { if (!warnings.includes(message)) warnings.push(message); };
 
 /** Resolve the supported solid appearance; patterned shading remains an explicit approximation. */
 export function wordShading(attrs: WordAttributes | undefined, theme: WordTheme, warnings: string[]): string | undefined {

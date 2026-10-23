@@ -8,6 +8,7 @@ import { paragraphIndent, stepParagraphIndent } from '../paragraph/paragraph-ind
 import { EditorState, TextSelection, type Selection, type Transaction } from '@tiptap/pm/state';
 import { liftTarget, ReplaceAroundStep } from '@tiptap/pm/transform';
 import { liftListItem, sinkListItem } from '@tiptap/pm/schema-list';
+import { promotedItemContent } from './promote-items';
 
 function itemAt($pos: ResolvedPos) {
   for (let depth = $pos.depth; depth > 0; depth--) {
@@ -86,14 +87,7 @@ function liftRootItems(tr: Transaction, range: NodeRange, itemType: NodeType, wr
   const source = range.parent, parentDepth = range.depth - 1;
   const parent = range.$from.node(parentDepth), index = range.$from.index(parentDepth);
   const promoted: Node[] = [];
-  for (let i = range.startIndex; i < range.endIndex; i++) {
-    let previousNumbered = false;
-    for (const child of source.child(i).content.content) {
-      promoted.push(child.type.name === 'orderedList' && !previousNumbered && child.attrs.continuePrevious
-        ? child.type.create({...child.attrs, continuePrevious:false}, child.content, child.marks) : child);
-      if (child.type.name === 'orderedList') previousNumbered = true;
-    }
-  }
+  for (let i = range.startIndex; i < range.endIndex; i++) promoted.push(...promotedItemContent(source.child(i)));
   const hasPromotedNumbering = promoted.some(n => n.type.name === 'orderedList');
   const head = range.startIndex > 0, tail = range.endIndex < source.childCount;
   const output: Node[] = [];

@@ -12,7 +12,7 @@ import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-na
 import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
 import { documents as documentRepository, library as libraryRepository } from '@/lib/composition/repositories';
-import type { LibraryEntry, LibraryItem, SavedDocument } from '@/lib/domain/entities/document';
+import { type LibraryEntry, type LibraryItem, type SavedDocument, blankDocument, documentTitle, UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
 
 function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>) {
   const names: string[] = [], visited = new Set([document.id]);
@@ -45,7 +45,7 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
   const ensureWritable = () => { assertAutosaveActive(current.current.blocked); };
   const preserve = async () => {
     ensureWritable();
-    await documentRepository.save(current.current.title.trim() || 'Untitled document', editor.getJSON(), documentId);
+    await documentRepository.save(documentTitle(current.current.title), editor.getJSON(), documentId);
     // A conflict may arrive while the final save is still pending.
     ensureWritable();
   };
@@ -78,7 +78,7 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
     setOpen(true);
   }, 'The document library could not be read. Download a backup first.');
   return <>
-    <Menu editor={editor} capture={capture} label={busy ? 'File…' : 'File'} ariaLabel="File"><DropdownMenuItem disabled={busy} onSelect={() => perform(() => load({ version: 1, id: crypto.randomUUID(), title: 'Untitled document', content: { type: 'doc', content: [{ type: 'paragraph' }] }, savedAt: new Date().toISOString() }))}><FilePlus2 />New document</DropdownMenuItem>
+    <Menu editor={editor} capture={capture} label={busy ? 'File…' : 'File'} ariaLabel="File"><DropdownMenuItem disabled={busy} onSelect={() => perform(() => load({ ...blankDocument(), id: crypto.randomUUID() }))}><FilePlus2 />New document</DropdownMenuItem>
     <DropdownMenuItem disabled={busy} onSelect={openLibrary}><FolderOpen />Open local document</DropdownMenuItem>
     <DropdownMenuItem disabled={busy} onSelect={() => file.current?.click()}><Upload />Import document</DropdownMenuItem>
     <DropdownMenuItem onSelect={onLanguage}>Language…</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={() => exportDoc('json')}><ArrowDownToLine />Download VDoc backup</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('html')}><ArrowDownToLine />Download HTML</DropdownMenuItem><DropdownMenuItem disabled={wordExportBusy} onSelect={() => exportDoc('docx')}><ArrowDownToLine />{wordExportBusy ? 'Preparing Word…' : 'Download Word (.docx)'}</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('txt')}><ArrowDownToLine />Download plain text</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={onPrint}><Printer />Print / Save as PDF</DropdownMenuItem></Menu>
@@ -89,6 +89,6 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
         if (!mounted.current) return;
         await load({ ...imported.document, id: crypto.randomUUID() }, () => notifyDocumentImport(imported)); }, 'This document could not be read.');
     }} />
-    <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>Documents on this device</DialogTitle><DialogDescription>Your documents stay in this browser. Download backups to keep a separate copy.</DialogDescription><div className="local-documents" aria-busy={busy}>{documents.map(doc => <button key={doc.id} disabled={busy} aria-current={doc.id === documentId ? 'true' : undefined} onClick={() => perform(async () => { await load(doc.id); }, 'This saved document could not be opened.')}><strong>{doc.title || 'Untitled document'}</strong><span>{doc.location}</span><span>{new Date(doc.savedAt).toLocaleString()}{doc.id === documentId ? ' · Current document' : ''}</span></button>)}{!documents.length && <p>No saved documents yet.</p>}</div></DialogContent></Dialog>
+    <Dialog open={open} onOpenChange={value => { if (navigation!.getSnapshot() === 'idle') setOpen(value); }}><DialogContent className="vdoc-dialog"><DialogTitle>Documents on this device</DialogTitle><DialogDescription>Your documents stay in this browser. Download backups to keep a separate copy.</DialogDescription><div className="local-documents" aria-busy={busy}>{documents.map(doc => <button key={doc.id} disabled={busy} aria-current={doc.id === documentId ? 'true' : undefined} onClick={() => perform(async () => { await load(doc.id); }, 'This saved document could not be opened.')}><strong>{doc.title || UNTITLED_DOCUMENT}</strong><span>{doc.location}</span><span>{new Date(doc.savedAt).toLocaleString()}{doc.id === documentId ? ' · Current document' : ''}</span></button>)}{!documents.length && <p>No saved documents yet.</p>}</div></DialogContent></Dialog>
   </>;
 }

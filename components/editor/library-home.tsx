@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import { readDocumentImport } from '@/lib/composition/import-file';
 import { notifyDocumentImport } from './import-feedback';
 import { documents, library } from '@/lib/composition/repositories';
-import type { LibraryItem, SavedDocument } from '@/lib/domain/entities/document';
+import { type LibraryItem, type SavedDocument, blankDocument } from '@/lib/domain/entities/document';
 
 type Scope = 'files' | 'recent' | 'starred' | 'trash';
 type LibraryPreferences = { scope: Scope; parentId: string | null; query: string; sort: string; view: 'grid' | 'list' };
@@ -63,7 +63,7 @@ export function LibraryHome({ onOpen, recoveryError }: { onOpen: (document: Save
     if (mounted.current) onOpen(document);
   }); };
   const createDocument = () => perform(async () => {
-    const document = await library.createDocument({ version: 1, title: 'Untitled document', content: { type: 'doc', content: [{ type: 'paragraph' }] }, savedAt: new Date().toISOString() }, scope === 'files' ? parentId : null);
+    const document = await library.createDocument(blankDocument(), scope === 'files' ? parentId : null);
     if (mounted.current) onOpen(document);
   });
   const breadcrumbs: LibraryItem[] = [];

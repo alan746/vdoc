@@ -1,3 +1,4 @@
+import { UNTITLED_DOCUMENT } from '../../domain/entities/document';
 type Extension = 'vdoc.json' | 'docx' | 'html' | 'txt';
 
 /** A conservative filename budget, including the extension. The document's
@@ -8,7 +9,7 @@ export function exportFilename(title: string, extension: Extension): string {
   let stem = cleanEnd(Array.from(title, character => {
     const code = character.codePointAt(0)!;
     return code < 32 || code === 127 ? '_' : character;
-  }).join('').replace(/[\\/:*?"<>|]/g, '_')) || 'Untitled document';
+  }).join('').replace(/[\\/:*?"<>|]/g, '_')) || UNTITLED_DOCUMENT;
   // Windows device names are reserved even when followed by an extension.
   if (/^(con|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])(?:\.|$)/i.test(stem)) stem = `_${stem}`;
   const suffix = `.${extension}`, encoder = new TextEncoder();
@@ -19,5 +20,5 @@ export function exportFilename(title: string, extension: Extension): string {
     if (bytes + size > budget) break;
     prefix += segment; bytes += size;
   }
-  return `${cleanEnd(prefix) || 'Untitled document'}${suffix}`;
+  return `${cleanEnd(prefix) || UNTITLED_DOCUMENT}${suffix}`;
 }

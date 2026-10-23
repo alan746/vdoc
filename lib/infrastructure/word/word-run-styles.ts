@@ -1,9 +1,7 @@
 import { wordShading } from './word-decoration';
 import type { WordAttributes, WordTheme } from './word-theme';
-const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+import { W, child, attr as value } from './ooxml';
 type Properties = Record<string, WordAttributes>;
-const child = (node: Element | undefined | null, name: string) => Array.from(node?.children || []).find(n => n.namespaceURI === W && n.localName === name);
-const value = (node: Element | undefined, key = 'val') => node?.getAttributeNS(W, key) ?? undefined;
 const toggles = new Set(['b', 'i', 'strike', 'bCs', 'iCs']);
 const enabled = (v: WordAttributes | undefined) => !!v && !['false', '0', 'off', 'none'].includes(v.val || '1');
 function read(node: Element | undefined): Properties {

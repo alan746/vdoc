@@ -2,7 +2,7 @@ import type { JSONContent } from '@tiptap/core';
 import { parseDocument, STORAGE_KEY } from './storage';
 import type { SavedDocument, LibraryEntry } from '../../domain/entities/document';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction, commitWrites } from './indexed-db';
-import { summary, withWritableDocument } from './document-records';
+import { summary, withDocumentRecord, withWritableDocument } from './document-records';
 
 
 async function migrateLegacy(db: IDBDatabase) {
@@ -60,17 +60,13 @@ async function readLinkedDocument(db: IDBDatabase, id: string): Promise<SavedDoc
   const tx = writeTransaction(db, ['documents', 'libraryMetadata', 'settings']);
   const done = completed(tx);
   let data: SavedDocument | undefined, failure: unknown;
-  const document = tx.objectStore('documents').get(id);
-  const metadata = tx.objectStore('libraryMetadata').get(id);
-  metadata.onsuccess = () => {
-    try {
-      if (!document.result) throw new Error('This document is not available in this browser. Open a document from your library or import a backup.');
-      if (metadata.result?.trashedAt) throw new Error('This document is in Trash. Restore it from your library before opening it.');
-      data = parseDocument(JSON.stringify(document.result), Infinity);
-      if (data.id !== id) throw new Error('The document link does not match the saved document. The original data has been preserved.');
-      tx.objectStore('settings').put(id, 'active');
-    } catch (error) { failure = error; tx.abort(); }
-  };
+  withDocumentRecord(tx, id, (document, metadata) => {
+    if (!document) throw new Error('This document is not available in this browser. Open a document from your library or import a backup.');
+    if (metadata?.trashedAt) throw new Error('This document is in Trash. Restore it from your library before opening it.');
+    data = parseDocument(JSON.stringify(document), Infinity);
+    if (data.id !== id) throw new Error('The document link does not match the saved document. The original data has been preserved.');
+    tx.objectStore('settings').put(id, 'active');
+  }, error => { failure = error; tx.abort(); });
   try { await done; } catch (error) { throw failure || error; }
   return data!;
 }

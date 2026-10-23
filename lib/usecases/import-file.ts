@@ -1,4 +1,4 @@
-import type { DocumentImport, SavedDocument } from '../domain/entities/document';
+import { type DocumentImport, type SavedDocument, UNTITLED_DOCUMENT } from '../domain/entities/document';
 import { truncateGraphemePrefix } from '../domain/text/unicode';
 import type { FileImporter } from './ports';
 
@@ -9,7 +9,7 @@ export function createDocumentImport(importers: readonly FileImporter[]) {
     // Backups must be restorable at the same sizes supported by local storage.
     // Word/text conversion still has its own bounded import path.
     if (!/\.json$/i.test(file.name) && file.size > 20_000_000) throw new Error('The file exceeds the 20 MB import limit for Word and text files.');
-    const title = truncateGraphemePrefix(file.name.replace(/\.(docx|txt)$/i, ''), 120) || 'Untitled document';
+    const title = truncateGraphemePrefix(file.name.replace(/\.(docx|txt)$/i, ''), 120) || UNTITLED_DOCUMENT;
     const importer = importers.find(candidate => candidate.accepts(file));
     if (!importer) throw new Error('This file type cannot be imported.');
     return importer.read(file, title);

@@ -37,6 +37,16 @@ export function effectiveFormatMarks(marks: readonly Mark[], pos: ResolvedPos, n
     if (enabled) result = schema.marks[name].create().addToSet(result) as Mark[];
     return result;
 }
+/** Text inside the selection that character formatting applies to: paragraphs and headings, excluding inline code. */
+export function formattableTextRanges(tr: Transaction) {
+  const ranges: { from: number; to: number; marks: readonly Mark[] }[] = [];
+  for (const { $from, $to } of tr.selection.ranges) tr.doc.nodesBetween($from.pos, $to.pos, (node, pos, parent) => {
+    if (node.isText && parent && ['paragraph', 'heading'].includes(parent.type.name) && !node.marks.some(m => m.type.name === 'code'))
+      ranges.push({ from: Math.max(pos, $from.pos), to: Math.min(pos + node.nodeSize, $to.pos), marks: node.marks });
+  });
+  return ranges;
+}
+
 export function setEffectiveFormat(tr: Transaction, name: InheritedFormat, enabled: boolean): boolean {
   const schema = tr.doc.type.schema;
   if (tr.selection.empty) {
@@ -45,10 +55,7 @@ export function setEffectiveFormat(tr: Transaction, name: InheritedFormat, enabl
     const marks = tr.storedMarks ?? pos.marks(); if (marks.some(m => m.type.name === 'code')) return false;
     tr.setStoredMarks(effectiveFormatMarks(marks, pos, name, enabled)); return true;
   }
-  const ranges: { from: number; to: number; marks: readonly Mark[] }[] = [];
-  for (const { $from, $to } of tr.selection.ranges) tr.doc.nodesBetween($from.pos, $to.pos, (node, pos, parent) => {
-    if (node.isText && parent && ['paragraph', 'heading'].includes(parent.type.name) && !node.marks.some(m => m.type.name === 'code')) ranges.push({from:Math.max(pos,$from.pos),to:Math.min(pos+node.nodeSize,$to.pos),marks:node.marks});
-  });
+  const ranges = formattableTextRanges(tr);
   for (const range of ranges) {
     const marks = effectiveFormatMarks(range.marks, tr.doc.resolve(range.from), name, enabled);
     if (Mark.sameSet(marks, range.marks)) continue;

@@ -1,8 +1,8 @@
 import { openDatabase, transactionDone, requestResult, writeTransaction } from './indexed-db';
 import { parseDocument } from './storage';
-import type { SavedDocument } from '../../domain/entities/document';
 import { truncateGraphemePrefix } from '../../domain/text/unicode';
-import type { LibraryItem } from '../../domain/entities/document';
+import type { LibraryItem, SavedDocument } from '../../domain/entities/document';
+import { verifiedStoredDocument, withDocumentRecord } from './document-records';
 type Metadata = { id: string; parentId: string | null; starred: boolean; trashedAt?: string; trashGroup?: string };
 export async function listLibrary(): Promise<LibraryItem[]> {
   const db = await openDatabase();
@@ -80,11 +80,9 @@ export async function updateLibraryItem(id: string, patch: { title?: string; par
         const request = tx.objectStore('documents').get(id);
         request.onsuccess = () => {
           try {
-            if (!request.result) throw new Error('The local document no longer exists.');
             // Renaming must not rewrite an unreadable document. Validate the
             // latest body, but preserve its exact stored fields and content.
-            const original = parseDocument(JSON.stringify(request.result));
-            if (original.id !== id) throw new Error('The saved document identity does not match. The original data has been preserved.');
+            verifiedStoredDocument(request.result, id);
             const document = { ...request.result, title, savedAt: new Date().toISOString() };
             tx.objectStore('documents').put(document);
             tx.objectStore('summaries').put({ id, title, savedAt: document.savedAt });
@@ -141,9 +139,7 @@ export async function copyLibraryDocument(id: string) {
     const request = tx.objectStore('documents').get(id);
     request.onsuccess = () => {
       try {
-        if (!request.result) throw new Error('The local document no longer exists.');
-        const original = parseDocument(JSON.stringify(request.result));
-        if (original.id !== id) throw new Error('The saved document identity does not match. The original data has been preserved.');
+        const original = verifiedStoredDocument(request.result, id);
         copy = { ...original, id: crypto.randomUUID(), title: truncateGraphemePrefix(`Copy of ${original.title}`, 120), savedAt: new Date().toISOString() };
         tx.objectStore('documents').put(copy);
         tx.objectStore('summaries').put({ id: copy.id, title: copy.title, savedAt: copy.savedAt });
@@ -160,23 +156,18 @@ export async function deleteTrashedDocument(id: string, expected: { trashedAt: s
   const tx = writeTransaction(db, ['documents', 'summaries', 'libraryMetadata', 'versions', 'settings']);
   const done = transactionDone(tx);
   let failure: unknown;
-  const document = tx.objectStore('documents').get(id);
   const active = tx.objectStore('settings').get('active');
   const versions = tx.objectStore('versions').index('documentId').getAllKeys(id);
-  const metadata = tx.objectStore('libraryMetadata').get(id);
-  metadata.onsuccess = () => {
-    try {
-      if (!document.result) throw new Error('This document no longer exists.');
-      const current = metadata.result as Metadata | undefined;
-      if (!expected.trashedAt || !current?.trashedAt || current.trashedAt !== expected.trashedAt || current.trashGroup !== expected.trashGroup) {
-        throw new Error('This document changed since you opened Trash. Cancel and review it again before deleting.');
-      }
-      tx.objectStore('documents').delete(id);
-      tx.objectStore('summaries').delete(id);
-      tx.objectStore('libraryMetadata').delete(id);
-      for (const key of versions.result) tx.objectStore('versions').delete(key);
-      if (active.result === id) tx.objectStore('settings').delete('active');
-    } catch (error) { failure = error; tx.abort(); }
-  };
+  withDocumentRecord(tx, id, (document, current) => {
+    if (!document) throw new Error('This document no longer exists.');
+    if (!expected.trashedAt || !current?.trashedAt || current.trashedAt !== expected.trashedAt || current.trashGroup !== expected.trashGroup) {
+      throw new Error('This document changed since you opened Trash. Cancel and review it again before deleting.');
+    }
+    tx.objectStore('documents').delete(id);
+    tx.objectStore('summaries').delete(id);
+    tx.objectStore('libraryMetadata').delete(id);
+    for (const key of versions.result) tx.objectStore('versions').delete(key);
+    if (active.result === id) tx.objectStore('settings').delete('active');
+  }, error => { failure = error; tx.abort(); });
   try { await done; } catch (error) { throw failure || error; }
 }

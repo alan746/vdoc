@@ -1,9 +1,7 @@
 import JSZip from 'jszip';
 import { wordParagraphProperties } from './word-paragraph-spacing';
+import { W, child, attr } from './ooxml';
 
-const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
-const child = (parent: Element | undefined, name: string) => parent && Array.from(parent.children).find(n => n.namespaceURI === W && n.localName === name);
-const attr = (node: Element | undefined, key: string) => node?.getAttributeNS(W, key) ?? undefined;
 
 /** Mammoth reads direct numPr, but not paragraph-style numPr inheritance.
  * Materialize effective properties in the import copy so list construction and

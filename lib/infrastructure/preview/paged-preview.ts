@@ -3,6 +3,7 @@ import { exportHTML } from '../export/html-export';
 import { fitPreviewTables, previewPageWidth } from './preview-layout';
 import { preparePreviewParagraphBorders } from './preview-paragraph-borders';
 import { preparePreviewPageBreaks } from './preview-page-breaks';
+import { HEX_COLOR } from '../../domain/text/color';
 
 const cssText = (text: unknown) => '"' + String(text || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r\n|\r|\n/g, '\\A ') + '"';
 /** Bound text-node length in the disposable preview so bidi range offsets stay local. */
@@ -39,7 +40,7 @@ export function previewSource(title: string, html: string, content: JSONContent)
     tr { break-inside:avoid; } thead { break-inside:avoid; }
     .page-break { break-after:page; height:0; margin:0; border:0; } .page-break span { display:none; }
     .page-break + * { break-before:page; }
-    .pagedjs_page { background:${/^#[\da-f]{6}$/i.test(attrs.pageColor || '') ? attrs.pageColor : '#fff'}; }
+    .pagedjs_page { background:${HEX_COLOR.test(attrs.pageColor || '') ? attrs.pageColor : '#fff'}; }
     a { color:#405ad6; text-decoration:underline; } img { max-width:100%; }
   `;
   parsed.querySelectorAll('header,footer').forEach(node => node.remove());

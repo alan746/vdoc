@@ -6,6 +6,7 @@ import { htmlNumberTypes, bulletStyles } from './list-styles';
 import { validListStart } from './list-numbering';
 import { paragraphBordersSchema } from './paragraph-borders';
 import { validTabInterval } from './tab-interval';
+import { HEX_COLOR } from '../text/color';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type Attrs = Record<string, any>;
@@ -44,7 +45,7 @@ const listRule: NodeRule = (node, attrs) => {
 const paragraphRule: NodeRule = (node, attrs) => {
     if (attrs.paragraphBorderJoin !== undefined && typeof attrs.paragraphBorderJoin !== 'boolean') throw new Error('The backup contains an invalid paragraph border grouping.');
     if (attrs.paragraphBorders != null && !paragraphBordersSchema.safeParse(attrs.paragraphBorders).success) throw new Error('The backup contains invalid paragraph borders.');
-    if (attrs.paragraphBackground != null && (typeof attrs.paragraphBackground !== 'string' || !/^#[0-9a-f]{6}$/i.test(attrs.paragraphBackground))) throw new Error('The backup contains an invalid paragraph background.');
+    if (attrs.paragraphBackground != null && (typeof attrs.paragraphBackground !== 'string' || !HEX_COLOR.test(attrs.paragraphBackground))) throw new Error('The backup contains an invalid paragraph background.');
     if (attrs.tabInterval !== undefined && !validTabInterval(attrs.tabInterval)) throw new Error('The backup contains an invalid tab interval.');
     for (const key of ['indentStart','indentEnd','firstLineIndent']) if (attrs[key] !== undefined && !(key==='indentStart' && attrs[key]===null) && (typeof attrs[key] !== 'number' || !Number.isFinite(attrs[key]) || Math.abs(attrs[key])>10000)) throw new Error('The backup contains invalid paragraph indentation.');
 };

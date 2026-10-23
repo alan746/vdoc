@@ -10,6 +10,7 @@ import { canonicalLanguage } from '../../domain/text/language';
 import type { JSONContent } from '@tiptap/core';
 import { generateJSON } from '@tiptap/core';
 import { createExtensions } from '../../editor/extensions';
+import { HEX_COLOR } from '../../domain/text/color';
 
 // Mammoth appends one separator space and a backlink to each note. Remove only
 // those generated characters; trim() would also discard the user's indentation.
@@ -85,7 +86,7 @@ export async function importWord(buffer: ArrayBuffer): Promise<{ content: JSONCo
 }
 const hex = (value: unknown): string | undefined => {
   if (typeof value !== 'string') return;
-  if (/^#[\da-f]{6}$/i.test(value)) return value.slice(1);
+  if (HEX_COLOR.test(value)) return value.slice(1);
   const rgb = value.match(/^rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\s*\)$/);
   return rgb ? rgb.slice(1).map(n => Math.min(255, +n).toString(16).padStart(2, '0')).join('') : undefined;
 };

@@ -1,6 +1,7 @@
 import { Fragment, type Node, type NodeType } from '@tiptap/pm/model';
 import { CellSelection } from '@tiptap/pm/tables';
 import type { Selection, Transaction } from '@tiptap/pm/state';
+import { promotedItemContent } from './promote-items';
 
 const isList=(node:Node)=>['orderedList','bulletList','taskList'].includes(node.type.name);
 const isTextBlock=(node:Node)=>['paragraph','heading'].includes(node.type.name);
@@ -30,10 +31,20 @@ export function selectedCellListType(selection: Selection): string | null {
 }
 
 /** Lift all directly selected list items by one level, independently in each cell. */
+type CellPlan = { pos: number; node: Node; content: Fragment };
+/** Writes planned cell contents (last cell first, so positions stay valid) and keeps the same cells selected. */
+function applyCellPlans(tr: Transaction, selection: CellSelection, plans: CellPlan[]) {
+  const mapFrom = tr.mapping.maps.length;
+  for (const plan of plans.sort((a, b) => b.pos - a.pos)) tr.replaceWith(plan.pos + 1, plan.pos + plan.node.nodeSize - 1, plan.content);
+  const mapping = tr.mapping.slice(mapFrom);
+  tr.setSelection(CellSelection.create(tr.doc, mapping.map(selection.$anchorCell.pos), mapping.map(selection.$headCell.pos)));
+  return true;
+}
+
 export function liftCellLists(tr: Transaction, write = true): boolean {
   const selection = tr.selection;
   if (!(selection instanceof CellSelection) || !selectedCellLists(selection).length) return false;
-  const plans: {pos: number; node: Node; content: Fragment}[] = [];
+  const plans: CellPlan[] = [];
   let valid = true;
   selection.forEachCell((cell, pos) => {
     const output: Node[] = [];
@@ -41,27 +52,14 @@ export function liftCellLists(tr: Transaction, write = true): boolean {
       if (!isList(node)) { output.push(node); continue; }
       // The outer items leave their list. Child lists keep their contents, markers
       // and identities; a promoted numbering chain must not attach to a new parent.
-      for (const item of node.content.content) {
-        let previousNumbered = false;
-        for (const child of item.content.content) {
-          output.push(child.type.name === 'orderedList' && child.attrs.continuePrevious && !previousNumbered
-            ? child.type.create({...child.attrs, continuePrevious: false}, child.content, child.marks)
-            : child);
-          if (child.type.name === 'orderedList') previousNumbered = true;
-        }
-      }
+      for (const item of node.content.content) output.push(...promotedItemContent(item));
     }
     const content = Fragment.fromArray(output);
     if (!cell.type.validContent(content)) valid = false;
     if (!content.eq(cell.content)) plans.push({pos, node: cell, content});
   });
   if (!valid) return false;
-  if (!write) return true;
-  const mapFrom = tr.mapping.maps.length;
-  for (const plan of plans.sort((a,b) => b.pos-a.pos)) tr.replaceWith(plan.pos+1, plan.pos+plan.node.nodeSize-1, plan.content);
-  const mapping = tr.mapping.slice(mapFrom);
-  tr.setSelection(CellSelection.create(tr.doc, mapping.map(selection.$anchorCell.pos), mapping.map(selection.$headCell.pos)));
-  return true;
+  return !write || applyCellPlans(tr, selection, plans);
 }
 
 /** Plan every cell before writing. A mixed selection applies the type everywhere;
@@ -74,7 +72,7 @@ export function toggleCellLists(tr:Transaction,listType:NodeType,itemType:NodeTy
   const eligible=eligibleBlocks(selection);
   if(!eligible.length)return false;
   const remove=eligible.every(node=>node.type===listType);
-  const plans:{pos:number;node:Node;content:Fragment}[]=[];
+  const plans:CellPlan[]=[];
   for(const cell of cells){
     const output:{node:Node;origin?:Node}[]=[];
     let paragraphs:Node[]=[];
@@ -108,10 +106,5 @@ export function toggleCellLists(tr:Transaction,listType:NodeType,itemType:NodeTy
     if(!cell.node.type.validContent(content))return false;
     if(!content.eq(cell.node.content))plans.push({...cell,content});
   }
-  if(!write)return true;
-  const mapFrom=tr.mapping.maps.length;
-  for(const plan of plans.sort((a,b)=>b.pos-a.pos))tr.replaceWith(plan.pos+1,plan.pos+plan.node.nodeSize-1,plan.content);
-  const mapping=tr.mapping.slice(mapFrom);
-  tr.setSelection(CellSelection.create(tr.doc,mapping.map(selection.$anchorCell.pos),mapping.map(selection.$headCell.pos)));
-  return true;
+  return !write || applyCellPlans(tr,selection,plans);
 }

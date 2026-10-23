@@ -1,6 +1,6 @@
 import type JSZip from 'jszip';
+import { W } from './ooxml';
 const A = 'http://schemas.openxmlformats.org/drawingml/2006/main';
-const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 export type WordAttributes = Record<string, string>;
 const hex = (value?: string) => value && /^[\da-f]{6}$/i.test(value) ? value.toUpperCase() : undefined;
 

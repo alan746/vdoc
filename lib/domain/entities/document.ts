@@ -14,3 +14,10 @@ export type LibraryItemPatch = { title?: string; parentId?: string | null; starr
 export type TrashExpectation = { trashedAt: string; trashGroup?: string };
 /** Result of opening the active document; `error` means storage exists but could not be read. */
 export type ActiveDocumentRead = { data: SavedDocument | null; error?: string };
+
+/** Title used whenever a document has no name. */
+export const UNTITLED_DOCUMENT = 'Untitled document';
+/** The title to store: trimmed, or the default when blank. */
+export const documentTitle = (title: string) => title.trim() || UNTITLED_DOCUMENT;
+/** A new, empty, untitled document. */
+export const blankDocument = (): SavedDocument => ({ version: 1, title: UNTITLED_DOCUMENT, content: { type: 'doc', content: [{ type: 'paragraph' }] }, savedAt: new Date().toISOString() });

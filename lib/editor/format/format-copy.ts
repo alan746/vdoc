@@ -1,4 +1,4 @@
-import { effectiveFormat, effectiveFormatMarks } from './format-overrides';
+import { effectiveFormat, effectiveFormatMarks, formattableTextRanges } from './format-overrides';
 import type {Editor} from '@tiptap/core';
 import {Mark} from '@tiptap/pm/model';
 import {AllSelection,TextSelection,type Selection,type Transaction} from '@tiptap/pm/state';
@@ -70,12 +70,7 @@ export function canPasteTextFormat(editor:Editor):boolean {
 }
 function formatRanges(tr:Transaction){
   if(!(tr.selection instanceof TextSelection||tr.selection instanceof CellSelection||tr.selection instanceof AllSelection)||tr.selection.empty)return [];
-  const ranges:{from:number;to:number;marks:readonly Mark[]}[]=[];
-  for(const {$from,$to} of tr.selection.ranges)tr.doc.nodesBetween($from.pos,$to.pos,(node,pos,parent)=>{
-    if(node.isText&&parent&&['paragraph','heading'].includes(parent.type.name)&&!node.marks.some(m=>m.type.name==='code'))
-      ranges.push({from:Math.max(pos,$from.pos),to:Math.min(pos+node.nodeSize,$to.pos),marks:node.marks});
-  });
-  return ranges.filter(r=>r.to>r.from);
+  return formattableTextRanges(tr).filter(r=>r.to>r.from);
 }
 
 /** Replace supported character formatting, preserving links, content and structure. */

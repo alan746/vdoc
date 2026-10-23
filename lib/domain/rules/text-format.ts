@@ -1,6 +1,7 @@
 import { z } from 'zod';
+import { HEX_COLOR } from '../text/color';
 
-const color=z.string().regex(/^#[0-9a-fA-F]{6}$/).nullable();
+const color=z.string().regex(HEX_COLOR).nullable();
 export const textFormatSchema=z.object({
   bold:z.boolean(),italic:z.boolean(),underline:z.boolean(),strike:z.boolean(),
   color,highlight:color,fontFamily:z.enum(['Arial','Georgia','Times New Roman','Noto Sans SC','monospace']).nullable(),
