@@ -1,0 +1,50 @@
+{
+  "environment": {
+    "browser": "Chrome 152.0.0.0 (Codex in-app browser), macOS",
+    "date": "2026-10-17",
+    "baseCommit": "dad346695fc579009ba090cf961f5e69d4ecd032",
+    "imageCount": 10,
+    "imageBytes": 21058142,
+    "namedVersions": 10,
+    "warmupWrites": 5,
+    "measuredWrites": 30,
+    "durability": "strict"
+  },
+  "inline": {
+    "timestamp": "2026-10-17T21:40:18.703Z",
+    "documentJSONBytes": 28078209,
+    "preparationMs": 32.7,
+    "autosaveMedianMs": 38.3,
+    "autosaveP95Ms": 43.8,
+    "enqueueMedianMs": 11.1,
+    "enqueueP95Ms": 13.9,
+    "storageBeforeBytes": 2770,
+    "storageAfterBytes": 308904552,
+    "storageDeltaBytes": 308901782,
+    "heapBeforeBytes": 7020475,
+    "heapAfterVersionReadBytes": 312737142,
+    "heapDeltaBytes": 305716667
+  },
+  "references": {
+    "timestamp": "2026-10-17T21:43:40.645Z",
+    "documentJSONBytes": 1203,
+    "preparationMs": 37.2,
+    "autosaveMedianMs": 0.5,
+    "autosaveP95Ms": 0.9,
+    "enqueueMedianMs": 0,
+    "enqueueP95Ms": 0.1,
+    "storageBeforeBytes": 43020,
+    "storageAfterBytes": 21225608,
+    "storageDeltaBytes": 21182588,
+    "heapBeforeBytes": 7018155,
+    "heapAfterVersionReadBytes": 30392827,
+    "heapDeltaBytes": 23374672
+  },
+  "limits": [
+    "Summary timings rounded to 0.1 ms; zero means below timer resolution, not no cost.",
+    "One run per mode, 30 measured writes each; not a cross-browser performance guarantee.",
+    "Origin-wide storage estimates are approximate and asynchronously accounted.",
+    "Heap is a non-standard Chromium sample without forced GC, includes temporary allocations and excludes decoded-image/GPU memory.",
+    "Prototype measures persistence representation, not full application autosave or migration."
+  ]
+}
