@@ -38,6 +38,8 @@ npm run build
 
 测试默认只启动一个 worker；全量测试、构建与表格渲染依次运行，避免在共享开发电脑上叠加内存负载。
 
+`ANALYZE=1 npm run build` 会额外写出 `dist/bundle-report/client.json`：列出浏览器端每个 chunk 的模块组成与大小，以及模块之间的引用关系，可用来追查某个模块为什么被打进某个 chunk。不设该变量时，构建产物与平时一致。
+
 请把代码仓库放在 iCloud 云盘、Dropbox 等同步文件夹之外（或将其排除在同步之外）。同步冲突会生成 `engine 2.ts` 这类副本：`npm run typecheck` 会检查到这些过时的副本，`git add -A` 也会把它们提交。`tests/repository-hygiene.test.ts` 发现此类副本时会失败并列出文件名；请先与原文件比对，保留正确内容后删除副本。
 
 ## 已实现
