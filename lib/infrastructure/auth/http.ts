@@ -1,4 +1,4 @@
-import { type AppAuth, authenticatedUser } from './auth';
+import { type AppAuth, AuthConfigurationError, authenticatedUser } from './auth';
 
 const headers = { 'Cache-Control': 'private, no-store', Vary: 'Cookie, Origin' };
 const reply = (body: unknown, status = 200) => Response.json(body, { status, headers });
@@ -64,7 +64,28 @@ export async function handleAuthRequest(request: Request, auth: AppAuth, origin:
 }
 
 export async function accountResponse(request: Request, auth: AppAuth | null) {
-  if (!auth) return reply({ configured: false, user: null });
+  if (!auth) return accountUnavailable('AUTH_NOT_CONFIGURED');
   try { return reply({ configured: true, user: await authenticatedUser(auth, request.headers) }); }
-  catch { return reply({ error: 'Account could not be loaded. Try again.' }, 503); }
+  catch { return accountUnavailable('ACCOUNT_UNAVAILABLE'); }
+}
+
+type AccountFailure = 'AUTH_NOT_CONFIGURED' | 'ORIGIN_MISMATCH' | 'ACCOUNT_UNAVAILABLE';
+function accountUnavailable(code: AccountFailure, signInUrl?: string) {
+  const messages: Record<AccountFailure, string> = {
+    AUTH_NOT_CONFIGURED: 'Sign-in setup is incomplete. You can check again or continue with local documents.',
+    ORIGIN_MISMATCH: 'Please use the main VDoc website to sign in.',
+    ACCOUNT_UNAVAILABLE: 'We could not connect to your account. Please try again.',
+  };
+  return reply({ configured: false, user: null, error: { code, message: messages[code] }, ...(signInUrl ? { signInUrl } : {}) }, code === 'ORIGIN_MISMATCH' ? 403 : 503);
+}
+
+/** Initialization failures must not masquerade as an unsupported address. */
+export async function resolveAccountRequest(request: Request, initialize: () => { auth: AppAuth; origin: string }) {
+  try {
+    const { auth, origin } = initialize();
+    if (new URL(request.url).origin !== origin) return accountUnavailable('ORIGIN_MISMATCH', new URL('/account', origin).href);
+    return await accountResponse(request, auth);
+  } catch (error) {
+    return accountUnavailable(error instanceof AuthConfigurationError ? 'AUTH_NOT_CONFIGURED' : 'ACCOUNT_UNAVAILABLE');
+  }
 }

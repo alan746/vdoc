@@ -9,18 +9,20 @@ export type AuthEnvironment = {
   GOOGLE_CLIENT_SECRET?: string;
 };
 
+export class AuthConfigurationError extends Error {}
+
 export function authConfiguration(env: AuthEnvironment) {
   const { AUTH_BASE_URL, BETTER_AUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = env;
   if (!AUTH_BASE_URL || !BETTER_AUTH_SECRET || !GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET)
-    throw new Error('Sign-in is not configured.');
+    throw new AuthConfigurationError('Sign-in is not configured.');
   let url: URL;
-  try { url = new URL(AUTH_BASE_URL); } catch { throw new Error('Invalid sign-in origin.'); }
+  try { url = new URL(AUTH_BASE_URL); } catch { throw new AuthConfigurationError('Invalid sign-in origin.'); }
   const local = ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
   if (url.username || url.password || url.search || url.hash || url.pathname !== '/' ||
       !(url.protocol === 'https:' || (local && url.protocol === 'http:')))
-    throw new Error('Invalid sign-in origin.');
+    throw new AuthConfigurationError('Invalid sign-in origin.');
   if (BETTER_AUTH_SECRET.length < 32 || BETTER_AUTH_SECRET.trim() !== BETTER_AUTH_SECRET)
-    throw new Error('Sign-in requires a secret of at least 32 characters.');
+    throw new AuthConfigurationError('Sign-in requires a secret of at least 32 characters.');
   return { origin: url.origin, secure: url.protocol === 'https:', secret: BETTER_AUTH_SECRET, clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET };
 }
 

@@ -39,15 +39,18 @@ try {
     assert.match(response.headers.get('content-type') ?? '', /text\/html/);
     const html = await response.text();
     assert.doesNotMatch(html, /id="__next_error__"/, `${path} must not render an error shell`);
-    assert.ok(html.includes(path === '/' ? 'Opening workspace' : path === '/account' ? 'Your account' : path === '/cloud' ? 'Opening cloud workspace' : 'preview-pages'), `${path} must render its initial UI`);
+    assert.ok(html.includes(path === '/' ? 'Opening workspace' : path === '/account' ? 'Welcome to VDoc' : path === '/cloud' ? 'Opening cloud workspace' : 'preview-pages'), `${path} must render its initial UI`);
     for (const match of html.matchAll(/(?:src|href)="([^\"]+)"/g)) {
       if (match[1].startsWith('/_next/static/')) assets.add(match[1]);
     }
     console.log(`PASS ${path}: HTTP 200 and expected server-rendered UI`);
   }
   const account = await fetch(new URL('/api/account', origin), { signal: AbortSignal.timeout(10_000) });
-  assert.equal(account.status, 200);
-  assert.deepEqual(await account.json(), { configured: false, user: null });
+  assert.equal(account.status, 503);
+  const accountBody = await account.json();
+  assert.equal(accountBody.configured, false);
+  assert.equal(accountBody.user, null);
+  assert.equal(accountBody.error.code, 'AUTH_NOT_CONFIGURED');
   assert.match(account.headers.get('cache-control'), /no-store/);
   const signIn = await fetch(new URL('/api/auth/sign-in/social', origin), { method: 'POST', headers: { origin, 'content-type': 'application/json' }, body: JSON.stringify({ provider: 'google' }), signal: AbortSignal.timeout(10_000) });
   await signIn.text();

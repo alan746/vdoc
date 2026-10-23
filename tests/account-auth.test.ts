@@ -5,8 +5,8 @@ import { serializeSignedCookie } from 'better-call';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import * as schema from '../db/schema';
 import { applyMigrations } from '../scripts/neon-migrations.mjs';
-import { authConfiguration, authenticatedUser, createAuth } from '../lib/infrastructure/auth/auth';
-import { accountResponse, handleAuthRequest } from '../lib/infrastructure/auth/http';
+import { AuthConfigurationError, authConfiguration, authenticatedUser, createAuth } from '../lib/infrastructure/auth/auth';
+import { accountResponse, handleAuthRequest, resolveAccountRequest } from '../lib/infrastructure/auth/http';
 
 const env = { AUTH_BASE_URL: 'https://vdoc.example', BETTER_AUTH_SECRET: 'test-only-secret-with-at-least-32-characters', GOOGLE_CLIENT_ID: 'test-client', GOOGLE_CLIENT_SECRET: 'test-secret' };
 const pg = new PGlite();
@@ -28,6 +28,20 @@ beforeAll(async () => {
 afterAll(() => pg.close());
 
 describe('verified Google account sessions', () => {
+  it('distinguishes unavailable service, incomplete setup and a different origin without leaking failures', async () => {
+    const req = request('/api/account');
+    for (const [failure, code] of [[new Error('postgres://private:password@host/db'), 'ACCOUNT_UNAVAILABLE'], [new AuthConfigurationError('secret-value'), 'AUTH_NOT_CONFIGURED']] as const) {
+      const response = await resolveAccountRequest(req, () => { throw failure; });
+      expect(response.status).toBe(503);
+      expect(await response.json()).toMatchObject({ configured: false, user: null, error: { code } });
+      expect(response.headers.get('cache-control')).toContain('no-store');
+    }
+    const wrongHost = await resolveAccountRequest(new Request('https://preview.example/api/account'), () => ({ auth, origin }));
+    expect(wrongHost.status).toBe(403);
+    expect(await wrongHost.json()).toMatchObject({ error: { code: 'ORIGIN_MISMATCH' }, signInUrl: `${origin}/account` });
+    const healthy = await resolveAccountRequest(req, () => ({ auth, origin }));
+    expect(await healthy.json()).toEqual({ configured: true, user: null });
+  });
   it('rejects unsafe/missing configuration without echoing secret values', () => {
     expect(() => authConfiguration({})).toThrow('not configured');
     for (const AUTH_BASE_URL of ['http://public.example', 'https://user:secret@vdoc.example', 'https://vdoc.example/path', 'https://vdoc.example?secret=abc'])

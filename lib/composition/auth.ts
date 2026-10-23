@@ -1,7 +1,7 @@
 import { env } from 'cloudflare:workers';
 import { createDatabase } from '@/lib/infrastructure/persistence/neon-database';
 import { authConfiguration, authenticatedUser, createAuth } from '@/lib/infrastructure/auth/auth';
-import { accountResponse, handleAuthRequest } from '@/lib/infrastructure/auth/http';
+import { resolveAccountRequest, handleAuthRequest } from '@/lib/infrastructure/auth/http';
 
 export function requestAuth() {
   const config = authConfiguration(env);
@@ -16,10 +16,7 @@ export async function getRequestUser(request: Request) {
 }
 
 export async function handleAccountRequest(request: Request) {
-  try {
-    const { auth, origin } = requestAuth();
-    return accountResponse(request, new URL(request.url).origin === origin ? auth : null);
-  } catch { return accountResponse(request, null); }
+  return resolveAccountRequest(request, requestAuth);
 }
 
 export async function handleSignInRequest(request: Request) {
