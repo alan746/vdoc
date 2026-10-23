@@ -4,19 +4,19 @@ import { createRoot, type Root } from 'react-dom/client';
 import { Editor, type JSONContent } from '@tiptap/core';
 import JSZip from 'jszip';
 import { createExtensions } from '../lib/editor/extensions';
-import { useWordExport, WordExportFeedback } from '../components/editor/word-export';
+import { usePreparedExport, PreparedExportFeedback } from '../components/editor/prepared-export';
 
 const calls = vi.hoisted(() => ({ convert: vi.fn(), error: vi.fn(), success: vi.fn() }));
 vi.mock('../lib/infrastructure/word/word', () => ({ exportWord: calls.convert }));
 vi.mock('mammoth', () => vi.importActual('mammoth/mammoth.browser.js'));
 vi.mock('sonner', () => ({ toast: { error: calls.error, success: calls.success } }));
-let editor: Editor, mount: HTMLDivElement, root: Root, state: ReturnType<typeof useWordExport>;
+let editor: Editor, mount: HTMLDivElement, root: Root, state: ReturnType<typeof usePreparedExport>;
 let jobs: { resolve: (blob: Blob) => void; reject: (error: Error) => void }[];
 let createUrl: ReturnType<typeof vi.fn>, revokeUrl: ReturnType<typeof vi.fn>;
 const originalCreate = URL.createObjectURL, originalRevoke = URL.revokeObjectURL;
-function Harness({ title }: { title: string }) { const current = useWordExport(editor, title); useLayoutEffect(() => { state = current; }); return createElement(WordExportFeedback, { state: current }); }
+function Harness({ title }: { title: string }) { const current = usePreparedExport(editor, title); useLayoutEffect(() => { state = current; }); return createElement(PreparedExportFeedback, { state: current }); }
 async function render(title = 'Current draft') { await act(async () => root.render(createElement(Harness, { title }))); }
-async function start() { await act(async () => { void state.request(); }); }
+async function start() { await act(async () => { void state.request('docx'); }); }
 async function finish(index = 0) { await act(async () => { jobs[index].resolve(new Blob(['Word data'])); }); }
 beforeEach(async () => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true); calls.error.mockReset(); calls.success.mockReset(); jobs = [];
@@ -38,7 +38,7 @@ it('bounds the Word filename but passes the complete title and body to conversio
 });
 
 it('starts only one conversion on same-event repeated requests and displays progress', async () => {
-  await act(async () => { void state.request(); void state.request(); });
+  await act(async () => { void state.request('docx'); void state.request('docx'); });
   expect(calls.convert).toHaveBeenCalledOnce(); expect(state.busy).toBe(true); expect(mount.textContent).toContain('Preparing Word'); expect(editor.isEditable).toBe(true);
   await finish(); expect(state.busy).toBe(false); expect(document.querySelector('[aria-label="Word export"]')!.textContent).toContain('Word document ready');
 });
@@ -78,7 +78,7 @@ it('releases a completed download URL on unmount', async () => {
 it('keeps the checklist warning tied to the exported snapshot', async () => {
   editor.commands.setContent('<ul data-type="taskList"><li data-type="taskItem" data-checked="true"><p>Checklist</p></li></ul>');
   await start(); editor.commands.setContent('<p>Later body</p>'); await finish();
-  expect(state.download!.staticChecklist).toBe(true); expect(document.querySelector('[aria-label="Word export"]')!.textContent).toContain('static checkbox symbols');
+  expect(state.download!.notices.some(notice => notice.code === 'static-checklist')).toBe(true); expect(document.querySelector('[aria-label="Word export"]')!.textContent).toContain('static checkbox symbols');
 });
 
 it('ignores the old editor result without clearing the new editor export state', async () => {
@@ -164,7 +164,7 @@ it('delivers real snapshot bytes, backs up the newer draft, then regenerates Wor
   expect(exportLocalDocument(editor, 'Newer title 中文', 'json')).toBe(true);
   const backup = JSON.parse(new TextDecoder().decode(await blobBytes(createUrl.mock.calls[1][0])));
   expect(backup.title).toBe('Newer title 中文'); expect(backup.content).toEqual(latest);
-  calls.convert.mockImplementation(real.exportWord); await act(async () => state.request());
+  calls.convert.mockImplementation(real.exportWord); await act(async () => state.request('docx'));
   const updated = await inspectWord(createUrl.mock.calls[2][0]); expect(updated.title).toBe('Newer title 中文'); expect(contentText(updated.content)).toBe(contentText(latest));
   const table = walk(updated.content).find(node => node.type === 'table')!;
   expect(table.content!.map(row => row.content!.map(cell => cell.attrs?.rowspan ?? 1))).toEqual([[2, 1], [1]]);
@@ -174,10 +174,10 @@ it('delivers real snapshot bytes, backs up the newer draft, then regenerates Wor
 it('retries real Word conversion after URL allocation fails using edits made after the failure', async () => {
   const real = await realWord(); calls.convert.mockImplementation(real.exportWord); const baseline = await mixedDraft();
   createUrl.mockImplementationOnce(() => { throw new Error('Cannot allocate download'); });
-  await act(async () => state.request()); expect(state.download).toBeNull(); expect(state.busy).toBe(false); expect(editor.getJSON()).toEqual(baseline);
+  await act(async () => state.request('docx')); expect(state.download).toBeNull(); expect(state.busy).toBe(false); expect(editor.getJSON()).toEqual(baseline);
   expect(calls.error).toHaveBeenCalledWith('Cannot allocate download');
   await act(async () => editor.commands.insertContentAt(1, 'Retry latest 日本語 ')); const latest = editor.getJSON();
-  await act(async () => state.request()); const exported = await inspectWord(createUrl.mock.calls[1][0]);
+  await act(async () => state.request('docx')); const exported = await inspectWord(createUrl.mock.calls[1][0]);
   expect(contentText(exported.content)).toBe(contentText(latest)); expect(state.download!.changedSinceStart).toBe(false); expect(editor.getJSON()).toEqual(latest);
 });
 it('discards a real completed Word file if its workspace unmounts before the result is delivered', async () => {
@@ -196,7 +196,7 @@ it('does not attach a late real Word file to a newly opened document or overwrit
   await mixedDraft(); await start(); await encoded; const old = editor;
   try {
     editor = new Editor({ extensions: createExtensions(), content: '<p>New document हिन्दी עברית</p>' }); await render('New document');
-    calls.convert.mockImplementation(real.exportWord); await act(async () => state.request()); const ready = state.download;
+    calls.convert.mockImplementation(real.exportWord); await act(async () => state.request('docx')); const ready = state.download;
     await act(async () => release()); expect(state.download).toEqual(ready); expect(createUrl).toHaveBeenCalledOnce();
     const exported = await inspectWord(createUrl.mock.calls[0][0]); expect(exported.title).toBe('New document'); expect(contentText(exported.content)).toBe('New document हिन्दी עברית');
     expect(calls.error).not.toHaveBeenCalled();

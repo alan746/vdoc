@@ -427,7 +427,7 @@ restoreWordFormatting匹配单元格前排除vMerge continuation，保留restart
 
 ## Word导出生命周期（2026-10-02，第四十五轮）
 
-useWordExport以pending引用防止同步重复调用，保存ProseMirror文档对象与标题后异步调用现有exportWord。generation序号及mounted／editor.isDestroyed保护迟到结果；URL只在有效完成后创建，close／重生成／cleanup显式释放。结果含changedSinceStart，比较正文对象及标题变化；重生成重新捕获快照，静态清单标记与文件名也绑定该快照。导出不占导航锁，不更改DocumentEngine协议，也不取消已启动的转换计算。
+usePreparedExport（components/editor/prepared-export.tsx，Word 以 docx 格式 id 调用）以pending引用防止同步重复调用，保存ProseMirror文档对象与标题后异步经格式注册表调用exportWord。generation序号及mounted／editor.isDestroyed保护迟到结果；URL只在有效完成后创建，close／重生成／cleanup显式释放。结果含changedSinceStart，比较正文对象及标题变化；重生成重新捕获快照，静态清单标记与文件名也绑定该快照。导出不占导航锁，不更改DocumentEngine协议，也不取消已启动的转换计算。
 
 
 ## 文件导入报告与通知生命周期（2026-10-02，第四十六轮）
