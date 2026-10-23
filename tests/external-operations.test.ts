@@ -16,7 +16,7 @@ it('publishes a distinct session even when two editors have equal revisions', ()
   try { const before = editor.getJSON(); expect(other.revision).toBe(engine.revision); expect(other.executeExternal(request()).code).toBe('STALE'); expect(editor.getJSON()).toEqual(before); }
   finally { other.destroy(); }
 });
-it.each(['expectedSessionId', 'expectedRevision', 'target'])('requires %s at the external boundary', field => {
+it.each(['expectedSessionId', 'target'])('requires %s at the external boundary', field => {
   const input: Record<string, unknown> = request(); delete input[field]; const before = editor.getJSON();
   expect(engine.executeExternal(input).code).toBe('INVALID'); expect(editor.getJSON()).toEqual(before);
 });
@@ -100,7 +100,7 @@ it('registers the guarded schema and aborts the tools with the editor lifecycle'
   const registered: { tool: RegisteredTool; signal: AbortSignal }[] = [];
   const dispose = registerDocumentTools(engine, { registerTool: (tool, options) => { registered.push({ tool, signal: options.signal }); } });
   const apply = registered.find(t => t.tool.name === 'apply_document_operations')!;
-  expect(apply.tool.inputSchema).toMatchObject({ required: expect.arrayContaining(['expectedSessionId', 'expectedRevision', 'target']) });
+  expect(apply.tool.inputSchema).toMatchObject({ required: expect.arrayContaining(['expectedSessionId', 'target']), properties: expect.objectContaining({ expectedBlocks: expect.any(Object), expectedRevision: expect.any(Object) }) });
   expect(apply.tool.execute({ operations: [{ type: 'text.insert', text: 'unsafe' }] })).toMatchObject({ code: 'INVALID' });
   expect(apply.tool.execute(request())).toMatchObject({ ok: true }); dispose(); expect(apply.signal.aborted).toBe(true);
 });

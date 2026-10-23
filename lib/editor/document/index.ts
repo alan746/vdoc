@@ -1,6 +1,6 @@
 import Blockquote from '@tiptap/extension-blockquote';
 import CodeBlock from '@tiptap/extension-code-block';
-import { Dropcursor, Gapcursor, UndoRedo, TrailingNode } from '@tiptap/extensions';
+import { Dropcursor, Gapcursor, TrailingNode } from '@tiptap/extensions';
 import HardBreak from '@tiptap/extension-hard-break';
 import HorizontalRule from '@tiptap/extension-horizontal-rule';
 import Text from '@tiptap/extension-text';
@@ -10,6 +10,7 @@ import Document from '@tiptap/extension-document';
 import Placeholder from '@tiptap/extension-placeholder';
 import { NativeSelectionSync } from '../native-selection';
 import { StableIds } from './stable-ids';
+import { ConcurrentUndoRedo } from './native-undo';
 import { pageRule, languageRule, textMetadataRule, layoutValuesRule } from './validation';
 import type { EditorFeature } from '../feature';
 
@@ -24,7 +25,7 @@ export const documentFeature = {
     { order: 604, value: Dropcursor },
     { order: 605, value: Gapcursor },
     { order: 606, value: HardBreak },
-    { order: 607, value: UndoRedo },
+    { order: 607, value: ConcurrentUndoRedo },
     { order: 608, value: HorizontalRule },
     { order: 613, value: Text },
     { order: 614, value: TrailingNode },

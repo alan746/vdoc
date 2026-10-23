@@ -4,10 +4,13 @@ import type { Editor } from '@tiptap/core';
 import type { SelectionBookmark } from '@tiptap/pm/state';
 import { Mark } from '@tiptap/pm/model';
 import { closeHistory, undoDepth, redoDepth } from '@tiptap/pm/history';
-import { agentRequestSchema, externalRequestSchema, requestSchema, operationLabel, type AgentOrigin, type OperationRecord, type OperationResult } from '../domain/entities/operation';
+import { agentRequestSchema, externalRequestSchema, requestSchema, operationLabel, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
 import { applyOperation } from '../editor/commands/registry';
 import { resolveTargetSelection } from '../editor/commands/target-selection';
 import { documentSnapshot } from '../editor/document-snapshot';
+import { BlockVersions } from '../editor/document/block-version';
+import { changedBlockIds } from '../editor/document/changed-blocks';
+import { SelectiveUndoHistory } from '../editor/document/selective-undo';
 
 /** Single synchronous writer for programmatic edits. Native typing remains in ProseMirror. */
 export class DocumentEngine {
@@ -18,12 +21,18 @@ export class DocumentEngine {
   private bookmark: SelectionBookmark | null = null;
   private results = new Map<string, { signature: string; result: OperationResult }>();
   private listeners = new Set<() => void>();
+  private appliedListeners = new Set<(event: AppliedChange) => void>();
+  private blockVersions = new BlockVersions();
+  private turnHistory: SelectiveUndoHistory;
   private clearBookmarkOnInput = () => { this.bookmark = null; };
-  private handleTransaction: (event: { transaction: import('@tiptap/pm/state').Transaction }) => void;
+  private handleTransaction: (event: { transaction: import('@tiptap/pm/state').Transaction; appendedTransactions?: import('@tiptap/pm/state').Transaction[] }) => void;
 
-  constructor(readonly editor: Editor) {
-    this.handleTransaction = ({ transaction }) => {
-      if (transaction.docChanged) this.revision++;
+  constructor(readonly editor: Editor, options: { undoStepLimit?: number } = {}) {
+    this.turnHistory = new SelectiveUndoHistory(options.undoStepLimit);
+    this.blockVersions.update(editor.state.doc);
+    this.handleTransaction = ({ transaction, appendedTransactions = [] }) => {
+      this.turnHistory.record(transaction, appendedTransactions);
+      if (transaction.docChanged) { this.revision++; this.blockVersions.update(editor.state.doc); }
       if (this.bookmark) this.bookmark = this.bookmark.map(transaction.mapping);
       for (const listener of this.listeners) listener();
     };
@@ -32,12 +41,15 @@ export class DocumentEngine {
     editor.view.dom.addEventListener('keydown', this.clearBookmarkOnInput);
   }
   subscribe(listener: () => void) { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; }
+  onApplied(listener: (event: AppliedChange) => void) { this.appliedListeners.add(listener); return () => { this.appliedListeners.delete(listener); }; }
   destroy() {
     this.disposed = true;
     this.editor.off('transaction', this.handleTransaction);
     this.editor.view.dom.removeEventListener('pointerdown', this.clearBookmarkOnInput);
     this.editor.view.dom.removeEventListener('keydown', this.clearBookmarkOnInput);
     this.listeners.clear();
+    this.appliedListeners.clear();
+    this.turnHistory.clear();
   }
   captureSelection() { this.bookmark = this.editor.state.selection.getBookmark(); }
   clearSelectionBookmark() { this.bookmark = null; }
@@ -47,6 +59,7 @@ export class DocumentEngine {
   executeExternal(input: unknown): OperationResult {
     const parsed = externalRequestSchema.safeParse(input);
     if (!parsed.success) return { ok: false, id: crypto.randomUUID(), revision: this.revision, code: 'INVALID', error: parsed.error.issues[0]?.message || 'Read the document and supply session, revision, and an explicit target.' };
+    if (parsed.data.expectedRevision === undefined && parsed.data.expectedBlocks === undefined) return { ok: false, id: parsed.data.id ?? crypto.randomUUID(), revision: this.revision, code: 'STALE', error: 'Supply a revision or covering block versions.' };
     return this.execute(parsed.data);
   }
 
@@ -54,6 +67,7 @@ export class DocumentEngine {
   executeAgent(input: unknown, origin: AgentOrigin): OperationResult {
     const parsed = agentRequestSchema.safeParse(input);
     if (!parsed.success) return { ok: false, id: crypto.randomUUID(), revision: this.revision, code: 'INVALID', error: parsed.error.issues[0]?.message || 'Read the document and supply session, revision, and an explicit target.' };
+    if (parsed.data.expectedRevision === undefined && parsed.data.expectedBlocks === undefined) return { ok: false, id: parsed.data.id ?? crypto.randomUUID(), revision: this.revision, code: 'STALE', error: 'Supply a revision or covering block versions.' };
     return this.execute({ ...parsed.data, source: 'agent', actor: origin.actor, turnId: origin.turnId });
   }
 
@@ -74,6 +88,13 @@ export class DocumentEngine {
     // bypass the protection just because the document body is not composing.
     if (documentNavigation(this.editor).isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
     if (request.expectedRevision !== undefined && request.expectedRevision !== this.revision) return fail('STALE', 'The document has changed. Read the target again.');
+    if (request.expectedBlocks !== undefined) {
+      if (request.expectedRevision === undefined && request.operations.some(op => op.type.startsWith('document.') || op.type === 'text.findReplace' || op.type === 'block.move')) return fail('STALE', 'Document-wide operations require a document revision.');
+      const target = request.target;
+      const targetId = target.kind === 'block' ? target.id : target.kind === 'text' ? target.blockId : target.kind === 'cell' || target.kind === 'cells' ? target.tableId : undefined;
+      if (request.expectedRevision === undefined && (!targetId || !request.expectedBlocks.some(block => block.id === targetId))) return fail('STALE', 'Block versions must cover the target.');
+      if (request.expectedBlocks.some(block => this.blockVersions.get(block.id) !== block.version)) return fail('STALE', 'A target block has changed. Read it again.');
+    }
     if (request.target.kind === 'range' && request.expectedRevision === undefined) return fail('STALE', 'An explicit range requires a document revision.');
     if (request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
 
@@ -88,6 +109,7 @@ export class DocumentEngine {
     } catch { return fail('TARGET', 'The target could not be located. Select it again.'); }
 
     const beforeRevision = this.revision;
+    const beforeDocument = this.editor.state.doc;
     const beforeMarks = selection.empty
       ? (selection.eq(this.editor.state.selection) ? this.editor.state.storedMarks : null) ?? selection.$from.marks()
       : [];
@@ -98,6 +120,7 @@ export class DocumentEngine {
       // Re-setting an unchanged cursor clears the user's active typing marks.
       if (!tr.selection.eq(selection)) tr.setSelection(selection);
       tr.setMeta('vdoc', { id, source: request.source, actor: request.actor, turnId: request.turnId });
+      if (agent) tr.setMeta('addToHistory', false);
       try {
         for (const operation of request.operations) {
           if (!applyOperation(operation, props)) { error = (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
@@ -117,11 +140,18 @@ export class DocumentEngine {
     if (request.source === 'toolbar' || request.source === 'keyboard') this.editor.view.focus();
     const afterSelection = this.editor.state.selection;
     const afterMarks = afterSelection.empty ? this.editor.state.storedMarks ?? afterSelection.$from.marks() : [];
+    const label = request.label ?? request.operations.map(operationLabel).join(' · ');
     if (this.revision !== beforeRevision || (!agent && !Mark.sameSet(beforeMarks, afterMarks)))
-      this.record(id, request.label ?? request.operations.map(operationLabel).join(' · '), request.source, request.operations.length, agent ? { actor: request.actor!, turnId: request.turnId! } : undefined);
+      this.record(id, label, request.source, request.operations.length, agent ? { actor: request.actor!, turnId: request.turnId! } : undefined);
     const result = { ok: true, id, revision: this.revision };
     this.results.set(id, { signature, result });
     if (this.results.size > 200) this.results.delete(this.results.keys().next().value!);
+    const documentChanged = !beforeDocument.eq(this.editor.state.doc);
+    if (this.appliedListeners.size && (documentChanged || (!agent && !Mark.sameSet(beforeMarks, afterMarks)))) {
+      const event: AppliedChange = Object.freeze({ id, label, source: request.source, ...(agent ? { actor: request.actor, turnId: request.turnId } : {}), revision: result.revision,
+        changedBlockIds: Object.freeze(changedBlockIds(beforeDocument, this.editor.state.doc)), documentChanged });
+      for (const listener of this.appliedListeners) listener(event);
+    }
     return result;
   }
 
@@ -139,7 +169,33 @@ export class DocumentEngine {
     return { ok, id, revision: this.revision, ...(ok ? {} : { code: 'UNAVAILABLE' as const, error: 'There is nothing to undo or redo.' }) };
   }
 
-  snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision); }
+  undoTurn(turnId: string, origin: AgentOrigin): OperationResult {
+    const id = crypto.randomUUID();
+    const fail = (code: OperationResult['code'], error: string): OperationResult => ({ ok: false, id, revision: this.revision, code, error });
+    if (this.disposed || this.editor.isDestroyed || !this.editor.isEditable) return fail('UNAVAILABLE', 'The document is not editable.');
+    if (typeof turnId !== 'string' || !turnId || !origin || typeof origin.actor !== 'string' || !origin.actor || origin.actor.length > 128 || typeof origin.turnId !== 'string' || !origin.turnId || origin.turnId.length > 128) return fail('INVALID', 'Undo needs an actor and a new turn ID.');
+    const undoOrigin = { actor: origin.actor, turnId: origin.turnId };
+    if (documentNavigation(this.editor).isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
+    const before = this.editor.state.doc;
+    const plan = this.turnHistory.prepare(this.editor.state, turnId, origin.turnId);
+    if (!plan.ok) return fail('UNAVAILABLE', plan.error);
+    const tr = plan.transaction;
+    tr.setSelection(this.editor.state.selection.map(tr.doc, tr.mapping)).setStoredMarks(this.editor.state.storedMarks);
+    closeHistory(tr).setMeta('addToHistory', false).setMeta('vdoc', { id, source: 'agent', ...undoOrigin });
+    this.editor.view.dispatch(tr);
+    this.editor.view.dispatch(closeHistory(this.editor.state.tr));
+    const label = `Undo turn ${turnId}`;
+    this.record(id, label, 'agent', tr.steps.length, undoOrigin);
+    const result = { ok: true, id, revision: this.revision };
+    if (this.appliedListeners.size) {
+      const event: AppliedChange = Object.freeze({ id, label, source: 'agent', ...undoOrigin, revision: result.revision,
+        changedBlockIds: Object.freeze(changedBlockIds(before, this.editor.state.doc)), documentChanged: true });
+      for (const listener of this.appliedListeners) listener(event);
+    }
+    return result;
+  }
+
+  snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision, this.blockVersions); }
   private record(id: string, label: string, source: string, count: number, origin?: AgentOrigin) {
     this.records = [{ id, label, source, time: Date.now(), revision: this.revision, count, ...origin }, ...this.records].slice(0, 60);
     for (const listener of this.listeners) listener();

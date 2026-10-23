@@ -14,6 +14,7 @@ export const targetSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('block'), id: z.string().min(1) }).strict(),
   z.object({ kind: z.literal('cell'), tableId: z.string().min(1), cellId: z.string().min(1) }).strict(),
   z.object({ kind: z.literal('cells'), tableId: z.string().min(1), row: z.number().int().min(0), col: z.number().int().min(0), endRow: z.number().int().min(0).optional(), endCol: z.number().int().min(0).optional() }).strict(),
+  z.object({ kind: z.literal('text'), blockId: z.string().min(1), start: z.number().int().min(0), end: z.number().int().min(0) }).strict(),
 ]);
 
 export const operationSchema = z.discriminatedUnion('type', [
@@ -83,6 +84,7 @@ export const requestSchema = z.object({
   turnId: z.string().min(1).max(128).optional(),
   expectedSessionId: z.string().min(1).max(128).optional(),
   expectedRevision: z.number().int().min(0).optional(),
+  expectedBlocks: z.array(z.object({ id: z.string().min(1), version: z.number().int().min(1) }).strict()).min(1).max(1000).optional(),
   target: targetSchema.default({ kind: 'selection' }),
   operations: z.array(operationSchema).min(1).max(100),
 }).strict().superRefine((request, ctx) => {
@@ -98,12 +100,11 @@ export const requestSchema = z.object({
   });
 });
 
-/** Async/external callers must read first and bind edits to that exact session and revision. */
+/** External callers bind edits to a session and a revision or covering block versions. */
 export const externalRequestSchema = requestSchema.innerType().omit({ actor: true, turnId: true }).extend({
   source: z.literal('api').default('api'),
   expectedSessionId: z.string().min(1).max(128),
-  expectedRevision: z.number().int().min(0),
-  target: z.union([targetSchema.options[1], targetSchema.options[2], targetSchema.options[3], targetSchema.options[4]]),
+  target: z.union([targetSchema.options[1], targetSchema.options[2], targetSchema.options[3], targetSchema.options[4], targetSchema.options[5]]),
 });
 
 /** Agent callers follow the external rules; the engine supplies source, actor and turn. */
@@ -115,6 +116,18 @@ export type Target = z.infer<typeof targetSchema>;
 export type OperationRequest = z.input<typeof requestSchema>;
 export type OperationResult = { ok: boolean; revision: number; id: string; error?: string; code?: 'INVALID' | 'STALE' | 'TARGET' | 'UNAVAILABLE' | 'COMPOSING' | 'DUPLICATE'; };
 export type OperationRecord = { id: string; label: string; source: string; time: number; revision: number; count: number; actor?: string; turnId?: string };
+/** One successful engine request, after all appended normalization transactions. */
+export interface AppliedChange {
+  readonly id: string;
+  readonly label: string;
+  readonly source: string;
+  readonly actor?: string;
+  readonly turnId?: string;
+  readonly revision: number;
+  readonly changedBlockIds: readonly string[];
+  /** True for document changes (including root attributes); false for stored marks only. */
+  readonly documentChanged: boolean;
+}
 
 export function operationLabel(op: Operation): string {
   const labels: Record<Operation['type'], string> = {

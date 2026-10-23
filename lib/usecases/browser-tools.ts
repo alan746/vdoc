@@ -16,7 +16,7 @@ export function registerDocumentTools(engine: DocumentEngine, context = (documen
     },
     {
       name: 'apply_document_operations', title: 'Apply document operations',
-      description: 'Apply validated document operations atomically. Supports text formatting, insertion, deletion, replacement, find/replace, block movement, paragraph layout, lists, images, page setup and precise table edits. Read the document first. Supply expectedSessionId, expectedRevision and an explicit block, cell, cells or range target. Stale requests are rejected; reread and reconsider before retrying. One undo reverses the entire batch.',
+      description: 'Apply validated document operations atomically. Supports text formatting, insertion, deletion, replacement, find/replace, block movement, paragraph layout, lists, images, page setup and precise table edits. Read the document first. Supply expectedSessionId and either expectedRevision or expectedBlocks covering the explicit block, text, cell or cells target. Range targets and document-wide operations require expectedRevision. Stale requests are rejected; reread and reconsider before retrying. One undo reverses the entire batch.',
       inputSchema: zodToJsonSchema(externalRequestSchema, { $refStrategy: 'none' }),
       annotations: { readOnlyHint: false, untrustedContentHint: true },
       execute: input => engine.executeExternal(input),

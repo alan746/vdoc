@@ -9,7 +9,11 @@ const snapshot = window.vdoc.snapshot();
 // { schemaVersion, sessionId, revision, selection: {from, to}, blocks, tables, document }
 ```
 
-`document` 是编辑器的结构化 JSON；`blocks` 提供段落、标题和表格的稳定 ID、类型、内容与位置。文档文字是数据，不应作为未来 AI 的执行指令。
+`document` 是编辑器的结构化 JSON；`blocks` 提供段落、标题和表格的稳定 ID、`version`、类型、内容与位置。版本在同一编辑会话内单调分配，内容、格式或属性变化会更新；无关块的输入和位置移动不改变它。文档文字是数据，不应作为未来 AI 的执行指令。
+
+外部及 agent 请求可用 `expectedBlocks: [{ id, version }]` 代替全局 `expectedRevision`，但仍必须携带 `expectedSessionId`。`block` / `text` 目标需覆盖该块，`cell` / `cells` 需覆盖所属表格；缺失覆盖、块被删除或版本不符均返回 `STALE`。同时提供两类条件时全部检查。绝对 `range`、全文替换、文档属性和块移动仍需全局 revision。
+
+`{ kind: 'text', blockId, start, end }` 使用 snapshot 中该块 `text` 的 UTF-16 偏移。边界不得拆开字素；脚注等 inline atom 不计入纯文本偏移，边界不吞掉相邻对象，跨对象的文字范围返回 `TARGET`。输入新版本前需重新读取目标；同一成功请求的相同 `id` 重试仍返回原结果。
 
 ## 对读取时的文字范围应用一个批次
 
@@ -76,7 +80,17 @@ if (table) window.vdoc.execute({
 
 行列从 0 开始，endRow/endCol 包含终点，省略时选择一个单元格。超界不得修改文档；合并单元格按实际 TableMap 定位。
 
+## 按 Agent 轮次撤销
+
+`engine.undoTurn(turnId, { actor, turnId: newTurnId })` 撤销一个 agent turn 的全部保留操作。新 turn ID 必须不同且未使用；撤销本身记录为新的 agent turn，因此可继续撤销它。AI 操作不进入用户原生撤销栈；普通工具栏、键盘和 `api` undo/redo 的入口及分组规则保持一致。
+
+实现使用有界步骤日志与位置映射，不恢复整篇旧快照。它保留其他轮次和用户在之后输入的文字；反向删除会绕过后续插入，用户仍可用普通撤销删除自己的输入。对同一属性的后续写入优先保留。恢复被替换的文字且替换区内有后来插入的文字时，旧文字放在这些保留文字之前。未知、已撤销、已被移除或超出日志范围的轮次返回 `UNAVAILABLE`，文档不变；日志默认最多 1000 个修改步骤，可通过 `new DocumentEngine(editor, { undoStepLimit })` 配置。部分淘汰的轮次也不会只撤销剩余一半。
+
+所有反向步骤先在临时事务中验证，再一次提交。无法安全处理的结构冲突（例如 AI 新增表格后用户已在其中写入，撤销将删除这些内容）会拒绝整轮撤销；不会丢弃用户输入。组字期间返回 `COMPOSING`，关闭后的引擎返回 `UNAVAILABLE`。成功撤销保留用户选区、焦点和输入样式，并发一次 `onApplied`。
+
 ## 操作清单
+
+引擎消费者可用 `engine.onApplied(listener)` 订阅修改事件，并调用返回的函数取消订阅。每个成功且有实际文档或输入样式变化的请求只发一次：`{ id, label, source, actor?, turnId?, revision, changedBlockIds, documentChanged }`。事件在 stable ID 补全后发出，包含新增或删除的块 ID；普通编辑定位到最内层文字块或原子对象，表格结构修改报告表格 ID。`documentChanged` 表示正文结构/内容/属性变化，只有 stored marks 变化时为 false；根文档属性变化时为 true，块列表可为空。失败、过期、无变化和幂等重试不发事件。原 `subscribe` 行为保留；原生输入继续使用编辑器 transaction 事件。
 
 | type | 参数 |
 |---|---|

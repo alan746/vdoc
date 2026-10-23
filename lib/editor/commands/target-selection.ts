@@ -9,6 +9,33 @@ type Resolver<K extends Target['kind']> = (target: Extract<Target, { kind: K }>,
 
 // One resolver per explicit target kind. A 'selection' target keeps the caller's selection.
 const resolvers: { [K in Exclude<Target['kind'], 'selection'>]: Resolver<K> } = {
+  text: (target, doc) => {
+    let found: { node: Node; pos: number } | undefined;
+    doc.descendants((node, pos) => { if (node.attrs.blockId === target.blockId && node.isTextblock) found = { node, pos }; });
+    if (!found) return { error: 'The text block no longer exists.' };
+    const { node, pos } = found;
+    if (target.start > target.end || target.end > node.textContent.length) return { error: 'Invalid block text offsets.' };
+    // Text offsets omit inline atoms. Bias the start past adjacent atoms and
+    // the end before them; never silently include an atom inside a text range.
+    let offset = 0, from: number | undefined, to: number | undefined, crossesAtom = false;
+    node.forEach((child, childPos) => {
+      const length = child.textContent.length;
+      if (child.isText) {
+        if (target.start >= offset && target.start <= offset + length) from = pos + 1 + childPos + target.start - offset;
+        if (to === undefined && target.end >= offset && target.end <= offset + length) to = pos + 1 + childPos + target.end - offset;
+      } else {
+        if (target.start < offset + length && target.end > offset || target.start < offset && target.end > offset) crossesAtom = true;
+        if (target.start === offset + length) from = pos + 1 + childPos + child.nodeSize;
+        if (target.end === offset && to === undefined) to = pos + 1 + childPos;
+      }
+      offset += length;
+    });
+    if (!node.childCount) from = to = pos + 1;
+    if (target.start === target.end) to = from;
+    if (crossesAtom || from === undefined || to === undefined || from > to) return { error: 'Text targets must not include inline objects.' };
+    if (!isTextBoundary(doc, from) || !isTextBoundary(doc, to)) return { error: 'Text offsets must not split a character or emoji.' };
+    return TextSelection.create(doc, from, to);
+  },
   range: (target, doc) => {
     const { from, to } = target;
     if (!doc.resolve(from).parent.inlineContent || !doc.resolve(to).parent.inlineContent) return { error: 'Text ranges must be inside editable content.' };

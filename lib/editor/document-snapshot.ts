@@ -1,12 +1,13 @@
 import type { Editor } from '@tiptap/core';
 import { TableMap } from '@tiptap/pm/tables';
 import { pinnedRowCount } from './table/table-headers';
+import type { BlockVersions } from './document/block-version';
 
 /** Read model handed to external callers: blocks, table grids, selection and the full document JSON. */
-export function documentSnapshot(editor: Editor, sessionId: string, revision: number) {
-  const blocks: { id: string; type: string; text: string; from: number; to: number }[] = [];
+export function documentSnapshot(editor: Editor, sessionId: string, revision: number, versions: BlockVersions) {
+  const blocks: { id: string; version: number; type: string; text: string; from: number; to: number }[] = [];
   editor.state.doc.descendants((node, pos) => {
-    if (node.attrs.blockId && (node.isTextblock || node.type.name === 'table' || node.isAtom)) blocks.push({ id: node.attrs.blockId, type: node.type.name, text: node.textContent, from: node.isAtom ? pos : pos + 1, to: node.isAtom ? pos + node.nodeSize : pos + node.nodeSize - 1 });
+    if (node.attrs.blockId && (node.isTextblock || node.type.name === 'table' || node.isAtom)) blocks.push({ id: node.attrs.blockId, version: versions.get(node.attrs.blockId)!, type: node.type.name, text: node.textContent, from: node.isAtom ? pos : pos + 1, to: node.isAtom ? pos + node.nodeSize : pos + node.nodeSize - 1 });
   });
   const tables: { id: string; rows: number; columns: number; columnDirection: 'ltr' | 'rtl'; pinnedRows: number; rowBreaks: { id: string; row: number; allowSplit: boolean }[]; cells: { id: string; rowId: string; row: number; column: number; rowspan: number; colspan: number; text: string }[] }[] = [];
   editor.state.doc.descendants(node => {
