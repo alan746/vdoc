@@ -67,6 +67,18 @@
 
 复核后，#29 的既有 `SelectiveUndoHistory` 已经满足任务6列出的场景：未知/已撤销/已淘汰 turn 返回 `UNAVAILABLE`（见 [`tests/turn-undo.test.ts`](../tests/turn-undo.test.ts)）、同轮部分淘汰整轮拒绝而不是只撤一半、undo-of-undo 作为新 turn 处理且可重复交替撤销、结构冲突（如撤销会删除用户在新表格里写的内容）整轮拒绝并保留文档不变。`undo_turn` 已经复用这套实现。这次没有新增代码，只是确认任务6不需要在 #35 里重做一套。
 
+### #33：Agent 活动可视化、状态条与 turn 时间线（2026-10-17）
+
+实现范围限定在不依赖 vRT 尚未定稿的 tool-stream 协议的部分；完整协议面见 [`REALTIME_PROTOCOL.md`](REALTIME_PROTOCOL.md)。
+
+- [`lib/editor/realtime/agent-activity.ts`](../lib/editor/realtime/agent-activity.ts)：纯视图 ProseMirror decoration（`highlightChangedBlocks`/`setAgentPresence`/`clearAgentActivity`），和 `search-highlights.ts` 同一模式，不写入文档/历史/导出。改动块渐隐高亮约 1.5 秒；presence 标记随最近一次提交移动，断开/卸载清空。
+- [`components/editor/realtime/use-agent-activity.ts`](../components/editor/realtime/use-agent-activity.ts)：订阅 `engine.onApplied`（仅 agent 来源）驱动上述 decoration，并按 `turnId` 把 `engine.records` 分组供时间线渲染；返回的 `undoTurn(turnId)` 直接调用 `engine.undoTurn`，不经实时执行器（撤销是引擎通用能力，不需要可信 agent 身份）。
+- [`components/editor/realtime/activity-timeline.tsx`](../components/editor/realtime/activity-timeline.tsx)：按 turn 分组的历史列表 + "Undo turn" 按钮，失败时 toast 提示，不静默吞错误。
+- `RealtimeControls` 在 `status !== 'disconnected'` 时渲染时间线；Esc/Stop/连接状态文案是已有行为，未改动。
+- `app/globals.css` 新增 `.vdoc-agent-highlight`/`.vdoc-agent-presence`/`.realtime-activity`，复用现有 `--accent`/`--ring`/`--muted-foreground` 主题变量，深色模式不用额外媒体查询。
+
+**没做、不要当作已完成**：`tool.call.delta` 流式 ghost 预览（任务3的核心，依赖 vRT 还没实现的 tool-stream 能力）；presence 不是逐 token 跟随，只是"最近一次提交影响的块"；没有做 `tools/realtime-mock`（issue 测试小节提到的手工浏览器联调脚手架，本次未创建，手工验证留给真实部署环境）。
+
 ### 本地启用与服务端契约
 
 默认关闭，不读取 URL 参数或文档内容中的连接配置。在应用来源的浏览器开发者工具中明确设置后刷新：

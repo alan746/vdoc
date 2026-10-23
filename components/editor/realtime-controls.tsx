@@ -5,8 +5,11 @@ import type { DocumentEngine } from '@/lib/usecases/engine';
 import type { RealtimeConnection, RealtimeConfig, RealtimeStatus } from '@/lib/usecases/ports';
 import { documentNavigation } from '@/lib/usecases/document-navigation';
 import { isCompositionKey } from '@/lib/editor/keyboard-composition';
+import { ActivityTimeline } from './realtime/activity-timeline';
 
-/** Minimal controls; timeline and progressive previews are separate work. */
+/** Connection controls, Stop/Esc, and the vdoc#33 turn-grouped activity
+ *  timeline. Progressive (streamed) previews are separate work — blocked on
+ *  a provider tool-stream capability vdoc#35/vRT#22 have not shipped yet. */
 export function RealtimeControls({ engine, docId }: { engine: DocumentEngine; docId: string }) {
   const [config] = useState<RealtimeConfig | null>(() => { try { return readRealtimeConfig(); } catch { return null; } });
   const [status, setStatus] = useState<RealtimeStatus>('disconnected');
@@ -39,5 +42,6 @@ export function RealtimeControls({ engine, docId }: { engine: DocumentEngine; do
       <input aria-label="Assistant instruction" value={text} onChange={event => setText(event.target.value)} disabled={status !== 'connected'} placeholder="Ask to edit this document" />
       <button type="submit" className="quiet-button" disabled={status !== 'connected' || !text.trim()}>Send</button>
     </form>
+    <ActivityTimeline engine={engine} active={status !== 'disconnected'} />
   </section>;
 }
