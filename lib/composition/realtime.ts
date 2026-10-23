@@ -28,6 +28,9 @@ export function openDocumentRealtime(options: {
   });
   // Server turn counters can restart on a fresh connection to the same editor.
   // Keep IDs stable across SDK resume, but unique across explicit connections.
+  // Deliberately unbounded for the connection's life: evicting an entry would
+  // give a replayed tool.call a new local callId, miss the executor's dedup and
+  // apply the write twice. Each entry is two short strings (~1 MB per 10k calls).
   const callIds = new Map<string, string>(), turnIds = new Map<string, string>();
   const localId = (map: Map<string, string>, remoteId: string) => {
     if (!remoteId) return '';

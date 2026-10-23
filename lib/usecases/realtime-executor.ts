@@ -3,6 +3,7 @@ import { agentRequestSchema, type AgentOrigin, type AppliedChange, type Operatio
 import type { BlockRead, DocumentSnapshot, OutlineEntry } from '../editor/document-snapshot';
 import { z } from 'zod';
 import type { RealtimeToolContext } from './ports';
+import { requestSignature } from '../shared/request-signature';
 
 export const realtimeApplySchema = agentRequestSchema.omit({ id: true });
 export const realtimeUndoSchema = z.object({
@@ -117,7 +118,7 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
     const invalid = check(context); if (invalid) return invalid;
     const parsed = schema.safeParse(input);
     if (!parsed.success) return failure(context.callId, 'INVALID', parsed.error.issues[0]?.message ?? 'Invalid arguments.');
-    const signature = JSON.stringify({ tool, input: parsed.data, turnId: context.turnId });
+    const signature = requestSignature({ tool, input: parsed.data, turnId: context.turnId });
     const previous = completed.get(context.callId);
     if (previous) return previous.signature === signature ? previous.result : failure(context.callId, 'DUPLICATE', 'Call ID reused with different arguments.');
     if (engine.isComposing()) {

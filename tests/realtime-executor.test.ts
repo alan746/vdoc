@@ -50,6 +50,17 @@ it('deduplicates commits and refuses changed arguments under the same call ID', 
   expect(engine.records).toHaveLength(1);
   expect(await executor.apply(request('other'), context())).toMatchObject({ code: 'DUPLICATE' });
 });
+it('vdoc#62: distinguishes arguments that differ only deep inside a 1 MB payload', async () => {
+  const s = engine.snapshot(), base64 = 'A'.repeat(1024 * 1024);
+  const image = (data: string) => ({ expectedSessionId: s.sessionId, expectedRevision: s.revision,
+    target: { kind: 'text', blockId: s.blocks[0].id, start: 5, end: 5 }, operations: [{ type: 'image.insert', src: `data:image/png;base64,${data}` }] });
+  const first = await executor.apply(image(base64), context());
+  expect(first).toMatchObject({ ok: true });
+  expect(await executor.apply(image(base64), context())).toEqual(first);
+  const changed = base64.slice(0, 512 * 1024) + 'B' + base64.slice(512 * 1024 + 1);
+  expect(await executor.apply(image(changed), context())).toMatchObject({ code: 'DUPLICATE' });
+  expect(engine.records).toHaveLength(1);
+});
 it('aborts before writing', async () => {
   call.abort(); expect(await executor.apply(request(), context())).toMatchObject({ code: 'INTERRUPTED' });
   expect(editor.getText()).toContain('hello');
