@@ -14,6 +14,50 @@
 - #29 已在主分支提供选择性轮次撤销；接入层提供 `undo_turn`，新连接的服务器 call/turn ID 映射到独立的本地 ID，恢复连接复用映射，防止新会话的 `turn-1` 与旧历史混合。
 - 当前提供文字指令、可选麦克风、Stop/Esc 和断开入口。未实现 #33 的活动时间线和 #35 的渐进预览；工具参数增量不会直接写入正文。
 
+### #35 准备：fake adapter 与协议 fixtures（2026-10-16）
+
+按 #35“实施顺序”第 1 步，先补齐开发/测试基础设施，不涉及该 Issue 任何功能任务（上下文读取、独立预览、能力协商均未开始）：
+
+- [`tests/support/fake-vrt-adapter.ts`](../tests/support/fake-vrt-adapter.ts)：`RealtimePort` 的可复用假实现，连接不经网络/鉴权，直接调用注册工具的 `run()`（当前 SDK 的完整参数调用路径）；暴露 `reconnect()` / `fail()` / `disconnectFromServer()` 驱动状态机。不模拟 austinchennn/vRT#22 提案中尚未落地的 `tool-stream`（参数增量/预览）协议——那部分名字和语义仍待 vRT 侧 #16 定稿，提前假造会与未来真实协议不一致。
+- [`tests/support/realtime-scenarios.ts`](../tests/support/realtime-scenarios.ts)：#35 与 vRT#22 验收清单里版本冲突、按轮撤销等场景的请求/上下文构造器，供后续任务复用而不用重新拼装。
+- [`tests/realtime-fake-adapter.test.ts`](../tests/realtime-fake-adapter.test.ts)：用上述假实现跑通 `openDocumentRealtime` + 文档工具 + 真实 `DocumentEngine` 的完整路径（连接状态、提交、过期撤销、重连、断开、关闭后拒绝晚到调用），无需真实 vRT 服务即可本地开发和回归。
+
+### #35 任务1：上下文、按需读取和目标快照（2026-10-16）
+
+`read_document` 现在除原有 snapshot 字段外，还返回：
+
+- `outline`：标题列表 `{ id, level, text }[]`（[`documentOutline`](../lib/editor/document-snapshot.ts)），用于解析“在项目规划标题下面”一类指代。
+- `selection`：按 `turnId` 冻结——同一语音轮次内多次读取返回首次读取时的选区，光标移动不重新解释目标；新 `turnId` 重新捕获当前选区。冻结表仅存在于单次连接的内存中，随 `createRealtimeExecutor` 的 `signal` 中止清理，不做跨连接持久化。
+- `recentEdits`：最近成功提交的 agent 轮次（`{ id, turnId, actor, revision, affectedBlockIds }`，最多 20 条），`affectedBlockIds` 在每次读取时与当前文档重新比对，引用已删除的块会被过滤掉；只统计 `source: 'agent'` 的事件，用户或工具栏编辑不计入。`agentEdits` 字段保留供既有调用方兼容。
+
+新增 `read_blocks({ ids })` 工具：按最多 200 个块/表格 ID 返回完整内容（文字、表格网格与单元格），不要求读取整份文档；未知 ID 直接省略，不报错。与其余工具共用 `check()`（取消、文档/会话绑定、可编辑性）。
+
+尚未做、不要误认为已完成：可见块测算（留给编辑器/UI 适配层按设计）、上下文长度限额与截断标记、"冻结目标" 的显式目标对象（当前只冻结选区，不冻结 block 引用本身）。这些仍在 #35 任务1 范围内，留给后续迭代。
+
+### #35 任务2（部分）：整块插入与删除（2026-10-16）
+
+新增两个 `Operation` 类型（[`lib/domain/entities/operation.ts`](../lib/domain/entities/operation.ts)、处理器在 [`lib/editor/document/commands.ts`](../lib/editor/document/commands.ts)），语义与既有 `block.move` 一致：按 `id`/`beforeId` 在顶层文档结构中定位，不经过 `target` 解析，因此和 `block.move` 一样要求全局 `expectedRevision`（已加入 `engine.ts` 的文档级前置检查列表）。
+
+- `block.insert`：`beforeId`（`null` = 文档末尾）+ `block`（`heading` / `paragraph` / 带 `headerText`、`rowsText` 的 `table`，一次调用即可建好表头和初始数据）。覆盖了 Issue 示例"在项目规划下面加一个两列预算表，列名是项目和费用"的整个创建路径，不需要先插入空表再按临时 ID 回填单元格。
+- `block.delete`：按 `id` 删除一个顶层块。
+
+**仍未做，不要当作任务2已完成**：
+
+- 跨操作临时 ID 引用（例如同一 batch 里先插入一个表格、再引用它刚生成的行/列 ID）完全没有实现；`block.insert` 只处理"一次性插好内容"的场景，不支持插入后在同一批次里对新节点做后续结构化操作。
+- 没有为新建节点返回 `createdIdMap`；调用方要拿到新块 ID 需要重新 `read_document`。
+- 没有修改 `table.edit`（行列增删）之外的既有语义；本次只填了"插入/删除整块"这一具体缺口。
+- 没有改变 batch 的单一初始 `target` 限制——`block.insert`/`block.delete` 能工作是因为它们本来就不用 `target`，不代表 batch 现在支持任意多目标操作。
+
+### #35 任务4（部分）：提交结果携带受影响块 ID（2026-10-16）
+
+`apply_document_operations` / `undo_turn` 成功时现在在返回值里直接带 `affectedBlockIds`（取自 `engine.onApplied` 为这次调用发出的事件，按 `result.id` 匹配，不假设事件一定是最新的一条——未实际改变文档的成功调用没有事件，这时是空数组）。此前只能通过单独订阅 `onApplied` 才能拿到这个信息；现在模型/语音层不需要额外订阅就能知道刚才改了哪些块。
+
+任务4其余项（STALE/TARGET/UNAVAILABLE/COMPOSING/INVALID/DUPLICATE 结构化错误、组字后复检、同步写入前无 await）已经在既有 `realtime-executor.ts` 中满足；`arguments-complete`/`document-committed`/`persisted` 三态区分仍未做，留给接入持久化回执的后续工作。
+
+### 任务6（按语音轮次撤销）现状确认
+
+复核后，#29 的既有 `SelectiveUndoHistory` 已经满足任务6列出的场景：未知/已撤销/已淘汰 turn 返回 `UNAVAILABLE`（见 [`tests/turn-undo.test.ts`](../tests/turn-undo.test.ts)）、同轮部分淘汰整轮拒绝而不是只撤一半、undo-of-undo 作为新 turn 处理且可重复交替撤销、结构冲突（如撤销会删除用户在新表格里写的内容）整轮拒绝并保留文档不变。`undo_turn` 已经复用这套实现。这次没有新增代码，只是确认任务6不需要在 #35 里重做一套。
+
 ### 本地启用与服务端契约
 
 默认关闭，不读取 URL 参数或文档内容中的连接配置。在应用来源的浏览器开发者工具中明确设置后刷新：

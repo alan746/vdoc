@@ -32,6 +32,13 @@ it('uses trusted execution context and retains structured read/commit results', 
   expect(editor.state.selection.toJSON()).toEqual(userSelection);
   expect(executor.read(context('read'))).toMatchObject({ docId: 'doc-1', agentEdits: [{ turnId: 'turn-1' }] });
 });
+it('vdoc#35 task 4: a successful commit reports the blocks it actually changed', async () => {
+  const applied = await executor.apply(request(), context());
+  expect(applied).toMatchObject({ ok: true, affectedBlockIds: [engine.snapshot().blocks[0].id] });
+  const args = { targetTurnId: 'turn-1', expectedSessionId: engine.sessionId, expectedRevision: engine.revision };
+  const undone = await executor.undo(args, context('undo-1', 'undo-turn'));
+  expect(undone).toMatchObject({ ok: true, affectedBlockIds: [engine.snapshot().blocks[0].id] });
+});
 it.each(['actor', 'turnId', 'id', 'source'])('rejects a model-supplied %s', async key => {
   const before = editor.getJSON();
   expect(await executor.apply({ ...request(), [key]: 'spoof' }, context())).toMatchObject({ ok: false, code: 'INVALID' });

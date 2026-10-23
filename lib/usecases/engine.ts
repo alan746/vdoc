@@ -7,7 +7,7 @@ import { closeHistory, undoDepth, redoDepth } from '@tiptap/pm/history';
 import { agentRequestSchema, externalRequestSchema, requestSchema, operationLabel, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
 import { applyOperation } from '../editor/commands/registry';
 import { resolveTargetSelection } from '../editor/commands/target-selection';
-import { documentSnapshot } from '../editor/document-snapshot';
+import { documentSnapshot, documentOutline, readBlocks } from '../editor/document-snapshot';
 import { BlockVersions } from '../editor/document/block-version';
 import { changedBlockIds } from '../editor/document/changed-blocks';
 import { SelectiveUndoHistory } from '../editor/document/selective-undo';
@@ -89,7 +89,7 @@ export class DocumentEngine {
     if (documentNavigation(this.editor).isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
     if (request.expectedRevision !== undefined && request.expectedRevision !== this.revision) return fail('STALE', 'The document has changed. Read the target again.');
     if (request.expectedBlocks !== undefined) {
-      if (request.expectedRevision === undefined && request.operations.some(op => op.type.startsWith('document.') || op.type === 'text.findReplace' || op.type === 'block.move')) return fail('STALE', 'Document-wide operations require a document revision.');
+      if (request.expectedRevision === undefined && request.operations.some(op => op.type.startsWith('document.') || op.type === 'text.findReplace' || op.type === 'block.move' || op.type === 'block.insert' || op.type === 'block.delete')) return fail('STALE', 'Document-wide operations require a document revision.');
       const target = request.target;
       const targetId = target.kind === 'block' ? target.id : target.kind === 'text' ? target.blockId : target.kind === 'cell' || target.kind === 'cells' ? target.tableId : undefined;
       if (request.expectedRevision === undefined && (!targetId || !request.expectedBlocks.some(block => block.id === targetId))) return fail('STALE', 'Block versions must cover the target.');
@@ -196,6 +196,8 @@ export class DocumentEngine {
   }
 
   snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision, this.blockVersions); }
+  outline() { return documentOutline(this.editor); }
+  readBlocks(ids: readonly string[]) { return readBlocks(this.editor, this.blockVersions, ids); }
   private record(id: string, label: string, source: string, count: number, origin?: AgentOrigin) {
     this.records = [{ id, label, source, time: Date.now(), revision: this.revision, count, ...origin }, ...this.records].slice(0, 60);
     for (const listener of this.listeners) listener();

@@ -73,6 +73,16 @@ export const operationSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('table.background'), color: color.nullable() }).strict(),
   z.object({ type: z.literal('link.set'), href: z.string().max(2048).refine(v => /^(https?:\/\/|mailto:)/i.test(v), 'Links must start with https://, http://, or mailto:') }).strict(),
   z.object({ type: z.literal('link.unset') }).strict(),
+  z.object({ type: z.literal('block.insert'), beforeId: z.string().min(1).nullable(), block: z.discriminatedUnion('kind', [
+    z.object({ kind: z.literal('heading'), level: z.number().int().min(1).max(6), text: z.string().max(10000) }).strict(),
+    z.object({ kind: z.literal('paragraph'), text: z.string().max(10000) }).strict(),
+    z.object({
+      kind: z.literal('table'), rows: z.number().int().min(1).max(30), cols: z.number().int().min(1).max(20), header: z.boolean().default(true),
+      headerText: z.array(z.string().max(1000)).max(20).optional(),
+      rowsText: z.array(z.array(z.string().max(1000)).max(20)).max(30).optional(),
+    }).strict(),
+  ]) }).strict(),
+  z.object({ type: z.literal('block.delete'), id: z.string().min(1) }).strict(),
 ]);
 
 export const requestSchema = z.object({
@@ -96,6 +106,12 @@ export const requestSchema = z.object({
     if (op.type === 'paragraph.border' && Object.keys(op).length === 1) ctx.addIssue({code:z.ZodIssueCode.custom,path:['operations',i],message:'Specify at least one paragraph border setting.'});
     if (op.type === 'paragraph.style' && op.paragraphBackground === undefined && op.tabInterval === undefined && !op.direction && op.level === undefined && !op.align && !op.lineHeight && op.indent === undefined && op.indentStart === undefined && op.indentEnd === undefined && op.firstLineIndent === undefined && op.spaceBefore === undefined && op.spaceAfter === undefined && op.keepWithNext === undefined && op.keepLinesTogether === undefined && op.preventSingleLines === undefined) {
       ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i], message: 'Specify at least one paragraph style.' });
+    }
+    if (op.type === 'block.insert' && op.block.kind === 'table') {
+      const { cols, rows, header, headerText, rowsText } = op.block;
+      if (headerText && (!header || headerText.length !== cols)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i, 'block', 'headerText'], message: 'headerText requires header: true and one entry per column.' });
+      if (rowsText?.some(row => row.length !== cols)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i, 'block', 'rowsText'], message: 'Each row in rowsText must have one entry per column.' });
+      if (rowsText && rowsText.length > rows - (header ? 1 : 0)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i, 'block', 'rowsText'], message: 'rowsText has more rows than the table.' });
     }
   });
 });
@@ -140,6 +156,7 @@ export function operationLabel(op: Operation): string {
     'footnote.update': 'Edit footnote', 'footnote.insert': 'Insert footnote', 'block.code': 'Code block', 'block.toc': 'Insert table of contents', 'document.language': 'Document language', 'document.layout': 'Page setup', 'text.findReplace': 'Replace all', 'list.indent': 'Change indent', 'paragraph.indent': 'Change paragraph indent', 'image.insert': 'Insert image', 'image.update': 'Image properties', 'block.pageBreak': 'Insert page break', 'table.sort': 'Sort table', 'table.move': 'Move table row or column', 'text.style': 'Set text style', 'text.toggle': 'Toggle text style', 'text.insert': 'Insert text', 'text.clear': 'Clear formatting', 'text.delete': 'Delete text', 'text.replace': 'Replace text', 'block.move': 'Move block', 'table.border': 'Set table borders', 'table.layout': 'Align table', 'table.distributeRows': 'Distribute rows', 'table.split': 'Split cell', 'table.style': 'Format cells', 'table.widths': 'Set column widths',
     'paragraph.style': 'Set paragraph style', 'list.toggle': 'Toggle list', 'list.checklistStyle': 'Checklist options', 'list.marker': 'Custom list marker', 'list.style': 'List style', 'list.restart': 'Restart numbering', 'list.continue': 'Continue previous numbering', 'block.quote': 'Toggle blockquote', 'block.rule': 'Insert divider',
     'table.insert': 'Insert table', 'table.edit': 'Edit table', 'table.background': 'Set cell background', 'link.set': 'Add link', 'link.unset': 'Remove link',
+    'block.insert': 'Insert block', 'block.delete': 'Delete block',
   };
   if (op.type === 'text.toggle') return { bold: 'Bold', italic: 'Italic', underline: 'Underline', strike: 'Strikethrough', superscript: 'Superscript', subscript: 'Subscript' }[op.mark];
   return labels[op.type];

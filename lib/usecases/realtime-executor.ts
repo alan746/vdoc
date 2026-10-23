@@ -1,6 +1,6 @@
 import type { DocumentEngine } from './engine';
 import { documentNavigation } from './document-navigation';
-import { agentRequestSchema, type OperationResult } from '../domain/entities/operation';
+import { agentRequestSchema, type AppliedChange, type OperationResult } from '../domain/entities/operation';
 import { z } from 'zod';
 import type { RealtimeToolContext } from './ports';
 
@@ -10,6 +10,11 @@ export const realtimeUndoSchema = z.object({
   expectedSessionId: z.string().min(1).max(128),
   expectedRevision: z.number().int().min(0),
 }).strict();
+export const realtimeReadBlocksSchema = z.object({ ids: z.array(z.string().min(1).max(128)).min(1).max(200) }).strict();
+/** A past agent turn's affected blocks, re-checked against the live document
+ *  so a deleted target or a later document switch cannot be referenced as
+ *  "the thing I just edited". */
+export type RecentVoiceEdit = { id: string; turnId: string; actor: string; revision: number; affectedBlockIds: readonly string[] };
 
 /** Document checks inside SDK run(). The SDK owns ordering, epochs and results. */
 export function createRealtimeExecutor(engine: DocumentEngine, options: {
@@ -19,6 +24,32 @@ export function createRealtimeExecutor(engine: DocumentEngine, options: {
   const sessionId = engine.sessionId;
   const completed = new Map<string, { signature: string; result: OperationResult }>();
   const failure = (id: string, code: OperationResult['code'] | 'INTERRUPTED' | 'TIMEOUT', error: string) => ({ ok: false as const, id, revision: engine.revision, code, error });
+  // Recent agent edits for "the table I just added"; bounded, and re-checked
+  // against the live document on every read (see recentVoiceEdits below).
+  const recentAgentEdits: AppliedChange[] = [];
+  const unsubscribe = engine.onApplied(event => {
+    if (event.source !== 'agent') return;
+    recentAgentEdits.unshift(event);
+    recentAgentEdits.length = Math.min(recentAgentEdits.length, 20);
+  });
+  options.signal.addEventListener('abort', unsubscribe, { once: true });
+  if (options.signal.aborted) unsubscribe();
+  // A voice turn plans against the selection it saw when it first read the
+  // document; later cursor movement must not re-interpret "this paragraph".
+  const frozenSelections = new Map<string, { from: number; to: number }>();
+  function frozenSelection(context: RealtimeToolContext) {
+    let selection = frozenSelections.get(context.turnId);
+    if (!selection) {
+      selection = { from: engine.editor.state.selection.from, to: engine.editor.state.selection.to };
+      if (frozenSelections.size >= 10000) frozenSelections.clear();
+      frozenSelections.set(context.turnId, selection);
+    }
+    return selection;
+  }
+  function recentVoiceEdits(): RecentVoiceEdit[] {
+    const live = new Set(engine.snapshot().blocks.map(block => block.id));
+    return recentAgentEdits.map(event => ({ id: event.id, turnId: event.turnId!, actor: event.actor!, revision: event.revision, affectedBlockIds: event.changedBlockIds.filter(id => live.has(id)) }));
+  }
   function check(context: RealtimeToolContext) {
     if (context.signal.aborted || options.signal.aborted) return failure(context.callId, 'INTERRUPTED', 'The call was cancelled.');
     const current = options.currentDocument();
@@ -59,7 +90,7 @@ export function createRealtimeExecutor(engine: DocumentEngine, options: {
     // No await between this boundary and the synchronous writer. The engine
     // validates session/revision/block versions again against the live document.
     const origin = { actor: options.actor, turnId: context.turnId };
-    let result: OperationResult;
+    let result: OperationResult & { affectedBlockIds?: readonly string[] };
     if (name === 'apply') result = engine.executeAgent({ ...parsed.data, id: context.callId }, origin);
     else {
       const undo = realtimeUndoSchema.parse(parsed.data);
@@ -69,11 +100,27 @@ export function createRealtimeExecutor(engine: DocumentEngine, options: {
     }
     // Retain every successful call for this document connection. Bound memory
     // by closing the connection, not by forgetting IDs and replaying old writes.
-    if (result.ok) completed.set(context.callId, { signature, result });
+    if (result.ok) {
+      // The onApplied listener above already recorded this call's own event
+      // (if the document actually changed) before executeAgent/undoTurn
+      // returned; match it by result.id rather than assuming it is first,
+      // since a no-op success emits no event at all.
+      result = { ...result, affectedBlockIds: recentAgentEdits.find(event => event.id === result.id)?.changedBlockIds ?? [] };
+      completed.set(context.callId, { signature, result });
+    }
     return result;
   }
   return {
-    read(context: RealtimeToolContext) { return check(context) ?? { ...engine.snapshot(), docId: options.docId, agentEdits: engine.records.filter(record => record.source === 'agent') }; },
+    read(context: RealtimeToolContext) {
+      return check(context) ?? { ...engine.snapshot(), docId: options.docId, selection: frozenSelection(context), outline: engine.outline(),
+        agentEdits: engine.records.filter(record => record.source === 'agent'), recentEdits: recentVoiceEdits() };
+    },
+    readBlocks(input: unknown, context: RealtimeToolContext) {
+      const invalid = check(context); if (invalid) return invalid;
+      const parsed = realtimeReadBlocksSchema.safeParse(input);
+      if (!parsed.success) return failure(context.callId, 'INVALID', parsed.error.issues[0]?.message ?? 'Invalid arguments.');
+      return { docId: options.docId, sessionId, revision: engine.revision, ...engine.readBlocks(parsed.data.ids) };
+    },
     apply: (input: unknown, context: RealtimeToolContext) => run('apply', input, context),
     undo: (input: unknown, context: RealtimeToolContext) => run('undo', input, context),
   };

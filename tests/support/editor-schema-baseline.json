@@ -918,6 +918,8 @@
   ],
   "commands": [
     "block.code",
+    "block.delete",
+    "block.insert",
     "block.move",
     "block.pageBreak",
     "block.quote",
