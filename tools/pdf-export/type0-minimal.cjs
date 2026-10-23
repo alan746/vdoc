@@ -1,9 +1,10 @@
+const { qaPath } = require('../qa-paths.cjs');
 const fs=require('node:fs/promises'),crypto=require('node:crypto');
 const runtime='/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';
-const {chromium}=require(runtime+'/playwright');const out='output/pdf/type0-minimal-20261011',fix='tests/fixtures/pdf-type0-minimal-20261011';
+const {chromium}=require(runtime+'/playwright');const out='output/pdf/type0-minimal-20261011',fix=qaPath('pdf-type0-minimal-20261011');
 (async()=>{const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});const results=[];
 try{for(const script of ['hebrew']){
- const fontFile='tests/fixtures/browser-pdf-20261011/fonts/NotoSans'+(script==='arabic'?'Arabic':'Hebrew')+'-static.ttf';
+ const fontFile=qaPath('browser-pdf-20261011/fonts/NotoSans')+(script==='arabic'?'Arabic':'Hebrew')+'-static.ttf';
  const assets={'/font.ttf':fontFile,'/prototype.js':'tools/pdf-export/type0-minimal-browser.js','/fontkit.js':'tmp/browser-pdf-20261011/package/dist/fontkit.umd.js','/pdf.js':runtime+'/pdf-lib/dist/pdf-lib.min.js','/runtime.js':'node_modules/regenerator-runtime/runtime.js','/hb/index.mjs':'tmp/browser-pdf-20261011/hb/package/dist/index.mjs','/hb/harfbuzz.js':'tmp/browser-pdf-20261011/hb/package/dist/harfbuzz.js','/hb/harfbuzz.wasm':'tmp/browser-pdf-20261011/hb/package/dist/harfbuzz.wasm'};
  const context=await browser.newContext({viewport:{width:900,height:1200}});
  await context.route('**/*',async r=>{const u=new URL(r.request().url());if(u.origin!=='http://127.0.0.1:4194')return r.abort();if(u.pathname==='/')return r.fulfill({contentType:'text/html',body:'<!doctype html><meta charset="utf-8"><style>@font-face{font-family:QA;src:url(/font.ttf)}*{box-sizing:border-box}body{margin:0;font:22px QA}main{width:794px;height:1123px;padding:60px}.line{line-height:2;margin:18px 0}.token{display:inline-block;white-space:pre}i{display:inline-block;width:0;height:0;vertical-align:baseline}</style><main></main><script src="/runtime.js"></script><script src="/fontkit.js"></script><script src="/pdf.js"></script><script src="/prototype.js"></script>'});if(!assets[u.pathname])return r.fulfill({status:404,body:''});return r.fulfill({contentType:u.pathname.endsWith('.wasm')?'application/wasm':u.pathname.endsWith('.ttf')?'font/ttf':'text/javascript',body:await fs.readFile(assets[u.pathname])});});

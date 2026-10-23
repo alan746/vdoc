@@ -1,4 +1,8 @@
 """Compare only the document page; reader toolbar/thumbnail loading is not a search result."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_name
 import hashlib
 import json
 import math
@@ -6,7 +10,7 @@ from pathlib import Path
 from PIL import Image, ImageChops
 
 ROOT = Path(__file__).resolve().parents[2]
-FIX = ROOT / 'tests/fixtures/reader-control-20261011'
+FIX = qa_path('reader-control-20261011')
 
 def audit(encoding="bidi-runs"):
     if encoding not in ("bidi-runs", "local-clusters", "record-actual", "record-boxes", "record-alef", "record-digits", "record-flow", "record-number-tail", "record-marked-boxes", "record-mark-advance"):
@@ -30,7 +34,7 @@ def audit(encoding="bidi-runs"):
         sx, sy = r['width']/794, r['height']/1123
         target = [sc['x']+r['x']+t['x']*sx, sc['y']+r['y']+t['y']*sy, sc['x']+r['x']+(t['x']+t['width'])*sx, sc['y']+r['y']+(t['y']+t['height'])*sy]
         contained = bool(bbox and bbox[0]>=target[0]-2 and bbox[1]>=target[1]-2 and bbox[2]<=target[2]+2 and bbox[3]<=target[3]+2)
-        results.append({'label':label,'pdfSha256':row['sha256'],'query':row['query'],'pageCrop':crop,'positiveDifferenceBounds':bbox,'sourceWordScreenBounds':target,'highlightContainedInTarget':contained,'negativeDifferenceBounds':negative,'negativeExactlyIdentical':negative is None,'maxNegativeChannelDelta':maxNegativeDelta,'highlightPixelCounts':highlights,'negativeClearsHighlight':highlights['before']==0 and highlights['absent']==0 and maxNegativeDelta<=1,'screenshots':[{'file':str(p.relative_to(ROOT)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths.values()]})
+        results.append({'label':label,'pdfSha256':row['sha256'],'query':row['query'],'pageCrop':crop,'positiveDifferenceBounds':bbox,'sourceWordScreenBounds':target,'highlightContainedInTarget':contained,'negativeDifferenceBounds':negative,'negativeExactlyIdentical':negative is None,'maxNegativeChannelDelta':maxNegativeDelta,'highlightPixelCounts':highlights,'negativeClearsHighlight':highlights['before']==0 and highlights['absent']==0 and maxNegativeDelta<=1,'screenshots':[{'file':recorded_name(p),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths.values()]})
     return {'scope':'Whole-word PDF plugin text-fragment lookup; not Cmd-F UI, editor search, or character selection. Page-only pixel comparisons exclude asynchronous reader toolbar/thumbnail loading. All five positive screenshots visually inspected. Negative criterion: zero lavender pixels and at most 1/255 per-channel difference from initial page; exact equality also recorded.','rawMethodCorrection':'Raw top-level double-click method label was inherited incorrectly; per-result methods and the search tool describe the actual text-fragment calls. Raw report retained.','excludedInvalidComparison':'search-bidi-runs-pixels.json compared the whole browser including loading toolbar/thumbnail and is not a valid search verdict.','results':results}
 
 if __name__ == '__main__':

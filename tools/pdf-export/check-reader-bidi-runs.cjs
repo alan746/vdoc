@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 const numberCases=process.env.VDOC_QA_NUMBER_CASES==='1';
 const numberTag=numberCases?'-numbers':'';
 const encoding=process.env.VDOC_QA_READER_VARIANT||'bidi-runs';
@@ -9,7 +10,7 @@ const http = require('node:http');
 const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets = (numberCases?['arabic','hebrew']:['words','arabic','hebrew','arabic-marked','hebrew-marked']).map(label=>({label,directory:'browser-unicode-20261011',name:label.replace('-marked','')+'-unicode-ordered-'+encoding+(label.endsWith('-marked')?'-marked':'')+numberTag}));
-const destination = `tests/fixtures/reader-control-20261011/reader-${encoding}${numberTag}.json`;
+const destination = qaPath(`reader-control-20261011/reader-${encoding}${numberTag}.json`);
 const collapse = value => value.replace(/\s+/gu, ' ').trim();
 
 (async () => {
@@ -19,7 +20,7 @@ const collapse = value => value.replace(/\s+/gu, ' ').trim();
     ...target,
     file: `output/pdf/${target.directory}/${target.name}.pdf`,
     bytes: await fs.readFile(`output/pdf/${target.directory}/${target.name}.pdf`),
-    report: JSON.parse(await fs.readFile(`tests/fixtures/${target.directory}/${target.name}-report.json`, 'utf8')),
+    report: JSON.parse(await fs.readFile(qaPath(`${target.directory}/${target.name}-report.json`), 'utf8')),
   })));
   const server = http.createServer((request, response) => {
     const match = /^\/qa-(\d+)\.pdf$/.exec(request.url);
@@ -57,7 +58,7 @@ const collapse = value => value.replace(/\s+/gu, ' ').trim();
           return {rect,scroller:scroller?{x:scroller.x,y:scroller.y,width:scroller.width,height:scroller.height}:null,method:String(viewer.viewport_.getPageScreenRect)};
         });
         const selectedAll=await frame.evaluate(async()=>{const controller=document.querySelector('pdf-viewer').pluginController_;controller.selectAll();return controller.getSelectedText();});
-        const geometryReport=numberCases?file.report:JSON.parse(await fs.readFile(`tests/fixtures/reader-control-20261011/${file.label}-report.json`,'utf8'));
+        const geometryReport=numberCases?file.report:JSON.parse(await fs.readFile(qaPath(`reader-control-20261011/${file.label}-report.json`),'utf8'));
         if(numberCases&&file.report.fixture!=='number-cases-v1')throw Error('Wrong numeric fixture');
         if(geometryReport.sourceText!==file.report.sourceText)throw Error('Geometry source text mismatch');
         const points = file.report.targets;
@@ -73,7 +74,7 @@ const collapse = value => value.replace(/\s+/gu, ' ').trim();
           const selected=await frame.evaluate(async()=>document.querySelector('pdf-viewer').pluginController_.getSelectedText());
           selections.push({...point,x,y,selectedText:selected.selectedText,match:selected.selectedText?.trim()===point.expected||selected.selectedText?.trim()===point.expected.replace(/[।.]$/u,'')});
         }
-        await page.screenshot({path:`tests/fixtures/reader-control-20261011/selection-${encoding}${numberTag}-${file.label}.png`});
+        await page.screenshot({path:qaPath(`reader-control-20261011/selection-${encoding}${numberTag}-${file.label}.png`)});
         results.push({label:file.label,file:file.file,sha256:crypto.createHash('sha256').update(file.bytes).digest('hex'),geometry,selections,source:file.report.sourceText,selectedText:selectedAll.selectedText,matchCollapsed:collapse(selectedAll.selectedText)===collapse(file.report.sourceText)});
         console.log(JSON.stringify({label:file.label,fullMatch:collapse(selectedAll.selectedText)===collapse(file.report.sourceText),wordPass:selections.filter(x=>x.match).length,wordTotal:selections.length}));
 

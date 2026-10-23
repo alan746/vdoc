@@ -106,3 +106,5 @@ File：文档库、导入、导出、打印。Edit：查找替换和撤销。Ins
 领域层的 `validateDocumentTree` 只负责结构检查和树遍历，通过参数接收规则，**不导入 editor**。公共 `Operation` 数据协议及其参数 schema 仍属于 domain；实现这些操作的处理器位于对应 feature。新增公共操作时，应同时扩展领域协议和所属 feature 的处理器。表格的 ProseMirror 网格验证由 table feature 提供，持久化层只执行统一校验流程。
 
 `tests/support/editor-schema-baseline.json` 固定重构前的展开扩展顺序、schema 和命令集合；`tests/editor-features.test.ts` 同时覆盖单列表启用/禁用、重复注册、稳定 ID、备份校验和首错顺序。改动功能后运行 `npm test`、`npm run typecheck`、`npm run build`。
+
+历史人工 QA 截图、日志和源清单已打包至仓库的 Release 附件，恢复与路径映射见 [QA 证据索引](docs/QA_EVIDENCE.md)。自动化测试所需四组 fixture 仍随代码提供。

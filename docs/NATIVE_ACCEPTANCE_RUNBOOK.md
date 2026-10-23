@@ -65,11 +65,11 @@
 
 已知反馈是 100% 为 5 页、101% 跳到 12 页。此次操作单没有修复或取消该限制；不能通过隐藏内容、取消完整性检查或将 100% 通过外推到 101% 来签收。
 
-进一步定位101%时，可先执行[两页打印对照](../tests/fixtures/safari-print-scale/README.md)，分离固定纸框和复杂表格的影响。七组对照已在Safari运行；无CSS单页HTML也出现100%一页、101%两页，尚未取得新PDF。详细结果见对照README，不替代原始B样本的PDF验收。
+进一步定位101%时，可先执行[两页打印对照](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-print-scale/README.md)，分离固定纸框和复杂表格的影响。七组对照已在Safari运行；无CSS单页HTML也出现100%一页、101%两页，尚未取得新PDF。详细结果见对照README，不替代原始B样本的PDF验收。
 
 ## 5. 隔离浏览器进程强退
 
-2026-10-10已取得独立宿主及部分实机证据，见[原生强退记录](../tests/fixtures/native-crash-20261010/README.md)。宿主编译和操作说明在[tools/native-qa](../tools/native-qa/README.md)。即时强退最终备份已于07:46:49 UTC完成，审计确认标题与完整content一致，故两组宿主强退案例通过。未提交的末尾x丢失；宿主终止与WebKit存储服务/事务内部终止需区分。
+2026-10-10已取得独立宿主及部分实机证据，见[原生强退记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-crash-20261010/README.md)。宿主编译和操作说明在[tools/native-qa](../tools/native-qa/README.md)。即时强退最终备份已于07:46:49 UTC完成，审计确认标题与完整content一致，故两组宿主强退案例通过。未提交的末尾x丢失；宿主终止与WebKit存储服务/事务内部终止需区分。
 
 仅在无个人标签页/数据的独立测试浏览器进程中执行；若无法隔离，保持待验。终止浏览器进程与普通刷新、关标签页、正常退出不是同一测试。
 

@@ -1,5 +1,0 @@
-{
-  "returncode": 1,
-  "stdout": "",
-  "stderr": "161:185: execution error: Microsoft Word got an error: AppleEvent timed out. (-1712)\n"
-}

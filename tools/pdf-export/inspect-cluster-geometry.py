@@ -1,4 +1,8 @@
 """Inspect owned QA glyph boxes; PDFium 153 diagnostics are distinct from Chrome 154 UI evidence."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib
 import json
 from pathlib import Path
@@ -6,13 +10,13 @@ import pypdfium2 as pdfium
 from pypdf import PdfReader
 from pypdf.generic import ContentStream
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'tests/fixtures/reader-control-20261011/cluster-geometry-final.json'
+OUT=qa_path('reader-control-20261011/cluster-geometry-final.json')
 files={'native-control':'output/pdf/reader-control-20261011/words.pdf'}
 for encoding in ('bidi-runs','whole-cluster','cluster-actual','local-clusters','record-actual'):
     files[encoding]=f'output/pdf/browser-unicode-20261011/words-unicode-ordered-{encoding}.pdf'
 results=[]
 for label,relative in files.items():
-    path=ROOT/relative
+    path=recorded_path(relative)
     with pdfium.PdfDocument(path) as document:
         page=document[0]
         textpage=page.get_textpage()

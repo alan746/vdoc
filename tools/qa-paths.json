@@ -1,0 +1,5 @@
+{
+  "evidenceDirectory": "qa-evidence",
+  "fixtureDirectory": ["tests", "fixtures"],
+  "retainedFixtureDirectories": ["combined-workflow-20261010", "core-batch-20261006", "local-download", "safari-preview"]
+}

@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/ph.qian/Desktop/Vdoc/tmp/safari-native-bridge/version-field.py", line 8, in <module>
-    command('reload');time.sleep(1)
-    ^^^^^^^^^^^^^^^^^
-  File "/Users/ph.qian/Desktop/Vdoc/tmp/safari-native-bridge/helpers.py", line 6, in command
-    subprocess.run(['osascript','-l','JavaScript',str(p/'keys.js')],check=True,capture_output=True)
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['osascript', '-l', 'JavaScript', 'tmp/safari-native-bridge/keys.js']' returned non-zero exit status 1.

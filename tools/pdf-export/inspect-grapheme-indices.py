@@ -1,12 +1,16 @@
 """Character-index geometry controls in PDFium153; not Chrome154 selection acceptance."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib,json,re
 from pathlib import Path
 import pypdfium2 as pdfium
-ROOT=Path(__file__).resolve().parents[2];FIX=ROOT/'tests/fixtures/reader-control-20261011';results=[]
+ROOT=Path(__file__).resolve().parents[2];FIX=qa_path('reader-control-20261011');results=[]
 source=json.loads((FIX/'partial-record-marked-boxes-wide-standards.json').read_text())['results']
 for mode in ['record-marked-boxes','record-mark-advance','record-grapheme']:
  for label,word in [('arabic-marked','جَمِيلَةٌ'),('hebrew-marked','שָׁלוֹם')]:
-  baseline=next(r for r in source if r['label']==label);file=baseline['file'].replace('record-marked-boxes',mode);path=ROOT/file
+  baseline=next(r for r in source if r['label']==label);file=baseline['file'].replace('record-marked-boxes',mode);path=recorded_path(file)
   doc=pdfium.PdfDocument(path);page=doc[0];text=page.get_textpage()
   try:
    value=text.get_text_range();aligned=len(value)==text.count_chars();start=value.find(word);chars=[];hits=[]

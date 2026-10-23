@@ -1,4 +1,8 @@
 """Check actual UI downloads from the auxiliary recovery workflow."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1] / 'tools'))
+from qa_paths import qa_path, recorded_name
 import hashlib
 import json
 import re
@@ -8,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
-out = root / 'tests/fixtures/final-five-20261010'
+out = qa_path('final-five-20261010')
 project = out / 'project-plan'
 now = datetime.now(timezone.utc).isoformat()
 def read(name): return json.loads((project / name).read_text())
@@ -95,7 +99,7 @@ audit = {
         'actualDownloadedTitleAndFullContentEqualBaseline': True,
         'boundary': 'Isolated WKWebView control recovered; ordinary key entry is not a system candidate pass.'},
     'quotaEnvironment': 'Direct isolated Chrome tab request returned Browser is not available: chrome. No quota writes performed.',
-    'files': [{ 'path': str((project / name).relative_to(root)), 'bytes': (project / name).stat().st_size,
+    'files': [{ 'path': recorded_name(project / name), 'bytes': (project / name).stat().st_size,
         'sha256': hashlib.sha256((project / name).read_bytes()).hexdigest()} for name in files]
 }
 save(project / 'workflow-audit.json', audit)

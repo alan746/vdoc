@@ -1,4 +1,8 @@
 """Real Safari paint/hit-test regression. Own session, fixed QA document only."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path
 import json
 import socket
 import subprocess
@@ -7,7 +11,7 @@ import urllib.error
 from pathlib import Path
 from safari_acceptance import Safari, ELEMENT, FIXTURE
 
-OUT = Path('tests/fixtures/safari-pinned-paint-20261010')
+OUT = qa_path('safari-pinned-paint-20261010')
 OUT.mkdir(exist_ok=True)
 driver = Safari(4181)
 report = {'checks': [], 'state': 'running'}

@@ -1,5 +1,0 @@
-{
-  "error": "Assertion compared in-memory PDF numeric operands with serialized/reparsed values; pypdf rounds numbers. Second attempt comparing six decimal places was also too strict for large TJ adjustments. Final checker compares canonical PDF operator serialization.",
-  "sha256": "2363e8958c6a2139a690e60c4057d4f692d9bb64116e8e7e250ac0054ffe8f1e",
-  "size": 31187
-}

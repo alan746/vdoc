@@ -1,7 +1,0 @@
-could not create image from rect
-Traceback (most recent call last):
-  File "/Users/ph.qian/Desktop/Vdoc/tmp/safari-native-bridge/candidate-image.py", line 14, in <module>
-    subprocess.run(['screencapture','-x','-R',rect,str(out/'candidate-content-only.png')],check=True)
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['screencapture', '-x', '-R', '70,148,750,507', 'tests/fixtures/safari-native-ime-20261010/candidate-content-only.png']' returned non-zero exit status 1.

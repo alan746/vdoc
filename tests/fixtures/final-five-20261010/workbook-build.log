@@ -1,4 +1,0 @@
-{"kind":"table","sheet":"五项总览","address":"A5:H11","rows":7,"cols":8,"values":[["事项","检查条数","已核验","组件通过","用户已确认","阻塞","其他状态","门槛状态"],["系统输入法",90,7,1,3,2,77,"未签收"],["原项目计划尾页",50,4,0,0,1,45,"未签收"],["Safari 打印与预览",70,0,16,0,0,54,"未签收"],["真实存储配额",55,0,0,0,2,53,"未签收"],["最终联合签收",55,3,0,0,5,47,"未签收"],["合计",320,14,17,3,10,276,"未进入 AI"]]}
-{"kind":"notice","message":"Cell search matched 0 entries."}
-Inspect result written to file: /Users/ph.qian/Desktop/Vdoc/outputs/final-five-20261010/VDoc-AI前五项验收-320条.xlsx.inspect.ndjson
-{"rows":320,"counts":{"待执行":274,"已核验":14,"组件通过":17,"用户已确认":3,"待对应存档":1,"阻塞":10,"历史证据":0,"不适用":1,"未通过":0},"output":"/Users/ph.qian/Desktop/Vdoc/outputs/final-five-20261010"}

@@ -1,4 +1,8 @@
 """Record bounded, real UI observations; never promote them to native signoff."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1] / 'tools'))
+from qa_paths import qa_path, recorded_name
 import hashlib
 import json
 import shutil
@@ -8,7 +12,7 @@ from pathlib import Path
 from pypdf import PdfReader
 
 root = Path(__file__).resolve().parents[1]
-out = root / 'tests/fixtures/final-five-20261010'
+out = qa_path('final-five-20261010')
 now = datetime.now(timezone.utc).isoformat()
 def save(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
@@ -64,10 +68,10 @@ save(out / 'followup-environment.json', {
     'recordedAt': now, 'unchangedApplicationFiles': len(manifest['files']),
     'lockfileSha256': digest(root / 'package-lock.json'), 'nodeObserved': 'v24.13.0',
     'directDependenciesMatchLockfile': versions,
-    'previewComponentLog': 'tests/fixtures/final-five-20261010/preview-components.log',
+    'previewComponentLog': recorded_name(qa_path('final-five-20261010/preview-components.log')),
     'previewComponentTests': {'files': 2, 'tests': 64, 'reusedExistingRun': True},
     'nativeIme': {
-        'baseline': 'tests/fixtures/final-five-20261010/isolated-ime-before.vdoc.json',
+        'baseline': recorded_name(qa_path('final-five-20261010/isolated-ime-before.vdoc.json')),
         'baselineSha256': digest(out / 'isolated-ime-before.vdoc.json'),
         'documentId': 'bf5a4d3c-6c75-4f74-8880-5f1cf8dd0ccd',
         'environment': 'Isolated WKWebView host; not Safari private window',
@@ -88,14 +92,14 @@ def update(id, status, result, evidence, blocker='', next_step='继续下一必�
     row.update(status=status, result=result, evidence=evidence, blocker=blocker, verifiedAt=now)
     row['next'] = next_step
 
-project_evidence = 'tests/fixtures/final-five-20261010/project-plan/audit.json'
-env_evidence = 'tests/fixtures/final-five-20261010/followup-environment.json'
+project_evidence = recorded_name(qa_path('final-five-20261010/project-plan/audit.json'))
+env_evidence = recorded_name(qa_path('final-five-20261010/followup-environment.json'))
 update('P004', '阻塞', '已下载当前 IAB 项目计划并建立独立副本，但旧 PDF 有当前源不存在的四组修改，尚不能认定为对应版本。', project_evidence,
        '缺少旧 PDF 对应的源版本；当前副本检查不能代替原件尾页验收。', '取得可配对的原源或恢复旧版本，再执行原生成品验收')
 update('P010', '已核验', '已比较当前源与旧 PDF，识别“克隆”“jjkkklk”“刚刚”“dd”四组差异，明确保留为不同版本；未宣布旧尾页问题修复。', project_evidence)
 for n in range(2, 18):
     update(f'S{n:03}', '组件通过', '对应场景已在两份预览组件测试中覆盖；复用本日 64 条通过日志，166 个应用文件哈希未变化。不是本轮新增执行，也不代替原生 Safari。',
-           'tests/fixtures/final-five-20261010/preview-components.log; ' + env_evidence,
+           recorded_name(qa_path('final-five-20261010/preview-components.log')) + '; ' + env_evidence,
            next_step='继续限定 Safari 窗口的原生观察，保留组件与实机证据边界')
 for id in ['Q001', 'Q003']:
     update(id, '阻塞', '核对官方限额能力；尚无已获准且可控制上限的隔离环境。没有填充数据、修改个人存储或模拟异常作为通过依据。', env_evidence,

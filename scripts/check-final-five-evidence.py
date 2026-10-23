@@ -1,11 +1,15 @@
 """Reconcile retained evidence; never execute or claim new native acceptance."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1] / 'tools'))
+from qa_paths import qa_path, recorded_name
 import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'tests/fixtures/final-five-20261010'
+OUT = qa_path('final-five-20261010')
 
 
 def read(path):
@@ -13,19 +17,19 @@ def read(path):
 
 
 def fingerprint(path):
-    return {'path': str(path.relative_to(ROOT)), 'bytes': path.stat().st_size,
+    return {'path': recorded_name(path), 'bytes': path.stat().st_size,
             'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
 
 
 manifest = read(OUT / 'source-manifest.json')
 expected = {item['file']: item['sha256'] for item in manifest['files']}
-actual_paths = {str(p.relative_to(ROOT)) for folder in ['app', 'components', 'lib']
+actual_paths = {recorded_name(p) for folder in ['app', 'components', 'lib']
                 for p in (ROOT / folder).rglob('*') if p.is_file()}
 assert actual_paths == set(expected), 'Added or removed application files require evidence review'
 for item in manifest['files'] + manifest['configurations']:
     assert fingerprint(ROOT / item['file'])['sha256'] == item['sha256'], item['file']
 
-search_dir = ROOT / 'tests/fixtures/safari-search-20261010'
+search_dir = qa_path('safari-search-20261010')
 search = read(search_dir / 'audit.json')
 source = (search_dir / search['source']).resolve()
 download = search_dir / search['download']

@@ -1,16 +1,16 @@
 ## 2026-10-12：新阅读器下页面顺序方案取得局部通过，仍不能接入产品
 
-Chrome155 PDFium把CloseTempLine的auto_order改为true；独立官方CfT验证旧希伯来语参考转为通过。只升级阅读器仍不能修复现有产品成品。对保留marked-boxes原型仅按DOM左坐标排序每行token，7份PDF像素全部保持，原文不变、取消保护通过；Chrome155全文5/7，官方PDF.js6.5.128全文4/7，联合4/7（印地语、普通阿拉伯语、普通希伯来语、阿拉伯数字）。带音标两例仍失败，PDF.js希伯来数字一例仍错序，因此不进入产品，不把全文结果当作局部选择或搜索验收。旧版兼容问题保留，不升级用户浏览器。下一步处理组合字符关联与数字RTL；不重复旧源顺序排列。证据 `tests/fixtures/pdf-chrome155-20261012/audit.json`。当前产品fd601855未变，G3/G4/G5/G7仍开放，AI未进入。
+Chrome155 PDFium把CloseTempLine的auto_order改为true；独立官方CfT验证旧希伯来语参考转为通过。只升级阅读器仍不能修复现有产品成品。对保留marked-boxes原型仅按DOM左坐标排序每行token，7份PDF像素全部保持，原文不变、取消保护通过；Chrome155全文5/7，官方PDF.js6.5.128全文4/7，联合4/7（印地语、普通阿拉伯语、普通希伯来语、阿拉伯数字）。带音标两例仍失败，PDF.js希伯来数字一例仍错序，因此不进入产品，不把全文结果当作局部选择或搜索验收。旧版兼容问题保留，不升级用户浏览器。下一步处理组合字符关联与数字RTL；不重复旧源顺序排列。证据 `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-chrome155-20261012/audit.json`。当前产品fd601855未变，G3/G4/G5/G7仍开放，AI未进入。
 
 ## 2026-10-12: bundled LibreOffice independent controls rejected
 
-Bundled LibreOfficeDev26.8.0.0.alpha0 converts owned four-line FODT sources with disposable profiles. Initial default-font substitution and a second explicit Noto-font/fontconfig group both fail the combined reader requirement: only Hebrew PDF.js full copy passes. All six rendered pages were inspected. The corrected group verifies embedded Noto font identities, eliminating the initial fallback/style ambiguity. No installed app, product dependency or exporter change; conversion profiles and isolated readers were closed. Evidence: `tests/fixtures/pdf-libreoffice-20261012/audit.json` and `explicit-fonts/audit.json`. Do not repeat these configurations or infer all LibreOffice versions/configurations are incapable.
+Bundled LibreOfficeDev26.8.0.0.alpha0 converts owned four-line FODT sources with disposable profiles. Initial default-font substitution and a second explicit Noto-font/fontconfig group both fail the combined reader requirement: only Hebrew PDF.js full copy passes. All six rendered pages were inspected. The corrected group verifies embedded Noto font identities, eliminating the initial fallback/style ambiguity. No installed app, product dependency or exporter change; conversion profiles and isolated readers were closed. Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-libreoffice-20261012/audit.json` and `explicit-fonts/audit.json`. Do not repeat these configurations or infer all LibreOffice versions/configurations are incapable.
 
 Current product core regression G6 passed on76258d84:2033cases covered via2029full-run passes plus4loopback-permission retests. Full-run exit1 remains archived, not rewritten as green. Actual rebuilt production editing/backup/PDF-button flows pass. G3 remains open independently.
 
 ## 2026-10-12: local fixed-PDF native scaling passes; further text controls rejected
 
-The local product path now includes dev and production launchers. Real production UI download followed by native Safari 93/99/100/101/102% saves passes the five-page layout gate; see `tests/fixtures/local-pdf-production-20261012/audit.json`. This does not close text copy.
+The local product path now includes dev and production launchers. Real production UI download followed by native Safari 93/99/100/101/102% saves passes the five-page layout gate; see `${VDOC_QA_EVIDENCE:-qa-evidence}/local-pdf-production-20261012/audit.json`. This does not close text copy.
 
 Noto unicode-range fallback on the same paginated snapshot fails both stock readers. ReportLab4.4.9 initially ignored `drawString(shaping=True)` because rlbidi was missing: the successful full-copy control was unshaped. Explicit `shapeStr(force=True)` with glyph assertions gives visible shaped runs, but Indic/Arabic selections contain PUA characters and Hebrew Chrome word order is wrong; only Hebrew PDF.js full copy passes. Reject these controls; do not call the initial pass shaped acceptance. Official rlbidi wheel requires authentication; no credentials or access workaround used. HarfBuzz is tmp-only. Three explicit shaped renders and five Noto pages were viewed. See `local-pdf-fontmap-20261012/audit.json` and `pdf-reportlab-20261012/audit.json`. Product remains candidate76258d84 and G3 open.
 
@@ -18,7 +18,7 @@ Noto unicode-range fallback on the same paginated snapshot fails both stock read
 
 A renamed derived TrueType font reflects each glyph within its advance; the text matrix reflects it back while advancing right-to-left. Shaping and Unicode maps still use the original font. The single plain Hebrew page was rendered and viewed, but stock Chrome returned reversed word order and the official PDF.js copy handler returned reversed character order. Neither reader is patched, and the result is rejected. Do not extend it to production or claim all negative matrices fail.
 
-The initial font transform failed before PDF creation because bundled Python lacked fontTools. It was installed only under the existing temporary QA dependency directory; source and derived fonts plus the OFL are retained. Evidence: `tests/fixtures/pdf-rtl-matrix-20261012/audit.json`. No product PDF change. The independent application change this turn only extends existing composition guards to external operations and history; its acceptance is separate.
+The initial font transform failed before PDF creation because bundled Python lacked fontTools. It was installed only under the existing temporary QA dependency directory; source and derived fonts plus the OFL are retained. Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-rtl-matrix-20261012/audit.json`. No product PDF change. The independent application change this turn only extends existing composition guards to external operations and history; its acceptance is separate.
 
 ## 2026-10-12: distinguish DOM selection from the official PDF.js copy handler
 
@@ -26,16 +26,16 @@ The initial font transform failed before PDF creation because bundled Python lac
 
 The retained marked-boxes seven-file baseline still passes only Hindi after the correction. Six RTL cases still fail. Three existing full-document direct-export candidates (4, 4, and 5 pages) were also read in stock Chrome and official PDF.js: all six body comparisons fail even after separating counted generated page headers/footers from body text. The corrected handler removes the Latin ligature false mismatch but retains real Hindi word-internal spaces and RTL errors. This rules out promoting these three existing artifacts as-is; it does not prove all generators or fonts fail.
 
-Evidence: `tests/fixtures/pdf-direct-readers-20261012/audit.json`; its `analyze.py` checks immutable source PDF hashes, repeatable raw selections, copy-handler execution on all thirteen pages, margins, and the preserved negative controls. No PDFs or product code were authored. Current product candidate remains 99d783b5, and I/P/S/F remain open. Stop treating raw text-layer differences alone as copy failures; do not delete spaces, reorder text, or normalize comparison strings to manufacture a pass.
+Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-direct-readers-20261012/audit.json`; its `analyze.py` checks immutable source PDF hashes, repeatable raw selections, copy-handler execution on all thirteen pages, margins, and the preserved negative controls. No PDFs or product code were authored. Current product candidate remains 99d783b5, and I/P/S/F remain open. Stop treating raw text-layer differences alone as copy failures; do not delete spaces, reorder text, or normalize comparison strings to manufacture a pass.
 
-A bounded native PyMuPDF Story 1.28.2 reference also failed all six stock-reader copy comparisons for three plain Hebrew/Arabic/Hindi files. All fonts were embedded with ToUnicode and the three renders were viewed. Package SHA-256 matches PyPI; it remains QA-only under tmp, not a product dependency. Do not generalize to every configuration or call this a browser interface. Evidence: `tests/fixtures/pdf-story-20261012/audit.json`. Official [Story API](https://pymupdf.readthedocs.io/en/latest/story-class.html) and [AGPL/commercial licensing](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright) remain integration considerations, not procurement decisions.
+A bounded native PyMuPDF Story 1.28.2 reference also failed all six stock-reader copy comparisons for three plain Hebrew/Arabic/Hindi files. All fonts were embedded with ToUnicode and the three renders were viewed. Package SHA-256 matches PyPI; it remains QA-only under tmp, not a product dependency. Do not generalize to every configuration or call this a browser interface. Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-story-20261012/audit.json`. Official [Story API](https://pymupdf.readthedocs.io/en/latest/story-class.html) and [AGPL/commercial licensing](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright) remain integration considerations, not procurement decisions.
 
 
 ## 2026-10-12: ReversedChars control does not close cross-reader selection
 
 Two bounded controls wrap the existing source-order and page-order Hebrew Type0 lines in standard `/ReversedChars` marked content. Canonical drawing-operator serialization and 900px raster comparisons remain equal to the respective baselines. Both PDFs were viewed. Chrome selects all 22 tested words correctly, but full text still passes only the source-order file; official PDF.js text-layer selection passes only the page-order file. Neither satisfies the combined requirement, so neither is integrated. This is a negative control, not a standards-conformance certification or proof that every generator must fail.
 
-The numeric-operand assertion in the QA writer initially compared in-memory floats to serialized/reparsed values; that comparison failed twice before being corrected to canonical operator serialization. Initial output and failure details remain in evidence. The readers were not modified. Evidence: `tests/fixtures/pdf-reversed-chars-20261011/audit.json`.
+The numeric-operand assertion in the QA writer initially compared in-memory floats to serialized/reparsed values; that comparison failed twice before being corrected to canonical operator serialization. Initial output and failure details remain in evidence. The readers were not modified. Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-reversed-chars-20261011/audit.json`.
 
 The [PDF Association discussion](https://github.com/pdf-association/pdf-issues/issues/718) supplied the standard-marker hypothesis and documents interoperability concerns; it is a discussion, not a normative requirement or a waiver of VDoc acceptance. No additional character-order/spatial workaround is selected from this result.
 
@@ -51,7 +51,7 @@ Typst web compiler 0.7.0 is downloaded only under tmp, registry-integrity checke
 
 Three new QA-only modes (`VDOC_QA_RECORD_TOKEN_BOUNDARY`, `VDOC_QA_RECORD_SPACE_MAP`, `VDOC_QA_RECORD_LEADING_SPACE`) are negative controls, not successors to record-marked-boxes. Separate token text objects fail both readers; a whitespace-first mapping loses letters; a whitespace suffix restores one Hebrew PDF.js sample but regresses Chrome full text and three word probes. Stop expanding the last mode after that single counterexample.
 
-`tests/fixtures/pdf-token-boundary-20261011/audit.json` binds 15 PDFs/identical rasters, 11 Chrome full/88 word selections, 15 PDF.js actual text-layer selections, executed source snapshots, and six artifact regressions (`test-token-boundaries.py`). No product source, dependency or acceptance status changes. Full partial selection, search, guards/download and native print were not rerun for rejected variants. Next establish standard embedded-font source mapping with a minimal unmarked RTL case before more Type3 spatial work.
+`${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-token-boundary-20261011/audit.json` binds 15 PDFs/identical rasters, 11 Chrome full/88 word selections, 15 PDF.js actual text-layer selections, executed source snapshots, and six artifact regressions (`test-token-boundaries.py`). No product source, dependency or acceptance status changes. Full partial selection, search, guards/download and native print were not rerun for rejected variants. Next establish standard embedded-font source mapping with a minimal unmarked RTL case before more Type3 spatial work.
 
 ## 2026-10-11: reject source-order atomic marked graphemes
 
@@ -83,7 +83,7 @@ Actual PDF.js still passes only Hindi strict full selection (1/7). The local neg
 
 Current QA candidate: `browser-record-number-tail-prototype.js` (`VDOC_QA_RECORD_NUMBER_TAIL=1`; reader variant `record-number-tail`). `VDOC_QA_NUMBER_CASES=1` adds two fixed Arabic/Hebrew number fixtures. Pure decimal tokens explicitly shape LTR; only the terminal digit gets an independent semantic box. This is a bounded single-page research candidate, **not the production exporter**.
 
-`numeric-reader-audit.json` in `tests/fixtures/reader-control-20261011` binds 21 PDFs/renders, 19 Chrome full selections, 152 word selections, 2112 partial drags, 14 official PDF.js browser text-layer selections, ten search-control pairs, 14 new artifact tests and 13 retained tests. Final seven full selections and 56 words pass in Chrome. Final base edge/interior totals: 273/318 and 262/318; extra numeric totals: 137/140 and 140/140. No previous pass regresses in any of these four comparisons. Do not combine offsets or count negative-control test passes as product acceptance.
+`numeric-reader-audit.json` in `${VDOC_QA_EVIDENCE:-qa-evidence}/reader-control-20261011` binds 21 PDFs/renders, 19 Chrome full selections, 152 word selections, 2112 partial drags, 14 official PDF.js browser text-layer selections, ten search-control pairs, 14 new artifact tests and 13 retained tests. Final seven full selections and 56 words pass in Chrome. Final base edge/interior totals: 273/318 and 262/318; extra numeric totals: 137/140 and 140/140. No previous pass regresses in any of these four comparisons. Do not combine offsets or count negative-control test passes as product acceptance.
 
 Arabic-Indic glyph direction was wrong even when full text copied correctly. Fixed LTR shaping plus terminal geometry passes all ten Arabic-Indic pointer targets at both offsets. Character boxes alone are insufficient: the rejected all-digit-box representation can place them correctly while leaving reversed visible ink and failed selection. Numeric scope is Latin digits and U+0660–U+0669 in the owned fixtures; not all decimal scripts/fonts.
 
@@ -93,7 +93,7 @@ Final base visible vector paths/transforms stay within 0.0001 PDF units of recor
 
 ## 2026-10-11: targeted Arabic hit boxes improve 17 retained edge probes
 
-Latest audit: `tests/fixtures/reader-control-20261011/rtl-hitboxes-audit.json`: 17 new PDFs/renders, 15 actual full copies, 120 word selections, 1908 partial drags, ten positive/absent search pairs, fourteen guard checks and two actual download hashes. Thirteen new artifact regressions and twelve previous regressions pass. Product and gate status unchanged.
+Latest audit: `${VDOC_QA_EVIDENCE:-qa-evidence}/reader-control-20261011/rtl-hitboxes-audit.json`: 17 new PDFs/renders, 15 actual full copies, 120 word selections, 1908 partial drags, ten positive/absent search pairs, fourteen guard checks and two actual download hashes. Thirteen new artifact regressions and twelve previous regressions pass. Product and gate status unchanged.
 
 `VDOC_QA_RECORD_ALEF=1` selects `browser-record-alef-prototype.js`; reader tools use `VDOC_QA_READER_VARIANT=record-alef`. It changes only alef/lam in unmarked Arabic words: measured semantic rectangles are independent of separately painted, identical vector glyphs. Other codepoints retain record-actual. This is a narrowly observed QA representation, not a general Arabic/RTL font strategy or production exporter.
 
@@ -108,7 +108,7 @@ Next: retain both baselines and isolate marked-character caret direction, digits
 
 ## 2026-10-11: local codepoint annotations improve Hindi selection without parser regression
 
-Latest audit: `tests/fixtures/reader-control-20261011/cluster-annotations-audit.json`. Twenty new PDFs/renders, twenty actual full-copy cases, 160 word probes, 648 valid partial-drag cases across candidates/controls, ten positive/absent search pairs; twelve new regressions and twelve retained regressions pass. Product sources, dependencies and gates are unchanged.
+Latest audit: `${VDOC_QA_EVIDENCE:-qa-evidence}/reader-control-20261011/cluster-annotations-audit.json`. Twenty new PDFs/renders, twenty actual full-copy cases, 160 word probes, 648 valid partial-drag cases across candidates/controls, ten positive/absent search pairs; twelve new regressions and twelve retained regressions pass. Product sources, dependencies and gates are unchanged.
 
 Prefer the **QA-only** `browser-record-actual-prototype.js` for the next experiment. `VDOC_QA_RECORD_ACTUAL=1` retains the bidi-run single-codepoint records and wraps only non-RTL multi-codepoint shaped clusters in local ActualText. This keeps five Chrome full copies, 40 word probes, five searches, Hindi PDF.js strict whitespace-collapsed text equality, and all five rendered pages' pixels. It is not a general font strategy or production exporter.
 
@@ -123,7 +123,7 @@ Next: isolate Arabic ligature and marked RTL/digit hit geometry while retaining 
 
 ## 2026-10-11: marked whole-word copy passes; partial selection still fails
 
-Latest audit: `tests/fixtures/reader-control-20261011/bidi-runs-audit.json`. Ten new PDFs/renders (five bidi-run prototypes, five rejected width controls), ten real Chrome full copies, 80 word probes, 110 grapheme-range drags, five positive/absent search pairs, and twelve artifact regressions. Nothing is integrated into the product.
+Latest audit: `${VDOC_QA_EVIDENCE:-qa-evidence}/reader-control-20261011/bidi-runs-audit.json`. Ten new PDFs/renders (five bidi-run prototypes, five rejected width controls), ten real Chrome full copies, 80 word probes, 110 grapheme-range drags, five positive/absent search pairs, and twelve artifact regressions. Nothing is integrated into the product.
 
 `VDOC_QA_BIDI_RUNS=1` selects `browser-bidi-runs-prototype.js`. Five samples now pass actual Chrome full-text equality with whitespace collapsed and 40 word probes, including marked Arabic/Hebrew and 123. This encoding handles contiguous RTL letter runs separately from marks while placing visible outlines at shaped positions. It is an empirical Type3 experiment, not a general bidi algorithm or approved font strategy. No ActualText replacement is used. Four of five reference renders are pixel-identical; unmarked Hebrew has a retained localized difference.
 
@@ -138,7 +138,7 @@ Next: correct grapheme hit geometry and cross-reader semantics before font fallb
 
 ## 2026-10-11: source-token order preserves simple-script copy and word hits
 
-Latest evidence: `tests/fixtures/reader-control-20261011/audit.json` — 15 new single-page PDFs/renders, 15 actual Chrome full-copy checks, 120 word-selection probes, and eight artifact regression tests. The product, dependencies, candidate fingerprint and gate statuses are unchanged.
+Latest evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/reader-control-20261011/audit.json` — 15 new single-page PDFs/renders, 15 actual Chrome full-copy checks, 120 word-selection probes, and eight artifact regression tests. The product, dependencies, candidate fingerprint and gate statuses are unchanged.
 
 `browser-sourcewords-prototype.js` keeps source token order, keeps HarfBuzz's visual glyph order within each token, and places the tokens through one positioned TJ line. In actual Chrome, Hindi, unmarked Arabic and unmarked Hebrew now each pass full-copy equality with whitespace collapsed and all eight word probes. No whole-line ActualText replacement is used. This is an experimental Type3 semantic-record representation, not approved font embedding or general document export.
 
@@ -154,7 +154,7 @@ Next: extend the working simple-script source-token representation to combining-
 
 ## 2026-10-11: real reader selection rejects whole-line ActualText
 
-Latest evidence: `tests/fixtures/pdfkit-browser-20261011/audit.json`: 25 new one-page PDFs/renders, 37 actual Chrome full-selection cases, 12 valid double-click word selections across six files, and nine artifact regressions. These are QA evidence, not product gate closure. Product dependencies and the candidate fingerprint are unchanged.
+Latest evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdfkit-browser-20261011/audit.json`: 25 new one-page PDFs/renders, 37 actual Chrome full-selection cases, 12 valid double-click word selections across six files, and nine artifact regressions. These are QA evidence, not product gate closure. Product dependencies and the candidate fingerprint are unchanged.
 
 `check-chrome-selection.cjs` serves a fixed allowlist of owned PDFs on a temporary loopback port, launches an isolated headless Chrome, waits for the real PDF viewer to load, then obtains PDFium's selection through the viewer's internal controller. It never reads the system clipboard or a user's browser. The internal API is a version-specific QA technique, not a shipping API. Every result is bound to the PDF hash; browser and server close in `finally`.
 
@@ -178,7 +178,7 @@ Next work must preserve both logical Unicode order and glyph hit geometry, with 
 
 ## 2026-10-11: Unicode-record experiment — still QA only
 
-Latest evidence: `tests/fixtures/browser-unicode-20261011/audit.json` (21 PDFs/21 renders; 8 real-artifact regression checks). `browser-unicode-prototype.js` decomposes each shaped cluster into single-codepoint records: the first non-mark record carries its visible outline and advance; other records have empty outlines and zero advance. This is explicitly a semantic-encoding experiment, not approved font embedding or character selection, and has no production import.
+Latest evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/browser-unicode-20261011/audit.json` (21 PDFs/21 renders; 8 real-artifact regression checks). `browser-unicode-prototype.js` decomposes each shaped cluster into single-codepoint records: the first non-mark record carries its visible outline and advance; other records have empty outlines and zero advance. This is explicitly a semantic-encoding experiment, not approved font embedding or character selection, and has no production import.
 
 Basic Hindi, Arabic and Hebrew main paragraphs now preserve word order and spaces in both readers; PDF.js full simple-fixture text matches with consecutive whitespace collapsed. Hindi pixels are unchanged. Actual download SHA-256, cancellation, missing glyphs, overflow, font mismatch and an added wrapped-block refusal are verified. Do not draw wrapped blocks as a single line.
 
@@ -194,7 +194,7 @@ The first `b-early` run is **invalid evidence of early fonts**: the iframe initi
 
 The long fixture exercises different Hindi words, not just repeated हिन्दी. Global mapping repair correctly refuses changed glyph reuse outside matching ActualText. The experimental contextual normalizer repairs 722 clusters, preserves all 3318 Hindi codepoints in logical order in pypdf and PDF.js, passes the other script inventories, and leaves all four rendered pages pixel-identical. This does not make it production-ready.
 
-**Actual Safari 101% reprint still fails text preservation:** four pages and all eight paragraph start/end markers survive, but Hindi/Arabic extraction changes. PDF.js recovers only 97 Hindi codepoints after reprint. The source uses only Type0 fonts, so font subtype alone is not a pass criterion. Four new real-PDF regression tests preserve this failure. See `tests/fixtures/pdf-prefont-20261011/audit.json`, `analysis.json`, `pdfjs.json`, `regression.log`.
+**Actual Safari 101% reprint still fails text preservation:** four pages and all eight paragraph start/end markers survive, but Hindi/Arabic extraction changes. PDF.js recovers only 97 Hindi codepoints after reprint. The source uses only Type0 fonts, so font subtype alone is not a pass criterion. Four new real-PDF regression tests preserve this failure. See `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-prefont-20261011/audit.json`, `analysis.json`, `pdfjs.json`, `regression.log`.
 
 ### Runtime boundary for the next implementation
 
@@ -214,7 +214,7 @@ The new `VDOC_QA_CJK_FONT` option is diagnostic only. Existing system fonts are 
 
 `verify-acceptance.py` now checks CJK, Arabic and Hebrew codepoint inventories on each page, in addition to the earlier checks. Inventory does not prove RTL logical reading order or glyph shaping. `test-verify-acceptance.py` runs six regression tests against actual saved PDFs: four new direct/native candidates pass within this fixture scope; missing text, wrong Hindi order, and old extra-page failures are rejected. The original Safari 100% baseline fails the stronger Arabic and logical-Hindi checks; its historical structural pass was not full multilingual acceptance.
 
-Evidence: `tests/fixtures/pdf-font-20261011/audit.json`, `strict-checks.json`, `pdfjs-text.json`, `regression.log`. All seven new PDFs / 35 pages rendered. Owned native windows closed, scale restored to 100%, temporary server stopped. Product source unchanged.
+Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-font-20261011/audit.json`, `strict-checks.json`, `pdfjs-text.json`, `regression.log`. All seven new PDFs / 35 pages rendered. Owned native windows closed, scale restored to 100%, temporary server stopped. Product source unchanged.
 
 ### Historical investigation (superseded where noted above)
 
@@ -237,7 +237,7 @@ The null-only repair fixes inventory but leaves visual-order Hindi; the strict c
 
 Native AX text was available for the first null-only repair but empty after later PDF navigations; those empty reads are **not** passes. Saved native PDFs are the authoritative reprint observations. The product remains unchanged. Next work: test a renderer/font embedding route that retains searchable text through Safari, then settle the supported local web export runtime and integrate the UI. Do not repeatedly tune ToUnicode mappings to fix an already-existing reprint conversion loss.
 
-Evidence: `tests/fixtures/pdf-unicode-20261011/audit.json`, `comparison.json`, `strict-checks.json`, `global-tests.log`. All temporary native test windows/services were closed.
+Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-unicode-20261011/audit.json`, `comparison.json`, `strict-checks.json`, `global-tests.log`. All temporary native test windows/services were closed.
 
 
 `render-prototype.cjs` imports a supplied VDoc JSON fixture into an isolated local Chrome profile, waits for the app's validated page preview, copies its rendered pages and styles into an isolated print page, and writes a vector/text PDF. It compares the complete editor document before and after export. HTTP requests are restricted to the selected loopback VDoc origin; the observed run made no external requests. It never attaches to the user's open browser.
@@ -247,7 +247,7 @@ Run with the existing VDoc development server and installed Playwright/Chrome:
 ```sh
 VDOC_PLAYWRIGHT_MODULE=/absolute/path/to/playwright \
   node tools/pdf-export/render-prototype.cjs \
-  tests/fixtures/safari-preview/source.vdoc.json output/pdf/new-prototype.pdf
+  "$(node tools/qa-path.mjs safari-preview/source.vdoc.json)" output/pdf/new-prototype.pdf
 python3 tools/pdf-export/verify-acceptance.py output/pdf/new-prototype.pdf \
   --report output/pdf/new-prototype.check.json
 ```
@@ -272,12 +272,12 @@ The verification tool is deliberately specific to B: expected rows on each page,
 4. Integrate a cancellable, bounded export pipeline, resource/font readiness, cleanup and actionable errors through the existing operation layer.
 5. Repeat original and complex-document PDF/export/print regressions, then verify the actual product button and saved-document integrity.
 
-Evidence: `tests/fixtures/safari-fixed-pdf-20261011/audit.json`. Product code is unchanged. S054 and the overall Safari/AI gates remain open.
+Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/safari-fixed-pdf-20261011/audit.json`. Product code is unchanged. S054 and the overall Safari/AI gates remain open.
 # Browser-only vector experiment — 2026-10-11
 
 `browser-cluster-prototype.js` is an isolated QA experiment, **not an application export API**. It shapes source tokens in the page with HarfBuzz WASM, obtains their visible outlines with fontkit, and writes Type3 vector glyph clusters with PDF-lib. No document upload, raster fallback, invisible text overlay, Chrome PDF printing or Python repair is used. Explicit local OFL fonts are loaded before DOM measurement.
 
-Eleven one-page PDFs and their renders are recorded in `tests/fixtures/browser-pdf-20261011/audit.json`. The final Arabic/Hebrew samples preserve source word order in pypdf and PDF.js. Grouping a word in one PDF text object matters: word-level Unicode mappings reversed RTL in PDF.js, while one text object per cluster reversed RTL in pypdf. Both failed variants remain in regression evidence.
+Eleven one-page PDFs and their renders are recorded in `${VDOC_QA_EVIDENCE:-qa-evidence}/browser-pdf-20261011/audit.json`. The final Arabic/Hebrew samples preserve source word order in pypdf and PDF.js. Grouping a word in one PDF text object matters: word-level Unicode mappings reversed RTL in PDF.js, while one text object per cluster reversed RTL in pypdf. Both failed variants remain in regression evidence.
 
 **Hindi is still a blocker.** Removing whitespace makes character inventories agree, but PDF.js inserts spaces inside words and misreports positions. The installed PDF.js category regex matches `Mn` anywhere in a multi-codepoint mapping, then its text extractor treats that entire glyph as zero-width. Whole-word checks catch the resulting failure; do not approve based on a whitespace-stripped comparison. This diagnoses the bundled reader, not every PDF reader/version. Type3 reprint compatibility is also unresolved from earlier Safari evidence.
 

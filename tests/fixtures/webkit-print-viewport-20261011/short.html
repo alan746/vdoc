@@ -1,4 +1,0 @@
-<!doctype html><html><head><meta charset="utf-8"><title>VDoc isolated print viewport QA</title><style>html,body{margin:0;padding:0;font:16px Arial} @page{size:A4;margin:0} </style></head><body><h1>SHORT ONE PAGE</h1><p>English 中文 العربية 日本語 END_SHORT</p><script>
-function snapshot(phase){const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}};window.webkit.messageHandlers.qa.postMessage({phase,print:matchMedia('print').matches,innerWidth,innerHeight,dpr:devicePixelRatio,root:rect(document.documentElement),body:rect(document.body),pages:[...document.querySelectorAll('section')].map(rect)});}
-addEventListener('load',()=>snapshot('load'));addEventListener('beforeprint',()=>snapshot('beforeprint'));addEventListener('afterprint',()=>snapshot('afterprint'));matchMedia('print').addEventListener('change',()=>snapshot('media-change'));
-</script></body></html>

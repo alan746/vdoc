@@ -1,4 +1,8 @@
 """Compare actual vector paths/transforms in owned PDF experiments, never a visual signoff."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_name
 import hashlib,json,math,os
 from pathlib import Path
 from collections import defaultdict
@@ -56,8 +60,8 @@ for label in ('words','arabic','hebrew','arabic-marked','hebrew-marked'):
         if not choices:raise ValueError('Missing exact vector outline: '+label)
         delta,index=min(choices);deltas.append(delta);remaining.pop(index)
     if remaining:raise ValueError('Additional visible glyph paint: '+label)
-    rows.append({'label':label,'baseline':str(old.relative_to(ROOT)),'candidate':str(new.relative_to(ROOT)),'baselineSha256':hashlib.sha256(old.read_bytes()).hexdigest(),'candidateSha256':hashlib.sha256(new.read_bytes()).hexdigest(),'glyphPaints':len(a),'exactPathMultiset':True,'maxTransformDelta':max(deltas,default=0),'withinTolerance':max(deltas,default=0)<=0.0001})
+    rows.append({'label':label,'baseline':recorded_name(old),'candidate':recorded_name(new),'baselineSha256':hashlib.sha256(old.read_bytes()).hexdigest(),'candidateSha256':hashlib.sha256(new.read_bytes()).hexdigest(),'glyphPaints':len(a),'exactPathMultiset':True,'maxTransformDelta':max(deltas,default=0),'withinTolerance':max(deltas,default=0)<=0.0001})
 result={'scope':'Exact visible glyph path multiset and page transform comparison. Tables and browser rendering are checked separately. Matrix tolerance 0.0001 PDF units; not pixel identity or layout/reader acceptance.','results':rows}
-out=ROOT/('tests/fixtures/reader-control-20261011/'+('alef' if encoding=='record-alef' else encoding)+'-ink-geometry.json')
+out=qa_path('reader-control-20261011') / (('alef' if encoding=='record-alef' else encoding)+'-ink-geometry.json')
 if out.exists():raise SystemExit('Refuse overwrite')
 out.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(rows,indent=2))

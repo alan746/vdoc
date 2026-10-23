@@ -464,7 +464,7 @@ Safari启用命令已获得明确授权，用户已确认完成本机管理员�
 
 ## 2026-10-10：原生配额多入口复验与回收站空间恢复
 
-独立临时Chrome154的8MiB命名bucket已取得真实产品保存事务QuotaExceededError。新建、复制、导入失败明确显示存储满；整库快照不变。标题、图片、表格独立修改失败均保留旧档，实际失败备份可干净恢复，释放后重试及刷新全量一致。命名版本原生事务拒绝与UI前置失败分别核对，释放后正常创建版本。见[原始下载与审计](../tests/fixtures/quota-retest-20261010/audit.json)。
+独立临时Chrome154的8MiB命名bucket已取得真实产品保存事务QuotaExceededError。新建、复制、导入失败明确显示存储满；整库快照不变。标题、图片、表格独立修改失败均保留旧档，实际失败备份可干净恢复，释放后重试及刷新全量一致。命名版本原生事务拒绝与UI前置失败分别核对，释放后正常创建版本。见[原始下载与审计](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/quota-retest-20261010/audit.json)。
 
 新增Trash内单个文档永久删除：必须确认，默认焦点Cancel；核对当前trashGroup/trashedAt后原子删除文档、摘要、元数据及该文档版本，清理指向它的active设置；其他文档不变。真实满额时取消整库不变，确认删除释放空间后正常新建、保存及刷新成功。相关72项，全量136文件1934项、类型检查和生产构建通过。测试默认单worker，测试/构建/渲染依次运行。
 
@@ -473,20 +473,20 @@ Safari启用命令已获得明确授权，用户已确认完成本机管理员�
 
 ## 2026-10-10：真实配额闭环、空白错误修复与搜索缩放复验
 
-在独立 Chromium 152 测试源以原生命名 Storage Bucket 设置并读回8MiB上限，预算内真实填充产生 QuotaExceededError。正常 VDoc 保存逻辑分别对纯文本和含表格图片的文档显示失败。旧存档完整保持，失败草稿实际下载、干净空间导入、释放登记填充键、正常重试后实际存档的标题与完整 content 一致。正文同ID实际刷新新会话也一致。富文档恢复含新增第三行、第二张图片和改后标题。见[原始文件与审计](../tests/fixtures/quota-bucket-20261010/audit.json)。这不代表默认存储、Safari或物理磁盘满；产品保存事务的原始错误名还需补取。
+在独立 Chromium 152 测试源以原生命名 Storage Bucket 设置并读回8MiB上限，预算内真实填充产生 QuotaExceededError。正常 VDoc 保存逻辑分别对纯文本和含表格图片的文档显示失败。旧存档完整保持，失败草稿实际下载、干净空间导入、释放登记填充键、正常重试后实际存档的标题与完整 content 一致。正文同ID实际刷新新会话也一致。富文档恢复含新增第三行、第二张图片和改后标题。见[原始文件与审计](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/quota-bucket-20261010/audit.json)。这不代表默认存储、Safari或物理磁盘满；产品保存事务的原始错误名还需补取。
 
 真实满额新建/复制时发现浏览器异常的message为空，导致提示空白。四个存储操作入口现在统一解释QuotaExceededError，并为其他空消息提供可见说明。相关5文件129项通过，最终全量135文件1923项、类型检查及生产构建均通过；修复后真实页面复验尚未执行。自动续跑在23:32Z之后没有浏览器控制工具；并非用户未授权，也不是本轮自动审批拒绝。已完成的两个VDocbucket填充已释放，独立能力探针仍留约7MiB待最终清理，没有后台继续写入。
 
-搜索缩放前目标曾离开视口；100/125%切换现重新显露当前命中，保持索引、焦点及全文，组合输入时不打断。新增4项回归，3文件71项通过；全套134文件1911项在限制2worker后通过，类型和生产构建通过。生产页面两个方向重新核验命中可见、全文不变。详见[缩放复验](../tests/fixtures/search-zoom-20261010/audit.json)。独立原生WKWebView预览随后连续三次5页、末页非空；仍不替代Safari实际PDF。此前记录保留为历史。
+搜索缩放前目标曾离开视口；100/125%切换现重新显露当前命中，保持索引、焦点及全文，组合输入时不打断。新增4项回归，3文件71项通过；全套134文件1911项在限制2worker后通过，类型和生产构建通过。生产页面两个方向重新核验命中可见、全文不变。详见[缩放复验](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/search-zoom-20261010/audit.json)。独立原生WKWebView预览随后连续三次5页、末页非空；仍不替代Safari实际PDF。此前记录保留为历史。
 
 五项最终门槛仍未签收，未接入AI。继续项是配额修复实机复验、输入法候选链与同次存档、旧项目计划源配对、Safari实际PDF及最后联合流程。
 
 
 ## 2026-10-10：生产构建流程与原生拼音持久化补验
 
-用既有生产构建在 127.0.0.1:4174 的独立空文档库导入真实恢复备份，实际改标题和混合语言文本，核对一次 Undo/Redo 完整 JSON、刷新新会话、首页重开、真实下载及重新导入，完整正文均符合预期。5 页预览行数 8/12/12/4/0，末页标题和正文完整，截图可见文档页眉；控制台无记录到的 warning/error。标题前新增测试串，其他节点完整不变。两次文件选择工具调用发生异常长等待，因此不判定性能通过。此为当前候选的独立生产预检，不替代尚未满足的最终联合流程前置。见 [生产预检](../tests/fixtures/production-smoke-20261010/audit.json)。
+用既有生产构建在 127.0.0.1:4174 的独立空文档库导入真实恢复备份，实际改标题和混合语言文本，核对一次 Undo/Redo 完整 JSON、刷新新会话、首页重开、真实下载及重新导入，完整正文均符合预期。5 页预览行数 8/12/12/4/0，末页标题和正文完整，截图可见文档页眉；控制台无记录到的 warning/error。标题前新增测试串，其他节点完整不变。两次文件选择工具调用发生异常长等待，因此不判定性能通过。此为当前候选的独立生产预检，不替代尚未满足的最终联合流程前置。见 [生产预检](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/production-smoke-20261010/audit.json)。
 
-上轮原生拼音备份于 21:14:18Z 实际下载完成，确认只改变正文输入段，顶层节点保持 8 个、其余所有内容相等。22:26:26Z 刷新后再次下载，version/title/完整 content 与输入后备份全等。由此补齐独立 WebKit 的系统转换、Enter 语义、Escape 取消及刷新持久化证据；仍未观察到候选窗，不能替代原 Safari 用户输入“钟”的同次对应证据。正常重启后的原生预览仍 Preparing pages，返回编辑正常且 Saved locally；不计预览通过。见 [原生证据更新](../tests/fixtures/native-recheck-20261010/audit.json)。
+上轮原生拼音备份于 21:14:18Z 实际下载完成，确认只改变正文输入段，顶层节点保持 8 个、其余所有内容相等。22:26:26Z 刷新后再次下载，version/title/完整 content 与输入后备份全等。由此补齐独立 WebKit 的系统转换、Enter 语义、Escape 取消及刷新持久化证据；仍未观察到候选窗，不能替代原 Safari 用户输入“钟”的同次对应证据。正常重启后的原生预览仍 Preparing pages，返回编辑正常且 Saved locally；不计预览通过。见 [原生证据更新](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-recheck-20261010/audit.json)。
 
 当前产品源码及配置指纹仍为 bbe738db9f0ab1d83e7ff0a2244cbf51691c94e02e624fecaa8ec196af452612，没有新产品修改，不重复此前通过的 1907 项测试。下载目录的同名项目计划备份已定向核对，仍为当前版本，缺旧 PDF 的“克隆”“jjkkklk”“刚刚”，不能关闭旧稿尾页问题。持续跟进保持启用，五项门槛尚未整体签收。
 
@@ -496,7 +496,7 @@ Safari启用命令已获得明确授权，用户已确认完成本机管理员�
 
 将恢复后的实际备份导入内置浏览器独立副本，连续三轮关闭/重开预览，均 5 页且打印按钮可用。逐页正文行数为 8/12/12/4/0，前四页表头各一次，表格结束在第 4 页，第 5 页有末尾标题和完整正文。独立原生宿主预览仍停在 Preparing pages，退出可回编辑；这次未输出原生 PDF，不将内置预览替代 Safari 签收。
 
-验收宿主新增仅作用于自身 WebKit 文本上下文的系统输入源菜单，编译成功。实际选择简体拼音后，真实按键 `zhong` 加空格得到“中”；随后 `zhong` 加 Enter 得到字母 `zhong`，`ce` 加 Escape 后正文未多出 `ce`。尚未观察到候选窗；导出时原生工具报 noWindowsAvailable，随后连接超时，日志只有下载请求、无完成及文件。因此不签收候选窗、完整结构或持久化。详见 [本轮真实证据](../tests/fixtures/native-recheck-20261010/audit.json)。
+验收宿主新增仅作用于自身 WebKit 文本上下文的系统输入源菜单，编译成功。实际选择简体拼音后，真实按键 `zhong` 加空格得到“中”；随后 `zhong` 加 Enter 得到字母 `zhong`，`ce` 加 Escape 后正文未多出 `ce`。尚未观察到候选窗；导出时原生工具报 noWindowsAvailable，随后连接超时，日志只有下载请求、无完成及文件。因此不签收候选窗、完整结构或持久化。详见 [本轮真实证据](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-recheck-20261010/audit.json)。
 
 用户最新要求是持续推进至 AI 准入，不需反复催促；已建立当前任务每 10 分钟的持续跟进（vdoc-ai）。只有五项门槛全部实际通过后才启动 AI 第二阶段，未通过不得宣称进入。无新变化不重复通知；必要外部条件保留明确阻塞。此安排覆盖此前“暂不进入 AI”的阶段性安排。
 
@@ -504,33 +504,33 @@ Safari启用命令已获得明确授权，用户已确认完成本机管理员�
 
 实际网页复现：同一 QA 文档移入回收站后，旧编辑标签仍显示 Saved locally；恢复后正文已变成迟到草稿。现将文档存在性、回收站状态与保存/版本创建/版本恢复置于同一 IndexedDB 事务检查。不存在的文档不能被旧写入重建；恢复出回收站后可正常重试。草稿仍留在编辑器，可通过现有备份入口下载。
 
-新增 8 条回归修复前全部失败、修复后通过；覆盖三种写入、父文件夹回收、缺失文档、失败草稿与离开保护。相关 7 文件72项，全套134文件1907项、类型检查及随后生产构建通过。网页复验确认拒绝保存、保留原稿完整 JSON、下载失败草稿、恢复后重试、刷新新会话全文一致；两份实际下载备份的标题及完整 content 相同。见 [修复与证据](../tests/fixtures/trash-save-guard-20261010/audit.json)。
+新增 8 条回归修复前全部失败、修复后通过；覆盖三种写入、父文件夹回收、缺失文档、失败草稿与离开保护。相关 7 文件72项，全套134文件1907项、类型检查及随后生产构建通过。网页复验确认拒绝保存、保留原稿完整 JSON、下载失败草稿、恢复后重试、刷新新会话全文一致；两份实际下载备份的标题及完整 content 相同。见 [修复与证据](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/trash-save-guard-20261010/audit.json)。
 
 独立 WebKit 宿主可定位正文与发送按键，但 Ctrl+Space 后仍输入普通 zhong，未出现系统候选；撤销后实际下载的标题与完整正文恢复基线。不以此签收输入法。五项最终门槛仍未关闭；用户最新要求是完成 AI 前底座、暂不进入 AI，已覆盖原先“通过即接入 AI”的安排。
 
 ## 2026-10-10：恢复后的证据复核与原生日志归档
 
-完成 F007/F009/F010 三条独立准备：搜索 B 的源与实际下载哈希及完整正文复核一致；A 的 UI 结果和 B 的备份比较保留各自范围。166 个应用文件及配置仍符合清单，已把此前 133 文件/1899 测试、64 项专项、类型及构建日志复制到项目证据目录，避免 /tmp 清理后丢失；这些是旧运行日志，未称新测试。见 [证据复核](../tests/fixtures/final-five-20261010/retained-evidence-review.json)。
+完成 F007/F009/F010 三条独立准备：搜索 B 的源与实际下载哈希及完整正文复核一致；A 的 UI 结果和 B 的备份比较保留各自范围。166 个应用文件及配置仍符合清单，已把此前 133 文件/1899 测试、64 项专项、类型及构建日志复制到项目证据目录，避免 /tmp 清理后丢失；这些是旧运行日志，未称新测试。见 [证据复核](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/retained-evidence-review.json)。
 
-用户恢复指令后重试独立宿主，可读取其窗口和截图，但退出菜单未成功、点击报 noWindowsAvailable。Safari 应用级入口再次被自动审批以私人窗口范围风险拒绝，已提出明确授权问题，未绕过。当前不能断言 Mac 仍锁定。五项缺口与具体下一步见 [恢复阻塞清单](../tests/fixtures/final-five-20261010/resume-blockers.json)；五项均未签收，未进入 AI。
+用户恢复指令后重试独立宿主，可读取其窗口和截图，但退出菜单未成功、点击报 noWindowsAvailable。Safari 应用级入口再次被自动审批以私人窗口范围风险拒绝，已提出明确授权问题，未绕过。当前不能断言 Mac 仍锁定。五项缺口与具体下一步见 [恢复阻塞清单](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/resume-blockers.json)；五项均未签收，未进入 AI。
 
 ## 2026-10-10：持续目标阻塞审计
 
 必要实机访问条件已在创建目标的用户轮及其后两次自动续轮持续阻塞。最新 CUA 可返回独立 QA 宿主 File 菜单，但取消/置前/Escape 未建立可编辑状态，菜单外点击报 noWindowsAvailable；重新获取仍为同一菜单。本轮不能据此断言 Mac 仍锁定，也不能记录新的输入法或打印通过。Safari/Chrome 应用入口授权未获答复，旧稿源未配对，受控真实配额环境仍不可用。
 
-独立备份、版本恢复、Word 回导、操作保护及组件证据已归档；没有新产品缺陷支持推测性修改，也不重复未变化测试充当进度。目标标记为阻塞而非完成；解除访问/环境前置后从现有清单恢复，五项门槛及 AI 接入标准不降低。完整尝试及解除条件见 [阻塞审计](../tests/fixtures/final-five-20261010/blocked-preflight-audit.json)。
+独立备份、版本恢复、Word 回导、操作保护及组件证据已归档；没有新产品缺陷支持推测性修改，也不重复未变化测试充当进度。目标标记为阻塞而非完成；解除访问/环境前置后从现有清单恢复，五项门槛及 AI 接入标准不降低。完整尝试及解除条件见 [阻塞审计](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/blocked-preflight-audit.json)。
 
 ## 2026-10-10：持续目标实机前置复核
 
 自动续轮连接独立原生宿主时，工具明确报告 Mac 已锁定且自动解锁失败；已请求用户手动解锁，未读取或请求密码。项目 tests/fixtures、examples、outputs、tmp 内对旧 PDF 独有文字的 JSON/HTML 搜索没有找到对应源，不能把当前项目计划副本当作旧稿。此结论仅限这些项目路径。
 
-Q040 原文为“若版本重命名可用”；当前组件及存储接口只有创建命名版本、列出与恢复，前轮实际菜单也无重命名入口，故该条件行标记不适用。Q039 创建命名版本时真实配额失败仍必须验收。保存失败/事务回滚代码及既有测试范围复核没有建立新的产品缺陷，不重复未变化的测试，也不将模拟异常计为真实配额通过。见 [前置复核](../tests/fixtures/final-five-20261010/blocked-preflight-audit.json)。五项门槛仍未签收，持续目标保持活动。
+Q040 原文为“若版本重命名可用”；当前组件及存储接口只有创建命名版本、列出与恢复，前轮实际菜单也无重命名入口，故该条件行标记不适用。Q039 创建命名版本时真实配额失败仍必须验收。保存失败/事务回滚代码及既有测试范围复核没有建立新的产品缺陷，不重复未变化的测试，也不将模拟异常计为真实配额通过。见 [前置复核](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/blocked-preflight-audit.json)。五项门槛仍未签收，持续目标保持活动。
 
 ## 2026-10-10：连续恢复与 Word 回导辅助预检
 
 在项目计划 QA 副本实际执行多语言命名检查点、操作层插入、工具栏撤销/重做、原版恢复、恢复前自动快照恢复、再次恢复基线、刷新及下载。各阶段公开文档读取完整相等，最终实际 JSON 与基线 title/content 全等。曾因另一文档被激活而保存被拒绝，先通过警告中的备份按钮实际下载并核对，再重开已保存副本、Retry save，恢复 Saved locally；未丢弃未备份草稿。原件 Saved versions 为空，未找到旧 PDF 对应快照。
 
-实际 Word 下载 11097 字节后回导新 ID，正文文字序列、节点类型、显式标记、页面参数、表格跨度/列宽一致，1 表 4 行 12 格。Word 的继承样式显式化及半磅字号舍入保留为格式差异说明，不称完整 JSON 相同。导入无效版本号 999 被明确拒绝，当前 ID、会话和完整内容不变；导入前后两份实际备份相同。随后发送旧会话操作得到 STALE，内容/修订未变。见 [实际成品及核对记录](../tests/fixtures/final-five-20261010/project-plan/workflow-audit.json)。
+实际 Word 下载 11097 字节后回导新 ID，正文文字序列、节点类型、显式标记、页面参数、表格跨度/列宽一致，1 表 4 行 12 格。Word 的继承样式显式化及半磅字号舍入保留为格式差异说明，不称完整 JSON 相同。导入无效版本号 999 被明确拒绝，当前 ID、会话和完整内容不变；导入前后两份实际备份相同。随后发送旧会话操作得到 STALE，内容/修订未变。见 [实际成品及核对记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/project-plan/workflow-audit.json)。
 
 隔离原生宿主恢复 UI 和截图控制；逐键仍为普通 zhong，没有候选框，不能记 IME 通过。标题恢复后实际下载与原生输入前备份 title/content 全等。直接隔离 Chrome 会话仍不可用。上述均为独立辅助预检，最终五项门槛未签收，已按用户要求建立持续目标；没有接入模型。
 
@@ -538,9 +538,9 @@ Q040 原文为“若版本重命名可用”；当前组件及存储接口只有
 
 内置浏览器正常菜单下载当前“VDoc · 项目计划”源，再经 Import 导入独立 QA 副本。原 ID 为 027b7591-48eb-44ac-84c9-1ec66a4e18d8，副本为 3e6de4cf-a868-42e8-a658-2975e131f7af。当前源与预览后实际下载的完整 content 相等；刷新后公开文档读取也一致。预览显示 1 页 A4 纵向且 Print 可用，末标题与完整末段目视可见。未生成新的 Safari PDF。
 
-旧 PDF 的首面有“克隆”“jjkkklk”“刚刚”“dd”四组当前源不存在的修改。因此只能记录当前副本正常，不能宣布旧原件尾页修复。源、实际下载备份和差异见 [项目核对](../tests/fixtures/final-five-20261010/project-plan/audit.json)。
+旧 PDF 的首面有“克隆”“jjkkklk”“刚刚”“dd”四组当前源不存在的修改。因此只能记录当前副本正常，不能宣布旧原件尾页修复。源、实际下载备份和差异见 [项目核对](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/project-plan/audit.json)。
 
-复用本日两份预览组件测试的 64 条通过日志，对应 S002–S017 共 16 条；并核对 166 个应用文件未变化、62 项直接依赖与 lockfile 一致。此轮未修改产品代码，不重复运行未变化的全套测试。隔离 WKWebView 已下载输入前备份，但原生 AX 停留菜单且截图不可用，没有新增 IME 输入结论。Safari / Chrome 应用入口授权待答复，真实限额无数据写入。环境边界见 [核对记录](../tests/fixtures/final-five-20261010/followup-environment.json)。五项未签收，未进入 AI。
+复用本日两份预览组件测试的 64 条通过日志，对应 S002–S017 共 16 条；并核对 166 个应用文件未变化、62 项直接依赖与 lockfile 一致。此轮未修改产品代码，不重复运行未变化的全套测试。隔离 WKWebView 已下载输入前备份，但原生 AX 停留菜单且截图不可用，没有新增 IME 输入结论。Safari / Chrome 应用入口授权待答复，真实限额无数据写入。环境边界见 [核对记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/followup-environment.json)。五项未签收，未进入 AI。
 
 ## 2026-10-10：剩余五项拆为 320 条并开始执行
 
@@ -550,19 +550,19 @@ Q040 原文为“若版本重命名可用”；当前组件及存储接口只有
 
 I009 原生入口再次被自动审批拒绝：getApp(Safari) 可能读取授权独立窗口以外的内容，未扩大访问或绕过；I010 新基线备份随之前置阻塞。继续独立准备：P001–P003 核对旧原项目计划 PDF 为 2 页，渲染尾页为空白，文字抽取仅有 Safari 附加日期/标题/页码/网址，无正文；未把旧文件当成当前修复结果。另核验候选 166 文件快照、重跑历史强退成品比对，保留仅限隔离 WKWebView 的边界。累计 12 条已核验、1 条组件通过，3 条既有用户确认；五个门槛均未整体签收。
 
-本轮产品实现未改，不重跑未受影响的全套/类型/构建；沿用前轮 133 文件 1899 项基线，专项日志与本次样本/版本/旧 PDF/强退复核结果永久保存在 [final-five-20261010](../tests/fixtures/final-five-20261010/preflight.json)。表格另核验 320 唯一编号、必填项、无前向/循环依赖、状态统计随编辑重算及恢复，完成导出和可视检查。
+本轮产品实现未改，不重跑未受影响的全套/类型/构建；沿用前轮 133 文件 1899 项基线，专项日志与本次样本/版本/旧 PDF/强退复核结果永久保存在 [final-five-20261010](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/final-five-20261010/preflight.json)。表格另核验 320 唯一编号、必填项、无前向/循环依赖、状态统计随编辑重算及恢复，完成导出和可视检查。
 
 ## 2026-10-10：预览初始化握手增加有界恢复
 
 本轮Safari再次出现Preparing pages…，iframe已指向/print-preview但尚无成品。代码检查发现父页onLoad和子页初始ready都为一次性通知：若双方监听安装时序错过通知，缺少重连。现父页每秒仅发小型connect消息，子页未开始则回复ready，收到正文快照立即accepted；父页收到有效accepted/status后停止探测。来源、origin和当前token校验保留，已开始的子页只确认同token探测，不重复分页；隐藏时不发送，回到前台立即探测，60秒可见等待预算结束和卸载均停止。此修复解决协议层漏接的可恢复性，不宣称已证明Safari停滞的唯一根因。
 
-新增6项回归：漏接后重发快照、旧token/window/origin不能结束探测、后台静默/前台恢复、超时/卸载停止、子页只握手不启动排版、资源等待前确认且去重。专项2文件64项通过，全套133文件1899项通过，类型检查成功后生产构建通过；日志/tmp/vdoc-handshake-{targeted,full,types,build}.log。内置测试标签121重载新代码，用原B连续两次生成5页A4纵向预览，选择末页读到FINAL PAGE CHECK及结束正文；未修改样本文档。Safari已重载并再次发起Print，仍需其原生完成结果与101%实际PDF，不能因内置浏览器通过关闭打印门槛。随后原生AX仍显示Preparing pages，而获准窗口截图显示编辑器，两者不一致；已请求用户确认实际画面，不以其中任一工具输出宣布原生成功或确定失败。当前代码哈希及回归摘要见[握手修复审计](../tests/fixtures/preview-handshake-20261010/audit.json)。
+新增6项回归：漏接后重发快照、旧token/window/origin不能结束探测、后台静默/前台恢复、超时/卸载停止、子页只握手不启动排版、资源等待前确认且去重。专项2文件64项通过，全套133文件1899项通过，类型检查成功后生产构建通过；日志/tmp/vdoc-handshake-{targeted,full,types,build}.log。内置测试标签121重载新代码，用原B连续两次生成5页A4纵向预览，选择末页读到FINAL PAGE CHECK及结束正文；未修改样本文档。Safari已重载并再次发起Print，仍需其原生完成结果与101%实际PDF，不能因内置浏览器通过关闭打印门槛。随后原生AX仍显示Preparing pages，而获准窗口截图显示编辑器，两者不一致；已请求用户确认实际画面，不以其中任一工具输出宣布原生成功或确定失败。当前代码哈希及回归摘要见[握手修复审计](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/preview-handshake-20261010/audit.json)。
 
 ## 2026-10-10：Safari查找剩余定位与完整备份核对通过
 
 原始B（086c8e8e-1529-437a-82e1-7395146ff767）100%下从首标题前开始，通过VDoc查找ROW 36得到1 of 1，Next后关闭面板。用户新增明确授权独立窗口的Document workspace与preview frame diagnostic两个测试标签后，截图成功，末行ROW 36完整可见并高亮。截图工具结果已目视核对，未另存图片文件。
 
-正常File菜单下载实际文件QA final system acceptance.vdoc-2.json（160799字节），归档至[safari-search-20261010](../tests/fixtures/safari-search-20261010/audit.json)。Python逐项比较标题和完整content与原始B完全一致，保存时间不参与相等比较。之后刷新，原文2498字符及Saved locally恢复。第3项按指定A/B样本组合证据关闭；A此前100%/125%及替换撤销为UI/字符数证据，本轮全文JSON是B的查找后备份，不混为同一份样本的完整替换链。七项已关闭第3/5项，剩5项（含最终联合签收）。
+正常File菜单下载实际文件QA final system acceptance.vdoc-2.json（160799字节），归档至[safari-search-20261010](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-search-20261010/audit.json)。Python逐项比较标题和完整content与原始B完全一致，保存时间不参与相等比较。之后刷新，原文2498字符及Saved locally恢复。第3项按指定A/B样本组合证据关闭；A此前100%/125%及替换撤销为UI/字符数证据，本轮全文JSON是B的查找后备份，不混为同一份样本的完整替换链。七项已关闭第3/5项，剩5项（含最终联合签收）。
 
 用户另确认真实IME只增加一个“钟”、无换行且取消后无残留，正文确认/取消按用户实测通过。但本轮Safari B备份仍与原文完全一致、不含新增字符，故不把它记为该候选结果的持久化验证，也未对不确定的目标撤销。其他输入位置待验。自动按键无法代替真实选词；产品源码未改，沿用133文件1893项及类型/构建基线。
 
@@ -570,11 +570,11 @@ I009 原生入口再次被自动审批拒绝：getApp(Safari) 可能读取授权
 
 用户确认在独立Safari Private测试窗口通过键盘切换输入法并出现zhong候选窗。当前授权窗口UUID及原始B文档086c8e8e-1529-437a-82e1-7395146ff767匹配；原生AX显示Finishing input…，格式复制/粘贴禁用，说明应用观察到组合输入。整窗截图被自动审批以范围风险拒绝，未绕过。
 
-原生控制器发送空格及字母后只读到英文zhongzhong，不能把工具按键判为系统选词通过。已只选中并删除探针，恢复IME test area原段落。请用户手动完成zhong→空格选中“中”及ceshi→Esc取消，再核对已提交内容、换行、撤销及保存。当前仅有候选触发与应用组合态证据，八类输入位置未整项签收。[结构化记录](../tests/fixtures/native-ime-20261010/observations.json)。产品未改，不重跑未受影响的全套测试。
+原生控制器发送空格及字母后只读到英文zhongzhong，不能把工具按键判为系统选词通过。已只选中并删除探针，恢复IME test area原段落。请用户手动完成zhong→空格选中“中”及ceshi→Esc取消，再核对已提交内容、换行、撤销及保存。当前仅有候选触发与应用组合态证据，八类输入位置未整项签收。[结构化记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-ime-20261010/observations.json)。产品未改，不重跑未受影响的全套测试。
 
 ## 2026-10-10：即时强退最终备份补齐，两组宿主恢复通过
 
-最终备份于07:46:49 UTC真实下载完成，160737字节，已归档为[after-immediate-crash.vdoc.json](../tests/fixtures/native-crash-20261010/after-immediate-crash.vdoc.json)。重新执行audit.mjs，两组均passed：标题与完整content深度相等，表格37行/54正文单元格/2表头、图片、分页及保存标记完整。即时输入末尾x未保存，符合450ms空闲保存前安排150ms强退的观察；不承诺未提交输入零丢失。
+最终备份于07:46:49 UTC真实下载完成，160737字节，已归档为[after-immediate-crash.vdoc.json](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-crash-20261010/after-immediate-crash.vdoc.json)。重新执行audit.mjs，两组均passed：标题与完整content深度相等，表格37行/54正文单元格/2表头、图片、分页及保存标记完整。即时输入末尾x未保存，符合450ms空闲保存前安排150ms强退的观察；不承诺未提交输入零丢失。
 
 第5项按隔离WebKit宿主真实进程强退范围签收；未测试Safari进程、存储服务或精确事务阶段中断及断电。七项收尾队列已关闭1项、剩6项，其中包含最终联合签收；该数量不是开发完成百分比。下方此前“最终下载待完成”记录保留为历史过程，已被本条结果更新。产品代码未变，沿用133文件1893项/类型/构建基线。再次计算166个应用源文件哈希与审计记录一致，并核对三份通过日志。
 
@@ -582,7 +582,7 @@ I009 原生入口再次被自动审批拒绝：getApp(Safari) 可能读取授权
 
 ## 2026-10-10：建立独立WebKit宿主，已保存文档真实强退恢复通过
 
-建立开发专用[原生QA宿主](../tools/native-qa/README.md)，由已安装Xcode编译，通过CUA启动和操作。独立WKWebsiteDataStore UUID隔离数据，不访问Safari资料、不注入JavaScript、不直接读取IndexedDB。正常VDoc导入A样本、修改标题与正文标记，观察Saved locally后从File菜单下载完整JSON。真实SIGKILL宿主PID44484，重启为47018后打开同一存储，重新下载JSON；标题及完整content深度相等，37行表格、合并格、图片、分页均保留。[证据及可重跑审计](../tests/fixtures/native-crash-20261010/README.md)。
+建立开发专用[原生QA宿主](../tools/native-qa/README.md)，由已安装Xcode编译，通过CUA启动和操作。独立WKWebsiteDataStore UUID隔离数据，不访问Safari资料、不注入JavaScript、不直接读取IndexedDB。正常VDoc导入A样本、修改标题与正文标记，观察Saved locally后从File菜单下载完整JSON。真实SIGKILL宿主PID44484，重启为47018后打开同一存储，重新下载JSON；标题及完整content深度相等，37行表格、合并格、图片、分页均保留。[证据及可重跑审计](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-crash-20261010/README.md)。
 
 即时强退初测发现QA快捷键Cmd-Shift-J与编辑器两端对齐冲突，属于测试宿主问题；移除该快捷键，重新取得已知基准备份并用显式QA菜单复跑。日志记录真实按键后安排150ms SIGKILL，PID51710终止并重启为52357。恢复页面2439字符、原标记保留、末尾x未保留；最终JSON下载目前只有destination事件，无完成文件，控制窗口继续超时，故暂不签收完整结构一致。需要独立QA窗口恢复前台后取得最终文件再审计。
 
@@ -622,7 +622,7 @@ pypdf提取确认5页，ROW 01–36各出现一次，图像在第一页，末页
 
 原生导入B后打开Print，60秒保护触发Preview is taking too long；用户提供Screenshot 2026-10-10 at 02.39.33.png，确认实际界面也有此错误，不能将其归为工具显示问题。重试仍未取得ready。工具曾在同次读取中给出弹窗AX与旧编辑器截图，两者不一致；以用户截图确认超时，不以旧截图否定故障。
 
-同源/print-preview通过HTTP GET/HEAD均返回200（GET约0.94秒）。新增只加载预览路由、不读写文档、不发送正文和不打印的[safari-preview-frame-diagnostic.html](../tests/fixtures/safari-preview-frame-diagnostic.html)；脚本语法检查通过。Safari同一Private窗口第二个QA标签实际运行：100ms frame load，URL为http://[::1]:5173/print-preview，document complete且preview-pages根存在；358ms收到vdoc-preview-ready。独立子页面可以正常加载。回到编辑器Retry后，工具最初仍报告about:blank和Preparing pages，尚无成功结果。
+同源/print-preview通过HTTP GET/HEAD均返回200（GET约0.94秒）。新增只加载预览路由、不读写文档、不发送正文和不打印的[safari-preview-frame-diagnostic.html](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-preview-frame-diagnostic.html)；脚本语法检查通过。Safari同一Private窗口第二个QA标签实际运行：100ms frame load，URL为http://[::1]:5173/print-preview，document complete且preview-pages根存在；358ms收到vdoc-preview-ready。独立子页面可以正常加载。回到编辑器Retry后，工具最初仍报告about:blank和Preparing pages，尚无成功结果。
 
 内置浏览器新对照标签121打开此前未编辑B文档6eb3a097-9666-44b0-a2d6-73ea81d92356，同一Print组件实际生成5 pages · A4 · portrait，按钮可用，第五页FINAL PAGE CHECK中文及结束段落在；iframe src为/print-preview，无sandbox/loading属性。该结果用于定位浏览器差异，不替代Safari或新PDF验收。
 
@@ -652,7 +652,7 @@ pypdf提取确认5页，ROW 01–36各出现一次，图像在第一页，末页
 
 ## 2026-10-10：原生打印最小对照与 Safari 查找部分验收
 
-Safari 26.6.2 / macOS 26.6.2（25G83），A4纵向、背景开启、Safari页眉页脚关闭。完成七个打印对照：生产CSS两页样本100%为2页、101%为6页；自动高度、自动宽高、自动纸张等修改均未解决。完全不含CSS、VDoc或Paged.js的单页HTML，在普通和Private Safari均为100%一页、101%两页。详见[原生打印矩阵和样本哈希](../tests/fixtures/safari-print-scale/README.md)。这说明额外分页现象也能出现在应用之外，不能继续单凭固定纸框猜测根因；没有将失败的对照CSS用于产品。
+Safari 26.6.2 / macOS 26.6.2（25G83），A4纵向、背景开启、Safari页眉页脚关闭。完成七个打印对照：生产CSS两页样本100%为2页、101%为6页；自动高度、自动宽高、自动纸张等修改均未解决。完全不含CSS、VDoc或Paged.js的单页HTML，在普通和Private Safari均为100%一页、101%两页。详见[原生打印矩阵和样本哈希](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-print-scale/README.md)。这说明额外分页现象也能出现在应用之外，不能继续单凭固定纸框猜测根因；没有将失败的对照CSS用于产品。
 
 原生保存PDF窗口在填写文件名、选择路径后Save仍禁用；扩展名过滤、MIME过滤以及无过滤的独立文件输入均未取得成功上传。没有新PDF，未关闭原项目计划空白尾页或101%打印验收。系统中已配置ABC和简体拼音，Ctrl+Space/Ctrl+Alt+Space快捷键已启用；实际Ctrl+Space后键入zhongwen仍为拉丁文字，未观察到候选窗，不计IME通过。未改变系统设置。
 
@@ -686,7 +686,7 @@ Safari Private中创建独立QA文档61afdf66-0698-46a0-acc4-2d897e492713（QA n
 
 ## 2026-10-09：修复导入尺寸阻塞表格属性提交，并验收尺寸完整链路
 
-在[独立RTL横纵合并样本](../tests/fixtures/table-dimensions-cycle-20261009/README.md)真实属性窗口复现：保留25px窄列、只改对齐/内边距，Apply仍被min=40拦住；另发现修改普通列宽时会重传全部列宽，未选窄列也会触发操作校验失败。
+在[独立RTL横纵合并样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/table-dimensions-cycle-20261009/README.md)真实属性窗口复现：保留25px窄列、只改对齐/内边距，Apply仍被min=40拦住；另发现修改普通列宽时会重传全部列宽，未选窄列也会触发操作校验失败。
 
 现仅对用户实际改动的数字字段应用编辑范围/整数限制，未改动的合法导入尺寸保持；列宽只提交选中的逻辑列。新增10项组件回归，覆盖窄列、导入小数内边距/边框/行高、不影响未选窄列的宽度编辑、非法新尺寸拒绝及完整Undo。初始回归修复前5项失败。相关4文件74项通过，全套133文件1889项（63.48秒）、类型检查及随后生产构建通过，既有Vinext提示保留；日志/tmp/vdoc-table-dimensions-{before,targeted,full,types,build}.log。
 
@@ -704,7 +704,7 @@ Safari Private中创建独立QA文档61afdf66-0698-46a0-acc4-2d897e492713（QA n
 
 ## 2026-10-09：复杂表格移动、数值/语言排序与存档联合验收
 
-通过[本轮独立样本](../tests/fixtures/table-reorder-sort-20261009/README.md)检查真实网页公开操作层、界面Undo/Redo和预览。未修改产品代码。
+通过[本轮独立样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/table-reorder-sort-20261009/README.md)检查真实网页公开操作层、界面Undo/Redo和预览。未修改产品代码。
 
 | 核对项目 | 实际结果 |
 | --- | --- |
@@ -719,7 +719,7 @@ Safari Private中创建独立QA文档61afdf66-0698-46a0-acc4-2d897e492713（QA n
 
 ## 2026-10-09：删除目标恢复、嵌套表隔离与跨文档存档联合验收
 
-通过[两份本轮新导入样本](../tests/fixtures/target-lifecycle-20261009/README.md)验收，未修改产品代码或用户原件。
+通过[两份本轮新导入样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/target-lifecycle-20261009/README.md)验收，未修改产品代码或用户原件。
 
 | 核对项目 | 实际结果 |
 | --- | --- |
@@ -734,7 +734,7 @@ Safari Private中创建独立QA文档61afdf66-0698-46a0-acc4-2d897e492713（QA n
 
 ## 2026-10-09：操作失败、重试、过期请求与历史/存档联合验收
 
-使用[本轮独立表格样本](../tests/fixtures/operation-guards-20261009/README.md)，通过真实网页公开操作层验证以下链路；未修改产品代码。
+使用[本轮独立表格样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/operation-guards-20261009/README.md)，通过真实网页公开操作层验证以下链路；未修改产品代码。
 
 | 核对项目 | 实际结果 |
 | --- | --- |
@@ -752,7 +752,7 @@ Safari Private中创建独立QA文档61afdf66-0698-46a0-acc4-2d897e492713（QA n
 
 ## 2026-10-09：合并单元格样式、RTL合并、插行与历史/存档实际联合验收
 
-本轮未修改产品代码。导入[独立复杂表格副本](../tests/fixtures/table-editing-cycle-20261009/README.md)，通过公开文档操作层执行修改，通过界面按钮Undo/Redo及Print验收；每次操作使用刚读取的session/revision和明确cell/cells目标，没有访问编辑器私有状态。
+本轮未修改产品代码。导入[独立复杂表格副本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/table-editing-cycle-20261009/README.md)，通过公开文档操作层执行修改，通过界面按钮Undo/Redo及Print验收；每次操作使用刚读取的session/revision和明确cell/cells目标，没有访问编辑器私有状态。
 
 | 操作链 | 实际结果 |
 | --- | --- |
@@ -780,7 +780,7 @@ Safari Private中创建独立QA文档61afdf66-0698-46a0-acc4-2d897e492713（QA n
 
 Letter横向设置一次Undo精确回到Letter纵向，Redo精确恢复。Saved locally后退出，从新标签页开启新session，完整JSON等于Letter横向快照，Page setup窗口显示Letter/Landscape/25mm。随后通过同一窗口恢复A4/Portrait/20mm，完整JSON精确等于初始基线，重新预览仍为5页，恢复已保存。
 
-页面设置/打印CSS/页面几何/表格检查相关4文件98项通过，日志/tmp/vdoc-paper-matrix-targeted.log。无产品代码改动，不重复全套和构建；沿用132文件1879项、类型检查与生产构建通过基线。样本和归档证据见[独立验收记录](../tests/fixtures/preview-paper-matrix-20261009/README.md)。
+页面设置/打印CSS/页面几何/表格检查相关4文件98项通过，日志/tmp/vdoc-paper-matrix-targeted.log。无产品代码改动，不重复全套和构建；沿用132文件1879项、类型检查与生产构建通过基线。样本和归档证据见[独立验收记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/preview-paper-matrix-20261009/README.md)。
 
 这些是内置浏览器真实预览/操作/存储结果，不是原生PDF逐页视觉签收，也未验证Safari101%缩放；原七项实机签收保持未关闭。
 
@@ -790,7 +790,7 @@ Letter横向设置一次Undo精确回到Letter纵向，Redo精确恢复。Saved 
 
 新增7项：LTR/RTL缩短跨度错列（2）、过长跨度推挤后行（1）、续页缺左侧占位格（1）、合法缩短+空续格（1）、嵌套及相邻表独立占位（1）、预览组件拒绝错列打印（1）。修复前5项失败。两条历史测试也随之纠正：部分续页保留空格而非删除格；仍被前行rowspan占用时插入额外续格应拒绝。相关4文件116项、全套132文件1879项（maxWorkers=2，69.16秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-preview-columns-{before,targeted,full,types,build}.log；既有Vinext提示保留。
 
-[独立样本](../tests/fixtures/preview-physical-columns-20261009/README.md)含37行LTR主表、3行RTL双列表格以及2行嵌套纵向合并，实际5页预览可用、可选末页，返回编辑后完整JSON一致。Saved locally后新会话重载全文一致，已归档QA；未修改用户原件。
+[独立样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/preview-physical-columns-20261009/README.md)含37行LTR主表、3行RTL双列表格以及2行嵌套纵向合并，实际5页预览可用、可选末页，返回编辑后完整JSON一致。Saved locally后新会话重载全文一致，已归档QA；未修改用户原件。
 
 这是DOM表格占位检查，不是逐像素视觉检查或原生PDF验证；Safari101%异常及原七项实机签收仍未关闭。
 
@@ -800,7 +800,7 @@ Letter横向设置一次Undo精确回到Letter纵向，Redo精确恢复。Saved 
 
 新增12项回归，包含横向跨度、错列、重复空单元格、未知身份、丢失空行、错行、后续页跨度、跨表单元格、合法纵向合并续行和超出原始覆盖范围，以及实际组件对完整文字但错误colspan拒绝打印。修复前10项失败，2项原保护/合法续行对照已通过。既有修复器样本补齐生产预览已有的table身份。相关4文件109项、全套132文件1872项（maxWorkers=2，67.01秒）、类型检查及随后生产构建通过；既有Vinext提示保留。日志/tmp/vdoc-preview-grid-{before,targeted,full,types,build}.log。
 
-[独立样本](../tests/fixtures/preview-merged-grid-20261009/README.md)含37行主表（1行表头、36行正文）、纵向合并、图片及重复表头，追加横向合并和完整空行的第二张表。实际5页预览可用，可选第五页，返回编辑后完整JSON一致。Saved locally后新会话重载全文一致，样本已归档QA；没有修改用户原件。
+[独立样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/preview-merged-grid-20261009/README.md)含37行主表（1行表头、36行正文）、纵向合并、图片及重复表头，追加横向合并和完整空行的第二张表。实际5页预览可用，可选第五页，返回编辑后完整JSON一致。Saved locally后新会话重载全文一致，样本已归档QA；没有修改用户原件。
 
 本轮补校验漏检，不是完整物理网格像素测量，也未关闭Safari101%打印异常或原七项实机签收。
 
@@ -810,7 +810,7 @@ Letter横向设置一次Undo精确回到Letter纵向，Redo精确恢复。Saved 
 
 新增13项：9种表头损坏、2个合法包装/不修改DOM对照，以及预览组件仅在重复表头丢br或hr时拒绝打印的2项联合回归。修复前11项失败。修复后相关5文件123项、全套132文件1860项（maxWorkers=2，65.93秒）、类型检查及随后生产构建通过；既有Vinext提示保留。日志/tmp/vdoc-header-structure-{before,targeted,full,types,build}.log。
 
-独立页面样本含多语言表头换行、分隔线、从7起始的列表及嵌套表格，实际4页预览可用、可选末页，返回编辑后全文JSON一致；Saved locally后新页面重载新session，完整JSON一致，已归档QA。详见[样本记录](../tests/fixtures/preview-header-structure-20261009/README.md)。本轮未改动用户旧文档。
+独立页面样本含多语言表头换行、分隔线、从7起始的列表及嵌套表格，实际4页预览可用、可选末页，返回编辑后全文JSON一致；Saved locally后新页面重载新session，完整JSON一致，已归档QA。详见[样本记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/preview-header-structure-20261009/README.md)。本轮未改动用户旧文档。
 
 这是预览校验漏检修复，不代表已证明分页器必然损坏这些结构，也不是原生PDF视觉签收。Safari101%打印与原七项实机签收仍未关闭。
 
@@ -820,7 +820,7 @@ Letter横向设置一次Undo精确回到Letter纵向，Redo精确恢复。Saved 
 
 新增10项：分隔线缺失/重复/移位（3）、图片跨段落（1）、正文碎片错序（1）、图片跨单元格（1）、两个合法分页/重复表头对照（2），以及实际预览组件对图片/分隔线移位拒绝打印（2）。修复前8项失败。修复后相关6文件120项通过；原表格测试补回真实分页会保留的表格身份属性。全套132文件1847项（maxWorkers=2，67.47秒）通过。补正新增测试的DOM类型冲突后，该文件33项及类型检查再次通过，随后生产构建通过；既有Vinext提示保留。日志/tmp/vdoc-preview-order-{before,targeted,final-targeted,full,types,build}.log。
 
-[独立页面样本](../tests/fixtures/preview-object-order-20261009/README.md)含正文/表格图片、分隔线、带分隔线的重复表头和多语言手动换行；实际3页预览可用、可选末页，退出后完整JSON不变。Saved locally后新页面加载新session，全文一致，样本已归档QA。没有改动用户旧文档。
+[独立页面样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/preview-object-order-20261009/README.md)含正文/表格图片、分隔线、带分隔线的重复表头和多语言手动换行；实际3页预览可用、可选末页，退出后完整JSON不变。Saved locally后新页面加载新session，全文一致，样本已归档QA。没有改动用户旧文档。
 
 本轮修复的是完整性校验漏检，并非证明实际分页器此前必然丢对象。未执行原生PDF输出或逐像素视觉签收；Safari101%异常和原七项实机签收仍未关闭。
 
@@ -830,7 +830,7 @@ Letter横向设置一次Undo精确回到Letter纵向，Redo精确恢复。Saved 
 
 新增9项回归：缺失/重复/移位/换成字面换行（4）；标题和pre换行缺失（2）；跨页碎片/连续及尾部换行/重复表头合法情况（1）；代码文字换行/tab与内联包装（1）；真实预览组件在表格内换行丢失时拒绝打印（1）。修复前6项失败，另外3项为已通过的对照。修复后相关5文件92项、全套132文件1837项（maxWorkers=2，65.03秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-preview-breaks-{before,targeted,full,types,build}.log；既有Vinext提示保留。
 
-[独立页面样本](../tests/fixtures/preview-hard-breaks-20261009/README.md)含标题、编号列表、连续换行、多语言表格及重复表头；实际完成3页预览、可选末页，返回后全文JSON一致；Saved locally后新页面加载新session，完整JSON一致，已归档QA。页面通过不代表原生PDF逐页验收，未修改用户旧文档。
+[独立页面样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/preview-hard-breaks-20261009/README.md)含标题、编号列表、连续换行、多语言表格及重复表头；实际完成3页预览、可选末页，返回后全文JSON一致；Saved locally后新页面加载新session，完整JSON一致，已归档QA。页面通过不代表原生PDF逐页验收，未修改用户旧文档。
 
 Safari101%页数异常仍未定位/签收；固定纸框与原生缩放的关系仍只是待验证方向，本轮未据此修改打印CSS。原七项实机签收保持未关闭。
 
@@ -855,7 +855,7 @@ Safari101%页数异常仍未定位/签收；固定纸框与原生缩放的关系
 
 新增11项tests/find-panel-live-document.test.ts：查找/替换字段×Next/Previous（4）；正文候选×Next/Previous（2）；延迟查找聚焦时两输入框的新候选（2）；延迟滚动时正文/面板新候选（2）；正文候选期间查询变化仅更新匹配数、不移动选区（1）。初始10项及随后补充1项修复前分别失败。修复后相关4文件85项，全套132文件1824项（maxWorkers=2，72.10秒）、类型检查及随后生产构建通过；保留既有Vinext提示。日志/tmp/vdoc-find-navigation-{before,body-before,targeted,full,types,build}.log。
 
-[独立页面样本](../tests/fixtures/find-navigation-20261009/README.md)验证标题/正文/列表三处命中的前后循环，再次请求Find保留两个草稿且选中查询；关闭后正文获得焦点。全文JSON未变，Saved locally后新页面重载、新session和完整JSON一致，样本已归档QA。
+[独立页面样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/find-navigation-20261009/README.md)验证标题/正文/列表三处命中的前后循环，再次请求Find保留两个草稿且选中查询；关闭后正文获得焦点。全文JSON未变，Saved locally后新页面重载、新session和完整JSON一致，样本已归档QA。
 
 候选保护为合成事件自动化，实际页面仅普通操作，不能关闭系统输入法实机项；原七项签收状态不变。
 
@@ -865,7 +865,7 @@ FindPanel已保护候选Enter/Escape，但Replace、Replace all及Close的处理
 
 新增9项tests/find-panel-live-document.test.ts：查找/替换两字段各经单次替换、全替换及关闭触发（6项，修复前均失败）；只读状态拒绝单次/全部替换后保持草稿并可重试撤销（2项）；候选字段失焦后可明确替换，不残留保护状态（1项）。相关4文件50项、全套132文件1813项（maxWorkers=2，68.54秒）、类型检查及随后生产构建通过，既有Vinext提示保留。日志/tmp/vdoc-find-input-{before,targeted,full,types,build}.log。
 
-[独立页面样本](../tests/fixtures/find-input-20261009/README.md)实际填入多语言替换文案，单次替换/替换剩余命中/两次逐步Undo各自全文精确一致；关闭正常，Saved locally后从新页面重载，新session且完整JSON回到原基线，样本归档QA。编号、表格、图片和页眉页脚一并比较。
+[独立页面样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/find-input-20261009/README.md)实际填入多语言替换文案，单次替换/替换剩余命中/两次逐步Undo各自全文精确一致；关闭正常，Saved locally后从新页面重载，新session且完整JSON回到原基线，样本归档QA。编号、表格、图片和页眉页脚一并比较。
 
 候选状态防护由合成事件测试复现；页面只验证普通操作，不代表真实系统候选窗通过。原七项实机签收仍未关闭，未进入AI。
 
@@ -877,7 +877,7 @@ FindPanel已保护候选Enter/Escape，但Replace、Replace all及Close的处理
 
 新增5项tests/search-performance.test.ts：2500段全替换/撤销；查询/大小写/全词选项切换；已搜索段落随合并表格移动后的坐标；等长编辑及撤销重做；跨格式组合字符和换行隔离。相关4文件55项通过，全套132文件1804项（maxWorkers=2，70.33秒）、类型检查及随后生产构建通过；既有Vinext提示保留。日志/tmp/vdoc-search-cache-{before,after,targeted,full,types,build}.log。
 
-[独立页面样本](../tests/fixtures/search-cache-20261009/README.md)实际导入2500段，查找末段目标并用DOM矩形确认在查找栏下方可见；NFC查询匹配2500处NFD文字，批量替换、一次Undo/Redo/Undo各自完整JSON精确一致。Saved locally后退出，再新页面加载新session，全文仍等于原基线，样本归档QA。
+[独立页面样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/search-cache-20261009/README.md)实际导入2500段，查找末段目标并用DOM矩形确认在查找栏下方可见；NFC查询匹配2500处NFD文字，批量替换、一次Undo/Redo/Undo各自完整JSON精确一致。Saved locally后退出，再新页面加载新session，全文仍等于原基线，样本归档QA。
 
 原七项实机签收未关闭；内置浏览器滚动证据不代替Safari，性能改善不代替系统输入法、真实崩溃或配额验证。
 
@@ -900,7 +900,7 @@ FindPanel已保护候选Enter/Escape，但Replace、Replace all及Close的处理
 
 ## 2026-10-09：文件夹、复制、移动与回收站的实际页面联合验收
 
-使用[独立样本与操作记录](../tests/fixtures/library-lifecycle-20261009/README.md)，在内置浏览器新建父/子文件夹，从子目录导入，保存原件命名检查点。Make a copy后确认新ID、完整正文一致且版本历史独立；多语言改名并仅修改副本首标题，保存后移至父目录。
+使用[独立样本与操作记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/library-lifecycle-20261009/README.md)，在内置浏览器新建父/子文件夹，从子目录导入，保存原件命名检查点。Make a copy后确认新ID、完整正文一致且版本历史独立；多语言改名并仅修改副本首标题，保存后移至父目录。
 
 先单独删除副本，再删除整个父目录。恢复父目录只带回本次删除的子目录和原件，回收站仍保留较早单独删除的副本；再单独恢复副本，目录关系正确。公开read_document核对副本完整JSON等于修改后快照，原件完整JSON等于初始基线，源检查点仍在。最后将整个父目录移入QA，分别从新页面加载两份文档，session更新、完整数据一致、Saved locally；样本恢复可用并已归档，没有操作用户原有文档。
 
@@ -947,7 +947,7 @@ FindPanel已保护候选Enter/Escape，但Replace、Replace all及Close的处理
 
 tests/version-navigation.test.ts新增8项：正文/外部字段候选期间打开窗口、保存检查点，以及候选在慢保存期间开始后的检查点/恢复阻止和重试。修复前8项失败；修复后5文件69项专项通过。全套128文件1782项（maxWorkers=2，62.36秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-version-input-{before,targeted,full,types,build}.log，既有Vinext提示保留。
 
-[独立页面样本](../tests/fixtures/version-input-20261009/README.md)实际保存多语言命名检查点，修改正文标题和页眉后恢复基线，完整document JSON精确一致；恢复自动生成的Before restoring a version后，修改稿也完整一致。再次恢复基线，单独确认Saved locally后退出并从新页面加载，同一ID的新session与完整JSON核对通过，编号、合并表格、图片和页眉页脚保留，样本归档QA目录。
+[独立页面样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/version-input-20261009/README.md)实际保存多语言命名检查点，修改正文标题和页眉后恢复基线，完整document JSON精确一致；恢复自动生成的Before restoring a version后，修改稿也完整一致。再次恢复基线，单独确认Saved locally后退出并从新页面加载，同一ID的新session与完整JSON核对通过，编号、合并表格、图片和页眉页脚保留，样本归档QA目录。
 
 候选竞态由合成事件组件测试复现，页面仅验证普通版本操作和存储重载；不代表系统输入法或Safari实机通过。原七项实机签收仍未关闭，未进入AI阶段。
 
@@ -957,7 +957,7 @@ tests/version-navigation.test.ts新增8项：正文/外部字段候选期间打�
 
 tests/local-document-import.test.ts新增6项：正文/外部字段在请求前已输入，及在save/list等待期间新开始候选。新增6项修复前全部失败；修复后5文件94项专项通过，结束输入后重试会保存最新草稿并可正常选择文档。全套128文件1774项（maxWorkers=2，59.99秒）、类型检查和随后生产构建通过。日志/tmp/vdoc-picker-input-{before,targeted,full,types,build}.log，既有Vinext提示保留。
 
-[独立页面样本](../tests/fixtures/picker-input-20261009/README.md)实际Import后修改标题，经File打开列表显示最新标题和Current document；确认Saved locally后选择当前文档，完整JSON与原始一致。再退出编辑器并从新页面加载同一ID，新session、最新标题和全文JSON均正确，归档QA目录。
+[独立页面样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/picker-input-20261009/README.md)实际Import后修改标题，经File打开列表显示最新标题和Current document；确认Saved locally后选择当前文档，完整JSON与原始一致。再退出编辑器并从新页面加载同一ID，新session、最新标题和全文JSON均正确，归档QA目录。
 
 延迟/候选故障在组件测试中复现，页面实测只覆盖普通操作；这不是Safari或系统候选窗验收。原七项实机签收仍未关闭。
 
@@ -979,7 +979,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增13项回归（11项真实编辑器/颜色弹层组件集成、2项字号键盘集成），修复前11项失败、2项通过；覆盖三种颜色入口、无按键标记及229候选Escape、隐式提交、完成后Apply、失焦显式提交、普通Escape/重开，以及精准撤销重做和相邻内容保护。6文件74项专项通过，全套127文件1761项（maxWorkers=2，60.29秒）通过。补测试JSONContent类型声明后类型检查通过，随后重新执行生产构建通过。日志/tmp/vdoc-color-ime-{before,targeted,full,types,build}.log；既有Vinext提示保留。
 
-[独立多语言样本](../tests/fixtures/formatting-input-20261009/README.md)通过实际页面Select all、文字颜色#334455、荧光笔#FFF0AD、字号24px逐项操作，各次界面Undo/Redo与对应完整JSON相等，最后Undo恢复原文。Saved locally后退出编辑器，在新页面重载同一ID，新session全文JSON与原始一致。样本归档QA目录。
+[独立多语言样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/formatting-input-20261009/README.md)通过实际页面Select all、文字颜色#334455、荧光笔#FFF0AD、字号24px逐项操作，各次界面Undo/Redo与对应完整JSON相等，最后Undo恢复原文。Saved locally后退出编辑器，在新页面重载同一ID，新session全文JSON与原始一致。样本归档QA目录。
 
 本轮候选事件是自动化合成测试，页面实测是普通格式编辑；未启用真实系统候选窗，不能关闭系统IME实机门槛。Safari打印/查找、真实崩溃/配额和原七项签收仍未关闭。
 
@@ -989,7 +989,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增13项真实DOCX/Mammoth回归，覆盖空首项/罗马前后缀、样式关联/祖先关联/直接层级覆盖、独立编号ID、直接和子样式取消编号后的续号、编号标题、表格及多语言、无关联样式层级、修订历史隔离和原始输入保护。首批8项7失败1通过；追加历史编号用例又检出并修复读取错位。最终相关5文件58项、全套126文件1748项（maxWorkers=2，57.13秒）通过；类型检查及随后生产构建通过，既有Vinext提示保留。日志/tmp/vdoc-numbering-inherit-{before,after,targeted,full,types,build}.log。
 
-[实际外部样本与下载成品](../tests/fixtures/word-numbering-20261009/README.md)完成页面文件选择导入、Word下载、重新导入。五组列表递归结构/文字/编号参数一致，源导出前后完整JSON未变。公开操作层把内层列表起始值7改为12，其余列表不变；界面Undo/Redo/Undo与对应完整快照一致。确认Saved locally并退出编辑器后，新页面重新载入同一ID，新会话完整JSON一致。两份新独立样本归档QA目录。
+[实际外部样本与下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-numbering-20261009/README.md)完成页面文件选择导入、Word下载、重新导入。五组列表递归结构/文字/编号参数一致，源导出前后完整JSON未变。公开操作层把内层列表起始值7改为12，其余列表不变；界面Undo/Redo/Undo与对应完整快照一致。确认Saved locally并退出编辑器后，新页面重新载入同一ID，新会话完整JSON一致。两份新独立样本归档QA目录。
 
 取消编号的自定义样式仍可能显示Mammoth的Unrecognised paragraph style提示，未静默抹去；本轮保留正文与续号，不声称任意自定义样式视觉保真。numStyleLink等完整编号样式链接、复杂复合编号和桌面Word视觉仍有边界。Safari、系统输入法及原七项原生签收未关闭。
 
@@ -999,7 +999,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增13项真实DOCX/Mammoth/解析回归：六级内置编号标题重复往返、自定义样式继承及明确取消加粗、直接级别覆盖/正文、空标题与同文普通项、合并格标题、三种超范围值保护。最初10项均失败；最终专项6文件62项通过，全套125文件1735项（maxWorkers=2，58.78秒）通过。类型检查发现DOM append重载冲突，改为等价逐节点appendChild后13项专项、类型检查及随后生产构建通过。日志/tmp/vdoc-outline-{before,targeted,full,types,build,final-targeted}.log，既有Vinext提示保留。
 
-[普通外部Word与实际下载成品](../tests/fixtures/word-outline-20261009/README.md)完成真实文件选择导入、Word下载及重导入。页面大纲显示五个正确级别的标题含空标题，明确正文段落不进大纲；公开数据的递归结构、文字、标题级别和编号一致，自定义标题的斜体及boldOff保留。源导出前后完整JSON不变。公开操作层修改编号标题级别后编号不变，界面撤销/重做/恢复和保存刷新均与完整快照一致。两份独立样本归档QA目录。
+[普通外部Word与实际下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-outline-20261009/README.md)完成真实文件选择导入、Word下载及重导入。页面大纲显示五个正确级别的标题含空标题，明确正文段落不进大纲；公开数据的递归结构、文字、标题级别和编号一致，自定义标题的斜体及boldOff保留。源导出前后完整JSON不变。公开操作层修改编号标题级别后编号不变，界面撤销/重做/恢复和保存刷新均与完整快照一致。两份独立样本归档QA目录。
 
 当前仅支持标题1–6及正文，不承诺完整Word大纲/样式语义或桌面视觉。Safari、系统输入法及原七项原生签收仍未关闭。
 
@@ -1009,7 +1009,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增13项真实DOCX/Mammoth/解析回归，覆盖首/中/末空项两次往返、连续空项续号、相邻不同符号、嵌套空父项、引用/合并格隔离、空白文本、同项续写空首段、混合代码/分隔线、6/9层及无VDoc样式的外部Word。首批8项修复前7失败1通过；最终专项6文件80项通过，全套124文件1722项（maxWorkers=2，55.31秒）通过。类型检查发现DOM prepend与Cloudflare声明冲突，换为等价insertBefore后13项专项、类型检查及随后生产构建通过。日志/tmp/vdoc-empty-list-{before,targeted,full,types,build,final-targeted}.log，既有Vinext提示保留。
 
-[实际样本与下载成品](../tests/fixtures/word-empty-list-20261009/README.md)完成真实下载及文件选择重导入。五组列表、六个空段、全部文字结构和编号/符号参数一致，源导出前后完整JSON不变。通过公开操作层向首个空段插入文字，编号未变；界面撤销/重做/再撤销与对应完整快照一致，保存刷新仍一致。两样本归档QA目录。
+[实际样本与下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-empty-list-20261009/README.md)完成真实下载及文件选择重导入。五组列表、六个空段、全部文字结构和编号/符号参数一致，源导出前后完整JSON不变。通过公开操作层向首个空段插入文字，编号未变；界面撤销/重做/再撤销与对应完整快照一致，保存刷新仍一致。两样本归档QA目录。
 
 任务清单、复杂编号继承及超出9层不在本轮保真承诺内；公开文字操作不替代系统输入法。Safari、真实崩溃/配额及原七项原生签收仍未关闭。
 
@@ -1019,7 +1019,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增9项真实DOCX/Mammoth/解析回归：两种列表连续两次往返、相邻表格、嵌套列表、引用内外、合并格内的列表嵌套表、罗马编号/分页/续号、导入后合并撤销重做、外部编辑后的最新表格文字。修复前9项均失败；修复后专项5文件49项通过。全套123文件1709项（maxWorkers=2，55.72秒）通过；类型检查发现未公开的类型名称及测试JSON联合类型，修正类型声明后通过，随后生产构建通过。日志/tmp/vdoc-list-tables-{before,targeted,full,types,build}.log，既有Vinext提示保留。
 
-[实际样本和下载成品](../tests/fixtures/word-list-tables-20261009/README.md)完成文件选择导入、Word实际下载、文件选择重导入。四张表格递归结构、合并关系与文字一致，编号参数除新ID外一致，源导出前后完整JSON不变。对内嵌表格通过公开操作接口合并两格，页面Undo/Redo/Undo完整JSON与对应快照一致。保存刷新后完整数据一致，两样本归档QA目录。
+[实际样本和下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-list-tables-20261009/README.md)完成文件选择导入、Word实际下载、文件选择重导入。四张表格递归结构、合并关系与文字一致，编号参数除新ID外一致，源导出前后完整JSON不变。对内嵌表格通过公开操作接口合并两格，页面Undo/Redo/Undo完整JSON与对应快照一致。保存刷新后完整数据一致，两样本归档QA目录。
 
 本轮验证结构和可编辑性，不代表桌面Word视觉、复杂嵌套表分页或外部去样式后的归属保真；任务清单仍静态导出。Safari、系统输入法及原七项原生签收保持未关闭。
 
@@ -1029,7 +1029,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增9项真实DOCX/Mammoth/解析回归：两种列表连续两次往返、相邻图片/空替代文字、嵌套与引用、罗马编号及分页/续号、合并格图片缩放撤销重做、外部新增文字保护、后续段落格式不串位。最初7项全部失败；修复后专项5文件44项通过，全套122文件1700项（maxWorkers=2，54.80秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-list-images-{before,targeted,full,types,build}.log，既有Vinext提示保留。
 
-[实际图片样本与下载成品](../tests/fixtures/word-list-images-20261009/README.md)完成真实图片解码、下载、文件选择重导入。公开数据确认递归结构、三图字节/尺寸/替代文字和编号一致，源导出前后不变。页面通过Image properties修改合并格列表图片，尺寸180×90→360×180；撤销/重做/再撤销均与完整快照一致。保存刷新后完整JSON一致，三图正常加载且仍归属各自列表。两样本归档QA目录。
+[实际图片样本与下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-list-images-20261009/README.md)完成真实图片解码、下载、文件选择重导入。公开数据确认递归结构、三图字节/尺寸/替代文字和编号一致，源导出前后不变。页面通过Image properties修改合并格列表图片，尺寸180×90→360×180；撤销/重做/再撤销均与完整快照一致。保存刷新后完整JSON一致，三图正常加载且仍归属各自列表。两样本归档QA目录。
 
 空替代文字null与空串按等价核对；任务清单仍静态导出，桌面Word视觉和外部去样式后的结构未验。本轮不关闭Safari、系统输入法、真实崩溃/配额及原七项原生签收。
 
@@ -1039,7 +1039,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增13项真实DOCX/Mammoth/解析回归，覆盖两类列表连续两次往返、空/相邻代码、多语言空白、嵌套/引用/合并格、连续分页及自定义罗马编号/后续续号。代码修复前8项失败，分页修复前5项失败且既有8项通过；修复后专项5文件53项通过。全套121文件1691项（maxWorkers=2，53.23秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-list-code-{targeted,full,types,build}.log，既有Vinext提示保留。
 
-[独立样本和实际下载文件](../tests/fixtures/word-list-flow-20261009/README.md)完成首页导入、Word下载、文件选择重导入及保存刷新。源导出前后完整JSON不变；源/重导入递归类型、文字和层级一致，列表参数除新ID外一致，代码tab/空行、多语言与合并格保留；重导入保存刷新前后完整JSON一致。两个新样本已归档QA目录。
+[独立样本和实际下载文件](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-list-flow-20261009/README.md)完成首页导入、Word下载、文件选择重导入及保存刷新。源导出前后完整JSON不变；源/重导入递归类型、文字和层级一致，列表参数除新ID外一致，代码tab/空行、多语言与合并格保留；重导入保存刷新前后完整JSON一致。两个新样本已归档QA目录。
 
 任务清单仍为既有静态导出；本轮未验证桌面Word视觉，未关闭Safari、系统输入法及其余原七项原生签收。
 
@@ -1049,7 +1049,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增13项真实DOCX/Mammoth/解析回归：相邻及空段、嵌套引用、标题/RTL/缩进/tab/格式、引用内列表、两种列表内引用、引用内合并表格与合并格内引用、代码/分隔线/分页符、链接/多行脚注、DOCX中修改后的最新文字、未知标签及配对失败保护。首批10项专项通过后，全套120文件1678项（maxWorkers=2，54.55秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-quotes-{targeted,full,types,build}.log；既有Vinext提示保留。
 
-[独立样本及下载成品](../tests/fixtures/word-quotes-20261009/README.md)完成实际文件选择导入、Word下载、重新导入及保存刷新。下载文件有6个引用控件且无临时标记；页面及公开JSON确认6个引用块、嵌套/列表/表格归属和全文结构一致，合并格colspan=2。源JSON导出前后不变；重导入保存刷新前后完整JSON一致。两个新样本归档QA目录，未改既有文档。
+[独立样本及下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-quotes-20261009/README.md)完成实际文件选择导入、Word下载、重新导入及保存刷新。下载文件有6个引用控件且无临时标记；页面及公开JSON确认6个引用块、嵌套/列表/表格归属和全文结构一致，合并格colspan=2。源JSON导出前后不变；重导入保存刷新前后完整JSON一致。两个新样本归档QA目录，未改既有文档。
 
 这是VDoc引用结构的文件闭环，不等于桌面Word视觉完全一致；若外部软件去掉内容控件标签，文字仍在但引用归属可能无法恢复。未关闭Safari打印、系统输入法、真实崩溃/配额及原七项原生签收。
 
@@ -1059,7 +1059,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 初始7项中6失败1通过，另补嵌套列表与相邻分页符后共9项新回归；专项3文件32项通过。全套119文件1665项（maxWorkers=2，53.75秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-dividers-{before,targeted,full,types,build}.log，既有Vinext分类提示保留。
 
-[独立页面样本与下载成品](../tests/fixtures/word-dividers-20261009/README.md)完成真实Word下载及文件选择重导入：四条分隔线仍为hr，列表内及合并格内各一条、colspan=2、全部正文标记完整。导出前后源文档JSON一致。重导入样本实际点击分隔线后Backspace删除，4条变3条；Undo后完整JSON与捕获快照一致。确认Saved locally后刷新，完整JSON仍一致。两个样本已移入QA目录，未改既有文档。
+[独立页面样本与下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-dividers-20261009/README.md)完成真实Word下载及文件选择重导入：四条分隔线仍为hr，列表内及合并格内各一条、colspan=2、全部正文标记完整。导出前后源文档JSON一致。重导入样本实际点击分隔线后Backspace删除，4条变3条；Undo后完整JSON与捕获快照一致。确认Saved locally后刷新，完整JSON仍一致。两个样本已移入QA目录，未改既有文档。
 
 此项只覆盖VDoc已有分隔线的文件闭环及编辑恢复，不代表Word所有分隔线表现、桌面视觉、Safari或原七项原生签收完成。
 
@@ -1069,7 +1069,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 初始8项回归7失败1通过；新增外部列表/表格和首尾空段后共10项，专项4文件42项通过。全套118文件1656项（maxWorkers=2，52.27秒）通过。类型检查发现docx脚注API仅接受Paragraph而测试直接传Table；夹具改为向ZIP注入实际生成的表格，修正后10项专项及类型检查、随后生产构建通过。产品代码未因该测试夹具修正而改变。日志/tmp/vdoc-footnotes-{before,targeted,full,fixture,types,build}.log，既有Vinext分类提示保留。
 
-[独立样本与下载文件](../tests/fixtures/word-footnotes-20261009/README.md)完成真实文件选择导入、Word下载、重新导入、保存与刷新。脚注ZIP有6个换行及2个tab；公开数据和页面属性核对两条脚注逐字一致、合并格colspan=2、首尾正文完整。源文档导出前后完整JSON一致，重导入保存刷新前后完整JSON一致。两个新样本归档QA文件夹，未改既有文档。
+[独立样本与下载文件](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-footnotes-20261009/README.md)完成真实文件选择导入、Word下载、重新导入、保存与刷新。脚注ZIP有6个换行及2个tab；公开数据和页面属性核对两条脚注逐字一致、合并格colspan=2、首尾正文完整。源文档导出前后完整JSON一致，重导入保存刷新前后完整JSON一致。两个新样本归档QA文件夹，未改既有文档。
 
 普通脚注文字保持不代表复杂脚注富文本/布局保真；桌面Word视觉、Safari打印及原七项原生签收仍未完成。
 
@@ -1079,7 +1079,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增6项真实DOCX/Mammoth/解析回归：多语言及tab、普通格式边界、同文代码/普通文字/换行、标题及嵌套列表、合并格连续两次往返、普通等宽文字与块代码隔离。修复前6项均失败；修复后专项3文件20项通过，全套117文件1646项（maxWorkers=2，49.21秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-inline-code-{before,targeted,full,types,build}.log，既有Vinext路由分类提示保留。
 
-[独立页面样本与下载成品](../tests/fixtures/word-inline-code-20261009/README.md)完成实际下载、真实文件选择重导入；公开数据与DOM都确认两段代码文本逐字一致、tab保留、合并格colspan=2、首尾正文完整。源JSON导出前后不变；重导入保存后刷新，完整document JSON一致。两个新样本已移入QA目录，没有改动既有文档。只读核对遇到一次自动审批超时，工具明确允许的同请求重试成功，未绕行。
+[独立页面样本与下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-inline-code-20261009/README.md)完成实际下载、真实文件选择重导入；公开数据与DOM都确认两段代码文本逐字一致、tab保留、合并格colspan=2、首尾正文完整。源JSON导出前后不变；重导入保存后刷新，完整document JSON一致。两个新样本已移入QA目录，没有改动既有文档。只读核对遇到一次自动审批超时，工具明确允许的同请求重试成功，未绕行。
 
 此项不关闭Safari打印、系统输入法、真实崩溃/配额及原七项原生签收门槛；桌面Word视觉仍未验。
 
@@ -1089,7 +1089,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增6项真实DOCX ZIP/Mammoth/文档解析回归：三种换行、多语言和缩进；空代码块；后续同文段落格式；合并表格代码块连续两次往返。修复前6项均失败，修复后均通过；全套116文件1640项（maxWorkers=2，51.12秒）、类型检查及随后生产构建通过。日志/tmp/vdoc-word-code-{before,targeted,full,types,build}.log；既有Vinext提示保留。
 
-实际页面使用新建[独立样本和下载成品](../tests/fixtures/word-code-blocks-20261009/README.md)。首页导入原生样本，真实下载Word，ZIP检查两个代码段各4个换行和3个tab；再从真实文件选择框导入刚下载的文件。公开文档读回两个codeBlock文本逐字相同，页面中合并格colspan仍2，首尾及格内标记齐全，Saved locally确认。导出未改变源样本文档；两个新样本分别保留独立标题并移入QA目录。
+实际页面使用新建[独立样本和下载成品](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/word-code-blocks-20261009/README.md)。首页导入原生样本，真实下载Word，ZIP检查两个代码段各4个换行和3个tab；再从真实文件选择框导入刚下载的文件。公开文档读回两个codeBlock文本逐字相同，页面中合并格colspan仍2，首尾及格内标记齐全，Saved locally确认。导出未改变源样本文档；两个新样本分别保留独立标题并移入QA目录。
 
 原先暂改既有QA末段的操作被自动审批拒绝，理由是没有证明替换安全或恢复快照完整；未重试该操作，改用独立新建样本完成。没有修改原QA或项目计划正文。本轮不提供桌面Word逐页保真或代码语言/语法高亮承诺，也不关闭Safari 101%及原七项签收门槛。
 
@@ -1109,7 +1109,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 新增10项测试：三种本地格式多语言长文件名/完整扩展名/字素边界，保留名、控制字符、点名称及超长单字素，JSON完整长标题与全文往返，Word转换仍接收完整标题和正文。初始9项在修复前失败、原24项通过；补单字素边界后全套115文件1627项（maxWorkers=2，54.50秒）、类型检查及随后生产构建通过。相关4文件46项的中间专项通过；日志/tmp/vdoc-export-filename-{before,targeted,full,types,build}.log，既有Vinext提示保留。
 
-实际内置浏览器暂改独立QA标题为长中文加emoji/组合音符，分别点击JSON备份及Word下载，在Downloads取得两份文件；JSON文件名239字节、Word240字节，扩展名完整。JSON title与Word core.xml title均保留完整原标题，正文/表格/末段标记都在；证据及哈希见[下载样本](../tests/fixtures/export-filename-20261009/README.md)。最终恢复QA原标题，公开全文JSON与开始前一致，并确认Saved locally。未修改项目计划，未删除下载文件。
+实际内置浏览器暂改独立QA标题为长中文加emoji/组合音符，分别点击JSON备份及Word下载，在Downloads取得两份文件；JSON文件名239字节、Word240字节，扩展名完整。JSON title与Word core.xml title均保留完整原标题，正文/表格/末段标记都在；证据及哈希见[下载样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/export-filename-20261009/README.md)。最终恢复QA原标题，公开全文JSON与开始前一致，并确认Saved locally。未修改项目计划，未删除下载文件。
 
 本轮不改变Safari 101%、原生IME、真实配额、进程强退及其余七项签收状态。
 
@@ -1168,7 +1168,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 ## 2026-10-08：备份ID隔离、双入口恢复与后续编辑页面验收
 
-新增[受控备份及页面证据](../tests/fixtures/backup-id-isolation-20261008/README.md)，备份内带既有独立QA文档ID，但内容是新的多语言段落和两列表格。实际内置浏览器经编辑器File → Import document和首页Import两个文件选择入口，先后导入同一份文件，分别得到426baac0-0752-4b13-9b77-ce75fc6d7931和f7c34a3a-f9cd-4da1-a72d-8a1ba0e8d32e，均不沿用备份中的既存ID。两次导入同名，除重新分配的blockId/cellId/tableId外完整内容和格式一致。
+新增[受控备份及页面证据](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/backup-id-isolation-20261008/README.md)，备份内带既有独立QA文档ID，但内容是新的多语言段落和两列表格。实际内置浏览器经编辑器File → Import document和首页Import两个文件选择入口，先后导入同一份文件，分别得到426baac0-0752-4b13-9b77-ce75fc6d7931和f7c34a3a-f9cd-4da1-a72d-8a1ba0e8d32e，均不沿用备份中的既存ID。两次导入同名，除重新分配的blockId/cellId/tableId外完整内容和格式一致。
 
 第一个副本真实键盘输入x，Undo全文JSON精确还原，Redo精确恢复修改；确认Saved locally后返回首页导入第二份。第二份保留备份原始内容，改独立QA标题后刷新，全文JSON精确一致。通过File打开第一个副本，全文JSON仍为自己的已保存修改，不被第二次导入覆盖；最后经公开操作层移除测试字符，全文恢复导入基准，确认保存。
 
@@ -1188,7 +1188,7 @@ PopoverContent增加字段级候选跟踪：Radix捕获Escape时保留弹层，�
 
 ## 2026-10-08：Safari 101% 打印最小对照样本
 
-检查现有打印路径：预览已分页后，installPreviewPrintStyle把每张page/sheet固定为完整A4/Letter物理高度，再调用window.print。结合101%多页反馈，将“固定纸框被原生打印再次分片”作为待验证假设；没有据此修改生产CSS或宣称根因已确认。Apple缩放属性和W3C分页规范仅提供排查背景，来源和边界见[对照样本说明](../tests/fixtures/safari-print-scale/README.md)。
+检查现有打印路径：预览已分页后，installPreviewPrintStyle把每张page/sheet固定为完整A4/Letter物理高度，再调用window.print。结合101%多页反馈，将“固定纸框被原生打印再次分片”作为待验证假设；没有据此修改生产CSS或宣称根因已确认。Apple缩放属性和W3C分页规范仅提供排查背景，来源和边界见[对照样本说明](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-print-scale/README.md)。
 
 新增scripts/create-print-scale-repro.mjs，从真实生产打印函数生成两份独立HTML：full-sheet完全沿用当前打印CSS，intrinsic-height-control只覆盖page/sheet高度为auto。两者均为相同的两页短内容，没有原文、表格、图片、网络资源、存储读写或Paged.js运行时。控制组不含真实满页正文和定位页脚，不能直接作为生产修复。
 
@@ -1312,7 +1312,7 @@ useInputComposition新增可注销的变化订阅；开始输入立即通知，�
 
 在独立QA文档ccaaf28a-efe5-4938-8332-5bdc61910976临时设置120字符中文标题并生成Word。800px桌面窗口中，下载按钮固定37px，文字换成三行后高54px、顶部172.75px，越出按钮181.5–218.5px边界，截图确认文字挤到按钮外。仅调整export-ready-actions中的下载按钮：保留37px最小高度，实际高度随内容增长，并增加上下8px内边距。修复后800px按钮高76.5px，文字192.5–246.5px完全位于181.5–258px内；恢复1280px后按钮57px、文字34.5px也完整，页面无横向溢出。
 
-继续点击实际Word下载链接和File→Download VDoc backup。下载事件监听超时，但在Downloads找到本轮实际Word文件，不能把监听超时记作下载失败。浏览器将过长中文文件名缩为243 UTF-8字节，保留.docx/.json末尾扩展名（备份的中间.vdoc被缩掉）；备份内部120字符完整标题仍在。成品字节复制到[固定交付样本](../tests/fixtures/long-title-export-20261007/README.md)。
+继续点击实际Word下载链接和File→Download VDoc backup。下载事件监听超时，但在Downloads找到本轮实际Word文件，不能把监听超时记作下载失败。浏览器将过长中文文件名缩为243 UTF-8字节，保留.docx/.json末尾扩展名（备份的中间.vdoc被缩掉）；备份内部120字符完整标题仍在。成品字节复制到[固定交付样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/long-title-export-20261007/README.md)。
 
 通过首页文件选择器重新导入两份实际下载文件：备份完整标题与整个document JSON均精确恢复；Word两段多语言正文及首段粗体保留。源文档标题已恢复，正文全文JSON未改变，临时窗口尺寸已reset。两个恢复样本已通过页面移动到QA · Local workspace。未修改用户项目计划文档。
 
@@ -1324,7 +1324,7 @@ Mac解锁后，使用内置浏览器首页Import文件选择器，向QA · Local
 
 随后分别将标题改为111码元前缀加😀 Z、é Z，通过首页Make a copy复制。两个副本标题均为Copy of加111码元前缀（总119码元），截断处没有半个emoji或失去重音的e。公开read_document核对两个副本的完整document JSON与各自原稿相同；使用tab.reload实际刷新后再次比对，仍完全相同且Saved locally。重开两个源文档，源标题的完整emoji/分解重音仍在，正文JSON未改变。Word副本1280px窗口的页面宽度仍1280px，没有标题引起的横向溢出。
 
-固定输入、步骤及四个QA文档ID见[本轮样本](../tests/fixtures/title-boundary-20261007/README.md)。仅新增这些独立QA文件和副本，未修改用户项目计划或原验收文档。一次刷新后的locator读取超时，随后实际DOM和公开文档接口确认页面恢复正常，没有将超时本身记作数据丢失或跳过校验。
+固定输入、步骤及四个QA文档ID见[本轮样本](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/title-boundary-20261007/README.md)。仅新增这些独立QA文件和副本，未修改用户项目计划或原验收文档。一次刷新后的locator读取超时，随后实际DOM和公开文档接口确认页面恢复正常，没有将超时本身记作数据丢失或跳过校验。
 
 这关闭了10月6日长标题修复因锁屏未能完成的页面复测；本轮未修改生产代码，沿用113文件1549项、类型检查及生产构建基线，不重复全量。系统IME、Safari实际打印/定位、强退及配额耗尽仍未取得新的实机结果，最后七项最终签收状态不变。
 

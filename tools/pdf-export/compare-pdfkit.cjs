@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 // QA-only browser comparison. No application dependency or export button imports this.
 const fs = require('node:fs/promises');
 const crypto = require('node:crypto');
@@ -9,12 +10,12 @@ const marked = process.argv.includes('--marked');
 const fullRun = !process.argv.includes('--cached');
 if (!['words', 'arabic', 'hebrew'].includes(script) || (marked && script === 'words')) throw Error('Invalid fixture');
 const name = `${script}${marked ? '-marked' : ''}-${fullRun ? 'full-run' : 'cached'}`;
-const fixture = 'tests/fixtures/pdfkit-browser-20261011';
+const fixture = qaPath('pdfkit-browser-20261011');
 const output = 'output/pdf/pdfkit-browser-20261011';
 const fontName = { words: 'Devanagari', arabic: 'Arabic', hebrew: 'Hebrew' }[script];
 const assets = {
   '/pdfkit.js': 'tmp/pdfkit-browser-20261011/package/js/pdfkit.standalone.js',
-  '/font.ttf': `tests/fixtures/browser-pdf-20261011/fonts/NotoSans${fontName}-static.ttf`,
+  '/font.ttf': qaPath(`browser-pdf-20261011/fonts/NotoSans${fontName}-static.ttf`),
 };
 const html = `<!doctype html><meta charset="utf-8"><style>
 @font-face{font-family:QA;src:url('/font.ttf')}*{box-sizing:border-box}
@@ -31,7 +32,7 @@ table{border-collapse:collapse;width:100%;margin-top:32px}td{border:1px solid #a
   const file = path.join(output, name + '.pdf');
   try { await fs.access(file); throw Error('Refuse overwrite: ' + file); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
-  const prior = JSON.parse(await fs.readFile(`tests/fixtures/browser-unicode-20261011/${script}-unicode-ordered${marked ? '-marked' : ''}-report.json`, 'utf8'));
+  const prior = JSON.parse(await fs.readFile(qaPath(`browser-unicode-20261011/${script}-unicode-ordered${marked ? '-marked' : ''}-report.json`), 'utf8'));
   const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
   const requests = [];
   try {

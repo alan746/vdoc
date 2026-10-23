@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 // Read actual PDFium selection from a fresh, isolated Chrome PDF viewer.
 // No system clipboard, user browser session, or PDF rewriting is used.
 const fs = require('node:fs/promises');
@@ -24,7 +25,7 @@ const targets = actualText ? ['words','arabic','hebrew','arabic-marked','hebrew-
   })),
   { label: 'cluster-hindi', directory: 'browser-pdf-20261011', name: 'words-cluster-contiguous' },
 ];
-const destination = 'tests/fixtures/pdfkit-browser-20261011/chrome-selection' + (singleString ? '-single-string' : singleTJ ? '-single-tj' : actualWord ? '-actualtext-word' : actualText ? '-actualtext' : legacy ? '-legacy' : '') + '.json';
+const destination = qaPath('pdfkit-browser-20261011/chrome-selection') + (singleString ? '-single-string' : singleTJ ? '-single-tj' : actualWord ? '-actualtext-word' : actualText ? '-actualtext' : legacy ? '-legacy' : '') + '.json';
 const collapse = value => value.replace(/\s+/gu, ' ').trim();
 
 (async () => {
@@ -34,7 +35,7 @@ const collapse = value => value.replace(/\s+/gu, ' ').trim();
     ...target,
     file: `output/pdf/${target.directory}/${target.name}.pdf`,
     bytes: await fs.readFile(`output/pdf/${target.directory}/${target.name}.pdf`),
-    source: JSON.parse(await fs.readFile(`tests/fixtures/${target.directory}/${target.name}-report.json`, 'utf8')).sourceText,
+    source: JSON.parse(await fs.readFile(qaPath(`${target.directory}/${target.name}-report.json`), 'utf8')).sourceText,
   })));
   const server = http.createServer((request, response) => {
     const match = /^\/qa-(\d+)\.pdf$/.exec(request.url);
@@ -84,7 +85,7 @@ const collapse = value => value.replace(/\s+/gu, ' ').trim();
         results.push(result);
         console.log(JSON.stringify({ label: result.label, matchCollapsed: result.matchCollapsed, selectedDigits: result.selectedDigits }));
         if (['unicode-words', 'unicode-arabic-marked', 'pdfkit-words'].includes(file.label)) {
-          await page.screenshot({ path: `tests/fixtures/pdfkit-browser-20261011/chrome-${file.label}.png` });
+          await page.screenshot({ path: qaPath(`pdfkit-browser-20261011/chrome-${file.label}.png`) });
         }
       } catch (error) {
         results.push({ label: file.label, error: error.message });

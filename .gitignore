@@ -49,3 +49,7 @@ next-env.d.ts
 /tmp/
 /output/
 *.tsbuildinfo
+
+# Downloaded historical QA evidence (see docs/QA_EVIDENCE.md)
+/qa-evidence/
+__pycache__/

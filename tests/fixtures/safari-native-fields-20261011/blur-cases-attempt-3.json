@@ -1,8 +1,0 @@
-{
-  "results": [
-    {
-      "failure": "Command '['osascript', '-l', 'JavaScript', 'tmp/safari-native-fields/keys.js', 'undo']' timed out after 20 seconds"
-    }
-  ],
-  "allPassed": false
-}

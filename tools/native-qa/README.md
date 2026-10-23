@@ -5,8 +5,8 @@
 With Safari's remote automation already enabled on this machine, run one at a time:
 
 ```sh
-python3 tools/native-qa/safari_acceptance.py --check --manifest tests/fixtures/preview-failure-cleanup-20261011/source-manifest.json
-python3 tools/native-qa/safari_acceptance.py --extended --manifest tests/fixtures/preview-failure-cleanup-20261011/source-manifest.json
+python3 tools/native-qa/safari_acceptance.py --check --manifest "${VDOC_QA_EVIDENCE:-qa-evidence}/preview-failure-cleanup-20261011/source-manifest.json"
+python3 tools/native-qa/safari_acceptance.py --extended --manifest "${VDOC_QA_EVIDENCE:-qa-evidence}/preview-failure-cleanup-20261011/source-manifest.json"
 ```
 
 These runners create and close their own Safari WebDriver session on port 4181;
@@ -93,4 +93,4 @@ Preserve it while collecting evidence. Do not indiscriminately clear WebKit
 data or remove unrelated profiles. Generated app/downloads/logs are under
 `tmp/native-qa/`; source stays under `tools/native-qa/`.
 
-The background-image helper is intentionally pinned to the historical image-visibility candidate and will reject later application changes. Its previous native visibility result is historical helper-level evidence. Current preview cleanup and normal Safari evidence: `tests/fixtures/preview-failure-cleanup-20261011/audit.json`.
+The background-image helper is intentionally pinned to the historical image-visibility candidate and will reject later application changes. Its previous native visibility result is historical helper-level evidence. Current preview cleanup and normal Safari evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/preview-failure-cleanup-20261011/audit.json`.

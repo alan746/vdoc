@@ -1,4 +1,8 @@
 """Real-artifact checks for the Unicode-record diagnostic, not product sign-off."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path
 import hashlib
 import json
 import re
@@ -8,7 +12,7 @@ from pathlib import Path
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
-FIX = ROOT / 'tests/fixtures/browser-unicode-20261011'
+FIX = qa_path('browser-unicode-20261011')
 OUT = ROOT / 'output/pdf/browser-unicode-20261011'
 
 
@@ -83,7 +87,7 @@ class UnicodeEvidence(unittest.TestCase):
 
     def test_hindi_visible_pixels_unchanged(self):
         from PIL import Image, ImageChops
-        before = ROOT / 'tests/fixtures/browser-pdf-20261011/words-cluster-contiguous-render.png'
+        before = qa_path('browser-pdf-20261011/words-cluster-contiguous-render.png')
         after = FIX / 'words-unicode-ordered-render.png'
         self.assertIsNone(ImageChops.difference(Image.open(before), Image.open(after)).getbbox())
         reader = PdfReader(OUT / 'words-unicode-ordered.pdf')

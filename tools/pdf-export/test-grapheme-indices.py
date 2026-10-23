@@ -1,4 +1,8 @@
 """Real-reader failures reject the atomic-grapheme QA candidate despite preserved ink."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib
 import json
 import unittest
@@ -8,8 +12,8 @@ from PIL import Image, ImageChops
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
-FIX = ROOT / 'tests/fixtures/reader-control-20261011'
-GEN = ROOT / 'tests/fixtures/browser-unicode-20261011'
+FIX = qa_path('reader-control-20261011')
+GEN = qa_path('browser-unicode-20261011')
 
 
 def read(name):
@@ -37,7 +41,7 @@ class GraphemeIndices(unittest.TestCase):
         self.assertEqual(len(current), 5)
         for row in current:
             self.assertNotIn('error', row)
-            self.assertEqual(sha(ROOT / row['file']), row['sha256'])
+            self.assertEqual(sha(recorded_path(row['file'])), row['sha256'])
             self.assertEqual(row['source'], old[row['label']]['source'])
             self.assertTrue(old[row['label']]['matchCollapsed'])
             self.assertEqual(row['matchCollapsed'], not row['label'].endswith('-marked'))
@@ -59,16 +63,16 @@ class GraphemeIndices(unittest.TestCase):
         self.assertEqual(len(rows), 7)
         for row in rows:
             self.assertEqual(row['errors'], [])
-            self.assertEqual(sha(ROOT / row['file']), row['pdfSha256'])
+            self.assertEqual(sha(recorded_path(row['file'])), row['pdfSha256'])
             self.assertEqual(row['matchCollapsed'], row['label'] == 'words')
-            self.assertTrue((ROOT / row['screenshot']).is_file())
+            self.assertTrue((recorded_path(row['screenshot'])).is_file())
 
     def test_standalone_indices_never_guess_missing_word_offsets(self):
         data = read('grapheme-indices.json')
         self.assertEqual(data['engine'], '153.0.7999.0')
         self.assertEqual(len(data['results']), 6)
         for row in data['results']:
-            self.assertEqual(sha(ROOT / row['file']), row['sha256'])
+            self.assertEqual(sha(recorded_path(row['file'])), row['sha256'])
             self.assertTrue(row['BMPCountMatches'])
             self.assertTrue(all(ord(c) <= 0xffff for c in row['selectedText']))
             if row['mode'] == 'record-grapheme':
@@ -101,16 +105,16 @@ class GraphemeIndices(unittest.TestCase):
         rows = read('record-grapheme-ink-geometry.json')['results']
         self.assertEqual(len(rows), 5)
         for row in rows:
-            self.assertEqual(sha(ROOT / row['candidate']), row['candidateSha256'])
-            self.assertEqual(sha(ROOT / row['baseline']), row['baselineSha256'])
+            self.assertEqual(sha(recorded_path(row['candidate'])), row['candidateSha256'])
+            self.assertEqual(sha(recorded_path(row['baseline'])), row['baselineSha256'])
             self.assertTrue(row['exactPathMultiset'])
             self.assertLessEqual(row['maxTransformDelta'], .0001)
         renders = read('grapheme-renders.json')
         self.assertEqual(len(renders), 7)
         self.assertEqual(sum(r['pixelIdentical'] for r in renders), 5)
         for row in renders:
-            diff = ImageChops.difference(Image.open(ROOT / row['render']).convert('RGB'),
-                                        Image.open(ROOT / row['reference']).convert('RGB')).getbbox()
+            diff = ImageChops.difference(Image.open(recorded_path(row['render'])).convert('RGB'),
+                                        Image.open(recorded_path(row['reference'])).convert('RGB')).getbbox()
             self.assertEqual(diff is None, row['pixelIdentical'])
             self.assertEqual(list(diff) if diff else None, row['differenceBounds'])
 

@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 // Owned Chrome pages and local fixture images only. Visibility is controlled;
 // this checks real image requests/decoding, not native tab or Safari behavior.
 const fs = require('node:fs/promises');
@@ -5,7 +6,7 @@ const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
 const { transformSync } = require('esbuild');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
-const out = 'tests/fixtures/preview-image-visibility-20261011';
+const out = qaPath('preview-image-visibility-20261011');
 const origin = 'http://127.0.0.1:4194';
 const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j6XcAAAAASUVORK5CYII=', 'base64');
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');

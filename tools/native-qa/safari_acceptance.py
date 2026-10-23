@@ -3,6 +3,10 @@
 This checks browser preview and persistence, not OS IME or the native print dialog.
 Run from the repository root. Only the fixed local QA fixture is imported.
 """
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import argparse
 import base64
 import datetime
@@ -17,8 +21,8 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-FIXTURE = ROOT / 'tests/fixtures/safari-preview/source.vdoc.json'
-MANIFEST = ROOT / 'tests/fixtures/safari-pinned-paint-20261010/source-manifest.json'
+FIXTURE = qa_path('safari-preview/source.vdoc.json')
+MANIFEST = qa_path('safari-pinned-paint-20261010/source-manifest.json')
 ELEMENT = 'element-6066-11e4-a52e-4f735466cecf'
 
 
@@ -100,7 +104,7 @@ def main():
     fixture = json.loads(FIXTURE.read_text())
     manifest = json.loads(args.manifest.read_text())
     for item in manifest['files']:
-        actual = hashlib.sha256((ROOT / item['file']).read_bytes()).hexdigest()
+        actual = hashlib.sha256((recorded_path(item['file'])).read_bytes()).hexdigest()
         if actual != item['sha256']:
             raise RuntimeError('Candidate changed: ' + item['file'] + '; refresh source manifest first')
     if args.check:
@@ -111,7 +115,7 @@ def main():
         if connection.connect_ex(('127.0.0.1', args.port)) == 0:
             raise RuntimeError('Port already occupied; refusing to attach')
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-    output = ROOT / 'tests/fixtures/safari-webdriver' / stamp
+    output = qa_path('safari-webdriver') / stamp
     output.mkdir(parents=True)
     report = {'at': stamp, 'state': 'started', 'applicationSha256': manifest['applicationSha256'],
               'fixtureSha256': hashlib.sha256(FIXTURE.read_bytes()).hexdigest(), 'checks': [],

@@ -1,4 +1,8 @@
 """Retained PDF/real-reader regressions. This does not sign off product export."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib
 import json
 import re
@@ -8,7 +12,7 @@ from PIL import Image, ImageChops
 from pypdf import PdfReader
 from pypdf.generic import ContentStream
 ROOT=Path(__file__).resolve().parents[2]
-FIX=ROOT/'tests/fixtures/reader-control-20261011'
+FIX=qa_path('reader-control-20261011')
 VARIANTS=('whole-cluster','cluster-actual','local-clusters','record-actual')
 def read(name):return json.loads((FIX/name).read_text())
 def collapsed(text):return re.sub(r'\s+',' ',text).strip()
@@ -21,7 +25,7 @@ class ClusterAnnotations(unittest.TestCase):
             result=rows(f'reader-{encoding}.json');self.assertEqual(len(result),5)
             for row in result.values():
                 self.assertNotIn('error',row)
-                path=ROOT/row['file'];report=json.loads((ROOT/'tests/fixtures/browser-unicode-20261011'/(path.stem+'-report.json')).read_text())
+                path=recorded_path(row['file']);report=json.loads((qa_path('browser-unicode-20261011')/(path.stem+'-report.json')).read_text())
                 self.assertEqual(digest(path),row['sha256']);self.assertEqual(row['sha256'],report['sha256'])
                 self.assertEqual(row['source'],report['sourceText']);self.assertTrue(report['sourceUnchanged']);self.assertTrue(report['cancelled'])
     def test_record_annotations_preserve_five_full_copies_and_40_words(self):
@@ -45,12 +49,12 @@ class ClusterAnnotations(unittest.TestCase):
             geometry=row['sourceGeometry'];self.assertEqual(geometry['compatMode'],'CSS1Compat')
             self.assertLessEqual(geometry['maxRectDelta'],0.05);self.assertLessEqual(geometry['maxTokenWidthDelta'],0.05)
             actual=FIX/f"source-record-actual-wide-standards-{row['label']}.png"
-            expected=ROOT/'tests/fixtures/browser-unicode-20261011'/(Path(row['file']).stem+'-browser.png')
+            expected=qa_path('browser-unicode-20261011')/(Path(row['file']).stem+'-browser.png')
             self.assertIsNone(ImageChops.difference(Image.open(actual).convert('RGB'),Image.open(expected).convert('RGB')).getbbox())
     def test_local_annotation_scope_never_replaces_a_line_or_word(self):
         found=[]
         for row in rows('reader-record-actual.json').values():
-            pdf=PdfReader(ROOT/row['file']);self.assertEqual(len(pdf.pages),1);self.assertFalse(pdf.pages[0].images)
+            pdf=PdfReader(recorded_path(row['file']));self.assertEqual(len(pdf.pages),1);self.assertFalse(pdf.pages[0].images)
             spans=[str(args[1]['/ActualText']) for args,op in ContentStream(pdf.pages[0].get_contents(),pdf).operations if op==b'BDC' and '/ActualText' in args[1]]
             if row['label']!='words':self.assertEqual(spans,[])
             for span in spans:
@@ -67,7 +71,7 @@ class ClusterAnnotations(unittest.TestCase):
         for encoding,count in [('whole-cluster',4),('cluster-actual',4),('local-clusters',5),('record-actual',5)]:
             results=read(f'{encoding}-pixels-pypdf.json');self.assertEqual(sum(r['pixelIdentical'] for r in results),count)
             for row in results:
-                actual=FIX/(Path(row['file']).stem+'-render.png');reference=ROOT/row['reference']
+                actual=FIX/(Path(row['file']).stem+'-render.png');reference=recorded_path(row['reference'])
                 diff=ImageChops.difference(Image.open(actual).convert('RGB'),Image.open(reference).convert('RGB')).getbbox()
                 self.assertEqual(diff is None,row['pixelIdentical'])
     def test_whole_cluster_alone_and_all_scripts_actualtext_are_rejected(self):
@@ -78,7 +82,7 @@ class ClusterAnnotations(unittest.TestCase):
     def test_search_positive_and_absent_pixel_evidence(self):
         for row in read('search-record-actual-highlight-audit.json')['results']:
             self.assertTrue(row['highlightContainedInTarget']);self.assertTrue(row['negativeClearsHighlight'])
-            for screenshot in row['screenshots']:self.assertEqual(digest(ROOT/screenshot['file']),screenshot['sha256'])
+            for screenshot in row['screenshots']:self.assertEqual(digest(recorded_path(screenshot['file'])),screenshot['sha256'])
     def test_bbox_diagnostic_explains_distinct_failure_representations(self):
         result=rows('cluster-geometry-final.json')
         first=lambda label:result[label]['firstCharacters'][:2]

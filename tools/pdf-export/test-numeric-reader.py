@@ -1,14 +1,18 @@
 """Owned PDF artifact regressions; test success includes detecting unsupported cases.
 These do not sign off the production exporter or all scripts/readers.
 """
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib,json,re,unittest
 from pathlib import Path
 from PIL import Image,ImageChops
 from pypdf import PdfReader
 ROOT=Path(__file__).resolve().parents[2]
-FIX=ROOT/'tests/fixtures/reader-control-20261011'
+FIX=qa_path('reader-control-20261011')
 OUT=ROOT/'output/pdf/browser-unicode-20261011'
-GEN=ROOT/'tests/fixtures/browser-unicode-20261011'
+GEN=qa_path('browser-unicode-20261011')
 FINAL='record-number-tail'
 def read(name):return json.loads((FIX/name).read_text())
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -26,7 +30,7 @@ class NumericReader(unittest.TestCase):
  def test_final_seven_full_selections_and_56_words(self):
   result=rows(f'reader-{FINAL}.json')+rows(f'reader-{FINAL}-numbers.json');self.assertEqual(len(result),7)
   for r in result:
-   self.assertEqual(digest(ROOT/r['file']),r['sha256']);self.assertEqual(collapse(r['source']),collapse(r['selectedText']));self.assertEqual(len(r['selections']),8)
+   self.assertEqual(digest(recorded_path(r['file'])),r['sha256']);self.assertEqual(collapse(r['source']),collapse(r['selectedText']));self.assertEqual(len(r['selections']),8)
    for s in r['selections']:self.assertIn(s['selectedText'].strip(),{s['expected'],re.sub(r'[।.]$','',s['expected'])})
  def test_no_regression_in_each_protocol_and_fixture(self):
   for inset,numbers,expected_fixed in [(False,False,1),(True,False,0),(False,True,11),(True,True,9)]:
@@ -46,7 +50,7 @@ class NumericReader(unittest.TestCase):
    row=points(FINAL,inset,True)[0];selected=[s for s in row['selections'] if s['word']=='١٢٣٤٥٦٧٨٩٠'];self.assertEqual(len(selected),10);self.assertTrue(all(s['match'] for s in selected))
  def test_independent_geometry_is_not_sufficient_for_ink_or_drag(self):
   result=rows('numeric-direction-geometry.json');self.assertEqual([sum(c['centerWithinSourceRange'] for c in r['characters']) for r in result],[0,10,10])
-  for r in result:self.assertEqual(digest(ROOT/r['file']),r['sha256'])
+  for r in result:self.assertEqual(digest(recorded_path(r['file'])),r['sha256'])
   bad=[s for s in points('record-digits',True,True)[0]['selections'] if s['word']=='١٢٣٤٥٦٧٨٩٠'];self.assertEqual(len(bad),10);self.assertTrue(all(not s['match'] for s in bad))
  def test_broad_digit_boxes_are_rejected_for_new_failure(self):
   a,b=points('record-alef',False,True)[1],points('record-digits',False,True)[1]
@@ -60,7 +64,7 @@ class NumericReader(unittest.TestCase):
   result=rows('pdfjs-browser-number-tail.json');self.assertEqual(len(result),7)
   self.assertEqual([r['matchCollapsed'] for r in result],[True,False,False,False,False,False,False])
   for r in result:
-   self.assertEqual(r['version'],'5.6.205');self.assertEqual(r['errors'],[]);self.assertTrue(r['spans']);self.assertEqual(digest(ROOT/r['file']),r['pdfSha256']);self.assertTrue((ROOT/r['screenshot']).is_file())
+   self.assertEqual(r['version'],'5.6.205');self.assertEqual(r['errors'],[]);self.assertTrue(r['spans']);self.assertEqual(digest(recorded_path(r['file'])),r['pdfSha256']);self.assertTrue((recorded_path(r['screenshot'])).is_file())
  def test_source_geometry_and_pixels_match_originals(self):
   for mode,numbers in [('record-digits',False),(FINAL,False),('record-alef',True),('record-digits',True),(FINAL,True)]:
    for inset in (False,True):
@@ -70,17 +74,17 @@ class NumericReader(unittest.TestCase):
      self.assertIsNone(ImageChops.difference(Image.open(source).convert('RGB'),Image.open(original).convert('RGB')).getbbox())
  def test_final_base_visible_paths_and_positions_preserved(self):
   for r in rows('record-number-tail-ink-geometry.json'):
-   self.assertEqual(digest(ROOT/r['baseline']),r['baselineSha256']);self.assertEqual(digest(ROOT/r['candidate']),r['candidateSha256']);self.assertTrue(r['exactPathMultiset']);self.assertLessEqual(r['maxTransformDelta'],.0001)
+   self.assertEqual(digest(recorded_path(r['baseline'])),r['baselineSha256']);self.assertEqual(digest(recorded_path(r['candidate'])),r['candidateSha256']);self.assertTrue(r['exactPathMultiset']);self.assertLessEqual(r['maxTransformDelta'],.0001)
  def test_render_pixel_differences_remain_explicit(self):
   result=read('number-tail-renders.json');self.assertEqual(len(result),7);self.assertEqual(sum(r['pixelIdentical'] for r in result),3)
   for r in result:
-   bbox=ImageChops.difference(Image.open(ROOT/r['render']).convert('RGB'),Image.open(ROOT/r['baseline']).convert('RGB')).getbbox();self.assertEqual(list(bbox) if bbox else None,r['differenceBounds']);self.assertEqual(bbox is None,r['pixelIdentical'])
+   bbox=ImageChops.difference(Image.open(recorded_path(r['render'])).convert('RGB'),Image.open(recorded_path(r['baseline'])).convert('RGB')).getbbox();self.assertEqual(list(bbox) if bbox else None,r['differenceBounds']);self.assertEqual(bbox is None,r['pixelIdentical'])
  def test_positive_and_absent_search_controls(self):
   for mode in ('record-digits',FINAL):
    result=rows(f'search-{mode}-highlight-audit.json');self.assertEqual(len(result),5)
    for r in result:
     self.assertTrue(r['highlightContainedInTarget']);self.assertTrue(r['negativeClearsHighlight'])
-    for s in r['screenshots']:self.assertEqual(digest(ROOT/s['file']),s['sha256'])
+    for s in r['screenshots']:self.assertEqual(digest(recorded_path(s['file'])),s['sha256'])
  def test_numeric_hitboxes_are_terminal_only(self):
   reports=[json.loads((GEN/(p.stem+'-report.json')).read_text()) for p in new_pdfs() if FINAL in p.stem]
   self.assertEqual(len(reports),7)

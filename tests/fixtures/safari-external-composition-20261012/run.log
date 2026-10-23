@@ -1,1 +1,0 @@
-{"passed": false, "error": "TimeoutError(\"Timed out: return __qaNativeEvents.some(e=>e.type==='compositionstart'&&e.trusted&&e.target==='Document title')&&!__qaNativeEvents.some(e=>e.type==='compositionend') ? __qaNativeEvents : null\")", "nativeKeysSent": true, "sessionClosed": true}

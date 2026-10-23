@@ -1,6 +1,0 @@
-{
-  "scope": "Real Paged.js deferred beforePreview on the actual React component; controlled close while pending, no native print or IME",
-  "browser": "154.0.8037.98",
-  "checks": [],
-  "error": "Error: page.evaluate: TypeError: ReactDOM.createRoot is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:13:95)\n    at async <anonymous>:337:30"
-}

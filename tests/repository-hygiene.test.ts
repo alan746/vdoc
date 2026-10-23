@@ -14,7 +14,7 @@ const SYNC_CONFLICT_COPY = / \d+(\.[^./]+)+$/;
 /** Dependencies, build output and git-ignored local artifacts, plus test
  *  fixtures, whose names legitimately contain spaces and digits
  *  ("QA 20261007 DOCX … Z.docx"). */
-const SKIPPED = new Set(['node_modules', 'dist', 'out', 'coverage', 'tmp', 'output', 'outputs', 'work', 'tests/fixtures']);
+const SKIPPED = new Set(['node_modules', 'dist', 'out', 'coverage', 'tmp', 'output', 'outputs', 'work', 'tests/fixtures', 'qa-evidence']);
 
 function syncConflictCopies(directory = ROOT): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap(entry => {

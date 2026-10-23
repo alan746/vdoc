@@ -1,7 +1,0 @@
-page.evaluate: TypeError: Cannot read properties of undefined (reading 'snapshot')
-    at eval (eval at evaluate (:311:30), <anonymous>:1:17)
-    at UtilityScript.evaluate (<anonymous>:313:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-    at /Users/ph.qian/Desktop/Vdoc/tmp/quota-browser/production.cjs:5:585 {
-  log: []
-}

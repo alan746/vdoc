@@ -7,6 +7,11 @@ import WebKit
 final class QAHost: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDelegate, WKDownloadDelegate, NSMenuDelegate {
     let storeID = UUID(uuidString: "36A96756-6C93-43C3-932C-A4969A453A88")!
     let root = URL(fileURLWithPath: "/Users/ph.qian/Desktop/Vdoc")
+    lazy var fixtureRoot: URL = {
+        let data = try! Data(contentsOf: root.appendingPathComponent("tools/qa-paths.json"))
+        let config = try! JSONSerialization.jsonObject(with: data) as! [String: Any]
+        return (config["fixtureDirectory"] as! [String]).reduce(root) { $0.appendingPathComponent($1) }
+    }()
     var window: NSWindow!
     var web: WKWebView!
     var downloads: [WKDownload] = []
@@ -93,7 +98,7 @@ final class QAHost: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUID
         record("own text input source selected=\(context.selectedKeyboardInputSource ?? "unavailable")")
     }
     @objc func chooseA() { importURL = root.appendingPathComponent("examples/final-native-acceptance.vdoc.json"); record("next import A") }
-    @objc func chooseB() { importURL = root.appendingPathComponent("tests/fixtures/safari-preview/source.vdoc.json"); record("next import B") }
+    @objc func chooseB() { importURL = fixtureRoot.appendingPathComponent("safari-preview/source.vdoc.json"); record("next import B") }
     @objc func reload() { web.reload() }
     @objc func armInputCrash() {
         guard crashInputMonitor == nil else { return }

@@ -1,6 +1,0 @@
-test_repeat_normalization_is_semantically_idempotent (__main__.ActualTextTests.test_repeat_normalization_is_semantically_idempotent) ... ok
-
-----------------------------------------------------------------------
-Ran 1 test in 0.198s
-
-OK

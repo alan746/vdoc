@@ -1,6 +1,0 @@
-
-/Users/ph.qian/Desktop/Vdoc/components/editor/print-preview.tsx
-  98:6  warning  React Hook useEffect has missing dependencies: 'close' and 'send'. Either include them or remove the dependency array. If 'close' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
-
-✖ 1 problem (0 errors, 1 warning)
-

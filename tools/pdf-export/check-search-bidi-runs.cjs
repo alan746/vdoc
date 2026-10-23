@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 const encoding=process.env.VDOC_QA_READER_VARIANT||'bidi-runs';
 if(!['bidi-runs','whole-cluster','cluster-actual','local-clusters','record-actual','record-rtl','record-boxes','record-alef','record-digits','record-flow','record-number-tail','record-marked-boxes','record-mark-advance','record-space-bounds','record-grapheme'].includes(encoding))throw Error('Unknown QA reader variant');
 // Check actual PDF text-fragment highlighting in a fresh, isolated Chrome viewer.
@@ -7,7 +8,7 @@ const http = require('node:http');
 const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets = ['words','arabic','hebrew','arabic-marked','hebrew-marked'].map(label=>({label,directory:'browser-unicode-20261011',name:label.replace('-marked','')+'-unicode-ordered-'+encoding+(label.endsWith('-marked')?'-marked':'')}));
-const destination = `tests/fixtures/reader-control-20261011/search-${encoding}.json`;
+const destination = qaPath(`reader-control-20261011/search-${encoding}.json`);
 
 (async () => {
   try { await fs.access(destination); throw Error('Refuse overwrite selection evidence'); }
@@ -16,7 +17,7 @@ const destination = `tests/fixtures/reader-control-20261011/search-${encoding}.j
     ...target,
     file: `output/pdf/${target.directory}/${target.name}.pdf`,
     bytes: await fs.readFile(`output/pdf/${target.directory}/${target.name}.pdf`),
-    report: JSON.parse(await fs.readFile(`tests/fixtures/${target.directory}/${target.name}-report.json`, 'utf8')),
+    report: JSON.parse(await fs.readFile(qaPath(`${target.directory}/${target.name}-report.json`), 'utf8')),
   })));
   const server = http.createServer((request, response) => {
     const match = /^\/qa-(\d+)\.pdf$/.exec(request.url);
@@ -56,13 +57,13 @@ const destination = `tests/fixtures/reader-control-20261011/search-${encoding}.j
         const target=file.report.targets.find(item=>item.line===1);
         if(!target)throw Error('Missing own source word geometry');
         const query=target.expected;
-        await page.screenshot({path:`tests/fixtures/reader-control-20261011/search-${encoding}-${file.label}-before.png`});
+        await page.screenshot({path:qaPath(`reader-control-20261011/search-${encoding}-${file.label}-before.png`)});
         await frame.evaluate(query=>document.querySelector('pdf-viewer').pluginController_.highlightTextFragments([encodeURIComponent(query)]),query);
         await page.waitForTimeout(350);
-        await page.screenshot({path:`tests/fixtures/reader-control-20261011/search-${encoding}-${file.label}-match.png`});
+        await page.screenshot({path:qaPath(`reader-control-20261011/search-${encoding}-${file.label}-match.png`)});
         await frame.evaluate(()=>document.querySelector('pdf-viewer').pluginController_.highlightTextFragments(['VDOC_ABSENT_854e1ca9']));
         await page.waitForTimeout(350);
-        await page.screenshot({path:`tests/fixtures/reader-control-20261011/search-${encoding}-${file.label}-absent.png`});
+        await page.screenshot({path:qaPath(`reader-control-20261011/search-${encoding}-${file.label}-absent.png`)});
         results.push({label:file.label,file:file.file,sha256:crypto.createHash('sha256').update(file.bytes).digest('hex'),query,target,geometry,negativeQuery:'VDOC_ABSENT_854e1ca9',method:'Actual PDF plugin text-fragment search; screenshot highlights need independent inspection. Not Cmd-F UI acceptance.'});
         console.log(JSON.stringify({label:file.label,query}));
 

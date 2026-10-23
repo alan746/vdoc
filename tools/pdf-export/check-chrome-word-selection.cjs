@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 // Read actual PDFium selection from a fresh, isolated Chrome PDF viewer.
 // No system clipboard, user browser session, or PDF rewriting is used.
 const fs = require('node:fs/promises');
@@ -5,7 +6,7 @@ const http = require('node:http');
 const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets = ['words','arabic','hebrew'].flatMap(script => [false,true].map(actual => ({label:script+(actual?'-actualtext':'-original'),directory:'browser-unicode-20261011',name:script+'-unicode-ordered'+(actual?'-actualtext':'')})));
-const destination = 'tests/fixtures/pdfkit-browser-20261011/chrome-word-selection-offset.json';
+const destination = qaPath('pdfkit-browser-20261011/chrome-word-selection-offset.json');
 
 (async () => {
   try { await fs.access(destination); throw Error('Refuse overwrite selection evidence'); }
@@ -14,7 +15,7 @@ const destination = 'tests/fixtures/pdfkit-browser-20261011/chrome-word-selectio
     ...target,
     file: `output/pdf/${target.directory}/${target.name}.pdf`,
     bytes: await fs.readFile(`output/pdf/${target.directory}/${target.name}.pdf`),
-    source: JSON.parse(await fs.readFile(`tests/fixtures/${target.directory}/${target.name}-report.json`, 'utf8')).sourceText,
+    source: JSON.parse(await fs.readFile(qaPath(`${target.directory}/${target.name}-report.json`), 'utf8')).sourceText,
   })));
   const server = http.createServer((request, response) => {
     const match = /^\/qa-(\d+)\.pdf$/.exec(request.url);
@@ -63,7 +64,7 @@ const destination = 'tests/fixtures/pdfkit-browser-20261011/chrome-word-selectio
           const selected=await frame.evaluate(async()=>document.querySelector('pdf-viewer').pluginController_.getSelectedText());
           selections.push({...point,x,y,selectedText:selected.selectedText,match:selected.selectedText?.trim()===point.expected});
         }
-        await page.screenshot({path:`tests/fixtures/pdfkit-browser-20261011/word-offset-${file.label}.png`});
+        await page.screenshot({path:qaPath(`pdfkit-browser-20261011/word-offset-${file.label}.png`)});
         results.push({label:file.label,file:file.file,sha256:crypto.createHash('sha256').update(file.bytes).digest('hex'),geometry,selections});
         console.log(JSON.stringify({label:file.label,geometry,selections}));
 

@@ -2,6 +2,10 @@
 This fixture-specific oracle does not certify arbitrary documents or all glyph shapes.
 Requires pypdf and pdfplumber. Usage: verify-acceptance.py PDF --report JSON
 """
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path
 import argparse, hashlib, json, logging, re, unicodedata
 from collections import Counter
 from pathlib import Path
@@ -58,7 +62,7 @@ def verify(path, require_logical_hindi=False):
             pages.append({'page': index + 1, 'rows': rows, 'checks': checks,
                           'scriptInventory': {name: {'actual': len(actual), 'expected': len(wanted)}
                                               for name, (actual, wanted) in script_checks.items()}})
-    return {'fixture': 'B: tests/fixtures/safari-preview/source.vdoc.json', 'file': str(path.resolve()), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'requireLogicalHindi': require_logical_hindi, 'passed': not failures, 'failures': failures, 'pages': pages, 'limits': 'Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping.'}
+    return {'fixture': str(qa_path('safari-preview/source.vdoc.json')), 'file': str(path.resolve()), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'requireLogicalHindi': require_logical_hindi, 'passed': not failures, 'failures': failures, 'pages': pages, 'limits': 'Fixture-specific structural/text/geometry check; visual review remains required for glyph shaping, borders, image fidelity and clipping.'}
 
 if __name__ == '__main__':
     logging.getLogger('pypdf').setLevel(logging.ERROR)

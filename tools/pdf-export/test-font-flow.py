@@ -1,4 +1,8 @@
 """Read actual long-document PDF evidence; no mocked text renderer."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path
 from pathlib import Path
 import importlib.util
 import json
@@ -9,7 +13,7 @@ from pypdf import PdfReader
 from PIL import Image, ImageChops
 
 ROOT = Path(__file__).resolve().parents[2]
-EVIDENCE = ROOT / 'tests/fixtures/pdf-prefont-20261011'
+EVIDENCE = qa_path('pdf-prefont-20261011')
 OUTPUT = ROOT / 'output/pdf/pdf-prefont-20261011'
 spec = importlib.util.spec_from_file_location('repair', Path(__file__).with_name('repair-unicode.py'))
 repair = importlib.util.module_from_spec(spec)

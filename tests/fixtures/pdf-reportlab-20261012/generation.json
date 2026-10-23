@@ -1,9 +1,0 @@
-{
-  "reportlab": "4.4.9",
-  "harfbuzz": "14.6.0",
-  "fontSHA256": "8c91b67bf7fdbf3136d05b42711d4d8d61e28f56de4bc5453cf631ef619b4645",
-  "pdfSHA256": "e30f4f5206ae2913c10222eb58ab2a45dfb83bd50bdec6e593e09c6a135531fd",
-  "shaping": true,
-  "direction": "LTR Devanagari",
-  "source": "Browser PDF — local text and vectors\nहिन्दी हिंदी भाषा में दस्तावेज़ लिखना।\nदुनिया नमस्ते शिक्षा क्षत्रिय प्रार्थना।\nRepeat हिन्दी and हिंदी with contextual shapes."
-}

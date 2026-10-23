@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 // Actual PDF.js canvas/text-layer reader in isolated Chrome, no clipboard access.
 const fs=require('node:fs/promises'),crypto=require('node:crypto');
 const runtime='/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';
@@ -5,7 +6,7 @@ const {chromium}=require(runtime+'/playwright');
 const candidate=process.env.VDOC_QA_READER_VARIANT||'record-digits';
 if(!['record-leading-space','record-space-map','record-token-boundary','record-digits','record-number-tail','record-marked-boxes','record-mark-advance','record-space-bounds','record-grapheme'].includes(candidate))throw Error('Unsupported reader candidate');
 const targets=['hebrew'].flatMap(script=>['source-visual','source-logical','page-visual'].map(mode=>({label:script+'-'+mode,mode})));
-const out='tests/fixtures/pdf-type0-minimal-20261011/pdfjs.json';
+const out=qaPath('pdf-type0-minimal-20261011/pdfjs.json');
 const collapse=s=>s.replace(/\s+/gu,' ').trim();
 (async()=>{
  try{await fs.access(out);throw Error('Refuse overwrite PDF.js reader evidence');}catch(e){if(e.code!=='ENOENT')throw e;}
@@ -17,7 +18,7 @@ const collapse=s=>s.replace(/\s+/gu,' ').trim();
   const requests=[];
   await context.route('**/*',async route=>{const u=new URL(route.request().url());if(u.origin!=='http://127.0.0.1:4193'){await route.abort();return;}requests.push(u.pathname);if(u.pathname==='/')return route.fulfill({contentType:'text/html',body:html});if(!assets[u.pathname])return route.fulfill({status:404,body:''});await route.fulfill({contentType:u.pathname.endsWith('.css')?'text/css':'text/javascript',body:await fs.readFile(assets[u.pathname])});});
   for(const target of targets){
-   const file='output/pdf/type0-minimal-20261011/'+target.label+'.pdf';const bytes=await fs.readFile(file),source=JSON.parse(await fs.readFile('tests/fixtures/pdf-type0-minimal-20261011/'+target.label+'.json','utf8')).sourceText;
+   const file='output/pdf/type0-minimal-20261011/'+target.label+'.pdf';const bytes=await fs.readFile(file),source=JSON.parse(await fs.readFile(qaPath('pdf-type0-minimal-20261011/')+target.label+'.json','utf8')).sourceText;
    const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
    try{
     await page.goto('http://127.0.0.1:4193/');
@@ -34,7 +35,7 @@ const collapse=s=>s.replace(/\s+/gu,' ').trim();
      selection.removeAllRanges();globalThis.qaDoc=doc;globalThis.qaView=view;
      return {selectedText,textContent,rawText,spans,pages:doc.numPages,version:pdfjsLib.version};
     },[...bytes]);
-    const screenshot='tests/fixtures/pdf-type0-minimal-20261011/pdfjs-'+target.label+'.png';await page.screenshot({path:screenshot});
+    const screenshot=qaPath('pdf-type0-minimal-20261011/pdfjs-')+target.label+'.png';await page.screenshot({path:screenshot});
     results.push({...target,file,pdfSha256:crypto.createHash('sha256').update(bytes).digest('hex'),source,...result,matchCollapsed:collapse(source)===collapse(result.selectedText),rawMatchCollapsed:collapse(source)===collapse(result.rawText),screenshot,errors});
     console.log(JSON.stringify({label:target.label,mode:target.mode,copyMatch:results.at(-1).matchCollapsed,rawMatch:results.at(-1).rawMatchCollapsed,errors}));
     await page.evaluate(async()=>{qaView.destroy();await qaDoc.destroy();});

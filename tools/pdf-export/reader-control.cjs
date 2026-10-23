@@ -1,8 +1,9 @@
+const { qaPath } = require('../qa-paths.cjs');
 // QA-only: Chrome's own print renderer is a control, not a browser export API.
 const fs = require('node:fs/promises');
 const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
-const fixture = 'tests/fixtures/reader-control-20261011';
+const fixture = qaPath('reader-control-20261011');
 const output = 'output/pdf/reader-control-20261011';
 const variants = ['words', 'arabic', 'hebrew', 'arabic-marked', 'hebrew-marked'];
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
@@ -17,8 +18,8 @@ const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
     for (const name of variants) {
       const script = name.split('-')[0];
       const fontName = { words: 'Devanagari', arabic: 'Arabic', hebrew: 'Hebrew' }[script];
-      const font = await fs.readFile(`tests/fixtures/browser-pdf-20261011/fonts/NotoSans${fontName}-static.ttf`);
-      const source = JSON.parse(await fs.readFile(`tests/fixtures/browser-unicode-20261011/${script}-unicode-ordered${name.endsWith('-marked') ? '-marked' : ''}-report.json`, 'utf8')).sourceText;
+      const font = await fs.readFile(qaPath(`browser-pdf-20261011/fonts/NotoSans${fontName}-static.ttf`));
+      const source = JSON.parse(await fs.readFile(qaPath(`browser-unicode-20261011/${script}-unicode-ordered${name.endsWith('-marked') ? '-marked' : ''}-report.json`), 'utf8')).sourceText;
       const context = await browser.newContext({ viewport: { width: 900, height: 1200 } });
       try {
         await context.route('**/*', route => route.abort());

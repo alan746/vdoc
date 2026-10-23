@@ -4,6 +4,10 @@ Own two fresh WebDriver tabs and a loopback fixture server. No visibility
 property overrides. This is a native helper test, not the full VDoc preview.
 The application import intentionally rejects external image URLs.
 """
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import base64
 import datetime
 import hashlib
@@ -19,15 +23,15 @@ from pathlib import Path
 from safari_acceptance import Safari, FIXTURE
 
 ROOT = Path(__file__).resolve().parents[2]
-MANIFEST = ROOT / 'tests/fixtures/preview-image-visibility-20261011/source-manifest.json'
+MANIFEST = qa_path('preview-image-visibility-20261011/source-manifest.json')
 
 
 def main():
     manifest = json.loads(MANIFEST.read_text())
     for item in manifest['files']:
-        assert hashlib.sha256((ROOT / item['file']).read_bytes()).hexdigest() == item['sha256'], item['file']
+        assert hashlib.sha256((recorded_path(item['file'])).read_bytes()).hexdigest() == item['sha256'], item['file']
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-    output = ROOT / 'tests/fixtures/safari-image-background' / stamp
+    output = qa_path('safari-image-background') / stamp
     output.mkdir(parents=True, exist_ok=False)
     fixture = json.loads(FIXTURE.read_text())
     images = []

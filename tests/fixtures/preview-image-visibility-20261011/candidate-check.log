@@ -1,2 +1,0 @@
-$ python3 tools/native-qa/safari_acceptance.py --check --manifest /Users/ph.qian/Desktop/Vdoc/tests/fixtures/preview-image-visibility-20261011/source-manifest.json
-Inputs and candidate fingerprint valid. No browser acceptance performed.

@@ -1,10 +1,12 @@
+import { qaPath } from '../tools/qa-paths.mjs';
+import { pathToFileURL } from 'node:url';
 // Run with Node's TypeScript stripping support; no browser or user data access.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { JSDOM } from 'jsdom';
 import { installPreviewPrintStyle } from '../lib/infrastructure/preview/preview-print.ts';
 
-const destination = new URL('../tests/fixtures/safari-print-scale/', import.meta.url);
+const destination = pathToFileURL(qaPath('safari-print-scale/'));
 await mkdir(destination, { recursive: true });
 const source = await readFile(new URL('../lib/infrastructure/preview/preview-print.ts', import.meta.url));
 const sourceHash = createHash('sha256').update(source).digest('hex');

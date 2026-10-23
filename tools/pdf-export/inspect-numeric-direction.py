@@ -1,12 +1,16 @@
 """Compare actual PDFium Arabic-Indic character locations with independent source DOM ranges."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 from pathlib import Path
 import json,hashlib
 import pypdfium2 as pdfium
-ROOT=Path(__file__).resolve().parents[2];FIX=ROOT/'tests/fixtures/reader-control-20261011';word='١٢٣٤٥٦٧٨٩٠';result=[]
+ROOT=Path(__file__).resolve().parents[2];FIX=qa_path('reader-control-20261011');word='١٢٣٤٥٦٧٨٩٠';result=[]
 for mode in ['record-alef','record-digits','record-number-tail']:
  raw=json.loads((FIX/f'partial-{mode}-wide-standards-numbers.json').read_text());row=next(r for r in raw['results'] if r['label']=='arabic');ranges=[r for r in row['sourceGeometry']['ranges'] if r['word']==word]
  assert len(ranges)==10
- path=ROOT/row['file'];doc=pdfium.PdfDocument(path);page=doc[0];text=page.get_textpage()
+ path=recorded_path(row['file']);doc=pdfium.PdfDocument(path);page=doc[0];text=page.get_textpage()
  try:
   value=text.get_text_range();assert len(value)==text.count_chars();assert value.count(word)==1;start=value.index(word);characters=[]
   for i,source in enumerate(ranges):

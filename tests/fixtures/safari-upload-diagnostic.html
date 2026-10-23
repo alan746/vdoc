@@ -1,7 +1,0 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><title>VDoc Safari file picker diagnostic</title>
-<style>body{font:18px system-ui;padding:32px}label{display:block;margin:24px 0}output{display:block;white-space:pre-wrap}</style>
-<h1>Safari file picker diagnostic</h1><p>Local diagnostic only. Selected files are not uploaded or stored.</p>
-<label>Extension filter <input type="file" accept=".json,.docx,.txt"></label>
-<label>MIME and extension filter <input type="file" accept="application/json,.json,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx,text/plain,.txt"></label>
-<label>No filter <input type="file"></label><output id="result">No file selected</output>
-<script>document.querySelectorAll('input').forEach(input=>input.addEventListener('change',()=>{const f=input.files[0];document.querySelector('output').textContent=f?`${input.parentElement.textContent.trim()}: ${f.name} (${f.size} bytes, ${f.type})`:'Selection cancelled';}));</script></html>

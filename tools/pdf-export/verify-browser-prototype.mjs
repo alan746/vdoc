@@ -1,9 +1,10 @@
+import { qaPath } from '../qa-paths.mjs';
 // QA-only extraction audit. Whitespace-stripped matches are NOT a product pass.
 import fs from 'node:fs/promises';
 import {getDocument} from '/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pdfjs-dist/legacy/build/pdf.mjs';
 const results=[];
 for(const file of (await fs.readdir('output/pdf/browser-pdf-20261011')).filter(x=>x.endsWith('.pdf')).sort()) {
- const name=file.slice(0,-4),r=JSON.parse(await fs.readFile('tests/fixtures/browser-pdf-20261011/'+(name==='words'?'report':name+'-report')+'.json','utf8'));
+ const name=file.slice(0,-4),r=JSON.parse(await fs.readFile(qaPath('browser-pdf-20261011/')+(name==='words'?'report':name+'-report')+'.json','utf8'));
  const doc=await getDocument({data:new Uint8Array(await fs.readFile('output/pdf/browser-pdf-20261011/'+file)),useSystemFonts:false}).promise;
  const content=await(await doc.getPage(1)).getTextContent();
  const text=content.items.map(x=>x.str+(x.hasEOL?'\n':'')).join('');
@@ -13,5 +14,5 @@ for(const file of (await fs.readdir('output/pdf/browser-pdf-20261011')).filter(x
  results.push({name,pages:doc.numPages,text,source:r.sourceText,exactIgnoringWhitespace:normalize(text)===normalize(r.sourceText),missingWholeWords,items:content.items.map(({str,hasEOL,transform,width,height})=>({str,hasEOL,transform,width,height}))});
  await doc.destroy();
 }
-await fs.writeFile('tests/fixtures/browser-pdf-20261011/pdfjs.json',JSON.stringify(results,null,2));
+await fs.writeFile(qaPath('browser-pdf-20261011/pdfjs.json'),JSON.stringify(results,null,2));
 console.log(results.map(({name,exactIgnoringWhitespace,missingWholeWords})=>({name,exactIgnoringWhitespace,missingWholeWords})));

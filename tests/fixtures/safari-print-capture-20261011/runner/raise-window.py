@@ -1,3 +1,0 @@
-import subprocess
-script='tell application "Safari"\nif (URL of current tab of window id 1594) does not start with "http://127.0.0.1:4187/" then error "QA origin changed"\nactivate\ndelay 0.4\nend tell\ntell application "System Events" to tell process "Safari"\nif not frontmost then error "Safari not frontmost"\nclick menu item "VDoc isolated native print 4187" of menu "Window" of menu bar item "Window" of menu bar 1\nend tell\ndelay 0.5\ntell application "Safari" to return id of front window'
-r=subprocess.run(['osascript','-e',script],capture_output=True,text=True,timeout=8);assert r.returncode==0 and r.stdout.strip()=='1594',(r.stdout,r.stderr);print('Owned QA window 1594 selected by exact Window menu item',flush=True)

@@ -1,9 +1,13 @@
 """Verify scoped marked-word experiments using actual reader artifacts, not product signoff."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib,json,re,unittest
 from pathlib import Path
 from PIL import Image,ImageChops
 from pypdf import PdfReader
-ROOT=Path(__file__).resolve().parents[2];FIX=ROOT/'tests/fixtures/reader-control-20261011';GEN=ROOT/'tests/fixtures/browser-unicode-20261011';MODE='record-marked-boxes'
+ROOT=Path(__file__).resolve().parents[2];FIX=qa_path('reader-control-20261011');GEN=qa_path('browser-unicode-20261011');MODE='record-marked-boxes'
 def load(name):return json.loads((FIX/name).read_text())
 def rows(name):return load(name)['results']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -16,7 +20,7 @@ class MarkedSelection(unittest.TestCase):
  def test_seven_full_selections_and_fifty_six_words(self):
   result=rows(f'reader-{MODE}.json')+rows(f'reader-{MODE}-numbers.json');self.assertEqual(len(result),7)
   for r in result:
-   self.assertEqual(sha(ROOT/r['file']),r['sha256']);self.assertTrue(r['matchCollapsed']);self.assertEqual(len(r['selections']),8);self.assertTrue(all(s['match'] for s in r['selections']))
+   self.assertEqual(sha(recorded_path(r['file'])),r['sha256']);self.assertTrue(r['matchCollapsed']);self.assertEqual(len(r['selections']),8);self.assertTrue(all(s['match'] for s in r['selections']))
  def test_each_pass_retained_with_both_offsets(self):
   for inset in (False,True):
    for numbers in (False,True):
@@ -43,18 +47,18 @@ class MarkedSelection(unittest.TestCase):
      p=FIX/f"source-{MODE}-wide-standards{'-inset1' if inset else ''}{'-numbers' if numbers else ''}-{r['label']}.png";q=GEN/(Path(r['file']).stem+'-browser.png');self.assertIsNone(ImageChops.difference(Image.open(p).convert('RGB'),Image.open(q).convert('RGB')).getbbox())
  def test_actual_pdfjs_failures_not_claimed_fixed(self):
   result=rows('pdfjs-browser-marked-boxes.json');self.assertEqual(len(result),7);self.assertEqual([r['matchCollapsed'] for r in result],[True,False,False,False,False,False,False])
-  for r in result:self.assertEqual(r['errors'],[]);self.assertEqual(sha(ROOT/r['file']),r['pdfSha256'])
+  for r in result:self.assertEqual(r['errors'],[]);self.assertEqual(sha(recorded_path(r['file'])),r['pdfSha256'])
  def test_visible_vectors_unchanged_and_raster_differences_retained(self):
   for r in rows('record-marked-boxes-ink-geometry.json'):
-   self.assertTrue(r['exactPathMultiset']);self.assertLessEqual(r['maxTransformDelta'],.0001);self.assertEqual(sha(ROOT/r['candidate']),r['candidateSha256'])
+   self.assertTrue(r['exactPathMultiset']);self.assertLessEqual(r['maxTransformDelta'],.0001);self.assertEqual(sha(recorded_path(r['candidate'])),r['candidateSha256'])
   renders=load('marked-boxes-renders.json');self.assertEqual(len(renders),7);self.assertEqual(sum(r['pixelIdentical'] for r in renders),5)
   for r in renders:
-   diff=ImageChops.difference(Image.open(ROOT/r['render']).convert('RGB'),Image.open(ROOT/r['reference']).convert('RGB')).getbbox();self.assertEqual(diff is None,r['pixelIdentical']);self.assertEqual(list(diff) if diff else None,r['differenceBounds'])
+   diff=ImageChops.difference(Image.open(recorded_path(r['render'])).convert('RGB'),Image.open(recorded_path(r['reference'])).convert('RGB')).getbbox();self.assertEqual(diff is None,r['pixelIdentical']);self.assertEqual(list(diff) if diff else None,r['differenceBounds'])
  def test_search_highlight_positive_and_absent_controls(self):
   result=rows(f'search-{MODE}-highlight-audit.json');self.assertEqual(len(result),5)
   for r in result:
    self.assertTrue(r['highlightContainedInTarget']);self.assertTrue(r['negativeClearsHighlight'])
-   for s in r['screenshots']:self.assertEqual(sha(ROOT/s['file']),s['sha256'])
+   for s in r['screenshots']:self.assertEqual(sha(recorded_path(s['file'])),s['sha256'])
  def test_new_candidate_rejects_seven_invalid_or_cancelled_exports(self):
   stem='arabic-unicode-ordered-safety-record-marked-boxes-marked';r=json.loads((GEN/(stem+'-report.json')).read_text());self.assertEqual(len(r['checks']),7);self.assertTrue(all(s['ok'] for s in r['checks']));self.assertEqual(r['sha256'],r['download']['sha256']);self.assertEqual(r['sha256'],sha(ROOT/'output/pdf/browser-unicode-20261011'/(stem+'.pdf')))
 if __name__=='__main__':unittest.main(verbosity=2)

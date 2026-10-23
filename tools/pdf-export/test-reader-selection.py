@@ -1,4 +1,8 @@
 """Regress actual downloaded PDFs and recorded PDFium selection, not product sign-off."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib
 import json
 import re
@@ -10,7 +14,7 @@ from pypdf import PdfReader
 from pypdf.generic import ContentStream
 
 ROOT = Path(__file__).resolve().parents[2]
-FIX = ROOT / 'tests/fixtures/pdfkit-browser-20261011'
+FIX = qa_path('pdfkit-browser-20261011')
 
 
 def read(name):
@@ -32,7 +36,7 @@ class ReaderSelectionEvidence(unittest.TestCase):
             for row in read(name)['results']:
                 with self.subTest(name=name, label=row['label']):
                     self.assertNotIn('error', row)
-                    self.assertEqual(hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest(), row['sha256'])
+                    self.assertEqual(hashlib.sha256((recorded_path(row['file'])).read_bytes()).hexdigest(), row['sha256'])
                     self.assertEqual(row['matchCollapsed'], collapsed(row['source']) == collapsed(row['selectedText']))
 
     def test_five_actual_reader_copies_preserve_words_marks_and_numbers(self):
@@ -55,13 +59,13 @@ class ReaderSelectionEvidence(unittest.TestCase):
     def test_hindi_readers_disagree_so_extractor_failure_is_not_copy_failure(self):
         self.assertTrue(self.before['cluster-hindi']['matchCollapsed'])
         self.assertTrue(self.before['unicode-words']['matchCollapsed'])
-        js = json.loads((ROOT / 'tests/fixtures/browser-pdf-20261011/pdfjs.json').read_text())
+        js = json.loads((qa_path('browser-pdf-20261011/pdfjs.json')).read_text())
         row = next(r for r in js if r['name'] == 'words-cluster-contiguous')
         self.assertTrue(row['missingWholeWords'])
 
     def test_actualtext_changes_neither_visible_pixels_nor_drawing_operators(self):
         for row in self.after:
-            path = ROOT / row['file']
+            path = recorded_path(row['file'])
             old = path.with_name(path.name.replace('-actualtext', ''))
             new_pdf, old_pdf = PdfReader(path), PdfReader(old)
             self.assertEqual(len(new_pdf.pages), 1)
@@ -71,7 +75,7 @@ class ReaderSelectionEvidence(unittest.TestCase):
             labels = [str(args[1]['/ActualText']) for args, op in operations if op == b'BDC']
             self.assertEqual(collapsed(' '.join(labels)), collapsed(row['source']))
             new_image = FIX / (path.stem + '-render.png')
-            old_image = ROOT / 'tests/fixtures/browser-unicode-20261011' / (old.stem + '-render.png')
+            old_image = qa_path('browser-unicode-20261011') / (old.stem + '-render.png')
             self.assertIsNone(ImageChops.difference(Image.open(new_image).convert('RGB'), Image.open(old_image).convert('RGB')).getbbox())
 
     def test_other_extractors_remain_an_explicit_limitation(self):
@@ -96,7 +100,7 @@ class ReaderSelectionEvidence(unittest.TestCase):
         for row in rows:
             with self.subTest(label=row['label']):
                 self.assertNotIn('error', row)
-                self.assertEqual(hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest(), row['sha256'])
+                self.assertEqual(hashlib.sha256((recorded_path(row['file'])).read_bytes()).hexdigest(), row['sha256'])
                 # The same on-screen point hits the intended word in the original;
                 # whole-line ActualText changes selection despite identical pixels.
                 expected = row['label'].endswith('-original')
@@ -109,7 +113,7 @@ class ReaderSelectionEvidence(unittest.TestCase):
             self.assertEqual(len(rows), 5)
             for row in rows:
                 self.assertNotIn('error', row)
-                self.assertEqual(hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest(), row['sha256'])
+                self.assertEqual(hashlib.sha256((recorded_path(row['file'])).read_bytes()).hexdigest(), row['sha256'])
                 self.assertEqual(collapsed(row['source']) == collapsed(row['selectedText']), row['label'].endswith('-words'))
 
 

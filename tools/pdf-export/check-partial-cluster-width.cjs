@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 // Probe grapheme-range drag selection using verified source DOM Range geometry.
 // No system clipboard, user browser session, or PDF rewriting is used.
 const fs = require('node:fs/promises');
@@ -5,12 +6,12 @@ const http = require('node:http');
 const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets = ['words','arabic','hebrew','arabic-marked','hebrew-marked'].map(label=>({label,directory:'browser-unicode-20261011',name:label.replace('-marked','')+'-unicode-ordered-cluster-width'+(label.endsWith('-marked')?'-marked':'')}));
-const destination = 'tests/fixtures/reader-control-20261011/partial-cluster-width.json';
+const destination = qaPath('reader-control-20261011/partial-cluster-width.json');
 
 async function measureSource(context, file) {
   const variant=file.label.split('-')[0];
   const family={words:'Devanagari',arabic:'Arabic',hebrew:'Hebrew'}[variant];
-  const font=await fs.readFile(`tests/fixtures/browser-pdf-20261011/fonts/NotoSans${family}-static.ttf`);
+  const font=await fs.readFile(qaPath(`browser-pdf-20261011/fonts/NotoSans${family}-static.ttf`));
   const sourcePage=await context.newPage();
   try {
     await sourcePage.setContent(`<style>@font-face{font-family:QA;src:url(data:font/ttf;base64,${font.toString('base64')})}*{box-sizing:border-box}body{margin:0;background:white;font-family:QA;font-size:22px;font-weight:400}#fixture{width:794px;height:1123px;padding:60px;background:white}.line{line-height:2;margin:18px 0}.token{display:inline-block;white-space:pre;font-weight:400}.baseline{display:inline-block;width:0;height:0;vertical-align:baseline}table{border-collapse:collapse;width:100%;margin-top:32px}td{border:1px solid #a6adbd;padding:12px;background:#fafafc;line-height:2}</style><main id="fixture"></main>`);
@@ -47,7 +48,7 @@ async function measureSource(context, file) {
     ...target,
     file: `output/pdf/${target.directory}/${target.name}.pdf`,
     bytes: await fs.readFile(`output/pdf/${target.directory}/${target.name}.pdf`),
-    report: JSON.parse(await fs.readFile(`tests/fixtures/${target.directory}/${target.name}-report.json`, 'utf8')),
+    report: JSON.parse(await fs.readFile(qaPath(`${target.directory}/${target.name}-report.json`), 'utf8')),
   })));
   const server = http.createServer((request, response) => {
     const match = /^\/qa-(\d+)\.pdf$/.exec(request.url);
@@ -102,7 +103,7 @@ async function measureSource(context, file) {
           const selected=await frame.evaluate(()=>document.querySelector('pdf-viewer').pluginController_.getSelectedText());
           selections.push({...point,from,to,y,selectedText:selected.selectedText,match:selected.selectedText===point.expected});
         }
-        await page.screenshot({path:`tests/fixtures/reader-control-20261011/partial-${file.label}.png`});
+        await page.screenshot({path:qaPath(`reader-control-20261011/partial-${file.label}.png`)});
         results.push({label:file.label,file:file.file,sha256:crypto.createHash('sha256').update(file.bytes).digest('hex'),geometry,sourceGeometry,selections});
         console.log(JSON.stringify({label:file.label,pass:selections.filter(x=>x.match).length,total:selections.length,failed:selections.filter(x=>!x.match).map(x=>({expected:x.expected,actual:x.selectedText}))}));
 

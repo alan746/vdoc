@@ -1,9 +1,0 @@
-test_both_actual_readers_reject_all_three_full_texts (__main__.TypstProbe.test_both_actual_readers_reject_all_three_full_texts) ... ok
-test_initial_loader_failure_preserved_and_no_pointer_claim (__main__.TypstProbe.test_initial_loader_failure_preserved_and_no_pointer_claim) ... ok
-test_local_browser_compilation_and_three_embedded_outputs (__main__.TypstProbe.test_local_browser_compilation_and_three_embedded_outputs) ... ok
-test_registry_integrity_and_no_product_dependency (__main__.TypstProbe.test_registry_integrity_and_no_product_dependency) ... ok
-
-----------------------------------------------------------------------
-Ran 4 tests in 0.015s
-
-OK

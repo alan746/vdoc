@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 const encoding=process.env.VDOC_QA_READER_VARIANT||'bidi-runs';
 if(!['record-leading-space','record-space-map','record-token-boundary','bidi-runs','whole-cluster','cluster-actual','local-clusters','record-actual','record-rtl','record-boxes','record-alef','record-digits','record-flow','record-number-tail','record-marked-boxes','record-mark-advance','record-space-bounds','record-grapheme'].includes(encoding))throw Error('Unknown QA reader variant');
 // Read actual PDFium selection from a fresh, isolated Chrome PDF viewer.
@@ -7,7 +8,7 @@ const http = require('node:http');
 const crypto = require('node:crypto');
 const { chromium } = require('/Users/ph.qian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const targets=['hebrew','arabic','hindi'].map(label=>({label}));
-const destination='tests/fixtures/typst-browser-20261011/chrome.json';
+const destination=qaPath('typst-browser-20261011/chrome.json');
 const collapse = value => value.replace(/\s+/gu, ' ').trim();
 
 (async () => {
@@ -17,7 +18,7 @@ const collapse = value => value.replace(/\s+/gu, ' ').trim();
     ...target,
     file: `output/pdf/typst-browser-20261011/${target.label}.pdf`,
     bytes: await fs.readFile(`output/pdf/typst-browser-20261011/${target.label}.pdf`),
-    report: JSON.parse(await fs.readFile(`tests/fixtures/typst-browser-20261011/${target.label}.json`, 'utf8')),
+    report: JSON.parse(await fs.readFile(qaPath(`typst-browser-20261011/${target.label}.json`), 'utf8')),
   })));
   const server = http.createServer((request, response) => {
     const match = /^\/qa-(\d+)\.pdf$/.exec(request.url);
@@ -67,7 +68,7 @@ const collapse = value => value.replace(/\s+/gu, ' ').trim();
           const selected=await frame.evaluate(async()=>document.querySelector('pdf-viewer').pluginController_.getSelectedText());
           selections.push({...point,x,y,selectedText:selected.selectedText,match:selected.selectedText?.trim()===point.expected||selected.selectedText?.trim()===point.expected.replace(/[।.]$/u,'')});
         }
-        await page.screenshot({path:`tests/fixtures/typst-browser-20261011/chrome-${file.label}.png`});
+        await page.screenshot({path:qaPath(`typst-browser-20261011/chrome-${file.label}.png`)});
         results.push({label:file.label,file:file.file,sha256:crypto.createHash('sha256').update(file.bytes).digest('hex'),geometry,selections,source:file.report.sourceText,selectedText:selectedAll.selectedText,matchCollapsed:collapse(selectedAll.selectedText)===collapse(file.report.sourceText)});
         console.log(JSON.stringify({label:file.label,fullMatch:collapse(selectedAll.selectedText)===collapse(file.report.sourceText),wordPass:selections.filter(x=>x.match).length,wordTotal:selections.length}));
 

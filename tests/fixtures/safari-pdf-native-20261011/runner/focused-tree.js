@@ -1,3 +1,0 @@
-const s=Application('Safari'),p=Application('System Events').processes.byName('Safari');if(s.windows[0].id()!==1713||!p.frontmost())throw Error('Not owned foreground QA');let count=0;
-function read(e,path,d){const r={path};if(++count>600)return {path,truncated:true};for(const k of ['role','name','description','value','enabled'])try{const v=e[k]();r[k]=typeof v==='string'?v.slice(0,200):v}catch{}if(d>0)try{r.children=e.uiElements().slice(0,70).map((x,i)=>read(x,path+'.'+i,d-1))}catch{}return r}
-const r={windowId:1713};for(const n of ['AXFocusedWindow','AXMainWindow'])try{r[n]=read(p.attributes.byName(n).value(),n,16)}catch(e){r[n]={error:String(e)}}JSON.stringify(r);

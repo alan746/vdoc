@@ -1,4 +1,0 @@
-{
-  "initialAttempt": "System python3 lacked PIL; no comparison produced.",
-  "completedUsing": "Bundled Codex Python runtime with Pillow and pypdf; four pages rendered and compared."
-}

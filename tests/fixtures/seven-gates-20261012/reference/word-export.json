@@ -1,6 +1,0 @@
-{
-  "returncode": 1,
-  "stdout": "",
-  "stderr": "515:527: execution error: The variable qaDocument is not defined. (-2753)\n",
-  "pdfExists": false
-}

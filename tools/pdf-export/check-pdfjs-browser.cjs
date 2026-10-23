@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 // Official PDF.js canvas/text layer and copy handler in isolated Chrome.
 // ClipboardEvent uses an in-memory DataTransfer, never the system clipboard.
 const fs=require('node:fs/promises'),crypto=require('node:crypto');
@@ -8,7 +9,7 @@ if(!['record-leading-space','record-space-map','record-token-boundary','record-d
 const labels=['words','arabic','hebrew','arabic-marked','hebrew-marked'];
 const targets=[...labels.map(label=>({label,mode:candidate})),...['arabic','hebrew'].map(label=>candidate==='record-digits'?({label,mode:'record-flow'}):({label,mode:candidate,numbers:true}))];
 const tag=candidate==='record-digits'?'digits-flow':candidate.replace('record-','');
-const out='tests/fixtures/reader-control-20261011/pdfjs-browser-'+tag+'-copy-handler.json';
+const out=qaPath('reader-control-20261011/pdfjs-browser-')+tag+'-copy-handler.json';
 const collapse=s=>s.replace(/\s+/gu,' ').trim();
 (async()=>{
  try{await fs.access(out);throw Error('Refuse overwrite PDF.js reader evidence');}catch(e){if(e.code!=='ENOENT')throw e;}
@@ -21,7 +22,7 @@ const collapse=s=>s.replace(/\s+/gu,' ').trim();
   await context.route('**/*',async route=>{const u=new URL(route.request().url());if(u.origin!=='http://127.0.0.1:4193'){await route.abort();return;}requests.push(u.pathname);if(u.pathname==='/')return route.fulfill({contentType:'text/html',body:html});if(!assets[u.pathname])return route.fulfill({status:404,body:''});await route.fulfill({contentType:u.pathname.endsWith('.css')?'text/css':'text/javascript',body:await fs.readFile(assets[u.pathname])});});
   for(const target of targets){
    const stem=target.label.replace('-marked','')+'-unicode-ordered-'+target.mode+(target.label.endsWith('-marked')?'-marked':'')+(target.numbers?'-numbers':'');
-   const file='output/pdf/browser-unicode-20261011/'+stem+'.pdf';const bytes=await fs.readFile(file),source=JSON.parse(await fs.readFile('tests/fixtures/browser-unicode-20261011/'+stem+'-report.json','utf8')).sourceText;
+   const file='output/pdf/browser-unicode-20261011/'+stem+'.pdf';const bytes=await fs.readFile(file),source=JSON.parse(await fs.readFile(qaPath('browser-unicode-20261011/')+stem+'-report.json','utf8')).sourceText;
    const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
    try{
     await page.goto('http://127.0.0.1:4193/');
@@ -43,7 +44,7 @@ const collapse=s=>s.replace(/\s+/gu,' ').trim();
      selection.removeAllRanges();globalThis.qaDoc=doc;globalThis.qaView=view;
      return {selectedText,copiedText,copyEvent:{isTrusted:copyEvent.isTrusted,defaultPrevented:copyEvent.defaultPrevented,types:[...clipboardData.types]},textContent,rawText,spans,pages:doc.numPages,version:pdfjsLib.version};
     },[...bytes]);
-    const screenshot='tests/fixtures/reader-control-20261011/pdfjs-browser-'+target.mode+'-'+target.label+(target.numbers?'-numbers':'')+'-copy-handler.png';await page.screenshot({path:screenshot});
+    const screenshot=qaPath('reader-control-20261011/pdfjs-browser-')+target.mode+'-'+target.label+(target.numbers?'-numbers':'')+'-copy-handler.png';await page.screenshot({path:screenshot});
     results.push({...target,file,pdfSha256:crypto.createHash('sha256').update(bytes).digest('hex'),source,...result,matchCollapsed:collapse(source)===collapse(result.selectedText),copyMatchCollapsed:collapse(source)===collapse(result.copiedText),rawMatchCollapsed:collapse(source)===collapse(result.rawText),screenshot,errors});
     console.log(JSON.stringify({label:target.label,mode:target.mode,copyMatch:results.at(-1).copyMatchCollapsed,selectionMatch:results.at(-1).matchCollapsed,rawMatch:results.at(-1).rawMatchCollapsed,errors}));
     await page.evaluate(async()=>{qaView.destroy();await qaDoc.destroy();});

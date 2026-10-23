@@ -1,2 +1,0 @@
-START scale=1.01 paper=(595.0, 842.0) imageable=(18.000000000000004, 40.99999999999999, 559.0, 783.0)
-{"events":[],"fileExists":true,"host":"isolated nonpersistent WKWebView; NSPrintOperation asynchronous, not Safari","input":"\/Users\/ph.qian\/Desktop\/Vdoc\/tests\/fixtures\/seven-gates-20261012\/scale-fit\/fit-97.html","output":"\/Users\/ph.qian\/Desktop\/Vdoc\/tests\/fixtures\/seven-gates-20261012\/scale-fit\/fit-97-at-101.pdf","paperPoints":[595,842],"scale":1.01,"success":true}

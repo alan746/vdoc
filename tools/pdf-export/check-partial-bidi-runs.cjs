@@ -1,3 +1,4 @@
+const { qaPath } = require('../qa-paths.cjs');
 const numberCases=process.env.VDOC_QA_NUMBER_CASES==='1';
 const numberTag=numberCases?'-numbers':'';
 const encoding=process.env.VDOC_QA_READER_VARIANT||'bidi-runs';
@@ -19,12 +20,12 @@ if(!['','focused','focused-controls'].includes(evidenceTag))throw Error('Unsuppo
 if(evidenceTag&&!stable)throw Error('Focused evidence requires explicit focus');
 const evidenceSuffix=evidenceTag?'-'+evidenceTag:'';
 const targets = (numberCases?['arabic','hebrew']:['words','arabic','hebrew','arabic-marked','hebrew-marked']).map(label=>({label,directory:encoding==='native-control'?'reader-control-20261011':'browser-unicode-20261011',name:encoding==='native-control'?label:label.replace('-marked','')+'-unicode-ordered-'+encoding+(label.endsWith('-marked')?'-marked':'')+numberTag}));
-const destination = `tests/fixtures/reader-control-20261011/partial-${encoding}${wide?'-wide-standards':stable?'-stable':''}${insetTag}${numberTag}${evidenceSuffix}.json`;
+const destination = qaPath(`reader-control-20261011/partial-${encoding}${wide?'-wide-standards':stable?'-stable':''}${insetTag}${numberTag}${evidenceSuffix}.json`);
 
 async function measureSource(context, file) {
   const variant=file.label.split('-')[0];
   const family={words:'Devanagari',arabic:'Arabic',hebrew:'Hebrew'}[variant];
-  const font=await fs.readFile(`tests/fixtures/browser-pdf-20261011/fonts/NotoSans${family}-static.ttf`);
+  const font=await fs.readFile(qaPath(`browser-pdf-20261011/fonts/NotoSans${family}-static.ttf`));
   const sourcePage=await context.newPage();
   try {
     await sourcePage.setContent(`${encoding==='native-control'?'':'<!doctype html>'}<meta charset="utf-8"><style>@font-face{font-family:QA;src:url(data:font/ttf;base64,${font.toString('base64')})}*{box-sizing:border-box}body{margin:0;background:white;font-family:QA;font-size:22px;font-weight:400}#fixture{width:794px;height:1123px;padding:60px;background:white}.line{line-height:2;margin:18px 0;${encoding==='native-control'?'white-space:pre':''}}.token{display:inline-block;white-space:pre;font-weight:400}.baseline{display:inline-block;width:0;height:0;vertical-align:baseline}table{border-collapse:collapse;width:100%;margin-top:32px}td{border:1px solid #a6adbd;padding:12px;background:#fafafc;line-height:2}</style><main id="fixture"></main>`);
@@ -59,7 +60,7 @@ async function measureSource(context, file) {
 
       return {source:root.innerText,maxRectDelta,maxTokenWidthDelta,compatMode:document.compatMode,targets,ranges};
     },{source:file.report.sourceText,variant,original:file.report.targets,native:encoding==='native-control',wide,measurements:file.report.report?.measurements});
-    if(wide)await sourcePage.locator('#fixture').screenshot({path:`tests/fixtures/reader-control-20261011/source-${encoding}-wide-standards${insetTag}${numberTag}${evidenceSuffix}-${file.label}.png`});
+    if(wide)await sourcePage.locator('#fixture').screenshot({path:qaPath(`reader-control-20261011/source-${encoding}-wide-standards${insetTag}${numberTag}${evidenceSuffix}-${file.label}.png`)});
     return {...result,fontSha256:crypto.createHash('sha256').update(font).digest('hex')};
   } finally {await sourcePage.close();}
 }
@@ -71,7 +72,7 @@ async function measureSource(context, file) {
     ...target,
     file: `output/pdf/${target.directory}/${target.name}.pdf`,
     bytes: await fs.readFile(`output/pdf/${target.directory}/${target.name}.pdf`),
-    report: JSON.parse(await fs.readFile(`tests/fixtures/${target.directory}/${target.name}-report.json`, 'utf8')),
+    report: JSON.parse(await fs.readFile(qaPath(`${target.directory}/${target.name}-report.json`), 'utf8')),
   })));
   const server = http.createServer((request, response) => {
     const match = /^\/qa-(\d+)\.pdf$/.exec(request.url);
@@ -130,7 +131,7 @@ async function measureSource(context, file) {
           const selected=await frame.evaluate(()=>document.querySelector('pdf-viewer').pluginController_.getSelectedText());
           selections.push({...point,requestedInset,inset,from,to,y,selectedText:selected.selectedText,match:selected.selectedText===point.expected});
         }
-        await page.screenshot({path:`tests/fixtures/reader-control-20261011/partial-${encoding}${wide?'-wide-standards':stable?'-stable':''}${insetTag}${numberTag}${evidenceSuffix}-${file.label}.png`});
+        await page.screenshot({path:qaPath(`reader-control-20261011/partial-${encoding}${wide?'-wide-standards':stable?'-stable':''}${insetTag}${numberTag}${evidenceSuffix}-${file.label}.png`)});
         results.push({label:file.label,file:file.file,sha256:crypto.createHash('sha256').update(file.bytes).digest('hex'),geometry,sourceGeometry,selections});
         console.log(JSON.stringify({label:file.label,pass:selections.filter(x=>x.match).length,total:selections.length,failed:selections.filter(x=>!x.match).map(x=>({expected:x.expected,actual:x.selectedText}))}));
 

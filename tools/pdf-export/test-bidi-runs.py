@@ -1,4 +1,8 @@
 """Real QA artifact regressions. Passing tests include detecting retained failures."""
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path, recorded_path
 import hashlib
 import importlib.util
 import json
@@ -9,7 +13,7 @@ from PIL import Image, ImageChops
 from pypdf import PdfReader
 from pypdf.generic import ContentStream
 ROOT=Path(__file__).resolve().parents[2]
-FIX=ROOT/'tests/fixtures/reader-control-20261011'
+FIX=qa_path('reader-control-20261011')
 def read(name):return json.loads((FIX/name).read_text())
 def collapsed(text):return re.sub(r'\s+',' ',text).strip()
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -21,7 +25,7 @@ class BidiRunsEvidence(unittest.TestCase):
             self.assertEqual(len(rows),5)
             for row in rows:
                 self.assertNotIn('error',row)
-                pdf=ROOT/row['file']; report=json.loads((ROOT/'tests/fixtures/browser-unicode-20261011'/(pdf.stem+'-report.json')).read_text())
+                pdf=recorded_path(row['file']); report=json.loads((qa_path('browser-unicode-20261011')/(pdf.stem+'-report.json')).read_text())
                 self.assertEqual(digest(pdf),row['sha256'])
                 self.assertEqual(row['sha256'],report['sha256'])
                 self.assertEqual(row['source'],report['sourceText'])
@@ -43,7 +47,7 @@ class BidiRunsEvidence(unittest.TestCase):
     def test_no_actualtext_or_page_raster_substitution(self):
         for variant in ('bidi-runs','cluster-width'):
             for row in read(f'reader-{variant}.json')['results']:
-                pdf=PdfReader(ROOT/row['file']);self.assertEqual(len(pdf.pages),1);self.assertFalse(pdf.pages[0].images)
+                pdf=PdfReader(recorded_path(row['file']));self.assertEqual(len(pdf.pages),1);self.assertFalse(pdf.pages[0].images)
                 for args,op in ContentStream(pdf.pages[0].get_contents(),pdf).operations:
                     self.assertFalse(op==b'BDC' and '/ActualText' in args[1])
     def test_render_differences_retained(self):
@@ -51,7 +55,7 @@ class BidiRunsEvidence(unittest.TestCase):
             rows=read(f'{variant}-pixels-pypdf.json');self.assertEqual(sum(r['pixelIdentical'] for r in rows),identical)
             for row in rows:
                 actual=FIX/(Path(row['file']).stem+'-render.png')
-                bbox=ImageChops.difference(Image.open(actual).convert('RGB'),Image.open(ROOT/row['reference']).convert('RGB')).getbbox()
+                bbox=ImageChops.difference(Image.open(actual).convert('RGB'),Image.open(recorded_path(row['reference'])).convert('RGB')).getbbox()
                 self.assertEqual(bbox is None,row['pixelIdentical']);self.assertEqual(list(bbox) if bbox else None,row['bounds'])
     def test_search_highlights_and_negative_controls(self):
         spec=importlib.util.spec_from_file_location('search_audit',ROOT/'tools/pdf-export/audit-search-bidi-runs.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
@@ -65,7 +69,7 @@ class BidiRunsEvidence(unittest.TestCase):
             rows=read(f'partial-{variant}.json')['results'];self.assertEqual(len(rows),5)
             self.assertEqual(sum(len(r['selections']) for r in rows),55)
             for row in rows:
-                self.assertNotIn('error',row);self.assertEqual(digest(ROOT/row['file']),row['sha256'])
+                self.assertNotIn('error',row);self.assertEqual(digest(recorded_path(row['file'])),row['sha256'])
                 self.assertLessEqual(row['sourceGeometry']['maxRectDelta'],0.05)
                 for point in row['selections']:self.assertEqual(point['expected'],point['word'][point['start']:point['end']])
     def test_partial_selection_failure_not_hidden_by_whole_word_pass(self):

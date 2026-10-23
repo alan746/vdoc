@@ -1,3 +1,4 @@
+import { qaPath } from '../tools/qa-paths.mjs';
 import fs from 'node:fs';
 
 // The ledger is the execution record. This generator never overwrites recorded results.
@@ -25,7 +26,7 @@ function block(gate, group, setup, lines, evidence, depends = []) {
 
 block('I', '输入法准备', '读取仓库固定样本和既有证据；不修改个人文档。', `
 A 样本指纹|解析 examples/final-native-acceptance.vdoc.json，记录字节数和 SHA-256|JSON 可解析，指纹可复算，后续测试明确使用 A
-B 样本指纹|解析 tests/fixtures/safari-preview/source.vdoc.json，记录字节数和 SHA-256|JSON 可解析，后续测试明确使用 B，不与 A 混称
+B 样本指纹|解析 ${qaPath('safari-preview/source.vdoc.json')}，记录字节数和 SHA-256|JSON 可解析，后续测试明确使用 B，不与 A 混称
 输入位置与样本结构|遍历 A/B 节点，登记列表、表格、图像、页眉及标题字段|需要新增的输入位置明确，缺失项不假定存在
 输入法保护代码映射|定位正文与八个输入位置的 composition 跟踪、键盘守卫及保存路径|每个入口都有可追溯文件，代码覆盖与原生通过分开记录
 输入法组件回归|运行已存在的 composition 专项测试，保留命令、退出码和测试数|专项全部通过；不得替代系统候选窗实测

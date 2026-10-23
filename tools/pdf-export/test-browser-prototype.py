@@ -2,6 +2,10 @@
 
 Run verify-browser-prototype.mjs first to refresh the second-reader evidence.
 """
+import sys as _qa_sys
+from pathlib import Path as _QAPath
+_qa_sys.path.insert(0, str(_QAPath(__file__).resolve().parents[1]))
+from qa_paths import qa_path
 import hashlib
 import json
 import re
@@ -11,7 +15,7 @@ from pathlib import Path
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
-FIXTURE = ROOT / 'tests/fixtures/browser-pdf-20261011'
+FIXTURE = qa_path('browser-pdf-20261011')
 PDFS = ROOT / 'output/pdf/browser-pdf-20261011'
 
 

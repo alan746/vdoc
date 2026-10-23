@@ -17,6 +17,7 @@ const eslintConfig = defineConfig([
     // Archived acceptance evidence (old source snapshots, captured scripts).
     // Already excluded from vitest and tsconfig; it is not live code.
     "tests/fixtures/**",
+    "qa-evidence/**",
   ]),
   {
     files: ["**/*.{js,jsx,mjs,ts,tsx,mts,cts}"],
