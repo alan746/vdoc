@@ -1,10 +1,9 @@
 import { UNTITLED_DOCUMENT } from '../../domain/entities/document';
-type Extension = 'vdoc.json' | 'docx' | 'html' | 'txt';
 
 /** A conservative filename budget, including the extension. The document's
  * title remains untouched; only the suggested local download name is changed.
  */
-export function exportFilename(title: string, extension: Extension): string {
+export function exportFilename(title: string, extension: string): string {
   const cleanEnd = (value: string) => value.trim().replace(/[. ]+$/u, '');
   let stem = cleanEnd(Array.from(title, character => {
     const code = character.codePointAt(0)!;

@@ -1,7 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
 import type { Editor } from '@tiptap/core';
-import { FolderOpen, FilePlus2, Upload, ArrowDownToLine, Printer } from 'lucide-react';
+import { FolderOpen, FilePlus2, Upload } from 'lucide-react';
 import { toast } from 'sonner';
 import { actionErrorMessage } from '@/lib/shared/error-message';
 import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -15,6 +15,7 @@ import { documents as documentRepository, library as libraryRepository } from '@
 import { type DocumentSummary, type LibraryItem, type SavedDocument, blankDocument, documentTitle, UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
 import { useMounted } from './use-mounted';
 import { DocumentImportInput } from './document-import-input';
+import { ExportMenuItems } from './export-menu-items';
 
 function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>) {
   const names: string[] = [], visited = new Set([document.id]);
@@ -29,7 +30,7 @@ function documentLocation(document: LibraryItem, items: Map<string, LibraryItem>
   return ['Workspace', ...names].join(' / ');
 }
 
-export function LocalDocuments({ wordExportBusy = false, editor, title, blocked, documentId, onOpen, capture, exportDoc, onLanguage, onPrint }: { wordExportBusy?: boolean; onPrint: () => void; onLanguage: () => void; documentId: string; capture: () => void; exportDoc: (format: 'json' | 'html' | 'docx' | 'txt') => void; editor: Editor; title: string; blocked: SaveBlock; onOpen: (document: SavedDocument) => void }) {
+export function LocalDocuments({ exportBusy = false, editor, title, blocked, documentId, onOpen, capture, exportDoc, onLanguage, onPrint }: { exportBusy?: boolean; onPrint: () => void; onLanguage: () => void; documentId: string; capture: () => void; exportDoc: (format: string) => void; editor: Editor; title: string; blocked: SaveBlock; onOpen: (document: SavedDocument) => void }) {
   const [open, setOpen] = useState(false);
   const [documents, setDocuments] = useState<(DocumentSummary & { location: string })[]>([]);
   const { navigation, busy } = useDocumentNavigation(editor);
@@ -82,7 +83,8 @@ export function LocalDocuments({ wordExportBusy = false, editor, title, blocked,
     <Menu editor={editor} capture={capture} label={busy ? 'File…' : 'File'} ariaLabel="File"><DropdownMenuItem disabled={busy} onSelect={() => perform(() => load({ ...blankDocument(), id: crypto.randomUUID() }))}><FilePlus2 />New document</DropdownMenuItem>
     <DropdownMenuItem disabled={busy} onSelect={openLibrary}><FolderOpen />Open local document</DropdownMenuItem>
     <DropdownMenuItem disabled={busy} onSelect={() => file.current?.click()}><Upload />Import document</DropdownMenuItem>
-    <DropdownMenuItem onSelect={onLanguage}>Language…</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={() => exportDoc('json')}><ArrowDownToLine />Download VDoc backup</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('html')}><ArrowDownToLine />Download HTML</DropdownMenuItem><DropdownMenuItem disabled={wordExportBusy} onSelect={() => exportDoc('docx')}><ArrowDownToLine />{wordExportBusy ? 'Preparing Word…' : 'Download Word (.docx)'}</DropdownMenuItem><DropdownMenuItem onSelect={() => exportDoc('txt')}><ArrowDownToLine />Download plain text</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={onPrint}><Printer />Print / Save as PDF</DropdownMenuItem></Menu>
+    <DropdownMenuItem onSelect={onLanguage}>Language…</DropdownMenuItem><DropdownMenuSeparator />
+    <ExportMenuItems onExport={exportDoc} onPrint={onPrint} busy={exportBusy} /></Menu>
     <span role="status" className="sr-only">{busy ? 'Opening local file…' : ''}</span>
     <DocumentImportInput inputRef={file} disabled={busy} label="Import document file" onFile={selected => void perform(async () => {
       const imported = await readDocumentImport(selected); if (!mounted.current) return;

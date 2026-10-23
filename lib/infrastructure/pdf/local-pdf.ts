@@ -1,8 +1,6 @@
+import type { PaginatedExportSource } from '../../usecases/ports';
 export const LOCAL_PDF_ENDPOINT = '/__vdoc/local-pdf';
-export type LocalPdfSnapshot = {
-  html: string; css: string; title: string; pages: number;
-  pageSize: 'a4' | 'letter'; orientation: 'portrait' | 'landscape';
-};
+export type LocalPdfSnapshot = PaginatedExportSource;
 
 export async function requestLocalPdfToken(signal: AbortSignal): Promise<string | null> {
   const response = await fetch(LOCAL_PDF_ENDPOINT, { signal, cache: 'no-store' });

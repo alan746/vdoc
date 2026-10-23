@@ -1,9 +1,10 @@
 import type { JSONContent } from '@tiptap/core';
+import type { Node } from '@tiptap/pm/model';
 import type { DocumentDraft, DocumentVersion, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../domain/entities/document';
 
 /** Result of opening the active document; `error` means storage exists but could not be read. */
 export type ActiveDocumentRead = { data: SavedDocument | null; error?: undefined } | { data: null; error: string };
-export type DocumentImport = { document: DocumentDraft; format: 'word' | 'text' | 'backup'; warnings: string[] };
+export type DocumentImport = { document: DocumentDraft; format: string; warnings: string[] };
 export type LibraryItemPatch = { title?: string; parentId?: string | null; starred?: boolean; trash?: boolean; expectedTrashGroup?: string };
 
 // Ports owned by the use-case layer. Infrastructure implements them and
@@ -50,4 +51,20 @@ export interface VersionRepository {
 export interface FileImporter {
   accepts(file: File): boolean;
   read(file: File, title: string): Promise<DocumentImport>;
+}
+
+/** Immutable editor snapshot; conversion must never read a live editor. */
+export type DocumentExportSource = { title: string; doc: Node; html: string; json: JSONContent };
+/** Finished sheets, shared by preview and paginated exporters. */
+export type PaginatedExportSource = {
+  title: string; html: string; css: string; pages: number;
+  pageSize: 'a4' | 'letter'; orientation: 'portrait' | 'landscape';
+};
+export type FileExportOptions = { signal?: AbortSignal };
+export type ExportNotice = { code: string; message: string };
+export type ExportPayload = { blob: Blob; notices?: readonly ExportNotice[] };
+
+/** Conversion only. Naming, download delivery and UI lifecycle are separate. */
+export interface FileExporter<Source = DocumentExportSource> {
+  write(source: Source, options?: FileExportOptions): ExportPayload | Promise<ExportPayload>;
 }

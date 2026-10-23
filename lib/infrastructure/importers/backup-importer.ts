@@ -1,7 +1,7 @@
 import type { FileImporter } from '../../usecases/ports';
 import { parseDocument } from '../persistence/storage';
 
-/** Native JSON backup. Accepts any file, so it must be the last importer. */
+/** Native JSON backup; the registry gates supported extensions before decoding. */
 export const backupImporter: FileImporter = {
   accepts: () => true,
   async read(file) {

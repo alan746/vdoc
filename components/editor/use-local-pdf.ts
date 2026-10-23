@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { captureLocalPdf, requestLocalPdf, requestLocalPdfToken, type LocalPdfSnapshot } from '@/lib/composition/local-pdf';
+import { captureLocalPdf, requestLocalPdfToken, type LocalPdfSnapshot } from '@/lib/composition/local-pdf';
+import { exportPaginatedFile } from '@/lib/composition/document-export';
 
 export function useLocalPdf({ getDocument, details, onError }: {
   getDocument: () => Document | null;
@@ -34,16 +35,11 @@ export function useLocalPdf({ getDocument, details, onError }: {
     const controller = new AbortController(); job.current = controller; setPreparing(true); onError('');
     const timer = setTimeout(() => controller.abort(), 55000);
     void (async () => {
-      // A preview can outlive a local server restart. Its initial capability
-      // token is only for availability; get current credentials for each job.
-      const currentToken = await requestLocalPdfToken(controller.signal);
-      controller.signal.throwIfAborted();
       if (disposed.current || tab.closed) return;
-      if (!currentToken) throw new Error('The local PDF service is unavailable. Restart VDoc locally, then try again.');
       const document = getDocument();
       if (!document) throw new Error('Preview is unavailable. Reopen it before printing.');
       const snapshot = captureLocalPdf(document, details);
-      const blob = await requestLocalPdf(snapshot, currentToken, controller.signal);
+      const { blob } = await exportPaginatedFile('pdf', snapshot, { signal: controller.signal });
       if (controller.signal.aborted || disposed.current || tab.closed) return;
       const url = URL.createObjectURL(blob);
       tab.location.replace(url);

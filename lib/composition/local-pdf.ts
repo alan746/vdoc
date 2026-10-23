@@ -1,2 +1,2 @@
-// Local PDF service used by the print preview (localhost only).
-export { captureLocalPdf, requestLocalPdf, requestLocalPdfToken, type LocalPdfSnapshot } from '../infrastructure/pdf/local-pdf';
+// Preview capture and availability probe. Conversion goes through document-export.
+export { captureLocalPdf, requestLocalPdfToken, type LocalPdfSnapshot } from '../infrastructure/pdf/local-pdf';

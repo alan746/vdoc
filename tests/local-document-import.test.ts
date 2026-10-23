@@ -297,7 +297,7 @@ it('blocks a file action in the same event batch as returning home',async()=>{
  await act(async()=>{finish();});expect(home).toHaveBeenCalledOnce();expect(onOpen).not.toHaveBeenCalled();
 });
 it('disables only the Word export item while preparing and keeps backups available',async()=>{
- await act(async()=>root.render(createElement(LocalDocuments,{editor,title:'Current draft',blocked:false,documentId:'same-as-current',onOpen,capture:()=>{},exportDoc:()=>{},onLanguage:()=>{},onPrint:()=>{},wordExportBusy:true})));
+ await act(async()=>root.render(createElement(LocalDocuments,{editor,title:'Current draft',blocked:false,documentId:'same-as-current',onOpen,capture:()=>{},exportDoc:()=>{},onLanguage:()=>{},onPrint:()=>{},exportBusy:true})));
  await menu();expect(item('Preparing Word…').getAttribute('aria-disabled')).toBe('true');
  for(const name of ['Download VDoc backup','Download HTML','New document'])expect(item(name).getAttribute('aria-disabled')).not.toBe('true');
 });
