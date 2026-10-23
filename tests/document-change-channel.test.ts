@@ -8,6 +8,37 @@ const tab = (id: string) => createDocumentChanges(id, channelName);
 const delivered = () => new Promise(resolve => setTimeout(resolve, 30));
 afterEach(() => vi.unstubAllGlobals());
 
+it('can be imported and constructed without random generation during Worker initialization', async () => {
+  vi.resetModules();
+  const randomUUID = vi.fn(() => { throw new Error('Random generation is forbidden during Worker initialization'); });
+  vi.stubGlobal('crypto', { randomUUID });
+  const changes = await import('../lib/infrastructure/persistence/document-change-channel');
+  expect(changes.documentChanges).toBeDefined();
+  expect(changes.createDocumentChanges()).toBeDefined();
+  expect(randomUUID).not.toHaveBeenCalled();
+});
+
+it('lazily assigns distinct stable identities and preserves cross-tab filtering', () => {
+  vi.stubGlobal('BroadcastChannel', undefined);
+  const randomUUID = vi.fn().mockReturnValueOnce('generated-writer').mockReturnValueOnce('generated-reader');
+  vi.stubGlobal('crypto', { randomUUID });
+  const writer = createDocumentChanges(), reader = createDocumentChanges();
+  expect(randomUUID).not.toHaveBeenCalled();
+  const own = vi.fn(), other = vi.fn();
+  const stopOwn = writer.watch('doc-a', own), stopOther = reader.watch('doc-a', other);
+  try {
+    for (let i = 0; i < 2; i++) {
+      writer.announce('doc-a');
+      const record = localStorage.getItem('vdoc.documents.changed')!;
+      expect(JSON.parse(record)).toMatchObject({ documentId: 'doc-a', tabId: 'generated-writer' });
+      window.dispatchEvent(new StorageEvent('storage', { key: 'vdoc.documents.changed', newValue: record }));
+    }
+    expect(own).not.toHaveBeenCalled();
+    expect(other).toHaveBeenCalledTimes(2);
+    expect(randomUUID).toHaveBeenCalledTimes(2);
+  } finally { stopOwn(); stopOther(); }
+});
+
 it('notifies another tab watching the same document, not other documents', async () => {
   channelName = `vdoc.test.${crypto.randomUUID()}`;
   const writer = tab('tab-1'), reader = tab('tab-2');

@@ -34,9 +34,12 @@ npm start -- --port 8787
 npm test
 npm run typecheck
 npm run build
+npm run test:worker
 ```
 
 测试默认只启动一个 worker；全量测试、构建与表格渲染依次运行，避免在共享开发电脑上叠加内存负载。
+
+`npm run test:worker` 在构建后启动临时本机 Worker，检查首页、打印预览的 HTTP 200、服务端页面内容及引用的静态资源，再自动停止。此检查也在 CI 中执行，可捕获浏览器客户端恢复显示所掩盖的服务端渲染错误；不需要 Cloudflare 账号，不会发布网站。
 
 `ANALYZE=1 npm run build` 会额外写出 `dist/bundle-report/client.json`：列出浏览器端每个 chunk 的模块组成与大小，以及模块之间的引用关系，可用来追查某个模块为什么被打进某个 chunk。不设该变量时，构建产物与平时一致。
 

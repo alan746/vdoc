@@ -16,7 +16,10 @@ const CHANNEL_NAME = 'vdoc.documents';
 // `storage` event in every other tab of the same origin.
 const FALLBACK_KEY = 'vdoc.documents.changed';
 
-export function createDocumentChanges(tabId: string = crypto.randomUUID(), channelName = CHANNEL_NAME): DocumentChanges {
+export function createDocumentChanges(tabId?: string, channelName = CHANNEL_NAME): DocumentChanges {
+  // This singleton is also imported by Worker SSR. Generate its per-tab identity
+  // only when browser persistence starts using it, never during module loading.
+  const identity = () => tabId ??= crypto.randomUUID();
   let channel: BroadcastChannel | null | undefined;
   const open = () => {
     if (channel === undefined) {
@@ -28,14 +31,15 @@ export function createDocumentChanges(tabId: string = crypto.randomUUID(), chann
   };
   return {
     announce(documentId) {
-      const notice: Notice = { documentId, tabId };
+      const notice: Notice = { documentId, tabId: identity() };
       const target = open();
       if (target) { target.postMessage(notice); return; }
       try { localStorage.setItem(FALLBACK_KEY, JSON.stringify({ ...notice, at: Date.now() })); }
       catch { /* Storage is unavailable; there is no other way to reach other tabs. */ }
     },
     watch(documentId, listener) {
-      const deliver = (data: unknown) => { if (isNotice(data) && data.documentId === documentId && data.tabId !== tabId) listener(); };
+      const ownId = identity();
+      const deliver = (data: unknown) => { if (isNotice(data) && data.documentId === documentId && data.tabId !== ownId) listener(); };
       const target = open();
       if (target) {
         const onMessage = (event: MessageEvent) => deliver(event.data);

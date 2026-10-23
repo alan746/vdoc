@@ -15,6 +15,7 @@
     "db:generate": "drizzle-kit generate",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:worker": "node scripts/check-worker-smoke.mjs",
     "postinstall": "patch-package"
   },
   "dependencies": {
