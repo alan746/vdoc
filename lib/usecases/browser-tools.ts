@@ -1,26 +1,36 @@
-import { documentToolDescriptions, externalDocumentSchema } from './document-tools';
+import { documentToolCatalog, externalDocumentSchema } from './document-tools';
+import { realtimeReadBlocksSchema } from './realtime-executor';
 import type { DocumentEngine } from './engine';
 type PageTool = { name: string; title: string; description: string; inputSchema: object; annotations: { readOnlyHint: boolean; untrustedContentHint: boolean }; execute: (input: unknown) => unknown };
 type PageContext = { registerTool: (tool: PageTool, options: { signal: AbortSignal }) => void | Promise<void> };
 
-/** Optional browser-standard bridge, with no model, network call, or AI dependency. */
+const titles: Record<string, string> = { read_document: 'Read current document', read_blocks: 'Read specific blocks', apply_document_operations: 'Apply document operations' };
+
+/** Optional browser-standard bridge, with no model, network call, or AI
+ *  dependency. Registers the vdoc#30 catalog entries that need no agent
+ *  turn — get_context and undo_turn stay realtime-only. apply_document_operations
+ *  still writes through the existing external/api path (engine.executeExternal),
+ *  not an agent turn, so it keeps its own input schema. */
 export function registerDocumentTools(engine: DocumentEngine, context = (document as Document & { modelContext?: PageContext }).modelContext) {
   if (!context?.registerTool) return () => {};
   const lifecycle = new AbortController();
-  const tools: PageTool[] = [
-    {
-      name: 'read_document', title: 'Read current document', description: documentToolDescriptions.read,
-      inputSchema: { type: 'object', properties: {}, additionalProperties: false }, annotations: { readOnlyHint: true, untrustedContentHint: true },
-      execute: () => engine.snapshot(),
+  const execute: Record<string, (input: unknown) => unknown> = {
+    read_document: () => engine.snapshot(),
+    read_blocks: input => {
+      const parsed = realtimeReadBlocksSchema.safeParse(input);
+      return parsed.success ? engine.readBlocks(parsed.data.ids) : { ok: false, code: 'INVALID', error: parsed.error.issues[0]?.message ?? 'Invalid arguments.' };
     },
-    {
-      name: 'apply_document_operations', title: 'Apply document operations',
-      description: 'Apply validated document operations atomically. Supports text formatting, insertion, deletion, replacement, find/replace, block movement, paragraph layout, lists, images, page setup and precise table edits. Read the document first. Supply expectedSessionId and either expectedRevision or expectedBlocks covering the explicit block, text, cell or cells target. Range targets and document-wide operations require expectedRevision. Stale requests are rejected; reread and reconsider before retrying. One undo reverses the entire batch.',
-      inputSchema: externalDocumentSchema,
-      annotations: { readOnlyHint: false, untrustedContentHint: true },
-      execute: input => engine.executeExternal(input),
-    },
-  ];
+    apply_document_operations: input => engine.executeExternal(input),
+  };
+  const tools: PageTool[] = Object.keys(execute).map(name => {
+    const entry = documentToolCatalog.find(item => item.name === name)!;
+    return {
+      name, title: titles[name], description: entry.description,
+      inputSchema: name === 'apply_document_operations' ? externalDocumentSchema : entry.parameters,
+      annotations: { readOnlyHint: entry.readOnly, untrustedContentHint: true },
+      execute: execute[name],
+    };
+  });
   for (const tool of tools) {
     try { void Promise.resolve(context.registerTool(tool, { signal: lifecycle.signal })).catch(() => {}); }
     catch { /* Unsupported experimental API must never prevent editing. */ }

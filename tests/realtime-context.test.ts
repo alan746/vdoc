@@ -5,15 +5,16 @@ import { DocumentEngine } from '../lib/usecases/engine';
 import { createRealtimeExecutor, type RecentVoiceEdit } from '../lib/usecases/realtime-executor';
 import type { RealtimeToolContext } from '../lib/usecases/ports';
 
-// read()/readBlocks() return a failure shape on error; these helpers assert
-// the call succeeded so tests can access the voice-context fields directly.
-type ReadOk = { outline: { id: string; level: number; text: string }[]; selection: { from: number; to: number }; recentEdits: RecentVoiceEdit[] };
+// Covers vdoc#35 task 1 (context, on-demand reads) and vdoc#30's split of
+// get_context from read_document: outline, a selection frozen for the
+// lifetime of a voice turn, and recent agent edits whose affected block IDs
+// are re-checked against the live document.
+
+// getContext()/readBlocks() return a failure shape on error; these helpers
+// assert the call succeeded so tests can access the fields directly.
+type ContextOk = { outline: { id: string; level: number; text: string }[]; selection: { from: number; to: number }; recentEdits: RecentVoiceEdit[] };
 type ReadBlocksOk = { docId: string; sessionId: string; blocks: { id: string; type: string; text: string }[] };
 function ok<T>(result: T | { ok: false }): T { expect((result as { ok?: boolean }).ok).not.toBe(false); return result as T; }
-
-// Covers vdoc#35 task 1 (context, on-demand reads): outline, a selection
-// frozen for the lifetime of a voice turn, and recent agent edits whose
-// affected block IDs are re-checked against the live document.
 
 let editor: Editor, engine: DocumentEngine, lifetime: AbortController;
 let executor: ReturnType<typeof createRealtimeExecutor>;
@@ -30,8 +31,15 @@ beforeEach(async () => {
 });
 afterEach(() => { lifetime.abort(); engine.destroy(); editor.destroy(); });
 
+it('vdoc#30: read_document stays a plain document read, without the turn-context fields', () => {
+  const result = executor.read(context()) as Record<string, unknown>;
+  expect(result).toMatchObject({ docId: 'doc-1' });
+  expect(result).not.toHaveProperty('outline');
+  expect(result).not.toHaveProperty('recentEdits');
+});
+
 it('lists headings in document order with their stable block IDs', () => {
-  const outline = ok<ReadOk>(executor.read(context())).outline;
+  const outline = ok<ContextOk>(executor.getContext(context())).outline;
   expect(outline).toEqual([
     { id: engine.snapshot().blocks[0].id, level: 1, text: 'Title' },
     { id: engine.snapshot().blocks[3].id, level: 2, text: 'Sub' },
@@ -40,26 +48,33 @@ it('lists headings in document order with their stable block IDs', () => {
 
 it('freezes the selection a voice turn saw on its first read, then refreshes on the next turn', () => {
   editor.commands.setTextSelection(3);
-  const first = ok<ReadOk>(executor.read(context('r1', 'turn-A'))).selection;
+  const first = ok<ContextOk>(executor.getContext(context('r1', 'turn-A'))).selection;
   editor.commands.setTextSelection(10);
-  expect(ok<ReadOk>(executor.read(context('r2', 'turn-A'))).selection).toEqual(first);
-  expect(ok<ReadOk>(executor.read(context('r3', 'turn-B'))).selection).not.toEqual(first);
+  expect(ok<ContextOk>(executor.getContext(context('r2', 'turn-A'))).selection).toEqual(first);
+  expect(ok<ContextOk>(executor.getContext(context('r3', 'turn-B'))).selection).not.toEqual(first);
 });
 
 it('reports recent agent edits and drops block IDs that no longer exist', async () => {
   await executor.apply(request(), context('call-1', 'turn-1'));
-  const first = ok<ReadOk>(executor.read(context('read-1'))).recentEdits;
+  const first = ok<ContextOk>(executor.getContext(context('read-1'))).recentEdits;
   expect(first).toHaveLength(1);
   expect(first[0]).toMatchObject({ turnId: 'turn-1', actor: 'trusted-agent' });
   expect(first[0].affectedBlockIds.length).toBeGreaterThan(0);
   editor.commands.setContent('<p>replaced entirely</p>');
   await new Promise(resolve => setTimeout(resolve, 0));
-  expect(ok<ReadOk>(executor.read(context('read-2'))).recentEdits[0].affectedBlockIds).toEqual([]);
+  expect(ok<ContextOk>(executor.getContext(context('read-2'))).recentEdits[0].affectedBlockIds).toEqual([]);
 });
 
 it('does not report user-sourced edits as recent agent edits', () => {
   editor.commands.insertContent('typed');
-  expect(ok<ReadOk>(executor.read(context())).recentEdits).toEqual([]);
+  expect(ok<ContextOk>(executor.getContext(context())).recentEdits).toEqual([]);
+});
+
+it('gates get_context through the same checks as apply/undo', () => {
+  const cancelled = new AbortController(); cancelled.abort();
+  expect(executor.getContext({ ...context(), signal: cancelled.signal })).toMatchObject({ code: 'INTERRUPTED' });
+  lifetime.abort();
+  expect(executor.getContext(context())).toMatchObject({ code: 'INTERRUPTED' });
 });
 
 it('reads full content for specific block IDs and omits unknown ones', () => {

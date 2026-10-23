@@ -150,7 +150,9 @@ window.vdoc.redo();
 
 ## 浏览器工具
 
-浏览器支持 `document.modelContext` 时注册 `read_document` 和 `apply_document_operations`，并在组件销毁时注销。不支持该实验接口也可以完整使用编辑器和 `window.vdoc`。
+浏览器支持 `document.modelContext` 时注册 `read_document`、`read_blocks` 和 `apply_document_operations`，并在组件销毁时注销。不支持该实验接口也可以完整使用编辑器和 `window.vdoc`。
+
+这三个工具与 `@vrealtime/client` 使用的工具共用同一份目录（`lib/usecases/document-tools.ts` 的 `documentToolCatalog`：name、description、JSON Schema、是否只读），避免两处各写一套描述/校验。`apply_document_operations` 仍走既有的 `engine.executeExternal`（`api` 来源，不需要 agent turn），和语音层走 `executeAgent` 的可信执行路径是两条不同的写入通道，只是描述与大体语义对齐；`get_context`（大纲、按轮冻结的选区、最近 agent 修改）和 `undo_turn` 需要 agent turn 身份，不在浏览器工具里注册。
 
 ## 持久化与后续接口
 

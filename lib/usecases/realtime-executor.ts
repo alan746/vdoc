@@ -112,8 +112,17 @@ export function createRealtimeExecutor(engine: DocumentEngine, options: {
   }
   return {
     read(context: RealtimeToolContext) {
-      return check(context) ?? { ...engine.snapshot(), docId: options.docId, selection: frozenSelection(context), outline: engine.outline(),
-        agentEdits: engine.records.filter(record => record.source === 'agent'), recentEdits: recentVoiceEdits() };
+      return check(context) ?? { ...engine.snapshot(), docId: options.docId, agentEdits: engine.records.filter(record => record.source === 'agent') };
+    },
+    /** Lightweight per-turn planning context (vdoc#35 task 1), separate from
+     *  the full document read: outline, a selection frozen for this turn,
+     *  and recent agent edits re-checked against the live document. Needs an
+     *  agent turn (frozenSelection keys off context.turnId), so this is
+     *  realtime-only — the WebMCP bridge has no turn concept and does not
+     *  register it. */
+    getContext(context: RealtimeToolContext) {
+      const invalid = check(context); if (invalid) return invalid;
+      return { docId: options.docId, sessionId, revision: engine.revision, selection: frozenSelection(context), outline: engine.outline(), recentEdits: recentVoiceEdits() };
     },
     readBlocks(input: unknown, context: RealtimeToolContext) {
       const invalid = check(context); if (invalid) return invalid;

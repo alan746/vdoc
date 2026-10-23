@@ -22,17 +22,26 @@
 - [`tests/support/realtime-scenarios.ts`](../tests/support/realtime-scenarios.ts)：#35 与 vRT#22 验收清单里版本冲突、按轮撤销等场景的请求/上下文构造器，供后续任务复用而不用重新拼装。
 - [`tests/realtime-fake-adapter.test.ts`](../tests/realtime-fake-adapter.test.ts)：用上述假实现跑通 `openDocumentRealtime` + 文档工具 + 真实 `DocumentEngine` 的完整路径（连接状态、提交、过期撤销、重连、断开、关闭后拒绝晚到调用），无需真实 vRT 服务即可本地开发和回归。
 
-### #35 任务1：上下文、按需读取和目标快照（2026-10-16）
+### #35 任务1：上下文、按需读取和目标快照（2026-10-16，后由 #30 拆分 get_context）
 
-`read_document` 现在除原有 snapshot 字段外，还返回：
+新增 `get_context` 工具（独立于 `read_document`，见下方 #30 条目），返回：
 
 - `outline`：标题列表 `{ id, level, text }[]`（[`documentOutline`](../lib/editor/document-snapshot.ts)），用于解析“在项目规划标题下面”一类指代。
 - `selection`：按 `turnId` 冻结——同一语音轮次内多次读取返回首次读取时的选区，光标移动不重新解释目标；新 `turnId` 重新捕获当前选区。冻结表仅存在于单次连接的内存中，随 `createRealtimeExecutor` 的 `signal` 中止清理，不做跨连接持久化。
-- `recentEdits`：最近成功提交的 agent 轮次（`{ id, turnId, actor, revision, affectedBlockIds }`，最多 20 条），`affectedBlockIds` 在每次读取时与当前文档重新比对，引用已删除的块会被过滤掉；只统计 `source: 'agent'` 的事件，用户或工具栏编辑不计入。`agentEdits` 字段保留供既有调用方兼容。
+- `recentEdits`：最近成功提交的 agent 轮次（`{ id, turnId, actor, revision, affectedBlockIds }`，最多 20 条），`affectedBlockIds` 在每次读取时与当前文档重新比对，引用已删除的块会被过滤掉；只统计 `source: 'agent'` 的事件，用户或工具栏编辑不计入。
 
 新增 `read_blocks({ ids })` 工具：按最多 200 个块/表格 ID 返回完整内容（文字、表格网格与单元格），不要求读取整份文档；未知 ID 直接省略，不报错。与其余工具共用 `check()`（取消、文档/会话绑定、可编辑性）。
 
 尚未做、不要误认为已完成：可见块测算（留给编辑器/UI 适配层按设计）、上下文长度限额与截断标记、"冻结目标" 的显式目标对象（当前只冻结选区，不冻结 block 引用本身）。这些仍在 #35 任务1 范围内，留给后续迭代。
+
+### #30：共用的文档工具目录（2026-10-16）
+
+[`lib/usecases/document-tools.ts`](../lib/usecases/document-tools.ts) 新增 `documentToolCatalog`：`{ name, description, parameters, readOnly }[]`，`read_document`/`read_blocks`/`get_context`/`apply_document_operations`/`undo_turn` 五项，描述与 JSON Schema只在这一处定义。
+
+- `realtimeDocumentTools(executor)` 对每一项套上对应的 `run`，供 `@vrealtime/client` 使用（不变）。
+- [`browser-tools.ts`](../lib/usecases/browser-tools.ts)（WebMCP 桥）改为从同一个 catalog 取 `read_document`、`read_blocks`、`apply_document_operations` 三项的 description/parameters/readOnly，不再各写一套；新增注册 `read_blocks`。`get_context`、`undo_turn` 需要 agent turn 身份（`actor`/`turnId`），WebMCP 没有这个概念，不注册。
+- `read_document` 本身拆成两个工具：`read_document` 保留原来的纯文档读取语义（snapshot + docId + agentEdits，WebMCP 和语音层行为一致，只是 WebMCP 版本没有 docId/agentEdits），任务1 新增的大纲/冻结选区/最近编辑移到独立的 `get_context`。
+- `apply_document_operations` 在两条通道里仍然是两套不同的写入路径（WebMCP 走 `engine.executeExternal`，`api` 来源；语音层走 `realtime-executor.ts` 里 `engine.executeAgent` 的可信执行），只是 description 统一成一份、WebMCP 保留自己的 `externalDocumentSchema` 做校验（agent 和 external 的 schema 结构不同，`source`/`actor`/`turnId` 字段不一样，不能共用同一个 JSON Schema）。
 
 ### #35 任务2（部分）：整块插入与删除（2026-10-16）
 
