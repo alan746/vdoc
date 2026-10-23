@@ -6,7 +6,7 @@ import { ParagraphBordersDialog } from './paragraph-borders-dialog';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { EditorContent, useEditor } from '@tiptap/react';
 import type { JSONContent } from '@tiptap/core';
-import { ArrowDownToLine, Check, ChevronRight, CloudOff, FileText, History, Link2, ListTree, Minus, PanelLeftClose, Redo2, RemoveFormatting, Table2, Undo2, X, Quote, Keyboard, CheckCheck } from 'lucide-react';
+import { ArrowDownToLine, Check, ChevronRight, CloudOff, FileText, History, Link2, ListTree, Minus, Redo2, RemoveFormatting, Table2, Undo2, X, Quote, Keyboard, CheckCheck } from 'lucide-react';
 import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { DialogFocusReturnProvider, Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -16,7 +16,6 @@ import { DocumentEngine } from '@/lib/usecases/engine';
 import { RealtimeControls } from './realtime-controls';
 import { registerDocumentTools } from '@/lib/usecases/browser-tools';
 import type { OperationResult } from '@/lib/domain/entities/operation';
-import { documentStatistics, selectionGraphemeCount } from '@/lib/domain/text/unicode';
 import { initialContent } from '@/lib/editor/sample';
 import { exportLocalDocument } from './local-export';
 import { PrintPreview, type PrintSnapshot } from './print-preview';
@@ -41,6 +40,9 @@ import { BackToDocuments } from './back-to-documents';
 import { useDocumentNavigation } from './use-document-navigation';
 import { useDocumentAutosave } from './use-document-autosave';
 import { useLatest } from './use-latest';
+import { useEngineSelector } from './use-engine-selector';
+import { workspaceSelection } from './workspace-selection';
+import { DocumentCharacters, SelectedCharacters, DocumentStatistics, DocumentNotes, DocumentOutline } from './workspace-document';
 import { EditorCallbacks } from './editor-callbacks';
 import { usePreparedExport, PreparedExportFeedback } from './prepared-export';
 import { ExportMenuItems } from './export-menu-items';
@@ -53,18 +55,6 @@ import type { ActiveDocumentRead } from '@/lib/usecases/ports';
 import { applyFromDialog } from './apply-from-dialog';
 
 declare global { interface Window { vdoc?: { execute: DocumentEngine['execute']; snapshot: DocumentEngine['snapshot']; undo: () => OperationResult; redo: () => OperationResult }; } }
-
-type Summary = { headings: { id: string; text: string; level: number; pos: number }[]; chars: number; words: number; notes: { number: number; text: string }[] };
-const summaryCache = new WeakMap<import('@tiptap/pm/model').Node, Summary>();
-function documentSummary(doc: import('@tiptap/pm/model').Node): Summary {
-  const cached = summaryCache.get(doc); if (cached) return cached;
-  const headings: Summary['headings'] = [];
-  const notes: Summary['notes'] = [];
-  doc.descendants((node, pos) => { if (node.type.name === 'footnote') notes.push({ number: node.attrs.number, text: node.attrs.text }); if (node.type.name === 'heading') headings.push({ id: node.attrs.blockId || `${pos}`, text: node.textContent || 'Untitled heading', level: node.attrs.level, pos }); });
-  const statistics = documentStatistics(doc);
-  const result = { headings, notes, chars: statistics.characters, words: statistics.words };
-  summaryCache.set(doc, result); return result;
-}
 
 function Workspace({ saved, recoveryError, onOpen, onHome }: { saved: SavedDocument | null; recoveryError?: string; onOpen: (document: SavedDocument) => void; onHome: () => void }) {
   const { isComposing, hasComposition, subscribe: subscribeComposition, capture: compositionCapture } = useInputComposition();
@@ -87,7 +77,6 @@ function Workspace({ saved, recoveryError, onOpen, onHome }: { saved: SavedDocum
     const result=bus.execute({source,operations:[{type:'format.apply',format}]});
     if(!result.ok)toast.error(result.error);return result.ok;
   },[]);
-  const [, refresh] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(true);
   const [rulerOpen, setRulerOpen] = useState(true);
   const [noteOpen, setNoteOpen] = useState(false), [noteText, setNoteText] = useState('');
@@ -159,12 +148,12 @@ function Workspace({ saved, recoveryError, onOpen, onHome }: { saved: SavedDocum
   useEffect(() => {
     if (!engine) return;
     const bus = engine; engineRef.current = bus;
-    let frame = 0;
-    const unsubscribe = bus.subscribe(() => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => refresh(n => n + 1)); });
     const unregister = registerDocumentTools(bus);
     window.vdoc = { execute: input => bus.executeExternal(input), snapshot: () => bus.snapshot(), undo: () => bus.history('undo', 'api'), redo: () => bus.history('redo', 'api') };
-    return () => { cancelAnimationFrame(frame); unsubscribe(); unregister(); if (engineRef.current === bus) engineRef.current = null; delete window.vdoc; };
+    return () => { unregister(); if (engineRef.current === bus) engineRef.current = null; delete window.vdoc; };
   }, [engine]);
+
+  useEngineSelector(engine, workspaceSelection, '');
 
   const retrySave = useDocumentAutosave(editor, documentId, title, blocked, (status, message) => {
     setSaveStatus(status); setAutosaveBlocked(blocked.current); if (message !== undefined) setWarning(message);
@@ -198,9 +187,7 @@ function Workspace({ saved, recoveryError, onOpen, onHome }: { saved: SavedDocum
     if (capability?.kind === 'document' && capability.delivery === 'prepared') { await preparedExport.request(format); return; }
     await exportLocalDocument(editor, title, format);
   };
-  const { headings, chars, notes, words } = documentSummary(editor.state.doc);
   const documentLanguage = editor.state.doc.attrs.language || 'und';
-  const selectionLength = selectionGraphemeCount(editor.state.doc, editor.state.selection);
 
 
   return <DialogFocusReturnProvider value={event => { event.preventDefault(); restoreEditorFocusAfterMenu(editor, null); }}><TooltipProvider delayDuration={500}><div className="workspace" {...compositionCapture}>
@@ -219,17 +206,17 @@ function Workspace({ saved, recoveryError, onOpen, onHome }: { saved: SavedDocum
     <PreparedExportFeedback state={preparedExport} />
     {warning && <div className="warning-banner" role="alert"><CloudOff size={16} />{warning}{!autosaveBlocked && <button disabled={navigationBusy || saveStatus !== 'Save failed. Download a backup.'} onClick={retrySave}>Retry save</button>}<button onClick={() => exportDoc('json')}>Download backup</button></div>}
     <div className="work-area">
-      {outlineOpen && <aside className="document-outline" aria-label="Document outline"><div className="outline-heading"><span>Document outline</span><button className="quiet-button" aria-label="Collapse outline" onClick={() => setOutlineOpen(false)}><PanelLeftClose size={16} /></button></div><div className="outline-document"><FileText size={16} /><span>{title || UNTITLED_DOCUMENT}</span></div><div className="outline-links">{headings.map(h => <button key={h.id} className={`outline-item level-${h.level} ${editor.state.selection.from >= h.pos && editor.state.selection.from <= h.pos + h.text.length + 2 ? 'current' : ''}`} onClick={() => { editor.commands.setTextSelection(h.pos + 1); engine.clearSelectionBookmark(); editor.view.focus(); editor.view.dom.querySelector(`[data-block-id="${h.id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>{h.text}</button>)}</div><div className="outline-footer"><span className="brand-word">vdoc<span>.</span></span><span>A little room to think.</span></div></aside>}
-      <main className="canvas-scroll" aria-label="Document canvas"><div className="canvas-topline"><button className="breadcrumb" onClick={() => setOutlineOpen(v => !v)}><ListTree size={15} />Document<ChevronRight size={13} /><span>{title || UNTITLED_DOCUMENT}</span></button><span className="editing-label"><span />{committing ? 'Opening document…' : 'Editing'}</span></div><div className="paper-wrap" style={{ zoom: zoom / 100, width: editor.state.doc.attrs.orientation === 'landscape' ? '1120px' : '794px' }}>{rulerOpen && <ParagraphRuler editor={editor} engine={engine} zoom={zoom} />}<div className="paper" lang={documentLanguage === 'und' ? '' : documentLanguage} style={{ background: editor.state.doc.attrs.pageColor }}>{editor.state.doc.attrs.header && <div className="print-header">{editor.state.doc.attrs.header}</div>}<style>{editorBundle.css}</style><EditorContent editor={editor} />{editor.state.doc.attrs.footer && <div className="print-footer">{editor.state.doc.attrs.footer}</div>}{notes.length > 0 && <section className="document-notes" aria-label="Footnotes">{notes.map(note => <p key={note.number}><sup>{note.number}</sup> {note.text}</p>)}</section>}<div className="paper-bottom" aria-hidden="true"><span>VDOC</span><span>Write freely. Think clearly.</span></div></div><p className="canvas-note"><Check size={13} />{autosaveBlocked || warning ? saveStatus : "Changes are saved automatically in this browser"}</p></div></main>
+      {outlineOpen && <DocumentOutline engine={engine} title={title} close={() => setOutlineOpen(false)} />}
+      <main className="canvas-scroll" aria-label="Document canvas"><div className="canvas-topline"><button className="breadcrumb" onClick={() => setOutlineOpen(v => !v)}><ListTree size={15} />Document<ChevronRight size={13} /><span>{title || UNTITLED_DOCUMENT}</span></button><span className="editing-label"><span />{committing ? 'Opening document…' : 'Editing'}</span></div><div className="paper-wrap" style={{ zoom: zoom / 100, width: editor.state.doc.attrs.orientation === 'landscape' ? '1120px' : '794px' }}>{rulerOpen && <ParagraphRuler editor={editor} engine={engine} zoom={zoom} />}<div className="paper" lang={documentLanguage === 'und' ? '' : documentLanguage} style={{ background: editor.state.doc.attrs.pageColor }}>{editor.state.doc.attrs.header && <div className="print-header">{editor.state.doc.attrs.header}</div>}<style>{editorBundle.css}</style><EditorContent editor={editor} />{editor.state.doc.attrs.footer && <div className="print-footer">{editor.state.doc.attrs.footer}</div>}<DocumentNotes engine={engine} /><div className="paper-bottom" aria-hidden="true"><span>VDOC</span><span>Write freely. Think clearly.</span></div></div><p className="canvas-note"><Check size={13} />{autosaveBlocked || warning ? saveStatus : "Changes are saved automatically in this browser"}</p></div></main>
       {historyOpen && <aside className="history-panel"><div className="outline-heading"><span>Edit history</span><button className="quiet-button" aria-label="Close edit history" disabled={navigationBusy} onClick={() => { if (documentNavigation(editor).getSnapshot() === 'idle') setHistoryOpen(false); }}><X size={16} /></button></div><VersionHistory editor={editor} title={title} documentId={documentId} blocked={blocked} onOpen={onOpen} /><p className="panel-description">Formatting and structure changes in this session</p>{engine.records.length ? engine.records.map(record => <div className="history-item" key={record.id}><div className="history-mark"><Check size={12} /></div><div><strong>{record.label}</strong><span>{new Date(record.time).toLocaleTimeString('en-US', { hour12: false })} · {record.source === 'toolbar' ? 'Toolbar' : record.source === 'keyboard' ? 'Shortcuts' : record.source === 'agent' ? 'Agent' : 'API'}</span></div></div>) : <div className="history-empty"><History size={26} /><p>Start with an edit</p><span>Format text or insert a table.<br />Your changes will appear here.</span></div>}</aside>}
     </div>
     <TableHandles editor={editor} engine={engine} />
     <TableTools editor={editor} engine={engine} run={run} ref={tableTools} />
-    <footer className="statusbar"><div><button aria-label="Toggle outline" onClick={() => setOutlineOpen(v => !v)}><ListTree size={15} /></button><span>{chars.toLocaleString("en-US")} characters</span>{selectionLength > 0 && <span>{selectionLength} characters selected</span>}</div><div><span className="local-status">{saveStatus}</span><span className="status-divider" /><button onClick={() => setShortcutsOpen(true)}><Keyboard size={14} />Shortcuts</button><span>{zoom}%</span></div></footer>
+    <footer className="statusbar"><div><button aria-label="Toggle outline" onClick={() => setOutlineOpen(v => !v)}><ListTree size={15} /></button><DocumentCharacters engine={engine} /><SelectedCharacters engine={engine} /></div><div><span className="local-status">{saveStatus}</span><span className="status-divider" /><button onClick={() => setShortcutsOpen(true)}><Keyboard size={14} />Shortcuts</button><span>{zoom}%</span></div></footer>
     <Dialog open={linkOpen} onOpenChange={setLinkOpen}><DialogContent className="vdoc-dialog"><DialogTitle>Insert link</DialogTitle><DialogDescription>Add a web or email address to the selected text.</DialogDescription><form onSubmit={e => { e.preventDefault(); applyFromDialog(engine, [{ type: 'link.set', href }], () => setLinkOpen(false), 'Insert link'); }}><label htmlFor="link-url">Link address</label><input id="link-url" autoFocus value={href} onChange={e => setHref(e.target.value)} /><div className="dialog-actions"><button type="button" className="secondary-button" onClick={() => { run({ type: 'link.unset' }, 'Remove link'); setLinkOpen(false); }}>Remove link</button><button className="export-button" type="submit">Apply link</button></div></form></DialogContent></Dialog>
     <Dialog open={shortcutsOpen} onOpenChange={setShortcutsOpen}><DialogContent className="vdoc-dialog"><DialogTitle>Keyboard shortcuts</DialogTitle><DialogDescription>On Windows and Linux, use Ctrl instead of ⌘ and Alt instead of ⌥.</DialogDescription><div className="shortcut-list">{[['Tab in body text', 'Tab'], ['Tab in a list or table', 'Insert → Tab character'], ['Increase indent', '⌘ ]'], ['Decrease indent', '⌘ ['], ['List level (outside tables)', 'Tab / ⇧ Tab'], ['Table cell navigation', 'Tab / ⇧ Tab'], ['Copy text formatting', '⌘ ⌥ C'], ['Paste text formatting', '⌘ ⌥ V'], ['Bold', '⌘ B'], ['Italic', '⌘ I'], ['Underline', '⌘ U'], ['Undo', '⌘ Z'], ['Redo', '⌘ ⇧ Z'], ['Heading 1 / 2 / 3', '⌘ ⌥ 1 / 2 / 3'], ['Numbered list', '⌘ ⇧ 7'], ['Bulleted list', '⌘ ⇧ 8']].map(([label, key]) => <div key={label}><span>{label}</span><kbd>{key}</kbd></div>)}</div></DialogContent></Dialog>
     <Dialog open={noteOpen} onOpenChange={setNoteOpen}><DialogContent className="vdoc-dialog"><DialogTitle>Insert footnote</DialogTitle><DialogDescription>References are numbered in document order. Notes appear at the end of the continuous canvas and export as Word footnotes.</DialogDescription><form onSubmit={e => { e.preventDefault(); applyFromDialog(engine, [{ type: editor.isActive('footnote') ? 'footnote.update' : 'footnote.insert', text: noteText }], () => setNoteOpen(false)); }}><textarea aria-label="Footnote text" value={noteText} maxLength={5000} required onChange={e => setNoteText(e.target.value)} /><button className="export-button" type="submit">Insert footnote</button></form></DialogContent></Dialog>
-    <Dialog open={statisticsOpen} onOpenChange={setStatisticsOpen}><DialogContent className="vdoc-dialog"><DialogTitle>Word count</DialogTitle><DialogDescription>Counts cover the document body. Characters count visible text clusters; words use browser Unicode segmentation. Results may vary by browser.</DialogDescription><p>{words.toLocaleString('en-US')} words · {chars.toLocaleString('en-US')} characters without spaces</p><p>{selectionLength.toLocaleString('en-US')} characters selected</p></DialogContent></Dialog>
+    <Dialog open={statisticsOpen} onOpenChange={setStatisticsOpen}><DialogContent className="vdoc-dialog"><DialogTitle>Word count</DialogTitle><DialogDescription>Counts cover the document body. Characters count visible text clusters; words use browser Unicode segmentation. Results may vary by browser.</DialogDescription><DocumentStatistics engine={engine} /></DialogContent></Dialog>
 
     {printSnapshot && <PrintPreview snapshot={printSnapshot} close={() => setPrintSnapshot(null)} />}
     <LanguageDialog open={languageOpen} close={() => setLanguageOpen(false)} engine={engine} />
