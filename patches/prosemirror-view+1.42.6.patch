@@ -1,0 +1,86 @@
+diff --git a/node_modules/prosemirror-view/dist/index.cjs b/node_modules/prosemirror-view/dist/index.cjs
+index d52a526..77d0a61 100644
+--- a/node_modules/prosemirror-view/dist/index.cjs
++++ b/node_modules/prosemirror-view/dist/index.cjs
+@@ -3916,10 +3916,21 @@ var DecorationSet = function () {
+   }, {
+     key: "mapInner",
+     value: function mapInner(mapping, node, offset, oldOffset, options) {
+-      var newLocal;
++      var newLocal,
++        index = 0,
++        pos = 0;
++      // vdoc#85: locals stay sorted by start through a mapping, so node
++      // decorations are checked with one forward cursor over the children
++      // instead of a linear findIndex per decoration.
++      var validNode = function validNode(span) {
++        if (span.from < pos) index = pos = 0;
++        while (index < node.childCount && pos + node.child(index).nodeSize <= span.from) pos += node.child(index++).nodeSize;
++        var child = index < node.childCount ? node.child(index) : null;
++        return !!child && pos == span.from && !child.isText && pos + child.nodeSize == span.to;
++      };
+       for (var i = 0; i < this.local.length; i++) {
+         var mapped = this.local[i].map(mapping, offset, oldOffset);
+-        if (mapped && mapped.type.valid(node, mapped)) (newLocal || (newLocal = [])).push(mapped);else if (options.onRemove) options.onRemove(this.local[i].spec);
++        if (mapped && (mapped.type instanceof NodeType ? validNode(mapped) : mapped.type.valid(node, mapped))) (newLocal || (newLocal = [])).push(mapped);else if (options.onRemove) options.onRemove(this.local[i].spec);
+       }
+       if (this.children.length) return mapChildren(this.children, newLocal || [], mapping, node, offset, oldOffset, options);else return newLocal ? new DecorationSet(newLocal.sort(byPos), none) : empty;
+     }
+@@ -4001,8 +4012,13 @@ var DecorationSet = function () {
+       }
+       var start = offset + 1,
+         end = start + node.content.size;
+-      for (var _i9 = 0; _i9 < this.local.length; _i9++) {
+-        var dec = this.local[_i9];
++      // vdoc#85: only inline decorations are sliced into a child, so scan
++      // just those (cached per set) instead of every local decoration.
++      var inline = this.inlineLocals || (this.inlineLocals = this.local.filter(function (dec) {
++        return dec.type instanceof InlineType;
++      }));
++      for (var _i9 = 0; _i9 < inline.length; _i9++) {
++        var dec = inline[_i9];
+         if (dec.from < end && dec.to > start && dec.type instanceof InlineType) {
+           var from = Math.max(start, dec.from) - start,
+             to = Math.min(end, dec.to) - start;
+diff --git a/node_modules/prosemirror-view/dist/index.js b/node_modules/prosemirror-view/dist/index.js
+index dc0d117..f2abda2 100644
+--- a/node_modules/prosemirror-view/dist/index.js
++++ b/node_modules/prosemirror-view/dist/index.js
+@@ -4196,10 +4196,21 @@ class DecorationSet {
+     @internal
+     */
+     mapInner(mapping, node, offset, oldOffset, options) {
+-        let newLocal;
++        let newLocal, index = 0, pos = 0;
++        // vdoc#85: locals stay sorted by start through a mapping, so node
++        // decorations are checked with one forward cursor over the children
++        // instead of a linear findIndex per decoration.
++        let validNode = (span) => {
++            if (span.from < pos)
++                index = pos = 0;
++            while (index < node.childCount && pos + node.child(index).nodeSize <= span.from)
++                pos += node.child(index++).nodeSize;
++            let child = index < node.childCount ? node.child(index) : null;
++            return !!child && pos == span.from && !child.isText && pos + child.nodeSize == span.to;
++        };
+         for (let i = 0; i < this.local.length; i++) {
+             let mapped = this.local[i].map(mapping, offset, oldOffset);
+-            if (mapped && mapped.type.valid(node, mapped))
++            if (mapped && (mapped.type instanceof NodeType ? validNode(mapped) : mapped.type.valid(node, mapped)))
+                 (newLocal || (newLocal = [])).push(mapped);
+             else if (options.onRemove)
+                 options.onRemove(this.local[i].spec);
+@@ -4305,8 +4316,11 @@ class DecorationSet {
+                 break;
+             }
+         let start = offset + 1, end = start + node.content.size;
+-        for (let i = 0; i < this.local.length; i++) {
+-            let dec = this.local[i];
++        // vdoc#85: only inline decorations are sliced into a child, so scan
++        // just those (cached per set) instead of every local decoration.
++        let inline = this.inlineLocals || (this.inlineLocals = this.local.filter(dec => dec.type instanceof InlineType));
++        for (let i = 0; i < inline.length; i++) {
++            let dec = inline[i];
+             if (dec.from < end && dec.to > start && (dec.type instanceof InlineType)) {
+                 let from = Math.max(start, dec.from) - start, to = Math.min(end, dec.to) - start;
+                 if (from < to)
