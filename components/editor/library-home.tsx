@@ -35,7 +35,8 @@ export function LibraryHome({ onOpen, recoveryError }: { onOpen: (document: Save
   const [deleteTarget, setDeleteTarget] = useState<LibraryItem | null>(null);
   const cancelDelete = useRef<HTMLButtonElement>(null);
   useEffect(() => { try { sessionStorage.setItem('vdoc.library.view', JSON.stringify({ scope, parentId, query, sort, view })); } catch { /* Navigation remains usable without preferences. */ } }, [scope, parentId, query, sort, view]);
-  useEffect(() => { if (!loading && !error && parentId && !items.some(item => item.id === parentId && item.kind === 'folder' && !item.trash)) setParentId(null); }, [items, loading, error, parentId]);
+  // Leave a folder that was deleted, trashed or never loaded.
+  if (!loading && !error && parentId && !items.some(item => item.id === parentId && item.kind === 'folder' && !item.trash)) setParentId(null);
   const refresh = async () => { const next = await library.list(); if (mounted.current) { libraryUnavailable.current = false; setItems(next); setError(''); } };
   useEffect(() => { let live = true; library.list().then(data => { if (live) { libraryUnavailable.current = false; setItems(data); setLoading(false); } }).catch(() => { if (live) { libraryUnavailable.current = true; setError('Your local library could not be opened. Retry loading to try again.'); setLoading(false); } }); return () => { live = false; }; }, []);
   // Retrying the list must never replay a mutation that already committed.

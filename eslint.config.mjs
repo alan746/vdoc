@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local production build output (gitignored).
+    "dist/**",
     // Archived acceptance evidence (old source snapshots, captured scripts).
     // Already excluded from vitest and tsconfig; it is not live code.
     "tests/fixtures/**",
@@ -21,12 +23,11 @@ const eslintConfig = defineConfig([
     rules: {
       // A leading underscore marks an intentionally unused binding (callback parameters, destructured omissions).
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_" }],
-      // React Compiler readiness rules. The compiler is not enabled, and the editor relies on the
-      // "latest ref" pattern for IME/autosave safety; keep these visible as warnings until those
-      // components move off that pattern.
-      "react-hooks/refs": "warn",
-      "react-hooks/set-state-in-effect": "warn",
-      "react-hooks/globals": "warn",
+      // React Compiler readiness rules (Q-cell2/vdoc#14). Latest values for handlers go through
+      // useLatest (components/editor/use-latest.ts), never a ref written during render.
+      "react-hooks/refs": "error",
+      "react-hooks/set-state-in-effect": "error",
+      "react-hooks/globals": "error",
     },
   },
   {

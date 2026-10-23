@@ -1,4 +1,4 @@
-import { act, createElement, useEffect, useRef, useState } from 'react';
+import { act, createElement, useCallback, useRef, useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
@@ -17,11 +17,10 @@ function TemporaryField() {
 }
 function Harness() {
   const [title, setTitle] = useState('Original title'), [status, setStatus] = useState('');
-  const body = useRef<HTMLDivElement>(null), blocked = useRef(false);
+  const body = useCallback((node: HTMLDivElement | null) => { node?.appendChild(editor.view.dom); }, []), blocked = useRef(false);
   const composition = useInputComposition();
   useDocumentAutosave(editor, 'composition-test', title, blocked, value => setStatus(value),
     { active: composition.hasComposition, subscribe: composition.subscribe });
-  useEffect(() => { body.current!.appendChild(editor.view.dom); }, []);
   return createElement('div', composition.capture,
     createElement('input', { 'aria-label': 'Title', value: title, onChange: e => setTitle(e.target.value) }),
     createElement(TemporaryField),

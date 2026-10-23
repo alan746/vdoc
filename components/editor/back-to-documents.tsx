@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import { FileText } from 'lucide-react';
 import { toast } from 'sonner';
@@ -9,12 +9,12 @@ import { assertAutosaveActive, type SaveBlock } from '@/lib/usecases/document-na
 import { documents } from '@/lib/composition/repositories';
 import { documentTitle } from '@/lib/domain/entities/document';
 import { useMounted } from './use-mounted';
+import { useLatest } from './use-latest';
 
 export function BackToDocuments({ editor, title, documentId, blocked, onHome }: {
   editor: Editor; title: string; documentId: string; blocked: SaveBlock; onHome: () => void;
 }) {
-  const current = useRef({ title, blocked, onHome });
-  current.current = { title, blocked, onHome };
+  const current = useLatest({ title, blocked, onHome });
   const mounted = useMounted();
   const { navigation, busy } = useDocumentNavigation(editor);
   const [saving, setSaving] = useState(false);

@@ -1,6 +1,6 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
-import { act, createElement, useEffect, useState } from 'react';
+import { act, createElement, useEffect, useLayoutEffect, useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor, type JSONContent } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
@@ -31,7 +31,7 @@ const mixed: JSONContent = { type: 'doc', attrs: { header: 'Header 中文', foot
 ] };
 function Workspace({ saved, open }: { saved: SavedDocument; open: (value: SavedDocument) => void }) {
   const [instance] = useState(() => new Editor({ extensions: createExtensions(), content: saved.content }));
-  editor = instance;
+  useLayoutEffect(() => { editor = instance; }, [instance]);
   useEffect(() => {
     controller = autosave.startAutosave(instance, saved.id!, { getTitle: () => saved.title, blocked: { current: false }, report });
     return () => { controller.dispose(); instance.destroy(); };
@@ -40,7 +40,7 @@ function Workspace({ saved, open }: { saved: SavedDocument; open: (value: SavedD
 }
 function Harness() {
   const [state, setState] = useState({ saved: initial, generation: 0 });
-  generation = state.generation;
+  useLayoutEffect(() => { generation = state.generation; }, [state.generation]);
   return createElement(Workspace, { key: state.generation, saved: state.saved, open: saved => setState(previous => ({ saved, generation: previous.generation + 1 })) });
 }
 beforeEach(async () => {

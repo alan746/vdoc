@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { selectedRect } from '@tiptap/pm/tables';
 import { toast } from 'sonner';
 import type { DocumentEngine } from '@/lib/usecases/engine';
@@ -9,14 +9,15 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import { applyFromDialog } from './apply-from-dialog';
 
 export function TableBordersDialog({ engine, open, close }: { engine: DocumentEngine; open: boolean; close: () => void }) {
+  return <Dialog open={open} onOpenChange={value=>{if(!value)close();}}><DialogContent className="vdoc-dialog"><TableBordersForm engine={engine} close={close} /></DialogContent></Dialog>;
+}
+
+// Mounted only while the dialog is open, so each opening reads the selected cell.
+function TableBordersForm({ engine, close }: { engine: DocumentEngine; close: () => void }) {
+  const [border] = useState(() => { const editor=engine.editor; return cellBorder(editor.getAttributes(editor.isActive('tableHeader')?'tableHeader':'tableCell'),'top'); });
   const [scope, setScope] = useState<BorderScope>('all');
-  const [color, setColor] = useState('#DCE3ED'), [width, setWidth] = useState(1), [style, setStyle] = useState<'solid' | 'dashed' | 'dotted'>('solid');
-  useEffect(()=>{
-    if (!open) return;
-    const editor=engine.editor, attrs=editor.getAttributes(editor.isActive('tableHeader')?'tableHeader':'tableCell'), border=cellBorder(attrs,'top');
-    setScope('all');setColor(colorToHex(border.color)||'#DCE3ED');setWidth(border.width);setStyle(border.style);
-  },[engine,open]);
-  return <Dialog open={open} onOpenChange={value=>{if(!value)close();}}><DialogContent className="vdoc-dialog"><DialogTitle>Table borders</DialogTitle><DialogDescription>Choose borders around or inside the selected cells. Shared edges update on both sides. Set width to 0 to remove a border.</DialogDescription>
+  const [color, setColor] = useState(colorToHex(border.color)||'#DCE3ED'), [width, setWidth] = useState(border.width), [style, setStyle] = useState<'solid' | 'dashed' | 'dotted'>(border.style);
+  return <><DialogTitle>Table borders</DialogTitle><DialogDescription>Choose borders around or inside the selected cells. Shared edges update on both sides. Set width to 0 to remove a border.</DialogDescription>
     <form className="properties-form" onSubmit={e=>{
       e.preventDefault(); const rect=selectedRect(engine.editor.state), changes=tableBorderChanges(rect.table,rect,scope,{color,width,style});
       if(!changes){toast.error('This border touches part of a merged cell. Expand the selection or unmerge it first.');return;}
@@ -29,5 +30,5 @@ export function TableBordersDialog({ engine, open, close }: { engine: DocumentEn
       <label>Border color<input type="color" value={color} onChange={e=>setColor(e.target.value)} /></label>
       <button type="submit" className="export-button">Apply</button>
     </form>
-  </DialogContent></Dialog>;
+  </>;
 }

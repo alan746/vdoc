@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useEffectEvent, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type Ref } from 'react';
 import type { Editor } from '@tiptap/core';
 import { CellSelection, selectedRect } from '@tiptap/pm/tables';
 import { X, ChevronDown, Table2, Plus, Search } from 'lucide-react';
@@ -70,14 +70,21 @@ export function FindPanel({ editor, engine, close, focusRequest = 0, zoom = 100 
     cancelAnimationFrame(scrollFrame.current);
     highlightSearchMatches(editor, [], -1);
   }, [editor]);
-  const navigate = (next: number, explicit = true) => {
-    if (editor.view.composing || (explicit && composition.hasComposition())) return;
-    if (!matches.length || editor.state.doc !== searchDocument) return;
-    const position = (next + matches.length) % matches.length; setIndex(position);
+  // Moves the editor selection to a match; the caller owns the index state.
+  const selectMatch = (position: number, explicit: boolean) => {
+    if (editor.view.composing || (explicit && composition.hasComposition())) return false;
+    if (!matches.length || editor.state.doc !== searchDocument) return false;
     highlightSearchMatches(editor, matches, position);
     engine.clearSelectionBookmark(); editor.commands.setTextSelection(matches[position]); reveal(matches[position].from);
+    return true;
   };
-  useEffect(() => { if (matches.length) navigate(0, false); }, [query, sensitive, wholeWord]);
+  const navigate = (next: number) => {
+    const position = (next + matches.length) % matches.length;
+    if (selectMatch(position, true)) setIndex(position);
+  };
+  // New search terms restart at the first match (the handlers reset the index).
+  const selectFirstMatch = useEffectEvent(() => { selectMatch(0, false); });
+  useEffect(() => { selectFirstMatch(); }, [query, sensitive, wholeWord]);
   const inputReady = () => {
     // Button activation is not always preceded by blur/compositionend. Keep
     // candidate text local until the input method has finished committing it.
@@ -118,7 +125,7 @@ export function FindPanel({ editor, engine, close, focusRequest = 0, zoom = 100 
   return <section className="find-panel" aria-label="Find and replace" {...composition.capture} onKeyDown={event => {
     if (event.key !== 'Escape' || composition.isComposing(event.nativeEvent)) return;
     event.preventDefault(); event.stopPropagation(); closePanel();
-  }}><Search size={16} /><input ref={findInput} autoFocus aria-label="Find text" placeholder="Find in document" value={query} onChange={e => { setQuery(e.target.value); setIndex(0); }} onKeyDown={e => { if (composition.isComposing(e.nativeEvent)) return; if (e.key === 'Enter') { e.preventDefault(); navigate(currentIndex + (e.shiftKey ? -1 : 1)); } }} /><span role="status">{matches.length ? `${currentIndex + 1} of ${matches.length}` : 'No matches'}</span><button disabled={!matches.length} onClick={() => navigate(currentIndex - 1)}>Previous</button><button disabled={!matches.length} onClick={() => navigate(currentIndex + 1)}>Next</button><input aria-label="Replace with" placeholder="Replace with" value={replacement} onChange={e => setReplacement(e.target.value)} /><button disabled={!matches.length} onClick={() => replace(false)}>Replace</button><button disabled={!matches.length} onClick={() => replace(true)}>Replace all</button><label><input type="checkbox" checked={sensitive} onChange={e => setSensitive(e.target.checked)} />Match case</label><label><input type="checkbox" checked={wholeWord} onChange={e => setWholeWord(e.target.checked)} />Whole word</label><button aria-label="Close find and replace" onClick={closePanel}><X size={16} /></button></section>;
+  }}><Search size={16} /><input ref={findInput} autoFocus aria-label="Find text" placeholder="Find in document" value={query} onChange={e => { setQuery(e.target.value); setIndex(0); }} onKeyDown={e => { if (composition.isComposing(e.nativeEvent)) return; if (e.key === 'Enter') { e.preventDefault(); navigate(currentIndex + (e.shiftKey ? -1 : 1)); } }} /><span role="status">{matches.length ? `${currentIndex + 1} of ${matches.length}` : 'No matches'}</span><button disabled={!matches.length} onClick={() => navigate(currentIndex - 1)}>Previous</button><button disabled={!matches.length} onClick={() => navigate(currentIndex + 1)}>Next</button><input aria-label="Replace with" placeholder="Replace with" value={replacement} onChange={e => setReplacement(e.target.value)} /><button disabled={!matches.length} onClick={() => replace(false)}>Replace</button><button disabled={!matches.length} onClick={() => replace(true)}>Replace all</button><label><input type="checkbox" checked={sensitive} onChange={e => { setSensitive(e.target.checked); setIndex(0); }} />Match case</label><label><input type="checkbox" checked={wholeWord} onChange={e => { setWholeWord(e.target.checked); setIndex(0); }} />Whole word</label><button aria-label="Close find and replace" onClick={closePanel}><X size={16} /></button></section>;
 }
 
 // Imported dimensions may be narrower, larger or fractional. Unchanged values
@@ -127,16 +134,15 @@ function dimensionConstraints(value: number, initial: number | undefined, min: n
   return value === initial ? { step: 'any' } : { min, max, step: 1 };
 }
 
-export function TableTools({ editor, engine, run, propertiesRequest = 0 }: { editor: Editor; engine: DocumentEngine; run: Run; propertiesRequest?: number }) {
+export type TableToolsHandle = { openProperties: () => void };
+
+export function TableTools({ editor, engine, run, ref }: { editor: Editor; engine: DocumentEngine; run: Run; ref?: Ref<TableToolsHandle> }) {
   const menuRef = useRef<HTMLDivElement>(null);
   const [bordersOpen, setBordersOpen] = useState(false);
-  const initialProperties = useRef<CellProperties | null>(null);
-  const initialRowBreak = useRef('keep');
+  // Values when the properties dialog opened; only fields changed from these apply.
+  const [initial, setInitial] = useState<{ properties: CellProperties; rowBreak: string; direction: string; alignment: string; pinnedRows: number } | null>(null);
   const [rowBreak, setRowBreak] = useState('keep');
-  const initialDirection = useRef('ltr');
   const [columnDirection, setColumnDirection] = useState<'ltr' | 'rtl'>('ltr');
-  const initialAlignment = useRef('left');
-  const initialPinnedRows = useRef(0);
   const [pinnedRows, setPinnedRows] = useState(0);
   const [alignment, setAlignment] = useState<'left' | 'center' | 'right'>('left');
   const [borderStyle, setBorderStyle] = useState<'solid' | 'dashed' | 'dotted'>('solid');
@@ -191,20 +197,17 @@ export function TableTools({ editor, engine, run, propertiesRequest = 0 }: { edi
     let borderColor = attrs.borderColor || '#DCE3ED';
     const rgb = borderColor.match(/^rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\s*\)$/);
     if (rgb) borderColor = '#' + rgb.slice(1).map((n:string)=>Number(n).toString(16).padStart(2,'0')).join('');
-    const initial: CellProperties = {borderStyle:attrs.borderStyle || 'solid',padding:attrs.padding ?? 10,minHeight:Math.max(attrs.minHeight || 0, rect.table.child(rect.top).attrs.minHeight || 0),borderWidth:attrs.borderWidth ?? 1,borderColor,verticalAlign:attrs.verticalAlign || 'top',width:currentWidths()[rect.left]};
-    initialProperties.current = initial;
+    const properties: CellProperties = {borderStyle:attrs.borderStyle || 'solid',padding:attrs.padding ?? 10,minHeight:Math.max(attrs.minHeight || 0, rect.table.child(rect.top).attrs.minHeight || 0),borderWidth:attrs.borderWidth ?? 1,borderColor,verticalAlign:attrs.verticalAlign || 'top',width:currentWidths()[rect.left]};
     const breaks = Array.from({ length: rect.bottom - rect.top }, (_, i) => rect.table.child(rect.top + i).attrs.allowSplit === true);
-    initialRowBreak.current = breaks.every(value => value === breaks[0]) ? breaks[0] ? 'allow' : 'keep' : 'mixed';
-    setRowBreak(initialRowBreak.current);
-    initialDirection.current = rect.table.attrs.columnDirection || 'ltr'; setColumnDirection(initialDirection.current as 'ltr' | 'rtl');
-    initialAlignment.current = rect.table.attrs.alignment || 'left';
-    initialPinnedRows.current = pinnedRowCount(rect.table); setPinnedRows(initialPinnedRows.current);
-    setAlignment(initialAlignment.current as typeof alignment); setBorderStyle(initial.borderStyle || 'solid');
-    setPadding(initial.padding); setHeight(initial.minHeight); setBorder(initial.borderWidth); setColor(initial.borderColor); setVertical(initial.verticalAlign); setWidth(initial.width); setProperties(true); setMenu(null);
+    const next = { properties, rowBreak: breaks.every(value => value === breaks[0]) ? breaks[0] ? 'allow' : 'keep' : 'mixed',
+      direction: rect.table.attrs.columnDirection || 'ltr', alignment: rect.table.attrs.alignment || 'left', pinnedRows: pinnedRowCount(rect.table) };
+    setInitial(next);
+    setRowBreak(next.rowBreak); setColumnDirection(next.direction as 'ltr' | 'rtl'); setPinnedRows(next.pinnedRows);
+    setAlignment(next.alignment as typeof alignment); setBorderStyle(properties.borderStyle || 'solid');
+    setPadding(properties.padding); setHeight(properties.minHeight); setBorder(properties.borderWidth); setColor(properties.borderColor); setVertical(properties.verticalAlign); setWidth(properties.width); setProperties(true); setMenu(null);
   };
-  useEffect(() => {
-    if (propertiesRequest) openProperties();
-  }, [propertiesRequest]);
+  // Lets the Format menu open the dialog from its own selection event.
+  useImperativeHandle(ref, () => ({ openProperties }));
   if (!editor.isActive('table')) return null;
   const rect = selectedRect(editor.state);
   const rtl = rect.table.attrs.columnDirection === 'rtl';
@@ -265,16 +268,16 @@ export function TableTools({ editor, engine, run, propertiesRequest = 0 }: { edi
     <TableBordersDialog engine={engine} open={bordersOpen} close={()=>setBordersOpen(false)} />
     <Dialog open={splitOpen} onOpenChange={setSplitOpen}><DialogContent className="vdoc-dialog"><DialogTitle>Split cell</DialogTitle><DialogDescription>Divide one ordinary cell into a grid. Unmerge merged cells first. Neighboring cells keep their content.</DialogDescription><form className="properties-form" onSubmit={e => { e.preventDefault(); applyFromDialog(engine, [{ type: 'table.split', rows: splitRows, cols: splitCols }], () => setSplitOpen(false)); }}><label>Rows<input type="number" min="1" max="10" value={splitRows} onChange={e => setSplitRows(+e.target.value)} /></label><label>Columns<input type="number" min="1" max="10" value={splitCols} onChange={e => setSplitCols(+e.target.value)} /></label><button type="submit" className="export-button">Split</button></form></DialogContent></Dialog>
     <Dialog open={properties} onOpenChange={setProperties}><DialogContent className="vdoc-dialog"><DialogTitle>Table properties</DialogTitle><DialogDescription>Alignment applies to the whole table. Cell formatting applies to selected cells; width applies to selected columns.</DialogDescription><form className="properties-form" onSubmit={e => { e.preventDefault();
-      const operations = tablePropertyOperations(initialProperties.current!, {width,padding,borderStyle,borderWidth:border,borderColor:color,minHeight:height,verticalAlign:vertical}, currentWidths(),rect.left,rect.right);
-      if (rowBreak !== 'mixed' && rowBreak !== initialRowBreak.current) operations.push({type:'table.rowBreak',from:rect.top,to:rect.bottom,allowSplit:rowBreak === 'allow'});
-      if (columnDirection !== initialDirection.current) operations.push({type:'table.direction',direction:columnDirection});
-      if (alignment !== initialAlignment.current) operations.push({type:'table.layout',alignment});
-      if (pinnedRows !== initialPinnedRows.current) {
+      const operations = tablePropertyOperations(initial!.properties, {width,padding,borderStyle,borderWidth:border,borderColor:color,minHeight:height,verticalAlign:vertical}, currentWidths(),rect.left,rect.right);
+      if (rowBreak !== 'mixed' && rowBreak !== initial!.rowBreak) operations.push({type:'table.rowBreak',from:rect.top,to:rect.bottom,allowSplit:rowBreak === 'allow'});
+      if (columnDirection !== initial!.direction) operations.push({type:'table.direction',direction:columnDirection});
+      if (alignment !== initial!.alignment) operations.push({type:'table.layout',alignment});
+      if (pinnedRows !== initial!.pinnedRows) {
         if (completePinnedBoundary(rect.table,pinnedRows) !== pinnedRows) { toast.error('Include all rows touched by merged header cells.'); return; }
         operations.push({type:'table.pinRows',count:pinnedRows});
       }
       if (!operations.length) { setProperties(false); return; }
       applyFromDialog(engine, operations, () => setProperties(false));
-    }}><label>Column order<select value={columnDirection} onChange={e => setColumnDirection(e.target.value as typeof columnDirection)}><option value="ltr">Left-to-right</option><option value="rtl">Right-to-left</option></select></label><label>Table alignment<select value={alignment} onChange={e => setAlignment(e.target.value as typeof alignment)}><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select></label><label>Pinned header rows<input type="number" min="0" max={rect.map.height} value={pinnedRows} onChange={e => setPinnedRows(+e.target.value)} aria-describedby="pinned-header-help" /></label><p id="pinned-header-help" className="field-help">Keep the first rows visible and exclude them from sorting. Enter 0 to unpin. Headers taller than the viewport scroll normally.</p><label className="wide-field">Row page breaks<select aria-describedby="row-break-help" value={rowBreak} onChange={e => setRowBreak(e.target.value)}>{initialRowBreak.current === 'mixed' && <option value="mixed">Mixed — keep existing settings</option>}<option value="keep">Keep each selected row on one page</option><option value="allow">Allow each selected row to split</option></select></label><p id="row-break-help" className="field-help">Applies to each selected row in print and Word export. The editor remains a continuous canvas. Rows taller than a page may still split.</p><label>Column width (px)<input type="number" {...dimensionConstraints(width, initialProperties.current?.width, 40, 1200)} value={width} onChange={e => setWidth(+e.target.value)} /></label><label>Minimum row height (px)<input type="number" {...dimensionConstraints(height, initialProperties.current?.minHeight, 0, 1000)} value={height} onChange={e => setHeight(+e.target.value)} /></label><label>Cell padding (px)<input type="number" {...dimensionConstraints(padding, initialProperties.current?.padding, 0, 40)} value={padding} onChange={e => setPadding(+e.target.value)} /></label><label>Border width (px)<input type="number" {...dimensionConstraints(border, initialProperties.current?.borderWidth, 0, 8)} value={border} onChange={e => setBorder(+e.target.value)} /></label><label>Border style<select value={borderStyle} onChange={e => setBorderStyle(e.target.value as typeof borderStyle)}><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select></label><label>Border color<input type="color" value={color} onChange={e => setColor(e.target.value)} /></label><label>Vertical alignment<select value={vertical} onChange={e => setVertical(e.target.value as typeof vertical)}><option value="top">Top</option><option value="middle">Middle</option><option value="bottom">Bottom</option></select></label><button type="submit" className="export-button">Apply</button></form></DialogContent></Dialog>
+    }}><label>Column order<select value={columnDirection} onChange={e => setColumnDirection(e.target.value as typeof columnDirection)}><option value="ltr">Left-to-right</option><option value="rtl">Right-to-left</option></select></label><label>Table alignment<select value={alignment} onChange={e => setAlignment(e.target.value as typeof alignment)}><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select></label><label>Pinned header rows<input type="number" min="0" max={rect.map.height} value={pinnedRows} onChange={e => setPinnedRows(+e.target.value)} aria-describedby="pinned-header-help" /></label><p id="pinned-header-help" className="field-help">Keep the first rows visible and exclude them from sorting. Enter 0 to unpin. Headers taller than the viewport scroll normally.</p><label className="wide-field">Row page breaks<select aria-describedby="row-break-help" value={rowBreak} onChange={e => setRowBreak(e.target.value)}>{initial?.rowBreak === 'mixed' && <option value="mixed">Mixed — keep existing settings</option>}<option value="keep">Keep each selected row on one page</option><option value="allow">Allow each selected row to split</option></select></label><p id="row-break-help" className="field-help">Applies to each selected row in print and Word export. The editor remains a continuous canvas. Rows taller than a page may still split.</p><label>Column width (px)<input type="number" {...dimensionConstraints(width, initial?.properties.width, 40, 1200)} value={width} onChange={e => setWidth(+e.target.value)} /></label><label>Minimum row height (px)<input type="number" {...dimensionConstraints(height, initial?.properties.minHeight, 0, 1000)} value={height} onChange={e => setHeight(+e.target.value)} /></label><label>Cell padding (px)<input type="number" {...dimensionConstraints(padding, initial?.properties.padding, 0, 40)} value={padding} onChange={e => setPadding(+e.target.value)} /></label><label>Border width (px)<input type="number" {...dimensionConstraints(border, initial?.properties.borderWidth, 0, 8)} value={border} onChange={e => setBorder(+e.target.value)} /></label><label>Border style<select value={borderStyle} onChange={e => setBorderStyle(e.target.value as typeof borderStyle)}><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select></label><label>Border color<input type="color" value={color} onChange={e => setColor(e.target.value)} /></label><label>Vertical alignment<select value={vertical} onChange={e => setVertical(e.target.value as typeof vertical)}><option value="top">Top</option><option value="middle">Middle</option><option value="bottom">Bottom</option></select></label><button type="submit" className="export-button">Apply</button></form></DialogContent></Dialog>
   </>;
 }

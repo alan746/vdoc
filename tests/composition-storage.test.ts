@@ -1,11 +1,12 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
-import { act, createElement, useEffect, useRef, useState } from 'react';
+import { act, createElement, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { createExtensions } from '../lib/editor/extensions';
 import { useInputComposition } from '../components/editor/use-input-composition';
+import { useLatest } from '../components/editor/use-latest';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '../components/ui/dialog';
 import type { startAutosave } from '../lib/composition/autosave';
 
@@ -18,18 +19,18 @@ const report = vi.fn();
 let currentTitle: string;
 function Harness() {
   const [title, setTitle] = useState('Baseline'), [open, setOpen] = useState(false);
-  currentTitle = title;
-  const titleRef = useRef(title); titleRef.current = title;
-  const body = useRef<HTMLDivElement>(null), composition = useInputComposition();
+  useLayoutEffect(() => { currentTitle = title; }, [title]);
+  const titleRef = useLatest(title);
+  const body = useCallback((node: HTMLDivElement | null) => { node?.appendChild(editor.view.dom); }, []);
+  const composition = useInputComposition();
   useEffect(() => {
-    body.current!.appendChild(editor.view.dom);
     const unregister = navigation.registerCompositionGuard(composition.hasComposition);
     controller = autosave.startAutosave(editor, 'composition-storage', {
       getTitle: () => titleRef.current, blocked: { current: false }, report,
       composition: { active: composition.hasComposition, subscribe: composition.subscribe },
     });
     return () => { controller.dispose(); unregister(); };
-  }, [composition.hasComposition, composition.subscribe]);
+  }, [composition.hasComposition, composition.subscribe, titleRef]);
   useEffect(() => { controller.schedule(); }, [title]);
   return createElement('div', composition.capture,
     createElement('input', { 'aria-label': 'Title', value: title, onChange: e => setTitle(e.target.value) }),

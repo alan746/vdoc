@@ -14,6 +14,7 @@ import { notifyDocumentImport } from './import-feedback';
 import { documents as documentRepository, library as libraryRepository } from '@/lib/composition/repositories';
 import { type DocumentSummary, type LibraryItem, type SavedDocument, blankDocument, documentTitle, UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
 import { useMounted } from './use-mounted';
+import { useLatest } from './use-latest';
 import { DocumentImportInput } from './document-import-input';
 import { ExportMenuItems } from './export-menu-items';
 
@@ -35,8 +36,7 @@ export function LocalDocuments({ exportBusy = false, editor, title, blocked, doc
   const [documents, setDocuments] = useState<(DocumentSummary & { location: string })[]>([]);
   const { navigation, busy } = useDocumentNavigation(editor);
   const file = useRef<HTMLInputElement>(null);
-  const mounted = useMounted(), current = useRef({ title, blocked });
-  current.current = { title, blocked };
+  const mounted = useMounted(), current = useLatest({ title, blocked });
   const perform = async (work: () => Promise<void>, fallback = 'The document could not be opened.') => {
     // A ref closes the same-event gap before React commits disabled controls.
     if (!mounted.current || !navigation!.acquire()) return;

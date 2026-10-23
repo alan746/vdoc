@@ -1,6 +1,6 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
-import { act, createElement, useEffect, useState } from 'react';
+import { act, createElement, useEffect, useLayoutEffect, useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
@@ -22,7 +22,7 @@ let initial: SavedDocument, activeId: string, generation: number;
 const report = vi.fn();
 function Workspace({ saved, open }: { saved: SavedDocument; open: (value: SavedDocument) => void }) {
   const [instance] = useState(() => new Editor({ extensions: createExtensions(), content: saved.content }));
-  editor = instance; activeId = saved.id!;
+  useLayoutEffect(() => { editor = instance; activeId = saved.id!; }, [instance, saved]);
   useEffect(() => {
     const saving = autosave.startAutosave(instance, saved.id!, { getTitle: () => saved.title, blocked: { current: false }, report });
     controller = saving;
@@ -32,7 +32,8 @@ function Workspace({ saved, open }: { saved: SavedDocument; open: (value: SavedD
     capture: () => {}, exportDoc: () => {}, onLanguage: () => {}, onPrint: () => {} });
 }
 function Harness() {
-  const [state, setState] = useState({ saved: initial, generation: 0 }); generation = state.generation;
+  const [state, setState] = useState({ saved: initial, generation: 0 });
+  useLayoutEffect(() => { generation = state.generation; }, [state.generation]);
   return createElement(Workspace, { key: state.generation, saved: state.saved, open: saved => setState(previous => ({ saved, generation: previous.generation + 1 })) });
 }
 beforeEach(async () => {

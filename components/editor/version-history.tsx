@@ -9,14 +9,14 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import { documents as documentRepository, versions as versionRepository } from '@/lib/composition/repositories';
 import { type DocumentVersion, type SavedDocument, documentTitle } from '@/lib/domain/entities/document';
 import { useMounted } from './use-mounted';
+import { useLatest } from './use-latest';
 
 export function VersionHistory({ editor, title, documentId, onOpen, blocked = false }: { editor: Editor; title: string; documentId: string; onOpen: (doc: SavedDocument) => void; blocked?: SaveBlock }) {
   const [open, setOpen] = useState(false), [versions, setVersions] = useState<DocumentVersion[]>([]), [label, setLabel] = useState('');
   const [readError, setReadError] = useState('');
   const versionsUnavailable = useRef(true);
   const { navigation, busy } = useDocumentNavigation(editor);
-  const mounted = useMounted(), currentTitle = useRef(title); currentTitle.current = title;
-  const currentBlocked = useRef(blocked); currentBlocked.current = blocked;
+  const mounted = useMounted(), currentTitle = useLatest(title), currentBlocked = useLatest(blocked);
   const ensureWritable = () => { assertAutosaveActive(currentBlocked.current); };
   const ensureInputFinished = () => {
     if (navigation!.isComposing()) throw new Error('Finish composing your text before using saved versions.');

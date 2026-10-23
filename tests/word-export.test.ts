@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { act, createElement } from 'react';
+import { act, createElement, useLayoutEffect } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor, type JSONContent } from '@tiptap/core';
 import JSZip from 'jszip';
@@ -14,7 +14,7 @@ let editor: Editor, mount: HTMLDivElement, root: Root, state: ReturnType<typeof 
 let jobs: { resolve: (blob: Blob) => void; reject: (error: Error) => void }[];
 let createUrl: ReturnType<typeof vi.fn>, revokeUrl: ReturnType<typeof vi.fn>;
 const originalCreate = URL.createObjectURL, originalRevoke = URL.revokeObjectURL;
-function Harness({ title }: { title: string }) { state = useWordExport(editor, title); return createElement(WordExportFeedback, { state }); }
+function Harness({ title }: { title: string }) { const current = useWordExport(editor, title); useLayoutEffect(() => { state = current; }); return createElement(WordExportFeedback, { state: current }); }
 async function render(title = 'Current draft') { await act(async () => root.render(createElement(Harness, { title }))); }
 async function start() { await act(async () => { void state.request(); }); }
 async function finish(index = 0) { await act(async () => { jobs[index].resolve(new Blob(['Word data'])); }); }

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { Editor } from '@tiptap/core';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import { CellSelection } from '@tiptap/pm/tables';
@@ -9,12 +9,16 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 import { applyFromDialog } from './apply-from-dialog';
 
 export function NumberingDialog({ open, close, editor, engine }: { open: boolean; close: () => void; editor: Editor; engine: DocumentEngine }) {
+  return <Dialog open={open} onOpenChange={value => { if (!value) close(); }}><DialogContent className="vdoc-dialog"><NumberingForm close={close} editor={editor} engine={engine} /></DialogContent></Dialog>;
+}
+
+// Mounted only while the dialog is open, so each opening starts from 1.
+function NumberingForm({ close, editor, engine }: { close: () => void; editor: Editor; engine: DocumentEngine }) {
   const [start, setStart] = useState('1');
-  useEffect(() => { if (open) setStart('1'); }, [open]);
   const available = canRestartNumbering(editor.state.doc, editor.state.selection);
   const valid = start.trim() !== '' && validListStart(Number(start));
   const overflow = valid && cellRestartOverflows(editor.state.selection, Number(start));
-  return <Dialog open={open} onOpenChange={value => { if (!value) close(); }}><DialogContent className="vdoc-dialog">
+  return <>
     <DialogTitle>Restart numbering</DialogTitle>
     <DialogDescription>{editor.state.selection instanceof CellSelection ? 'Each independent numbered series in selected cells starts here. Continued sections stay connected. Nested lists keep their numbering.' : 'Set the number for this item. Following items at the same level will count from here.'}</DialogDescription>
     <form className="properties-form" onSubmit={event => {
@@ -27,5 +31,5 @@ export function NumberingDialog({ open, close, editor, engine }: { open: boolean
       <button type="button" className="quiet-button" onClick={close}>Cancel</button>
       <button type="submit" className="export-button" disabled={!available || !valid || overflow}>Apply</button>
     </form>
-  </DialogContent></Dialog>;
+  </>;
 }

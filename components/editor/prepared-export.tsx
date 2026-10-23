@@ -6,25 +6,29 @@ import { toast } from 'sonner';
 import { exportDocumentFile } from '@/lib/composition/document-export';
 import { fileFormats } from '@/lib/composition/file-formats';
 import type { ExportNotice } from '@/lib/usecases/ports';
+import { useLatest } from './use-latest';
 
 type Download = { url: string; name: string; formatId: string; label: string; notices: readonly ExportNotice[]; changedSinceStart: boolean };
 
 export function usePreparedExport(editor: Editor | null, title: string) {
   const [busy, setBusy] = useState(false), [download, setDownload] = useState<Download | null>(null);
   const [busyFormat, setBusyFormat] = useState<string | null>(null);
+  // A different editor is a different document: drop the previous export's state.
+  const [owner, setOwner] = useState(editor);
+  if (owner !== editor) { setOwner(editor); setBusy(false); setBusyFormat(null); setDownload(null); }
   const controller = useRef<AbortController | null>(null);
   const mounted = useRef(true), pending = useRef(false), generation = useRef(0), url = useRef<string | null>(null);
   const prepared = useRef<{ doc: Node; title: string } | null>(null);
-  const currentTitle = useRef(title); currentTitle.current = title;
+  const currentTitle = useLatest(title);
   const release = useCallback(() => { controller.current?.abort(); controller.current = null; if (url.current) URL.revokeObjectURL(url.current); url.current = null; prepared.current = null; }, []);
   const refreshSnapshotStatus = useCallback(() => {
     const snapshot = prepared.current;
     if (!snapshot || !editor || editor.isDestroyed) return;
     const changedSinceStart = !snapshot.doc.eq(editor.state.doc) || snapshot.title !== currentTitle.current;
     setDownload(current => current && current.changedSinceStart !== changedSinceStart ? { ...current, changedSinceStart } : current);
-  }, [editor]);
+  }, [editor, currentTitle]);
   useEffect(() => {
-    mounted.current = true; pending.current = false; setBusy(false); setBusyFormat(null); setDownload(null);
+    mounted.current = true; pending.current = false;
     return () => { mounted.current = false; generation.current++; pending.current = false; release(); };
   }, [editor, release]);
   useEffect(() => {
@@ -53,7 +57,7 @@ export function usePreparedExport(editor: Editor | null, title: string) {
     } finally {
       if (mounted.current && generation.current === job) { pending.current = false; setBusy(false); }
     }
-  }, [editor, release]);
+  }, [editor, release, currentTitle]);
   return { busy, busyFormat, download, request, close };
 }
 

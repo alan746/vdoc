@@ -81,7 +81,10 @@ export function EditorToolbar({ editor, engine, run, zoom, setZoom, link, insert
   const fontSize = absoluteFontPixels(editor.getAttributes('textStyle').fontSize) ?? absoluteFontPixels(inheritedSize) ?? 16;
   const [sizeInput, setSizeInput] = useState(String(fontSize));
   const sizeComposition = useInputComposition();
-  useEffect(() => setSizeInput(String(fontSize)), [fontSize, editor.state.selection.from, editor.state.selection.to]);
+  // Show the selection's size again whenever the size or the selection changes.
+  const sizeSource = `${fontSize}:${editor.state.selection.from}:${editor.state.selection.to}`;
+  const [shownSizeSource, setShownSizeSource] = useState(sizeSource);
+  if (shownSizeSource !== sizeSource) { setShownSizeSource(sizeSource); setSizeInput(String(fontSize)); }
   const applySize = () => { const value = Number(sizeInput); if (Number.isInteger(value) && value >= 8 && value <= 96 && value !== fontSize) run({ type: 'text.style', style: { fontSize: value } }, 'Set font size'); else setSizeInput(String(fontSize)); };
   const align = editor.getAttributes(editor.isActive('heading') ? 'heading' : 'paragraph').textAlign || 'left';
   const AlignmentIcon = align === 'center' ? AlignCenter : align === 'right' ? AlignRight : align === 'justify' ? AlignJustify : AlignLeft;
