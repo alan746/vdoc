@@ -20,7 +20,7 @@ async function all(idb:typeof import('../lib/infrastructure/persistence/indexed-
 it('atomically removes only the confirmed document, summary, metadata and its versions, preserving another active document',async()=>{
  const {store, idb,lib,a,b,expected,vb}=await setup();await lib.deleteTrashedDocument(a.id,expected);
  expect(await lib.listLibrary()).toHaveLength(1);expect(await store.openArchivedDocument(b.id)).toEqual(b);
- const data=await all(idb);expect(data.documents.map((d:{id:string})=>d.id)).toEqual([b.id]);expect(data.summaries.map((d:{id:string})=>d.id)).toEqual([b.id]);expect(data.libraryMetadata.map((d:{id:string})=>d.id)).toEqual([b.id]);expect(data.versions).toEqual([vb]);
+ const data=await all(idb);expect(data.documents.map((d:{id:string})=>d.id)).toEqual([b.id]);expect(data.summaries.map((d:{id:string})=>d.id)).toEqual([b.id]);expect(data.libraryMetadata.map((d:{id:string})=>d.id)).toEqual([b.id]);expect(data.versions).toEqual([{...vb,format:1}]);
  expect((await store.readSavedDocument()).data?.id).toBe(b.id);
 });
 it('clears the active pointer if it belongs to the deleted document',async()=>{

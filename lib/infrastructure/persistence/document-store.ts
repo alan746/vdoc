@@ -1,5 +1,6 @@
 import type { JSONContent } from '@tiptap/core';
 import { parseDocument, STORAGE_KEY } from './storage';
+import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import type { DocumentDraft, DocumentSummary, SavedDocument } from '../../domain/entities/document';
 import type { ActiveDocumentRead } from '../../usecases/ports';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction, commitWrites } from './indexed-db';
@@ -96,7 +97,7 @@ export async function saveDocument(title: string, content: JSONContent, id: stri
   const done = completed(tx);
   let failure: unknown;
   const request = tx.objectStore('settings').get('active');
-  const data: SavedDocument = { version: 1, id, title, content, savedAt: new Date().toISOString() };
+  const data: SavedDocument = { version: CURRENT_DOCUMENT_VERSION, id, title, content, savedAt: new Date().toISOString() };
   withWritableDocument(tx, id, () => {
     if (request.result && request.result !== id) throw new Error('The active document changed. Your unsaved changes remain in this tab; download a backup.');
     tx.objectStore('documents').put(data); tx.objectStore('summaries').put(summary(data)); tx.objectStore('settings').put(id, 'active');

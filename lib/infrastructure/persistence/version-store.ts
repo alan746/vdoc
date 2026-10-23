@@ -1,11 +1,14 @@
 import type { SavedDocument, DocumentVersion, VersionSnapshot } from '../../domain/entities/document';
 import { parseDocument } from './storage';
+import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import { openDatabase as database, requestResult as result, transactionDone as completed, writeTransaction } from './indexed-db';
 import { summary, withWritableDocument } from './document-records';
 
-/** A `versions` row. Rows written before snapshots existed hold the whole document and may lack a sequence. */
-type VersionRecord = Omit<DocumentVersion, 'sequence' | 'snapshot'> & { sequence?: number; snapshot?: VersionSnapshot; document?: SavedDocument };
-const versionFromRecord = ({ document, snapshot, sequence, ...version }: VersionRecord): DocumentVersion =>
+/** A `versions` row. Rows written before snapshots existed hold the whole document and may lack a sequence.
+ * `format` is the document format version of the snapshot; rows without it are version 1. */
+type VersionRecord = Omit<DocumentVersion, 'sequence' | 'snapshot'> & { sequence?: number; snapshot?: VersionSnapshot; document?: SavedDocument; format?: number };
+const recordFormat = (record: VersionRecord) => record.format ?? record.document?.version ?? 1;
+const versionFromRecord = ({ document, snapshot, sequence, format: _format, ...version }: VersionRecord): DocumentVersion =>
   ({ ...version, sequence: sequence ?? 0, snapshot: snapshot ?? { title: document!.title, content: document!.content } });
 const snapshotOf = ({ title, content }: SavedDocument): VersionSnapshot => ({ title, content });
 const nextSequence = (entries: DocumentVersion[]) => Math.max(0, ...entries.map(entry => entry.sequence)) + 1;
@@ -25,7 +28,7 @@ export async function saveVersion(document: SavedDocument, label: string): Promi
         // Allocate order within this write transaction, independent of clock precision
         // or clock changes. Always keep the version the user just saved.
         version.sequence = nextSequence(entries);
-        store.put(version);
+        store.put({ ...version, format: CURRENT_DOCUMENT_VERSION });
         for (const old of entries.slice(39)) store.delete(old.key);
       } catch (error) { abort(error); }
     };
@@ -55,7 +58,7 @@ export async function restoreVersion(key: string, current: SavedDocument): Promi
       if (record.document && record.document.id !== previous.id) throw new Error('This version contains a different document. The current document has not been changed.');
       const { snapshot } = versionFromRecord(record), savedAt = new Date().toISOString();
       // Validate the checkpoint as a full document before it replaces the current one.
-      restored = { ...parseDocument(JSON.stringify({ version: 1, id: previous.id, title: snapshot.title, content: snapshot.content, savedAt }), Infinity), id: previous.id, savedAt };
+      restored = { ...parseDocument(JSON.stringify({ version: recordFormat(record), id: previous.id, title: snapshot.title, content: snapshot.content, savedAt }), Infinity), id: previous.id, savedAt };
       withWritableDocument(tx, previous.id, () => {
         const active = tx.objectStore('settings').get('active');
         active.onsuccess = () => {
@@ -67,7 +70,7 @@ export async function restoreVersion(key: string, current: SavedDocument): Promi
               const entries = versionsNewestFirst(all.result);
               const backup: DocumentVersion = { key: crypto.randomUUID(), documentId: previous.id, label: 'Before restoring a version',
                 createdAt: new Date().toISOString(), sequence: nextSequence(entries), snapshot: snapshotOf(previous) };
-              versions.put(backup);
+              versions.put({ ...backup, format: CURRENT_DOCUMENT_VERSION });
               for (const old of entries.slice(39)) versions.delete(old.key);
               tx.objectStore('documents').put(restored!);
               tx.objectStore('summaries').put(summary(restored!));

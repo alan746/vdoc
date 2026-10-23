@@ -7,6 +7,7 @@ import { validListStart } from './list-numbering';
 import { paragraphBordersSchema } from './paragraph-borders';
 import { validTabInterval } from './tab-interval';
 import { HEX_COLOR } from '../text/color';
+import { migrateDocument } from './document-migrations';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type Attrs = Record<string, any>;
@@ -120,12 +121,14 @@ export function validateDocumentTree(root: JSONContent, rules: readonly NodeRule
   inspect(root);
 }
 
-/** Parses the backup envelope (BOM, JSON, version, title, root type) without touching node content. */
+/** Parses the backup envelope (BOM, JSON, version, title, root type) and upgrades it to the current format, without validating node content. */
 export function parseDocumentEnvelope(raw: string, maxLength = Infinity): Omit<SavedDocument, 'content'> & { content: JSONContent; id?: unknown; savedAt?: unknown } {
   if (raw.length > maxLength) throw new Error('The document exceeds the permitted length.');
-  let value;
+  let value: any;
   try { value = JSON.parse(raw.charCodeAt(0) === 0xFEFF ? raw.slice(1) : raw); }
   catch { throw new Error('This backup is not valid JSON. Choose a complete VDoc backup file.'); }
-  if (!value || typeof value !== 'object' || Array.isArray(value) || value.version !== 1 || typeof value.title !== 'string' || value.title.length > 500 || value.content?.type !== 'doc') throw new Error('This is not a supported VDoc backup.');
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('This is not a supported VDoc backup.');
+  value = migrateDocument(value);
+  if (typeof value.title !== 'string' || value.title.length > 500 || value.content?.type !== 'doc') throw new Error('This is not a supported VDoc backup.');
   return value;
 }

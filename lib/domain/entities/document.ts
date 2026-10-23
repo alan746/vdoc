@@ -1,7 +1,8 @@
 import type { JSONContent } from '@tiptap/core';
+import { CURRENT_DOCUMENT_VERSION } from '../rules/document-migrations';
 // Core VDoc entities. Persistence, import and UI layers share these shapes.
 /** A persisted document. `version` is the backup/storage format version, not a history checkpoint. */
-export type SavedDocument = { version: 1; id: string; title: string; content: JSONContent; savedAt: string };
+export type SavedDocument = { version: typeof CURRENT_DOCUMENT_VERSION; id: string; title: string; content: JSONContent; savedAt: string };
 /** A document that has not been stored yet (new, imported or parsed from a backup), so it may lack an id. */
 export type DocumentDraft = Omit<SavedDocument, 'id'> & { id?: string };
 /** Library listing row for a document or folder. */
@@ -20,4 +21,4 @@ export const UNTITLED_DOCUMENT = 'Untitled document';
 /** The title to store: trimmed, or the default when blank. */
 export const documentTitle = (title: string) => title.trim() || UNTITLED_DOCUMENT;
 /** A new, empty, untitled document. */
-export const blankDocument = (): DocumentDraft => ({ version: 1, title: UNTITLED_DOCUMENT, content: { type: 'doc', content: [{ type: 'paragraph' }] }, savedAt: new Date().toISOString() });
+export const blankDocument = (): DocumentDraft => ({ version: CURRENT_DOCUMENT_VERSION, title: UNTITLED_DOCUMENT, content: { type: 'doc', content: [{ type: 'paragraph' }] }, savedAt: new Date().toISOString() });

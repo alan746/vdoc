@@ -1,3 +1,4 @@
+import { CURRENT_DOCUMENT_VERSION } from '../domain/rules/document-migrations';
 import type { JSONContent } from '@tiptap/core';
 import type { Node } from '@tiptap/pm/model';
 import { downloadFile } from '../infrastructure/browser/download';
@@ -15,7 +16,7 @@ export type ExportSource = { title: string; doc: Node; html: string; json: JSONC
 export function downloadDocument(format: LocalExportFormat, source: ExportSource) {
   const name = exportFilename(source.title, format === 'json' ? 'vdoc.json' : format);
   if (format === 'txt') downloadFile(name, exportPlainText(source.doc), 'text/plain;charset=utf-8');
-  else if (format === 'json') downloadFile(name, JSON.stringify({ version: 1, title: source.title, content: source.json, savedAt: new Date().toISOString() }, null, 2), 'application/json');
+  else if (format === 'json') downloadFile(name, JSON.stringify({ version: CURRENT_DOCUMENT_VERSION, title: source.title, content: source.json, savedAt: new Date().toISOString() }, null, 2), 'application/json');
   else downloadFile(name, exportHTML(source.title, source.html, source.json), 'text/html;charset=utf-8');
 }
 

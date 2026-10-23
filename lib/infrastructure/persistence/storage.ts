@@ -3,6 +3,7 @@ import { TableMap } from '@tiptap/pm/tables';
 import { createExtensions } from '../../editor/extensions';
 import { completePinnedBoundary } from '../../editor/table/table-headers';
 import { parseDocumentEnvelope, validateDocumentTree } from '../../domain/rules/document-validation';
+import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 export const STORAGE_KEY = 'vdoc.document.v1';
 const INDEX_KEY = 'vdoc.library.v1';
 const archiveKey = (id: string) => `vdoc.archive.${id}`;
@@ -23,7 +24,7 @@ export function parseDocument(raw: string, maxLength = Infinity): DocumentDraft 
     if (TableMap.get(table).problems?.some(problem => problem.type !== 'colwidth mismatch')) throw new Error('The document contains an invalid table structure. Cells are missing, overlapping, or extend beyond the table.');
     if (table.attrs.pinnedRows != null && completePinnedBoundary(table, table.attrs.pinnedRows) !== table.attrs.pinnedRows) throw new Error('The pinned header boundary splits a merged cell.');
   });
-  return { version: 1, ...(typeof value.id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(value.id) ? { id: value.id } : {}), title: value.title, content: node.toJSON(), savedAt: typeof value.savedAt === 'string' ? value.savedAt : new Date().toISOString() };
+  return { version: CURRENT_DOCUMENT_VERSION, ...(typeof value.id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(value.id) ? { id: value.id } : {}), title: value.title, content: node.toJSON(), savedAt: typeof value.savedAt === 'string' ? value.savedAt : new Date().toISOString() };
 }
 export function readSavedDocument(): { data: DocumentDraft | null; error?: string } {
   try {
@@ -36,11 +37,11 @@ export function saveDocument(title: string, content: JSONContent): SavedDocument
   let id: string | undefined;
   if (previous) {
     const existing = JSON.parse(previous) as SavedDocument;
-    if (existing.version !== 1) throw new Error('Unsupported stored document.');
+    if (existing.version !== CURRENT_DOCUMENT_VERSION) throw new Error('Unsupported stored document.');
     id = existing.id;
     if (existing.id && existing.title === title && JSON.stringify(existing.content) === JSON.stringify(content)) return existing;
   }
-  const data: SavedDocument = { version: 1, id: id || crypto.randomUUID(), title, content, savedAt: new Date().toISOString() };
+  const data: SavedDocument = { version: CURRENT_DOCUMENT_VERSION, id: id || crypto.randomUUID(), title, content, savedAt: new Date().toISOString() };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); return data;
 }
 export function listDocuments(): DocumentSummary[] {
