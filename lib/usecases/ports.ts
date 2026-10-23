@@ -85,6 +85,7 @@ export interface RealtimeTool {
   run(input: unknown, context: RealtimeToolContext): unknown;
 }
 export type RealtimeStatus = 'disconnected' | 'connecting' | 'connected' | 'reconnecting' | 'error';
+export type MicrophoneStatus = 'off' | 'requesting' | 'ready' | 'on' | 'error';
 export type RealtimeTurnState = 'idle' | 'listening' | 'thinking' | 'speaking' | 'acting';
 /** Display-only signals from the provider, for status and activity UI. Never a
  *  write path: edits happen only inside RealtimeTool.run(). `arguments` is
@@ -113,5 +114,6 @@ export interface RealtimePort {
     tools: Record<string, RealtimeTool>; signal: AbortSignal;
     onStatus(status: RealtimeStatus, message?: string): void;
     onActivity?(activity: RealtimeActivity): void;
+    onMicrophone?(status: MicrophoneStatus): void;
   }): RealtimeConnection;
 }

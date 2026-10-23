@@ -1,5 +1,5 @@
 import { expect, it, vi } from 'vitest';
-import { POST as create } from '../app/api/voice-sessions/route';
+import { GET as check, POST as create } from '../app/api/voice-sessions/route';
 import { POST as renew } from '../app/api/voice-sessions/[id]/grants/route';
 import { DELETE as end } from '../app/api/voice-sessions/[id]/route';
 import { handleVoiceSessionRequest } from '../lib/composition/voice-sessions';
@@ -8,6 +8,8 @@ vi.mock('../lib/composition/voice-sessions', () => ({ handleVoiceSessionRequest:
 
 it('wires all Worker routes to the same authenticated proxy and awaits dynamic route params', async () => {
   const request = new Request('https://vdoc.example/api/voice-sessions');
+  await check(request);
+  expect(handleVoiceSessionRequest).toHaveBeenLastCalledWith(request, 'check', undefined);
   await create(request);
   expect(handleVoiceSessionRequest).toHaveBeenLastCalledWith(request, 'create', undefined);
   await renew(request, { params: Promise.resolve({ id: 'voice-1' }) });

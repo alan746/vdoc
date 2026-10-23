@@ -1,7 +1,7 @@
 import { z } from 'zod/v3';
 import { createdVoiceSessionSchema, voiceDocumentRequestSchema, voiceGrantSchema, voiceRealtimePath, voiceResourceIdSchema } from '../../domain/entities/voice-session';
 
-export type VoiceSessionAction = 'create' | 'grant' | 'end';
+export type VoiceSessionAction = 'check' | 'create' | 'grant' | 'end';
 export type VoiceSessionProxyDependencies = {
   getUser(): Promise<{ userId: string } | null>;
   /** Trusted Worker bindings, never values supplied by a browser. */
@@ -47,17 +47,18 @@ async function readBody(request: Request): Promise<unknown> {
 
 /** Reauthorize every create, renew and end request against document ownership. */
 export async function proxyVoiceSession(request: Request, action: VoiceSessionAction, sessionId: string | undefined, deps: VoiceSessionProxyDependencies): Promise<Response> {
-  if (request.method !== (action === 'end' ? 'DELETE' : 'POST')) return failure(405, 'METHOD_NOT_ALLOWED', 'Unsupported method.');
-  if (request.headers.get('origin') !== new URL(request.url).origin || request.headers.get('sec-fetch-site') === 'cross-site')
+  if (request.method !== (action === 'check' ? 'GET' : action === 'end' ? 'DELETE' : 'POST')) return failure(405, 'METHOD_NOT_ALLOWED', 'Unsupported method.');
+  const origin = request.headers.get('origin');
+  if ((origin !== new URL(request.url).origin && !(action === 'check' && !origin)) || request.headers.get('sec-fetch-site') === 'cross-site')
     return failure(403, 'ORIGIN_DENIED', 'Use the application’s same-origin voice endpoint.');
   const user = await deps.getUser();
   if (!user) return failure(401, 'SIGN_IN_REQUIRED', 'Sign in to use the voice assistant.');
-  if (action !== 'create' && !voiceResourceIdSchema.safeParse(sessionId).success)
+  if (action !== 'create' && action !== 'check' && !voiceResourceIdSchema.safeParse(sessionId).success)
     return failure(400, 'INVALID_SESSION', 'Invalid voice session ID.');
-  if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json')
+  if (action !== 'check' && request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json')
     return failure(415, 'JSON_REQUIRED', 'Send a JSON document ID.');
   let documentId: string;
-  try { documentId = voiceDocumentRequestSchema.parse(await readBody(request)).documentId; }
+  try { documentId = action === 'check' ? voiceResourceIdSchema.parse(new URL(request.url).searchParams.get('documentId')) : voiceDocumentRequestSchema.parse(await readBody(request)).documentId; }
   catch (error) { return error instanceof RangeError ? failure(413, 'BODY_TOO_LARGE', 'The request is too large.') : failure(400, 'INVALID_INPUT', 'Supply only a valid documentId.'); }
   let config: ReturnType<typeof configuration>;
   try { config = configuration(deps); }
@@ -73,6 +74,13 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
     return failure(403, 'DOCUMENT_ACCESS_DENIED', 'You do not have voice access to this document.');
   }
 
+  // Read-only discovery never allocates a session or exposes the server credential.
+  if (action === 'check') {
+    const url = new URL(config.origin);
+    url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+    return response({ url: url.origin, sessionsUrl: '/api/voice-sessions', audio: true }, 200);
+  }
+
   // The document ID is reauthorized on every request and remains part of the
   // upstream session path. A session ID cannot be used to escape its document.
   const base = `/v1/documents/${encodeURIComponent(transportDocumentId)}/voice-sessions`;
@@ -85,7 +93,7 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
       cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(10000),
     });
     if (!upstream.ok) {
-      const status = [404, 409, 429, 503].includes(upstream.status) ? upstream.status : 502;
+      const status = [402, 404, 409, 429, 503].includes(upstream.status) ? upstream.status : 502;
       // Never echo an upstream error body or authentication headers.
       return failure(status, 'VOICE_SERVICE_ERROR', 'The voice service could not complete the request.');
     }

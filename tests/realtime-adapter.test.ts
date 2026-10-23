@@ -2,11 +2,13 @@ import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { vrtAdapter, validateRealtimeConfig } from '../lib/infrastructure/realtime/vrt-adapter';
-import { readRealtimeConfig, REALTIME_CONFIG_KEY } from '../lib/composition/realtime';
+import * as browserAudio from '../lib/infrastructure/realtime/browser-audio';
+import { VoiceConnectionError } from '../lib/infrastructure/realtime/voice-errors';
+import { loadRealtimeConfig } from '../lib/composition/realtime';
 import type { RealtimeConfig, RealtimeConnection, RealtimePort } from '../lib/usecases/ports';
 
 const fake = vi.hoisted(() => ({ sessions: [] as { url: string; options: { auth: () => Promise<string>; audio: unknown; context: unknown }; handlers: Record<string, (event?: unknown) => void>; start: ReturnType<typeof vi.fn>; close: ReturnType<typeof vi.fn>; interrupt: ReturnType<typeof vi.fn>; sendText: ReturnType<typeof vi.fn> }[] }));
-vi.mock('@vrealtime/client', () => ({ ClientSession: class {
+vi.mock('@vrealtime/client', () => ({ CaptureResampler: class {}, createSpeaker: vi.fn(), ClientSession: class {
   handlers: Record<string, (event?: unknown) => void> = {}; connected = true;
   start = vi.fn(async () => {}); close = vi.fn(async () => {});
   interrupt = vi.fn(); sendText = vi.fn();
@@ -31,17 +33,17 @@ beforeEach(() => {
     ? { ok: true } : response(url.endsWith('/grants') ? grant('renewed') : created()));
   vi.stubGlobal('fetch', fetchMock);
 });
-afterEach(() => { for (const handle of handles) handle.close(); vi.unstubAllGlobals(); });
+afterEach(() => { for (const handle of handles) handle.close(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
-it('requires an explicit v2 configuration; legacy tokens and document URLs do not enable voice', () => {
+it('discovers configuration from the authenticated endpoint and ignores localStorage and URL overrides', async () => {
   history.replaceState(null, '', '/?realtime=wss://evil.example');
-  localStorage.setItem('vdoc.realtime.v1', JSON.stringify({ url: 'ws://localhost:8790', tokenUrl: '/token' }));
-  expect(readRealtimeConfig()).toBeNull(); expect(fake.sessions).toHaveLength(0);
-  history.replaceState(null, '', '/');
+  localStorage.setItem('vdoc.realtime.v2', JSON.stringify({ url: 'wss://evil.example' }));
+  fetchMock.mockResolvedValueOnce(response({ ...config, audio: true }));
+  expect(await loadRealtimeConfig('doc-1', new AbortController().signal)).toMatchObject({ url: 'ws://localhost:8790/', audio: true });
+  expect(fetchMock).toHaveBeenCalledWith('/api/voice-sessions?documentId=doc-1', expect.objectContaining({ credentials: 'same-origin', cache: 'no-store' }));
+  expect(fake.sessions).toHaveLength(0); history.replaceState(null, '', '/');
 });
 it('keeps the origin/credential restrictions and validates context preferences', () => {
-  localStorage.setItem(REALTIME_CONFIG_KEY, JSON.stringify({ ...config, language: 'fr-CA', vocabulary: ['VDoc'] }));
-  expect(readRealtimeConfig()).toMatchObject({ url: 'ws://localhost:8790/', language: 'fr-CA', vocabulary: ['VDoc'] });
   for (const url of ['ws://example.com', 'https://example.com', 'wss://example.com?token=secret', 'wss://u:p@example.com', 'wss://example.com#token', 'wss://example.com/old-session'])
     expect(() => validateRealtimeConfig({ ...config, url }, location.origin)).toThrow();
   expect(() => validateRealtimeConfig({ ...config, sessionsUrl: 'https://evil.example/sessions' }, location.origin)).toThrow();
@@ -136,4 +138,48 @@ it('keeps SDK imports inside the infrastructure adapter', () => {
   const files = (root: string): string[] => readdirSync(root, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? files(join(root, entry.name)) : /\.[tj]sx?$/.test(entry.name) ? [join(root, entry.name)] : []);
   const imports = ['app', 'components', 'lib'].flatMap(files).filter(file => /from ['"]@vrealtime\//.test(readFileSync(file, 'utf8')));
   expect(imports).toEqual(['lib/infrastructure/realtime/vrt-adapter.ts']);
+});
+
+it.each([401, 402, 403, 409, 429, 503])('preserves actionable HTTP %s errors on creation and renewal', async status => {
+  const onStatus = vi.fn();
+  fetchMock.mockResolvedValueOnce({ ok: false, status, json: async () => ({ error: { message: 'secret upstream detail' } }) });
+  open({ onStatus });
+  await vi.waitFor(() => expect(onStatus).toHaveBeenCalledWith('error', expect.any(String)));
+  const message = onStatus.mock.calls.at(-1)![1];
+  expect(message).not.toContain('secret');
+  if (status === 402 || status === 429) expect(message).toContain('quota');
+  onStatus.mockClear(); open({ onStatus });
+  const session = await started(); await session.options.auth();
+  fetchMock.mockResolvedValueOnce({ ok: false, status, json: async () => ({}) });
+  await expect(session.options.auth()).rejects.toThrow(message);
+  session.handlers.error({ code: 'AUTH_FAILED', recoverable: false, message: 'secret' });
+  expect(onStatus).toHaveBeenLastCalledWith('error', message);
+  expect(session.close).toHaveBeenCalledOnce();
+});
+it('retains terminal quota errors instead of replacing them with a disconnected status', async () => {
+  const onStatus = vi.fn(); open({ onStatus }); const session = await started();
+  const closed = session.handlers.closed;
+  session.handlers.error({ code: 'QUOTA_EXCEEDED', message: 'secret', recoverable: false });
+  closed();
+  expect(onStatus).toHaveBeenLastCalledWith('error', expect.stringContaining('quota'));
+  expect(session.close).toHaveBeenCalledOnce();
+});
+
+it('surfaces microphone denial before allocating a billable voice session', async () => {
+  vi.spyOn(browserAudio, 'prepareBrowserAudio').mockRejectedValueOnce(new VoiceConnectionError('Microphone permission was denied. Allow access and retry.'));
+  const onStatus = vi.fn(); open({ config: { ...config, audio: true }, onStatus });
+  await vi.waitFor(() => expect(onStatus).toHaveBeenCalledWith('error', expect.stringContaining('permission was denied')));
+  expect(fetchMock).not.toHaveBeenCalled(); expect(fake.sessions).toHaveLength(0);
+});
+it('cancels pending audio initialization without allocating a late voice session', async () => {
+  let resolve!: (audio: Awaited<ReturnType<typeof browserAudio.prepareBrowserAudio>>) => void;
+  let signal: AbortSignal | undefined;
+  vi.spyOn(browserAudio, 'prepareBrowserAudio').mockImplementationOnce(options => {
+    signal = options.signal; return new Promise(done => { resolve = done; });
+  });
+  const onStatus = vi.fn(); const connection = open({ config: { ...config, audio: true }, onStatus });
+  connection.close(); expect(signal!.aborted).toBe(true);
+  resolve({ stop: vi.fn(async () => {}), input: vi.fn(), output: { enqueue: vi.fn(), flush: vi.fn(async () => ({})), close: vi.fn(async () => {}) } });
+  await Promise.resolve(); await Promise.resolve();
+  expect(fetchMock).not.toHaveBeenCalled(); expect(onStatus.mock.calls).toEqual([['connecting']]);
 });

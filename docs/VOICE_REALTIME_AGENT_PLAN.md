@@ -83,25 +83,15 @@
 
 SDK 早已发出 `state` / `tool.call` / `tool.result` / `interrupted` 事件（之前误以为没有）。现在 `RealtimePort.onActivity` 把它们转发给 UI：状态条显示 Listening / Thinking / Speaking / Editing；presence 在调用到达时就标到目标块，提交后换成实际改动的块，失败或中断时清除；时间线每一轮显示操作名称。仍不处理 `tool.preview`（payload 未定稿）。详见 [`REALTIME_PROTOCOL.md`](REALTIME_PROTOCOL.md)。
 
-### 本地启用与服务端契约
+### 正式语音入口与服务端契约
 
-默认关闭，不读取 URL 参数或文档内容中的连接配置。在应用来源的浏览器开发者工具中明确设置后刷新：
+编辑器直接显示 **Connect voice assistant**，不再读取或要求设置 `vdoc.realtime.v2`。本地文档显示登录、云工作区和备份导入指引；登录后的云文档通过只读 `GET /api/voice-sessions?documentId=…` 校验归属与部署配置，不创建会话、不请求麦克风。
 
-```js
-localStorage.setItem('vdoc.realtime.v2', JSON.stringify({
-  url: 'ws://localhost:8790',
-  sessionsUrl: '/api/voice-sessions',
-  audio: false,
-  language: 'en-US',
-  vocabulary: [],
-}));
-```
+用户必须登录，打开属于当前账户且不在回收站内的云文档，并保持联网；站点需已配置语音服务。麦克风需要 HTTPS（本机 localhost 例外）及浏览器音频支持。点击连接后显示权限等待、设备错误、连接中、已连接、自动重连和失败状态，支持取消、重试、断开及 Stop/Esc。取消或切换文档会释放媒体资源，迟到的麦克风授权也会立即停止。
 
-在编辑器点击 **Connect assistant**，输入文字指令；配置 `audio: true` 后按钮改为 **Connect voice assistant**，仅点击后申请麦克风。连接期间显示麦克风状态。配置只接受 `wss://` 或回环地址的 `ws://`，拒绝 URL 凭据、查询参数和 fragment。禁用时删除本地键并刷新。
+连接配置由 Worker 的 `VDOC_SERVER_URL` 派生；浏览器只取得 WebSocket origin 和同源会话路径。服务端凭据不发往浏览器，URL 参数、文档内容和旧 localStorage 设置不参与配置。`POST /api/voice-sessions` 创建会话，每次续连调用 `/{sessionId}/grants` 换新凭证，关闭时 DELETE 结束会话。每一步重新校验登录与云文档归属。
 
-`sessionsUrl` 是本仓库提供的**同源**语音会话接口，POST `{ documentId }` 创建会话并取得 `sessionId`、`realtimePath`、`grant`。Worker 检查登录身份和显式文档授权清单后，才以服务端 secret 请求 vdoc-server。客户端首次使用 `grant.token`，每次续连调用 `/{sessionId}/grants` 换新凭证，关闭时 DELETE 结束会话。浏览器配置中的 `url` 只填语音服务 origin，连接路径来自已验证的创建响应。编辑器会话 ID 与语音会话 ID 分开使用。部署配置、权限来源、旧配置迁移和生命周期细节见 [`REALTIME_PROTOCOL.md`](REALTIME_PROTOCOL.md#语音会话与-worker-鉴权)。
-
-未配置服务端/鉴权端点时，连接会失败但普通编辑仍可使用。实时语音服务和真实模型的端到端验证需要部署方的地址与凭据；本地自动测试使用 fake SDK 和真实 DocumentEngine。
+现有接口不提供剩余配额数值，界面明确说明余额不可查询；HTTP 402 显示额度耗尽，429 显示配额或请求限制，鉴权、文档权限、服务配置和网络错误分别提供恢复说明。连接和续连错误不会被随后的断开事件覆盖。部署配置与生命周期详见 [`REALTIME_PROTOCOL.md`](REALTIME_PROTOCOL.md#语音会话与-worker-鉴权)。真实语音服务、浏览器音频和模型端到端仍需已配置的部署环境验收。
 
 ## 0. 核心决策：tool 在浏览器执行
 

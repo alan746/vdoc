@@ -57,6 +57,7 @@ export function AccountPanel() {
         <button className="secondary-button" disabled={busy} onClick={() => void signOut()}>{busy ? 'Signing out…' : 'Sign out'}</button>
       </> : <><p>Use your Google account to sign in to VDoc.</p><button className="secondary-button" disabled={busy} onClick={() => void signIn()}>{busy ? 'Opening Google…' : 'Continue with Google'}</button></>)}
       <p className="account-note">Your local workspace stays in this browser and is shared by people using this browser profile. Open the cloud workspace to sync documents with your account. Existing local files are not uploaded automatically: export a backup, then import it into the cloud workspace.</p>
+      <p className="account-note">The voice assistant is available only for cloud documents owned by your signed-in account and outside Trash, on sites where voice is enabled. Connect to the internet, open a cloud document, and click Connect voice assistant to allow microphone access. Voice usage is subject to the service’s quota; remaining allowance is currently unavailable.</p>
     </section>
   </main>;
 }

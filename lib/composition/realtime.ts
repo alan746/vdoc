@@ -5,16 +5,16 @@ import type { DocumentEngine } from '../usecases/engine';
 import type { RealtimeActivity, RealtimeConfig, RealtimePort, RealtimeStatus } from '../usecases/ports';
 import { UNTITLED_DOCUMENT } from '../domain/entities/document';
 import { canonicalLanguage } from '../domain/text/language';
+import { voiceRequestError } from '../infrastructure/realtime/voice-errors';
+export { VoiceConnectionError } from '../infrastructure/realtime/voice-errors';
 
-export const REALTIME_CONFIG_KEY = 'vdoc.realtime.v2';
-/** Explicit local configuration only; document URLs and imported content cannot enable it. */
-export function readRealtimeConfig(): RealtimeConfig | null {
-  const raw = window.localStorage.getItem(REALTIME_CONFIG_KEY);
-  if (!raw) return null;
-  const value: unknown = JSON.parse(raw);
-  if (!value || typeof value !== 'object' || !('url' in value) || typeof value.url !== 'string' || !('sessionsUrl' in value) || typeof value.sessionsUrl !== 'string')
-    throw new Error('Invalid assistant configuration.');
-  return validateRealtimeConfig(value as RealtimeConfig, window.location.origin);
+/** Discover trusted deployment configuration without opening a session or microphone. */
+export async function loadRealtimeConfig(docId: string, signal: AbortSignal): Promise<RealtimeConfig> {
+  const response = await fetch(`/api/voice-sessions?documentId=${encodeURIComponent(docId)}`, {
+    credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]),
+  });
+  if (!response.ok) throw await voiceRequestError(response);
+  return validateRealtimeConfig(await response.json(), window.location.origin);
 }
 
 export function openDocumentRealtime(options: {
@@ -22,6 +22,7 @@ export function openDocumentRealtime(options: {
   title?: string;
   onStatus: (status: RealtimeStatus, message?: string) => void;
   onActivity?: (activity: RealtimeActivity) => void;
+  onMicrophone?: Parameters<RealtimePort['open']>[0]['onMicrophone'];
 }, port: RealtimePort = vrtAdapter) {
   const { engine, docId, config, onStatus, onActivity } = options;
   const lifecycle = new AbortController();
@@ -51,6 +52,6 @@ export function openDocumentRealtime(options: {
     documentId: docId, title: (options.title || UNTITLED_DOCUMENT).slice(0, 120),
     language: language && language !== 'und' ? new Intl.Locale(language).baseName : 'en-US', vocabulary: config.vocabulary ?? [],
   },
-    tools, signal: lifecycle.signal, onStatus, onActivity });
+    tools, signal: lifecycle.signal, onStatus, onActivity, onMicrophone: options.onMicrophone });
   return { ...connection, close() { lifecycle.abort(); connection.close(); } };
 }

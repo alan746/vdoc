@@ -15,7 +15,8 @@ export function CloudWorkspace() {
     fetch('/api/account', { cache: 'no-store' }).then(async response => {
       if (!response.ok) throw new Error('Account could not be verified. Connect and retry.');
       const account = await response.json() as { configured: boolean; user: { id: string } | null };
-      if (!account.configured || !account.user) throw new Error('Sign in before opening your cloud workspace.');
+      if (!account.configured) throw new Error('Cloud documents are not available on this site yet. You can continue using local documents.');
+      if (!account.user) throw new Error('Sign in before opening your cloud workspace.');
       if (!live) return;
       const repositories = createCloudWorkspace(account.user.id);
       stop = repositories.start(); setResolve(new URLSearchParams(window.location.search).get('resolve') === '1'); setWorkspace(repositories);

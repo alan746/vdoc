@@ -15,7 +15,11 @@ interface RealtimePort { open(options: { config, context: { documentId, title, l
 
 ## 语音会话与 Worker 鉴权
 
-浏览器配置使用 `vdoc.realtime.v2`，字段为 `{ url, sessionsUrl, audio?, language?, vocabulary? }`。`url` 只填语音服务 origin（生产为 `wss://voice.example.com`，本地可用回环 `ws://`），`sessionsUrl` 为同源 `/api/voice-sessions`。旧 `vdoc.realtime.v1` / `tokenUrl` 配置不自动迁移，需按下方约定重新配置，避免把旧的固定 WebSocket 会话地址当成服务 origin。
+编辑器的正式按钮不依赖 localStorage。云工作区挂载时通过只读 `GET /api/voice-sessions?documentId=…` 获取 `{ url, sessionsUrl, audio: true }`。该接口验证登录、文档归属及语音部署配置，只返回由 `VDOC_SERVER_URL` 派生的安全 WebSocket origin 和同源 `/api/voice-sessions`，不创建会话、不消耗连接配额、不打开麦克风。旧 `vdoc.realtime.v1` / `vdoc.realtime.v2` 设置和 URL 参数均被忽略。
+
+入口始终可见，本地文档显示迁移指引并禁用连接。云文档必须属于当前登录账户且不在回收站。点击连接才请求麦克风；权限拒绝、无设备、设备被占用、非安全来源分别提供提示。状态覆盖连接中、已连接、重连、断开、错误，以及真实麦克风状态；取消/断开/卸载会释放资源，晚到的授权不会恢复录音。音频资源由适配器管理，通过 SDK 自定义音频输入接口传入，避免 SDK 内置麦克风在授权未完成时无法取消的问题。
+
+现有后端没有剩余配额查询契约，界面明确显示余额不可查询，不展示虚构的分钟数或重置时间。创建/续发的 HTTP 402、429 和 SDK 配额错误会显示额度或限流说明；401、403、409、503 等分别提供登录、云文档条件或重试指引。只映射允许的错误类型，不展示上游错误正文。终止错误关闭连接且保留提示，不被后续 closed/ready 覆盖。
 
 三个同源 Worker 接口都接收 JSON `{ documentId }`，都先验证同源请求、登录用户和文档授权，再携带 Worker secret 中的 client key 请求 vdoc-server：
 
@@ -35,17 +39,15 @@ interface RealtimePort { open(options: { config, context: { documentId, title, l
 
 ### 服务端配置与权限来源
 
-当前文档只存于 IndexedDB，没有服务端文档归属表。本次采用 **显式服务端授权清单**，不把浏览器提交的 `documentId` 或第一次请求当作所有权证明，也不自动创建权限。
+生产身份来自 Better Auth 的 Google 登录会话，使用 Neon 云文档表校验所有权。`authorizeVoiceDocument` 只允许当前用户拥有的有效云文档，拒绝文件夹和回收站文档，并生成包含用户与文档 ID 的哈希传输 ID，隔离不同账户导入同名/同 ID 文档的语音房间。静态授权清单只保留为代理测试依赖，生产组合根不使用该清单或旧 ChatGPT 网关注入身份。
 
 Worker 需要配置：
 
-- `VDOC_SERVER_URL`：上游 HTTP origin，如 `https://voice.example.com`；与浏览器的 WebSocket origin 对应。
+- Google 登录与 Neon 云存储的部署配置（参见账户和云文档部署说明）。
+- `VDOC_SERVER_URL`：上游 HTTP origin，如 `https://voice.example.com`；浏览器 WebSocket origin 自动由此派生，本地回环地址可使用 HTTP。
 - `VDOC_SERVER_CLIENT_KEY`：Worker **secret**，值为 vdoc-server 的 `VDOC_SERVER_CLIENTS` 中一个已注册 client 的 key，至少 24 字符；不是整个 `clientId:key,…` 字符串。
-- `VDOC_VOICE_DOCUMENT_ACCESS`：Worker **secret**，JSON 格式 `{"authenticated-user-id":["document-id-1","document-id-2"]}`。管理员将实际登录用户 ID 与本地文档 ID 配对后授权。每次创建、续发和结束都重新检查；未配置、配置无效或没有对应权限时拒绝请求。该清单只授权语音会话访问，不改变本地文档存储和共享模型。
 
-身份来自现有 `getChatGPTUser()`。生产部署必须经过可信的登录网关，由网关注入并覆盖 `oai-authenticated-user-*` 头，禁止客户端绕过网关直接伪造这些头访问 Worker。本地开发沿用项目的登录模拟（`/signin-with-chatgpt?return_to=/`），不能把开发模拟用于生产。需要动态权限管理时，可在代理的授权边界替换此清单，不能改为默认放行。
-
-通过部署平台的 Worker secret 管理配置上述两个 secret；本地可放入已被 gitignore 排除的 `.dev.vars`。不要使用 `NEXT_PUBLIC_*`、localStorage、URL 或客户端构建变量保存 client key。响应禁用缓存，代理不转发上游错误正文、Cookie 或认证头。部署前还需在 vdoc-server 配置允许的 VDoc 浏览器来源。
+通过部署平台的 Worker secret 管理配置凭据；本地可放入已被 gitignore 排除的 `.dev.vars`。不要使用 `NEXT_PUBLIC_*`、localStorage、URL 或客户端构建变量保存 client key。响应禁用缓存，代理不转发上游错误正文、Cookie 或认证头。部署前还需在 vdoc-server 配置允许的 VDoc 浏览器来源。普通本地编辑不依赖这些服务；现有本地文档需导出备份后导入云工作区，不会自动上传。
 
 本次协议核对依据：`austinchennn/vdoc-server` 的 `voice-session-controller.ts`、`document-context.ts` 和 `principal.ts`。本仓库测试覆盖代理权限、创建/续发/清理和 SDK 重连；部署真实地址与 secret 后仍需真实模型端到端验收。
 

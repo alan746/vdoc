@@ -107,3 +107,29 @@ it.each(['create', 'grant', 'end'] as const)('fails closed on missing database o
   expect(await result.text()).not.toContain('postgres:');
   expect(deps.fetch).not.toHaveBeenCalled();
 });
+
+it('discovers the public voice origin only for authenticated, authorized cloud documents', async () => {
+  const request = new Request('https://vdoc.example/api/voice-sessions?documentId=doc-1');
+  const check = () => proxyVoiceSession(request, 'check', undefined, deps);
+  const result = await check();
+  expect(result.status).toBe(200); expect(result.headers.get('cache-control')).toBe('no-store');
+  expect(await result.json()).toEqual({ url: 'wss://voice.example', sessionsUrl: '/api/voice-sessions', audio: true });
+  expect(deps.fetch).not.toHaveBeenCalled();
+  deps.authorizeDocument = vi.fn(async () => null);
+  expect((await check()).status).toBe(403);
+  deps.getUser = vi.fn(async () => null);
+  expect((await check()).status).toBe(401);
+});
+it('does not disclose configuration to cross-site discovery or invalid documents', async () => {
+  for (const headers of [new Headers({ Origin: 'https://evil.example' }), new Headers({ 'Sec-Fetch-Site': 'cross-site' })]) {
+    const result = await proxyVoiceSession(new Request('https://vdoc.example/api/voice-sessions?documentId=doc-1', { headers }), 'check', undefined, deps);
+    expect(result.status).toBe(403);
+  }
+  expect((await proxyVoiceSession(new Request('https://vdoc.example/api/voice-sessions'), 'check', undefined, deps)).status).toBe(400);
+  expect(deps.fetch).not.toHaveBeenCalled();
+});
+it.each([402, 429])('preserves quota/limit HTTP %s without exposing upstream details', async status => {
+  vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ secret: key }, { status }));
+  const result = await run('create');
+  expect(result.status).toBe(status); expect(await result.text()).not.toContain(key);
+});

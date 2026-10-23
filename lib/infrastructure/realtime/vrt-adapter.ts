@@ -1,11 +1,13 @@
-import { ClientSession } from '@vrealtime/client';
+import { CaptureResampler, ClientSession, createSpeaker } from '@vrealtime/client';
 import { z } from 'zod/v3';
 import { createdVoiceSessionSchema, voiceDocumentContextSchema, voiceGrantSchema, voiceLanguageSchema, voiceRealtimePath, voiceResourceIdSchema, voiceVocabularySchema } from '../../domain/entities/voice-session';
 import type { RealtimeActivity, RealtimeConfig, RealtimePort } from '../../usecases/ports';
+import { voiceRequestError, VoiceConnectionError } from './voice-errors';
+import { prepareBrowserAudio } from './browser-audio';
 
 const loopback = (host: string) => host === 'localhost' || host === '[::1]' || /^127(?:\.\d{1,3}){3}$/.test(host);
 const configSchema = z.object({ url: z.string(), sessionsUrl: z.string(), audio: z.boolean().optional(), language: voiceLanguageSchema.optional(), vocabulary: voiceVocabularySchema.optional() });
-/** Configuration is supplied locally, never derived from a document or link. */
+/** Configuration comes from the authenticated application endpoint, never a document or link. */
 export function validateRealtimeConfig(input: RealtimeConfig, pageOrigin: string): RealtimeConfig {
   const config = configSchema.parse(input);
   const url = new URL(config.url);
@@ -18,12 +20,14 @@ export function validateRealtimeConfig(input: RealtimeConfig, pageOrigin: string
 }
 
 export const vrtAdapter: RealtimePort = {
-  open({ config: input, context: inputContext, tools, signal, onStatus, onActivity }) {
+  open({ config: input, context: inputContext, tools, signal, onStatus, onActivity, onMicrophone }) {
     const config = validateRealtimeConfig(input, window.location.origin);
     const context = voiceDocumentContextSchema.parse(inputContext);
     let closed = false, ended = false;
     let session: ClientSession | undefined, voiceSessionId: string | undefined;
     const grantLifetime = new AbortController();
+    const audioLifetime = new AbortController();
+    let renewalError: string | undefined;
     const off: (() => void)[] = [];
     const publish: typeof onStatus = (...args) => { if (!closed) onStatus(...args); };
     const report = (activity: RealtimeActivity) => { if (!closed) onActivity?.(activity); };
@@ -41,19 +45,26 @@ export const vrtAdapter: RealtimePort = {
     };
     const close = () => {
       if (closed) return;
-      closed = true; grantLifetime.abort();
+      closed = true; grantLifetime.abort(); audioLifetime.abort();
+      onMicrophone?.('off');
       signal.removeEventListener('abort', close); off.forEach(unsubscribe => unsubscribe());
       session?.interrupt();
       void session?.close().catch(() => {});
       endVoiceSession();
     };
+    const fail = (message: string) => { publish('error', message); close(); };
     const start = async () => {
       if (closed) return;
       try {
+        const audio = config.audio ? await prepareBrowserAudio({
+          signal: audioLifetime.signal, resampler: CaptureResampler.toString(), createSpeaker,
+          onMicrophone: state => { if (!closed) onMicrophone?.(state); }, onFailure: fail,
+        }) : undefined;
+        if (closed) return;
         // Keep this bounded request alive after close so a late creation can
         // be deleted. Aborting it would lose the newly allocated session ID.
         const response = await request(config.sessionsUrl, 'POST', AbortSignal.timeout(15000), true);
-        if (!response.ok) throw new Error('Could not create the voice session. Sign in and check document access.');
+        if (!response.ok) throw await voiceRequestError(response);
         const raw: unknown = await response.json();
         if (raw && typeof raw === 'object' && 'sessionId' in raw && 'documentId' in raw && raw.documentId === context.documentId) {
           const id = voiceResourceIdSchema.safeParse(raw.sessionId);
@@ -66,13 +77,15 @@ export const vrtAdapter: RealtimePort = {
         let initialGrant: typeof created.grant | undefined = created.grant;
         session = new ClientSession(new URL(created.realtimePath, config.url).href, {
           tools, context: { ...context, documentId: created.transportDocumentId ?? context.documentId },
-          audio: config.audio ? { input: 'mic', output: 'speaker' } : false,
+          audio: audio ? { input: audio.input, output: audio.output } : false,
           auth: async () => {
             if (closed || signal.aborted) throw new Error('Document session closed.');
             const first = initialGrant; initialGrant = undefined;
             if (first && first.expiresAt > Date.now() + 1000) return first.token;
             const response = await request(`${sessionUrl()}/grants`, 'POST', AbortSignal.any([grantLifetime.signal, AbortSignal.timeout(15000)]));
-            if (!response.ok) throw new Error('Could not renew the voice session grant.');
+            if (!response.ok) {
+              const error = await voiceRequestError(response); renewalError = error.message; throw error;
+            }
             const grant = voiceGrantSchema.parse(await response.json());
             if (closed || signal.aborted) throw new Error('Document session closed.');
             if (grant.expiresAt <= Date.now()) throw new Error('The voice session grant has expired.');
@@ -82,7 +95,11 @@ export const vrtAdapter: RealtimePort = {
         off.push(
           session.on('ready', () => publish('connected')),
           session.on('reconnecting', () => publish('reconnecting')),
-          session.on('error', () => publish('error', 'The assistant connection failed. Editing remains available.')),
+          session.on('error', event => {
+            const quota = ['QUOTA_EXCEEDED', 'QUOTA_EXHAUSTED', 'INSUFFICIENT_QUOTA'].includes(event.code);
+            const message = renewalError || (quota ? 'Voice quota is exhausted. Contact the site administrator about your allowance.' : event.code === 'RATE_LIMITED' ? 'Voice request limit reached. Wait before reconnecting.' : event.code === 'AUDIO_FAILED' ? 'Audio could not start. Check your microphone and browser audio settings, then reconnect.' : 'The assistant connection failed. Check your connection and reconnect.');
+            fail(message);
+          }),
           session.on('closed', () => { publish('disconnected'); close(); }),
           session.on('state', event => report({ type: 'turn', state: event.state, turnId: event.turnId })),
           session.on('tool.call', event => report({ type: 'call', callId: event.callId, name: event.name, arguments: event.arguments })),
@@ -90,9 +107,8 @@ export const vrtAdapter: RealtimePort = {
           session.on('interrupted', () => report({ type: 'interrupted' })),
         );
         await session.start();
-      } catch {
-        publish('error', 'Could not connect the assistant. Sign in and check document access and voice configuration.');
-        close();
+      } catch (error) {
+        fail(error instanceof VoiceConnectionError ? error.message : 'Could not connect the assistant. Check your connection and retry.');
       }
     };
     signal.addEventListener('abort', close, { once: true });
