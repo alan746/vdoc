@@ -2,22 +2,30 @@ import { rebaseInverse, type ProtectedRange as Range } from './rebase-inverse';
 import { PluginKey, type EditorState, type Transaction } from '@tiptap/pm/state';
 import { Mapping, ReplaceStep, type Step, type StepMap } from '@tiptap/pm/transform';
 
-interface Entry {
+interface EntryBase {
   sequence: number;
-  turnId?: string;
   step: Step;
-  inverse: Step;
   map: StepMap;
   mirrorOf?: number;
 }
-interface Turn { first: number; active: boolean; undoOf?: string }
+/** User input and appended normalization: only its map is needed, to rebase later undos. */
+interface UserEntry extends EntryBase { turnId?: undefined }
+/** An agent step, which a turn undo inverts. */
+interface AgentEntry extends EntryBase { turnId: string; inverse: Step }
+type Entry = UserEntry | AgentEntry;
+/** `entries` counts the turn's retained steps; the turn is forgotten when it reaches zero. */
+interface Turn { first: number; active: boolean; undoOf?: string; entries: number }
 interface UndoMetadata { target: string; mirrors: (number | undefined)[] }
 export type UndoPlan = { ok: true; transaction: Transaction } | { ok: false; error: string };
 
 
 /** A bounded command log. It depends on immutable PM state, never on an Editor or UI. */
 export class SelectiveUndoHistory {
+  // Retained entries are entries[head..]. Evicting advances `head` instead of
+  // shifting the array; the dead prefix is dropped once it outgrows the limit,
+  // and before anything reads the log by index.
   private entries: Entry[] = [];
+  private head = 0;
   private turns = new Map<string, Turn>();
   private sequence = 0;
   private metadata = new PluginKey<UndoMetadata>('vdocSelectiveUndo');
@@ -35,9 +43,13 @@ export class SelectiveUndoHistory {
       tr.steps.forEach((step, index) => {
         const before = tr.docs[index], after = index + 1 < tr.docs.length ? tr.docs[index + 1] : tr.doc;
         if (before.eq(after)) return;
-        const sequence = ++this.sequence;
-        this.entries.push({ sequence, turnId, step, inverse: step.invert(before), map: step.getMap(), mirrorOf: tr === transaction ? undo?.mirrors[index] : undefined });
-        if (turnId && !this.turns.has(turnId)) this.turns.set(turnId, { first: sequence, active: true });
+        const sequence = ++this.sequence, map = step.getMap(), mirrorOf = tr === transaction ? undo?.mirrors[index] : undefined;
+        if (!turnId) { this.entries.push({ sequence, step, map, mirrorOf }); return; }
+        // Only a turn undo reads an inverse, and only agent steps belong to a turn.
+        this.entries.push({ sequence, turnId, step, inverse: step.invert(before), map, mirrorOf });
+        const turn = this.turns.get(turnId);
+        if (turn) turn.entries++;
+        else this.turns.set(turnId, { first: sequence, active: true, entries: 1 });
       });
     }
     if (undo && turnId && this.turns.has(turnId)) {
@@ -51,15 +63,28 @@ export class SelectiveUndoHistory {
         target = turn.undoOf;
       }
     }
-    if (this.entries.length > this.maxSteps) this.entries.splice(0, this.entries.length - this.maxSteps);
-    const retained = new Set(this.entries.map(entry => entry.turnId));
-    for (const id of this.turns.keys()) if (!retained.has(id)) this.turns.delete(id);
+    while (this.entries.length - this.head > this.maxSteps) this.evict(this.entries[this.head++]);
+    if (this.head > this.maxSteps) this.compact();
   }
 
-  clear() { this.entries = []; this.turns.clear(); }
+  clear() { this.entries = []; this.head = 0; this.turns.clear(); }
+
+  /** O(1): a turn leaves the history with its last retained step. */
+  private evict(entry: Entry) {
+    if (!entry.turnId) return;
+    const turn = this.turns.get(entry.turnId);
+    if (turn && --turn.entries === 0) this.turns.delete(entry.turnId);
+  }
+
+  private compact() {
+    if (!this.head) return;
+    this.entries = this.entries.slice(this.head);
+    this.head = 0;
+  }
 
   /** Prepare the entire inverse without dispatching; any conflict leaves live state untouched. */
   prepare(state: EditorState, turnId: string, newTurnId: string): UndoPlan {
+    this.compact();
     const turn = this.turns.get(turnId);
     if (!turn || turn.first < (this.entries[0]?.sequence ?? Infinity)) return { ok: false, error: 'The turn is unknown or older than retained undo history.' };
     if (!turn.active) return { ok: false, error: 'This turn has already been undone.' };
