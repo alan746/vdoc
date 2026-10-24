@@ -30,6 +30,7 @@ it('shows a visible entry and cloud requirements for local documents without req
 });
 it('connects on a user gesture and routes Stop and Escape to interrupt', async () => {
   await render(); expect(calls.open).not.toHaveBeenCalled(); await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'speaking', turnId: 't1' }));
   await click('Stop assistant'); expect(calls.interrupt).toHaveBeenCalledOnce(); escape(); expect(calls.interrupt).toHaveBeenLastCalledWith('keyboard');
 });
 it('leaves Escape to dialogs and active composition', async () => {
@@ -165,18 +166,18 @@ it('sends the selected speech language and ignores late transcripts after discon
   expect(mount.textContent).not.toContain('old document');
 });
 
-it('moves the waveform only with captured input, clears on disconnect, and ignores stale input', async () => {
+it('drives the glow only with captured input, clears on disconnect, and ignores stale input', async () => {
   await render(); await click('Connect voice assistant');
   const options = calls.open.mock.calls[0][0];
-  const heights = () => [...mount.querySelectorAll<HTMLElement>('.voice-wave span')].map(bar => bar.style.height);
-  expect(heights().every(height => height === '3px')).toBe(true);
+  const level = () => mount.querySelector<HTMLElement>('.voice-dock')!.style.getPropertyValue('--voice-level');
+  expect(level()).toBe('0');
   await act(async () => calls.onActivity!({ type: 'turn', state: 'speaking', turnId: 't1' }));
-  expect(heights().every(height => height === '3px')).toBe(true);
+  expect(level()).toBe('0');
   await act(async () => options.onInputLevel(1));
-  expect(heights().at(-1)).toBe('24px');
+  expect(level()).toBe('1');
   await act(async () => options.onInputLevel(0));
-  expect(heights().at(-2)).toBe('24px'); expect(heights().at(-1)).toBe('3px');
+  expect(level()).toBe('0');
   await click('Disconnect assistant');
   await act(async () => options.onInputLevel(1));
-  expect(heights().every(height => height === '3px')).toBe(true);
+  expect(level()).toBe('0');
 });

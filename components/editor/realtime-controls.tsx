@@ -1,7 +1,7 @@
 'use client';
 /* Workspace links intentionally reload account-scoped repositories. */
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Mic, MicOff, Square, X, ChevronDown, AudioLines } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { Mic, Square, X, Ellipsis } from 'lucide-react';
 import { openDocumentRealtime, loadRealtimeConfig, VoiceConnectionError } from '@/lib/composition/realtime';
 import { isCloudWorkspace } from '@/lib/composition/repositories';
 import type { DocumentEngine } from '@/lib/usecases/engine';
@@ -20,7 +20,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const [accessError, setAccessError] = useState('');
   const [attempt, setAttempt] = useState(0);
   const [microphone, setMicrophone] = useState<MicrophoneStatus>('off');
-  const [levels, setLevels] = useState<number[]>(() => Array(24).fill(0));
+  const [level, setLevel] = useState(0);
   const generation = useRef<symbol | null>(null);
   const starting = useRef(false);
   useEffect(() => {
@@ -60,7 +60,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const disconnect = () => {
     generation.current = null; starting.current = false;
     connection.current?.close(); connection.current = null;
-    setStatus('disconnected'); setMessage(''); setTurn('idle'); setMicrophone('off'); setLevels(Array(24).fill(0)); setHeard(''); setToolFeedback('');
+    setStatus('disconnected'); setMessage(''); setTurn('idle'); setMicrophone('off'); setLevel(0); setHeard(''); setToolFeedback('');
   };
   const connect = () => {
     if (!config || starting.current) return;
@@ -73,9 +73,9 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
           if (current !== generation.current) return;
           setStatus(next); setMessage(detail ?? '');
           if (next !== 'connected') { setTurn('idle'); setToolFeedback(''); }
-          if (next === 'error' || next === 'disconnected') { starting.current = false; setMicrophone('off'); setLevels(Array(24).fill(0)); }
+          if (next === 'error' || next === 'disconnected') { starting.current = false; setMicrophone('off'); setLevel(0); }
         },
-        onInputLevel: level => { if (current === generation.current) setLevels(previous => [...previous.slice(1), level]); },
+        onInputLevel: value => { if (current === generation.current) setLevel(value); },
         onMicrophone: state => { if (current === generation.current) setMicrophone(state); },
         onActivity: activity => {
           if (current !== generation.current) return;
@@ -100,28 +100,41 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
     ready: 'Microphone allowed · Connecting…', on: 'Microphone on', error: 'Microphone unavailable',
   };
   const statusLabel = checking ? 'Checking voice availability…' : status === 'connected' ? ['Assistant connected', turnLabels[turn]].filter(Boolean).join(' · ') : status === 'reconnecting' ? 'Assistant reconnecting…' : status === 'connecting' ? 'Assistant connecting…' : status === 'error' ? 'Assistant connection failed' : 'Assistant disconnected';
-  const wave = microphone === 'on' ? 'listening' : 'off';
-  const hint = !cloud ? 'Voice editing is available in your cloud workspace.' : active ? heard || 'Speak naturally. Try “Add a three-row table.”' : 'Say it. See it on the page.';
-  return <section aria-label="Document assistant" className="voice-dock" data-active={active}>
-    <div className="voice-bar">
-      <div className={`voice-symbol ${microphone === 'on' ? 'voice-symbol-on' : ''}`} aria-hidden="true">{microphone === 'on' ? <AudioLines size={23} /> : <Mic size={23} />}</div>
-      <div className="voice-copy"><div className="voice-title"><strong>Talk to your document</strong><span className={`voice-state voice-state-${status}`} role="status">{statusLabel}</span></div><div className="voice-caption"><div className="voice-wave" data-state={wave} aria-hidden="true">{levels.map((level, index) => <span key={index} style={{ height: `${3 + level * 21}px` }} />)}</div><p className="voice-hint" title={hint}>{hint}</p></div></div>
-      <div className="voice-actions">
-        {!active && <label className="voice-language"><span className="sr-only">Voice language</span><select aria-label="Voice language" value={language} onChange={event => setLanguage(event.target.value)} disabled={checking}><option value="auto">Document language</option><option value="zh-CN">中文</option><option value="en-US">English</option></select></label>}
-        {!active && <button type="button" className="voice-connect" disabled={!config || checking} onClick={connect}><Mic size={16} />{status === 'error' ? 'Retry voice connection' : 'Connect voice assistant'}</button>}
-        {active && <>
-          <button type="button" className="voice-stop" disabled={status !== 'connected'} onClick={() => connection.current?.interrupt()} title="Stop the current response (Esc). The microphone stays connected."><Square size={14} />Stop assistant</button>
-          <button type="button" className="voice-disconnect" onClick={disconnect}><MicOff size={16} /><span>{status === 'connecting' ? 'Cancel connection' : 'Disconnect assistant'}</span></button>
-        </>}
+  const placeholder = !cloud ? 'This is a local document. Voice works in cloud documents.'
+    : checking ? 'Checking voice availability…'
+    : microphone === 'requesting' ? 'Allow microphone access to start…'
+    : status === 'connecting' ? 'Connecting…'
+    : status === 'reconnecting' ? 'Reconnecting…'
+    : status === 'connected' ? (turn === 'thinking' || turn === 'acting' || turn === 'speaking' ? `${turnLabels[turn]}…` : 'Listening… speak naturally')
+    : 'Tap the microphone and start talking';
+  const busy = status === 'connected' && (turn === 'thinking' || turn === 'acting' || turn === 'speaking');
+  return <section aria-label="Document assistant" className="voice-dock" data-active={active} data-listening={microphone === 'on'} style={{ '--voice-level': level } as CSSProperties}>
+    <div className="voice-float">
+      <div className="voice-row">
+        <div className="voice-field">
+          <span className="voice-glow" aria-hidden="true" />
+          <div className="voice-field-inner">
+            <span role="status" className="sr-only">{statusLabel}</span>
+            <span className="sr-only" aria-live="polite">{microphoneLabels[microphone]}</span>
+            <div className="voice-transcript"><p className={`voice-hint ${heard ? '' : 'voice-placeholder'}`}>{heard || placeholder}</p></div>
+            {busy && <button type="button" className="voice-stop" onClick={() => connection.current?.interrupt()} title="Stop the current response (Esc). The microphone stays on."><Square size={11} fill="currentColor" /><span className="sr-only">Stop assistant</span></button>}
+            <details className="voice-more"><summary aria-label="Voice options"><Ellipsis size={17} /></summary>
+              <div className="voice-menu">
+                <label className="voice-language">Speech language<select aria-label="Voice language" value={language} onChange={event => setLanguage(event.target.value)} disabled={checking || active}><option value="auto">Document language</option><option value="zh-CN">中文</option><option value="en-US">English</option></select></label>
+                {config && <div className="voice-edits"><strong>Recent edits</strong><ActivityTimeline engine={engine} active={active} subscribeActivity={subscribeActivity} /></div>}
+                {!cloud && <p><a href="/account">Open your account</a> to use cloud voice editing.</p>}
+                <p className="voice-about">Tap once, then speak naturally across multiple turns. Esc interrupts the assistant; tap the microphone again to turn it off. Voice requires a signed-in account and a cloud document you own outside Trash. Usage limits apply.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+        <button type="button" className="voice-orb" disabled={!active && (!config || checking)} onClick={active ? disconnect : connect} title={active ? 'Turn off voice' : 'Start voice input'}>
+          {active ? <Square size={15} fill="currentColor" /> : <Mic size={20} />}
+          <span className="sr-only">{active ? (status === 'connecting' ? 'Cancel connection' : 'Disconnect assistant') : status === 'error' ? 'Retry voice connection' : 'Connect voice assistant'}</span>
+        </button>
       </div>
+      {(accessError || message) ? <div role="alert" className="voice-error"><X size={14} /><span>{accessError || message}</span>{accessError && <button type="button" disabled={checking} onClick={() => { setConfig(null); setChecking(true); setAccessError(''); setAttempt(value => value + 1); }}>Retry availability check</button>}</div>
+        : toolFeedback && <span className={toolFailed ? 'voice-tool-error' : 'voice-tool-feedback'} role={toolFailed ? 'alert' : 'status'}>{toolFeedback}</span>}
     </div>
-    <div className="voice-underbar">
-      <span className="voice-microphone" aria-live="polite"><span className={microphone === 'on' ? 'voice-live-dot' : ''} />{microphoneLabels[microphone]}</span>
-      {toolFeedback && <span className={toolFailed ? 'voice-tool-error' : 'voice-tool-feedback'} role={toolFailed ? 'alert' : 'status'}>{toolFeedback}</span>}
-      {!cloud && <span>This is a local document. <a href="/account">Open your account</a> to use cloud voice editing.</span>}
-      {config && <details className="voice-edits"><summary>Recent edits <ChevronDown size={12} /></summary><div className="voice-details-body"><ActivityTimeline engine={engine} active={active} subscribeActivity={subscribeActivity} /></div></details>}
-      <details className="voice-details"><summary>About voice <ChevronDown size={12} /></summary><div className="voice-details-body">Connect once, then speak naturally across multiple turns. Stop interrupts the assistant’s current action; Disconnect turns off the microphone. Voice requires a signed-in account and a cloud document you own outside Trash. Usage limits apply; remaining allowance is not yet shown. Local documents are not uploaded automatically.</div></details>
-    </div>
-    {(accessError || message) && <div role="alert" className="voice-error"><X size={15} /><span>{accessError || message}</span>{accessError && <button type="button" disabled={checking} onClick={() => { setConfig(null); setChecking(true); setAccessError(''); setAttempt(value => value + 1); }}>Retry availability check</button>}</div>}
   </section>;
 }
