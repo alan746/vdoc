@@ -86,12 +86,12 @@ export const operationSchema = z.discriminatedUnion('type', [
     z.object({ kind: z.literal('heading'), level: z.number().int().min(1).max(6), text: z.string().max(10000) }).strict(),
     z.object({ kind: z.literal('paragraph'), text: z.string().max(10000) }).strict(),
     z.object({
-      kind: z.literal('table'), rows: z.number().int().min(1).max(30), cols: z.number().int().min(1).max(20), header: z.boolean().default(true),
-      headerText: z.array(z.string().max(1000)).max(20).optional(),
-      rowsText: z.array(z.array(z.string().max(1000)).max(20)).max(30).optional(),
+      kind: z.literal('table'), rows: z.number().int().min(1).max(30).describe('Total rows, including the header row when header is true.'), cols: z.number().int().min(1).max(20), header: z.boolean().default(true),
+      headerText: z.array(z.string().max(1000)).max(20).optional().describe('The header row, one entry per column.'),
+      rowsText: z.array(z.array(z.string().max(1000)).max(20)).max(30).optional().describe('Data rows only, below the header: at most rows - 1 when header is true. Never repeat headerText here.'),
     }).strict(),
   ]) }).strict().describe('Insert a new block beside the anchor. To add an item to an existing list, insert a paragraph anchored on one of its items (the item\'s block ID, not the list\'s): it becomes a new item of that list before or after it. Anchoring on the list itself inserts outside the list, and list.toggle on such a paragraph starts a separate list.'),
-  z.object({ type: z.literal('block.delete'), id: z.string().min(1).describe('Required ID of the top-level block to delete, taken from a document read. Supply it even if target.id contains the same ID.') }).strict().describe('Delete the top-level block identified by this operation\'s id. The request target does not fill in this required id.'),
+  z.object({ type: z.literal('block.delete'), id: z.string().min(1).describe('Required ID of the top-level block to delete, taken from a document read. Supply it even if target.id contains the same ID.') }).strict().describe('Delete the top-level block or list item identified by this operation\'s id. The request target does not fill in this required id.'),
 ]);
 
 /** Shared by the engine and realtime validation; ambiguous destinations never execute. */
@@ -130,7 +130,7 @@ export const requestSchema = z.object({
       const { cols, rows, header, headerText, rowsText } = op.block;
       if (headerText && (!header || headerText.length !== cols)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i, 'block', 'headerText'], message: 'headerText requires header: true and one entry per column.' });
       if (rowsText?.some(row => row.length !== cols)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i, 'block', 'rowsText'], message: 'Each row in rowsText must have one entry per column.' });
-      if (rowsText && rowsText.length > rows - (header ? 1 : 0)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i, 'block', 'rowsText'], message: 'rowsText has more rows than the table.' });
+      if (rowsText && rowsText.length > rows - (header ? 1 : 0)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', i, 'block', 'rowsText'], message: `rowsText has more rows than the table: it holds data rows only, at most ${rows - (header ? 1 : 0)} here${header ? ' (rows counts the header row, which goes in headerText, not rowsText)' : ''}.` });
     }
   });
 });

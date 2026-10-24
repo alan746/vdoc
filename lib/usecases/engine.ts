@@ -15,6 +15,9 @@ import { changedBlockIds } from '../editor/document/changed-blocks';
 import { SelectiveUndoHistory } from '../editor/document/selective-undo';
 import { requestSignature } from '../shared/request-signature';
 
+/** Operations that locate what they change themselves (by query or block ID), never through the request target. */
+const TARGET_FREE_OPERATIONS = new Set<string>(['text.findReplace', 'block.insert', 'block.delete', 'block.move']);
+
 /** A selection captured now and kept mapped through every later document change until released. */
 export type SelectionAnchor = { resolve(): { from: number; to: number }; release(): void };
 
@@ -175,10 +178,11 @@ export class DocumentEngine {
       if (request.expectedBlocks.some(block => this.index().version(block.id) !== block.version)) return fail('STALE', 'A target block has changed. Read it again.');
     }
     if (request.target.kind === 'range' && request.expectedRevision === undefined) return fail('STALE', 'An explicit range requires a document revision.');
-    // Find/replace and document settings act on the whole document, so a target that has gone stale
-    // (an agent replaying a confirmed call after other edits) must not stop them.
-    const documentWide = request.operations.every(op => op.type === 'text.findReplace' || op.type.startsWith('document.'));
-    if (!documentWide && request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
+    // Find/replace and document settings act on the whole document, and block insert/delete/move name
+    // their blocks by ID, so a target that has gone stale (an agent replaying a confirmed call after
+    // other edits) or is only a placeholder (range 0..0) must not stop them.
+    const targetFree = request.operations.every(op => TARGET_FREE_OPERATIONS.has(op.type) || op.type.startsWith('document.'));
+    if (!targetFree && request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
 
     const agent = request.source === 'agent';
     const userSelection = this.editor.state.selection, userMarks = this.editor.state.storedMarks;
@@ -186,9 +190,9 @@ export class DocumentEngine {
     try {
       if (request.target.kind === 'selection' && request.source === 'toolbar' && this.bookmark) selection = this.bookmark.resolve(this.editor.state.doc);
       const resolved = resolveTargetSelection(request.target, this.editor.state.doc, selection);
-      if ('error' in resolved) { if (!documentWide) return fail('TARGET', resolved.error); }
+      if ('error' in resolved) { if (!targetFree) return fail('TARGET', resolved.error); }
       else selection = resolved;
-    } catch { if (!documentWide) return fail('TARGET', 'The target could not be located. Select it again.'); }
+    } catch { if (!targetFree) return fail('TARGET', 'The target could not be located. Select it again.'); }
 
     const beforeRevision = this.revision;
     const beforeDocument = this.editor.state.doc;

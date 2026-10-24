@@ -1,5 +1,15 @@
 import { NodeSelection } from '@tiptap/pm/state';
-import { defineHandlers, operationFields } from '../commands/types';
+import { defineHandlers, operationFields, type CommandContext } from '../commands/types';
+
+/** A cursor gets the block where it stands. A selection (such as an agent's block target) is kept and
+ *  the new block goes before the top-level block where it starts: "a page break before the conclusion"
+ *  must not replace the conclusion's heading. */
+function insertBlockAtom(type: string, { state, c }: CommandContext): boolean {
+  const { selection } = state;
+  if (selection.empty) return c.insertContent({ type });
+  const $from = selection.$from;
+  return c.insertContentAt($from.depth ? $from.before(1) : $from.pos, { type }, { updateSelection: false });
+}
 
 export const blockCommands = defineHandlers({
   'image.insert': (op, { c }) => c.setImage({ src: op.src, alt: op.alt, width: op.width }),
@@ -15,7 +25,7 @@ export const blockCommands = defineHandlers({
     let number = 1; state.doc.descendants(node => { if (node.type.name === 'footnote') number = Math.max(number, node.attrs.number + 1); });
     return c.insertContent({ type: 'footnote', attrs: { text: op.text, number } });
   },
-  'block.toc': (_op, { c }) => c.insertContent({ type: 'tableOfContents' }),
-  'block.pageBreak': (_op, { c }) => c.insertContent({ type: 'pageBreak' }),
+  'block.toc': (_op, context) => insertBlockAtom('tableOfContents', context),
+  'block.pageBreak': (_op, context) => insertBlockAtom('pageBreak', context),
 
 });

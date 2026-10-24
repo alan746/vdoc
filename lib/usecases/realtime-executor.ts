@@ -167,7 +167,9 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
   const undo = (input: unknown, context: RealtimeToolContext) => trustedWrite('undo', realtimeUndoSchema, input, context,
     (args, origin) => args.expectedSessionId !== sessionId || args.expectedRevision !== engine.revision
       ? failure(context.callId, 'STALE', 'The document changed. Read it again before undoing.')
-      : engine.undoTurn(args.targetTurnId, origin));
+      // An undo is a turn of its own. When this turn already edited (the agent taking back its own
+      // change before finishing), record the undo under the call ID instead.
+      : engine.undoTurn(args.targetTurnId, engine.records.some(record => record.turnId === origin.turnId) ? { ...origin, turnId: context.callId } : origin));
   return {
     read(context: RealtimeToolContext) {
       return check(context) ?? { ...engine.snapshot(), docId: options.docId, agentEdits: engine.records.filter(record => record.source === 'agent') };

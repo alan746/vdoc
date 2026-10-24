@@ -21,7 +21,8 @@ function insertContent(block: InsertBlock): object {
 export const documentCommands = defineHandlers({
   'block.insert': (op, { state, c, reject }) => {
     const destination = insertionPoint(state.doc, op);
-    if (destination !== undefined) return c.insertContentAt(destination, insertContent(op.block));
+    // Keep the selection where it was: a later operation in the batch must not land inside the new block.
+    if (destination !== undefined) return c.insertContentAt(destination, insertContent(op.block), { updateSelection: false });
     // Anchored on a list item: the paragraph joins that list as a new item beside it.
     const anchorId = op.position?.anchorId ?? op.beforeId;
     const { block } = op;

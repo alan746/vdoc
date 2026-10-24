@@ -65,11 +65,16 @@ const resolvers: { [K in Exclude<Target['kind'], 'selection'>]: Resolver<K> } = 
   },
   block: (target, doc) => {
     const targetId = target.id;
-    let found: { pos: number; size: number; textblock: boolean; atom: boolean } | undefined;
+    let found: { pos: number; size: number; textblock: boolean; atom: boolean; table?: Node } | undefined;
     doc.descendants((node, pos) => {
-      if (node.attrs.blockId === targetId) found = { pos, size: node.nodeSize, textblock: node.isTextblock, atom: node.isAtom };
+      if (node.attrs.blockId === targetId) found = { pos, size: node.nodeSize, textblock: node.isTextblock, atom: node.isAtom, table: node.type.name === 'table' ? node : undefined };
     });
     if (!found) return { error: 'The target no longer exists.' };
+    // A whole table selects every cell, so table operations (borders, background) cover all of it, not one cell.
+    if (found.table) {
+      const map = TableMap.get(found.table), start = found.pos + 1;
+      return CellSelection.create(doc, start + map.map[0], start + map.map[map.map.length - 1]);
+    }
     if (found.atom) return NodeSelection.create(doc, found.pos);
     if (found.textblock) return TextSelection.create(doc, found.pos + 1, found.pos + found.size - 1);
     return TextSelection.between(doc.resolve(found.pos + 1), doc.resolve(found.pos + found.size - 1));
