@@ -1,5 +1,5 @@
 import type { DocumentSummary, LibraryMetadata, SavedDocument } from '../../domain/entities/document';
-import { parseDocument } from './document-codec';
+import { normalizeDocument } from './document-codec';
 
 // Shared record helpers for stores that read or write document rows.
 export const summary = (doc: SavedDocument): DocumentSummary => ({ id: doc.id, title: doc.title, savedAt: doc.savedAt });
@@ -34,7 +34,7 @@ export function withWritableDocument(tx: IDBTransaction, id: string, write: () =
 /** Validates a stored document row and confirms it is the document `id`, without rewriting it. */
 export function verifiedStoredDocument(stored: unknown, id: string): SavedDocument {
   if (!stored) throw new Error('The local document no longer exists.');
-  const document = parseDocument(JSON.stringify(stored));
+  const document = normalizeDocument(stored);
   if (document.id !== id) throw new Error('The saved document identity does not match. The original data has been preserved.');
   return { ...document, id };
 }

@@ -1,5 +1,5 @@
 import { openDatabase, transactionDone, requestResult, writeTransaction } from './indexed-db';
-import { parseDocument } from './document-codec';
+import { normalizeDocument } from './document-codec';
 import { documentChanges } from './document-change-channel';
 import { truncateGraphemePrefix } from '../../domain/text/unicode';
 import type { DocumentDraft, DocumentSummary, LibraryItem, LibraryMetadata, SavedDocument, Trash } from '../../domain/entities/document';
@@ -49,7 +49,7 @@ const putMetadata = (tx: IDBTransaction, metadata: LibraryMetadata) => tx.object
 // Homepage creation and import are one operation: either a complete document is
 // added to its destination and activated, or all four records remain unchanged.
 export async function createLibraryDocument(document: DocumentDraft, parentId: string | null) {
-  const data: SavedDocument = { ...parseDocument(JSON.stringify(document)), id: crypto.randomUUID(), savedAt: new Date().toISOString() };
+  const data: SavedDocument = { ...normalizeDocument(document), id: crypto.randomUUID(), savedAt: new Date().toISOString() };
   await changeLibrary((items, tx) => {
     validParent(items, parentId);
     tx.objectStore('documents').add(data);

@@ -1,5 +1,5 @@
 import type { JSONContent } from '@tiptap/core';
-import { parseDocument } from './document-codec';
+import { normalizeDocument, parseDocument } from './document-codec';
 import { documentChanges } from './document-change-channel';
 import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import type { DocumentDraft, DocumentSummary, SavedDocument } from '../../domain/entities/document';
@@ -70,7 +70,7 @@ async function readLinkedDocument(db: IDBDatabase, id: string): Promise<SavedDoc
   withDocumentRecord(tx, id, (document, metadata) => {
     if (!document) throw new Error('This document is not available in this browser. Open a document from your library or import a backup.');
     if (metadata?.trashedAt) throw new Error('This document is in Trash. Restore it from your library before opening it.');
-    const parsed = parseDocument(JSON.stringify(document), Infinity);
+    const parsed = normalizeDocument(document);
     if (parsed.id !== id) throw new Error('The document link does not match the saved document. The original data has been preserved.');
     data = { ...parsed, id };
     tx.objectStore('settings').put(id, 'active');
