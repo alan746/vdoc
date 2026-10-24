@@ -17,6 +17,7 @@ beforeEach(() => {
     sessionId: 'session', revision: 3, records: [], composing: false, editable: true,
     canEdit: () => engine.editable,
     isComposing: () => engine.composing,
+    insertStructuredArticle: vi.fn(() => ({ ok: true, id: 'article', revision: 4 })),
     executeAgent: vi.fn((input: { id: string }, origin): OperationResult => {
       engine.emit({ id: input.id, label: 'Replace text', source: 'agent', ...origin, revision: 4, changedBlockIds: ['b1'], documentChanged: true });
       return { ok: true, id: input.id, revision: 4 };

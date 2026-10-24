@@ -99,6 +99,9 @@ it('registers the guarded schema and aborts the tools with the editor lifecycle'
   type RegisteredTool = Parameters<NonNullable<Parameters<typeof registerDocumentTools>[1]>['registerTool']>[0];
   const registered: { tool: RegisteredTool; signal: AbortSignal }[] = [];
   const dispose = registerDocumentTools(engine, { registerTool: (tool, options) => { registered.push({ tool, signal: options.signal }); } });
+  const article = registered.find(t => t.tool.name === 'insert_structured_article')!;
+  expect(article.tool.inputSchema).toMatchObject({ required: expect.arrayContaining(['callId', 'expectedSessionId', 'expectedRevision', 'destination', 'title', 'blocks']) });
+  expect(article.tool.execute({ title: 'Incomplete' })).toMatchObject({ code: 'INVALID' });
   const apply = registered.find(t => t.tool.name === 'apply_document_operations')!;
   expect(apply.tool.inputSchema).toMatchObject({ required: expect.arrayContaining(['expectedSessionId', 'target']), properties: expect.objectContaining({ expectedBlocks: expect.any(Object), expectedRevision: expect.any(Object) }) });
   expect(apply.tool.execute({ operations: [{ type: 'text.insert', text: 'unsafe' }] })).toMatchObject({ code: 'INVALID' });

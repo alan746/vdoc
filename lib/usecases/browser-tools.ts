@@ -1,10 +1,10 @@
-import { documentToolCatalog, externalDocumentSchema } from './document-tools';
+import { documentToolCatalog, externalDocumentSchema, externalArticleSchema } from './document-tools';
 import { realtimeReadBlocksSchema } from './realtime-executor';
 import type { DocumentEngine } from './engine';
 type PageTool = { name: string; title: string; description: string; inputSchema: object; annotations: { readOnlyHint: boolean; untrustedContentHint: boolean }; execute: (input: unknown) => unknown };
 type PageContext = { registerTool: (tool: PageTool, options: { signal: AbortSignal }) => void | Promise<void> };
 
-const titles: Record<string, string> = { read_document: 'Read current document', read_blocks: 'Read specific blocks', apply_document_operations: 'Apply document operations' };
+const titles: Record<string, string> = { read_document: 'Read current document', read_blocks: 'Read specific blocks', apply_document_operations: 'Apply document operations', insert_structured_article: 'Insert structured article' };
 
 /** Optional browser-standard bridge, with no model, network call, or AI
  *  dependency. Registers the vdoc#30 catalog entries that need no agent
@@ -21,12 +21,13 @@ export function registerDocumentTools(engine: DocumentEngine, context = (documen
       return parsed.success ? engine.readBlocks(parsed.data.ids) : { ok: false, code: 'INVALID', error: parsed.error.issues[0]?.message ?? 'Invalid arguments.' };
     },
     apply_document_operations: input => engine.executeExternal(input),
+    insert_structured_article: input => engine.insertStructuredArticle(input, { signal: lifecycle.signal }),
   };
   const tools: PageTool[] = Object.keys(execute).map(name => {
     const entry = documentToolCatalog.find(item => item.name === name)!;
     return {
       name, title: titles[name], description: entry.description,
-      inputSchema: name === 'apply_document_operations' ? externalDocumentSchema : entry.parameters,
+      inputSchema: name === 'apply_document_operations' ? externalDocumentSchema : name === 'insert_structured_article' ? externalArticleSchema : entry.parameters,
       annotations: { readOnlyHint: entry.readOnly, untrustedContentHint: true },
       execute: execute[name],
     };

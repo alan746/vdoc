@@ -1,3 +1,5 @@
+import { structuredArticleSchema, type ArticleResult } from '../domain/entities/structured-article';
+import { articleNodes } from '../editor/document/structured-article';
 import { listSelectionBoundaryError } from '../editor/list/list-conversion';
 import { documentNavigation } from './document-navigation';
 import type { Editor } from '@tiptap/core';
@@ -25,6 +27,7 @@ export class DocumentEngine {
   private bookmark: SelectionBookmark | null = null;
   private anchors = new Set<{ bookmark: SelectionBookmark }>();
   private results = new Map<string, { signature: string; result: OperationResult }>();
+  private articleResults = new Map<string, { signature: string; result: ArticleResult }>();
   private listeners = new Set<() => void>();
   private appliedListeners = new Set<(event: AppliedChange) => void>();
   private blocks = new BlockIndex();
@@ -83,6 +86,51 @@ export class DocumentEngine {
   isComposing() { return documentNavigation(this.editor).isComposing(); }
   get canUndo() { return undoDepth(this.editor.state) > 0; }
   get canRedo() { return redoDepth(this.editor.state) > 0; }
+
+  /** Synchronous validation and commit: no async gap between preconditions and insertion. */
+  insertStructuredArticle(input: unknown, options: { signal?: AbortSignal; origin?: AgentOrigin } = {}): ArticleResult {
+    const fail = (code: string, error: string): ArticleResult => ({ ok: false, id: typeof (input as { callId?: unknown } | null)?.callId === 'string' ? (input as {callId: string}).callId : '', revision: this.revision, code, error });
+    const parsed = structuredArticleSchema.safeParse(input);
+    if (!parsed.success) return fail('INVALID', parsed.error.issues.map(issue => `${issue.path.join('.')}: ${issue.message}`).join('; '));
+    const article = parsed.data;
+    if (this.disposed || this.editor.isDestroyed || !this.editor.isEditable) return fail('UNAVAILABLE', 'The document is not editable.');
+    if (article.expectedSessionId !== this.sessionId) return fail('STALE', 'The editing session has changed.');
+    const signature = JSON.stringify(article);
+    const prior = this.articleResults.get(article.callId);
+    if (prior) return prior.signature === signature ? prior.result : fail('DUPLICATE', 'A callId cannot be reused for different article parameters.');
+    if (options.signal?.aborted) return fail('CANCELLED', 'The article insertion was cancelled.');
+    if (options.origin && (!options.origin.actor || !options.origin.turnId)) return fail('INVALID', 'Agent origin requires actor and turnId.');
+    if (documentNavigation(this.editor).isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
+    if (article.expectedRevision !== this.revision) return fail('STALE', 'The document has changed. Keep the article and refresh the destination and revision.');
+    let position = this.editor.state.doc.content.size;
+    const destination = article.destination;
+    if (destination.kind !== 'document_end') {
+      let found = false;
+      this.editor.state.doc.forEach((node, offset) => {
+        if (node.attrs.blockId === destination.blockId) { found = true; position = offset + (destination.kind === 'after_block' ? node.nodeSize : 0); }
+      });
+      if (!found) return fail('TARGET', 'The destination must be an existing top-level block boundary.');
+    }
+    const nodes = articleNodes(this.editor.schema, article);
+    const state = this.editor.state;
+    const tr = closeHistory(state.tr).insert(position, nodes);
+    tr.setSelection(state.selection.map(tr.doc, tr.mapping)).setStoredMarks(state.storedMarks);
+    tr.setMeta('vdoc', { id: article.callId, source: options.origin ? 'agent' : 'api', ...options.origin });
+    if (options.origin) tr.setMeta('addToHistory', false);
+    tr.doc.check();
+    if (options.signal?.aborted) return fail('CANCELLED', 'The article insertion was cancelled.');
+    this.editor.view.dispatch(tr);
+    this.editor.view.dispatch(closeHistory(this.editor.state.tr));
+    const headingCounts = { 1: 1, 2: 0, 3: 0 };
+    let paragraphCount = 0;
+    for (const block of article.blocks) { if (block.kind === 'heading') headingCounts[block.level]++; else paragraphCount++; }
+    const result: ArticleResult = { ok: true, id: article.callId, revision: this.revision, title: article.title, insertedBlockIds: nodes.map(node => node.attrs.blockId as string), headingCounts, paragraphCount };
+    this.articleResults.set(article.callId, { signature, result });
+    this.record(article.callId, 'Insert structured article', options.origin ? 'agent' : 'api', nodes.length, options.origin);
+    const event: AppliedChange = Object.freeze({ id: article.callId, label: 'Insert structured article', source: options.origin ? 'agent' : 'api', ...options.origin, revision: this.revision, changedBlockIds: Object.freeze(result.insertedBlockIds!), documentChanged: true });
+    for (const listener of this.appliedListeners) listener(event);
+    return result;
+  }
 
   executeExternal(input: unknown): OperationResult {
     const parsed = externalRequestSchema.safeParse(input);

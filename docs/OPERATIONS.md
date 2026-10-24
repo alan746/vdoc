@@ -520,3 +520,12 @@ Stop/Esc call the SDK interrupt immediately. Escape is left to open dialogs/menu
 规范化完成后的实际位置；若该块随后被同批次删除，`location` 为 null。执行器
 保留这些结果用于幂等重放，模型应检查实际邻接关系后再报告成功。旧 `beforeId`
 接口与原有 session/revision、撤销和原子批处理语义保持兼容。
+### Structured article insertion
+
+`insert_structured_article` is registered alongside the existing browser tools. It accepts `callId`, `expectedSessionId`, `expectedRevision`, an explicit `destination` (`document_end`, `before_block` or `after_block` with a top-level `blockId`), `title`, and `blocks`. Blocks contain only `{kind: 'paragraph', text}` or `{kind: 'heading', level: 2|3, text}`. The title becomes one real H1; no HTML or arbitrary node attributes are interpreted. Resolve omitted writing locations before invoking the tool; the engine never uses the cursor as a destination.
+
+Limits: 80 body blocks, 200 title characters, 3000 characters per block, 12000 total characters. Every section, including the introduction, must contain prose before the next heading; H3 cannot precede H2. Full validation precedes a single insertion transaction. A truncated JSON call must not be executed by the transport; a parseable outline ending in a heading is rejected. Semantic truncation of otherwise valid prose cannot be detected by schema validation.
+
+`engine.insertStructuredArticle(input, {signal, origin})` supports cancellation immediately before commit and optional trusted `{actor, turnId}` agent provenance for `undoTurn`. Without origin the whole insertion is one normal undo step. A realtime dispatcher must supply its cancellation signal and trusted origin, and bind `callId` to its tool-call identity. The browser bridge supplies its lifecycle signal. The realtime executor supplies trusted call identity, agent origin and cancellation through the existing write lifecycle.
+
+Success returns revision, title, insertedBlockIds, headingCounts and paragraphCount. Successful call IDs are retained for the engine session: identical retries return the original result, changed payloads return DUPLICATE. STALE failures do not discard article data or reserve the call ID: retain the article, reread the destination, and retry with refreshed preconditions (prefer a fresh call ID). Missing or nested boundaries return TARGET. Insertion preserves the user's selection and typing marks. Boson article-length stability and factual quality require live evaluation; automated tests do not establish those properties.

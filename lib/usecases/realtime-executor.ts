@@ -1,3 +1,4 @@
+import { realtimeArticleSchema, type ArticleResult } from '../domain/entities/structured-article';
 import type { SelectionAnchor } from './engine';
 import { agentRequestSchema, operationSchema, validateBlockPlacements, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
 import type { BlockRead, DocumentSnapshot, OutlineEntry, SelectionBlockContext } from '../editor/document-snapshot';
@@ -45,6 +46,7 @@ export interface RealtimeEngine {
   readonly records: readonly OperationRecord[];
   canEdit(): boolean;
   isComposing(): boolean;
+  insertStructuredArticle(input: unknown, options?: { signal?: AbortSignal; origin?: AgentOrigin }): ArticleResult;
   executeAgent(input: unknown, origin: AgentOrigin): OperationResult;
   undoTurn(turnId: string, origin: AgentOrigin): OperationResult;
   snapshot(): DocumentSnapshot;
@@ -64,7 +66,7 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
   signal: AbortSignal; compositionTimeoutMs?: number;
 }) {
   const sessionId = engine.sessionId;
-  const completed = new Map<string, { signature: string; result: OperationResult }>();
+  const completed = new Map<string, { signature: string; result: OperationResult | ArticleResult }>();
   const failure = (id: string, code: OperationResult['code'] | 'INTERRUPTED' | 'TIMEOUT', error: string) => ({ ok: false as const, id, revision: engine.revision, code, error });
   // Recent agent edits for "the table I just added"; bounded, and re-checked
   // against the live document on every read (see recentVoiceEdits below).
@@ -127,11 +129,11 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
       poll();
     });
   }
-  type WriteResult = OperationResult | ReturnType<typeof failure>;
+  type WriteResult = OperationResult | ArticleResult | ReturnType<typeof failure>;
   /** The one path every write tool takes: binding check, schema, dedup by call
    *  ID, composition wait, a final re-check, then exactly one synchronous
    *  engine call. Only `write` differs between tools. */
-  async function trustedWrite<T>(tool: 'apply' | 'undo', schema: z.ZodType<T, z.ZodTypeDef, unknown>, input: unknown, context: RealtimeToolContext,
+  async function trustedWrite<T>(tool: 'apply' | 'undo' | 'article', schema: z.ZodType<T, z.ZodTypeDef, unknown>, input: unknown, context: RealtimeToolContext,
     write: (args: T, origin: AgentOrigin) => WriteResult) {
     const invalid = check(context); if (invalid) return invalid;
     const parsed = schema.safeParse(input);
@@ -158,6 +160,8 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
     completed.set(context.callId, { signature, result: enriched });
     return enriched;
   }
+  const insertArticle = (input: unknown, context: RealtimeToolContext) => trustedWrite('article', realtimeArticleSchema, input, context,
+    (args, origin) => engine.insertStructuredArticle({ ...args, callId: context.callId }, { signal: context.signal, origin }));
   const apply = (input: unknown, context: RealtimeToolContext) => trustedWrite('apply', realtimeApplySchema, input, context,
     (args, origin) => engine.executeAgent({ ...args, id: context.callId }, origin));
   const undo = (input: unknown, context: RealtimeToolContext) => trustedWrite('undo', realtimeUndoSchema, input, context,
@@ -186,6 +190,7 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
       return { docId: options.docId, sessionId, revision: engine.revision, ...engine.readBlocks(parsed.data.ids) };
     },
     apply,
+    insertArticle,
     undo,
   };
 }

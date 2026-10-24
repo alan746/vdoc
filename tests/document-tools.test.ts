@@ -28,9 +28,9 @@ const request = (operations: unknown[]) => ({
 });
 const format = { bold: true, italic: false, underline: false, strike: false, color: null, highlight: null, fontFamily: 'Arial', fontSize: 12, script: 'normal' };
 
-it('lists exactly the five catalog entries with the right readOnly flags', () => {
+it('lists the catalog entries with the right readOnly flags', () => {
   expect(documentToolCatalog.map(entry => [entry.name, entry.readOnly])).toEqual([
-    ['read_document', true], ['read_blocks', true], ['get_context', true],
+    ['insert_structured_article', false], ['read_document', true], ['read_blocks', true], ['get_context', true],
     ['apply_document_operations', false], ['undo_turn', false],
   ]);
 });
@@ -49,7 +49,7 @@ it('wires every catalog entry into a working realtime tool sourced from the same
 it('registers only the turn-free catalog entries for WebMCP, excluding get_context and undo_turn', () => {
   const registered: { name: string; readOnlyHint: boolean }[] = [];
   const dispose = registerDocumentTools(engine, { registerTool: tool => { registered.push({ name: tool.name, readOnlyHint: tool.annotations.readOnlyHint }); } });
-  expect(registered.map(t => t.name).sort()).toEqual(['apply_document_operations', 'read_blocks', 'read_document']);
+  expect(registered.map(t => t.name).sort()).toEqual(['apply_document_operations', 'insert_structured_article', 'read_blocks', 'read_document']);
   expect(registered.find(t => t.name === 'read_blocks')?.readOnlyHint).toBe(true);
   expect(registered.find(t => t.name === 'apply_document_operations')?.readOnlyHint).toBe(false);
   dispose();
@@ -140,4 +140,17 @@ it.each(['bold', 'italic'] as const)('explicit %s changes preserve font, size, c
   expect(await tool.run(request([{ type: 'text.style', style: { [style]: false } }]), context('disable'))).toMatchObject({ ok: true });
   expect(editor.state.doc.child(1).firstChild!.marks.some(mark => mark.type.name === style)).toBe(false);
   expect(otherMarks()).toEqual(original);
+});
+
+it('inserts a structured article through the trusted realtime lifecycle and deduplicates its result', async () => {
+  const input = { expectedSessionId: engine.sessionId, expectedRevision: engine.revision, destination: { kind: 'document_end' }, title: 'History', blocks: [{ kind: 'paragraph', text: 'Introduction' }, { kind: 'heading', level: 2, text: 'Origins' }, { kind: 'paragraph', text: 'Body' }] };
+  const tools = realtimeDocumentTools(executor);
+  const first = await tools.insert_structured_article.run(input, context());
+  expect(first).toMatchObject({ ok: true, title: 'History', headingCounts: { 1: 1, 2: 1, 3: 0 }, paragraphCount: 2, insertedBlockIds: expect.any(Array), affectedBlockIds: expect.any(Array) });
+  expect(await tools.insert_structured_article.run(input, context())).toEqual(first);
+  expect(engine.records[0]).toMatchObject({ id: 'call-1', source: 'agent', actor: 'trusted-agent', turnId: 'turn-1' });
+  await expect(tools.insert_structured_article.run({ ...input, callId: 'spoof' }, context('spoof'))).rejects.toThrow('INVALID:');
+  await expect(tools.insert_structured_article.run(input, { ...context('cancelled'), signal: AbortSignal.abort() })).rejects.toThrow('INTERRUPTED:');
+  await tools.undo_turn.run({ expectedSessionId: engine.sessionId, expectedRevision: engine.revision, targetTurnId: 'turn-1' }, context('undo-article', 'undo-article'));
+  expect(engine.snapshot().blocks.map(block => block.text)).toEqual(['Title', 'hello', 'second']);
 });
