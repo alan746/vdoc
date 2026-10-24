@@ -25,8 +25,19 @@ beforeEach(async () => {
   mount = document.createElement('div'); document.body.appendChild(mount); root = createRoot(mount);
 });
 afterEach(() => { act(() => root.unmount()); engine.destroy(); editor.destroy(); mount.remove(); vi.unstubAllGlobals(); });
-it('shows a visible entry and cloud requirements for local documents without requesting access', async () => {
-  calls.enabled = false; await render(); expect(mount.textContent).toContain('This is a local document'); expect(mount.querySelector('button')!.disabled).toBe(true); expect(calls.load).not.toHaveBeenCalled(); expect(calls.open).not.toHaveBeenCalled();
+it('discovers local voice access without opening audio and connects only on a gesture', async () => {
+  calls.enabled = false; await render();
+  expect(calls.load).toHaveBeenCalledWith('doc', expect.any(AbortSignal), 'local');
+  expect(mount.textContent).toContain('Using voice sends audio and document context to AI');
+  expect(calls.open).not.toHaveBeenCalled();
+  await click('Connect voice assistant'); expect(calls.open).toHaveBeenCalledOnce();
+});
+it('keeps local voice disabled when signed out and provides a sign-in entry', async () => {
+  calls.enabled = false; calls.load.mockRejectedValueOnce(new VoiceConnectionError('Sign in to use the voice assistant.'));
+  await render();
+  expect(mount.querySelector<HTMLButtonElement>('.voice-orb')!.disabled).toBe(true);
+  expect(mount.querySelector('a[href="/account"]')).not.toBeNull();
+  expect(calls.open).not.toHaveBeenCalled();
 });
 it('connects on a user gesture and routes Stop and Escape to interrupt', async () => {
   await render(); expect(calls.open).not.toHaveBeenCalled(); await click('Connect voice assistant');
@@ -65,7 +76,7 @@ it('vdoc#33: disconnecting clears the decorations and unmounting unregisters the
   expect(editor.state.plugins.length).toBe(pluginCount);
 });
 it('vdoc#33: registers nothing when the adapter is disabled', async () => {
-  calls.enabled = false; const pluginCount = editor.state.plugins.length;
+  calls.load.mockRejectedValueOnce(new VoiceConnectionError('Voice unavailable')); const pluginCount = editor.state.plugins.length;
   await render(); expect(editor.state.plugins.length).toBe(pluginCount);
 });
 it('vdoc#33: shows the provider turn state next to the connection status', async () => {
@@ -180,4 +191,23 @@ it('drives the glow only with captured input, clears on disconnect, and ignores 
   await click('Disconnect assistant');
   await act(async () => options.onInputLevel(1));
   expect(level()).toBe('0');
+});
+
+it('explains SDK-wrapped validation failures without exposing arbitrary message contents', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'bad', ok: false, code: 'FAILED', message: 'INVALID: operations[0].rows: Expected number. private document text' }));
+  expect(mount.querySelector('[role="alert"]')!.textContent).toContain('operations[0].rows');
+  expect(mount.textContent).not.toContain('private document text');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'stale', ok: false, code: 'FAILED', message: 'STALE: changed' }));
+  expect(mount.querySelector('[role="alert"]')!.textContent).toContain('read it again');
+});
+
+it('retains a failed action in voice options after a successful read and disconnect', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'bad', ok: false, code: 'FAILED', message: 'INVALID: operations[0].rows: Expected number' }));
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'read', name: 'read_document', ok: true }));
+  await click('Disconnect assistant');
+  expect(mount.querySelector('[aria-label="Recent voice failures"]')!.textContent).toContain('operations[0].rows');
+  await render('another-document');
+  expect(mount.querySelector('[aria-label="Recent voice failures"]')).toBeNull();
 });

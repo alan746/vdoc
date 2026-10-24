@@ -9,8 +9,8 @@ import { voiceRequestError } from '../infrastructure/realtime/voice-errors';
 export { VoiceConnectionError } from '../infrastructure/realtime/voice-errors';
 
 /** Discover trusted deployment configuration without opening a session or microphone. */
-export async function loadRealtimeConfig(docId: string, signal: AbortSignal): Promise<RealtimeConfig> {
-  const response = await fetch(`/api/voice-sessions?documentId=${encodeURIComponent(docId)}`, {
+export async function loadRealtimeConfig(docId: string, signal: AbortSignal, workspace: 'cloud' | 'local' = 'cloud'): Promise<RealtimeConfig> {
+  const response = await fetch(`/api/voice-sessions?documentId=${encodeURIComponent(docId)}${workspace === 'local' ? '&workspace=local' : ''}`, {
     credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]),
   });
   if (!response.ok) throw await voiceRequestError(response);

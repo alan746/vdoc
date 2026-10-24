@@ -4,6 +4,7 @@ import { createdVoiceSessionSchema, voiceDocumentRequestSchema, voiceGrantSchema
 export type VoiceSessionAction = 'check' | 'create' | 'grant' | 'end';
 export type VoiceSessionProxyDependencies = {
   getUser(): Promise<{ userId: string } | null>;
+  allowLocalDocuments?: boolean;
   /** Trusted Worker bindings, never values supplied by a browser. */
   serverUrl?: string; clientKey?: string; documentAccess?: string;
   /** Returns an owner-scoped transport ID only for an active, owned document. */
@@ -58,14 +59,26 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
     return failure(400, 'INVALID_SESSION', 'Invalid voice session ID.');
   if (action !== 'check' && request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json')
     return failure(415, 'JSON_REQUIRED', 'Send a JSON document ID.');
-  let documentId: string;
-  try { documentId = action === 'check' ? voiceResourceIdSchema.parse(new URL(request.url).searchParams.get('documentId')) : voiceDocumentRequestSchema.parse(await readBody(request)).documentId; }
-  catch (error) { return error instanceof RangeError ? failure(413, 'BODY_TOO_LARGE', 'The request is too large.') : failure(400, 'INVALID_INPUT', 'Supply only a valid documentId.'); }
+  let documentId: string, workspace: 'cloud' | 'local' | undefined;
+  try {
+    const query = new URL(request.url).searchParams;
+    ({ documentId, workspace } = voiceDocumentRequestSchema.parse(action === 'check'
+      ? { documentId: query.get('documentId'), ...(query.has('workspace') ? { workspace: query.get('workspace') } : {}) }
+      : await readBody(request)));
+  }
+  catch (error) { return error instanceof RangeError ? failure(413, 'BODY_TOO_LARGE', 'The request is too large.') : failure(400, 'INVALID_INPUT', 'Supply a valid documentId and workspace.'); }
   let config: ReturnType<typeof configuration>;
   try { config = configuration(deps); }
   catch { return failure(503, 'VOICE_NOT_CONFIGURED', 'Voice sessions are not configured.'); }
   let transportDocumentId = documentId;
-  if (deps.authorizeDocument) {
+  if (workspace === 'local') {
+    if (!deps.allowLocalDocuments) return failure(403, 'DOCUMENT_ACCESS_DENIED', 'Local voice editing is not enabled.');
+    // Local files have no cloud library ownership row. Bind the voice room to
+    // the authenticated account AND a separate namespace on every request.
+    // A caller cannot use local mode to enter a cloud or another user's room.
+    const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(['local', user.userId, documentId])));
+    transportDocumentId = `local_${Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, '0')).join('')}`;
+  } else if (deps.authorizeDocument) {
     try {
       const authorized = await deps.authorizeDocument(user.userId, documentId);
       if (!authorized) return failure(403, 'DOCUMENT_ACCESS_DENIED', 'You do not have voice access to this document.');
@@ -79,7 +92,7 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
   if (action === 'check') {
     const url = new URL(config.origin);
     url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
-    return response({ url: url.origin, sessionsUrl: '/api/voice-sessions', audio: true }, 200);
+    return response({ url: url.origin, sessionsUrl: '/api/voice-sessions', audio: true, ...(workspace === 'local' ? { workspace: 'local' } : {}) }, 200);
   }
 
   // The document ID is reauthorized on every request and remains part of the

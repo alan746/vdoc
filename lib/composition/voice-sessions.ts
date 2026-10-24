@@ -7,7 +7,7 @@ import { authorizeVoiceDocument } from '../infrastructure/cloud-library/voice-ac
 /** Server-only composition root, imported by the Worker route handlers. */
 export async function handleVoiceSessionRequest(request: Request, action: VoiceSessionAction, sessionId: string | undefined) {
   try { return await proxyVoiceSession(request, action, sessionId, {
-    getUser: () => getRequestUser(request), fetch,
+    getUser: () => getRequestUser(request), fetch, allowLocalDocuments: true,
     serverUrl: env.VDOC_SERVER_URL,
     clientKey: env.VDOC_SERVER_CLIENT_KEY,
     authorizeDocument: (owner, id) => withLibraryDatabase(env.DATABASE_URL, owner, false, db => authorizeVoiceDocument(db, owner, id)),

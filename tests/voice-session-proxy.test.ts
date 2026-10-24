@@ -1,3 +1,4 @@
+import { createdVoiceSessionSchema } from '../lib/domain/entities/voice-session';
 import { beforeEach, expect, it, vi } from 'vitest';
 import { proxyVoiceSession, type VoiceSessionAction, type VoiceSessionProxyDependencies } from '../lib/infrastructure/realtime/voice-session-proxy';
 
@@ -233,4 +234,45 @@ it('passes a quota outage retry hint using the same safe JSON and header rules',
   expect(result.status).toBe(503);
   expect(result.headers.get('retry-after')).toBe('1');
   expect(await result.json()).toEqual({ error: { code: 'QUOTA_UNAVAILABLE', message: 'Voice limits could not be checked. Try again later.', retryAfterSeconds: 1 } });
+});
+
+it('isolates authenticated local voice rooms from cloud documents and other accounts on every lifecycle request', async () => {
+  deps.allowLocalDocuments = true;
+  deps.authorizeDocument = vi.fn(async () => null);
+  deps.fetch = vi.fn(async (input, init) => {
+    if (init?.method === 'DELETE') return new Response(null, { status: 204 });
+    if (String(input).endsWith('/grants')) return Response.json(grant);
+    const id = new URL(String(input)).pathname.split('/')[3];
+    return Response.json({ ...created, documentId: id, realtimePath: `/v1/documents/${id}/voice-sessions/voice-1/realtime` });
+  });
+  const body = { documentId: 'doc-1', workspace: 'local' };
+  const result = await run('create', makeRequest('create', body));
+  expect(result.status).toBe(201);
+  const local = createdVoiceSessionSchema.parse(await result.json());
+  expect(local.documentId).toBe('doc-1');
+  expect(local.transportDocumentId).toMatch(/^local_[a-f0-9]{64}$/);
+  for (const action of ['grant', 'end'] as const) {
+    expect((await run(action, makeRequest(action, body))).status).toBe(action === 'end' ? 204 : 201);
+    expect(vi.mocked(deps.fetch).mock.lastCall![0]).toContain(`/documents/${local.transportDocumentId}/`);
+    expect(vi.mocked(deps.fetch).mock.lastCall![1]!.headers).toMatchObject({ 'X-Vdoc-User-Id': 'user-1' });
+  }
+  expect(deps.authorizeDocument).not.toHaveBeenCalled();
+  expect((await run('create')).status).toBe(403); // local mode never grants cloud ownership
+  deps.getUser = vi.fn(async () => ({ userId: 'user-2' }));
+  const other = createdVoiceSessionSchema.parse(await (await run('create', makeRequest('create', body))).json());
+  expect(other.transportDocumentId).not.toBe(local.transportDocumentId);
+  deps.getUser = vi.fn(async () => null);
+  for (const action of ['create', 'grant', 'end'] as const)
+    expect((await run(action, makeRequest(action, body))).status).toBe(401);
+});
+it('requires opt-in for local voice and returns local mode only after authenticated discovery', async () => {
+  const request = () => new Request('https://vdoc.example/api/voice-sessions?documentId=doc-1&workspace=local');
+  expect((await proxyVoiceSession(request(), 'check', undefined, deps)).status).toBe(403);
+  deps.allowLocalDocuments = true;
+  const result = await proxyVoiceSession(request(), 'check', undefined, deps);
+  expect(await result.json()).toMatchObject({ workspace: 'local', audio: true });
+  expect(deps.fetch).not.toHaveBeenCalled();
+  expect((await run('create', makeRequest('create', { documentId: 'doc-1', workspace: 'unknown' }))).status).toBe(400);
+  deps.getUser = vi.fn(async () => null);
+  expect((await proxyVoiceSession(request(), 'check', undefined, deps)).status).toBe(401);
 });

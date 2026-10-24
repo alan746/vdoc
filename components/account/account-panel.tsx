@@ -98,7 +98,7 @@ export function AccountPanel() {
         <div className="signin-divider"><span>or keep it local</span></div>
         <a className="signin-local" href="/">Continue with local documents <ArrowRight size={16} /></a>
         <p className="signin-local-note">No account needed. Saved in this browser.</p>
-        <details className="signin-details"><summary>About your workspace</summary><p>Local documents stay in this browser and are shared by people using this browser profile. Signing in doesn’t upload them automatically. Export a backup, then import it into your cloud workspace.</p><p>Voice editing is available for your active cloud documents when enabled. Open a cloud document and connect the voice assistant to allow microphone access. An internet connection is required; usage limits apply and remaining allowance is not yet shown.</p></details>
+        <details className="signin-details"><summary>About your workspace</summary><p>Local documents stay in this browser and are shared by people using this browser profile. Signing in doesn’t upload them automatically. Export a backup, then import it into your cloud workspace.</p><p>Voice editing works in local and cloud documents while signed in, when enabled. Connect the voice assistant in a document to allow microphone access. Audio and document context are sent to the AI service; local files are not automatically added to your cloud library. An internet connection is required; usage limits apply and remaining allowance is not yet shown.</p></details>
       </section>
     </div>
     <footer className="signin-footer"><span>VDOC / YOUR WORDS, YOUR SPACE</span><span>Made for a little more clarity.</span></footer>

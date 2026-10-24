@@ -82,3 +82,24 @@ These checks need real Neon/Google/voice credentials and are not represented as
 completed by the local test suite. Merge the dependent PRs in order: schema,
 authentication, library API, cloud workspace. Do not expose production credentials
 to unreviewed preview deployments.
+
+### Voice editing in local documents
+
+Signed-in users can connect voice from either a local or cloud document. Local
+files remain in the browser repository; connecting does not import them into the
+cloud library. Audio and document context returned by tools are sent to the AI
+service. The voice entry explains this before microphone access.
+
+Local session requests carry `workspace: "local"` through discovery, creation,
+grant renewal and deletion. The Worker derives a separate `local_` transport ID
+from the authenticated user and document ID. It does not accept caller-supplied
+user IDs or transport IDs. Cloud mode remains the default and still checks the
+owned, non-trashed cloud library record. Both modes forward the same trusted user
+identity to the voice backend for quotas and require same-origin requests. Local
+mode never authorizes access to a cloud document or another user's voice room.
+
+Acceptance after deployment: sign in, open a local document, connect voice, ask
+for a three-row/two-column table, and reload to verify local persistence. Verify
+that no matching document is created in the cloud library. Check an unsigned-in
+browser shows a sign-in prompt. This requires a live microphone/provider test;
+the automated SDK/engine tests use a simulated transport.

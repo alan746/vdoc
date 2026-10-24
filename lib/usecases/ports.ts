@@ -103,6 +103,7 @@ export interface RealtimeConnection {
   close(): void;
 }
 export interface RealtimeConfig {
+  workspace?: 'cloud' | 'local';
   url: string;
   sessionsUrl: string;
   audio?: boolean;

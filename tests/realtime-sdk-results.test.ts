@@ -104,3 +104,29 @@ it('routes synchronous read validation errors through the same SDK failure chann
   });
   expect(activities).toContainEqual(expect.objectContaining({ type: 'result', callId: 'call-1', ok: false, code: 'FAILED' }));
 });
+
+it('appends a three-row two-column table through the real SDK and document engine', async () => {
+  const result = await call('apply_document_operations', request([
+    { type: 'block.insert', beforeId: null, block: { kind: 'table', rows: 3, cols: 2, header: true } },
+  ]));
+  expect(result).toMatchObject({ ok: true, output: { ok: true } });
+  const content = editor.getJSON().content!;
+  expect(content.slice(0, 2)).toMatchObject([{ content: [{ text: 'hello' }] }, { content: [{ text: 'second' }] }]);
+  const table = content[2];
+  expect(table.type).toBe('table');
+  expect(table.content).toHaveLength(3);
+  for (const row of table.content!) {
+    expect(row.type).toBe('tableRow');
+    expect('content' in row && row.content).toHaveLength(2);
+  }
+});
+
+it('rejects invalid table dimensions without an edit and lets a corrected call succeed', async () => {
+  const before = editor.getJSON();
+  const failed = await call('apply_document_operations', request([{ type: 'table.insert', rows: 'three', cols: 2 }]));
+  expect(failed).toMatchObject({ ok: false, code: 'FAILED', message: expect.stringContaining('INVALID: operations[0].rows:') });
+  expect(editor.getJSON()).toEqual(before);
+  expect(await call('apply_document_operations', request([{ type: 'table.insert', rows: 3, cols: 2 }]), 'corrected-call'))
+    .toMatchObject({ ok: true, output: { ok: true } });
+  expect(editor.getJSON().content!.some(node => node.type === 'table')).toBe(true);
+});

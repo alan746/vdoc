@@ -6,7 +6,7 @@ import { voiceRequestError, VoiceConnectionError } from './voice-errors';
 import { prepareBrowserAudio } from './browser-audio';
 
 const loopback = (host: string) => host === 'localhost' || host === '[::1]' || /^127(?:\.\d{1,3}){3}$/.test(host);
-const configSchema = z.object({ url: z.string(), sessionsUrl: z.string(), audio: z.boolean().optional(), language: voiceLanguageSchema.optional(), vocabulary: voiceVocabularySchema.optional() });
+const configSchema = z.object({ workspace: z.enum(['cloud', 'local']).optional(), url: z.string(), sessionsUrl: z.string(), audio: z.boolean().optional(), language: voiceLanguageSchema.optional(), vocabulary: voiceVocabularySchema.optional() });
 /** Configuration comes from the authenticated application endpoint, never a document or link. */
 export function validateRealtimeConfig(input: RealtimeConfig, pageOrigin: string): RealtimeConfig {
   const config = configSchema.parse(input);
@@ -31,7 +31,7 @@ export const vrtAdapter: RealtimePort = {
     const off: (() => void)[] = [];
     const publish: typeof onStatus = (...args) => { if (!closed) onStatus(...args); };
     const report = (activity: RealtimeActivity) => { if (!closed) onActivity?.(activity); };
-    const requestBody = JSON.stringify({ documentId: context.documentId });
+    const requestBody = JSON.stringify({ documentId: context.documentId, ...(config.workspace === 'local' ? { workspace: 'local' } : {}) });
     const request = (url: string, method: 'POST' | 'DELETE', requestSignal: AbortSignal, keepalive = false) => fetch(url, {
       method, credentials: 'same-origin', cache: 'no-store', redirect: 'error', keepalive,
       headers: { 'Content-Type': 'application/json' }, body: requestBody, signal: requestSignal,

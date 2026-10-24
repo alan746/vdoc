@@ -16,6 +16,6 @@ export const createdVoiceSessionSchema = z.object({
   transportDocumentId: voiceResourceIdSchema.optional(),
   grant: voiceGrantSchema, realtimePath: z.string().min(1).max(1024),
 });
-export const voiceDocumentRequestSchema = z.object({ documentId: voiceResourceIdSchema }).strict();
+export const voiceDocumentRequestSchema = z.object({ documentId: voiceResourceIdSchema, workspace: z.enum(['cloud', 'local']).optional() }).strict();
 export const voiceRealtimePath = (documentId: string, sessionId: string) =>
   `/v1/documents/${encodeURIComponent(documentId)}/voice-sessions/${encodeURIComponent(sessionId)}/realtime`;

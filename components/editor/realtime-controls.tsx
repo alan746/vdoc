@@ -8,6 +8,7 @@ import type { DocumentEngine } from '@/lib/usecases/engine';
 import type { MicrophoneStatus, RealtimeActivity, RealtimeConnection, RealtimeConfig, RealtimeStatus, RealtimeTurnState } from '@/lib/usecases/ports';
 import { documentNavigation } from '@/lib/usecases/document-navigation';
 import { isCompositionKey } from '@/lib/editor/keyboard-composition';
+import { toolFailureFeedback } from './realtime/tool-failure-feedback';
 import { ActivityTimeline } from './realtime/activity-timeline';
 
 const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking', acting: 'Editing' };
@@ -16,7 +17,7 @@ const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Li
 export function RealtimeControls({ engine, docId, title }: { engine: DocumentEngine; docId: string; title?: string }) {
   const [cloud] = useState(isCloudWorkspace);
   const [config, setConfig] = useState<RealtimeConfig | null>(null);
-  const [checking, setChecking] = useState(cloud);
+  const [checking, setChecking] = useState(true);
   const [accessError, setAccessError] = useState('');
   const [attempt, setAttempt] = useState(0);
   const [microphone, setMicrophone] = useState<MicrophoneStatus>('off');
@@ -24,9 +25,8 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const generation = useRef<symbol | null>(null);
   const starting = useRef(false);
   useEffect(() => {
-    if (!cloud) return;
     const abort = new AbortController();
-    loadRealtimeConfig(docId, abort.signal).then(value => {
+    loadRealtimeConfig(docId, abort.signal, cloud ? 'cloud' : 'local').then(value => {
       if (!abort.signal.aborted) { setConfig(value); setAccessError(''); setChecking(false); }
     }).catch(error => {
       if (!abort.signal.aborted) {
@@ -41,6 +41,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const [heard, setHeard] = useState('');
   const [toolFeedback, setToolFeedback] = useState('');
   const [toolFailed, setToolFailed] = useState(false);
+  const [failures, setFailures] = useState<{ callId: string; feedback: string }[]>([]);
   const [language, setLanguage] = useState('auto');
   const [turn, setTurn] = useState<RealtimeTurnState>('idle');
   const connection = useRef<RealtimeConnection | null>(null);
@@ -85,7 +86,8 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
           else if (activity.type === 'call') { setToolFeedback('Working on your request…'); setToolFailed(false); }
           else if (activity.type === 'result') {
             setToolFailed(!activity.ok);
-            setToolFeedback(activity.ok ? (activity.name === 'apply_document_operations' ? 'Document updated' : activity.name === 'undo_turn' ? 'Assistant edit undone' : 'Document checked') : `Couldn’t complete that action.${activity.code ? ` (${activity.code})` : ''} Please try again.`);
+            if (!activity.ok) setFailures(previous => [{ callId: activity.callId, feedback: toolFailureFeedback(activity) }, ...previous.filter(item => item.callId !== activity.callId)].slice(0, 5));
+            setToolFeedback(activity.ok ? (activity.name === 'apply_document_operations' ? 'Document updated' : activity.name === 'undo_turn' ? 'Assistant edit undone' : 'Document checked') : toolFailureFeedback(activity));
           }
           for (const listener of activityListeners.current) listener(activity);
         } });
@@ -100,8 +102,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
     ready: 'Microphone allowed · Connecting…', on: 'Microphone on', error: 'Microphone unavailable',
   };
   const statusLabel = checking ? 'Checking voice availability…' : status === 'connected' ? ['Assistant connected', turnLabels[turn]].filter(Boolean).join(' · ') : status === 'reconnecting' ? 'Assistant reconnecting…' : status === 'connecting' ? 'Assistant connecting…' : status === 'error' ? 'Assistant connection failed' : 'Assistant disconnected';
-  const placeholder = !cloud ? 'This is a local document. Voice works in cloud documents.'
-    : checking ? 'Checking voice availability…'
+  const placeholder = checking ? 'Checking voice availability…'
     : microphone === 'requesting' ? 'Allow microphone access to start…'
     : status === 'connecting' ? 'Connecting…'
     : status === 'reconnecting' ? 'Reconnecting…'
@@ -121,9 +122,10 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
             <details className="voice-more"><summary aria-label="Voice options"><Ellipsis size={17} /></summary>
               <div className="voice-menu">
                 <label className="voice-language">Speech language<select aria-label="Voice language" value={language} onChange={event => setLanguage(event.target.value)} disabled={checking || active}><option value="auto">Document language</option><option value="zh-CN">中文</option><option value="en-US">English</option></select></label>
+                {failures.length > 0 && <div className="voice-edits" aria-label="Recent voice failures"><strong>Recent unsuccessful actions</strong><ul>{failures.map(item => <li key={item.callId}>{item.feedback}</li>)}</ul></div>}
                 {config && <div className="voice-edits"><strong>Recent edits</strong><ActivityTimeline engine={engine} active={active} subscribeActivity={subscribeActivity} /></div>}
-                {!cloud && <p><a href="/account">Open your account</a> to use cloud voice editing.</p>}
-                <p className="voice-about">Tap once, then speak naturally across multiple turns. Esc interrupts the assistant; tap the microphone again to turn it off. Voice requires a signed-in account and a cloud document you own outside Trash. Usage limits apply.</p>
+                {!cloud && <p>Local document · Edits stay in this browser. Voice sends audio and document context to the AI service. <a href="/account">Sign in</a> to use voice.</p>}
+                <p className="voice-about">Tap once, then speak naturally across multiple turns. Esc interrupts the assistant; tap the microphone again to turn it off. Voice requires a signed-in account and internet access. Cloud documents must be yours and outside Trash. Usage limits apply.</p>
               </div>
             </details>
           </div>
@@ -133,6 +135,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
           <span className="sr-only">{active ? (status === 'connecting' ? 'Cancel connection' : 'Disconnect assistant') : status === 'error' ? 'Retry voice connection' : 'Connect voice assistant'}</span>
         </button>
       </div>
+      {!cloud && !active && <p className="voice-tool-feedback">Saved on this device. Using voice sends audio and document context to AI. <a href="/account">Account / sign in</a></p>}
       {(accessError || message) ? <div role="alert" className="voice-error"><X size={14} /><span>{accessError || message}</span>{accessError && <button type="button" disabled={checking} onClick={() => { setConfig(null); setChecking(true); setAccessError(''); setAttempt(value => value + 1); }}>Retry availability check</button>}</div>
         : toolFeedback && <span className={toolFailed ? 'voice-tool-error' : 'voice-tool-feedback'} role={toolFailed ? 'alert' : 'status'}>{toolFeedback}</span>}
     </div>

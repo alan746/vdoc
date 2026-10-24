@@ -186,3 +186,14 @@ it('cancels pending audio initialization without allocating a late voice session
   await Promise.resolve(); await Promise.resolve();
   expect(fetchMock).not.toHaveBeenCalled(); expect(onStatus.mock.calls).toEqual([['connecting']]);
 });
+
+it('carries local scope through discovery, create, renewal and cleanup', async () => {
+  fetchMock.mockResolvedValueOnce(response({ ...config, workspace: 'local' }));
+  const local = await loadRealtimeConfig('doc-1', new AbortController().signal, 'local');
+  expect(fetchMock.mock.calls[0][0]).toBe('/api/voice-sessions?documentId=doc-1&workspace=local');
+  expect(local.workspace).toBe('local');
+  const connection = open({ config: local }); const session = await started();
+  await session.options.auth(); await session.options.auth(); connection.close();
+  for (const [, init] of fetchMock.mock.calls.slice(1))
+    expect(JSON.parse(init.body)).toEqual({ documentId: 'doc-1', workspace: 'local' });
+});
