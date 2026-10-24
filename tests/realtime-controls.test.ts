@@ -230,3 +230,12 @@ it('lights both ends of the bar by what the assistant is doing', async () => {
     expect(dock().dataset.lamp).toBe('listening');
   } finally { vi.useRealTimers(); }
 });
+it('clears a failed instruction message once the next instruction starts', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'thinking', turnId: 't1' }));
+  await act(async () => calls.onStatus!('connected', 'The assistant could not complete that instruction. Try again.'));
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'idle', turnId: 't1' }));
+  expect(mount.querySelector('[role="alert"]')?.textContent).toContain('could not complete');
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'listening', turnId: 't2' }));
+  expect(mount.textContent).not.toContain('could not complete');
+});

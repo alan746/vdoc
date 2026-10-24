@@ -39,6 +39,9 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   }, [cloud, docId, attempt]);
   const [status, setStatus] = useState<RealtimeStatus>('disconnected');
   const [message, setMessage] = useState('');
+  // A failed instruction's message belongs to its turn; the next turn clears it.
+  const currentTurn = useRef<string | undefined>(undefined);
+  const messageTurn = useRef<string | undefined>(undefined);
   const [heard, setHeard] = useState('');
   const [toolFeedback, setToolFeedback] = useState('');
   const [toolFailed, setToolFailed] = useState(false);
@@ -80,7 +83,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
       connection.current = openDocumentRealtime({ engine, docId, title, config: language === 'auto' ? config : { ...config, language },
         onStatus: (next, detail) => {
           if (current !== generation.current) return;
-          setStatus(next); setMessage(detail ?? '');
+          setStatus(next); setMessage(detail ?? ''); messageTurn.current = currentTurn.current;
           if (next !== 'connected') { setTurn('idle'); setToolFeedback(''); }
           if (next === 'error' || next === 'disconnected') { starting.current = false; setMicrophone('off'); setLevel(0); }
         },
@@ -88,7 +91,11 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
         onMicrophone: state => { if (current === generation.current) setMicrophone(state); },
         onActivity: activity => {
           if (current !== generation.current) return;
-          if (activity.type === 'turn') { setTurn(activity.state); if (activity.state !== 'idle') setInterrupted(false); }
+          if (activity.type === 'turn') {
+            setTurn(activity.state); if (activity.state !== 'idle') setInterrupted(false);
+            currentTurn.current = activity.turnId;
+            if (activity.turnId !== messageTurn.current) setMessage('');
+          }
           else if (activity.type === 'interrupted') { setTurn('idle'); showInterrupted(); setToolFeedback('Stopped. You can keep speaking.'); setToolFailed(false); }
           else if (activity.type === 'transcript' && activity.role === 'user') setHeard(activity.text.slice(-300));
           else if (activity.type === 'call') { setToolFeedback('Working on your request…'); setToolFailed(false); }
