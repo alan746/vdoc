@@ -87,11 +87,14 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
   const base = `/v1/documents/${encodeURIComponent(transportDocumentId)}/voice-sessions`;
   const path = action === 'create' ? base : `${base}/${encodeURIComponent(sessionId!)}${action === 'grant' ? '/grants' : ''}`;
   try {
-    const upstream = await deps.fetch(`${config.origin}${path}`, {
+    // Native Worker fetch rejects the dependency object as its `this` receiver.
+    const { fetch: fetchUpstream } = deps;
+    const upstream = await fetchUpstream(`${config.origin}${path}`, {
       method: action === 'end' ? 'DELETE' : 'POST',
       headers: { Authorization: `Bearer ${config.key}`, 'X-Vdoc-User-Id': user.userId, 'X-Request-Id': crypto.randomUUID(), ...(action === 'create' ? { 'Content-Type': 'application/json' } : {}) },
       ...(action === 'create' ? { body: '{}' } : {}),
-      cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(10000),
+      // workerd supports manual/follow only; reject 3xx below without following.
+      cache: 'no-store', redirect: 'manual', signal: AbortSignal.timeout(10000),
     });
     if (!upstream.ok) {
       const quota = await quotaFailure(upstream);

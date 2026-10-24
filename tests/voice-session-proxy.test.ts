@@ -49,7 +49,7 @@ it('forwards creation with only the server key and returns only the public sessi
   expect(await result.json()).toEqual(created);
   expect(deps.fetch).toHaveBeenCalledWith('https://voice.example/v1/documents/doc-1/voice-sessions', expect.objectContaining({
     method: 'POST', headers: { Authorization: `Bearer ${key}`, 'X-Vdoc-User-Id': 'user-1', 'X-Request-Id': expect.stringMatching(/^[0-9a-f-]{36}$/), 'Content-Type': 'application/json' },
-    body: '{}', redirect: 'error', cache: 'no-store',
+    body: '{}', redirect: 'manual', cache: 'no-store',
   }));
   const headers = vi.mocked(deps.fetch).mock.calls[0][1]!.headers;
   expect(headers).not.toHaveProperty('cookie');
@@ -62,6 +62,17 @@ it('renews and ends within the authorized document path, not the editing session
   deps.documentAccess = JSON.stringify({ 'user-1': [] });
   expect((await run('grant')).status).toBe(403); expect((await run('end')).status).toBe(403);
   expect(deps.fetch).toHaveBeenCalledTimes(2);
+});
+it.each(['create', 'grant', 'end'] as const)('calls native fetch without a dependency-object receiver for %s', async action => {
+  const upstream = deps.fetch;
+  deps.fetch = vi.fn(async function (this: unknown, input, init) {
+    // workerd rejects a native fetch called with the dependencies as `this`.
+    if (this !== undefined && this !== globalThis) throw new TypeError('Illegal invocation');
+    return upstream(input, init);
+  });
+  const result = await run(action);
+  expect(result.status).toBe(action === 'end' ? 204 : 201);
+  expect(deps.fetch).toHaveBeenCalledTimes(1);
 });
 it.each(['../doc-2', '.', '..', 'x/y', 'x?key=secret', ''])('rejects unsafe document and session IDs: %s', async id => {
   expect((await run('create', makeRequest('create', { documentId: id }))).status).toBe(400);
