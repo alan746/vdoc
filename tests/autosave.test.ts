@@ -259,3 +259,29 @@ it('vdoc#69: pauses on a write from another tab through the repository port, and
   changeInAnotherTab('current');
   expect(report).not.toHaveBeenCalled();
 });
+
+async function confirmDeparture() {
+  const navigation = documentNavigation(editor);
+  navigation.acquire(); const write = controller.flush(); await complete(writes.length - 1); await write;
+  navigation.freeze(); navigation.confirmSavedDeparture(title); return navigation;
+}
+it('does not block a confirmed saved departure, including after navigation releases', async () => {
+  const navigation = await confirmDeparture(); expect(leaving()).toBe(false);
+  navigation.release(); expect(leaving()).toBe(false);
+});
+it('restores unload protection for new edits even after undoing to the confirmed snapshot', async () => {
+  const navigation = await confirmDeparture(); navigation.release();
+  editor.commands.insertContent('New unsaved text '); expect(leaving()).toBe(true);
+  editor.commands.undo(); expect(navigation.canUnload(title)).toBe(false); expect(leaving()).toBe(true);
+});
+it('invalidates departure proof on a title change or another navigation', async () => {
+  const navigation = await confirmDeparture(); navigation.release();
+  title = 'Different title'; controller.schedule(); expect(leaving()).toBe(true);
+  title = 'Current draft'; controller.schedule(); expect(navigation.canUnload(title)).toBe(false);
+  await confirmDeparture(); navigation.release(); navigation.acquire(); expect(leaving()).toBe(true); navigation.release();
+});
+it('still protects conflicts and unfinished composition after a confirmed save', async () => {
+  const compose = composingInput(); const navigation = await confirmDeparture(); navigation.release();
+  compose(true); expect(leaving()).toBe(true); compose(false);
+  changeInAnotherTab('current'); expect(leaving()).toBe(true);
+});

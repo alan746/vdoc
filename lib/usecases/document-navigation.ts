@@ -1,5 +1,6 @@
 import type { Editor } from '@tiptap/core';
 import { Plugin, PluginKey } from '@tiptap/pm/state';
+import { documentTitle } from '../domain/entities/document';
 
 const lockKey = new PluginKey('documentNavigationLock');
 const sessions = new WeakMap<Editor, DocumentNavigation>();
@@ -16,6 +17,7 @@ class DocumentNavigation {
   private listeners = new Set<() => void>();
   private compositionGuards = new Set<() => boolean>();
   private wasEditable = false;
+  private savedDeparture?: { content: Editor['state']['doc']; title: string };
   constructor(private editor: Editor) {}
   getSnapshot = () => this.phase;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
@@ -30,7 +32,17 @@ class DocumentNavigation {
   private publish(phase: Phase) { this.phase = phase; this.listeners.forEach(listener => listener()); }
   acquire() {
     if (this.phase !== 'idle' || this.editor.isDestroyed) return false;
+    this.savedDeparture = undefined;
     this.publish('reading'); return true;
+  }
+  confirmSavedDeparture(title: string) {
+    if (this.phase !== 'committing') throw new Error('Freeze the saved document before leaving.');
+    this.savedDeparture = { content: this.editor.state.doc, title: documentTitle(title) };
+    this.publish(this.phase);
+  }
+  canUnload(title: string) {
+    if (this.savedDeparture?.content !== this.editor.state.doc || this.savedDeparture.title !== documentTitle(title)) this.savedDeparture = undefined;
+    return Boolean(this.savedDeparture);
   }
   freeze() {
     if (this.phase !== 'reading') throw new Error('A document operation is already in progress.');

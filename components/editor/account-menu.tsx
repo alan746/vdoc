@@ -1,15 +1,17 @@
 'use client';
 /* Full-page navigation intentionally resets the account-scoped repository and editor. */
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { ArrowUpRight, Cloud, HardDrive, LoaderCircle, LogOut, UserRound } from 'lucide-react';
 import { isCloudWorkspace } from '@/lib/composition/repositories';
 
 type Account = { configured: boolean; user: { id: string; name: string; email: string } | null };
 const initial = (user: Account['user']) => (user ? (user.name.trim() || user.email).slice(0, 1).toUpperCase() : 'V');
 
-/** Avatar in the library top bar: clicking opens the account page; hovering (or keyboard focus) reveals the account card. */
-export function AccountMenu() {
+/** Shared library/editor avatar; editor callers save before navigation or sign-out. */
+export function AccountMenu({ beforeLeave, disabled = false }: {
+  beforeLeave?: (action: () => void | Promise<void>) => Promise<void>; disabled?: boolean;
+}) {
   const [account, setAccount] = useState<Account | null>(null);
   const [checking, setChecking] = useState(true);
   const [open, setOpen] = useState(false);
@@ -35,6 +37,14 @@ export function AccountMenu() {
   }, [open]);
   const show = () => { clearTimeout(closeTimer.current); setOpen(true); };
   const hide = () => { clearTimeout(closeTimer.current); closeTimer.current = setTimeout(() => setOpen(false), 160); };
+  const navigate = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!beforeLeave) return;
+    if (disabled || busy) { event.preventDefault(); return; }
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    const href = event.currentTarget.href;
+    void beforeLeave(() => window.location.assign(href));
+  };
   async function signOut() {
     if (busy) return;
     setBusy(true); setError('');
@@ -46,7 +56,7 @@ export function AccountMenu() {
   }
   const user = account?.user ?? null;
   return <div ref={root} className="account-menu" data-open={open} onPointerEnter={event => { if (event.pointerType === 'mouse') show(); }} onPointerLeave={event => { if (event.pointerType === 'mouse') hide(); }} onFocus={show} onBlur={event => { if (!root.current?.contains(event.relatedTarget as Node)) hide(); }}>
-    <a className="library-person" href="/account" aria-label="Your account">{initial(user)}</a>
+    <a onClick={navigate} aria-disabled={disabled || busy || undefined} className="library-person" href="/account" aria-label="Your account">{initial(user)}</a>
     {open && <div className="account-card-pop" role="dialog" aria-label="Account">
       <div className="account-pop-head">
         <span className="account-pop-avatar" aria-hidden="true">{initial(user)}</span>
@@ -59,16 +69,16 @@ export function AccountMenu() {
       <div className="account-pop-place"><span className="account-pop-dot" />{cloud ? <><Cloud size={14} />Cloud workspace · synced to your account</> : <><HardDrive size={14} />Local workspace · saved in this browser</>}</div>
       <nav className="account-pop-links" aria-label="Account">
         {user ? <>
-          {cloud ? <a href="/"><HardDrive size={16} /><span>Local documents<small>Files saved in this browser</small></span></a>
-            : <a href="/cloud"><Cloud size={16} /><span>Cloud workspace<small>Your documents on every device</small></span><ArrowUpRight size={14} /></a>}
-          <a href="/account"><UserRound size={16} /><span>Account<small>Profile and sign-in</small></span></a>
+          {cloud ? <a onClick={navigate} aria-disabled={disabled || busy || undefined} href="/"><HardDrive size={16} /><span>Local documents<small>Files saved in this browser</small></span></a>
+            : <a onClick={navigate} aria-disabled={disabled || busy || undefined} href="/cloud"><Cloud size={16} /><span>Cloud workspace<small>Your documents on every device</small></span><ArrowUpRight size={14} /></a>}
+          <a onClick={navigate} aria-disabled={disabled || busy || undefined} href="/account"><UserRound size={16} /><span>Account<small>Profile and sign-in</small></span></a>
         </> : <>
-          <a className="account-pop-primary" href="/account"><Cloud size={16} /><span>Sign in to VDoc<small>Keep documents in your cloud workspace</small></span><ArrowUpRight size={14} /></a>
-          {cloud && <a href="/"><HardDrive size={16} /><span>Local documents<small>Files saved in this browser</small></span></a>}
+          <a onClick={navigate} aria-disabled={disabled || busy || undefined} className="account-pop-primary" href="/account"><Cloud size={16} /><span>Sign in to VDoc<small>Keep documents in your cloud workspace</small></span><ArrowUpRight size={14} /></a>
+          {cloud && <a onClick={navigate} aria-disabled={disabled || busy || undefined} href="/"><HardDrive size={16} /><span>Local documents<small>Files saved in this browser</small></span></a>}
         </>}
       </nav>
       {error && <p className="account-pop-error" role="alert">{error}</p>}
-      {user && <button type="button" className="account-pop-signout" disabled={busy} onClick={() => void signOut()}>{busy ? <LoaderCircle size={15} className="signin-spinner" /> : <LogOut size={15} />}{busy ? 'Signing out…' : 'Sign out'}</button>}
+      {user && <button type="button" className="account-pop-signout" disabled={disabled || busy} onClick={() => { if (beforeLeave) void beforeLeave(signOut); else void signOut(); }}>{busy ? <LoaderCircle size={15} className="signin-spinner" /> : <LogOut size={15} />}{busy ? 'Signing out…' : 'Sign out'}</button>}
     </div>}
   </div>;
 }

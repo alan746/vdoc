@@ -82,8 +82,13 @@ function runAutosave(writer: DocumentWriter, editor: Editor, documentId: string,
       updateUnloadGuard();
     }
   };
-  const hasUnsavedChanges = () => options.blocked.current || composing() || navigation.getSnapshot() !== 'idle' || writing || !saved ||
-    saved.title !== options.getTitle() || !saved.content.eq(editor.state.doc);
+  // A guarded full-page departure already committed this exact draft. Its
+  // proof survives release until the browser unloads, but never a later edit.
+  const hasUnsavedChanges = () => {
+    const confirmedDeparture = navigation.canUnload(options.getTitle());
+    return options.blocked.current || composing() || (!confirmedDeparture &&
+      (navigation.getSnapshot() !== 'idle' || writing || !saved || saved.title !== options.getTitle() || !saved.content.eq(editor.state.doc)));
+  };
   const beforeUnload = (event: BeforeUnloadEvent) => {
     if (!active() || !hasUnsavedChanges()) return;
     // pagehide cannot wait for IndexedDB. Ask the browser to keep the draft
