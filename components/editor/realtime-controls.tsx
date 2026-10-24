@@ -11,6 +11,7 @@ import { isCompositionKey } from '@/lib/editor/keyboard-composition';
 import { toolFailureFeedback } from './realtime/tool-failure-feedback';
 import { ActivityTimeline } from './realtime/activity-timeline';
 import { INTERRUPTED_LAMP_MS, voiceLamp, voiceLampLabels, voiceLampOrder } from './realtime/voice-lamp';
+import { VoiceStream } from './realtime/voice-stream';
 
 const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking', acting: 'Editing' };
 
@@ -127,6 +128,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const busy = status === 'connected' && (turn === 'thinking' || turn === 'acting' || turn === 'speaking');
   return <section aria-label="Document assistant" className="voice-dock" data-active={active} data-lamp={lamp} data-listening={microphone === 'on'} style={{ '--voice-level': level } as CSSProperties}>
     <div className="voice-float">
+      {active && <VoiceStream subscribe={subscribeActivity} />}
       <div className="voice-row">
         <div className="voice-field">
           <span className="voice-glow" aria-hidden="true" />

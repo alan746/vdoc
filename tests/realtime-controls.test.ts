@@ -25,6 +25,56 @@ beforeEach(async () => {
   mount = document.createElement('div'); document.body.appendChild(mount); root = createRoot(mount);
 });
 afterEach(() => { act(() => root.unmount()); engine.destroy(); editor.destroy(); mount.remove(); vi.unstubAllGlobals(); });
+it('shows immediate waiting and read/write progress before model text arrives', async () => {
+  await render(); await click('Connect voice assistant');
+  const output = () => mount.querySelector('[aria-label="Assistant live output"]')?.textContent;
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'thinking', turnId: 't' }));
+  expect(output()).toContain('已收到，正在处理');
+  await act(async () => calls.onActivity!({ type: 'call', name: 'get_context', callId: 'read', arguments: {} }));
+  expect(output()).toContain('正在读取相关内容');
+  await act(async () => calls.onActivity!({ type: 'result', name: 'get_context', callId: 'read', ok: true }));
+  expect(output()).toContain('已读取，正在生成下一步操作');
+  await act(async () => calls.onActivity!({ type: 'call', name: 'apply_document_operations', callId: 'write', arguments: {} }));
+  expect(output()).toContain('正在修改文档');
+  expect(editor.getText()).toBe('hello');
+  await act(async () => calls.onActivity!({ type: 'result', name: 'apply_document_operations', callId: 'write', ok: false }));
+  expect(output()).toContain('本次操作未完成');
+  expect(output()).not.toContain('修改已完成');
+});
+it('keeps new spoken feedback visible after earlier worker progress', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => {
+    calls.onActivity!({ type: 'text', responseId: 'worker', delta: '正在修改。' });
+    calls.onActivity!({ type: 'transcript', role: 'agent', itemId: 'final', text: '修改已完成。', final: false });
+  });
+  const output = mount.querySelector('[aria-label="Assistant live output"]')?.textContent;
+  expect(output).toContain('修改已完成。');
+});
+it('shows spoken acknowledgement and successive generated chunks before the document changes', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'transcript', role: 'agent', itemId: 'ack', text: '好的，我来修改。', final: false }));
+  expect(mount.querySelector('[aria-label="Assistant live output"]')?.textContent).toContain('好的，我来修改。');
+  await act(async () => calls.onActivity!({ type: 'preview', callId: 'write', phase: 'streaming', text: '第一段' }));
+  expect(mount.querySelector('[aria-label="Generated content"]')?.textContent).toBe('第一段');
+  await act(async () => calls.onActivity!({ type: 'preview', callId: 'write', phase: 'streaming', text: '第一段\n第二段<script>plain</script>' }));
+  expect(mount.querySelector('[aria-label="Generated content"]')?.textContent).toContain('第二段<script>plain</script>');
+  expect(mount.querySelector('script')).toBeNull();
+  expect(editor.getText()).toBe('hello');
+  await act(async () => calls.onActivity!({ type: 'interrupted' }));
+  expect(mount.textContent).toContain('已停止生成');
+  await click('Disconnect assistant');
+  expect(mount.querySelector('[aria-label="Assistant live output"]')).toBeNull();
+});
+it('streams worker text and resets output for the next user request', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => {
+    calls.onActivity!({ type: 'text', responseId: 'worker', delta: '正在' });
+    calls.onActivity!({ type: 'text', responseId: 'worker', delta: '修改。' });
+  });
+  expect(mount.querySelector('[aria-label="Assistant live output"]')?.textContent).toContain('正在修改。');
+  await act(async () => calls.onActivity!({ type: 'transcript', role: 'user', itemId: 'next', text: '下一项', final: false }));
+  expect(mount.querySelector('[aria-label="Assistant live output"]')).toBeNull();
+});
 it('discovers local voice access without opening audio and connects only on a gesture', async () => {
   calls.enabled = false; await render();
   expect(calls.load).toHaveBeenCalledWith('doc', expect.any(AbortSignal), 'local');
@@ -66,7 +116,7 @@ it('vdoc#33: an agent commit highlights its block in the live editor and lists t
 });
 it('vdoc#33: disconnecting clears the decorations and unmounting unregisters the plugins', async () => {
   const pluginCount = editor.state.plugins.length;
-  await render(); expect(editor.state.plugins.length).toBe(pluginCount + 2);
+  await render(); expect(editor.state.plugins.length).toBe(pluginCount + 3);
   await click('Connect voice assistant');
   const s = engine.snapshot();
   await act(async () => { engine.executeAgent({ expectedSessionId: s.sessionId, expectedRevision: s.revision, target: { kind: 'block', id: s.blocks[0].id }, operations: [{ type: 'text.replace', text: 'AI' }] }, { actor: 'agent', turnId: 'turn-1' }); });
@@ -238,4 +288,13 @@ it('clears a failed instruction message once the next instruction starts', async
   expect(mount.querySelector('[role="alert"]')?.textContent).toContain('could not complete');
   await act(async () => calls.onActivity!({ type: 'turn', state: 'listening', turnId: 't2' }));
   expect(mount.textContent).not.toContain('could not complete');
+});
+
+it('subscribes the editor to streamed writing and clears it on disconnect', async () => {
+  await render(); await click('Connect voice assistant');
+  await act(async () => calls.onActivity!({ type: 'preview', callId: 'write', phase: 'streaming', text: '正文草稿', drafts: [{ text: '正文草稿', anchor: { kind: 'document_end' } }] }));
+  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('正文草稿');
+  expect(editor.getText()).toBe('hello');
+  await click('Disconnect assistant');
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')).toBeNull();
 });

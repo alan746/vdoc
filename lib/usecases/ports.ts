@@ -91,8 +91,18 @@ export type RealtimeTurnState = 'idle' | 'listening' | 'thinking' | 'speaking' |
  *  write path: edits happen only inside RealtimeTool.run(). `arguments` is
  *  model output and untrusted; call/result IDs are the provider's, used only
  *  to pair a call with its result. */
+/** A display hint only; the tool still validates and commits the complete edit. */
+export type StreamDraft = {
+  text: string;
+  anchor: { kind: 'document_end' }
+    | { kind: 'before_block' | 'after_block'; blockId: string }
+    | { kind: 'text'; blockId: string; offset: number }
+    | { kind: 'position'; pos: number };
+};
 export type RealtimeActivity =
   | { type: 'transcript'; role: 'user' | 'agent'; itemId: string; text: string; final: boolean }
+  | { type: 'text'; responseId: string; delta: string }
+  | { type: 'preview'; callId: string; text: string; drafts?: StreamDraft[]; phase: 'streaming' | 'pending' | 'complete' | 'failed' | 'cancelled' }
   | { type: 'turn'; state: RealtimeTurnState; turnId: string }
   | { type: 'call'; callId: string; name: string; arguments: unknown }
   | { type: 'result'; callId: string; ok: boolean; name?: string; code?: string; message?: string }

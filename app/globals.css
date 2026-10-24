@@ -412,6 +412,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 .voice-dock { position:relative; height:0; flex-shrink:0; z-index:30; color:#1d1d1f; font-size:13px; --voice-level:0; }
 .voice-float { position:absolute; left:50%; bottom:18px; transform:translateX(-50%); width:min(620px, calc(100% - 32px)); display:flex; flex-direction:column; align-items:center; gap:8px; }
 .voice-row { display:flex; align-items:center; gap:12px; width:100%; }
+.voice-stream { order:-2; width:100%; padding:12px 16px; border-radius:16px; background:rgba(255,255,255,.97); border:1px solid #e5e5e7; box-shadow:0 8px 30px rgba(0,0,0,.08); }
+.voice-stream-status { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; max-height:90px; overflow:auto; line-height:1.5; }
+.voice-stream-label { margin:8px 0 4px; font-size:11px; color:#68686d; }
+.voice-stream-body { max-height:min(200px, 25vh); overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; font-size:14px; line-height:1.7; }
 .voice-field { position:relative; flex:1; min-width:0; }
 .voice-glow,.voice-glow::after { background:conic-gradient(from var(--voice-angle), #ff6b9a, #ffb457, #5ee7b0, #4fb6ff, #a77bff, #ff6b9a); animation:voice-spin 6s linear infinite paused; }
 .voice-glow { position:absolute; inset:-3px; border-radius:999px; pointer-events:none; opacity:.28; filter:blur(8px); transition:opacity .35s ease, filter .12s linear, transform .12s linear; }
@@ -570,3 +574,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 }
 @media(max-width:380px) { .signin-page { padding:0 18px; } .signin-card { padding:23px 19px; } .signin-footer { flex-direction:column; justify-content:center; gap:6px; align-items:flex-start; } }
 @media(prefers-reduced-motion:reduce) { .signin-spinner { animation:none; } }
+
+/* Streamed writing appears in the editor before the validated final commit. */
+.vdoc-streaming-draft { white-space:pre-wrap; overflow-wrap:anywhere; border-bottom:1px dotted var(--ring); }
+.vdoc-streaming-draft[data-block="true"] { display:block; margin: .6em 0; }
+.vdoc-streaming-label { display:inline-block; margin-right:.5em; font:11px/1.5 sans-serif; color:#68686d; user-select:none; }
+.vdoc-streaming-text { color:inherit; }
+@media print { .vdoc-streaming-draft { display:none !important; } }

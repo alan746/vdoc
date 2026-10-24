@@ -91,7 +91,7 @@ vdoc-server 的 RFC 9457 problem 使用顶层 `code`、`quotaKind`、`retryAfter
 
 以下结论来自直接阅读已安装的 SDK 源码（`node_modules/@vrealtime/client/dist/session.js`、`tool-host.js`、`epoch-gate.js`），并由真实 SDK 加文档引擎的回归测试验证。客户端和传输协议锁定为 0.2.0；配套服务端的 `server`、`core`、`boson`、`openai`、`openai-compatible`、`testing` 依赖也统一为 0.2.0。HTTP 创建、续发、结束以及 grant 格式保持原有契约。
 
-SDK 自动在 `hello` 中声明 `tool-stream-v1` 和 `global-tool-ids-v1`，以 `ready.capabilities` 确认协商结果；未声明能力的旧服务端仍使用完整 `tool.call` 路径。0.2.0 的 `tool.stream` 已定义 start、arguments-delta、arguments-complete、progress 和终态，但应用尚未提供渐进预览 UI。即使收到 arguments-complete，也只视为进度信息，不据此执行编辑；文档写入仍只发生于完整 `tool.call` 对应的 `run()`。SDK 和 executor 分别处理传输序号重放与调用 ID 幂等。
+SDK 自动在 `hello` 中声明 `tool-stream-v1` 和 `global-tool-ids-v1`，以 `ready.capabilities` 确认协商结果；未声明能力的旧服务端仍使用完整 `tool.call` 路径。0.2.0 的 `tool.stream` 已定义 start、arguments-delta、arguments-complete、progress 和终态，应用通过语音条上方的实时输出区和文档内的生成中草稿展示文章和文本编辑增量。即使收到 arguments-complete，也只视为进度信息，不据此执行编辑；文档写入仍只发生于完整 `tool.call` 对应的 `run()`。SDK 和 executor 分别处理传输序号重放与调用 ID 幂等。
 
 可恢复的 `AGENT_ERROR` 仅显示可重试提示，保留当前连接；不可恢复错误、认证／续发失败、音频失败和配额错误仍会关闭并清理会话。不会把上游错误原文展示给用户。
 
@@ -109,7 +109,7 @@ SDK 自动在 `hello` 中声明 `tool-stream-v1` 和 `global-tool-ids-v1`，以 
 |---|---|---|
 | `tool.call` | 完整参数到达、执行之前 | 可用于提前显示 agent 将要操作的块 |
 | `tool.preview` | 旧 `tool.call.delta` 或新 `tool.stream` 的兼容进度事件，发出前已按 epoch 过滤 | 仅供展示；应用尚未订阅，不作为执行入口 |
-| `tool.stream` | 协商 `tool-stream-v1` 后的工具生命周期事件 | SDK 已支持；应用暂不展示增量预览，也不从此事件提交文档修改 |
+| `tool.stream` | 协商 `tool-stream-v1` 后的工具生命周期事件 | 展示文章和文本修改的增量预览及成功、失败、中断状态；不从此事件提交文档修改 |
 | `tool.result` | 每个调用恰好一次 | 包含 `INTERRUPTED` |
 | `state` | 服务端 `turn.state` | 轮次状态（listening / thinking / …），附 `turnId`、`epoch` |
 | `interrupted` | 本地或服务端中断 | 附 `epoch` 和 `source` |
@@ -118,7 +118,7 @@ SDK 自动在 `hello` 中声明 `tool-stream-v1` 和 `global-tool-ids-v1`，以 
 - 状态条在"Assistant connected"后显示 Listening / Thinking / Speaking / Editing；
 - presence 标记在调用**到达时**就移到它的目标块（`target` 里的 block/text/cell ID，且该块确实存在），不必等提交——调用可能在等 IME 组字；提交后移到实际改动的块；调用失败或被中断时清除。
 
-`tool.preview` 和 `tool.stream` 的增量展示仍未接入，属于后续 UI 工作；协议能力已由 SDK 0.2.0 提供。
+`text` 和 `tool.stream` 已接入实时输出区，显示后台文字、文章和文本修改的增量预览。首句和最终语音字幕同步显示，后台进度文字不会遮住新的语音字幕。收到 thinking 状态立即显示“已收到，正在处理”，读取和修改阶段由真实 call/result 事件驱动；工具流开始即展示生成状态，不等第一个完整 JSON 字段。状态文字不是模型生成正文或推理内容。部分 JSON 仅用于预览，文档仍由完整工具调用原子提交；中断、失败、断线会终止当前预览，旧片段不会继续更新。`tool.preview` 旧版兼容事件仍未订阅。
 
 ## 文档工具目录（`lib/usecases/document-tools.ts`）
 
@@ -149,6 +149,8 @@ SDK 自动在 `hello` 中声明 `tool-stream-v1` 和 `global-tool-ids-v1`，以 
 
 驱动方：`components/editor/realtime/use-agent-activity.ts` 的 `useAgentActivity(engine, active)`——挂载时 attach、卸载时 dispose（注册只在编辑器会话开始时做一次，避免在用户打字/组字时重配编辑器 state）；`active` 为真时订阅 `engine.onApplied`（只处理 `source==='agent'` 且 `changedBlockIds` 非空的事件），`active` 变为假时 `clear()`；同时从 `engine.records` 按 `turnId` 分组，返回给 `components/editor/realtime/activity-timeline.tsx` 渲染"按轮次分组的历史 + Undo turn"。`RealtimeControls`（`components/editor/realtime-controls.tsx`）在 `status !== 'disconnected'` 时渲染这个时间线；`Undo turn` 按钮直接调用 `engine.undoTurn(turnId, origin)`，不经过实时执行器（它是普通引擎能力，任何调用方都能用，和语音/模型路径无关）。
 
-**没做、不要当作已完成**：流式 ghost 预览（vdoc#35 任务3）和应用层能力展示。SDK 0.2.0 已负责传输能力协商，但不代表 UI 已实现；presence 不是逐 token 流式位置。
+`attachStreamingDraft` 额外注册文档内的流式草稿插件。文章、新段落（`block.insert`，含表格文字）、文本插入／替换的参数增量会逐步显示在可解析的目的位置；位置尚未解析或无效时仍可在语音条预览。草稿标注“正在生成”，不写入 JSON、撤销历史或保存内容。完整工具成功时，真正编辑和草稿移除发生在同一文档事务中。失败、中断、断开连接会清除草稿；生成中发生其他文档编辑也会清除，并屏蔽该调用后续片段，避免把过期位置的内容继续显示。查找替换的替换词仅在语音条预览，不猜测其多个匹配位置。真实 SDK 分片 → 解析 → 文档 DOM → 完整工具提交的回归见 `tests/realtime-sdk-results.test.ts`。
+
+**尚未实现**：应用层能力展示。SDK 0.2.0 已负责传输能力协商。
 
 升级回归见 `tests/voice-session-sdk.test.ts`：真实 SDK 连接与 grant 续发、能力有／无时的完整工具执行、预览不落盘、调用重放去重、重连后撤销、本地／服务端打断、过期及无效编辑失败、可恢复模型错误。真实模型的中文音频识别和延迟仍需部署环境验收，不能由这些协议测试推断。

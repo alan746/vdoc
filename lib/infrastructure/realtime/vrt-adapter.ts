@@ -4,6 +4,7 @@ import { createdVoiceSessionSchema, voiceDocumentContextSchema, voiceGrantSchema
 import type { RealtimeActivity, RealtimeConfig, RealtimePort } from '../../usecases/ports';
 import { voiceRequestError, VoiceConnectionError } from './voice-errors';
 import { prepareBrowserAudio } from './browser-audio';
+import { createStreamPreview } from './stream-preview';
 
 const loopback = (host: string) => host === 'localhost' || host === '[::1]' || /^127(?:\.\d{1,3}){3}$/.test(host);
 const configSchema = z.object({ workspace: z.enum(['cloud', 'local']).optional(), url: z.string(), sessionsUrl: z.string(), audio: z.boolean().optional(), language: voiceLanguageSchema.optional(), vocabulary: voiceVocabularySchema.optional() });
@@ -31,6 +32,7 @@ export const vrtAdapter: RealtimePort = {
     const off: (() => void)[] = [];
     const publish: typeof onStatus = (...args) => { if (!closed) onStatus(...args); };
     const report = (activity: RealtimeActivity) => { if (!closed) onActivity?.(activity); };
+    const preview = createStreamPreview(report);
     const requestBody = JSON.stringify({ documentId: context.documentId, ...(config.workspace === 'local' ? { workspace: 'local' } : {}) });
     const request = (url: string, method: 'POST' | 'DELETE', requestSignal: AbortSignal, keepalive = false) => fetch(url, {
       method, credentials: 'same-origin', cache: 'no-store', redirect: 'error', keepalive,
@@ -96,8 +98,9 @@ export const vrtAdapter: RealtimePort = {
         });
         off.push(
           session.on('ready', () => publish('connected')),
-          session.on('reconnecting', () => publish('reconnecting')),
+          session.on('reconnecting', () => { preview.cancel(); publish('reconnecting'); }),
           session.on('error', event => {
+            preview.cancel();
             // A recoverable provider/turn failure leaves the SDK session usable.
             // Closing here would DELETE the voice session and prevent retrying
             // the next instruction. Auth, audio and quota failures remain fatal.
@@ -112,10 +115,15 @@ export const vrtAdapter: RealtimePort = {
           session.on('closed', () => { publish('disconnected'); close(); }),
           session.on('state', event => report({ type: 'turn', state: event.state, turnId: event.turnId })),
           session.on('transcript', event => report({ type: 'transcript', role: event.role, itemId: event.itemId, text: event.text, final: event.final })),
+          session.on('text', event => report({ type: 'text', responseId: event.responseId, delta: event.delta })),
+          session.on('tool.stream', event => preview.receive(event)),
           session.on('tool.call', event => report({ type: 'call', callId: event.callId, name: event.name, arguments: event.arguments })),
-          session.on('tool.result', event => report({ type: 'result', callId: event.callId, name: event.name, ok: event.result.ok,
-            ...(!event.result.ok ? { code: event.result.code, message: event.result.message.slice(0, 1000) } : {}) })),
-          session.on('interrupted', () => report({ type: 'interrupted' })),
+          session.on('tool.result', event => {
+            preview.finish(event.callId, event.result.ok && !(typeof event.result.output === 'object' && event.result.output !== null && 'ok' in event.result.output && event.result.output.ok === false));
+            report({ type: 'result', callId: event.callId, name: event.name, ok: event.result.ok,
+              ...(!event.result.ok ? { code: event.result.code, message: event.result.message.slice(0, 1000) } : {}) });
+          }),
+          session.on('interrupted', () => { preview.cancel(); report({ type: 'interrupted' }); }),
         );
         await session.start();
       } catch (error) {

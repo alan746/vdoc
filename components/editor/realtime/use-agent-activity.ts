@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import type { OperationRecord } from '@/lib/domain/entities/operation';
 import type { RealtimeActivity } from '@/lib/usecases/ports';
+import { attachStreamingDraft } from '@/lib/editor/realtime/streaming-draft';
 import { attachAgentActivity, type AgentActivity } from '@/lib/editor/realtime/agent-activity';
 
 export type AgentTurn = { turnId: string; actor: string; time: number; count: number; labels: string[] };
@@ -39,13 +40,15 @@ export function useAgentActivity(engine: DocumentEngine, active: boolean, subscr
   const getRecords = useCallback(() => engine.records, [engine]);
   const records = useSyncExternalStore(subscribe, getRecords, getRecords);
   const activity = useRef<AgentActivity | null>(null);
+  const draft = useRef<ReturnType<typeof attachStreamingDraft> | null>(null);
   // Registered once per editor session rather than per connection: plugin
   // registration reconfigures the editor state, which must not happen while
   // the user may be typing (e.g. when a connection drops mid-composition).
   useEffect(() => {
     const attached = attachAgentActivity(engine.editor, { locate: id => engine.locateBlock(id) });
     activity.current = attached;
-    return () => { attached.dispose(); if (activity.current === attached) activity.current = null; };
+    const streaming = attachStreamingDraft(engine.editor); draft.current = streaming;
+    return () => { streaming.dispose(); if (draft.current === streaming) draft.current = null; attached.dispose(); if (activity.current === attached) activity.current = null; };
   }, [engine]);
   useEffect(() => {
     const current = activity.current;
@@ -57,6 +60,12 @@ export function useAgentActivity(engine: DocumentEngine, active: boolean, subscr
       current.setPresence(event.changedBlockIds[event.changedBlockIds.length - 1]);
     });
   }, [engine, active]);
+  useEffect(() => {
+    const current = draft.current;
+    if (!current) return;
+    if (!active || !subscribeActivity) { current.clear(); return; }
+    return subscribeActivity(event => current.receive(event));
+  }, [engine, active, subscribeActivity]);
   // A call's target is marked as soon as the call arrives, before it runs (it
   // may wait for IME composition); the commit then moves the marker to the
   // blocks that actually changed. A failed or interrupted call clears it.

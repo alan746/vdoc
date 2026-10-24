@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
 import type { ClientMessage } from '@vrealtime/protocol';
+import { attachStreamingDraft } from '../lib/editor/realtime/streaming-draft';
 import { createExtensions } from '../lib/editor/extensions';
 import { DocumentEngine } from '../lib/usecases/engine';
 import { openDocumentRealtime } from '../lib/composition/realtime';
@@ -24,6 +25,7 @@ class FakeSocket extends EventTarget {
     this.sent.push(message);
     if (message.type === 'hello') queueMicrotask(() => this.receive({
       type: 'ready', sessionId: 'voice-session',
+      capabilities: ['tool-stream-v1'],
       input: { encoding: 'pcm16', sampleRate: 24000 }, output: { encoding: 'pcm16', sampleRate: 24000 },
     }));
   }
@@ -36,7 +38,7 @@ class FakeSocket extends EventTarget {
   }
 }
 
-let editor: Editor, engine: DocumentEngine, connection: RealtimeConnection;
+let editor: Editor, engine: DocumentEngine, connection: RealtimeConnection, draft: ReturnType<typeof attachStreamingDraft>;
 const activities: RealtimeActivity[] = [];
 beforeEach(async () => {
   sockets.length = 0;
@@ -48,12 +50,28 @@ beforeEach(async () => {
   })));
   editor = new Editor({ extensions: createExtensions(), content: '<p>hello</p><p>second</p>' });
   await new Promise(resolve => setTimeout(resolve, 0));
-  engine = new DocumentEngine(editor); activities.length = 0;
+  engine = new DocumentEngine(editor); draft = attachStreamingDraft(editor); activities.length = 0;
   const onStatus = vi.fn();
-  connection = openDocumentRealtime({ engine, docId: 'doc', config: { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions' }, onStatus, onActivity: event => activities.push(event) });
+  connection = openDocumentRealtime({ engine, docId: 'doc', config: { url: 'ws://localhost:8790', sessionsUrl: '/api/voice-sessions' }, onStatus, onActivity: event => { activities.push(event); draft.receive(event); } });
   await vi.waitFor(() => expect(onStatus).toHaveBeenCalledWith('connected'));
 });
-afterEach(() => { connection?.close(); engine?.destroy(); editor?.destroy(); vi.unstubAllGlobals(); });
+afterEach(() => { connection?.close(); draft?.dispose(); engine?.destroy(); editor?.destroy(); vi.unstubAllGlobals(); });
+
+it('carries real SDK text and argument streams to the UI without executing incomplete writes', () => {
+  const socket = sockets[0], before = editor.getJSON();
+  socket.receive({ type: 'text', responseId: 'worker', delta: '正在写入' });
+  const stream = { type: 'tool.stream', callId: 'stream-write', name: 'insert_structured_article', turnId: 'turn-1', epoch: 1 };
+  socket.receive({ ...stream, phase: 'start' });
+  socket.receive({ ...stream, phase: 'arguments-delta', delta: '{"blocks":[{"kind":"paragraph","text":"逐步' });
+  expect(activities).toContainEqual({ type: 'text', responseId: 'worker', delta: '正在写入' });
+  expect(activities).toContainEqual({ type: 'preview', callId: 'stream-write', phase: 'streaming', text: '逐步' });
+  expect(editor.getJSON()).toEqual(before);
+  connection.interrupt();
+  expect(activities).toContainEqual({ type: 'preview', callId: 'stream-write', phase: 'cancelled', text: '逐步' });
+  socket.receive({ ...stream, phase: 'arguments-delta', delta: '迟到内容' });
+  expect(JSON.stringify(activities)).not.toContain('迟到内容');
+  expect(editor.getJSON()).toEqual(before);
+});
 
 const request = (operations: unknown[]) => ({
   expectedSessionId: engine.sessionId, expectedRevision: engine.revision,
@@ -129,4 +147,36 @@ it('rejects invalid table dimensions without an edit and lets a corrected call s
   expect(await call('apply_document_operations', request([{ type: 'table.insert', rows: 3, cols: 2 }]), 'corrected-call'))
     .toMatchObject({ ok: true, output: { ok: true } });
   expect(editor.getJSON().content!.some(node => node.type === 'table')).toBe(true);
+});
+
+it('renders successive wire chunks in the document before execution, then commits once without duplicate text', async () => {
+  const socket = sockets[0], before = editor.getJSON(), revision = engine.revision;
+  const args = request([{ type: 'block.insert', beforeId: null, block: { kind: 'paragraph', text: '逐步生成正文<script>纯文本</script>' } }]);
+  const stream = { type: 'tool.stream', callId: 'write-draft', name: 'apply_document_operations', epoch: 1, turnId: 'turn-1' };
+  const json = JSON.stringify(args), split = json.indexOf('生成');
+  socket.receive({ ...stream, phase: 'start' });
+  socket.receive({ ...stream, phase: 'arguments-delta', delta: json.slice(0, split) });
+  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('逐步');
+  expect(editor.getJSON()).toEqual(before); expect(engine.revision).toBe(revision);
+  socket.receive({ ...stream, phase: 'arguments-delta', delta: json.slice(split) });
+  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('逐步生成正文<script>纯文本</script>');
+  expect(editor.view.dom.querySelector('script')).toBeNull();
+  expect(editor.getJSON()).toEqual(before);
+  expect(await call('apply_document_operations', args, 'write-draft')).toMatchObject({ ok: true });
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')).toBeNull();
+  expect(engine.snapshot().blocks.map(block => block.text)).toEqual(['hello', 'second', '逐步生成正文<script>纯文本</script>']);
+  expect(engine.records).toHaveLength(1);
+});
+it.each(['interruption', 'failure', 'concurrent edit'])('removes streamed document text after %s and ignores later chunks', async mode => {
+  const socket = sockets[0], before = editor.getJSON();
+  const stream = { type: 'tool.stream', callId: 'unfinished', name: 'apply_document_operations', epoch: 1, turnId: 'turn-1' };
+  socket.receive({ ...stream, phase: 'arguments-delta', delta: '{"operations":[{"type":"block.insert","beforeId":null,"block":{"kind":"paragraph","text":"未完成' });
+  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('未完成');
+  if (mode === 'interruption') connection.interrupt();
+  else if (mode === 'failure') await call('apply_document_operations', request([{ type: 'block.insert' }]), 'unfinished');
+  else editor.commands.insertContentAt(1, '用户文字');
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')).toBeNull();
+  socket.receive({ ...stream, phase: 'arguments-delta', delta: '不应再出现"}}]}' });
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')).toBeNull();
+  if (mode !== 'concurrent edit') expect(editor.getJSON()).toEqual(before);
 });
