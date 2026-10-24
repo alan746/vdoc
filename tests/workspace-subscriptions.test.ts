@@ -2,9 +2,11 @@ import { act, createElement } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
+import { closeHistory } from '@tiptap/pm/history';
 import { createExtensions } from '../lib/editor/extensions';
 import VdocWorkspace from '../components/editor/workspace';
 import { documentStatistics } from '../lib/domain/text/unicode';
+import { BlockIndex } from '../lib/editor/document/block-index';
 
 let editor: Editor, root: Root, mount: HTMLDivElement;
 const renders = vi.hoisted(() => ({ toolbar: vi.fn() }));
@@ -69,6 +71,36 @@ it('keeps outline jumps current after preceding text shifts a heading without ch
   expect(element.scrollIntoView).toHaveBeenCalled();
   expect(mount.querySelector('.outline-item')?.classList.contains('current')).toBe(true);
   expect(mount.querySelector('[aria-label="Document formatting toolbar"]')?.textContent).toContain('Heading 2');
+});
+
+it('updates display information without rebuilding the command index on each typed character', async () => {
+  const before = window.vdoc!.snapshot();
+  const rebuilds = vi.spyOn(BlockIndex.prototype, 'update');
+  for (let i = 0; i < 10; i++) {
+    act(() => editor.commands.insertContent('字')); await settle();
+  }
+  expect(mount.querySelector('.outline-item')?.textContent).toBe('Destination');
+  expect(mount.querySelector('.statusbar')?.textContent).toContain(`${documentStatistics(editor.state.doc).characters} characters`);
+  expect(rebuilds).not.toHaveBeenCalled();
+  // A real command/read still gets the live index and current block versions.
+  const after = window.vdoc!.snapshot();
+  expect(rebuilds).toHaveBeenCalledOnce();
+  expect(after.blocks[0].version).toBeGreaterThan(before.blocks[0].version);
+  expect(after.blocks[0].text).toContain('字'.repeat(10));
+});
+
+it('refreshes rendered footnotes after text edits and undo', async () => {
+  act(() => editor.commands.setContent({ type: 'doc', content: [{ type: 'paragraph', content: [
+    { type: 'text', text: 'Body' }, { type: 'footnote', attrs: { text: 'Original note', number: 1 } },
+  ] }] })); await settle();
+  expect(mount.querySelector('.document-notes')?.textContent).toBe('1 Original note');
+  let pos = 0;
+  editor.state.doc.descendants((node, offset) => { if (node.type.name === 'footnote') pos = offset; });
+  act(() => editor.view.dispatch(closeHistory(editor.state.tr).setNodeMarkup(pos, undefined, { ...editor.state.doc.nodeAt(pos)!.attrs, text: 'Edited note' })));
+  await settle();
+  expect(mount.querySelector('.document-notes')?.textContent).toBe('1 Edited note');
+  act(() => editor.commands.undo()); await settle();
+  expect(mount.querySelector('.document-notes')?.textContent).toBe('1 Original note');
 });
 
 it('refreshes selection counts and toolbar formatting across marks and nonempty selections', async () => {

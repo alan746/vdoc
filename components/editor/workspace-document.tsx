@@ -4,24 +4,22 @@ import type { Node } from '@tiptap/pm/model';
 import type { DocumentEngine } from '@/lib/usecases/engine';
 import { documentStatistics, selectionGraphemeCount } from '@/lib/domain/text/unicode';
 import { UNTITLED_DOCUMENT } from '@/lib/domain/entities/document';
+import { documentDisplaySummary } from '@/lib/editor/document/display-summary';
 import { useEngineSelector } from './use-engine-selector';
 
 const characters = (engine: DocumentEngine) => documentStatistics(engine.editor.state.doc).characters;
 const words = (engine: DocumentEngine) => documentStatistics(engine.editor.state.doc).words;
 const selectedCharacters = (engine: DocumentEngine) => selectionGraphemeCount(engine.editor.state.doc, engine.editor.state.selection);
-const outline = (engine: DocumentEngine) => JSON.stringify(engine.outline().map(heading => {
-  const range = engine.locateBlock(heading.id);
+const outline = (engine: DocumentEngine) => JSON.stringify(documentDisplaySummary(engine.editor.state.doc).headings.map(({ from: position, ...heading }) => {
   const from = engine.editor.state.selection.from;
-  return { ...heading, current: !!range && from >= range.from && from <= range.from + heading.text.length + 2 };
+  return { ...heading, current: from >= position && from <= position + heading.text.length + 2 };
 }));
 const notesCache = new WeakMap<Node, string>();
 const notes = (engine: DocumentEngine) => {
   const doc = engine.editor.state.doc;
   const cached = notesCache.get(doc);
   if (cached !== undefined) return cached;
-  const values: { number: number; text: string }[] = [];
-  doc.descendants(node => { if (node.type.name === 'footnote') values.push({ number: node.attrs.number, text: node.attrs.text }); });
-  const value = JSON.stringify(values);
+  const value = JSON.stringify(documentDisplaySummary(doc).notes);
   notesCache.set(doc, value);
   return value;
 };
