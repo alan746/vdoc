@@ -21,8 +21,16 @@ function insertContent(block: InsertBlock): object {
 export const documentCommands = defineHandlers({
   'block.insert': (op, { state, c, reject }) => {
     const destination = insertionPoint(state.doc, op);
-    if (destination === undefined) return reject('The placement anchor is missing or is not a top-level block. Read the document again and choose an explicit top-level anchor.');
-    return c.insertContentAt(destination, insertContent(op.block));
+    if (destination !== undefined) return c.insertContentAt(destination, insertContent(op.block));
+    // Anchored on a list item: the paragraph joins that list as a new item beside it.
+    const anchorId = op.position?.anchorId ?? op.beforeId;
+    const { block } = op;
+    const item = block.kind === 'paragraph' && anchorId ? findListItem(state.tr.doc, anchorId) : undefined;
+    if (!item || block.kind !== 'paragraph') return reject('The placement anchor is missing or is not a top-level block or list item. Read the document again and choose an explicit anchor.');
+    const { schema } = state.tr.doc.type;
+    const paragraph = schema.nodes.paragraph.create(null, block.text ? schema.text(block.text) : null);
+    state.tr.insert(op.position?.relation === 'after' ? item.pos + item.node.nodeSize : item.pos, item.node.type.create(null, paragraph));
+    return true;
   },
   'block.delete': (op, { state, reject }) => {
     const found = findTopLevelBlock(state.doc, op.id);

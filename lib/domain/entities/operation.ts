@@ -90,7 +90,7 @@ export const operationSchema = z.discriminatedUnion('type', [
       headerText: z.array(z.string().max(1000)).max(20).optional(),
       rowsText: z.array(z.array(z.string().max(1000)).max(20)).max(30).optional(),
     }).strict(),
-  ]) }).strict(),
+  ]) }).strict().describe('Insert a new block beside the anchor. To add an item to an existing list, insert a paragraph anchored on one of its items (the item\'s block ID, not the list\'s): it becomes a new item of that list before or after it. Anchoring on the list itself inserts outside the list, and list.toggle on such a paragraph starts a separate list.'),
   z.object({ type: z.literal('block.delete'), id: z.string().min(1).describe('Required ID of the top-level block to delete, taken from a document read. Supply it even if target.id contains the same ID.') }).strict().describe('Delete the top-level block identified by this operation\'s id. The request target does not fill in this required id.'),
 ]);
 

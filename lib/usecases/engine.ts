@@ -113,7 +113,9 @@ export class DocumentEngine {
     }
     const nodes = articleNodes(this.editor.schema, article);
     const state = this.editor.state;
-    const tr = closeHistory(state.tr).insert(position, nodes);
+    // A blank document is one empty paragraph; the article takes its place instead of leaving it above the title.
+    const blank = state.doc.childCount === 1 && state.doc.firstChild!.type.name === 'paragraph' && state.doc.firstChild!.content.size === 0;
+    const tr = blank ? closeHistory(state.tr).replaceWith(0, state.doc.content.size, nodes) : closeHistory(state.tr).insert(position, nodes);
     tr.setSelection(state.selection.map(tr.doc, tr.mapping)).setStoredMarks(state.storedMarks);
     tr.setMeta('vdoc', { id: article.callId, source: options.origin ? 'agent' : 'api', ...options.origin });
     if (options.origin) tr.setMeta('addToHistory', false);

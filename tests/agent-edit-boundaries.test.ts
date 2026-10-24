@@ -99,3 +99,35 @@ describe('find and replace', () => {
     expect(engine.executeAgent({ ...version(), target: { kind: 'block', id: stale.id }, operations: [{ type: 'text.toggle', mark: 'bold' }] }, origin)).toMatchObject({ ok: false, code: 'TARGET' });
   });
 });
+
+describe('adding an item to an existing list', () => {
+  beforeEach(() => setup('<h2>明年计划</h2><ol><li><p>提升客户服务质量</p></li><li><p>推进新业务落地</p></li></ol><p>结尾</p>'));
+  const lists = () => (editor.getJSON().content ?? []).filter(node => node.type === 'orderedList');
+  const itemTexts = () => lists().map(list => (list.content ?? []).map(item => JSON.stringify(item).match(/"text":"([^"]*)"/)?.[1]));
+
+  it('puts a paragraph anchored before the first item at the top of the same list', () => {
+    const first = blockAt('提升客户服务质量');
+    expect(engine.executeAgent({ ...version(), target: { kind: 'block', id: first.id }, operations: [{ type: 'block.insert', position: { anchorId: first.id, relation: 'before' }, block: { kind: 'paragraph', text: '深耕核心产品线' } }] }, origin).ok).toBe(true);
+    expect(itemTexts()).toEqual([['深耕核心产品线', '提升客户服务质量', '推进新业务落地']]);
+  });
+
+  it('adds after a given item and gives the new item its own block ID', () => {
+    const first = blockAt('提升客户服务质量');
+    expect(engine.executeAgent({ ...version(), target: { kind: 'block', id: first.id }, operations: [{ type: 'block.insert', position: { anchorId: first.id, relation: 'after' }, block: { kind: 'paragraph', text: '完善人才梯队' } }] }, origin).ok).toBe(true);
+    expect(itemTexts()).toEqual([['提升客户服务质量', '完善人才梯队', '推进新业务落地']]);
+    expect(blockAt('完善人才梯队').id).toBeTruthy();
+  });
+
+  it('still inserts outside the list when anchored on the list itself', () => {
+    const listId = lists()[0].attrs!.blockId as string;
+    expect(engine.executeAgent({ ...version(), target: { kind: 'block', id: blockAt('结尾').id }, operations: [{ type: 'block.insert', position: { anchorId: listId, relation: 'before' }, block: { kind: 'paragraph', text: '说明段' } }] }, origin).ok).toBe(true);
+    expect(itemTexts()).toEqual([['提升客户服务质量', '推进新业务落地']]);
+    expect(texts()).toContain('说明段');
+  });
+
+  it('refuses a heading anchored on a list item', () => {
+    const first = blockAt('提升客户服务质量');
+    expect(engine.executeAgent({ ...version(), target: { kind: 'block', id: first.id }, operations: [{ type: 'block.insert', position: { anchorId: first.id, relation: 'before' }, block: { kind: 'heading', level: 3, text: '小标题' } }] }, origin).ok).toBe(false);
+    expect(itemTexts()).toEqual([['提升客户服务质量', '推进新业务落地']]);
+  });
+});

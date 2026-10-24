@@ -70,3 +70,18 @@ it.each([
 ])('accepts any heading structure the model chooses', patch => {
   expect(engine.insertStructuredArticle({ ...request(), ...patch })).toMatchObject({ ok: true });
 });
+it('replaces the empty paragraph of a blank document instead of leaving it above the title, and undoes back to blank', async () => {
+  engine.destroy(); editor.destroy();
+  editor = new Editor({ extensions: createExtensions(), content: '<p></p>' });
+  await new Promise(resolve => setTimeout(resolve, 0));
+  engine = new DocumentEngine(editor);
+  const before = editor.getJSON();
+  const result = engine.insertStructuredArticle(request());
+  expect(result.ok).toBe(true);
+  expect(editor.state.doc.firstChild).toMatchObject({ type: { name: 'heading' }, textContent: 'Ancient Greece' });
+  const ids: string[] = [];
+  editor.state.doc.forEach(node => { ids.push(node.attrs.blockId); });
+  expect(result.insertedBlockIds).toEqual(ids);
+  expect(engine.history('undo', 'api').ok).toBe(true);
+  expect(editor.getJSON()).toEqual(before);
+});
