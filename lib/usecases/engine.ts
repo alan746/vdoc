@@ -7,7 +7,7 @@ import { closeHistory, undoDepth, redoDepth } from '@tiptap/pm/history';
 import { agentRequestSchema, externalRequestSchema, requestSchema, operationLabel, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
 import { applyOperation, commandContext } from '../editor/commands/registry';
 import { resolveTargetSelection } from '../editor/commands/target-selection';
-import { documentSnapshot, documentOutline, readBlocks } from '../editor/document-snapshot';
+import { documentSnapshot, documentOutline, readBlocks, selectionBlockContext } from '../editor/document-snapshot';
 import { BlockIndex, type BlockRange } from '../editor/document/block-index';
 import { changedBlockIds } from '../editor/document/changed-blocks';
 import { SelectiveUndoHistory } from '../editor/document/selective-undo';
@@ -151,7 +151,7 @@ export class DocumentEngine {
       tr.setMeta('vdoc', { id, source: request.source, actor: request.actor, turnId: request.turnId });
       if (agent) tr.setMeta('addToHistory', false);
       try {
-        const context = commandContext(props);
+        const context = commandContext(props, message => { error = message; });
         for (const operation of request.operations) {
           // Agent insertion must never silently replace a selected block or
           // range, including text selected by an earlier operation in a batch.
@@ -159,7 +159,7 @@ export class DocumentEngine {
             error = 'text.insert requires an empty insertion target. Read the destination again and use equal start/end text offsets or equal from/to range positions. Use text.replace only for an explicitly requested replacement.';
             break;
           }
-          if (!applyOperation(operation, context)) { error = (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
+          if (!applyOperation(operation, context)) { error ||= (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
         }
         // The agent edits beside the user, not through the user's cursor.
         if (agent && !error) tr.setSelection(userSelection.map(tr.doc, tr.mapping)).setStoredMarks(userMarks);
@@ -179,7 +179,10 @@ export class DocumentEngine {
     const label = request.label ?? request.operations.map(operationLabel).join(' · ');
     if (this.revision !== beforeRevision || (!agent && !Mark.sameSet(beforeMarks, afterMarks)))
       this.record(id, label, request.source, request.operations.length, agent ? { actor: request.actor!, turnId: request.turnId! } : undefined);
-    const result = { ok: true, id, revision: this.revision };
+    const movedIds = [...new Set(request.operations.flatMap(op => op.type === 'block.move' ? [op.id] : []))];
+    const result: OperationResult = { ok: true, id, revision: this.revision,
+      ...(movedIds.length ? { blockMoves: movedIds.map(id => ({ id, location: this.index().get(id)?.location ?? null })) } : {}),
+    };
     if (signature !== undefined) {
       this.results.set(id, { signature, result });
       if (this.results.size > 200) this.results.delete(this.results.keys().next().value!);
@@ -236,6 +239,7 @@ export class DocumentEngine {
   snapshot() { return documentSnapshot(this.editor, this.sessionId, this.revision, this.index()); }
   outline() { return documentOutline(this.index()); }
   readBlocks(ids: readonly string[]) { return readBlocks(this.index(), ids); }
+  selectionContext(selection: { from: number; to: number }) { return selectionBlockContext(this.index(), selection, this.editor.state.doc); }
   hasBlock(id: string) { return this.index().has(id); }
   /** Current range of a block in the live document, without walking it. */
   locateBlock(id: string): BlockRange | undefined { return this.index().range(id); }

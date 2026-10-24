@@ -1,6 +1,6 @@
 import type { SelectionAnchor } from './engine';
-import { agentRequestSchema, operationSchema, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
-import type { BlockRead, DocumentSnapshot, OutlineEntry } from '../editor/document-snapshot';
+import { agentRequestSchema, operationSchema, validateBlockPlacements, type AgentOrigin, type AppliedChange, type OperationRecord, type OperationResult } from '../domain/entities/operation';
+import type { BlockRead, DocumentSnapshot, OutlineEntry, SelectionBlockContext } from '../editor/document-snapshot';
 import { z } from 'zod/v3';
 import type { RealtimeToolContext } from './ports';
 import { requestSignature } from '../shared/request-signature';
@@ -13,7 +13,7 @@ const realtimeOperationSchema = z.discriminatedUnion('type', [
 ]);
 export const realtimeApplySchema = agentRequestSchema.omit({ id: true }).extend({
   operations: z.array(realtimeOperationSchema).min(1).max(100),
-});
+}).superRefine(validateBlockPlacements);
 export const realtimeUndoSchema = z.object({
   targetTurnId: z.string().min(1).max(128),
   expectedSessionId: z.string().min(1).max(128),
@@ -50,6 +50,7 @@ export interface RealtimeEngine {
   snapshot(): DocumentSnapshot;
   outline(): OutlineEntry[];
   readBlocks(ids: readonly string[]): BlockRead;
+  selectionContext(selection: { from: number; to: number }): SelectionBlockContext;
   hasBlock(id: string): boolean;
   anchorSelection(): SelectionAnchor;
   onApplied(listener: (event: AppliedChange) => void): () => void;
@@ -175,7 +176,8 @@ export function createRealtimeExecutor(engine: RealtimeEngine, options: {
      *  register it. */
     getContext(context: RealtimeToolContext) {
       const invalid = check(context); if (invalid) return invalid;
-      return { docId: options.docId, sessionId, revision: engine.revision, selection: frozenSelection(context), outline: engine.outline(), recentEdits: recentVoiceEdits() };
+      const selection = frozenSelection(context);
+      return { docId: options.docId, sessionId, revision: engine.revision, selection, blockContext: engine.selectionContext(selection), outline: engine.outline(), recentEdits: recentVoiceEdits() };
     },
     readBlocks(input: unknown, context: RealtimeToolContext) {
       const invalid = check(context); if (invalid) return invalid;

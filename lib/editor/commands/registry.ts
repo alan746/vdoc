@@ -9,7 +9,7 @@ export const operationHandlers: Readonly<HandlerMap<OperationType>> = editorBund
 /** Built once per request, not per operation. Tiptap's chainable state refreshes
  *  its cached doc/selection when `tr` is read, so every command call reads it
  *  first; the wrappers are created lazily and reused for the whole batch. */
-export function commandContext(props: CommandProps): CommandContext {
+export function commandContext(props: CommandProps, onRejected?: (message: string) => void): CommandContext {
   const { state } = props;
   const wrapped = new Map<PropertyKey, unknown>();
   const c = new Proxy(props.commands, {
@@ -22,7 +22,7 @@ export function commandContext(props: CommandProps): CommandContext {
       return command;
     },
   });
-  return { state, c };
+  return { state, c, reject(message) { onRejected?.(message); return false; } };
 }
 
 export function applyOperation(op: Operation, context: CommandContext): boolean {

@@ -24,6 +24,7 @@ beforeEach(() => {
     undoTurn: vi.fn((): OperationResult => ({ ok: true, id: 'undo-op', revision: 5 })),
     snapshot: vi.fn() as unknown as RealtimeEngine['snapshot'],
     outline: () => [{ id: 'h1', level: 1, text: 'Title' }],
+    selectionContext: () => ({ selectionPath: [], selectedTopLevelBlockIds: ['b1'], selectionTruncated: false, focus: null, previous: null, next: null, heading: null }),
     readBlocks: () => ({ blocks: [], tables: [] }),
     hasBlock: id => id === 'b1',
     anchorSelection: () => ({ resolve: () => ({ from: 2, to: 4 }), release: vi.fn() }),
@@ -69,6 +70,7 @@ it('builds get_context from outline, anchors and hasBlock alone', async () => {
   expect(run.getContext(context('read', 'turn-2'))).toEqual({
     docId: 'doc', sessionId: 'session', revision: 3, selection: { from: 2, to: 4 },
     outline: [{ id: 'h1', level: 1, text: 'Title' }],
+    blockContext: { selectionPath: [], selectedTopLevelBlockIds: ['b1'], selectionTruncated: false, focus: null, previous: null, next: null, heading: null },
     recentEdits: [{ id: 'call-1', turnId: 'turn-1', actor: 'agent', revision: 4, affectedBlockIds: ['b1'] }],
   });
 });

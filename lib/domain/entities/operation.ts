@@ -6,6 +6,15 @@ import { listStyles } from '../rules/list-styles';
 import { MAX_LIST_START } from '../rules/list-numbering';
 import { textFormatSchema } from '../rules/text-format';
 import { HEX_COLOR } from '../text/color';
+import type { BlockMoveResult } from './block-location';
+
+const placementFields = {
+  beforeId: z.string().min(1).nullable().optional().describe('Legacy placement: insert before this top-level block, or append when null. Do not combine with position.'),
+  position: z.object({
+    anchorId: z.string().min(1).describe('Stable ID of an existing top-level reference block, obtained from a document read.'),
+    relation: z.enum(['before', 'after']),
+  }).strict().optional().describe('Preferred placement: immediately before or after the anchor as a sibling. This does not mean inside a section or container. Supply exactly one of position and beforeId.'),
+};
 
 const color = z.string().regex(HEX_COLOR, 'Use a six-digit hexadecimal color.');
 export const targetSchema = z.discriminatedUnion('kind', [
@@ -32,7 +41,7 @@ export const operationSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('text.clear') }).strict(),
   z.object({ type: z.literal('text.delete') }).strict(),
   z.object({ type: z.literal('text.replace'), text: z.string().max(100000) }).strict(),
-  z.object({ type: z.literal('block.move'), id: z.string().min(1), beforeId: z.string().min(1).nullable() }).strict(),
+  z.object({ type: z.literal('block.move'), id: z.string().min(1), ...placementFields }).strict().describe('Move the entire top-level block without changing its content. For below/after a uniquely identified block use position:{anchorId,relation:"after"}; for above/before use relation:"before". Read IDs first. Supply exactly one placement; clarify if the user means a section boundary or a nested destination.'),
   z.object({ type: z.literal('table.style'), borderStyle: z.enum(['solid', 'dashed', 'dotted']).optional(), borderColor: color.optional(), borderWidth: z.number().int().min(0).max(8).optional(), padding: z.number().int().min(0).max(40).optional(), minHeight: z.number().int().min(0).max(1000).optional(), verticalAlign: z.enum(['top', 'middle', 'bottom']).optional() }).strict(),
   z.object({ type: z.literal('table.border'), scope: z.enum(['all','outer','inner','top','right','bottom','left']), color, width: z.number().int().min(0).max(8), style: z.enum(['solid','dashed','dotted']) }).strict(),
   z.object({ type: z.literal('table.direction'), direction: z.enum(['ltr', 'rtl']) }).strict(),
@@ -73,7 +82,7 @@ export const operationSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('table.background'), color: color.nullable() }).strict(),
   z.object({ type: z.literal('link.set'), href: z.string().max(2048).refine(v => /^(https?:\/\/|mailto:)/i.test(v), 'Links must start with https://, http://, or mailto:') }).strict(),
   z.object({ type: z.literal('link.unset') }).strict(),
-  z.object({ type: z.literal('block.insert'), beforeId: z.string().min(1).nullable(), block: z.discriminatedUnion('kind', [
+  z.object({ type: z.literal('block.insert'), ...placementFields, block: z.discriminatedUnion('kind', [
     z.object({ kind: z.literal('heading'), level: z.number().int().min(1).max(6), text: z.string().max(10000) }).strict(),
     z.object({ kind: z.literal('paragraph'), text: z.string().max(10000) }).strict(),
     z.object({
@@ -84,6 +93,15 @@ export const operationSchema = z.discriminatedUnion('type', [
   ]) }).strict(),
   z.object({ type: z.literal('block.delete'), id: z.string().min(1).describe('Required ID of the top-level block to delete, taken from a document read. Supply it even if target.id contains the same ID.') }).strict().describe('Delete the top-level block identified by this operation\'s id. The request target does not fill in this required id.'),
 ]);
+
+/** Shared by the engine and realtime validation; ambiguous destinations never execute. */
+export function validateBlockPlacements(request: { operations: readonly z.infer<typeof operationSchema>[] }, ctx: z.RefinementCtx) {
+  request.operations.forEach((op, index) => {
+    if ((op.type === 'block.move' || op.type === 'block.insert') && (op.beforeId !== undefined) === (op.position !== undefined)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['operations', index, 'position'], message: 'Supply exactly one of position or beforeId.' });
+    }
+  });
+}
 
 export const requestSchema = z.object({
   id: z.string().min(1).max(128).optional(),
@@ -98,6 +116,7 @@ export const requestSchema = z.object({
   target: targetSchema.default({ kind: 'selection' }),
   operations: z.array(operationSchema).min(1).max(100),
 }).strict().superRefine((request, ctx) => {
+  validateBlockPlacements(request, ctx);
   if (request.source === 'agent') {
     if (!request.actor || !request.turnId) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['source'], message: 'Agent requests need an actor and a turn.' });
     if (request.target.kind === 'selection') ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['target'], message: 'Agent requests need an explicit target.' });
@@ -130,7 +149,7 @@ export type AgentOrigin = { actor: string; turnId: string };
 export type Operation = z.infer<typeof operationSchema>;
 export type Target = z.infer<typeof targetSchema>;
 export type OperationRequest = z.input<typeof requestSchema>;
-export type OperationResult = { ok: boolean; revision: number; id: string; error?: string; code?: 'INVALID' | 'STALE' | 'TARGET' | 'UNAVAILABLE' | 'COMPOSING' | 'DUPLICATE'; };
+export type OperationResult = { ok: boolean; revision: number; id: string; error?: string; code?: 'INVALID' | 'STALE' | 'TARGET' | 'UNAVAILABLE' | 'COMPOSING' | 'DUPLICATE'; blockMoves?: readonly BlockMoveResult[]; };
 export type OperationRecord = { id: string; label: string; source: string; time: number; revision: number; count: number; actor?: string; turnId?: string };
 /** One successful engine request, after all appended normalization transactions. */
 export interface AppliedChange {

@@ -100,8 +100,8 @@ if (table) window.vdoc.execute({
 | `text.delete` | 删除非空选区 |
 | `text.replace` | text，可为空字符串 |
 | `text.findReplace` | query、replacement、caseSensitive、wholeWord；全文字面匹配，支持NFC规范等价；命中不切开字素，wholeWord使用浏览器Unicode词边界 |
-| `block.move` | id、beforeId（null 表示移至文档末尾）；顶层块 |
-| `block.insert` | beforeId（null 表示插入文档末尾，顶层块）；`block`: `{kind:'heading',level,text}` / `{kind:'paragraph',text}` / `{kind:'table',rows,cols,header,headerText?,cols 个,rowsText?,每行 cols 个,不超过数据行数}`，一次调用建好表头与初始数据，不需要先插入再按临时 ID 回填单元格 |
+| `block.move` | `id`；优先使用 `position:{anchorId,relation:"before"或"after"}`，精确放在锚点前/后作为同级顶层块；兼容 `beforeId`（null 表示移至文档末尾），二者只能指定一个 |
+| `block.insert` | `position:{anchorId,relation:"before"或"after"}` 或兼容的 `beforeId`（null 表示插入文档末尾），二者只能指定一个，锚点必须是顶层块；`block`: `{kind:'heading',level,text}` / `{kind:'paragraph',text}` / `{kind:'table',rows,cols,header,headerText?,cols 个,rowsText?,每行 cols 个,不超过数据行数}`，一次调用建好表头与初始数据，不需要先插入再按临时 ID 回填单元格 |
 | `block.delete` | id；删除指定顶层块 |
 | `text.clear` | 清除当前选区的文字 marks |
 | `paragraph.style` | direction auto/ltr/rtl、level 0–6（0 为正文）、align left/center/right/justify、lineHeight 1/1.15/1.25/1.5/1.75/2/2.5/3；indent 0–8（兼容等级）；indentStart/indentEnd/firstLineIndent 有限数值±10000px；spaceBefore/spaceAfter 0–96px；keepWithNext/keepLinesTogether/preventSingleLines 布尔值 |
@@ -486,3 +486,37 @@ Composition waits are bounded to five seconds and honor both call cancellation a
 The SDK wire behavior is covered by `tests/realtime-sdk-results.test.ts`, using the installed SDK with a simulated WebSocket. Server-side audit and model-instruction changes belong to vdoc-server; live model wording still requires end-to-end verification.
 
 Stop/Esc call the SDK interrupt immediately. Escape is left to open dialogs/menus and active IME composition. Stopping leaves committed edits intact; `undo_turn` is the explicit reversal path. Document switch, return to the library and unmount cancel pending work and close the SDK session, including a pending handshake.
+
+
+### 相对位置与“放到下面”
+
+`block.move` 和 `block.insert` 可直接表达相邻关系，调用方不用寻找锚点的下一个块。
+例如将 A 紧接在 B 后面：
+
+```json
+{
+  "expectedSessionId": "读取取得的会话 ID",
+  "expectedRevision": 12,
+  "target": { "kind": "block", "id": "A" },
+  "operations": [
+    { "type": "block.move", "id": "A", "position": { "anchorId": "B", "relation": "after" } }
+  ]
+}
+```
+
+`before` / `after` 表示文档结构顺序，不表示像素位置、嵌入容器或章节末尾。
+锚点缺失、目标嵌套或引用自身会明确失败，不回退到光标或相似文本。指定了两种位置
+或都未指定会返回 INVALID。同一批次内每步都使用当前事务中的锚点位置，失败时
+整批回滚。相邻位置已满足时按无修改成功处理。
+
+读取中的 `location` 包含 `parentId`（最近带稳定 ID 的容器）、`topLevelId`、`previousSiblingId`、
+`nextSiblingId`、`headingId`。它们与块 ID 一起区分同名标题和嵌套内容。
+`get_context.blockContext` 提供本轮冻结并随内容映射的选区所处路径、选中的顶层块、
+前后邻块、当前标题和短文本预览；最多返回 32 个选中 ID，每个预览最多 240 字符，
+超过时显式标记 `selectionTruncated` / `textTruncated`。需要完整内容时按 ID 调用
+`read_blocks`。标题同名或“下面”可能指不同章节边界时应简短澄清，不能选择第一个匹配。
+
+成功移动会在工具结果中返回 `blockMoves:[{id,location}]`，描述整个批次和编辑器
+规范化完成后的实际位置；若该块随后被同批次删除，`location` 为 null。执行器
+保留这些结果用于幂等重放，模型应检查实际邻接关系后再报告成功。旧 `beforeId`
+接口与原有 session/revision、撤销和原子批处理语义保持兼容。
