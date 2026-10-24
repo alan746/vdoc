@@ -1,11 +1,19 @@
 import { CaptureResampler, ClientSession, createSpeaker } from '@vrealtime/client';
 import { z } from 'zod/v3';
 import { createdVoiceSessionSchema, voiceDocumentContextSchema, voiceGrantSchema, voiceLanguageSchema, voiceRealtimePath, voiceResourceIdSchema, voiceVocabularySchema } from '../../domain/entities/voice-session';
-import type { RealtimeActivity, RealtimeConfig, RealtimePort } from '../../usecases/ports';
+import type { InterjectionOutcome, RealtimeActivity, RealtimeConfig, RealtimePort } from '../../usecases/ports';
 import { voiceRequestError, VoiceConnectionError } from './voice-errors';
 import { prepareBrowserAudio } from './browser-audio';
 import { createStreamPreview } from './stream-preview';
 
+/** The server marks what became of words spoken mid-task as one text line; it is status, not reply text. */
+export const INTERJECTION_PREFIX = '[interjection] ';
+const interjections: readonly InterjectionOutcome[] = ['added', 'restarted', 'replaced', 'stopped'];
+export function interjectionOf(delta: string): InterjectionOutcome | undefined {
+  if (!delta.startsWith(INTERJECTION_PREFIX)) return;
+  const outcome = delta.slice(INTERJECTION_PREFIX.length).trim();
+  return interjections.find(item => item === outcome);
+}
 const loopback = (host: string) => host === 'localhost' || host === '[::1]' || /^127(?:\.\d{1,3}){3}$/.test(host);
 const configSchema = z.object({ workspace: z.enum(['cloud', 'local']).optional(), url: z.string(), sessionsUrl: z.string(), audio: z.boolean().optional(), language: voiceLanguageSchema.optional(), vocabulary: voiceVocabularySchema.optional() });
 /** Configuration comes from the authenticated application endpoint, never a document or link. */
@@ -115,7 +123,11 @@ export const vrtAdapter: RealtimePort = {
           session.on('closed', () => { publish('disconnected'); close(); }),
           session.on('state', event => report({ type: 'turn', state: event.state, turnId: event.turnId })),
           session.on('transcript', event => report({ type: 'transcript', role: event.role, itemId: event.itemId, text: event.text, final: event.final })),
-          session.on('text', event => report({ type: 'text', responseId: event.responseId, delta: event.delta })),
+          session.on('text', event => {
+            if (!event.delta.startsWith(INTERJECTION_PREFIX)) { report({ type: 'text', responseId: event.responseId, delta: event.delta }); return; }
+            const outcome = interjectionOf(event.delta);
+            if (outcome) report({ type: 'interjection', outcome });
+          }),
           session.on('tool.stream', event => preview.receive(event)),
           session.on('tool.call', event => report({ type: 'call', callId: event.callId, name: event.name, arguments: event.arguments })),
           session.on('tool.result', event => {

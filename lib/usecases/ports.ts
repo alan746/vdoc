@@ -108,7 +108,10 @@ export type RealtimeActivity =
   | { type: 'turn'; state: RealtimeTurnState; turnId: string }
   | { type: 'call'; callId: string; name: string; arguments: unknown }
   | { type: 'result'; callId: string; ok: boolean; name?: string; code?: string; message?: string }
-  | { type: 'interrupted' };
+  | { type: 'interrupted' }
+  /** What the agent did with words spoken while it was working on a task. */
+  | { type: 'interjection'; outcome: InterjectionOutcome };
+export type InterjectionOutcome = 'added' | 'restarted' | 'replaced' | 'stopped';
 export interface RealtimeConnection {
   interrupt(reason?: 'user' | 'keyboard'): void;
   sendText(text: string): void;

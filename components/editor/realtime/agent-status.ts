@@ -1,4 +1,4 @@
-import type { MicrophoneStatus, RealtimeStatus, RealtimeTurnState } from '@/lib/usecases/ports';
+import type { InterjectionOutcome, MicrophoneStatus, RealtimeStatus, RealtimeTurnState } from '@/lib/usecases/ports';
 
 /** What the assistant is doing, shown as the status light in the page corner. */
 export type AgentStatus = 'idle' | 'connecting' | 'listening' | 'thinking' | 'writing' | 'speaking' | 'error';
@@ -6,6 +6,12 @@ export type AgentStatus = 'idle' | 'connecting' | 'listening' | 'thinking' | 'wr
 export const agentStatusLabels: Record<AgentStatus, string> = {
   idle: 'Idle', connecting: 'Connecting', listening: 'Listening', thinking: 'Thinking', writing: 'Writing', speaking: 'Speaking', error: 'Error',
 };
+
+/** What the agent did with words spoken while it worked, shown briefly beside the status light. */
+export const interjectionLabels: Record<InterjectionOutcome, string> = {
+  added: 'Added to current task', restarted: 'Restarted with your update', replaced: 'Switched to your new request', stopped: 'Stopped',
+};
+export const INTERJECTION_NOTE_MS = 4000;
 
 /** `writing` is true while a document tool's content is streaming into the page. */
 export function agentStatus(input: { checking: boolean; status: RealtimeStatus; microphone: MicrophoneStatus; turn: RealtimeTurnState; writing: boolean }): AgentStatus {

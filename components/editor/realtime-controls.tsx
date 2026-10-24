@@ -5,14 +5,14 @@ import { Mic, Square, X, Ellipsis } from 'lucide-react';
 import { openDocumentRealtime, loadRealtimeConfig, VoiceConnectionError } from '@/lib/composition/realtime';
 import { isCloudWorkspace } from '@/lib/composition/repositories';
 import type { DocumentEngine } from '@/lib/usecases/engine';
-import type { MicrophoneStatus, RealtimeActivity, RealtimeConnection, RealtimeConfig, RealtimeStatus, RealtimeTurnState } from '@/lib/usecases/ports';
+import type { InterjectionOutcome, MicrophoneStatus, RealtimeActivity, RealtimeConnection, RealtimeConfig, RealtimeStatus, RealtimeTurnState } from '@/lib/usecases/ports';
 import { documentNavigation } from '@/lib/usecases/document-navigation';
 import { isCompositionKey } from '@/lib/editor/keyboard-composition';
 import { toolFailureFeedback } from './realtime/tool-failure-feedback';
 import { ActivityTimeline } from './realtime/activity-timeline';
-import { INTERRUPTED_LAMP_MS, voiceLamp, voiceLampLabels, voiceLampOrder } from './realtime/voice-lamp';
+import { INTERRUPTED_LAMP_MS, voiceLamp, voiceLampLabels } from './realtime/voice-lamp';
 import { VoiceStream } from './realtime/voice-stream';
-import { agentStatus, agentStatusLabels } from './realtime/agent-status';
+import { agentStatus, agentStatusLabels, INTERJECTION_NOTE_MS, interjectionLabels } from './realtime/agent-status';
 
 const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking', acting: 'Editing' };
 
@@ -58,7 +58,14 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
     clearTimeout(interruptedTimer.current); setInterrupted(true);
     interruptedTimer.current = setTimeout(() => setInterrupted(false), INTERRUPTED_LAMP_MS);
   };
-  useEffect(() => () => clearTimeout(interruptedTimer.current), []);
+  // What became of words spoken while the agent worked, so the user knows whether to say more.
+  const [interjection, setInterjection] = useState<InterjectionOutcome | undefined>(undefined);
+  const interjectionTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const showInterjection = (outcome: InterjectionOutcome | undefined) => {
+    clearTimeout(interjectionTimer.current); setInterjection(outcome);
+    if (outcome) interjectionTimer.current = setTimeout(() => setInterjection(undefined), INTERJECTION_NOTE_MS);
+  };
+  useEffect(() => () => { clearTimeout(interruptedTimer.current); clearTimeout(interjectionTimer.current); }, []);
   const connection = useRef<RealtimeConnection | null>(null);
   const activityListeners = useRef(new Set<(activity: RealtimeActivity) => void>());
   const subscribeActivity = useCallback((listener: (activity: RealtimeActivity) => void) => {
@@ -76,7 +83,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const disconnect = () => {
     generation.current = null; starting.current = false;
     connection.current?.close(); connection.current = null;
-    setStatus('disconnected'); setMessage(''); setTurn('idle'); setWritingCall(undefined); setInterrupted(false); setMicrophone('off'); setLevel(0); setHeard(''); setToolFeedback('');
+    setStatus('disconnected'); setMessage(''); setTurn('idle'); setWritingCall(undefined); showInterjection(undefined); setInterrupted(false); setMicrophone('off'); setLevel(0); setHeard(''); setToolFeedback('');
   };
   const connect = () => {
     if (!config || starting.current) return;
@@ -103,6 +110,11 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
           else if (activity.type === 'preview') {
             const streaming = activity.phase === 'streaming' || activity.phase === 'pending';
             setWritingCall(previous => streaming ? activity.callId : previous === activity.callId ? undefined : previous);
+          }
+          else if (activity.type === 'interjection') {
+            showInterjection(activity.outcome);
+            // A restart ends the old turn as interrupted first; the task is running again, not stopped.
+            if (activity.outcome === 'restarted' || activity.outcome === 'replaced') { clearTimeout(interruptedTimer.current); setInterrupted(false); setToolFeedback(''); }
           }
           else if (activity.type === 'interrupted') { setTurn('idle'); setWritingCall(undefined); showInterrupted(); setToolFeedback('Stopped. You can keep speaking.'); setToolFailed(false); }
           else if (activity.type === 'transcript' && activity.role === 'user') setHeard(activity.text.slice(-300));
@@ -142,15 +154,17 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
         <div className="voice-field">
           <span className="voice-glow" aria-hidden="true" />
           <div className="voice-field-inner">
-            <span className="voice-lamp" aria-hidden="true" title={voiceLampLabels[lamp]} />
             <span role="status" className="sr-only">{statusLabel}</span>
+            <div className="agent-status" data-agent={agent} role="status" aria-label={`Assistant status: ${agentStatusLabels[agent]}`}>
+              <span className="agent-status-dot" aria-hidden="true" />{agentStatusLabels[agent]}
+              {interjection && <span className="agent-status-note" aria-live="polite">{interjectionLabels[interjection]}</span>}
+            </div>
             <span className="sr-only" aria-live="polite">{voiceLampLabels[lamp]}</span>
             <span className="sr-only" aria-live="polite">{microphoneLabels[microphone]}</span>
             <div className="voice-transcript"><p className={`voice-hint ${heard ? '' : 'voice-placeholder'}`}>{heard || placeholder}</p></div>
             {busy && <button type="button" className="voice-stop" onClick={() => connection.current?.interrupt()} title="Stop the current response (Esc). The microphone stays on."><Square size={11} fill="currentColor" /><span className="sr-only">Stop assistant</span></button>}
             <details className="voice-more"><summary aria-label="Voice options"><Ellipsis size={17} /></summary>
               <div className="voice-menu">
-                <div className="voice-lamp-legend"><strong>Status lights</strong><ul>{voiceLampOrder.map(item => <li key={item} data-lamp={item} data-current={item === lamp}><span className="voice-lamp" aria-hidden="true" />{voiceLampLabels[item]}</li>)}</ul></div>
                 <label className="voice-language">Speech language<select aria-label="Voice language" value={language} onChange={event => setLanguage(event.target.value)} disabled={checking || active}><option value="auto">Document language</option><option value="zh-CN">中文</option><option value="en-US">English</option></select></label>
                 {failures.length > 0 && <div className="voice-edits" aria-label="Recent voice failures"><strong>Recent unsuccessful actions</strong><ul>{failures.map(item => <li key={item.callId}>{item.feedback}</li>)}</ul></div>}
                 {config && <div className="voice-edits"><strong>Recent edits</strong><ActivityTimeline engine={engine} active={active} subscribeActivity={subscribeActivity} /></div>}
@@ -158,7 +172,6 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
                 <p className="voice-about">Tap once, then speak naturally across multiple turns. Esc interrupts the assistant; tap the microphone again to turn it off. Voice requires a signed-in account and internet access. Cloud documents must be yours and outside Trash. Usage limits apply.</p>
               </div>
             </details>
-            <span className="voice-lamp" aria-hidden="true" title={voiceLampLabels[lamp]} />
           </div>
         </div>
         <button type="button" className="voice-orb" disabled={!active && (!config || checking)} onClick={active ? disconnect : connect} title={active ? 'Turn off voice' : 'Start voice input'}>
@@ -169,9 +182,6 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
       {!cloud && !active && <p className="voice-tool-feedback">Saved on this device. Using voice sends audio and document context to AI. <a href="/account">Account / sign in</a></p>}
       {(accessError || message) ? <div role="alert" className="voice-error"><X size={14} /><span>{accessError || message}</span>{accessError && <button type="button" disabled={checking} onClick={() => { setConfig(null); setChecking(true); setAccessError(''); setAttempt(value => value + 1); }}>Retry availability check</button>}</div>
         : toolFeedback && <span className={toolFailed ? 'voice-tool-error' : 'voice-tool-feedback'} role={toolFailed ? 'alert' : 'status'}>{toolFeedback}</span>}
-    </div>
-    <div className="agent-status" data-agent={agent} role="status" aria-label={`Assistant status: ${agentStatusLabels[agent]}`}>
-      <span className="agent-status-dot" aria-hidden="true" />{agentStatusLabels[agent]}
     </div>
   </section>;
 }

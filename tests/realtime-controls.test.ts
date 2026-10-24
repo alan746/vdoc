@@ -261,13 +261,14 @@ it('retains a failed action in voice options after a successful read and disconn
   await render('another-document');
   expect(mount.querySelector('[aria-label="Recent voice failures"]')).toBeNull();
 });
-it('lights both ends of the bar by what the assistant is doing', async () => {
+it('shows the assistant status inside the bar and tracks what it is doing', async () => {
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
   try {
     await render();
     const dock = () => mount.querySelector<HTMLElement>('.voice-dock')!;
     expect(dock().dataset.lamp).toBe('off');
-    expect(mount.querySelectorAll('.voice-field-inner > .voice-lamp')).toHaveLength(2);
+    expect(mount.querySelector('.voice-field-inner > .agent-status')?.textContent).toBe('Idle');
+    expect(mount.querySelector('.voice-lamp')).toBeNull();
     await click('Connect voice assistant');
     await act(async () => calls.onMicrophone!('on'));
     expect(dock().dataset.lamp).toBe('listening');
@@ -297,6 +298,22 @@ it('subscribes the editor to streamed writing and clears it on disconnect', asyn
   expect(editor.getText()).toBe('hello');
   await click('Disconnect assistant');
   expect(editor.view.dom.querySelector('.vdoc-streaming-draft')).toBeNull();
+});
+it('says beside the status light what became of words spoken mid-task, and clears a restart\'s stop message', async () => {
+  vi.useFakeTimers();
+  try {
+    await render(); await click('Connect voice assistant');
+    await act(async () => { calls.onStatus!('connected'); calls.onMicrophone!('on'); });
+    const note = () => mount.querySelector('.agent-status-note')?.textContent;
+    await act(async () => calls.onActivity!({ type: 'interjection', outcome: 'added' }));
+    expect(note()).toBe('Added to current task');
+    await act(async () => calls.onActivity!({ type: 'interrupted' }));
+    await act(async () => calls.onActivity!({ type: 'interjection', outcome: 'replaced' }));
+    expect(note()).toBe('Switched to your new request');
+    expect(mount.textContent).not.toContain('Stopped. You can keep speaking.');
+    await act(async () => { vi.advanceTimersByTime(4000); });
+    expect(note()).toBeUndefined();
+  } finally { vi.useRealTimers(); }
 });
 it('shows Writing in the status light while content streams, until its call finishes', async () => {
   await render(); await click('Connect voice assistant');

@@ -57,6 +57,14 @@ beforeEach(async () => {
 });
 afterEach(() => { connection?.close(); draft?.dispose(); engine?.destroy(); editor?.destroy(); vi.unstubAllGlobals(); });
 
+it('turns the server\'s interjection line into status, never reply text', () => {
+  const socket = sockets[0];
+  socket.receive({ type: 'text', responseId: 'worker', delta: '[interjection] restarted\n' });
+  socket.receive({ type: 'text', responseId: 'worker', delta: '[interjection] unknown\n' });
+  expect(activities).toContainEqual({ type: 'interjection', outcome: 'restarted' });
+  expect(activities.filter(activity => activity.type === 'text')).toEqual([]);
+  expect(activities.filter(activity => activity.type === 'interjection')).toHaveLength(1);
+});
 it('carries real SDK text and argument streams to the UI without executing incomplete writes', () => {
   const socket = sockets[0], before = editor.getJSON();
   socket.receive({ type: 'text', responseId: 'worker', delta: '正在写入' });
