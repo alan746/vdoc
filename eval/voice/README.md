@@ -32,9 +32,23 @@ To compare models, point the preview at another `VDOC_SERVER_MODEL` (`boson`, `o
 | Variable | Default | |
 |---|---|---|
 | `VOICE_EVAL_TARGET` | `fake` | `remote` for a deployed server |
+| `VOICE_EVAL_CASES_FILE` | `cases.json` | Another case list, relative to `eval/voice` (also read by `eval:voice:tts`) |
 | `VOICE_EVAL_CASES` | all | Comma-separated case IDs |
 | `VOICE_EVAL_TURN_TIMEOUT_MS` | 15000 (fake), 45000 (remote) | Per spoken turn |
 | `VOICE_EVAL_LABEL` | target host | Name in the report |
+
+### Scenario cases
+
+[cases-scenarios.json](cases-scenarios.json) holds longer sessions: each starts from a blank document (`"start": "blank"`), has the agent write a whole article, then edits it over many turns (formatting, tables, lists, deletions, undo) so that every toolbar tool is exercised. They have no checks, so they never fail by themselves: review the report and the finished documents. Local run against a dev server, with the dev client key:
+
+```sh
+VOICE_EVAL_CASES_FILE=cases-scenarios.json npm run eval:voice:tts
+VOICE_EVAL_CASES_FILE=cases-scenarios.json VOICE_EVAL_TARGET=remote \
+VOICE_EVAL_SERVER_URL=http://127.0.0.1:8787 VOICE_EVAL_CLIENT_KEY=vdoc-dev-client-key-not-for-production \
+VOICE_EVAL_TURN_TIMEOUT_MS=150000 npm run eval:voice
+```
+
+When the agent answers a blank-start case with a question (an edit held back for confirmation), the runner speaks `audio/confirm.wav` ("对，确认") before the next step, as a user would; that turn is marked `confirmation` in the report.
 
 ## Results
 
@@ -43,8 +57,10 @@ Reports go to `eval/voice/results/` (ignored by git) as Markdown and JSON. Per t
 - **heard / CER**: the final user transcript and its character error rate against the utterance, ignoring spaces and punctuation.
 - **first audio**: from the last voiced moment of the utterance to the first agent audio. Negative means the agent replied before the user finished (turn detection cut in on a pause). Includes turn detection, so it is what a user experiences.
 - **done**: from the same moment until the agent went idle.
-- **tools**: tool calls in order.
+- **tools**: tool calls in order. The JSON report's `details` has each call's arguments and, for failures, the tool's message, so a wrong edit can be traced to what the agent actually sent.
 - **pass / failures**: the case's checks.
+
+The JSON also records each remote case's `sessionId`, to find it in vdoc-server's logs, and `results/documents/<case>.json|.txt` holds every finished document (the `.txt` is a one-line-per-block outline with marks and attributes).
 
 ## Audio
 

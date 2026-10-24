@@ -5,6 +5,8 @@ import { fakeAgentModel } from './fake-agent';
 /** Where one case's voice session runs. */
 export interface EvalSession {
   readonly url: string;
+  /** The server's voice session ID, to find the case in its logs. */
+  readonly id?: string;
   auth(): Promise<string>;
   readonly WebSocket?: new (url: string) => ClientSocket;
   end(): Promise<void>;
@@ -83,7 +85,7 @@ export function remoteTarget(options: { serverUrl: string; clientKey: string; us
       let first: string | undefined = created.grant.token;
       const session = `${base}/${encodeURIComponent(created.sessionId)}`;
       return {
-        url: `${origin.replace(/^http/, 'ws')}${created.realtimePath}`,
+        url: `${origin.replace(/^http/, 'ws')}${created.realtimePath}`, id: created.sessionId,
         async auth() {
           const token = first; first = undefined;
           return token ?? ((await call(`${session}/grants`, 'POST')) as { token: string }).token;

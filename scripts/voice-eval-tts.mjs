@@ -8,12 +8,14 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 const root = join(import.meta.dirname, '..', 'eval', 'voice');
-const { language, cases } = JSON.parse(readFileSync(join(root, 'cases.json'), 'utf8'));
+const { language, cases } = JSON.parse(readFileSync(join(root, process.env.VOICE_EVAL_CASES_FILE ?? 'cases.json'), 'utf8'));
 const force = process.argv.includes('--force');
 const outDir = join(root, 'audio');
 mkdirSync(outDir, { recursive: true });
 
 const jobs = cases.flatMap(c => c.utterances.map((text, index) => ({ text, file: join(outDir, `${c.id}-${index + 1}.wav`) })))
+  // The user's answer when a blank-start case's agent asks for confirmation (see README).
+  .concat(cases.some(c => c.start === 'blank') ? [{ text: '对，确认', file: join(outDir, 'confirm.wav') }] : [])
   .filter(job => force || !existsSync(job.file));
 if (!jobs.length) { console.log('All audio files exist; use --force to regenerate.'); process.exit(0); }
 
