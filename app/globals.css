@@ -305,11 +305,40 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 .library-storage p { font-size: 10px; line-height: 1.7; margin-bottom: 20px; }
 .library-storage-dot { display: inline-block; width: 5px; height: 5px; background: #607a49; border-radius: 50%; margin-right: 7px; }
 .library-main { flex: 1; min-width: 0; }
-.library-topbar { height: 80px; padding: 0 44px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid #e3e5dc; }
+.library-topbar { position: relative; z-index: 40; height: 80px; padding: 0 44px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid #e3e5dc; }
 .library-search { display: flex; align-items: center; gap: 10px; flex: 1; max-width: 440px; color: #62695c; }
 .library-search input { background: transparent; border: 0; padding: 9px 0; width: 100%; min-width: 0; color: #252b20; font-size: 12px; }
 .library-search input::placeholder { color: #62695c; }
-.library-person { display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; border: 1px solid #d6dacd; border-radius: 50%; background: #e7ebdd; font-size: 11px; font-weight: bold; }
+.library-person { display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; border: 1px solid #d6dacd; border-radius: 50%; background: #e7ebdd; font-size: 11px; font-weight: bold; color: #26301f; cursor: pointer; transition: box-shadow .18s ease, background .18s ease; }
+.account-menu { position: relative; flex-shrink: 0; }
+.account-menu[data-open="true"] .library-person, .library-person:hover { background: #dfe5d2; box-shadow: 0 0 0 4px #e7ebdd99; }
+.library-person:focus-visible { outline: 2px solid #71865b; outline-offset: 3px; }
+/* Account card: a paper-toned sheet that drops from the avatar; a transparent bridge keeps hover alive across the gap. */
+.account-card-pop { position: absolute; z-index: 60; top: calc(100% + 12px); right: -6px; width: 300px; padding: 8px; border-radius: 18px; background: #fffefa; border: 1px solid #e1e5d9; box-shadow: 0 1px 2px #26371a0d, 0 18px 48px #26371a1f; color: #20251e; transform-origin: top right; animation: account-pop-in .18s cubic-bezier(.2,.8,.2,1); }
+.account-card-pop::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }
+@keyframes account-pop-in { from { opacity: 0; transform: translateY(-4px) scale(.98); } }
+.account-pop-head { display: flex; align-items: center; gap: 12px; padding: 14px 12px 12px; }
+.account-pop-avatar { width: 42px; height: 42px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(145deg, #e9eedf, #d6dfc6); border: 1px solid #d3dac7; color: #3f5230; font-size: 16px; font-weight: 600; }
+.account-pop-who { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.account-pop-who strong { font-size: 14px; font-weight: 600; letter-spacing: -.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.account-pop-who span { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #6d7566; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.account-pop-place { display: flex; align-items: center; gap: 7px; margin: 0 4px 6px; padding: 9px 10px; border-radius: 11px; background: #f2f4ec; color: #4c5a3f; font-size: 11px; }
+.account-pop-dot { width: 6px; height: 6px; border-radius: 50%; background: #6c8a50; box-shadow: 0 0 0 3px #6c8a5022; }
+.account-pop-links { display: flex; flex-direction: column; padding: 2px 0; }
+.account-pop-links a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 11px; color: #2b3325; font-size: 13px; font-weight: 500; text-decoration: none; transition: background .14s ease; }
+.account-pop-links a > svg:first-child { flex-shrink: 0; color: #5e7049; }
+.account-pop-links a > svg:last-child:not(:first-child) { margin-left: auto; color: #9aa291; }
+.account-pop-links a span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.account-pop-links small { font-size: 11px; font-weight: 400; color: #828a7a; }
+.account-pop-links a:hover, .account-pop-links a:focus-visible { background: #f1f3eb; outline: none; }
+.account-pop-links a.account-pop-primary { background: #35472d; color: #fff; margin: 2px 0; }
+.account-pop-links a.account-pop-primary:hover { background: #42563a; }
+.account-pop-links a.account-pop-primary svg, .account-pop-links a.account-pop-primary small { color: #dbe3d1; }
+.account-card-pop .account-pop-signout { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 4px; padding: 11px 12px; border-top: 1px solid #ebede5; border-radius: 0 0 11px 11px; color: #8a4a3c; font-size: 13px; cursor: pointer; text-align: left; }
+.account-pop-signout:hover:not(:disabled) { background: #fbf1ee; }
+.account-pop-signout:disabled { opacity: .6; cursor: wait; }
+.account-pop-error { margin: 4px 8px; padding: 8px 10px; border-radius: 9px; background: #fff1e9; color: #923f2e; font-size: 12px; }
+@media (prefers-reduced-motion: reduce) { .account-card-pop { animation: none; } }
 .library-content { max-width: 1232px; margin: auto; padding: 40px 44px 24px; }
 .library-intro { display: flex; align-items: center; justify-content: space-between; gap: 36px; padding-bottom: 36px; margin-bottom: 28px; border-bottom: 1px solid #dfe2d7; }
 .library-intro h1 { font-size: clamp(30px,3vw,44px); line-height: 1.14; letter-spacing: -1.5px; font-weight: 500; margin: 15px 0 18px; }
