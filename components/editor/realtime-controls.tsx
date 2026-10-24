@@ -12,6 +12,7 @@ import { toolFailureFeedback } from './realtime/tool-failure-feedback';
 import { ActivityTimeline } from './realtime/activity-timeline';
 import { INTERRUPTED_LAMP_MS, voiceLamp, voiceLampLabels, voiceLampOrder } from './realtime/voice-lamp';
 import { VoiceStream } from './realtime/voice-stream';
+import { agentStatus, agentStatusLabels } from './realtime/agent-status';
 
 const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking', acting: 'Editing' };
 
@@ -50,6 +51,8 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const [language, setLanguage] = useState('auto');
   const [turn, setTurn] = useState<RealtimeTurnState>('idle');
   const [interrupted, setInterrupted] = useState(false);
+  // The call whose content is streaming into the document, if any.
+  const [writingCall, setWritingCall] = useState<string | undefined>(undefined);
   const interruptedTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const showInterrupted = () => {
     clearTimeout(interruptedTimer.current); setInterrupted(true);
@@ -73,19 +76,19 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const disconnect = () => {
     generation.current = null; starting.current = false;
     connection.current?.close(); connection.current = null;
-    setStatus('disconnected'); setMessage(''); setTurn('idle'); setInterrupted(false); setMicrophone('off'); setLevel(0); setHeard(''); setToolFeedback('');
+    setStatus('disconnected'); setMessage(''); setTurn('idle'); setWritingCall(undefined); setInterrupted(false); setMicrophone('off'); setLevel(0); setHeard(''); setToolFeedback('');
   };
   const connect = () => {
     if (!config || starting.current) return;
     const current = Symbol(); generation.current = current;
     connection.current?.close(); starting.current = true;
-    setStatus('connecting'); setMessage(''); setTurn('idle'); setHeard(''); setToolFeedback(''); setToolFailed(false);
+    setStatus('connecting'); setMessage(''); setTurn('idle'); setWritingCall(undefined); setHeard(''); setToolFeedback(''); setToolFailed(false);
     try {
       connection.current = openDocumentRealtime({ engine, docId, title, config: language === 'auto' ? config : { ...config, language },
         onStatus: (next, detail) => {
           if (current !== generation.current) return;
           setStatus(next); setMessage(detail ?? ''); messageTurn.current = currentTurn.current;
-          if (next !== 'connected') { setTurn('idle'); setToolFeedback(''); }
+          if (next !== 'connected') { setTurn('idle'); setWritingCall(undefined); setToolFeedback(''); }
           if (next === 'error' || next === 'disconnected') { starting.current = false; setMicrophone('off'); setLevel(0); }
         },
         onInputLevel: value => { if (current === generation.current) setLevel(value); },
@@ -97,10 +100,15 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
             currentTurn.current = activity.turnId;
             if (activity.turnId !== messageTurn.current) setMessage('');
           }
-          else if (activity.type === 'interrupted') { setTurn('idle'); showInterrupted(); setToolFeedback('Stopped. You can keep speaking.'); setToolFailed(false); }
+          else if (activity.type === 'preview') {
+            const streaming = activity.phase === 'streaming' || activity.phase === 'pending';
+            setWritingCall(previous => streaming ? activity.callId : previous === activity.callId ? undefined : previous);
+          }
+          else if (activity.type === 'interrupted') { setTurn('idle'); setWritingCall(undefined); showInterrupted(); setToolFeedback('Stopped. You can keep speaking.'); setToolFailed(false); }
           else if (activity.type === 'transcript' && activity.role === 'user') setHeard(activity.text.slice(-300));
           else if (activity.type === 'call') { setToolFeedback('Working on your request…'); setToolFailed(false); }
           else if (activity.type === 'result') {
+            setWritingCall(previous => previous === activity.callId ? undefined : previous);
             setToolFailed(!activity.ok);
             if (!activity.ok) setFailures(previous => [{ callId: activity.callId, feedback: toolFailureFeedback(activity) }, ...previous.filter(item => item.callId !== activity.callId)].slice(0, 5));
             setToolFeedback(activity.ok ? (activity.name === 'apply_document_operations' ? 'Document updated' : activity.name === 'undo_turn' ? 'Assistant edit undone' : 'Document checked') : toolFailureFeedback(activity));
@@ -125,6 +133,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
     : status === 'connected' ? (turn === 'thinking' || turn === 'acting' || turn === 'speaking' ? `${turnLabels[turn]}…` : 'Listening… speak naturally')
     : 'Tap the microphone and start talking';
   const lamp = voiceLamp({ checking, status, microphone, turn, failed: Boolean(accessError || message) || toolFailed, interrupted });
+  const agent = agentStatus({ checking, status, microphone, turn, writing: writingCall !== undefined });
   const busy = status === 'connected' && (turn === 'thinking' || turn === 'acting' || turn === 'speaking');
   return <section aria-label="Document assistant" className="voice-dock" data-active={active} data-lamp={lamp} data-listening={microphone === 'on'} style={{ '--voice-level': level } as CSSProperties}>
     <div className="voice-float">
@@ -160,6 +169,9 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
       {!cloud && !active && <p className="voice-tool-feedback">Saved on this device. Using voice sends audio and document context to AI. <a href="/account">Account / sign in</a></p>}
       {(accessError || message) ? <div role="alert" className="voice-error"><X size={14} /><span>{accessError || message}</span>{accessError && <button type="button" disabled={checking} onClick={() => { setConfig(null); setChecking(true); setAccessError(''); setAttempt(value => value + 1); }}>Retry availability check</button>}</div>
         : toolFeedback && <span className={toolFailed ? 'voice-tool-error' : 'voice-tool-feedback'} role={toolFailed ? 'alert' : 'status'}>{toolFeedback}</span>}
+    </div>
+    <div className="agent-status" data-agent={agent} role="status" aria-label={`Assistant status: ${agentStatusLabels[agent]}`}>
+      <span className="agent-status-dot" aria-hidden="true" />{agentStatusLabels[agent]}
     </div>
   </section>;
 }

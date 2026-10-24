@@ -293,8 +293,22 @@ it('clears a failed instruction message once the next instruction starts', async
 it('subscribes the editor to streamed writing and clears it on disconnect', async () => {
   await render(); await click('Connect voice assistant');
   await act(async () => calls.onActivity!({ type: 'preview', callId: 'write', phase: 'streaming', text: '正文草稿', drafts: [{ text: '正文草稿', anchor: { kind: 'document_end' } }] }));
-  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('正文草稿');
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')?.textContent).toBe('正文草稿');
   expect(editor.getText()).toBe('hello');
   await click('Disconnect assistant');
   expect(editor.view.dom.querySelector('.vdoc-streaming-draft')).toBeNull();
+});
+it('shows Writing in the status light while content streams, until its call finishes', async () => {
+  await render(); await click('Connect voice assistant');
+  const light = () => mount.querySelector('.agent-status')?.textContent;
+  await act(async () => { calls.onStatus!('connected'); calls.onMicrophone!('on'); });
+  expect(light()).toBe('Listening');
+  await act(async () => calls.onActivity!({ type: 'turn', state: 'thinking', turnId: 't1' }));
+  expect(light()).toBe('Thinking');
+  await act(async () => calls.onActivity!({ type: 'preview', callId: 'write', phase: 'streaming', text: '' }));
+  expect(light()).toBe('Writing');
+  await act(async () => calls.onActivity!({ type: 'result', callId: 'write', ok: true, name: 'insert_structured_article' }));
+  expect(light()).toBe('Thinking');
+  await click('Disconnect assistant');
+  expect(light()).toBe('Idle');
 });

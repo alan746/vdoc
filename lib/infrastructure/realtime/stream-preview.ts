@@ -34,16 +34,21 @@ const contentOf = (input: unknown, name: string) => {
   const value = record(input);
   const parts: string[] = [], drafts: StreamDraft[] = [];
   let remaining = 16000;
-  const add = (text: unknown, anchor?: StreamDraft['anchor']) => {
+  const add = (text: unknown, anchor?: StreamDraft['anchor'], block?: StreamDraft['block']) => {
     if (typeof text !== 'string' || !text || remaining <= 0) return;
     const bounded = text.slice(0, remaining); remaining -= bounded.length + 2;
     parts.push(bounded);
-    if (anchor) drafts.push({ text: bounded, anchor });
+    if (anchor) drafts.push({ text: bounded, anchor, ...(block ? { block } : {}) });
   };
+  const level = (value: unknown) => Number.isInteger(value) && (value as number) >= 1 && (value as number) <= 6 ? value as number : undefined;
   if (value && name === 'insert_structured_article') {
     const anchor = anchorOf(value.destination);
-    add(value.title, anchor);
-    if (Array.isArray(value.blocks)) for (const block of value.blocks.slice(0, 80)) add(record(block)?.text, anchor);
+    add(value.title, anchor, { kind: 'heading', level: 1 });
+    if (Array.isArray(value.blocks)) for (const item of value.blocks.slice(0, 80)) {
+      const block = record(item), headingLevel = level(block?.level);
+      // A heading whose level has not streamed yet shows as a paragraph until it arrives.
+      add(block?.text, anchor, block?.kind === 'heading' && headingLevel ? { kind: 'heading', level: headingLevel } : { kind: 'paragraph' });
+    }
   } else if (value && Array.isArray(value.operations)) {
     for (const operation of value.operations.slice(0, 200)) {
       const op = record(operation);
@@ -51,16 +56,18 @@ const contentOf = (input: unknown, name: string) => {
       if (['text.insert', 'text.replace'].includes(String(op.type))) add(op.text, anchorOf(value.target));
       else if (op.type === 'text.findReplace') add(op.replacement);
       else if (op.type === 'block.insert') {
-        const block = record(op.block), anchor = placementOf(op);
-        add(block?.text, anchor);
+        const block = record(op.block), anchor = placementOf(op), headingLevel = level(block?.level);
         if (block?.kind === 'table') {
-          const rows = [block.headerText, ...(Array.isArray(block.rowsText) ? block.rowsText.slice(0, 30) : [])];
-          for (const row of rows) if (Array.isArray(row)) add(row.slice(0, 20).filter(cell => typeof cell === 'string').join(' ｜ '), anchor);
-        }
+          const cells = (row: unknown) => Array.isArray(row) ? row.slice(0, 20).map(cell => typeof cell === 'string' ? cell : '') : [];
+          const header = block.header !== false && Array.isArray(block.headerText);
+          const rows = [...(header ? [cells(block.headerText)] : []), ...(Array.isArray(block.rowsText) ? block.rowsText.slice(0, 30).map(cells) : [])].filter(row => row.length);
+          add(rows.map(row => row.join(' ｜ ')).join('\n'), anchor, { kind: 'table', header, rows });
+        } else add(block?.text, anchor, block?.kind === 'heading' && headingLevel ? { kind: 'heading', level: headingLevel } : { kind: 'paragraph' });
       }
     }
   }
-  return { text: parts.join('\n\n'), ...(drafts.length ? { drafts } : {}) };
+  // An article written into a blank document takes the place of its empty paragraph.
+  return { text: parts.join('\n\n'), ...(drafts.length ? { drafts, ...(name === 'insert_structured_article' ? { replacesBlankDocument: true } : {}) } : {}) };
 };
 
 /** Display streamed arguments only; incomplete JSON never enters a document tool. */

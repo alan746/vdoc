@@ -1,10 +1,10 @@
 import type { Editor } from '@tiptap/core';
 import { Plugin, PluginKey, Selection } from '@tiptap/pm/state';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
-import type { Node } from '@tiptap/pm/model';
+import { DOMSerializer, type Node, type Schema } from '@tiptap/pm/model';
 import type { RealtimeActivity, StreamDraft } from '../../usecases/ports';
 import { resolveTargetSelection } from '../commands/target-selection';
-import { findTopLevelBlock } from '../document/block-placement';
+import { findListItem, findTopLevelBlock } from '../document/block-placement';
 
 let attachments = 0;
 function positionOf(doc: Node, anchor: StreamDraft['anchor']): number | undefined {
@@ -15,8 +15,23 @@ function positionOf(doc: Node, anchor: StreamDraft['anchor']): number | undefine
     const selection = resolveTargetSelection({ kind: 'text', blockId: anchor.blockId, start: anchor.offset, end: anchor.offset }, doc, Selection.atStart(doc));
     return 'error' in selection ? undefined : selection.from;
   }
-  const block = findTopLevelBlock(doc, anchor.blockId);
+  // A block anchored on a list item joins that list, as block.insert does.
+  const block = findTopLevelBlock(doc, anchor.blockId) ?? findListItem(doc, anchor.blockId);
   return block && block.pos + (anchor.kind === 'after_block' ? block.node.nodeSize : 0);
+}
+
+/** The node the finished edit will insert, built only for display. */
+function nodeOf(schema: Schema, draft: StreamDraft, parent: Node): Node | undefined {
+  const { block } = draft, text = (value: string) => value ? schema.text(value) : null;
+  if (!block) return;
+  if (block.kind === 'table') {
+    const cell = (type: string, value: string) => schema.nodes[type].create(null, schema.nodes.paragraph.create(null, text(value)));
+    const rows = block.rows.map((row, index) => schema.nodes.tableRow.create(null, row.map(value => cell(block.header && index === 0 ? 'tableHeader' : 'tableCell', value))));
+    return rows.length ? schema.nodes.table.create(null, rows) : undefined;
+  }
+  const node = block.kind === 'heading' ? schema.nodes.heading.create({ level: block.level }, text(draft.text)) : schema.nodes.paragraph.create(null, text(draft.text));
+  const item = parent.type.contentMatch.defaultType;
+  return parent.type.spec.group?.includes('list') && item ? item.create(null, node) : node;
 }
 
 /** Render arriving text at its destination, without saving partial tool arguments.
@@ -52,24 +67,35 @@ export function attachStreamingDraft(editor: Editor) {
       if (!['streaming', 'pending'].includes(event.phase)) { clear(); return; }
       if (invalidated) return;
       // Group pieces at the same destination to avoid one widget per paragraph.
-      const groups = new Map<number, string[]>();
+      const groups = new Map<number, StreamDraft[]>();
       for (const draft of (event.drafts ?? []).slice(0, 200)) {
         const pos = positionOf(editor.state.doc, draft.anchor);
         if (pos === undefined || !draft.text) continue;
-        const texts = groups.get(pos) ?? []; texts.push(draft.text); groups.set(pos, texts);
+        const drafts = groups.get(pos) ?? []; drafts.push(draft); groups.set(pos, drafts);
       }
-      const decorations = [...groups].map(([pos, texts]) => Decoration.widget(pos, () => {
-        const widget = document.createElement('span');
+      // Blocks render through the editor's own schema, so headings, list items and
+      // tables stream with the markup and styles the committed edit will have.
+      const serializer = DOMSerializer.fromSchema(editor.schema);
+      const decorations = [...groups].map(([pos, drafts]) => Decoration.widget(pos, () => {
+        const parent = editor.state.doc.resolve(pos).parent, inline = parent.isTextblock;
+        const widget = document.createElement(inline ? 'span' : 'div');
         widget.className = 'vdoc-streaming-draft';
-        widget.dataset.block = String(!editor.state.doc.resolve(pos).parent.isTextblock);
+        widget.dataset.block = String(!inline);
         widget.contentEditable = 'false';
-        widget.setAttribute('aria-label', '正在生成的正文');
+        widget.setAttribute('aria-label', 'Text being written');
         widget.setAttribute('aria-busy', 'true');
-        const label = document.createElement('span'); label.className = 'vdoc-streaming-label'; label.textContent = '正在生成…';
-        const body = document.createElement('span'); body.className = 'vdoc-streaming-text'; body.textContent = texts.join('\n\n');
-        widget.appendChild(label); widget.appendChild(body);
+        for (const draft of drafts) {
+          let node: Node | undefined;
+          try { node = inline ? undefined : nodeOf(editor.schema, draft, parent); } catch { node = undefined; }
+          if (node) widget.appendChild(serializer.serializeNode(node));
+          else widget.appendChild(document.createTextNode(draft.text));
+        }
         return widget;
       }, { side: 1, ignoreSelection: true, stopEvent: () => true }));
+      // Hidden the way the commit replaces it, so the draft does not shift when it lands.
+      const doc = editor.state.doc, blank = doc.firstChild;
+      if (event.replacesBlankDocument && decorations.length && doc.childCount === 1 && blank?.type.name === 'paragraph' && blank.content.size === 0)
+        decorations.push(Decoration.node(0, blank.nodeSize, { class: 'vdoc-streaming-replaced' }));
       update(decorations.length ? DecorationSet.create(editor.state.doc, decorations) : DecorationSet.empty);
     },
     clear,

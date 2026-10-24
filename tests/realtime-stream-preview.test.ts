@@ -68,8 +68,18 @@ it('keeps placement hints scoped to each writing operation', () => {
   } });
   expect(events.at(-1)).toMatchObject({ drafts: [
     { text: '续写', anchor: { kind: 'text', blockId: 'p1', offset: 3 } },
-    { text: '新增段落', anchor: { kind: 'after_block', blockId: 'p2' } },
-    { text: 'A ｜ B', anchor: { kind: 'before_block', blockId: 'p3' } },
-    { text: 'C ｜ D', anchor: { kind: 'before_block', blockId: 'p3' } },
+    { text: '新增段落', anchor: { kind: 'after_block', blockId: 'p2' }, block: { kind: 'paragraph' } },
+    { text: 'A ｜ B\nC ｜ D', anchor: { kind: 'before_block', blockId: 'p3' }, block: { kind: 'table', header: true, rows: [['A', 'B'], ['C', 'D']] } },
+  ] });
+  const last = events.at(-1)!;
+  expect(last.type === 'preview' && last.drafts![0]).not.toHaveProperty('block');
+});
+it('streams an article with its title and heading levels', () => {
+  const { preview, events } = setup();
+  preview.receive({ ...base, phase: 'arguments-delta', delta: '{"destination":{"kind":"document_end"},"title":"标题","blocks":[{"kind":"heading","level":2,"text":"小节"},{"kind":"paragraph","text":"正文' });
+  expect(events.at(-1)).toMatchObject({ drafts: [
+    { text: '标题', block: { kind: 'heading', level: 1 } },
+    { text: '小节', block: { kind: 'heading', level: 2 } },
+    { text: '正文', block: { kind: 'paragraph' } },
   ] });
 });

@@ -156,10 +156,10 @@ it('renders successive wire chunks in the document before execution, then commit
   const json = JSON.stringify(args), split = json.indexOf('生成');
   socket.receive({ ...stream, phase: 'start' });
   socket.receive({ ...stream, phase: 'arguments-delta', delta: json.slice(0, split) });
-  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('逐步');
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')?.textContent).toBe('逐步');
   expect(editor.getJSON()).toEqual(before); expect(engine.revision).toBe(revision);
   socket.receive({ ...stream, phase: 'arguments-delta', delta: json.slice(split) });
-  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('逐步生成正文<script>纯文本</script>');
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')?.textContent).toBe('逐步生成正文<script>纯文本</script>');
   expect(editor.view.dom.querySelector('script')).toBeNull();
   expect(editor.getJSON()).toEqual(before);
   expect(await call('apply_document_operations', args, 'write-draft')).toMatchObject({ ok: true });
@@ -171,7 +171,7 @@ it.each(['interruption', 'failure', 'concurrent edit'])('removes streamed docume
   const socket = sockets[0], before = editor.getJSON();
   const stream = { type: 'tool.stream', callId: 'unfinished', name: 'apply_document_operations', epoch: 1, turnId: 'turn-1' };
   socket.receive({ ...stream, phase: 'arguments-delta', delta: '{"operations":[{"type":"block.insert","beforeId":null,"block":{"kind":"paragraph","text":"未完成' });
-  expect(editor.view.dom.querySelector('.vdoc-streaming-text')?.textContent).toBe('未完成');
+  expect(editor.view.dom.querySelector('.vdoc-streaming-draft')?.textContent).toBe('未完成');
   if (mode === 'interruption') connection.interrupt();
   else if (mode === 'failure') await call('apply_document_operations', request([{ type: 'block.insert' }]), 'unfinished');
   else editor.commands.insertContentAt(1, '用户文字');

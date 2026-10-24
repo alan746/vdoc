@@ -98,11 +98,13 @@ export type StreamDraft = {
     | { kind: 'before_block' | 'after_block'; blockId: string }
     | { kind: 'text'; blockId: string; offset: number }
     | { kind: 'position'; pos: number };
+  /** The block being written, so it streams with its final structure; absent for text inside an existing block. */
+  block?: { kind: 'paragraph' } | { kind: 'heading'; level: number } | { kind: 'table'; header: boolean; rows: string[][] };
 };
 export type RealtimeActivity =
   | { type: 'transcript'; role: 'user' | 'agent'; itemId: string; text: string; final: boolean }
   | { type: 'text'; responseId: string; delta: string }
-  | { type: 'preview'; callId: string; text: string; drafts?: StreamDraft[]; phase: 'streaming' | 'pending' | 'complete' | 'failed' | 'cancelled' }
+  | { type: 'preview'; callId: string; text: string; drafts?: StreamDraft[]; replacesBlankDocument?: boolean; phase: 'streaming' | 'pending' | 'complete' | 'failed' | 'cancelled' }
   | { type: 'turn'; state: RealtimeTurnState; turnId: string }
   | { type: 'call'; callId: string; name: string; arguments: unknown }
   | { type: 'result'; callId: string; ok: boolean; name?: string; code?: string; message?: string }

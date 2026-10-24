@@ -149,7 +149,7 @@ SDK 自动在 `hello` 中声明 `tool-stream-v1` 和 `global-tool-ids-v1`，以 
 
 驱动方：`components/editor/realtime/use-agent-activity.ts` 的 `useAgentActivity(engine, active)`——挂载时 attach、卸载时 dispose（注册只在编辑器会话开始时做一次，避免在用户打字/组字时重配编辑器 state）；`active` 为真时订阅 `engine.onApplied`（只处理 `source==='agent'` 且 `changedBlockIds` 非空的事件），`active` 变为假时 `clear()`；同时从 `engine.records` 按 `turnId` 分组，返回给 `components/editor/realtime/activity-timeline.tsx` 渲染"按轮次分组的历史 + Undo turn"。`RealtimeControls`（`components/editor/realtime-controls.tsx`）在 `status !== 'disconnected'` 时渲染这个时间线；`Undo turn` 按钮直接调用 `engine.undoTurn(turnId, origin)`，不经过实时执行器（它是普通引擎能力，任何调用方都能用，和语音/模型路径无关）。
 
-`attachStreamingDraft` 额外注册文档内的流式草稿插件。文章、新段落（`block.insert`，含表格文字）、文本插入／替换的参数增量会逐步显示在可解析的目的位置；位置尚未解析或无效时仍可在语音条预览。草稿标注“正在生成”，不写入 JSON、撤销历史或保存内容。完整工具成功时，真正编辑和草稿移除发生在同一文档事务中。失败、中断、断开连接会清除草稿；生成中发生其他文档编辑也会清除，并屏蔽该调用后续片段，避免把过期位置的内容继续显示。查找替换的替换词仅在语音条预览，不猜测其多个匹配位置。真实 SDK 分片 → 解析 → 文档 DOM → 完整工具提交的回归见 `tests/realtime-sdk-results.test.ts`。
+`attachStreamingDraft` 额外注册文档内的流式草稿插件。文章、新段落（`block.insert`，含表格文字）、文本插入／替换的参数增量会逐步显示在可解析的目的位置；位置尚未解析或无效时仍可在语音条预览。草稿按编辑器 schema 渲染为将要提交的块（文章标题为 H1，小节为对应级别标题，加入列表的段落为列表项，表格为表格），因此提交时不会重排；文章写入空白文档时，草稿期间隐藏将被替换的空段落。草稿不写入 JSON、撤销历史或保存内容；生成状态由页面右下角的状态灯（Writing）表示。完整工具成功时，真正编辑和草稿移除发生在同一文档事务中。失败、中断、断开连接会清除草稿；生成中发生其他文档编辑也会清除，并屏蔽该调用后续片段，避免把过期位置的内容继续显示。查找替换的替换词仅在语音条预览，不猜测其多个匹配位置。真实 SDK 分片 → 解析 → 文档 DOM → 完整工具提交的回归见 `tests/realtime-sdk-results.test.ts`。
 
 **尚未实现**：应用层能力展示。SDK 0.2.0 已负责传输能力协商。
 

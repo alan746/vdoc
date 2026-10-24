@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import type { RealtimeActivity } from '@/lib/usecases/ports';
 
 type Preview = Extract<RealtimeActivity, { type: 'preview' }>;
+// While content is still being written, the page's status light says so.
 const labels: Record<Preview['phase'], string> = {
-  streaming: '正在生成', pending: '正在写入文档', complete: '已写入文档', failed: '本次内容未写入', cancelled: '已停止生成',
+  streaming: '', pending: '', complete: '已写入文档', failed: '本次内容未写入', cancelled: '已停止生成',
 };
 
 /** A transient output view; only the normal document tools commit changes. */
@@ -53,7 +54,7 @@ export function VoiceStream({ subscribe }: { subscribe: (listener: (activity: Re
     {spoken && <p className="voice-stream-status">{spoken}</p>}
     {progress.text && progress.text !== spoken && <p className="voice-stream-status">{progress.text}</p>}
     {preview && <>
-      <p className="voice-stream-label">{labels[preview.phase]}</p>
+      {labels[preview.phase] && <p className="voice-stream-label">{labels[preview.phase]}</p>}
       <div ref={body} className="voice-stream-body" aria-label="Generated content" aria-busy={preview.phase === 'streaming' || preview.phase === 'pending'}>{preview.text || '正在准备内容…'}</div>
     </>}
   </section>;
