@@ -58,6 +58,14 @@ describe('cloud workspace through the real document API and PostgreSQL engine', 
     await repo.documents.save(doc.title, doc.content, doc.id); await settle(repo);
     expect((await repo.cache.get(doc.id))?.item.revision).toBe(1);
   });
+  it('rejects invalid object saves before changing the cached document or sync queue', async () => {
+    const { repo } = device('alice'); const doc = await repo.library.createDocument(draft('Validated object'), null);
+    const before = await repo.cache.get(doc.id);
+    await expect(repo.documents.save(doc.title, { type: 'doc', content: [{ type: 'image', attrs: { src: 'https://example.test/image.png' } }] }, doc.id))
+      .rejects.toThrow('Images must be embedded');
+    expect(await repo.cache.get(doc.id)).toEqual(before);
+    expect(repo.getSnapshot().pending).toBe(0);
+  });
   it('preserves a conflicting local copy instead of overwriting another device', async () => {
     const a = device('alice'), b = device('alice'); const doc = await a.repo.library.createDocument(draft('Conflict'), null);
     await b.repo.documents.select(doc.id);

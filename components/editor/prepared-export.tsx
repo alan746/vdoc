@@ -7,6 +7,7 @@ import { exportDocumentFile } from '@/lib/composition/document-export';
 import { fileFormats } from '@/lib/composition/file-formats';
 import type { ExportNotice } from '@/lib/usecases/ports';
 import { useLatest } from './use-latest';
+import { createExportSnapshot } from '@/lib/editor/export-snapshot';
 
 type Download = { url: string; name: string; formatId: string; label: string; notices: readonly ExportNotice[]; changedSinceStart: boolean };
 
@@ -48,7 +49,7 @@ export function usePreparedExport(editor: Editor | null, title: string) {
     try {
       const format = fileFormats.get(formatId);
       const { blob, name, notices = [] } = await exportDocumentFile(formatId,
-        { title: snapshotTitle, doc: snapshot, json: snapshot.toJSON(), html: editor.getHTML() }, { signal: abort.signal });
+        createExportSnapshot(snapshot, snapshotTitle), { signal: abort.signal });
       if (!current()) return;
       const nextUrl = URL.createObjectURL(blob); url.current = nextUrl;
       prepared.current = { doc: snapshot, title: snapshotTitle };

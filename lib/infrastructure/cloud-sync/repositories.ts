@@ -1,7 +1,8 @@
 import type { JSONContent } from '@tiptap/core';
 import { documentTitle, type DocumentDraft, type DocumentVersionSummary, type LibraryItem, type SavedDocument } from '../../domain/entities/document';
 import type { DocumentRepository, LibraryRepository, VersionRepository } from '../../usecases/ports';
-import { parseDocument } from '../persistence/document-codec';
+import { normalizeDocument } from '../persistence/document-codec';
+import { CURRENT_DOCUMENT_VERSION } from '../../domain/rules/document-migrations';
 import { createDocumentChanges } from '../persistence/document-change-channel';
 import type { CloudItem } from '../cloud-library/store';
 import { CloudCache, type CachedItem } from './cache';
@@ -14,12 +15,12 @@ const saved = (record: CachedItem): SavedDocument => {
   if (record.pending) return record.pending.document;
   const item = record.item;
   if (!item.content || item.kind !== 'document' || item.deletedAt || item.trashedAt) throw new Error('This document is unavailable. Connect to refresh your library.');
-  return { ...parseDocument(JSON.stringify({ version: item.formatVersion, title: item.title, content: item.content })), id: item.id, savedAt: item.updatedAt };
+  return { ...normalizeDocument({ version: item.formatVersion, title: item.title, content: item.content }), id: item.id, savedAt: item.updatedAt };
 };
 const putBody = (item: CloudItem, document: SavedDocument, revision: number) => ({ action: 'put', id: item.id, expectedRevision: revision,
   kind: item.kind, title: document.title, parentId: item.parentId, starred: item.starred, content: document.content, formatVersion: document.version });
 // PostgreSQL jsonb may reorder object keys; compare normalized document trees.
-const normalized = (item: CloudItem) => parseDocument(JSON.stringify({ version: item.formatVersion, title: item.title, content: item.content })).content;
+const normalized = (item: CloudItem) => normalizeDocument({ version: item.formatVersion, title: item.title, content: item.content }).content;
 const equivalent = (remote: CloudItem, local: CachedItem) => Boolean(local.pending && !remote.deletedAt && !remote.trashedAt &&
   remote.title === local.pending.document.title && remote.parentId === local.item.parentId && remote.starred === local.item.starred &&
   JSON.stringify(normalized(remote)) === JSON.stringify(local.pending.document.content));
@@ -149,7 +150,7 @@ export class CloudRepositories {
     const document = saved(record); this.seen.set(id, record.sequence); await this.cache.active(id); return document;
   }
   private async save(title: string, content: JSONContent, id: string) {
-    const document = { ...parseDocument(JSON.stringify({ version: 1, title: documentTitle(title), content })), id, savedAt: new Date().toISOString() };
+    const document = { ...normalizeDocument({ version: CURRENT_DOCUMENT_VERSION, title: documentTitle(title), content }), id, savedAt: new Date().toISOString() };
     const expected = this.seen.get(id);
     const record = await this.cache.mutate(id, current => {
       if (!current || expected === undefined || current.sequence !== expected) throw new Error('Another tab changed this document. Export your edits before reloading.');
@@ -239,7 +240,7 @@ export class CloudRepositories {
     const record = await this.accept(item); this.seen.set(item.id, record.sequence); this.changes.announce(item.id); return item;
   }
   private async createDocument(draft: DocumentDraft, parentId: string | null) {
-    const document = parseDocument(JSON.stringify(draft));
+    const document = normalizeDocument(draft);
     const item = await this.command({ action: 'put', id: crypto.randomUUID(), expectedRevision: 0, kind: 'document', title: documentTitle(document.title), parentId, starred: false, content: document.content, formatVersion: document.version });
     await this.cache.active(item.id); return saved((await this.cache.get(item.id))!);
   }

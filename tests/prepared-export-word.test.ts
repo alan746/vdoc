@@ -2,6 +2,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { act, createElement, useLayoutEffect } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor, type JSONContent } from '@tiptap/core';
+import { DOMSerializer } from '@tiptap/pm/model';
 import JSZip from 'jszip';
 import { createExtensions } from '../lib/editor/extensions';
 import { usePreparedExport, PreparedExportFeedback } from '../components/editor/prepared-export';
@@ -35,6 +36,12 @@ it('bounds the Word filename but passes the complete title and body to conversio
   expect(state.download!.name.endsWith('.docx')).toBe(true);
   expect(calls.convert).toHaveBeenCalledWith(before, title);
   expect(editor.getJSON()).toEqual(before);
+});
+it('prepares Word without serializing unused HTML', async () => {
+  const html = vi.spyOn(DOMSerializer.prototype, 'serializeFragment').mockImplementation(() => { throw new Error('Unneeded HTML'); });
+  await start(); await finish();
+  expect(state.download).not.toBeNull();
+  expect(html).not.toHaveBeenCalled();
 });
 
 it('starts only one conversion on same-event repeated requests and displays progress', async () => {

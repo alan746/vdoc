@@ -25,8 +25,14 @@ export function parseDocumentEnvelope(raw: string, maxLength = Infinity): Omit<S
   let value: any;
   try { value = JSON.parse(raw.charCodeAt(0) === 0xFEFF ? raw.slice(1) : raw); }
   catch { throw new Error('This backup is not valid JSON. Choose a complete VDoc backup file.'); }
+  return validateDocumentEnvelope(value);
+}
+
+/** Object entry point shared by parsed backups and in-memory document values. */
+export function validateDocumentEnvelope(input: unknown): ReturnType<typeof parseDocumentEnvelope> {
+  const value = input as Record<string, any> | null;
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('This is not a supported VDoc backup.');
-  value = migrateDocument(value);
-  if (typeof value.title !== 'string' || value.title.length > 500 || value.content?.type !== 'doc') throw new Error('This is not a supported VDoc backup.');
-  return value;
+  const migrated = migrateDocument(value);
+  if (typeof migrated.title !== 'string' || migrated.title.length > 500 || migrated.content?.type !== 'doc') throw new Error('This is not a supported VDoc backup.');
+  return migrated as ReturnType<typeof parseDocumentEnvelope>;
 }

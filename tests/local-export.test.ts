@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { Editor } from '@tiptap/core';
+import { DOMSerializer } from '@tiptap/pm/model';
 import { createExtensions } from '../lib/editor/extensions';
 import { downloadBlob } from '../lib/infrastructure/browser/download';
 import { exportLocalDocument } from '../components/editor/local-export';
@@ -51,9 +52,19 @@ it('reports URL creation failure without a success message or an unhandled rejec
 });
 
 it('reports serialization failure before requesting a download', () => {
-  vi.spyOn(editor, 'getHTML').mockImplementationOnce(() => { throw new Error('Serialization failed'); });
+  vi.spyOn(DOMSerializer.prototype, 'serializeFragment').mockImplementationOnce(() => { throw new Error('Serialization failed'); });
   expect(exportLocalDocument(editor, 'Draft', 'html')).toBe(false);
   expect(createUrl).not.toHaveBeenCalled(); expect(notices.error).toHaveBeenCalledOnce();
+});
+
+it('exports plain text without constructing HTML or JSON, and backups without HTML', () => {
+  const html = vi.spyOn(DOMSerializer.prototype, 'serializeFragment').mockImplementation(() => { throw new Error('Unneeded HTML'); });
+  const json = vi.spyOn(editor.state.doc, 'toJSON');
+  expect(exportLocalDocument(editor, 'Draft', 'txt')).toBe(true);
+  expect(json).not.toHaveBeenCalled();
+  expect(exportLocalDocument(editor, 'Draft', 'json')).toBe(true);
+  expect(json).toHaveBeenCalledOnce();
+  expect(html).not.toHaveBeenCalled();
 });
 
 it.each([
