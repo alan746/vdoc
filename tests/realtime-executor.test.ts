@@ -119,3 +119,43 @@ it('rejects stale undo without removing committed edits', async () => {
   expect(await executor.undo({ targetTurnId: 'turn-1', expectedSessionId: engine.sessionId, expectedRevision: 0 }, context('u', 'u'))).toMatchObject({ code: 'STALE' });
   expect(engine.snapshot().blocks[0].text).toBe('AI');
 });
+
+it('continues at the requested block across turns while the user cursor stays elsewhere', async () => {
+  editor.commands.setTextSelection(2);
+  const selection = editor.state.selection.toJSON();
+  for (const [index, text] of [' first', ' next'].entries()) {
+    const s = engine.snapshot(), block = s.blocks[1];
+    expect(await executor.apply({ expectedSessionId: s.sessionId, expectedRevision: s.revision,
+      target: { kind: 'text', blockId: block.id, start: block.text.length, end: block.text.length },
+      operations: [{ type: 'text.insert', text }] }, context(`append-${index}`, `turn-${index}`))).toMatchObject({ ok: true });
+    expect(editor.state.selection.toJSON()).toEqual(selection);
+  }
+  expect(engine.snapshot().blocks.map(block => block.text)).toEqual(['hello', 'second first next']);
+});
+
+it.each(['block', 'text', 'range'])('rejects insertion over existing content with a %s target atomically', async kind => {
+  const s = engine.snapshot(), block = s.blocks[1];
+  const target = kind === 'block' ? { kind, id: block.id }
+    : kind === 'text' ? { kind, blockId: block.id, start: 0, end: block.text.length }
+    : { kind, from: block.from, to: block.to };
+  const before = editor.getJSON();
+  expect(await executor.apply({ expectedSessionId: s.sessionId, expectedRevision: s.revision, target,
+    operations: [{ type: 'text.style', style: { bold: true } }, { type: 'text.insert', text: 'new' }] }, context())).toMatchObject({ ok: false, error: expect.stringContaining('empty insertion target') });
+  expect(editor.getJSON()).toEqual(before);
+  expect(engine.revision).toBe(s.revision);
+  expect(engine.records).toHaveLength(0);
+});
+
+it('continues in new paragraphs after the writing block without replacing it or following the cursor', async () => {
+  editor.commands.setTextSelection(2);
+  const selection = editor.state.selection.toJSON();
+  for (const [index, text] of ['next paragraph', 'another paragraph'].entries()) {
+    const s = engine.snapshot();
+    expect(await executor.apply({ expectedSessionId: s.sessionId, expectedRevision: s.revision,
+      target: { kind: 'block', id: s.blocks[s.blocks.length - 1].id },
+      operations: [{ type: 'block.insert', beforeId: null, block: { kind: 'paragraph', text } }]
+    }, context(`paragraph-${index}`, `turn-${index}`))).toMatchObject({ ok: true });
+    expect(editor.state.selection.toJSON()).toEqual(selection);
+  }
+  expect(engine.snapshot().blocks.map(block => block.text)).toEqual(['hello', 'second', 'next paragraph', 'another paragraph']);
+});

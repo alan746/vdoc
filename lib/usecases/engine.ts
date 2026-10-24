@@ -153,6 +153,12 @@ export class DocumentEngine {
       try {
         const context = commandContext(props);
         for (const operation of request.operations) {
+          // Agent insertion must never silently replace a selected block or
+          // range, including text selected by an earlier operation in a batch.
+          if (agent && operation.type === 'text.insert' && !tr.selection.empty) {
+            error = 'text.insert requires an empty insertion target. Read the destination again and use equal start/end text offsets or equal from/to range positions. Use text.replace only for an explicitly requested replacement.';
+            break;
+          }
           if (!applyOperation(operation, context)) { error = (operation.type === 'list.toggle' ? listSelectionBoundaryError(props.tr.selection) : null) || 'This operation is not available for the current selection.'; break; }
         }
         // The agent edits beside the user, not through the user's cursor.

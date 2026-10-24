@@ -70,7 +70,7 @@ describe('agent origin', () => {
   });
 
   it('returns the first result for an identical retry', () => {
-    const input = { ...blockRequest(0, [{ type: 'text.insert', text: '!' }]), id: 'retry' };
+    const input = { ...blockRequest(0, [{ type: 'text.insert', text: '!' }]), target: { kind: 'text', blockId: engine.snapshot().blocks[0].id, start: 11, end: 11 }, id: 'retry' };
     const first = engine.executeAgent(input, origin), html = editor.getHTML();
     expect(first.ok).toBe(true);
     expect(engine.executeAgent(input, origin)).toEqual(first);
