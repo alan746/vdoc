@@ -173,7 +173,10 @@ export class DocumentEngine {
       if (request.expectedBlocks.some(block => this.index().version(block.id) !== block.version)) return fail('STALE', 'A target block has changed. Read it again.');
     }
     if (request.target.kind === 'range' && request.expectedRevision === undefined) return fail('STALE', 'An explicit range requires a document revision.');
-    if (request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
+    // Find/replace and document settings act on the whole document, so a target that has gone stale
+    // (an agent replaying a confirmed call after other edits) must not stop them.
+    const documentWide = request.operations.every(op => op.type === 'text.findReplace' || op.type.startsWith('document.'));
+    if (!documentWide && request.target.kind === 'range' && (request.target.from > request.target.to || request.target.to > this.editor.state.doc.content.size)) return fail('TARGET', 'Invalid target range.');
 
     const agent = request.source === 'agent';
     const userSelection = this.editor.state.selection, userMarks = this.editor.state.storedMarks;
@@ -181,9 +184,9 @@ export class DocumentEngine {
     try {
       if (request.target.kind === 'selection' && request.source === 'toolbar' && this.bookmark) selection = this.bookmark.resolve(this.editor.state.doc);
       const resolved = resolveTargetSelection(request.target, this.editor.state.doc, selection);
-      if ('error' in resolved) return fail('TARGET', resolved.error);
-      selection = resolved;
-    } catch { return fail('TARGET', 'The target could not be located. Select it again.'); }
+      if ('error' in resolved) { if (!documentWide) return fail('TARGET', resolved.error); }
+      else selection = resolved;
+    } catch { if (!documentWide) return fail('TARGET', 'The target could not be located. Select it again.'); }
 
     const beforeRevision = this.revision;
     const beforeDocument = this.editor.state.doc;
@@ -203,6 +206,12 @@ export class DocumentEngine {
         for (const operation of request.operations) {
           // Agent insertion must never silently replace a selected block or
           // range, including text selected by an earlier operation in a batch.
+          // A text range spanning paragraphs or cells would flatten them into one when replaced or
+          // deleted (a whole section emptied, the paragraph after a table pulled into its last cell).
+          if (agent && (operation.type === 'text.replace' || operation.type === 'text.delete') && !tr.selection.$from.sameParent(tr.selection.$to)) {
+            error = `${operation.type} must stay inside one paragraph, heading or table cell. To remove whole paragraphs use block.delete with each paragraph's id; to rewrite one paragraph use a text target on that block.`;
+            break;
+          }
           if (agent && operation.type === 'text.insert' && !tr.selection.empty) {
             error = 'text.insert requires an empty insertion target. Read the destination again and use equal start/end text offsets or equal from/to range positions. Use text.replace only for an explicitly requested replacement.';
             break;

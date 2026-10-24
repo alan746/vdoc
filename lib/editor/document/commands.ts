@@ -1,7 +1,7 @@
 import { canonicalLanguage } from '../../domain/text/language';
 import type { Operation } from '../../domain/entities/operation';
 import { defineHandlers, operationFields } from '../commands/types';
-import { findTopLevelBlock, insertionPoint, isAtPlacement } from './block-placement';
+import { findListItem, findTopLevelBlock, insertionPoint, isAtPlacement } from './block-placement';
 
 type InsertBlock = Extract<Operation, { type: 'block.insert' }>['block'];
 const textContent = (text: string) => text ? [{ type: 'text', text }] : [];
@@ -24,11 +24,20 @@ export const documentCommands = defineHandlers({
     if (destination === undefined) return reject('The placement anchor is missing or is not a top-level block. Read the document again and choose an explicit top-level anchor.');
     return c.insertContentAt(destination, insertContent(op.block));
   },
-  'block.delete': (op, { state }) => {
+  'block.delete': (op, { state, reject }) => {
     const found = findTopLevelBlock(state.doc, op.id);
-    if (!found) return false;
-    state.tr.delete(found.pos, found.pos + found.node.nodeSize);
-    return true;
+    if (found) {
+      state.tr.delete(found.pos, found.pos + found.node.nodeSize);
+      return true;
+    }
+    // A list item's paragraph: delete that item, or the whole list when it is the only one.
+    const item = findListItem(state.tr.doc, op.id);
+    if (item) {
+      const [from, to] = item.list.childCount === 1 ? [item.listPos, item.listPos + item.list.nodeSize] : [item.pos, item.pos + item.node.nodeSize];
+      state.tr.delete(from, to);
+      return true;
+    }
+    return reject('The block is missing or is nested inside another block (such as a table cell). Read the document again; block.delete removes top-level blocks and list items.');
   },
   'block.move': (op, { state, reject }) => {
     const source = findTopLevelBlock(state.doc, op.id);

@@ -9,6 +9,23 @@ export function findTopLevelBlock(doc: Node, id: string | null | undefined): { p
   }
 }
 
+const LIST_ITEMS = new Set(['listItem', 'taskItem']);
+
+/** The list item whose first paragraph carries this block ID, with the list that holds it. */
+export function findListItem(doc: Node, id: string): { pos: number; node: Node; listPos: number; list: Node } | undefined {
+  let found: { pos: number; node: Node; listPos: number; list: Node } | undefined;
+  doc.descendants((node, pos) => {
+    if (found) return false;
+    if (!node.isBlock || LIST_ITEMS.has(node.type.name) || node.isTextblock) return !node.isTextblock;
+    node.forEach((child, offset) => {
+      if (found || !LIST_ITEMS.has(child.type.name)) return;
+      if (child.attrs.blockId === id || child.firstChild?.attrs.blockId === id) found = { pos: pos + 1 + offset, node: child, listPos: pos, list: node };
+    });
+    return !found;
+  });
+  return found;
+}
+
 type Placement = Pick<Extract<Operation, { type: 'block.move' }>, 'beforeId' | 'position'>;
 
 export function insertionPoint(doc: Node, placement: Placement): number | undefined {
