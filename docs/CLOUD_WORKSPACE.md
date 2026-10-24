@@ -39,6 +39,15 @@ saving when notified; revision checks also reject changes from another device.
 Local cache transactions reject stale same-browser writes. Web Locks serialize
 uploads between tabs where supported; server revision checks remain authoritative.
 
+The account cache keeps its existing database name and uses IndexedDB version 2.
+A `syncState` index on the existing item rows lets status reads inspect only keys;
+uploads load bodies only for queued IDs. The derived index key and body are written
+in the same transaction, and unchanged records are not rewritten. The v1 upgrade
+scans existing rows once, indexes pending/conflicting copies, and preserves active
+selection and drafts atomically. Older open tabs close their database connection
+on upgrade and must reload to use the new cache version. The library listing still
+reads complete cached rows; it is separate from the periodic synchronization path.
+
 There is no last-write-wins overwrite and no automatic collaborative merge. A
 conflict keeps the local copy intact. Open **Resolve conflicts**, download the
 local copy, then choose **Use cloud copy**. Import the downloaded copy as a new

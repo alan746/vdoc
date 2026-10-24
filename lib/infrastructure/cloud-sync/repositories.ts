@@ -99,8 +99,8 @@ export class CloudRepositories {
   getSnapshot = () => this.state;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   private async publish(status = this.state.status, message = this.state.message) {
-    const records = await this.cache.all();
-    this.state = { status, message, pending: records.filter(r => r.pending).length, conflicts: records.filter(r => r.pending?.conflict).map(r => r.item.id) };
+    const { queued, conflicts } = await this.cache.syncQueue();
+    this.state = { status, message, pending: queued.length + conflicts.length, conflicts };
     this.listeners.forEach(listener => listener());
   }
   private async json<T>(path: string, body?: unknown): Promise<T> {
@@ -125,6 +125,8 @@ export class CloudRepositories {
         if (item.revision !== current.pending.baseRevision) return { ...current, pending: { ...current.pending, conflict: true } };
         return current;
       }
+      // Equal revisions are immutable. A metadata-only row must still accept its first body.
+      if (current?.item.revision === item.revision && (current.item.content !== null || item.content === null)) return current;
       changed = Boolean(current && current.item.revision !== item.revision);
       return { item, sequence: (current?.sequence ?? 0) + (changed ? 1 : 0) };
     });
@@ -195,7 +197,10 @@ export class CloudRepositories {
     const work = async () => {
       try {
         await this.publish('syncing', '');
-        for (const record of await this.cache.all()) await this.syncRecord(record);
+        for (const id of (await this.cache.syncQueue()).queued) {
+          const record = await this.cache.get(id);
+          if (record) await this.syncRecord(record);
+        }
         await this.publish('idle', '');
       } catch (error) {
         if (!this.blocked) await this.publish('offline', error instanceof CloudRequestError ? error.message : 'Offline or cloud unavailable. Edits are saved in this account’s local cache.');
@@ -206,7 +211,8 @@ export class CloudRepositories {
   };
   private async requireSynced() {
     await this.sync();
-    if ((await this.cache.all()).some(r => r.pending)) throw new Error('Sync or resolve pending edits before changing folders, Trash or history.');
+    const { queued, conflicts } = await this.cache.syncQueue();
+    if (queued.length || conflicts.length) throw new Error('Sync or resolve pending edits before changing folders, Trash or history.');
     if (this.blocked) throw new Error('Sign in again before changing cloud documents.');
   }
   private metadata(item: CloudItem) { return { id: item.id, parentId: item.parentId, starred: item.starred, ...(item.trashedAt ? { trash: { at: item.trashedAt, ...(item.trashGroup ? { group: item.trashGroup } : {}) } } : {}) }; }
@@ -227,7 +233,7 @@ export class CloudRepositories {
       } while (cursor);
       await this.publish('idle', '');
     } catch (error) {
-      if (this.blocked || !(await this.cache.all()).length) throw error;
+      if (this.blocked || !await this.cache.count()) throw error;
       await this.publish('offline', 'Using cached files. Reconnect to refresh the cloud library.');
     }
     return (await this.cache.all()).filter(r => !r.item.deletedAt).map(record => {

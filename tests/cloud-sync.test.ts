@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { PGlite } from '@electric-sql/pglite';
-import { IDBFactory } from 'fake-indexeddb';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { IDBFactory, IDBObjectStore } from 'fake-indexeddb';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { applyMigrations } from '../scripts/neon-migrations.mjs';
 import { handleLibraryRequest } from '../lib/infrastructure/cloud-library/http';
 import type { SqlClient } from '../lib/infrastructure/cloud-library/store';
@@ -41,6 +41,7 @@ beforeAll(async () => {
   await pg.exec("insert into app_user(id,name,email) values ('alice','Alice','alice@example.test'),('bob','Bob','bob@example.test')");
 });
 afterAll(async () => { for (const client of clients) await client.cache.close(); await pg.close(); });
+afterEach(() => vi.restoreAllMocks());
 
 describe('cloud workspace through the real document API and PostgreSQL engine', () => {
   it('keeps offline edits across cache reopen and syncs them when connected', async () => {
@@ -55,8 +56,38 @@ describe('cloud workspace through the real document API and PostgreSQL engine', 
   });
   it('does not increment cloud revisions for unchanged editor autosaves', async () => {
     const { repo } = device('alice'); const doc = await repo.library.createDocument(draft('Unchanged'), null);
+    const put = vi.spyOn(IDBObjectStore.prototype, 'put');
     await repo.documents.save(doc.title, doc.content, doc.id); await settle(repo);
+    expect(put).not.toHaveBeenCalled();
     expect((await repo.cache.get(doc.id))?.item.revision).toBe(1);
+  });
+  it('loads only queued bodies while keeping conflicts visible and blocking history writes', async () => {
+    const { repo, state } = device('alice');
+    await repo.library.createDocument(draft('Already synced'), null);
+    const queued = await repo.library.createDocument(draft('Queued'), null);
+    const conflict = await repo.library.createDocument(draft('Conflict'), null);
+    state.offline = true;
+    await repo.documents.save(queued.title, content('queued changes'), queued.id); await settle(repo);
+    await repo.documents.save(conflict.title, content('conflicting changes'), conflict.id); await settle(repo);
+    await repo.cache.mutate(conflict.id, current => ({ ...current!, pending: { ...current!.pending!, conflict: true } }));
+    const all = vi.spyOn(repo.cache, 'all').mockImplementation(() => { throw new Error('Unexpected full-cache read'); });
+    const get = vi.spyOn(repo.cache, 'get');
+    state.offline = false; await settle(repo);
+    expect(get.mock.calls.map(([id]) => id)).toEqual([queued.id]);
+    expect(repo.getSnapshot()).toMatchObject({ status: 'idle', pending: 1, conflicts: [conflict.id] });
+    await expect(repo.versions.save(queued, 'Blocked checkpoint')).rejects.toThrow('resolve pending edits');
+    expect(all).not.toHaveBeenCalled();
+    await repo.useCloudCopy(conflict.id);
+    expect(repo.getSnapshot()).toMatchObject({ pending: 0, conflicts: [] });
+  });
+  it('does not rewrite cached bodies on unchanged refreshes, but hydrates metadata-only entries', async () => {
+    const { repo } = device('alice'); const doc = await repo.library.createDocument(draft('Hydrate'), null);
+    const other = device('alice'); await other.repo.library.list();
+    expect((await other.repo.cache.get(doc.id))!.item.content).toBeNull();
+    expect((await other.repo.documents.select(doc.id)).content).toEqual(doc.content);
+    const put = vi.spyOn(IDBObjectStore.prototype, 'put');
+    await other.repo.documents.select(doc.id);
+    expect(put.mock.contexts.filter(store => (store as globalThis.IDBObjectStore).name === 'items')).toHaveLength(0);
   });
   it('rejects invalid object saves before changing the cached document or sync queue', async () => {
     const { repo } = device('alice'); const doc = await repo.library.createDocument(draft('Validated object'), null);
