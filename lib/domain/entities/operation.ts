@@ -26,16 +26,18 @@ export const targetSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('text'), blockId: z.string().min(1), start: z.number().int().min(0), end: z.number().int().min(0) }).strict(),
 ]);
 
+const textStyleSchema = z.object({
+  bold: z.boolean().optional(), italic: z.boolean().optional(), underline: z.boolean().optional(),
+  strike: z.boolean().optional(), color: color.nullable().optional(), highlight: color.nullable().optional(),
+  fontFamily: z.enum(['Arial', 'Georgia', 'Times New Roman', 'Noto Sans SC', 'monospace']).optional(),
+  fontSize: z.number().int().min(8).max(96).optional(),
+  script: z.enum(['normal', 'superscript', 'subscript']).optional(),
+}).strict().refine(s => Object.keys(s).length > 0, 'Specify at least one text style.');
+
 export const operationSchema = z.discriminatedUnion('type', [
   paragraphBorderOperationSchema,
   z.object({type:z.literal('format.apply'),format:textFormatSchema}).strict(),
-  z.object({ type: z.literal('text.style'), style: z.object({
-    bold: z.boolean().optional(), italic: z.boolean().optional(), underline: z.boolean().optional(),
-    strike: z.boolean().optional(), color: color.nullable().optional(), highlight: color.nullable().optional(),
-    fontFamily: z.enum(['Arial', 'Georgia', 'Times New Roman', 'Noto Sans SC', 'monospace']).optional(),
-    fontSize: z.number().int().min(8).max(96).optional(),
-    script: z.enum(['normal', 'superscript', 'subscript']).optional(),
-  }).strict().refine(s => Object.keys(s).length > 0, 'Specify at least one text style.') }).strict().describe('Set only the supplied styles; omitted styles are preserved. To make text bold or italic use bold:true or italic:true; use false to remove that style. For color or font size, supply only the requested fields.'),
+  z.object({ type: z.literal('text.style'), style: textStyleSchema }).strict().describe('Set only the supplied styles; omitted styles are preserved. To make text bold or italic use bold:true or italic:true; use false to remove that style. For color or font size, supply only the requested fields.'),
   z.object({ type: z.literal('text.toggle'), mark: z.enum(['bold', 'italic', 'underline', 'strike', 'superscript', 'subscript']) }).strict().describe('Invert one style. Use only when the user asks to toggle it; to enable or disable a style explicitly, use text.style.'),
   z.object({ type: z.literal('text.insert'), text: z.string().min(1).max(100000) }).strict(),
   z.object({ type: z.literal('text.clear') }).strict(),
@@ -63,6 +65,13 @@ export const operationSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('list.restart'), start: z.number().int().min(0).max(MAX_LIST_START) }).strict(),
   z.object({ type: z.literal('list.continue') }).strict(),
   z.object({ type: z.literal('list.indent'), direction: z.enum(['in', 'out']) }).strict(),
+  z.object({
+    type: z.literal('text.styleMatches'),
+    queries: z.array(z.string().min(1).max(1000)).min(1).max(100).describe('Exact text to find, e.g. every number the user means. Every occurrence of each is styled.'),
+    style: textStyleSchema,
+    blockIds: z.array(z.string().min(1)).min(1).max(200).optional().describe('Only search these blocks (from a document read); omit to search the whole document.'),
+    caseSensitive: z.boolean().default(false), wholeWord: z.boolean().default(false),
+  }).strict().describe('Style every occurrence of the given texts in ONE call, e.g. bold all numbers in a section or color every mention of a name. Use this instead of one call per occurrence; no text offsets are needed. The request target is not used.'),
   z.object({ type: z.literal('text.findReplace'), query: z.string().min(1).max(1000), replacement: z.string().max(100000), caseSensitive: z.boolean().default(false), wholeWord: z.boolean().default(false) }).strict(),
   z.object({ type: z.literal('document.language'), language: z.string().max(100).refine(value => canonicalLanguage(value) !== null, 'Use a valid language tag.') }).strict(),
   z.object({ type: z.literal('document.layout'), pageSize: z.enum(['a4', 'letter']), orientation: z.enum(['portrait', 'landscape']), pageMargin: z.number().int().min(5).max(50), pageColor: color, header: z.string().max(500).optional(), footer: z.string().max(500).optional(), pageNumbers: z.boolean().optional() }).strict(),
@@ -172,7 +181,7 @@ export function operationLabel(op: Operation): string {
     'table.pinRows': 'Pin header rows',
     'table.rowBreak': 'Set row page breaks',
     'table.rowHeight': 'Resize row', 'table.columnWidth': 'Resize column',
-    'footnote.update': 'Edit footnote', 'footnote.insert': 'Insert footnote', 'block.code': 'Code block', 'block.toc': 'Insert table of contents', 'document.language': 'Document language', 'document.layout': 'Page setup', 'text.findReplace': 'Replace all', 'list.indent': 'Change indent', 'paragraph.indent': 'Change paragraph indent', 'image.insert': 'Insert image', 'image.update': 'Image properties', 'block.pageBreak': 'Insert page break', 'table.sort': 'Sort table', 'table.move': 'Move table row or column', 'text.style': 'Set text style', 'text.toggle': 'Toggle text style', 'text.insert': 'Insert text', 'text.clear': 'Clear formatting', 'text.delete': 'Delete text', 'text.replace': 'Replace text', 'block.move': 'Move block', 'table.border': 'Set table borders', 'table.layout': 'Align table', 'table.distributeRows': 'Distribute rows', 'table.split': 'Split cell', 'table.style': 'Format cells', 'table.widths': 'Set column widths',
+    'footnote.update': 'Edit footnote', 'footnote.insert': 'Insert footnote', 'block.code': 'Code block', 'block.toc': 'Insert table of contents', 'document.language': 'Document language', 'document.layout': 'Page setup', 'text.findReplace': 'Replace all', 'text.styleMatches': 'Style matching text', 'list.indent': 'Change indent', 'paragraph.indent': 'Change paragraph indent', 'image.insert': 'Insert image', 'image.update': 'Image properties', 'block.pageBreak': 'Insert page break', 'table.sort': 'Sort table', 'table.move': 'Move table row or column', 'text.style': 'Set text style', 'text.toggle': 'Toggle text style', 'text.insert': 'Insert text', 'text.clear': 'Clear formatting', 'text.delete': 'Delete text', 'text.replace': 'Replace text', 'block.move': 'Move block', 'table.border': 'Set table borders', 'table.layout': 'Align table', 'table.distributeRows': 'Distribute rows', 'table.split': 'Split cell', 'table.style': 'Format cells', 'table.widths': 'Set column widths',
     'paragraph.style': 'Set paragraph style', 'list.toggle': 'Toggle list', 'list.checklistStyle': 'Checklist options', 'list.marker': 'Custom list marker', 'list.style': 'List style', 'list.restart': 'Restart numbering', 'list.continue': 'Continue previous numbering', 'block.quote': 'Toggle blockquote', 'block.rule': 'Insert divider',
     'table.insert': 'Insert table', 'table.edit': 'Edit table', 'table.background': 'Set cell background', 'link.set': 'Add link', 'link.unset': 'Remove link',
     'block.insert': 'Insert block', 'block.delete': 'Delete block',

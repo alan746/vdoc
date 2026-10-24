@@ -1,135 +1,31 @@
-# VDoc 本地单人网页编辑器计划
+# Implementation plan
 
-更新：2026-10-10。用户最新要求：持续执行至 AI 阶段，无需逐次催促；先完成五项必要验收，再启动既定第二阶段。每 10 分钟的当前任务持续跟进 vdoc-ai 已启用。
+## Scope and architecture
 
-目标：先使一个人在本机完成输入、排版、表格、图片、存储和文件转换。当前不做 AI、语音、账号、共享、多人或同步。
+VDoc supports personal document creation, editing, storage, conversion, and voice-driven changes. Core editing remains usable locally. Cloud storage and authenticated voice sessions are optional service integrations.
 
-## 当前收尾计划（优先于下方历史计划）
+Keep document rules and operation schemas in `lib/domain`, orchestration and ports in `lib/usecases`, editor behavior in `lib/editor`, and platform adapters in `lib/infrastructure`. Use `lib/composition` to connect implementations to the interface. New features use the shared operation, validation, and persistence paths.
 
-第一阶段以 [核心验收门槛](ACCEPTANCE_GATE.md#核心验收门槛2026-10-04) 为准，不再以补齐 Google Docs 全部单人功能作为进入 AI 的前提。Google Docs 差距清单保留，缺失能力不能改记为完成。
+## Work areas
 
-1. 数据安全：检查自动保存、慢写入、失败恢复、离开页面、文档切换、版本恢复、备份与异常文件保护。先修可能丢字、覆盖错文档或虚报保存的问题。
-2. 日常编辑：使用现有文字、段落、列表、普通表格及图片，走完编辑、撤销重做、刷新恢复流程；修复阻碍日常工作的交互问题。
-3. 文件交付：固定一个含多语言、列表、图片和跨页表格的常用样本，完成 JSON / DOCX 下载重导入和实际 PDF 逐页检查。转换库通过与外部 Word 显示通过分别记录。
-4. 输入与性能：真实系统中文输入法的选词、取消、光标移动和撤销；现有多语言数据链回归；固定混合长文档记录响应情况，发现卡顿再定位优化。
-5. 收口：全量回归、类型检查、生产构建；逐项填写实测证据和未验限制。五项必要门槛全部通过后整理交接资料，启动既定文字指令 AI 阶段；语音与打断按后续开发计划逐步推进。
+| Area | Acceptance focus |
+| --- | --- |
+| Data safety | Autosave, failure recovery, document switching, trash, and version restoration |
+| Editing | Selection, formatting, lists, tables, images, search, and undo |
+| File delivery | Exact backups, DOCX round trips, downloads, and PDF output |
+| Languages | Grapheme boundaries, composition, direction, and language metadata |
+| Performance | Long-document input, selection, scrolling, and bounded processing |
+| Voice editing | Lifecycle, explicit targets, cancellation, progress, and turn undo |
+| Cloud documents | Authentication, ownership, isolated rooms, and server-side credentials |
 
-可编辑分页、复杂分节/分栏、浮动图片环绕、极端嵌套表分页、高级写作对象及全平台矩阵列入后续路线。本轮不扩展这些功能。已有能力发生数据损坏或普通场景回归仍必须修复。
+## Completion criteria
 
-2026-10-04收尾进展：已补未保存离开保护、长文档真实输入/查找/撤销/滚动与局部响应测量、JSON/DOCX文件选择入口闭环、损坏文件保护和有效图片Word独立渲染；修复查找不滚动/替换抢焦点及Word默认样式偏差。77文件1074项、类型检查、构建通过。仍需完成系统中文候选窗与VDoc浏览器打印PDF成品，本轮工具明确禁止Codex原生界面控制，两项待验不是等待用户授权；不进入AI。
+Run relevant automated checks and record the source revision and environment for manual acceptance. Test the complete edit-save-export-reopen workflow with a fixed document. Use the same source backup for preview and PDF comparisons. Confirm output in an independent reader.
 
-第三轮补验：新增固定综合样本，发现并修复手动分页失效；真实预览5页、36条正文各一次、重复表头及最后独立页通过，新增打印前分页语义保护。78文件1081项、类型检查和生产构建通过；最终系统复验步骤见核心验收总表。
+Do not infer platform acceptance from a DOM simulation, a conversion-only test, or an older artifact. Keep outstanding input-method, storage-failure, printing, and extraction cases visible in the [acceptance guide](ACCEPTANCE_GATE.md).
 
-2026-10-05当前收尾证据：Safari用户实际QA PDF在A4/100%下5页逐页通过，最后一页为预期的显式分页内容。101%产生额外页面仍保留为打印缩放限制；项目计划旧空白尾页需要对应新成品，不能用内置浏览器1页预览替代。系统中文候选窗操作仍待实机反馈。默认文字格式、段落/字符样式、主题、多语言字体及复杂段落往返已完成本轮联合实现/验收（保留Word特殊视觉继承边界）。104文件1478项全套、类型与构建是最近完整回归基线，未因此宣布底座最终通过。
+## Extension points
 
-## 当前批次清单：段落与表格外观（2026-10-05）
+File formats use the shared registry and importer/exporter ports. Editor features use `EditorFeature`. Realtime transports implement `RealtimePort`. Storage adapters implement the document, library, and version repository contracts. Replacing an implementation should not require changing the domain protocol.
 
-按顺序处理，下列“通过”仅指列明样本及受支持格式，不替代完整Office视觉验收。
-
-| 顺序 | 事项 | 完成标准 | 状态 |
-| --- | --- | --- | --- |
-| 1 | 段落底色默认值与样式继承 | 标题/正文/列表/单元格内段落继承正确；直接覆盖与兄弟隔离 | 指定范围通过 |
-| 2 | 段落边框与段间线继承 | 各边独立继承/覆盖；宽度、间距、合框信息保留 | 指定范围通过 |
-| 3 | 段落与表格主题颜色 | 底色、边框主题色及明暗参数正确解析；整表→行→单元格覆盖与嵌套隔离 | 指定范围通过 |
-| 4 | 清除语义与异常格式 | nil/none/auto不误沿用旧底色边框；不支持效果去重提示 | 指定范围通过 |
-| 5 | 联合验收 | 编辑/撤销、HTML/备份/两次DOCX往返及页面预览/刷新 | 指定样本通过 |
-
-本批证据：新增20项实际DOCX回归；101文件1444项、类型检查与生产构建通过。实际Import样本在页面局部修改后其他段落不变，一次撤销/预览/刷新后完整document JSON一致；A4纵向1页预览通过。完整证据见[验收记录](VALIDATION.md)。
-
-## 当前批次：明确关闭格式与操作一致性（2026-10-06）
-
-| 顺序 | 事项 | 完成标准 | 状态 |
-| --- | --- | --- | --- |
-| 1 | 标题中的明确取消粗体 | 数据与实际画面一致，编辑/撤销/导出保持 | 指定范围通过 |
-| 2 | 链接中的下划线覆盖 | 链接功能保留，明确取消下划线能反映到正文与预览 | 指定范围通过 |
-| 3 | 上述覆盖的工具栏与格式复制 | 开关状态、重新应用格式与清除格式一致，不留下不可编辑的导入状态 | 指定范围通过 |
-| 4 | 联合文件与浏览器验收 | HTML/备份/DOCX往返，实际编辑/撤销/刷新/预览无回归 | 指定样本通过 |
-
-本批新增23项回归；修复重复应用相同格式增加修改记录、原生连续命令读取旧状态，以及Word导出未正确保留标题/表头默认粗体。独立QA文件实际Import、工具栏开关、一次撤销、1页预览、刷新完整JSON一致。完整记录见VALIDATION；不代表外部Word逐像素保真或实际Safari PDF已补验。
-
-## 本轮执行清单：综合编辑与实际交付（2026-10-06）
-
-| 顺序 | 检查 | 验收证据 | 状态 |
-| --- | --- | --- | --- |
-| 1 | 混合长文档查找替换与文字编辑 | 真正页面操作，目标句可见，Unicode内容与格式不丢失，一次撤销精确还原 | 指定样本通过 |
-| 2 | 列表、表格与图片连续操作 | 同一文档局部修改，其余内容不变，逐步撤销/重做 | 指定样本通过 |
-| 3 | 自动保存、离开重开、刷新 | 完整document JSON逐次相等 | 指定样本通过 |
-| 4 | 页面下载JSON/DOCX并重导入 | 检查实际落盘字节、通过文件选择器重导入，逐项核对内容与结构 | 指定样本通过 |
-| 5 | 混合文档分页预览 | 全文36行各一次、图片、重复表头、末页内容；预览不改正文 | 指定样本通过 |
-| 6 | 大备份页面往返 | 较大固定样本导入/保存/下载/重导入，原文和结构一致 | 指定样本通过 |
-
-本批实际页面完成六项。发现并修复Word纵向合并占位空段落错误匹配、手动分页丢失及反复往返增加空段落问题；新增11项回归，104文件1478项全套、类型与构建通过。源备份、真实下载文件及校验摘要见[固定样本证据](../tests/fixtures/core-batch-20261006/README.md)。大备份实测4.8MB/2500块，不能外推所有尺寸或配额场景。分页是预览证据，本轮没有新的Safari PDF成品。
-
-## AI前收尾门槛（原七项，当前剩五项）
-
-2026-10-10 按用户要求将仍开放的第 1、2、4、6、7 项拆成 **320 条详细执行步骤**，见 [逐项执行表](acceptance/FINAL_FIVE_ACCEPTANCE.md) 和 [可更新状态记录](acceptance/final-five-ledger.json)。分配为输入法 90、项目计划尾页 50、Safari 打印与预览 70、真实配额 55、最终联合签收 55。按该顺序推进，前置阻塞时保留原因，只继续独立准备工作；条目数量不代表新增功能数量或产品完成百分比。原第 3、5 项的关闭范围继续有效。
-
-2026-10-10更新。完成标准不变；本表记录当前缺口，历史修复及回归数量统一见[验收记录](VALIDATION.md)，不再重复累加为实机进度。操作步骤和样本见[实机验收操作单](NATIVE_ACCEPTANCE_RUNBOOK.md)。
-
-| 顺序 | 事项 | 已取得证据 | 尚缺 / 下一步 |
-| --- | --- | --- | --- |
-| 1 | 真实中文系统输入法 | 用户已触发真实中文候选窗，并确认选词只增加一个“钟”、取消候选无残留/额外换行；AX确认Finishing input…及候选期间格式复制禁用；[实机记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-ime-20261010/observations.json) | 正文确认/取消按用户实测记录通过；当前B备份未含新增“钟”，不能据此签收该字符持久化。其余输入位置及保存恢复待验 |
-| 2 | 项目计划空白尾页 | 旧Safari PDF尾页问题已记录；内置浏览器对应旧版本预览1页 | 同次源备份与新Safari PDF尚未取得；Save面板禁用原因待查 |
-| 3 | Safari查找定位 | **通过（指定A/B样本）**：此前A副本100%/125%定位及替换撤销UI通过、B的IMe定位通过；本轮B在100%从首标题查ROW 36并Next，截图确认末行完整可见且高亮。实际下载备份标题和完整content与B原样本相等，刷新恢复2498字符；[本轮证据](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-search-20261010/audit.json) | 已关闭。A的替换撤销是UI/字符数证据；本轮完整JSON比对是B的查找后备份，不混称为A备份 |
-| 4 | Safari 101%打印 | 七组原生对照完成；无CSS单页HTML在普通/Private Safari均由100%一页变为101%两页 | 现象也发生在应用之外；另本次Safari弹窗曾超时，用户前台重试后恢复5页，末页正文及5/5页码可见；原生100%打印All 5 Pages。新100% PDF已逐页检查通过：5页、36行各一次、图像/表头/页码及末页正文完整；超时根因和101%仍待核对 |
-| 5 | 真正强退恢复 | **通过（隔离WebKit宿主范围）**：已保存后SIGKILL及真实按键后安排150ms SIGKILL两组均已重启、实际下载并核对标题与完整content相等；[证据](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-crash-20261010/README.md) | 未提交的末尾x丢失，已保存内容完整；不外推Safari进程、存储服务、事务中断或断电。该范围内已关闭 |
-| 6 | 真实配额耗尽 | 模拟故障的备份、重试、旧存档保护回归通过 | 需要独立、可限制空间且可清理的环境；不能填满日常浏览器或磁盘 |
-| 7 | 最终联合签收 | 预览可见时间预算及初始化握手恢复修复；最新全套133文件1899项在两worker下通过，类型检查及随后构建通过；内置浏览器原B连续两次5页预览及末页正文通过 | 前六项取得结果后对同一候选版本复核；未通过项不能自动豁免 |
-
-本轮原生打印页数绑定八份诊断文件的哈希（其中root-auto未运行），见[打印矩阵](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-print-scale/README.md)。其中原始B已取得新100% PDF并逐页通过；101%仍无新成品，不将打印对话框页数当成成品验收。Safari测试副本ID为61afdf66-0698-46a0-acc4-2d897e492713；正文通过正常富文本粘贴建立，不能等同源JSON完整导入。
-
-先修复可复现的产品缺陷并完成上述实测。只有七项签收完成或用户明确调整支持范围，才接入AI；不以测试总数代替门槛。AI第一批仍为文字指令调用统一文档操作层，具备版本校验、可撤销及保存结果反馈，再扩展语音。
-
-## 历史首轮交付（2026-09-28）
-
-1. 统一操作层：参数校验、版本与位置保护、稳定块 ID、矩形单元格目标、原子批次、撤销边界、重试去重；增补删除、替换、移动与本轮所有结构化能力。
-2. 编辑与表格：菜单选区、字体／字号／颜色、标题 1–6、段落、清单、查找替换；表格属性、右键菜单、普通单元格细分、排序、行列移动；修复重复属性和最后行列删除问题。
-3. 本地数据：IndexedDB 文档库、旧存档保留迁移、JSON 导入、保存失败提示、命名版本与恢复；Word／HTML／TXT 导出与本地 Word／TXT 导入。
-4. 文档对象：本地图片与缩放、目录、脚注、页面设置、显式分页、简单页眉页脚、Word 页码。
-5. 验证：140 项集成测试，类型检查，生产构建，真实浏览器编辑，2500 段压力样本；具体覆盖与未覆盖在 VALIDATION.md。
-
-## 完成口径
-
-不能把本轮交付等同于完整 Google Docs。操作层不是排版引擎；连续纸张画布不算自动分页；成功生成 DOCX 不算复杂 Word 保真；中文文字出现不算 OS 输入法验收；文件生成不算下载落盘验收。
-
-## 后续路线
-
-完成上述核心验收后，先接文字指令，验证模型通过现有操作层定位、预览修改、执行、撤销和拒绝过期请求；之后再做长期语音、打断、取消和异步任务状态。高级单人功能继续按实际需求迭代，不与核心验收混为同一阶段。
-
-所有编辑继续共享 DocumentEngine 和 ProseMirror 状态。图片与文件留在本机；不以任意 HTML 或模型返回 JavaScript 作为文档控制协议。
-
-## 后端规划（AI 阶段起）
-
-当前阶段不需要后端：文档、版本与图片存于本机 IndexedDB，`npm start` 的本地 PDF 服务只绑定回环地址。接入模型与语音服务后需要后端，原因是模型与语音识别的 API 密钥不能下发到浏览器，调用量需要按用户计费与限流。
-
-原则：后端只做“薄代理”，文档默认仍留在本机。
-
-1. **AI 代理（文字指令阶段，必需）**：前端发送指令和完成该指令所需的最小文档上下文（选区、目标块、大纲），后端持有密钥调用模型，返回统一操作层的操作列表（不返回 HTML 或 JavaScript）；前端照常做版本校验、预览、执行与撤销，过期请求由前端拒绝。后端不持久保存文档内容，日志不记录正文。
-2. **语音（语音阶段）**：语音识别经同一代理转发或签发短期令牌，支持流式转写、打断与取消；密钥同样不进入前端。
-3. **账号、计费与限流（随 1 一起上线的最小版本）**：最小账号体系与按用户用量统计，满足成本控制即可，不扩展为团队与权限管理。
-4. **暂不做**：云端文档存储、多设备同步、共享与多人协作。产品验证后另行立项；届时存储后端经 `lib/composition/repositories.ts` 替换，新实现须通过 `tests/persistence-contract.test.ts`。
-
-隐私口径：用户可见地提示哪些内容会发送给模型服务；未发起 AI 指令时不上传任何文档内容。部署位置（现有 Cloudflare Worker 配置或其他）在 AI 阶段启动时确定。
-
-### 文档与 AI 解耦
-
-文档端与 AI 端以工具契约解耦，而不是以服务器划分：文档状态、撤销与版本校验在浏览器的 DocumentEngine 中，AI 端不接触 ProseMirror、IndexedDB 或界面。
-
-- **文档端契约**：沿用 `lib/usecases/browser-tools.ts` 已定义的 `read_document` 与 `apply_document_operations`；参数以 `externalRequestSchema`（zod）为唯一来源，生成 JSON Schema 作为模型工具定义。契约变化须同步 [操作接口](OPERATIONS.md) 并保持向后兼容。
-- **AI 服务**：持有密钥、管理会话与计费，把模型供应商的工具调用翻译为上述契约，经同一连接发回浏览器执行，并把执行结果（成功、校验失败、版本过期）回传给模型。不直接修改文档。
-- **供应商适配器**：每家模型/语音服务一个适配器，实现同一内部接口（建立会话、发送音频或文字、接收转写、接收工具调用、回传工具结果、打断/取消）。更换或并行接入供应商只新增适配器，文档端不改。
-- 将来做云端存储时，可再拆出独立文档服务；契约保持不变。
-
-### 语音阶段：Boson Higgs Realtime（首选候选）
-
-首个语音适配器采用 Boson AI 的 [Higgs Realtime](https://docs.boson.ai/models/higgs-realtime/overview)：WebSocket 双向实时会话，内置流式转写（Higgs STT）、服务端/语义断句与打断、函数调用，可只输出文字；协议兼容 OpenAI Realtime API。浏览器以 AI 服务签发的短期 client secret 连接，密钥不下发。
-
-接入前先做独立的小规模验证（不改正式代码），通过后再定为正式方案：
-
-1. 中文（含中英混说）转写准确率与端到端延迟；
-2. 典型口述指令（如“把第二段加粗”“在表格后插一行”）能否正确调用 `apply_document_operations`，过期版本被拒后能否重读重试；
-3. 打断与取消：用户中途改口时停止当前回复且不执行未确认操作；
-4. 价格、并发与 API 权限申请；
-5. 浏览器端麦克风采集为 24 kHz 16-bit 单声道 PCM 的兼容性（当前未提供 WebRTC）。
-
-任一项不满足时保留适配器接口，换用其他供应商。文字指令阶段与语音阶段共用同一工具契约。
+See [operations](OPERATIONS.md), [the realtime protocol](REALTIME_PROTOCOL.md), and [validation](VALIDATION.md).

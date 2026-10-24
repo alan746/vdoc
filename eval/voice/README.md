@@ -48,7 +48,7 @@ VOICE_EVAL_SERVER_URL=http://127.0.0.1:8787 VOICE_EVAL_CLIENT_KEY=vdoc-dev-clien
 VOICE_EVAL_TURN_TIMEOUT_MS=150000 npm run eval:voice
 ```
 
-When the agent answers a blank-start case with a question (an edit held back for confirmation), the runner speaks `audio/confirm.wav` ("对，确认") before the next step, as a user would; that turn is marked `confirmation` in the report.
+When the agent answers a blank-start case with a question (an edit held back for confirmation), the runner speaks `audio/confirm.wav` (the confirmation phrase, meaning "Yes, confirmed") before the next step, as a user would; that turn is marked `confirmation` in the report.
 
 ## Results
 

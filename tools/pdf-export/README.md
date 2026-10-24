@@ -1,6 +1,6 @@
-## 2026-10-12：新阅读器下页面顺序方案取得局部通过，仍不能接入产品
+## 2026-10-12: reader ordering control remains experimental
 
-Chrome155 PDFium把CloseTempLine的auto_order改为true；独立官方CfT验证旧希伯来语参考转为通过。只升级阅读器仍不能修复现有产品成品。对保留marked-boxes原型仅按DOM左坐标排序每行token，7份PDF像素全部保持，原文不变、取消保护通过；Chrome155全文5/7，官方PDF.js6.5.128全文4/7，联合4/7（印地语、普通阿拉伯语、普通希伯来语、阿拉伯数字）。带音标两例仍失败，PDF.js希伯来数字一例仍错序，因此不进入产品，不把全文结果当作局部选择或搜索验收。旧版兼容问题保留，不升级用户浏览器。下一步处理组合字符关联与数字RTL；不重复旧源顺序排列。证据 `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-chrome155-20261012/audit.json`。当前产品fd601855未变，G3/G4/G5/G7仍开放，AI未进入。
+Chrome 155 PDFium enables `auto_order` in `CloseTempLine`; an independent Chrome for Testing check fixes the older Hebrew reference. A reader upgrade alone does not repair existing product output. Sorting marked-box prototype tokens by DOM left coordinate preserves pixels in all seven PDFs and leaves source content and cancellation intact. Whole-text extraction passes 5/7 in Chrome 155, 4/7 in PDF.js 6.5.128, and 4/7 jointly: Hindi, plain Arabic, plain Hebrew, and Arabic numbers. Both diacritic cases still fail, and PDF.js misorders one Hebrew-number case. This is not product acceptance or proof of partial-selection/search correctness. Combining-character association and numeric RTL order remain investigation areas. Evidence: `${VDOC_QA_EVIDENCE:-qa-evidence}/pdf-chrome155-20261012/audit.json`. Product candidate `fd601855` is unchanged; G3/G4/G5/G7 remain open.
 
 ## 2026-10-12: bundled LibreOffice independent controls rejected
 

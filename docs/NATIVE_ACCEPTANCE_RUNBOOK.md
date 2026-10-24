@@ -1,97 +1,32 @@
-# AI 前实机验收操作单
+# Native acceptance runbook
 
-更新：2026-10-10。本文保留原七个门槛的操作背景，当前第 3/5 项在指定范围已关闭，其余五项按[320 条详细执行表](acceptance/FINAL_FIVE_ACCEPTANCE.md)逐项推进。门槛摘要见[实施计划](IMPLEMENTATION_PLAN.md)；尚未整体签收，不进入 AI。
+## Setup
 
-2026-10-09连续收尾状态：用户切换权限模式后，重建CUA会话已成功连接原生Safari；本地服务HTTP 200。Safari 26.6.2 / macOS 26.6.2（25G83），在独立地址http://[::1]:5173/已新建QA文档并观察到正文和标题保存完成。原localhost标签页出现内存重载提示及加载停滞；新地址的JSON文件选择窗口选中文件后Upload仍置灰，原因待查。权限恢复不等于七项签收：尚无新打印成品、系统候选窗、真实强退或配额通过证据，七项均未关闭。
+Use a separate QA copy and a known revision. Record browser and operating-system versions, input method, date, origin, and build identity. Pair source backups with exported artifacts.
 
-## 样本与执行顺序
+Reference samples:
 
-| 顺序 | 检查 | 使用样本 | 必须留下的证据 | 状态 |
-| --- | --- | --- | --- | --- |
-| 1 | 系统中文候选输入 | 下方 A 的独立副本 | 输入法名称、各输入位置结果、异常录像或截图、保存后备份 | 待实机 |
-| 2 | 项目计划空白尾页 | Safari 中原项目计划的当前备份 | 同次导出的 JSON 与新 PDF、打印设置、逐页检查 | 待新成品 |
-| 3 | Safari 查找定位 | A，再复测原问题文档 | 搜索词、命中数、目标可见截图、替换撤销结果 | 指定A/B样本通过，见safari-search-20261010审计及VALIDATION最新记录 |
-| 4 | Safari 101% 打印 | 下方 B 的未编辑副本 | 同次 100% / 101% 两份 PDF 与设置截图 | 100%新PDF逐页通过；101%待新成品 |
-| 5 | 进程强退恢复 | 独立测试浏览器中的 A 副本 | 强退前后 JSON、保存状态、实际终止时间与恢复结果 | 通过（隔离WebKit宿主范围）；已保存及即时输入两组真实下载的完整JSON均一致 |
-| 6 | 真实配额耗尽 | 独立测试配置中的 A 副本 | 真实配额失败、草稿备份、旧存档完整性、释放后重试 | 待隔离环境 |
-| 7 | 最终联合签收 | 前六项使用的同一代码版本 | 证据链接、全套测试、类型检查、构建日志 | 前六项有结果后执行 |
+- [Editing/search sample](../examples/final-native-acceptance.vdoc.json).
+- [Safari printing sample](../tests/fixtures/safari-preview/source.vdoc.json).
 
-首页 **Your documents** 右侧、**New folder** 旁边是 **Import**。通过它导入本地文件；Safari 与内置浏览器的本地库不同，内置浏览器的文档链接不能代替 Safari 导入。
+Samples include A4 layout, a 36-body-row table, an image, a page break, and an end marker. Original multilingual markers remain in fixture data. Do not compare page counts from differently edited sources.
 
-- **A：输入与查找样本**：[final-native-acceptance.vdoc.json](../examples/final-native-acceptance.vdoc.json)，标题 `QA final native acceptance`。三个输入区和 `VDOC_SEARCH_TARGET_36` 各出现一次。SHA-256：`b09e9a5c3bc3efce849a9940974c7402a80629d86d4450c9f239dc98581550a2`。
-- **B：原 Safari 打印复现样本**：[source.vdoc.json](../tests/fixtures/safari-preview/source.vdoc.json)，标题 `QA final system acceptance`。SHA-256：`a1c397e5a22a5446c06aae46f84c1d48db1e6f2af7148f6651a8e3e5e8a4245b`。不要用编辑过的 A 与旧 B PDF 比较页数。
-- 两份样本均为 A4 纵向、20 mm 页边距，含 1 个表格（1 行表头、36 行正文）、1 张图片、1 个显式分页。末尾是 `FINAL PAGE CHECK 中文` 和结束段落；最后一页有这些内容就不是空白页。
-- 项目计划必须另外保留当次源备份。内置浏览器 Oct 5 版本 `027b7591-48eb-44ac-84c9-1ec66a4e18d8` 当前预览为 1 页，但不能据此认定它与旧 Safari PDF 的源文件完全相同。
+## Procedure
 
-每次记录浏览器版本、macOS 版本、输入法名称、测试日期和代码/构建标识。编辑测试使用独立 QA 副本，打印使用未编辑样本；不要覆盖旧失败 PDF。全部取证完成后再清理测试数据。
+1. Import through **Your documents > Import**.
+2. Exercise native composition in title, body, dialogs, and search. Observe candidates, cancellation, selection, and commit.
+3. Search the fixed marker, confirm visibility, replace, and undo.
+4. Export a backup and PDF in the same run. Record paper, margins, scale, browser headers, and counts.
+5. Test 100% and the specified alternate print scale on the same source.
+6. Inspect every page for clipping, images, missing/duplicate rows, header-only fragments, and final content.
+7. In an isolated profile, verify persisted recovery after termination with before/after backups and save timing.
+8. In isolated quota conditions, provoke write failure, inspect recovery, release space, and retry.
+9. Run relevant automated checks for the same candidate.
 
-## 1. 系统中文输入法
+## Evidence
 
-必须实际启用系统拼音候选窗，粘贴中文或发送合成 composition 事件不算本项。
+Retain JSON/PDF pairs, hashes, settings, screenshots, observed results, and unresolved differences. A visible end marker means the page contains content.
 
-1. 在 A 的 `正文输入区：` 后输入拼音并选择“中文输入测试”。候选期间按 Enter 只确认候选，不额外插入换行；完成后文字只出现一次。
-2. 再输入一段拼音，候选窗出现时按 Esc 取消；已提交文字不消失。左右移动光标、退格、Undo / Redo，核对光标所在位置、内容和撤销后的结果。
-3. 在 `列表输入区：` 和 `表格输入区：` 重复前两步，核对列表结构、相邻单元格和合并关系未变。
-4. 在 **Document title**、**Edit → Find and replace** 的搜索/替换框重复选词和取消。候选 Enter 不应提前离开标题或执行查找/替换；候选 Esc 不应关闭查找面板。
-5. **Format → Page setup → Header**、选中图片后 **Insert → Image properties** 的描述框、**Saved versions → Version name** 分别重复。候选 Enter 不应提前应用或保存版本；候选 Esc 不应丢掉整个弹窗草稿。候选完成后再主动提交，确认只应用一次。
-6. 标题或正文候选仍在输入时，观察 `Finishing input…`；结束/取消后等待 `Saved locally`。下载备份，再刷新，核对最终标题和正文。不要把关闭页面时系统是否展示确认框与内容落盘混为一项证据。
+Storage is scoped by origin. Another browser or hostname has a separate library. Browser automation availability alone does not establish native input, download, or print acceptance.
 
-工具栏补充复验：文字颜色、Highlight、Cell background自定义色值框在候选Escape后保留弹层和草稿，候选确认不提前Apply；结束候选后普通Apply/Escape恢复。字号框候选Enter/Escape不应提前失焦或改动正文，候选完成后的Enter仍正常应用。相应自动化保护已通过，真实候选窗结果仍待记录。
-
-逐个记录八类输入位置：正文、列表、表格、标题、查找/替换、页眉、图片描述、版本名。某处失败就记录具体按键顺序，不以其他位置通过代替。
-
-## 2. 项目计划空白尾页
-
-1. 在 Safari 打开原项目计划，先导出当次 `.vdoc.json`，记录正文末句；保留页面设置。
-2. 点击工具栏 **Print**，记录 VDoc 预览页数和末页内容。进入 **Print / Save PDF**，记录纸张、方向、缩放和 Safari 自带页眉页脚设置；基线用匹配纸张方向、100% 缩放。
-3. 保存为新的 `project-plan-YYYYMMDD-100.pdf`，与当次源备份配对。逐页查看实际 PDF：全部正文、表格和末句完整，无多余空白页、重复内容或裁切。
-
-旧 PDF 有 2 页且末页空白；当前内置浏览器预览 1 页不是关闭依据。若新源确实相同且内容能容纳 1 页，预期新 PDF 为 1 页；若源内容改变，先核对差异，不能单以页数判失败。
-
-## 3. Safari 查找定位
-
-1. 打开未编辑的 A，将编辑器滚动到开头。通过 **Edit → Find and replace** 搜索 `VDOC_SEARCH_TARGET_36`。
-2. 应显示 `1 of 1`，末行目标自动进入可见区域，并有高亮；不能只更新计数。目标不得被顶部菜单、查找栏或尺子遮挡。
-3. 滚回开头，点击 **Next**，确认唯一目标再次可见。关闭/重开面板，分别在编辑器 100% 和 125% 缩放下重复；这里不是系统打印缩放。
-4. 将该唯一标记替换为 `QA_FIND_REPLACEMENT`，核对只改一处，再 Undo。导出备份，比对正文内容和结构恢复原样（忽略保存时间等元数据）。
-5. 回到原问题文档搜索用户当时的 `IMe`，核对实际命中。若原文已变导致没有匹配，记录为原问题复现条件缺失，不能记成定位通过。
-
-## 4. Safari 100% / 101% 打印
-
-1. 使用未编辑的 B。VDoc 页面设置 A4 / Portrait / 20 mm，系统打印纸张同为 A4 纵向。记录 Safari 自带页眉页脚开关，两次保持一致。
-2. 在系统打印窗口以 **100%** 保存 `qa-system-YYYYMMDD-100.pdf`，再只改系统缩放为 **101%** 保存 `qa-system-YYYYMMDD-101.pdf`。不要改编辑器缩放或正文来凑页数。
-3. 100% 已有历史基线为 5 页；新文件仍需逐页看。核对 36 行正文各出现一次、图片和合并格完整、跨页表头、文档页码、末页标题和结束段落。
-4. 101% 需检查实际成品，而不只看打印对话框页数。额外空白页、内容碎片溢出成页、裁切或重复均为失败；保持本项未关闭，附上两份 PDF 和设置。
-
-已知反馈是 100% 为 5 页、101% 跳到 12 页。此次操作单没有修复或取消该限制；不能通过隐藏内容、取消完整性检查或将 100% 通过外推到 101% 来签收。
-
-进一步定位101%时，可先执行[两页打印对照](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/safari-print-scale/README.md)，分离固定纸框和复杂表格的影响。七组对照已在Safari运行；无CSS单页HTML也出现100%一页、101%两页，尚未取得新PDF。详细结果见对照README，不替代原始B样本的PDF验收。
-
-## 5. 隔离浏览器进程强退
-
-2026-10-10已取得独立宿主及部分实机证据，见[原生强退记录](https://github.com/Q-cell2/vdoc/blob/dad346695fc579009ba090cf961f5e69d4ecd032/tests/fixtures/native-crash-20261010/README.md)。宿主编译和操作说明在[tools/native-qa](../tools/native-qa/README.md)。即时强退最终备份已于07:46:49 UTC完成，审计确认标题与完整content一致，故两组宿主强退案例通过。未提交的末尾x丢失；宿主终止与WebKit存储服务/事务内部终止需区分。
-
-仅在无个人标签页/数据的独立测试浏览器进程中执行；若无法隔离，保持待验。终止浏览器进程与普通刷新、关标签页、正常退出不是同一测试。
-
-1. 导入 A，设置独特标题及正文标记 `CRASH_SAVED_<时间>`，下载基准备份。等待并记录 `Saved locally` 后真正终止测试进程。
-2. 重开同一测试配置和同一站点，核对标题、全文、表格、图片以及文档列表；导出恢复后备份，与基准内容和结构比对。
-3. 单独测试未完成保存：从已提交基准开始，输入 `CRASH_PENDING_<时间>` 后立即终止进程，记录最后看到的状态。恢复结果应是完整可用的已提交版本，不出现半笔结构损坏或覆盖其他文档。
-4. 未提交尾部可能丢失，必须报告实际丢失范围，不承诺零丢失。如果无法证明终止发生在写入事务中，只能记录为“输入后立即强退”，事务中断证据仍缺失。
-
-## 6. 隔离环境真实配额耗尽
-
-本项需要能够限制测试存储的获准环境。不得填满日常浏览器或整块磁盘；仅抛出 `QuotaExceededError` 的 mock 不算真实配额。
-
-1. 建立独立测试配置，保存并下载基准备份。记录存储配额、用量和可控的资源上限；先确认测试填充数据能单独清除。
-2. 受控填充到浏览器实际拒绝存储，保留真实失败记录。在 VDoc 修改标题/正文，确认显示保存失败而非 `Saved locally`，当前草稿仍可编辑。
-3. 使用警告中的 **Download backup** 下载未保存草稿，在另一个干净测试配置导入核对。保留备份后，重开配额测试配置核对最后成功存档完整。
-4. 只释放测试填充数据，不删除 VDoc 存档；在仍持有草稿的页面点击 **Retry save**，确认成功并刷新后完整恢复。若页面已关闭，先从草稿备份恢复，再验证保存。
-5. 保存证据后清理隔离测试配置。无法获得真实配额拒绝时，保留待验，不继续无上限填充。
-
-## 7. 联合签收记录
-
-每项使用以下字段：编号 / 样本 SHA-256 / 浏览器与系统 / 操作及设置 / 预期 / 实际 / 截图或文件路径 / 通过、失败或待验 / 复验版本。只有前六项完成，或用户明确调整对应支持范围后，才做最终签收。
-
-最终候选版本运行 `npm test -- --maxWorkers=2`、`npm run typecheck`，类型检查成功后运行 `npm run build`，并保留完整日志。有实现修复时补对应回归并重验受影响的实机路径。最新完整基线是 133 文件 / 1899 项（2026-10-10，另含4项预览可见时间预算和6项初始化握手恢复回归），包含版本安全、输入/查找、备份恢复、文档路径/当前项识别、6项合成DOM剪切粘贴、4项预览失败重试、10项导出文件名边界、7项文件库搜索/弹窗错误、6项Word代码块、6项行内代码、10项脚注、9项分隔线、13项引用块、13项列表代码/分页/续号、9项列表图片/编辑恢复、9项列表表格/嵌套合并、13项空列表项/编号/深层级、13项外部编号标题/大纲级别、13项样式编号继承/层级关联/取消续号/历史隔离、13项颜色弹层/字号候选保护、7项候选输入/存储事务/失败备份重试/切换隔离联合回归、6项文档选择器慢保存/读取候选保护、8项版本窗口/检查点/慢保存候选保护、5项版本/自动保存/存储事务联合回归、6项导入/选择文档/失败重试存储联合回归、6项搜索/收藏/回收站/排序/视图偏好联合回归、5项长文档查找缓存/坐标/替换撤销回归、9项查找候选按钮保护/只读失败重试回归、11项查找候选导航/延迟聚焦滚动回归、4项真实DOCX字节/导出生命周期/备份与迟到隔离联合回归、9项预览手动换行完整性保护回归、10项预览分隔线/图文顺序/单元格归属回归、13项重复表头换行/对象/列表/嵌套结构回归、12项表格分页行列/跨度/归属/空行回归及7项分页片段占位/错列保护回归；类型检查及随后生产构建通过。内置浏览器损坏图片重试/撤销恢复通过；另补复杂三表样本A4/Letter横纵和页边距设置实际预览、Undo/Redo、新会话持久化及恢复基线（相关4文件98项，产品未变）。另完成复杂表格公开操作层样式/RTL合并/插行及界面Undo/Redo、5页预览、新会话编辑结果保存检查（相关4文件74项，产品未变）。另完成公开操作层失败批次回滚、重复请求、过期版本/旧会话拒绝及历史和新会话存档实际联合验收（相关3文件64项，产品未变）。另补删除行/嵌套表后旧目标拒绝、Undo身份恢复、同标识及版本的跨文档会话隔离和两份新页面存档全文核对（相关3文件57项，产品未变）。另完成整列/RTL嵌套整行移动、合并保护、固定合并表头数值稳定排序、sv排序与历史/5页预览/新会话存档验收（相关4文件71项，产品未变）。另修复导入尺寸阻塞表格属性窗口及未选窄列影响宽度编辑，新增10项组件回归；实际窗口编辑、尺寸/历史/5页预览/新会话存档和属性读回通过。这仍不能代替前六项实机结果。
-
-初次建立本操作单时仅核对样本及步骤；此后已取得原始B的100% Safari PDF及隔离宿主两组强退通过证据，详见上方状态表及VALIDATION.md。真实IME和配额等待验项目保持待验。
+See [gates](ACCEPTANCE_GATE.md), [the final worksheet](acceptance/FINAL_FIVE_ACCEPTANCE.md), and [evidence](QA_EVIDENCE.md).

@@ -16,7 +16,7 @@ import { SelectiveUndoHistory } from '../editor/document/selective-undo';
 import { requestSignature } from '../shared/request-signature';
 
 /** Operations that locate what they change themselves (by query or block ID), never through the request target. */
-const TARGET_FREE_OPERATIONS = new Set<string>(['text.findReplace', 'block.insert', 'block.delete', 'block.move']);
+const TARGET_FREE_OPERATIONS = new Set<string>(['text.findReplace', 'text.styleMatches', 'block.insert', 'block.delete', 'block.move']);
 
 /** A selection captured now and kept mapped through every later document change until released. */
 export type SelectionAnchor = { resolve(): { from: number; to: number }; release(): void };
@@ -171,7 +171,7 @@ export class DocumentEngine {
     if (this.isComposing()) return fail('COMPOSING', 'Finish the current text composition first.');
     if (request.expectedRevision !== undefined && request.expectedRevision !== this.revision) return fail('STALE', 'The document has changed. Read the target again.');
     if (request.expectedBlocks !== undefined) {
-      if (request.expectedRevision === undefined && request.operations.some(op => op.type.startsWith('document.') || op.type === 'text.findReplace' || op.type === 'block.move' || op.type === 'block.insert' || op.type === 'block.delete')) return fail('STALE', 'Document-wide operations require a document revision.');
+      if (request.expectedRevision === undefined && request.operations.some(op => op.type.startsWith('document.') || op.type === 'text.findReplace' || op.type === 'text.styleMatches' || op.type === 'block.move' || op.type === 'block.insert' || op.type === 'block.delete')) return fail('STALE', 'Document-wide operations require a document revision.');
       const target = request.target;
       const targetId = target.kind === 'block' ? target.id : target.kind === 'text' ? target.blockId : target.kind === 'cell' || target.kind === 'cells' ? target.tableId : undefined;
       if (request.expectedRevision === undefined && (!targetId || !request.expectedBlocks.some(block => block.id === targetId))) return fail('STALE', 'Block versions must cover the target.');

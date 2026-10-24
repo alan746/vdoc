@@ -967,6 +967,7 @@
     "text.insert",
     "text.replace",
     "text.style",
+    "text.styleMatches",
     "text.toggle"
   ]
 }
