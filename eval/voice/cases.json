@@ -1,0 +1,250 @@
+{
+  "language": "zh-CN",
+  "cases": [
+    {
+      "id": "bold-first-paragraph",
+      "utterances": [
+        "把第一段加粗"
+      ],
+      "checks": [
+        {
+          "marked": "本项目旨在",
+          "mark": "bold"
+        },
+        {
+          "othersUnchanged": [
+            "本项目旨在"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "italic-by-section",
+      "utterances": [
+        "把背景下面的第二段改成斜体"
+      ],
+      "checks": [
+        {
+          "marked": "现有工具",
+          "mark": "italic"
+        },
+        {
+          "othersUnchanged": [
+            "现有工具"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insert-under-heading",
+      "utterances": [
+        "在进度下面加一段：第二阶段将在下个月开始。"
+      ],
+      "checks": [
+        {
+          "inSection": "进度",
+          "text": "第二阶段"
+        },
+        {
+          "othersUnchanged": []
+        }
+      ]
+    },
+    {
+      "id": "append-at-end",
+      "utterances": [
+        "在文档最后加一句：谢谢大家。"
+      ],
+      "checks": [
+        {
+          "last": "谢谢大家"
+        },
+        {
+          "othersUnchanged": []
+        }
+      ]
+    },
+    {
+      "id": "insert-table",
+      "utterances": [
+        "在预算下面插入一个三行两列的表格"
+      ],
+      "checks": [
+        {
+          "tableInSection": "预算",
+          "rows": 3,
+          "columns": 2
+        },
+        {
+          "othersUnchanged": []
+        }
+      ]
+    },
+    {
+      "id": "heading-level",
+      "utterances": [
+        "把背景这个标题改成一级标题"
+      ],
+      "checks": [
+        {
+          "heading": "背景",
+          "level": 1
+        },
+        {
+          "othersUnchanged": [
+            "背景"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "replace-text",
+      "utterances": [
+        "把十万元改成十五万元"
+      ],
+      "checks": [
+        {
+          "exists": "预算总额为十五万元"
+        },
+        {
+          "othersUnchanged": [
+            "预算总额"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "delete-asks-first",
+      "utterances": [
+        "删除第一阶段那一段"
+      ],
+      "checks": [
+        {
+          "exists": "第一阶段已经完成"
+        },
+        {
+          "agentSaid": "吗|确认|确定|[?？]"
+        },
+        {
+          "unchanged": true
+        }
+      ]
+    },
+    {
+      "id": "delete-after-yes",
+      "utterances": [
+        "删除第一阶段那一段",
+        "确定，删吧"
+      ],
+      "turnChecks": [
+        [
+          {
+            "exists": "第一阶段已经完成"
+          }
+        ]
+      ],
+      "checks": [
+        {
+          "missing": "第一阶段已经完成"
+        },
+        {
+          "othersUnchanged": [
+            "第一阶段"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "undo-last-edit",
+      "utterances": [
+        "把第一段加粗",
+        "撤销刚才的修改"
+      ],
+      "turnChecks": [
+        [
+          {
+            "marked": "本项目旨在",
+            "mark": "bold"
+          }
+        ]
+      ],
+      "checks": [
+        {
+          "notMarked": "本项目旨在",
+          "mark": "bold"
+        },
+        {
+          "unchanged": true
+        }
+      ]
+    },
+    {
+      "id": "mixed-language",
+      "utterances": [
+        "把 budget 那一节的段落加粗"
+      ],
+      "checks": [
+        {
+          "marked": "预算总额",
+          "mark": "bold"
+        },
+        {
+          "othersUnchanged": [
+            "预算总额"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "self-correction",
+      "utterances": [
+        "把进度那段，不对，把预算那段加粗"
+      ],
+      "checks": [
+        {
+          "marked": "预算总额",
+          "mark": "bold"
+        },
+        {
+          "notMarked": "第一阶段",
+          "mark": "bold"
+        },
+        {
+          "othersUnchanged": [
+            "预算总额"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bullet-list",
+      "utterances": [
+        "把背景下面的两段变成项目符号列表"
+      ],
+      "checks": [
+        {
+          "inList": "用户希望",
+          "list": "bulletList"
+        },
+        {
+          "inList": "现有工具",
+          "list": "bulletList"
+        }
+      ]
+    },
+    {
+      "id": "question-only",
+      "utterances": [
+        "这个文档一共有几个标题？"
+      ],
+      "checks": [
+        {
+          "unchanged": true
+        },
+        {
+          "agentSaid": "4|四"
+        }
+      ]
+    }
+  ]
+}

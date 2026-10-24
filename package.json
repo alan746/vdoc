@@ -15,6 +15,8 @@
     "db:generate": "drizzle-kit generate",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "eval:voice": "vitest run --config eval/voice/vitest.config.ts",
+    "eval:voice:tts": "node scripts/voice-eval-tts.mjs",
     "test:worker": "node scripts/check-worker-smoke.mjs",
     "postinstall": "patch-package",
     "db:migrate": "node scripts/migrate-neon.mjs"
@@ -78,6 +80,8 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
+    "@vrealtime/server": "0.2.0",
+    "@vrealtime/testing": "0.2.0",
     "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "16.3.4",
