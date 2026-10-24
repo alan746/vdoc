@@ -18,7 +18,7 @@ const emptyParameters = { type: 'object', properties: {}, additionalProperties: 
 export const documentToolCatalog = [
   {
     name: 'insert_structured_article', readOnly: false,
-    description: 'Insert a complete article atomically, preserving existing content. Read session and revision first; resolve the writing destination to document_end or before_block/after_block with a stable top-level blockId, never the cursor by default. Title becomes a real H1; body contains plain paragraphs and H2/H3, with no skipped levels. Every section including the introduction needs body text. Limits: 80 body blocks, 3000 characters per block, 12000 total, 200 title. Do not send HTML, node attributes or an outline. On STALE retain article text, refresh destination and revision, and retry. Do not supply callId, actor or turnId; the caller supplies them. Only claim success after ok:true.',
+    description: 'Insert a complete article atomically, preserving existing content. Read session and revision first; resolve the writing destination to document_end or before_block/after_block with a stable top-level blockId, never the cursor by default. Title becomes a real H1; body contains plain paragraphs and H2/H3, with no skipped levels. An introduction before the first H2 is optional. Every section needs body text. Limits: 80 body blocks, 3000 characters per block, 12000 total, 200 title. Do not send HTML, node attributes or an outline. On STALE retain article text, refresh destination and revision, and retry. Do not supply callId, actor or turnId; the caller supplies them. Only claim success after ok:true.',
     parameters: zodToJsonSchema(realtimeArticleSchema, { $refStrategy: 'none' }),
   },
   {

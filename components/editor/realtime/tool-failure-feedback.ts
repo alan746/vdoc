@@ -1,3 +1,5 @@
+import { ARTICLE_VALIDATION_MESSAGES } from '../../../lib/domain/entities/structured-article';
+
 /** Recover known document error codes preserved in the SDK's FAILED message.
  * Never display arbitrary provider messages or document content in the bar. */
 export function toolFailureFeedback(result: { code?: string; message?: string }): string {
@@ -5,6 +7,10 @@ export function toolFailureFeedback(result: { code?: string; message?: string })
   switch (code) {
     case 'INVALID': {
       const field = /^INVALID: ([A-Za-z][A-Za-z0-9_.\[\]]{0,100}):/.exec(result.message ?? '')?.[1];
+      // Only expose fixed validation messages, never arbitrary tool/provider text.
+      const reason = field && Object.values(ARTICLE_VALIDATION_MESSAGES).find(message =>
+        result.message?.startsWith(`INVALID: ${field}: ${message}`));
+      if (reason) return `The assistant sent invalid edit parameters (${field}): ${reason} Ask it to correct the request. (INVALID)`;
       return `The assistant sent invalid edit parameters${field ? ` (${field})` : ''}. Ask it to correct the request. (INVALID)`;
     }
     case 'STALE': return 'The document changed before this edit. Ask the assistant to read it again and retry. (STALE)';

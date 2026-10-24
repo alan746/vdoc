@@ -55,3 +55,18 @@ it('uses a stable boundary regardless of cursor and supports selective agent und
   expect(engine.undoTurn('article-turn', { actor: 'boson', turnId: 'undo-turn' }).ok).toBe(true);
   expect(editor.state.doc.textContent).toBe('Existing content');
 });
+
+it('accepts an article starting with H2, reports the real outline, and undoes the whole article', () => {
+  const before = editor.getJSON();
+  const input = request(); input.blocks.shift();
+  expect(engine.insertStructuredArticle(input)).toMatchObject({ ok: true, headingCounts: { 1: 1, 2: 1, 3: 1 }, paragraphCount: 2 });
+  expect(engine.outline().map(heading => [heading.level, heading.text])).toEqual([[1, 'Ancient Greece'], [2, 'Origins'], [3, 'Crete']]);
+  expect(engine.history('undo', 'api').ok).toBe(true);
+  expect(editor.getJSON()).toEqual(before);
+});
+it('still rejects consecutive section headings without body prose', () => {
+  const before = editor.getJSON();
+  const input = request(); input.blocks.splice(0, 1); input.blocks.splice(1, 1);
+  expect(engine.insertStructuredArticle(input)).toMatchObject({ ok: false, code: 'INVALID', error: expect.stringContaining('Each section needs body text before another heading.') });
+  expect(editor.getJSON()).toEqual(before);
+});

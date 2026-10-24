@@ -154,3 +154,11 @@ it('inserts a structured article through the trusted realtime lifecycle and dedu
   await tools.undo_turn.run({ expectedSessionId: engine.sessionId, expectedRevision: engine.revision, targetTurnId: 'turn-1' }, context('undo-article', 'undo-article'));
   expect(engine.snapshot().blocks.map(block => block.text)).toEqual(['Title', 'hello', 'second']);
 });
+
+it('accepts an H2-first article through realtime validation without an introduction', async () => {
+  const result = await realtimeDocumentTools(executor).insert_structured_article.run({
+    expectedSessionId: engine.sessionId, expectedRevision: engine.revision, destination: { kind: 'document_end' }, title: 'History',
+    blocks: [{ kind: 'heading', level: 2, text: 'Origins' }, { kind: 'paragraph', text: 'Body' }],
+  }, context());
+  expect(result).toMatchObject({ ok: true, headingCounts: { 1: 1, 2: 1, 3: 0 }, paragraphCount: 1 });
+});
