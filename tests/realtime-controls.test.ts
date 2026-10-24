@@ -223,7 +223,7 @@ it('lights both ends of the bar by what the assistant is doing', async () => {
     expect(dock().dataset.lamp).toBe('listening');
     await act(async () => calls.onActivity!({ type: 'turn', state: 'acting', turnId: 't1' }));
     expect(dock().dataset.lamp).toBe('working');
-    expect(mount.textContent).toContain('speaking now stops the task');
+    expect(mount.textContent).toContain('press Stop to cancel');
     await act(async () => calls.onActivity!({ type: 'interrupted' }));
     expect(dock().dataset.lamp).toBe('interrupted');
     await act(async () => { vi.advanceTimersByTime(2500); });

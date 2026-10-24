@@ -10,7 +10,7 @@ export const voiceLampLabels: Record<VoiceLamp, string> = {
   off: 'Voice off',
   connecting: 'Connecting… wait before speaking',
   listening: 'Listening: speak now',
-  working: 'Working: wait, speaking now stops the task',
+  working: 'Working: you can add details; press Stop to cancel',
   speaking: 'Assistant speaking: speak to interrupt',
   interrupted: 'Stopped: the last task was interrupted',
   error: 'Something went wrong: try again',
