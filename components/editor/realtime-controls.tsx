@@ -10,6 +10,7 @@ import { documentNavigation } from '@/lib/usecases/document-navigation';
 import { isCompositionKey } from '@/lib/editor/keyboard-composition';
 import { toolFailureFeedback } from './realtime/tool-failure-feedback';
 import { ActivityTimeline } from './realtime/activity-timeline';
+import { INTERRUPTED_LAMP_MS, voiceLamp, voiceLampLabels, voiceLampOrder } from './realtime/voice-lamp';
 
 const turnLabels: Record<RealtimeTurnState, string> = { idle: '', listening: 'Listening', thinking: 'Thinking', speaking: 'Speaking', acting: 'Editing' };
 
@@ -44,6 +45,13 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const [failures, setFailures] = useState<{ callId: string; feedback: string }[]>([]);
   const [language, setLanguage] = useState('auto');
   const [turn, setTurn] = useState<RealtimeTurnState>('idle');
+  const [interrupted, setInterrupted] = useState(false);
+  const interruptedTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const showInterrupted = () => {
+    clearTimeout(interruptedTimer.current); setInterrupted(true);
+    interruptedTimer.current = setTimeout(() => setInterrupted(false), INTERRUPTED_LAMP_MS);
+  };
+  useEffect(() => () => clearTimeout(interruptedTimer.current), []);
   const connection = useRef<RealtimeConnection | null>(null);
   const activityListeners = useRef(new Set<(activity: RealtimeActivity) => void>());
   const subscribeActivity = useCallback((listener: (activity: RealtimeActivity) => void) => {
@@ -61,7 +69,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
   const disconnect = () => {
     generation.current = null; starting.current = false;
     connection.current?.close(); connection.current = null;
-    setStatus('disconnected'); setMessage(''); setTurn('idle'); setMicrophone('off'); setLevel(0); setHeard(''); setToolFeedback('');
+    setStatus('disconnected'); setMessage(''); setTurn('idle'); setInterrupted(false); setMicrophone('off'); setLevel(0); setHeard(''); setToolFeedback('');
   };
   const connect = () => {
     if (!config || starting.current) return;
@@ -80,8 +88,8 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
         onMicrophone: state => { if (current === generation.current) setMicrophone(state); },
         onActivity: activity => {
           if (current !== generation.current) return;
-          if (activity.type === 'turn') setTurn(activity.state);
-          else if (activity.type === 'interrupted') { setTurn('idle'); setToolFeedback('Stopped. You can keep speaking.'); setToolFailed(false); }
+          if (activity.type === 'turn') { setTurn(activity.state); if (activity.state !== 'idle') setInterrupted(false); }
+          else if (activity.type === 'interrupted') { setTurn('idle'); showInterrupted(); setToolFeedback('Stopped. You can keep speaking.'); setToolFailed(false); }
           else if (activity.type === 'transcript' && activity.role === 'user') setHeard(activity.text.slice(-300));
           else if (activity.type === 'call') { setToolFeedback('Working on your request…'); setToolFailed(false); }
           else if (activity.type === 'result') {
@@ -108,19 +116,23 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
     : status === 'reconnecting' ? 'Reconnecting…'
     : status === 'connected' ? (turn === 'thinking' || turn === 'acting' || turn === 'speaking' ? `${turnLabels[turn]}…` : 'Listening… speak naturally')
     : 'Tap the microphone and start talking';
+  const lamp = voiceLamp({ checking, status, microphone, turn, failed: Boolean(accessError || message) || toolFailed, interrupted });
   const busy = status === 'connected' && (turn === 'thinking' || turn === 'acting' || turn === 'speaking');
-  return <section aria-label="Document assistant" className="voice-dock" data-active={active} data-listening={microphone === 'on'} style={{ '--voice-level': level } as CSSProperties}>
+  return <section aria-label="Document assistant" className="voice-dock" data-active={active} data-lamp={lamp} data-listening={microphone === 'on'} style={{ '--voice-level': level } as CSSProperties}>
     <div className="voice-float">
       <div className="voice-row">
         <div className="voice-field">
           <span className="voice-glow" aria-hidden="true" />
           <div className="voice-field-inner">
+            <span className="voice-lamp" aria-hidden="true" title={voiceLampLabels[lamp]} />
             <span role="status" className="sr-only">{statusLabel}</span>
+            <span className="sr-only" aria-live="polite">{voiceLampLabels[lamp]}</span>
             <span className="sr-only" aria-live="polite">{microphoneLabels[microphone]}</span>
             <div className="voice-transcript"><p className={`voice-hint ${heard ? '' : 'voice-placeholder'}`}>{heard || placeholder}</p></div>
             {busy && <button type="button" className="voice-stop" onClick={() => connection.current?.interrupt()} title="Stop the current response (Esc). The microphone stays on."><Square size={11} fill="currentColor" /><span className="sr-only">Stop assistant</span></button>}
             <details className="voice-more"><summary aria-label="Voice options"><Ellipsis size={17} /></summary>
               <div className="voice-menu">
+                <div className="voice-lamp-legend"><strong>Status lights</strong><ul>{voiceLampOrder.map(item => <li key={item} data-lamp={item} data-current={item === lamp}><span className="voice-lamp" aria-hidden="true" />{voiceLampLabels[item]}</li>)}</ul></div>
                 <label className="voice-language">Speech language<select aria-label="Voice language" value={language} onChange={event => setLanguage(event.target.value)} disabled={checking || active}><option value="auto">Document language</option><option value="zh-CN">中文</option><option value="en-US">English</option></select></label>
                 {failures.length > 0 && <div className="voice-edits" aria-label="Recent voice failures"><strong>Recent unsuccessful actions</strong><ul>{failures.map(item => <li key={item.callId}>{item.feedback}</li>)}</ul></div>}
                 {config && <div className="voice-edits"><strong>Recent edits</strong><ActivityTimeline engine={engine} active={active} subscribeActivity={subscribeActivity} /></div>}
@@ -128,6 +140,7 @@ export function RealtimeControls({ engine, docId, title }: { engine: DocumentEng
                 <p className="voice-about">Tap once, then speak naturally across multiple turns. Esc interrupts the assistant; tap the microphone again to turn it off. Voice requires a signed-in account and internet access. Cloud documents must be yours and outside Trash. Usage limits apply.</p>
               </div>
             </details>
+            <span className="voice-lamp" aria-hidden="true" title={voiceLampLabels[lamp]} />
           </div>
         </div>
         <button type="button" className="voice-orb" disabled={!active && (!config || checking)} onClick={active ? disconnect : connect} title={active ? 'Turn off voice' : 'Start voice input'}>

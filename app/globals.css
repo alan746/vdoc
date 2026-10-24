@@ -420,7 +420,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 .voice-dock[data-active="true"] .voice-glow::after { animation-play-state:running; }
 .voice-dock[data-listening="true"] .voice-glow,.voice-dock[data-listening="true"] .voice-glow::after { animation-duration:3.5s; }
 @keyframes voice-spin { to { --voice-angle:360deg; } }
-.voice-field-inner { position:relative; display:flex; align-items:center; gap:6px; height:52px; padding:0 8px 0 22px; border-radius:999px; background:rgba(255,255,255,.88); -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px); border:1px solid rgba(0,0,0,.06); box-shadow:0 8px 30px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05); }
+.voice-field-inner { position:relative; display:flex; align-items:center; gap:6px; height:52px; padding:0 8px 0 16px; border-radius:999px; background:rgba(255,255,255,.88); -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px); border:1px solid rgba(0,0,0,.06); box-shadow:0 8px 30px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05); }
 .voice-transcript { flex:1; min-width:0; display:flex; justify-content:flex-end; overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 28px); mask-image:linear-gradient(90deg, transparent, #000 28px); }
 .voice-hint { margin:0; flex-shrink:0; white-space:nowrap; font-size:15px; letter-spacing:-.2px; color:#1d1d1f; }
 .voice-hint.voice-placeholder { color:#86868b; }
@@ -446,6 +446,27 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 .voice-orb:not(:disabled):active { transform:scale(.96); }
 .voice-orb:disabled { opacity:.4; cursor:not-allowed; }
 .voice-dock[data-active="true"] .voice-orb { background:linear-gradient(145deg, #ff5f57, #e0352b); box-shadow:0 8px 24px rgba(224,53,43,.35), 0 0 0 calc(var(--voice-level) * 8px) rgba(255,95,87,.18); transition:transform .15s ease, box-shadow .12s linear; }
+/* Status lights at both ends of the bar: one color per assistant state, so users know when speaking would interrupt a task. */
+[data-lamp="off"] { --lamp:#d1d1d6; }
+[data-lamp="connecting"] { --lamp:#8e8e93; }
+[data-lamp="listening"] { --lamp:#34c759; }
+[data-lamp="working"] { --lamp:#0a84ff; }
+[data-lamp="speaking"] { --lamp:#af52de; }
+[data-lamp="interrupted"] { --lamp:#ff9500; }
+[data-lamp="error"] { --lamp:#ff3b30; }
+.voice-lamp { flex-shrink:0; width:10px; height:10px; border-radius:50%; background:var(--lamp); box-shadow:0 0 0 3px color-mix(in srgb, var(--lamp) 18%, transparent); transition:background .2s ease, box-shadow .2s ease; }
+.voice-field-inner > .voice-lamp:last-child { margin:0 6px 0 2px; }
+.voice-dock[data-lamp="listening"] .voice-field-inner > .voice-lamp { box-shadow:0 0 0 calc(3px + var(--voice-level) * 5px) color-mix(in srgb, var(--lamp) 25%, transparent), 0 0 calc(4px + var(--voice-level) * 10px) var(--lamp); transition:box-shadow .12s linear; }
+.voice-dock[data-lamp="working"] .voice-field-inner > .voice-lamp { animation:voice-lamp-pulse 1s ease-in-out infinite; }
+.voice-dock[data-lamp="speaking"] .voice-field-inner > .voice-lamp { box-shadow:0 0 0 3px color-mix(in srgb, var(--lamp) 25%, transparent), 0 0 10px var(--lamp); }
+.voice-dock[data-lamp="interrupted"] .voice-field-inner > .voice-lamp { animation:voice-lamp-blink .5s ease-in-out 3; }
+.voice-dock[data-lamp="connecting"] .voice-field-inner > .voice-lamp { animation:voice-lamp-pulse 1.6s ease-in-out infinite; }
+@keyframes voice-lamp-pulse { 50% { box-shadow:0 0 0 7px color-mix(in srgb, var(--lamp) 10%, transparent), 0 0 12px var(--lamp); transform:scale(1.15); } }
+@keyframes voice-lamp-blink { 50% { opacity:.25; } }
+.voice-lamp-legend strong { display:block; margin-bottom:4px; color:#1d1d1f; font-weight:500; }
+.voice-lamp-legend ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; }
+.voice-lamp-legend li { display:flex; align-items:center; gap:8px; }
+.voice-lamp-legend li[data-current="true"] { color:#1d1d1f; font-weight:500; }
 .voice-tool-feedback,.voice-tool-error,.voice-error { order:-1; max-width:100%; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,.92); -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px); box-shadow:0 4px 16px rgba(0,0,0,.08); font-size:12px; color:#3a7d3a; }
 .voice-tool-error { color:#c0392b; }
 .voice-error { display:flex; align-items:center; gap:8px; border-radius:14px; color:#b3362a; background:#fff5f3; line-height:1.45; }
@@ -453,12 +474,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid #7488e8; outline-
 .voice-error button { text-decoration:underline; cursor:pointer; flex-shrink:0; }
 .voice-dock button:focus-visible,.voice-dock select:focus-visible,.voice-dock summary:focus-visible,.voice-dock a:focus-visible { outline:2px solid #0071e3; outline-offset:3px; }
 @media screen { .canvas-scroll { padding-bottom:110px; } }
-@media (prefers-reduced-motion:reduce) { .voice-glow,.voice-glow::after,.voice-orb { animation:none; transition:none; } }
+@media (prefers-reduced-motion:reduce) { .voice-glow,.voice-glow::after,.voice-orb,.voice-lamp { animation:none !important; transition:none; } }
 @media (max-width:760px) {
   .voice-float { bottom:max(12px, env(safe-area-inset-bottom)); width:calc(100% - 24px); }
   .voice-field-inner,.voice-orb { height:48px; }
   .voice-orb { width:48px; }
-  .voice-field-inner { padding-left:18px; }
+  .voice-field-inner { padding-left:14px; }
   .voice-hint { font-size:14px; }
   .voice-error { flex-wrap:wrap; }
 }

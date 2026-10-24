@@ -211,3 +211,22 @@ it('retains a failed action in voice options after a successful read and disconn
   await render('another-document');
   expect(mount.querySelector('[aria-label="Recent voice failures"]')).toBeNull();
 });
+it('lights both ends of the bar by what the assistant is doing', async () => {
+  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+  try {
+    await render();
+    const dock = () => mount.querySelector<HTMLElement>('.voice-dock')!;
+    expect(dock().dataset.lamp).toBe('off');
+    expect(mount.querySelectorAll('.voice-field-inner > .voice-lamp')).toHaveLength(2);
+    await click('Connect voice assistant');
+    await act(async () => calls.onMicrophone!('on'));
+    expect(dock().dataset.lamp).toBe('listening');
+    await act(async () => calls.onActivity!({ type: 'turn', state: 'acting', turnId: 't1' }));
+    expect(dock().dataset.lamp).toBe('working');
+    expect(mount.textContent).toContain('speaking now stops the task');
+    await act(async () => calls.onActivity!({ type: 'interrupted' }));
+    expect(dock().dataset.lamp).toBe('interrupted');
+    await act(async () => { vi.advanceTimersByTime(2500); });
+    expect(dock().dataset.lamp).toBe('listening');
+  } finally { vi.useRealTimers(); }
+});
