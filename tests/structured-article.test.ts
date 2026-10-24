@@ -29,8 +29,6 @@ it('inserts real headings, preserves content, reports IDs, deduplicates and undo
   expect(editor.getJSON()).toEqual(before);
 });
 it.each([
-  { blocks: [{ kind: 'heading', level: 3, text: 'Skipped' }, { kind: 'paragraph', text: 'Body' }] },
-  { blocks: [{ kind: 'paragraph', text: 'Intro' }, { kind: 'heading', level: 2, text: 'Truncated' }] },
   { blocks: [{ kind: 'paragraph', text: 'x', attrs: {} }] },
   { blocks: Array(81).fill({ kind: 'paragraph', text: 'x' }) },
   { blocks: Array(5).fill({ kind: 'paragraph', text: 'x'.repeat(3000) }) },
@@ -64,9 +62,11 @@ it('accepts an article starting with H2, reports the real outline, and undoes th
   expect(engine.history('undo', 'api').ok).toBe(true);
   expect(editor.getJSON()).toEqual(before);
 });
-it('still rejects consecutive section headings without body prose', () => {
-  const before = editor.getJSON();
-  const input = request(); input.blocks.splice(0, 1); input.blocks.splice(1, 1);
-  expect(engine.insertStructuredArticle(input)).toMatchObject({ ok: false, code: 'INVALID', error: expect.stringContaining('Each section needs body text before another heading.') });
-  expect(editor.getJSON()).toEqual(before);
+it.each([
+  { blocks: [{ kind: 'heading', level: 2, text: 'Part two' }, { kind: 'heading', level: 3, text: '2.1' }, { kind: 'paragraph', text: 'Body' }] },
+  { blocks: [{ kind: 'heading', level: 2, text: 'One' }, { kind: 'heading', level: 2, text: 'Two' }] },
+  { blocks: [{ kind: 'heading', level: 3, text: 'Skipped' }, { kind: 'paragraph', text: 'Body' }] },
+  { blocks: [{ kind: 'paragraph', text: 'Intro' }, { kind: 'heading', level: 2, text: 'Ends on a heading' }] },
+])('accepts any heading structure the model chooses', patch => {
+  expect(engine.insertStructuredArticle({ ...request(), ...patch })).toMatchObject({ ok: true });
 });

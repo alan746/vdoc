@@ -3,9 +3,6 @@ import { z } from 'zod/v3';
 // Product limits are independent of operation batch/risk limits.
 export const ARTICLE_LIMITS = { blocks: 80, blockLength: 3000, totalLength: 12000, titleLength: 200 } as const;
 export const ARTICLE_VALIDATION_MESSAGES = {
-  hierarchy: 'Heading levels cannot skip from H1 to H3.',
-  sectionBody: 'Each section needs body text before another heading.',
-  finalBody: 'The final section needs body text; incomplete articles cannot be inserted.',
   totalLength: 'Article exceeds the total length limit.',
 } as const;
 const text = z.string().trim().min(1).max(ARTICLE_LIMITS.blockLength);
@@ -24,20 +21,8 @@ export const structuredArticleSchema = z.object({
     z.object({ kind: z.literal('heading'), level: z.union([z.literal(2), z.literal(3)]), text }).strict(),
   ])).min(1).max(ARTICLE_LIMITS.blocks),
 }).strict().superRefine((article, ctx) => {
-  let level = 1;
-  // An introduction before the first section is optional.
-  let needsBody = false;
-  let total = article.title.length;
-  article.blocks.forEach((block, index) => {
-    total += block.text.length;
-    if (block.kind === 'heading') {
-      if (block.level > level + 1) ctx.addIssue({ code: 'custom', path: ['blocks', index], message: ARTICLE_VALIDATION_MESSAGES.hierarchy });
-      if (needsBody) ctx.addIssue({ code: 'custom', path: ['blocks', index], message: ARTICLE_VALIDATION_MESSAGES.sectionBody });
-      level = block.level;
-      needsBody = true;
-    } else needsBody = false;
-  });
-  if (needsBody) ctx.addIssue({ code: 'custom', path: ['blocks'], message: ARTICLE_VALIDATION_MESSAGES.finalBody });
+  // Article structure (heading order, sections without body text) is the model's choice; only size is limited.
+  const total = article.blocks.reduce((sum, block) => sum + block.text.length, article.title.length);
   if (total > ARTICLE_LIMITS.totalLength) ctx.addIssue({ code: 'custom', message: ARTICLE_VALIDATION_MESSAGES.totalLength });
 });
 export type StructuredArticle = z.infer<typeof structuredArticleSchema>;
