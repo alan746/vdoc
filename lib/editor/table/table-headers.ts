@@ -117,20 +117,29 @@ export function tableHeadersPlugin() {
         frame = 0;
         if (destroyed) return;
         const canvas = view.dom.closest('.canvas-scroll');
-        const viewport = pinnedHeaderViewport(canvas, win);
+        let viewport: ReturnType<typeof pinnedHeaderViewport> | undefined;
         const next = new Set<Element>([view.dom]);
+        const offsets: { table: HTMLTableElement; offset: number }[] = [];
+        // Measure every table before changing styles: writing one table's
+        // offset before reading the next can repeatedly flush browser layout.
         for (const table of view.dom.querySelectorAll<HTMLTableElement>('table')) {
           next.add(table);
           const rows = Array.from(table.rows).filter(row => row.classList.contains('vdoc-pinned-row'));
           for (const row of rows) next.add(row);
-          const rect = table.getBoundingClientRect(), scale = table.offsetWidth ? rect.width / table.offsetWidth : 1;
-          const height = rows.reduce((sum, row) => sum + row.getBoundingClientRect().height, 0);
-          // Do not cover the entire writing viewport with an oversized header.
-          const fits = height < viewport.height;
-          const offset = rows.length && fits ? pinnedHeaderOffset(rect.top, rect.height, height, viewport.top, scale) : 0;
+          let offset = 0;
+          if (rows.length) {
+            viewport ??= pinnedHeaderViewport(canvas, win);
+            const rect = table.getBoundingClientRect(), width = table.offsetWidth, scale = width ? rect.width / width : 1;
+            const height = rows.reduce((sum, row) => sum + row.getBoundingClientRect().height, 0);
+            // Do not cover the entire writing viewport with an oversized header.
+            if (height < viewport.height) offset = pinnedHeaderOffset(rect.top, rect.height, height, viewport.top, scale);
+          }
+          offsets.push({ table, offset });
+        }
+        for (const { table, offset } of offsets) {
           const value = `${offset}px`;
           if (table.style.getPropertyValue('--vdoc-pin-offset') !== value) table.style.setProperty('--vdoc-pin-offset', value);
-          table.classList.toggle('vdoc-header-stuck', offset > 0);
+          if (table.classList.contains('vdoc-header-stuck') !== (offset > 0)) table.classList.toggle('vdoc-header-stuck', offset > 0);
         }
         for (const element of observed) if (!next.has(element)) { observer?.unobserve(element); observed.delete(element); }
         for (const element of next) if (!observed.has(element)) { observer?.observe(element); observed.add(element); }
@@ -143,7 +152,11 @@ export function tableHeadersPlugin() {
       if (paper) zoomObserver?.observe(paper, { attributes: true, attributeFilter: ['style'] });
       win.addEventListener('scroll', schedule, true); win.addEventListener('resize', schedule);
       schedule();
-      return { update: schedule, destroy() {
+      return { update(view, previous) {
+        // Caret/selection and metadata updates do not move table geometry.
+        // Actual scrolling, resizing and zoom still schedule their own refresh.
+        if (view.state.doc !== previous.doc) schedule();
+      }, destroy() {
         destroyed = true; win.cancelAnimationFrame(frame); observer?.disconnect(); zoomObserver?.disconnect();
         win.removeEventListener('scroll', schedule, true); win.removeEventListener('resize', schedule);
       } };
