@@ -104,6 +104,9 @@ it('never relays upstream errors, credentials, redirects or mismatched session p
 it('preserves safe upstream status categories and hides network error details', async () => {
   vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ code: 'NOT_FOUND' }, { status: 404 }));
   expect((await run('grant')).status).toBe(404);
+  // An ended or replaced session must not read as a network failure.
+  vi.mocked(deps.fetch).mockResolvedValueOnce(Response.json({ code: 'SESSION_CLOSED' }, { status: 410 }));
+  expect((await run('grant')).status).toBe(410);
   vi.mocked(deps.fetch).mockRejectedValueOnce(new Error(key));
   const result = await run('grant'); expect(result.status).toBe(502); expect(await result.text()).not.toContain(key);
 });

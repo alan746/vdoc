@@ -1,0 +1,3 @@
+# QA fixtures are recorded download bytes, compared and hashed exactly.
+# Never convert their line endings on checkout (e.g. core.autocrlf on Windows).
+tests/fixtures/** -text

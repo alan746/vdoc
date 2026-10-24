@@ -99,7 +99,8 @@ export async function proxyVoiceSession(request: Request, action: VoiceSessionAc
     if (!upstream.ok) {
       const quota = await quotaFailure(upstream);
       if (quota) return quota;
-      const status = [402, 404, 409, 429, 503].includes(upstream.status) ? upstream.status : 502;
+      // 410: the session ended (expired, timed out or replaced by another tab).
+      const status = [402, 404, 409, 410, 429, 503].includes(upstream.status) ? upstream.status : 502;
       // Never echo an upstream error body or authentication headers.
       return failure(status, 'VOICE_SERVICE_ERROR', 'The voice service could not complete the request.');
     }

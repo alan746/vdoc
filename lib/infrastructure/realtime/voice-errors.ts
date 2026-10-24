@@ -26,6 +26,7 @@ export async function voiceRequestError(response: Response): Promise<VoiceConnec
     403: 'Voice requires a cloud document owned by your signed-in account and outside Trash. Open it in the cloud workspace.',
     404: 'This voice session is no longer available. Connect again.',
     409: 'The voice session cannot start or resume right now. Disconnect other sessions and retry.',
+    410: 'This voice session has ended, for example because it timed out or another tab started one. Connect again.',
     429: 'Voice quota or request limit reached. Wait before retrying, or contact the site administrator about your allowance.',
     503: 'The voice service is temporarily unavailable. Try again later.',
   };

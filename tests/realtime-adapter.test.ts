@@ -1,6 +1,6 @@
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import { vrtAdapter, validateRealtimeConfig } from '../lib/infrastructure/realtime/vrt-adapter';
 import * as browserAudio from '../lib/infrastructure/realtime/browser-audio';
 import { VoiceConnectionError } from '../lib/infrastructure/realtime/voice-errors';
@@ -139,10 +139,10 @@ it('forwards Stop/Esc, text and activity events, and ends a terminally closed se
 it('keeps SDK imports inside the infrastructure adapter', () => {
   const files = (root: string): string[] => readdirSync(root, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? files(join(root, entry.name)) : /\.[tj]sx?$/.test(entry.name) ? [join(root, entry.name)] : []);
   const imports = ['app', 'components', 'lib'].flatMap(files).filter(file => /from ['"]@vrealtime\//.test(readFileSync(file, 'utf8')));
-  expect(imports).toEqual(['lib/infrastructure/realtime/vrt-adapter.ts']);
+  expect(imports.map(file => file.split(sep).join('/'))).toEqual(['lib/infrastructure/realtime/vrt-adapter.ts']);
 });
 
-it.each([401, 402, 403, 409, 429, 503])('preserves actionable HTTP %s errors on creation and renewal', async status => {
+it.each([401, 402, 403, 409, 410, 429, 503])('preserves actionable HTTP %s errors on creation and renewal', async status => {
   const onStatus = vi.fn();
   fetchMock.mockResolvedValueOnce({ ok: false, status, json: async () => ({ error: { message: 'secret upstream detail' } }) });
   open({ onStatus });
@@ -150,6 +150,7 @@ it.each([401, 402, 403, 409, 429, 503])('preserves actionable HTTP %s errors on 
   const message = onStatus.mock.calls.at(-1)![1];
   expect(message).not.toContain('secret');
   if (status === 402 || status === 429) expect(message).toContain('quota');
+  if (status === 410) expect(message).toMatch(/ended.*Connect again/);
   onStatus.mockClear(); open({ onStatus });
   const session = await started(); await session.options.auth();
   fetchMock.mockResolvedValueOnce({ ok: false, status, json: async () => ({}) });
