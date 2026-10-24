@@ -1,5 +1,5 @@
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
-import { createElement, act } from 'react';
+import { createElement, act, Profiler } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { Editor } from '@tiptap/core';
 import { createExtensions } from '../lib/editor/extensions';
@@ -7,6 +7,7 @@ import { DocumentEngine } from '../lib/usecases/engine';
 import { ParagraphRuler } from '../components/editor/paragraph-ruler';
 let editor: Editor, engine: DocumentEngine, root: Root, scale: number;
 let frames: Map<number, FrameRequestCallback>, nextFrame: number;
+let commits: number;
 const rect = (left: number, width: number) => ({ x: left, y: 0, left, top: 0, right: left + width, bottom: 40, width, height: 40, toJSON: () => ({}) }) as DOMRect;
 function tick() { act(() => { const pending = [...frames.values()]; frames.clear(); pending.forEach(fn => fn(0)); }); }
 function control(name = 'Paragraph start indent') { return document.querySelector(`[aria-label="${name}"]`)! as HTMLButtonElement; }
@@ -22,7 +23,8 @@ beforeEach(async () => {
   const geometry = () => { const p = editor.view.dom.querySelector('p')!; p.getBoundingClientRect = () => rect(100 * scale, 500 * scale); };
   geometry(); editor.on('transaction', geometry);
   const reactMount = document.createElement('div'); document.body.appendChild(reactMount); root = createRoot(reactMount);
-  await act(async () => { root.render(createElement(ParagraphRuler, { editor, engine, zoom: 100 })); });
+  commits = 0;
+  await act(async () => { root.render(createElement(Profiler, { id: 'ruler', onRender: () => { commits++; } }, createElement(ParagraphRuler, { editor, engine, zoom: 100 }))); });
   const ruler = document.querySelector('.paragraph-ruler')! as HTMLElement;
   Object.defineProperty(ruler, 'offsetWidth', { value: 700 }); ruler.getBoundingClientRect = () => rect(0, 700 * scale); tick();
   for (const button of document.querySelectorAll('.ruler-handle')) {
@@ -31,6 +33,25 @@ beforeEach(async () => {
   }
 });
 afterEach(() => { act(() => root.unmount()); engine.destroy(); editor.destroy(); document.body.innerHTML = ''; vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+it('does not commit ruler renders for typing, deletion or scrolling with unchanged geometry', () => {
+  const before = commits;
+  for (let i = 0; i < 10; i++) {
+    act(() => { editor.view.dispatch(editor.state.tr.insertText('字', 1)); }); tick();
+    act(() => { editor.view.dispatch(editor.state.tr.delete(1, 2)); }); tick();
+  }
+  act(() => { document.dispatchEvent(new Event('scroll')); }); tick();
+  expect(commits).toBe(before);
+});
+it('updates the ruler when paragraph attributes or measured scale change', () => {
+  const before = commits;
+  act(() => { editor.view.dispatch(editor.state.tr.setNodeMarkup(0, undefined, { ...editor.state.doc.firstChild!.attrs, indentStart: 24 })); }); tick();
+  expect(control().getAttribute('aria-valuenow')).toBe('24');
+  expect(commits).toBeGreaterThan(before);
+  const afterIndent = commits;
+  scale = 2;
+  act(() => { window.dispatchEvent(new Event('resize')); }); tick();
+  expect(commits).toBeGreaterThan(afterIndent);
+});
 it.each([0.75, 1, 2])('previews without writes then commits once at zoom %s with exact Undo/Redo', zoom => {
   scale = zoom; const before = editor.getJSON(), revision = engine.revision;
   pointer('pointerdown', 100); pointer('pointermove', 100 + 40 * scale);

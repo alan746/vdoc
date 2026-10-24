@@ -28,11 +28,18 @@ export const StableIds = Extension.create<{ types: string[] }>({
           everyStep(transactions, (step, doc) => isTypingStep(step, doc) || step instanceof AttrStep || step instanceof DocAttrStep)) return null;
         const mapping = new Mapping();
         transactions.forEach(transaction => mapping.appendMapping(transaction.mapping));
+        // nodeAt(mapped) searches siblings from the start. Repeating it for
+        // every old block makes Enter/join/paste quadratic in wide documents.
+        // Index the final positions once, including identified nested nodes.
+        const currentIds = new Map<number, string>();
+        state.doc.descendants((node, pos) => {
+          if (node.attrs.blockId) currentIds.set(pos, node.attrs.blockId);
+        });
         const originals = new Map<string, number>();
         oldState.doc.descendants((node, pos) => {
           if (!node.attrs.blockId || originals.has(node.attrs.blockId)) return;
           const mapped = mapping.map(pos, 1);
-          if (mapped < state.doc.content.size && state.doc.nodeAt(mapped)?.attrs.blockId === node.attrs.blockId) originals.set(node.attrs.blockId, mapped);
+          if (currentIds.get(mapped) === node.attrs.blockId) originals.set(node.attrs.blockId, mapped);
         });
         const seen = new Set<string>();
         const tr = state.tr;

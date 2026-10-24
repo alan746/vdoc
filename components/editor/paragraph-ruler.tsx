@@ -14,6 +14,16 @@ const names = { start: 'Paragraph start indent', firstLine: 'First line indent',
 const handles: RulerHandle[] = ['firstLine', 'start', 'end'];
 const round = (n: number) => Math.round(n * 100) / 100;
 
+function sameLayout(a: Layout | null, b: Layout | null) {
+  return a === b || !!a && !!b && a.scale === b.scale && a.paragraphs.length === b.paragraphs.length &&
+    a.paragraphs.every((p, i) => {
+      const next = b.paragraphs[i];
+      return p.left === next.left && p.width === next.width && p.rtl === next.rtl &&
+        p.value.indentStart === next.value.indentStart && p.value.indentEnd === next.value.indentEnd &&
+        p.value.firstLineIndent === next.value.firstLineIndent;
+    });
+}
+
 export function ParagraphRuler({ editor, engine, zoom }: { editor: Editor; engine: DocumentEngine; zoom: number }) {
   const root = useRef<HTMLDivElement>(null), cancel = useRef<(() => void) | null>(null);
   const [layout, setLayout] = useState<Layout | null>(null);
@@ -34,10 +44,15 @@ export function ParagraphRuler({ editor, engine, zoom }: { editor: Editor; engin
     return paragraphs.length ? { paragraphs, scale } : null;
   }
   // The listeners below live as long as the editor; they measure with the latest render's closure.
-  const latest = useLatest({ measure });
+  const latest = useLatest({ measure, layout });
   useEffect(() => {
     let frame = 0;
-    const update = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => setLayout(latest.current.measure())); };
+    const update = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => {
+      const next = latest.current.measure();
+      // Typing and scrolling often leave the ruler unchanged. Keep measuring
+      // for wrapping/table geometry, but only render when its values change.
+      if (!sameLayout(latest.current.layout, next)) setLayout(next);
+    }); };
     const transaction = () => { cancel.current?.(); update(); };
     const resize = () => { cancel.current?.(); update(); };
     editor.on('transaction', transaction);
